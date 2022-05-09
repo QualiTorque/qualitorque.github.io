@@ -1,48 +1,24 @@
 ---
 sidebar_position: 1
 slug: /
+custom_edit_url: null
 ---
 
-# Welcome to Torque
+# Welcome to Torque! 🚀
+### APPLICATION ENVIRONMENTS - Anytime. Anywhere.
+**Torque** is a SaaS platform delivering Infrastructure Automation at Scale for complex, application-centric environments on cloud technologies including AWS, Azure, and Kubernetes. IT leaders and DevOps innovators around the world trust Quali to enable self-service automation and governance to streamline application development, testing, and release to production.
 
-Let's discover **Torque in less than 5 minutes**.
+### New to Torque? quick demo is all you need: 
+<div align="center">
+  <a href="https://youtu.be/kMbJ7IRDV7w"><img src="https://img.youtube.com/vi/kMbJ7IRDV7w/0.jpg" alt="torque"></img></a>
+</div>
 
-## Getting Started
 
-Get started by **creating a new site**.
+### From our customers:
+> *“Our back-end systems and applications are complex. They need to be. But, for us to expand at the level of growth that we were experiencing, we needed flexibility and alignment throughout our DevOps lifecycle. We weren’t going to get there with our globally distributed development teams sharing static staging environments. We could either tell our DevOps teams to share the keys to the cloud — which wasn’t going to happen — or we could find a solution.”* – **Pavel Eliav, Head of DevOps, Resident**
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+## Ready to start Torquing?
+In the next section you will go thorught the initial steps in creating a Torque account, running the Torque built-in sampels and finally running yourown workload in the system. let's go!
 
-### What you'll need
+ 
 
-- [Node.js](https://nodejs.org/en/download/) version 14 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
-
-## Generate a new site
-
-Generate a new Docusaurus site using the **classic template**.
-
-The classic template will automatically be added to your project after you run the command:
-
-```bash
-npm init docusaurus@latest my-website classic
-```
-
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
-
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
