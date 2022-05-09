@@ -4,52 +4,13 @@ sidebar_position: 1
 
 # The Torque Termonilogy
 
-Docusaurus can manage multiple versions of your docs.
 
-## Create a docs version
+**Blueprint** - An offline plan or template of an environment. A blueprint is built from *grains*. A grain represents a specific workload (for example, a terraform module or a helm chart). The blueprint defines the orchestration between the grains (order, dependency, etc.) The blueprint is defined to deploy a whole environment, from infrastructure to application. Blueprints are defined in source-controlled YAML files.
 
-Release a version 1.0 of your project:
+**Grain** - The Torque representation of an asset (Terraform module or helm chart). Contains the information required to deploy the asset such as inputs, versions, etc as well as a reference to the location of the asset code (repository).
 
-```bash
-npm run docusaurus docs:version 1.0
-```
+**Environment** - The infrastructure and application that were deployed from a blueprint.
 
-The `docs` folder is copied into `versioned_docs/version-1.0` and `versions.json` is created.
+**Space** - A work area for a team to work on a specific project. In includes the team members, the team's assets (terraform modules and/or helm charts), the blueprints and the cloud accounts where the team's application and infrastructure will be deployed. 
 
-Your docs now have 2 versions:
-
-- `1.0` at `http://localhost:3000/docs/` for the version 1.0 docs
-- `current` at `http://localhost:3000/docs/next/` for the **upcoming, unreleased docs**
-
-## Add a Version Dropdown
-
-To navigate seamlessly across versions, add a version dropdown.
-
-Modify the `docusaurus.config.js` file:
-
-```js title="docusaurus.config.js"
-module.exports = {
-  themeConfig: {
-    navbar: {
-      items: [
-        // highlight-start
-        {
-          type: 'docsVersionDropdown',
-        },
-        // highlight-end
-      ],
-    },
-  },
-};
-```
-
-The docs version dropdown appears in your navbar:
-
-![Docs Version Dropdown](/img/tutorial/docsVersionDropdown.png)
-
-## Update an existing version
-
-It is possible to edit versioned docs in their respective folder:
-
-- `versioned_docs/version-1.0/hello.md` updates `http://localhost:3000/docs/hello`
-- `docs/hello.md` updates `http://localhost:3000/docs/next/hello`
+**Tag** - Torque deploys infrastructure and applications to the cloud. It will automaticallt tag any resource created in the cloud with the cloud provider tags. There are 2 types of tags: System tags, and custom tags. System tags are tags that are defined bt Torque (for example, environment id, space name etc) while custom tags are defined by the users accodring to their needs. 
