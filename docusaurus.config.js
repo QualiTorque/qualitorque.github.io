@@ -74,11 +74,15 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: 'Company',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: 'Quali Website',
+                href: 'https://www.quali.com/',
+              },
+              {
+                label: 'Careers',
+                href: 'https://www.quali.com/careers/',
               },
             ],
           },
@@ -86,16 +90,12 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
+                label: 'GitHub Community',
+                href: 'https://github.com/QualiTorque/torque-docs/discussions',
               },
               {
                 label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
+                href: 'https://twitter.com/qualisystems',
               },
             ],
           },
@@ -103,8 +103,8 @@ const config = {
             title: 'More',
             items: [
               {
-                label: 'Blog',
-                to: '/blog',
+                label: 'Quali blog',
+                href: 'https://www.quali.com/blog/',
               },
               {
                 label: 'GitHub',
@@ -112,8 +112,7 @@ const config = {
               },
             ],
           },
-        ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        ]
       },
       prism: {
         theme: lightCodeTheme,

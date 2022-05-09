@@ -6,7 +6,7 @@ sidebar_position: 3
 
 Let's translate `docs/intro.md` to French.
 
-## Configure i18n
+## Configure i18
 
 Modify `docusaurus.config.js` to add support for the `fr` locale:
 
