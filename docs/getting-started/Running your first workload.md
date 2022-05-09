@@ -4,8 +4,14 @@ sidebar_position: 3
 
 # Running your first workload in Torque
 
+## First time?
+If you’re new to Torque, we recommend starting by trying out the examples we prepared for you in the [Sample Space](/getting-started/The%20Sample%20Space). This should get you familiar with the product non-admin user.
+
+## Ready to run your own workload?
 To run your first workload in Torque you need to complete the following steps:
 
-1. Connect your asset repositories to Torque. Torque will automatically discover your assets (Terraform modules and helm charts) and will let you choose the assets which will be used in the blueprints. After you chose the relevant assets, Torque will automatically generate initial blueprints from your assets.
-2. Connect a cloud account - a cloud account is where the deployment will be executed - for example the terraform plan and apply commands, and the helm install command. 
-3. Edit your blueprint to better 
+1. Create a space
+2. Connect your asset repositories to Torque
+3. Connect your cloud account 
+4. Edit your blueprint to tune it for your needs
+5. Your blueprint is ready to run!
