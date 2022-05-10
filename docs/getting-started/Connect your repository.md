@@ -1,13 +1,12 @@
 ---
 sidebar_position: 5
+title: Connect Your Asset Repository
 ---
 
-# Connect your asset repository
-
-Torque needs access to your relevant git repositories, in order to read your Terraform modules or Helm charts code.
+Torque needs access to your relevant git repositories to read your Terraform modules or Helm charts code.
 Torque supports 3 version control systems: GitHub, GitLab and BitBucket.
 
-Once a repository is connected, Torque will automatically discover the assets in it (Terraform modules and helm charts) and will ask you to choose the assets which will be used for the blueprints. After you chose the relevant assets, Torque will automatically generate initial blueprints from your assets.
+Once a repository is connected, Torque will automatically discover the assets in it (Terraform modules and Helm charts) and will ask you to choose the assets to be used for the blueprints. After you choose the relevant assets, Torque will automatically generate initial blueprints from your assets.
 
 :::tip Note:
 
@@ -15,16 +14,16 @@ The Torque application requests full access to your repositories however Torque 
 
 :::
 
-To connect your repository, go to the settings page on your space, and then click the reposotories tab. Click on "Add a repository".
+**To connect your repository:**
 
-![alt text][space-settings]
+1.) Go to the **Settings** page in your space.
 
-[space-settings]: https://github.com/QualiTorque/Torque-Docs/static/img/settings.png "Space-Settings"
+  > ![Locale Dropdown](/img/settings.png)
+  
+2.) Click the **Repositories** tab.
 
-![alt text][space-repos]
+  > ![Locale Dropdown](/img/repository.png)
 
-[space-repos]: https://github.com/QualiTorque/Torque-Docs/static/img/repository.png "Space-Repos"
+3.) Click **Add a Repository**.
 
-![alt text][add-repo]
-
-[add-repo]: https://github.com/QualiTorque/Torque-Docs/static/img/add-repo.png "Add-Repo"
+  > ![Locale Dropdown](/img/add_repo.png)

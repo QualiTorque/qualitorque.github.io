@@ -1,17 +1,17 @@
 ---
 sidebar_position: 2
+title: The Sample Space
 ---
 
-# The Sample Space
 
-Torque comes out of the box with a single space - the "Sample" space. This space containes several example blueprints for you to try and get familiar with the product.
+Torque comes out of the box with a single space - the "Sample" space. This space containes several example blueprints for you to play with and get familiarized with the product.
 Launch one or more of the examples to understand how the end users would experience Torque:
 
-  * Define a duration or end time to the environment - all resources will be automaticallt torn down when the duration expires. 
-  * Fill in inputs (the inputs which can be provided in deploy time are defined in the blueprint)
-  * View the deployment logs
-  * Extend the duration of the environments or end it before the duration expires
-  * View the expected and actual cost of the environment 
-  * Get the outputs from the deployment
-  * See the tags which the environment deployed on the cloud resources
+  * Define the environment's duration or end time - all resources will be automatically torn down when the duration expires. 
+  * Fill in inputs (the inputs that can be provided are defined in the blueprint).
+  * View the deployment logs.
+  * Extend the duration of the environment or end it before the duration expires.
+  * View the expected and actual cloud cost of the environment. 
+  * Get the deployment's output.
+  * See the tags which the environment deployed on the cloud resources.
 
