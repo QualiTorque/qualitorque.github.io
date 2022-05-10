@@ -22,3 +22,19 @@ Next, let's connect your cloud provider to Torque. This is done using a cloud ac
 4. Follow the instructions in the window that pops up.
 
 5. Click **Authenticate**.
+
+6. Next, associate the cloud account to the space you created.
+
+  1. Click the cloud account's 3 dot button to the right and select **Manage**.
+
+    > ![Locale Dropdown](/img/manage-cloud-account.png)
+  
+  2. Click **Add**.
+
+    > ![Locale Dropdown](/img/add-spaces-to-cloud-account.png)
+
+  3. Select the **Space** and click **Configure**.
+
+  4. Expand the compute service to see the spaces it is in.
+
+    > ![Locale Dropdown](/img/cloud-account-spaces.png)
