@@ -24,6 +24,4 @@ The Torque application requests full access to your repositories however Torque 
 
   > ![Locale Dropdown](/img/repository.png)
 
-3.) Click **Add a Repository**.
-
-  > ![Locale Dropdown](/img/add_repo.png)
+3.) Click **Add a Repository** and follow the instructions.
