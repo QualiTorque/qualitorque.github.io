@@ -13,8 +13,10 @@ const config = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'QualiTorque', // Usually your GitHub org/user name.
+  projectName: 'torque-docs', // Usually your repo name.
+  deploymentBranch: 'gh-pages',
+  trailingSlash: false,
   plugins: [
     // ...
     '@aldridged/docusaurus-plugin-lunr'
