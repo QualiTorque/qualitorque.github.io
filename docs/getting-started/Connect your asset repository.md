@@ -16,12 +16,12 @@ The Torque application requests full access to your repositories however Torque 
 
 **To connect your repository:**
 
-1.) Go to the **Settings** page in your space.
+1. Go to the **Settings** page in your space.
 
   > ![Locale Dropdown](/img/settings.png)
   
-2.) Click the **Repositories** tab.
+2. Click the **Repositories** tab.
 
   > ![Locale Dropdown](/img/repository.png)
 
-3.) Click **Add a Repository** and follow the instructions.
+3. Click **Add a Repository** and follow the instructions.

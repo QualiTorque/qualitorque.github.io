@@ -1,4 +1,4 @@
 ---
-sidebar_position: 9
-title: Edit the Blueprint's Settings
+sidebar_position: 6
+title: Edit the Blueprint
 ---
