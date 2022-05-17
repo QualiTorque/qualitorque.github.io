@@ -13,4 +13,4 @@ A space is your work area to work with your team on a project. It will contain t
 
 2. Click **Spaces** > **Create space** and follow the instructions.
 
-**Congratulations! You have created your first space**
+**Congratulations! You have created your first space in Torque. Now, connect your asset repository. **

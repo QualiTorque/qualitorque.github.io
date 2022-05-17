@@ -1,6 +1,6 @@
 ---
-sidebar_position: 7
-title: Create a Kubernetes Cluster
+sidebar_position: 8
+title: Connect a Kubernetes Cluster
 ---
 
 
