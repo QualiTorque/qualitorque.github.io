@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>Torque Blog</title>
+        <link>https://your-docusaurus-test-site.com/blog</link>
+        <description>Torque Blog</description>
+        <lastBuildDate>Thu, 26 Aug 2021 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <item>
+            <title><![CDATA[Awesome Feature]]></title>
+            <link>https://your-docusaurus-test-site.com/blog/Awesome Feature</link>
+            <guid>Awesome Feature</guid>
+            <pubDate>Thu, 26 Aug 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[And if you don't want a blog false in your Docusaurus config.]]></description>
+            <content:encoded><![CDATA[<p><strong>And if you don't want a blog</strong>: just delete this directory, and use <code>blog: false</code> in your Docusaurus config.</p>]]></content:encoded>
+            <category>facebook</category>
+            <category>hello</category>
+            <category>docusaurus</category>
+        </item>
+        <item>
+            <title><![CDATA[Another feature!]]></title>
+            <link>https://your-docusaurus-test-site.com/blog/Another feature!</link>
+            <guid>Another feature!</guid>
+            <pubDate>Tue, 28 May 2019 00:00:00 GMT</pubDate>
+            <description><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet]]></description>
+            <content:encoded><![CDATA[<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>]]></content:encoded>
+            <category>hola</category>
+            <category>docusaurus</category>
+        </item>
+    </channel>
+</rss>
