@@ -17,10 +17,6 @@ const config = {
   projectName: 'torque-docs', // Usually your repo name.
   deploymentBranch: 'gh-pages',
   trailingSlash: false,
-  plugins: [
-    // ...
-    '@aldridged/docusaurus-plugin-lunr'
-  ],
   presets: [
     [
       'classic',
