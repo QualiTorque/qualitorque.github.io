@@ -11,10 +11,6 @@ A space is your work area to work with your team on a project. It will contain t
 
   > ![Locale Dropdown](/img/admin-console.png)
 
-2. Click **Spaces** > **Create space**. 
+2. Click **Spaces** > **Create space** and follow the instructions.
 
-  > ![Locale Dropdown](/img/create_space.png)
-
-3. Give your space a name, and optionally select a color and icon.
-
-  > ![Locale Dropdown](/img/create-new-space.png)
+**Congratulations! You have created your first space in Torque. Now, connect your asset repository. **

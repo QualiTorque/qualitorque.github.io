@@ -15,3 +15,4 @@ Launch one or more of the examples to understand how the end users would experie
   * Get the deployment's output.
   * See the tags which the environment deployed on the cloud resources.
 
+**To launch a sample go to the Sample space --> Sandbox Environments and click "New Sandbox".**

@@ -14,8 +14,6 @@ The following tags are supported:
 
 Tags are managed in the **Tags** administration page.
 
-![Locale Dropdown](/img/admin-guide/tags-page.png)
-
 Features and limitations:
 
 * Custom tags apply for all blueprint types, including YAML and Terraform-based.

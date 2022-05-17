@@ -12,3 +12,5 @@ title: Torque Terminology
 **Space** - A work area for a team to work on a specific project. In includes the team's members, assets (Terraform modules and/or Helm charts), the blueprints and the cloud accounts where the team's applications and cloud infrastructure will be deployed. 
 
 **Tag** - Torque deploys infrastructure and applications to the cloud. It automatically tags any resource created in the cloud with the cloud provider tags. There are 2 types of tags: System tags and custom tags. System tags are tags that are defined by Torque (for example, environment id, space name, etc) while custom tags are defined by the users according to their needs. 
+
+**Execution Host** - a system or location where the IaC executable. For example, a kubernets cluster can be an execution host, and the IaC commands such as "terraform apply" or "helm install" would be run from the cluster.
