@@ -1,6 +1,6 @@
 ---
 sidebar_position: 7
-title: Create a Kubernetes Host
+title: Create a Kubernetes Cluster
 ---
 
 
@@ -36,4 +36,6 @@ title: Create a Kubernetes Host
    ``` kubectl apply -f <file-name> ```
 
 5. Click on "Check Connectivity" to verify that the agent can sucessfully communicate with Torque. 
+
+6. Once verified, click **Finish** in the window that pops up.
 
