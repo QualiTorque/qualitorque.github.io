@@ -9,16 +9,14 @@ const config = {
   title: 'Torque',
   tagline: 'Dinosaurs are cool',
   url: 'https://your-docusaurus-test-site.com',
-  baseUrl: '/',
+  baseUrl: '/torque-docs/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
-  plugins: [
-    // ...
-    '@aldridged/docusaurus-plugin-lunr'
-  ],
+  organizationName: 'QualiTorque', // Usually your GitHub org/user name.
+  projectName: 'torque-docs', // Usually your repo name.
+  deploymentBranch: 'gh-pages',
+  trailingSlash: false,
   presets: [
     [
       'classic',
