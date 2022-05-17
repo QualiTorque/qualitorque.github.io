@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunktorque=self.webpackChunktorque||[]).push([[3513],{8383:function(s){s.exports=JSON.parse('{"allTagsPath":"/torque-docs/blog/tags","name":"docusaurus","count":2,"permalink":"/torque-docs/blog/tags/docusaurus"}')}}]);

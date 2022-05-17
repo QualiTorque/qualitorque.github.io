@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunktorque=self.webpackChunktorque||[]).push([[1374],{7983:function(e){e.exports=JSON.parse('{"allTagsPath":"/torque-docs/blog/tags","name":"hola","count":1,"permalink":"/torque-docs/blog/tags/hola"}')}}]);
