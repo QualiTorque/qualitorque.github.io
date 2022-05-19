@@ -1,25 +1,82 @@
 ---
-sidebar_position: 2
-title: Custom Tags
+sidebar_position: 3
+title: Tags
 ---
 
-Torque uses several out-of-the-box system tags to provide you with activity and cost data. In addition, you can attach your own custom tags to your environments for your own uses, including monitoring and control, troubleshooting, and more. All environment resources are tagged with Torque's out-of-the-box tags when the environment's deployment.
-The following tags are supported:
-* **activity_type**: This tag is defined by the account admin and allows the sandbox end-user to indicate the purpose of the sandbox. For example: "development", "manual-testing", "staging", etc. This tag comes out of the box with Torque and cannot be deleted.
-* Account-level tags: Defined by the account admin and apply to all environments in Torque. Account-level tags cannot be overridden by anyone who is not an account admin.
-* Space-level tags: Defined by the account admin and applies to all environments deployed in that space. This tag can be overridden by space admins.
-* Blueprint-level tags: Defined by the account admin and can be overridden by the blueprint designer.
-* Sandbox-level tags: Defined by the account admin and applies to all sandboxes in Torque. This tag can be overridden by the sandbox end-user.
-  > Space, blueprint and sandbox-level tags can have a single value that will be used when deploying the environment, or multiple values, allowing the relevant user to select the appropriate one.
+# Introduction
 
-Tags are managed in the **Tags** administration page.
+The cloud providers cost management pillars provide tools to cover many aspect of your cloud spending, like billing isolation, specific service limits and cost alerts. 3rd party tools also exist which provide enhanced functionality, such as inventory visibility, rightsizing recommendations, idle resources detection etc.
 
-Features and limitations:
+All of these are great tools, however, to get valuable insights, this is simply not enough. The key to really understanding where your budget is spent is accurate tagging.
 
-* Custom tags apply for all blueprint types, including YAML and Terraform-based.
-* Custom tags are applied to every cloud resource that is created in the sandbox or production environment, including resources created by services (Terraform modules), and deleted from the cloud along with the environment when it is ended/renamed.
-* Custom tags are created on the account level and defined with a scope, which determines where they get their value (account, space, blueprint, and sandbox).
-* The custom tag’s value can be defined by the Torque admin, selected from a dropdown list of possible values, or entered as freetext (if possible values were not defined).
-* When a sandbox or production environment is deployed, its tags are the aggregation of the tags defined for this sandbox (in runtime), the blueprint tags, the space tags and the account tags, as well as the Torque automatic tags. 
-* Custom tags are not used in environments deployed over existing cloud infrastructure.
-* Up to 20 custom tags can be created, to avoid passing the limit of the cloud providers.
+> ![Locale Dropdown](/img/tags-quote.png)
+
+(https://aws.amazon.com/blogs/apn/how-to-optimize-your-aws-workload-cost-with-capgemini-and-virtana/)
+
+Properly and consistently tagging resources tagging is difficult, especially when some resources are automatically created, and some manually, by different teams, in different geographic locations, through different stages of the development pipeline. 
+
+The solution: Do it the Torque way → Tag *environments* rather than single *resources*. A whole environment is what makes the business sense and helps you to really understand the data.
+
+Using Torque tagging capabilities, you can be sure you are covered, enforce your own tag policy, and make sure any launched environment is tagged correctly, with the tags that you need.
+
+There are 3 types of tags in Torque:
+
+## System Tags
+  
+  Torque creates several tags out of the box to help with your cloud book keeping:
+  - *sandbox-name* : the name that was given to the environment
+  - *blueprint-name* : the template which the environment was built from
+  - *space-name* : the name of the space 
+  - *owner-email* : email of the user who deployed the environment 
+
+  Torque will automatically tag all cloud resources with these tags as the name and will also populate the tag value.
+
+## Built-in Tags
+  
+  These tags will be created by Torque, but the user who deploys the environments sets the tag's *value*.
+  Currently, Torque supports the following built-in tags:
+  - activity_type : the purpose for launching this environemt. It allows the sandbox end-user to indicate the purpose of the sandbox. The end-user can choose from a list of pre-defined values such as dev, test, demo... etc. while the account admin can also edit this list and add more buisness activities to this tag.
+
+  **To customize the activity_type tag:**
+
+    1. Switch to **Admin Console** and click **Tags**.
+    2. Edit the **activity_type** tag.
+
+    > ![Locale Dropdown](/img/edit-activity-type.png)
+
+    3. You can change the default value, possible values and description.
+
+    4. Click **Apply**.
+
+
+## Custom Tags
+
+Custom tags are tags that are completely defined by you according to your policy and needs. You will define both the tag *name* and *value*. The Torque account admin creates the custom tags, and defines their name, default value, and **scope**. The scope determines who will define their final value, and when. 
+
+Torque defines 4 scopes for custom tags: account, space, blueprint, and sandbox. 
+
+- *account* scope: The tag's value is set once during the tag's creation by the account admin. The tag's value will be identical for all resources in all environments. 
+- *space* scope: The tag's default value is set during the tag's creation, but it can be overrided with separate value on each space by the space admin. All resources created by all environments in the same space will have the same tag value.
+- *blueprint* scope: The tag's default value is set during the tag's creation, but it can be overrided with separate value on each blueprint by the blueprint developer. All resources created by environments using this blueprint will have the same tag value.
+- *sandbox* scope : The tag's default value is set during the tag's creation, but it can be overrided with separate value by the end user when they deploy an environment.
+
+:::tip Note
+
+Any custom tag will be applied to all resources created in all environments in this Torque account. If its value was not overriden in its defined scope it will be deployed with the default value.
+
+:::
+
+### Possible Values for custom tags
+
+As the account admin, when you create a custom tag you can limit the allowed values which the other users will be able to use to a closed list of possible values. When the user would override the tag's value they will see a dropdown list of the possible values that the account admin defined, and will only be able to select one of these values.
+
+### Creating a custom tag
+
+1. Switch to **Admin Console** and click **Tags**.
+2. click **+ New Tag** and follow the instructions.
+
+### Overriding a custom tag's default value
+
+1. Space Scope: Go to the space settings page --> Tags and select the tag value which you wish to override.
+2. Blueprint Scope: Go to the blueprints page, and click on the ... menu for the blueprint you which to override the tag. Click on Manage Tags.
+3. Sandbox Scope: When you launch an environment, you will see in the tags section the Sandbox scope tags and you will be able to override it.
