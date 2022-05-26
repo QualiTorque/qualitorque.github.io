@@ -8,7 +8,7 @@ Torque autogenerates blueprints based on your assets (Terraform modules, Helm Ch
 
 ### Common fields
 
-- **spec_version** should not be changed.
+- **spec_version** should not be changed. 
 - **description** may be changed to a better description for your blueprint.
 - **inputs**: Torque generates the inputs based on the inputs in your module. The blueprint inputs are presented to the end user when they launch the blueprint, so they can fill out the inputs and/or override any defaults. These inputs will be the module's inputs upon deployment. 
 Remove any inputs you don't want to expose in the deployed environment.
