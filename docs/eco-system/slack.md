@@ -1,5 +1,6 @@
 ---
-sidebar_position: 3
+sidebar_position: 1
+title: Slack
 ---
 
 # Running your first workload in Torque

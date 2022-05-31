@@ -1,5 +1,6 @@
 ---
 sidebar_position: 3
+title: Circle CI
 ---
 
 # Running your first workload in Torque
