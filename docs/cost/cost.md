@@ -1,8 +1,9 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
+title: Cost
 ---
 
-# Torque's Samples Space
+# Running your first workload in Torque
 
 Let's translate `docs/intro.md` to French.
 
