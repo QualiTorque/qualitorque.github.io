@@ -1,43 +1,29 @@
 ---
 sidebar_position: 1
+title: Invite Users to Your Torque Account
 ---
 
-# Create a Page
+Now that you understand how Torque works, it's time to invite other members of your team to your Torque account. As Account Admin, you can invite users to your Torque account and add them to spaces, while Space Admins can only add existing Torque users to the spaces they administer. 
 
-Add **Markdown or React** files to `src/pages` to create a **standalone page**:
+## Invite users to Torque
 
-- `src/pages/index.js` -> `localhost:3000/`
-- `src/pages/foo.md` -> `localhost:3000/foo`
-- `src/pages/foo/bar.js` -> `localhost:3000/foo/bar`
+Torque role: Account Admin
 
-## Create your first React Page
+1. Select **Admin Console** from the dropdown list in the top left corner of the application.
+2. Select **Users**.
+3. Click the **Invite User** button.
+4. Enter a user's email address and press the **[ENTER]** key. Repeat to add additional users.
+5. Click **Send Invitation**.
+  The users will get a "Welcome to Torque" invitation email, prompting them to login to the space. Once they log in, they will be granted the role and permissions you specified.
 
-Create a file at `src/pages/my-react-page.js`:
+## Add existing users to your space
 
-```jsx title="src/pages/my-react-page.js"
-import React from 'react';
-import Layout from '@theme/Layout';
+Torque role: Account admin, space admin
 
-export default function MyReactPage() {
-  return (
-    <Layout>
-      <h1>My React page</h1>
-      <p>This is a React page</p>
-    </Layout>
-  );
-}
-```
-
-A new page is now available at `http://localhost:3000/my-react-page`.
-
-## Create your first Markdown Page
-
-Create a file at `src/pages/my-markdown-page.md`:
-
-```mdx title="src/pages/my-markdown-page.md"
-# My Markdown page
-
-This is a Markdown page
-```
-
-A new page is now available at `http://localhost:3000/my-markdown-page`.
+1. In the suitable Torque space, select **Settings** from the left menu.
+2. Click the **Users** tab.
+3. Click the **Add Users** button.
+4. Select the Torque user you wish to add to this space. Repeat to add additional users.
+5. Click **Done**.
+   By default, new users are assigned the **Space Member** role. 
+6. Change the roles as needed. 
