@@ -1,7 +1,9 @@
 ---
-sidebar_position: 1
+sidebar_position: 4
 title: Torque Integrations
 ---
+
+Torque role: Account Admin, Space Admin
 
 Torque supports integration with various 3rd party tools, including CI/CD tools such as Azure DevOps, Jenkins and Circle CI, and Torque's very own Torque CLI and Torque VSCode plugin development tools. Integrations are configured on the space level, so you could have different integrations for each space, as needed.
 
