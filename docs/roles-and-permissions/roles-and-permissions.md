@@ -3,7 +3,9 @@ sidebar_position: 3
 title: Users, Roles and Permissions
 ---
 
-Now that you understand how Torque works, it's time to understand how invite other members of your team to your Torque account. As Account Admin, you can invite users to your Torque account and add them to spaces, while Space Admins can only add existing Torque users to the spaces they administer. Account Admins have full administrative permissions across the entire account and all spaces. Account Members also have a space role assigned to them for each space, which determines their permissions in that space. As such, the same user can have different roles in different spaces.
+Now that you understand how Torque works, it's time to understand how invite other members of your team to your Torque account. As Account Admin, you can invite users to your Torque account and add them to spaces, while Space Admins can only add existing Torque users to the spaces they administer. 
+
+There are two account-level roles: Account Admins and Account Members.Account Admins have full administrative permissions across the entire account and all spaces. Account Members also have a space role assigned to them for each space, which determines their permissions in that space. As such, the same user can have different roles in different spaces.
 
 ## Invite users to Torque
 
@@ -29,39 +31,3 @@ Torque role: Account Admin, Space Admin
 5. Click **Done**.
    By default, new users are assigned the **Space Member** role. 
 6. Change the roles as needed.
-
-## Additional actions
-
-### Change a user's account role
-
-There are two account-level roles: Account Admins and Account Members. Account Admins have full administrative permissions across the entire account and all spaces, while the permissions of Account Members are defined in the space level. 
-
-Torque role: Account Admin
-
-1. Select **Admin Console** from the dropdown list in the top left corner of the application.
-2. Select **Users**.
-3. Change the user's role.
-
-### Change a user's space role
-
-Torque role: Account Admin, Space Admin
-
-1. In the suitable Torque space, select **Settings** from the left menu.
-2. Click the **Users** tab.
-3. Change the user's space role. 
-
-### Delete a user from the account
-
-Torque role: Account Admin
-
-1. Select **Admin Console** from the dropdown list in the top left corner of the application.
-2. Select **Users**.
-3. Click the user's 3 dot button on the right and select **Delete**
-
-### Remove a user from a space
-
-Torque role: Account Admin, Space Admin
-
-1. In the suitable Torque space, select **Settings** from the left menu.
-2. Click the **Users** tab.
-3. Click the user's 3 dot button on the right and select **Remove**
