@@ -163,6 +163,26 @@ In the below example the [downcase](https://shopify.github.io/liquid/filters/dow
 Blueprint designers might need extra details about the account, space or sandbox during the sandbox orchestration. Torque provides dynamic attributes such as a sandboxid, accountid and spaceid that can be used through the orchestration and automation process.   
 :::
 
+### Environment Variables
+In many cases, passing information through environment variables is required for IaC modules to properly execute with the right data in mind. The environment variables provided under a specific grain will be accessible only during the grain lifecycle of the specific grain and can be used as a specific string or to be derived from a blueprint input or other grain output. 
+
+```yaml" 
+  s3_bucket:
+    kind: 
+    spec:
+    ...
+    ...
+      env-vars:
+      - name: VAR_NAME1
+        value: value1
+      - name: VAR_NAME2
+        value: '{{ .inputs.input_name }}'
+      - name: VAR_NAME3
+        value: '{{ .grains.vm.outputs.host_name }}'
+```
+
+
+
 
 ### The Terraform Grain
 
