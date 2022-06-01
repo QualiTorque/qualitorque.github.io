@@ -1,9 +1,9 @@
 ---
-sidebar_position: 3
-title: Users, Roles and Permissions
+sidebar_position: 1
+title: Invite Users to Your Torque Account
 ---
 
-Now that you understand how Torque works, it's time to understand how invite other members of your team to your Torque account. As Account Admin, you can invite users to your Torque account and add them to spaces, while Space Admins can only add existing Torque users to the spaces they administer. Account Admins have full administrative permissions across the entire account and all spaces. Account Members also have a space role assigned to them for each space, which determines their permissions in that space. As such, the same user can have different roles in different spaces.
+Now that you understand how Torque works, it's time to invite other members of your team to your Torque account. As Account Admin, you can invite users to your Torque account and add them to spaces, while Space Admins can only add existing Torque users to the spaces they administer. 
 
 ## Invite users to Torque
 
@@ -17,10 +17,9 @@ Torque role: Account Admin
 6. Click **Send Invitation**.
   The users will get a "Welcome to Torque" invitation email, prompting them to login to the space. Once they log in, they will be granted the space role and permissions you specified.
 
-
 ## Add existing users to your space
 
-Torque role: Account Admin, Space Admin
+Torque role: Account admin, space admin
 
 1. In the suitable Torque space, select **Settings** from the left menu.
 2. Click the **Users** tab.
