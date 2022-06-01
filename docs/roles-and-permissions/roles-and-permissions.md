@@ -19,10 +19,9 @@ Torque role: Account Admin
 6. Click **Send Invitation**.
   The users will get a "Welcome to Torque" invitation email, prompting them to login to the space. Once they log in, they will be granted the space role and permissions you specified.
 
-
 ## Add existing users to your space
 
-Torque role: Account Admin, Space Admin
+Torque role: Account admin, space admin
 
 1. In the suitable Torque space, select **Settings** from the left menu.
 2. Click the **Users** tab.
