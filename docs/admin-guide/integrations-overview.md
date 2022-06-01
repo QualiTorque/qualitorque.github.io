@@ -1,6 +1,6 @@
 ---
 sidebar_position: 4
-title: Torque Integrations
+title: Integrations
 ---
 
 Torque role: Account Admin, Space Admin
