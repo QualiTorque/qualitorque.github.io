@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Policies
+title: Blueprint Policies
 ---
 
 As the blueprint designer, you can define the blueprint's max duration or allow it to run indefinitely, to support scenarios that deploy a sandbox that must be always online, or delivers a static cloud resource.
