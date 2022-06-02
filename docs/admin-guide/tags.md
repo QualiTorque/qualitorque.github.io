@@ -1,9 +1,12 @@
 ---
+<<<<<<< HEAD:docs/tags/tags.md
 sidebar_position: 3
 title: Custom Tags
+=======
+sidebar_position: 5
+title: Tags
+>>>>>>> 0c0acdbe3cca392c96e95df41cff88930b494271:docs/admin-guide/tags.md
 ---
-
-# Introduction
 
 The cloud providers cost management pillars provide tools to cover many aspect of your cloud spending, like billing isolation, specific service limits and cost alerts. 3rd party tools also exist which provide enhanced functionality, such as inventory visibility, rightsizing recommendations, idle resources detection etc.
 
