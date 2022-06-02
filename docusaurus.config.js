@@ -17,6 +17,10 @@ const config = {
   projectName: 'torque-docs', // Usually your repo name.
   deploymentBranch: 'gh-pages',
   trailingSlash: false,
+  plugins: [
+    // ...
+    require.resolve("@cmfcmf/docusaurus-search-local")
+  ],
   presets: [
     [
       'classic',
