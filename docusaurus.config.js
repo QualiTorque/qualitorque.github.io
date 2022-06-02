@@ -19,7 +19,7 @@ const config = {
   trailingSlash: false,
   plugins: [
     // ...
-    require.resolve("@cmfcmf/docusaurus-search-local")
+    require.resolve("@cmfcmf/docusaurus-search-local"),
   ],
   presets: [
     [
@@ -51,6 +51,7 @@ const config = {
       navbar: {
         logo: {
           src: 'img/logo.svg',
+          srcDark: "img/Q_Torque_Logo_white_2c.png"
         },
         items: [
           {
