@@ -31,6 +31,13 @@ description: Performance testing deployment based on RDS, EKS and Lambda
 ### inputs
 Blueprint designers can expose blueprint inputs to their end-users to add flexibility while launching a new sandbox from the blueprints - without altering the blueprint code itself. Inputs data can be later used in the blueprint to control orchestration, pass information to automation process and more.
 
+Input definition is composed out of the following fields: 
+- The input name
+- The input description - that will be presented to all users in the Torque UI and API's
+- The input type. Supported types: string.
+- Input default value - the vale that will be used in the Torque UI and will be used in case no other value provided for the input.
+
+
 ```yaml"
 inputs:
   app_version:
@@ -40,7 +47,9 @@ inputs:
 ```
 
 ### outputs
-Outputs exposes information about your newly deployed sandbox and make it available for the sandbox consumer or automation processes. Outputs will usually be available at the end of the sandbox initialization and accessible throughout the sandbox lifecycle
+Outputs exposes information about your newly deployed sandbox and make it available for the sandbox consumer or automation processes. Outputs will usually be available at the end of the sandbox initialization and accessible throughout the sandbox lifecycle.
+
+Outputs are a dictionary composed by the output name and the output value.
 
 ```yaml"
 outputs:
@@ -80,10 +89,10 @@ grain_name:
 Note that in auto-generated blueprints, the grain_name.spec.host.name is automatically exposed as a blueprint input for the blueprint designer ease of use. As best practice, it's recommended to remove the host.name from being an input once the blueprint is exposed to the catalog.
 :::
 
-### Grain Source
+### Source
 Sources are repositories storing IaC, CM or other configuration technology that will be utilized by Torque to launch and operate an environment. Torque supports multiple ways to define grain sources. 
 
-### Grain Host
+### Host
 Hosts, or **Execution Hosts** are the locations where grains will be deployed from. While different grains behave differently, it's important to choose the right execution host for a grain to make sure authentication, networking and  configuration is all set for sandbox consumers use. Execution Host can be different between grains in the same blueprints to allow maximum flexibility during the orchestration processes.
 
 :::info
