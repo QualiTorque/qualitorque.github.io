@@ -227,6 +227,9 @@ The Terraform grain is Torque's native support for HashiCorp Terraform modules. 
 ### source 
 Please see [the grain source](blueprints.md#source) for more details.
 
+### host
+Please see [the grain host](blueprints.md#host) for more details.
+
 ### tf-version
 Torque provides the flexability to choose a specific Terraform version with which the Terraform module will be deploy.
 :::info
@@ -315,4 +318,49 @@ Note that scripts should be stored next to your IaC code to be used under the sc
 :::
 
 ## The HELM Grain
+The HELM grain is Torque's native support for HELM v3 charts. Torque allows designers to use HELM specific features to easily orchestrate self-developer and community charts in a standard way and share them with others as building blocks.
 
+### source 
+Please see [the grain source](blueprints.md#source) for more details.
+
+### host
+Please see [the grain host](blueprints.md#host) for more details.
+
+### inputs
+Similar to blueprint inputs, and Terraform inputs, the HELM grain inputs allowed to reuse the same HELM chart in different ways using different values override. Inputs provided to the HELM grain will be used when launching the HELM chart. We recommend using Torque's auto-discovery capability to quickly model your HELM chart within Torque including all defined inputs.
+
+```yaml"
+grains:
+  nginx:
+    kind: helm
+    spec:
+      source:
+        path: https://github.com/bitnami/charts.git//bitnami/nginx
+      host:
+      ...
+      inputs:
+        - replicaCount: '{{ .inputs.replicaCount }}'
+```
+
+:::info
+Note that in the above example, blueprint input is used as the value of the HELM grain input, so the sandbox owner is able to choose the replicaCount required for his need. The information provided by the user will be passed to HELM chart as values and affect the deployment process.
+:::
+
+### commands
+The commands section allows to execute CLI code prior to the HELM chart deployment to make sure all dependencies are met to ensure a successful deployment. Common use for commands is to execute HELM dependencies update to collect all the sub-charts required for the deployment.
+
+```yaml"
+grains:
+  nginx:
+    kind: helm
+    spec:
+      source:
+        path: https://github.com/bitnami/charts.git//bitnami/nginx
+      host:
+        cloud-account: aws-demo
+        compute-service: eks-demo
+      inputs:
+        - replicaCount: '{{ .inputs.replicaCount }}'
+      commands:
+        - dep up bitnami/nginx
+```
