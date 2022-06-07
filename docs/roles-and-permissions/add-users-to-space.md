@@ -3,7 +3,7 @@ sidebar_position: 6
 title: Add Existing Users to Your Space
 ---
 
-Torque role: Account Admin, Space Admin
+Torque role: Account admin, space admin
 
 1. In the suitable Torque space, select **Settings** from the left menu.
 2. Click the **Users** tab.
