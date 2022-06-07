@@ -3,7 +3,7 @@ sidebar_position: 5
 title: Invite Users to Torque
 ---
 
-Torque role: Account Admin
+Torque role: Account admin
 
 1. Select **Admin Console** from the dropdown list in the top left corner of the application.
 2. Select **Users**.
