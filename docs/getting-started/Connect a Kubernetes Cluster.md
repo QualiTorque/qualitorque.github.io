@@ -1,5 +1,5 @@
 ---
-sidebar_position: 8
+sidebar_position: 7
 title: Connect a Kubernetes Cluster
 ---
 
@@ -17,7 +17,7 @@ title: Connect a Kubernetes Cluster
 - **Sandboxes namespaces** - If your environments will deploy Kubernetes resources (pods, services, etc...), create namespaces where the resources will be created (or have a list of namespaces ready). You will need the names of the namespaces when you connect the cluster. Note, every space will be attached to one namespace. If you're using the Kubernetes cluster just as a host and don't plan on deploying resources to other namespaces, you can specify the agent namespace as a sandbox namespace.
    
 - **Authentication and permissions** - The execution host will need sufficient permissions to create the environment's cloud resources. There are a couple of ways to provide the permissions:
-   - (Recommended) Create a designated *service account* with the required permissions, and specify it in the blueprint. See [Service Accounts](/getting-started/Service%20Accounts)  for details. 
+   - (Recommended) Create a designated *service account* with the required permissions, and specify it in the blueprint. See [Service Accounts](/blueprint-designer-guide/Service%20Accounts)  for details. 
    - Create a custom script that executes the authentication, and design your sandbox to execute it before the environment is created. See [TBD] for details.
    
 
