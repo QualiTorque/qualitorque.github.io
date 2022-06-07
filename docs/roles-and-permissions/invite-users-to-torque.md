@@ -1,6 +1,6 @@
 ---
-sidebar_position: 4
-title: Invite users to Torque
+sidebar_position: 5
+title: Invite Users to Torque
 ---
 
 Torque role: Account Admin

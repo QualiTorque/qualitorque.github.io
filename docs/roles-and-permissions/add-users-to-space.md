@@ -1,6 +1,6 @@
 ---
-sidebar_position: 3
-title: Add existing users to your space
+sidebar_position: 6
+title: Add Existing Users to Your Space
 ---
 
 Torque role: Account Admin, Space Admin
