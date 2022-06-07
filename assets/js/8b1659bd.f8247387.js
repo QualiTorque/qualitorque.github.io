@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunktorque=self.webpackChunktorque||[]).push([[1764],{4938:function(e){e.exports=JSON.parse('{"permalink":"/torque-docs/blog/tags/hola","page":1,"postsPerPage":10,"totalPages":1,"totalCount":1,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);
