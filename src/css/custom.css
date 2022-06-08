@@ -3,7 +3,10 @@
  * bundles Infima by default. Infima is a CSS framework designed to
  * work well for content-centric websites.
  */
-
+ @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700');
+ * {
+   font-family: 'Kanit', sans-serif !important;
+ }
 /* You can override the default Infima variables here. */
  :root {
   --ifm-color-primary: #009bda;
@@ -90,3 +93,4 @@
 .markdown > h3 {
   --ifm-h3-font-size: 1.5rem;
 }
+
