@@ -1,0 +1,46 @@
+.menu__link:hover, .menu__link--active, .menu__list-item-collapsible:hover, .menu__list-item-collapsible--active, .menu__caret:hover {
+  background: none !important;
+}
+
+.menu__list-item .menu__link {
+  color: #A8A7A7;
+}
+
+.menu__list-item .menu__list .menu__link {
+  color: #6C6D6E;
+}
+
+.menu__list-item-collapsible .menu__link--sublist[aria-expanded=true]::after {
+  -webkit-transform: rotate(180deg) scale(0.7);
+          transform: rotate(180deg) scale(0.7);
+}
+
+.menu__list-item-collapsible .menu__link--sublist[aria-expanded=false]::after {
+  -webkit-transform: rotateZ(90deg) scale(0.7);
+          transform: rotateZ(90deg) scale(0.7);
+}
+
+.menu__list-item .menu__caret::before {
+  -webkit-transform: rotate(180deg) scale(0.7);
+          transform: rotate(180deg) scale(0.7);
+}
+
+.menu__list-item--collapsed .menu__caret::before {
+  -webkit-transform: rotateZ(90deg) scale(0.7);
+          transform: rotateZ(90deg) scale(0.7);
+}
+
+.menu__link--active {
+  color: #282830 !important;
+  position: relative;
+}
+
+.menu__link--active::before {
+  content: "";
+  width: 2px;
+  height: 20px;
+  background: #015CC7;
+  position: absolute;
+  left: 1px;
+}
+/*# sourceMappingURL=sidebar.css.map */
