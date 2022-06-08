@@ -40,7 +40,11 @@ const config = {
             'https://github.com/QualiTorque/torque-docs/tree/master/',
         },
         theme: {
-          customCss: [require.resolve('./src/css/custom.css'), require.resolve('./src/css/sidebar.scss')],
+          customCss: [
+            require.resolve('./src/css/custom.css'),
+            require.resolve('./src/css/sidebar.scss'),
+            require.resolve('./src/css/pagination-nav.scss')
+          ],
         },
       }),
     ],
