@@ -20,6 +20,7 @@ const config = {
   plugins: [
     // ...
     require.resolve("@cmfcmf/docusaurus-search-local"),
+    require.resolve("docusaurus-plugin-sass")
   ],
   presets: [
     [
@@ -39,7 +40,7 @@ const config = {
             'https://github.com/QualiTorque/torque-docs/tree/master/',
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: [require.resolve('./src/css/custom.css'), require.resolve('./src/css/sidebar.scss')],
         },
       }),
     ],
