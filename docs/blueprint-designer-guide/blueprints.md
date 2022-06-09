@@ -357,8 +357,7 @@ grains:
       source:
         path: https://github.com/bitnami/charts.git//bitnami/nginx
       host:
-        cloud-account: aws-demo
-        compute-service: eks-demo
+        name: aws-demo
       inputs:
         - replicaCount: '{{ .inputs.replicaCount }}'
       commands:
