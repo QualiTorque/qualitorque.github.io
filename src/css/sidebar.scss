@@ -1,5 +1,14 @@
+aside {
+  width: var(--sidebar-width) !important;
+}
+
 .menu {
-  &__link:hover, &__link--active, &__list-item-collapsible:hover, &__list-item-collapsible--active, &__caret:hover {
+  > ul {
+    width: 250px;
+    margin: auto;
+  }
+
+  &__link--active, &__list-item-collapsible--active, &__caret:hover {
     background: none !important;
   }
 
@@ -36,17 +45,22 @@
     }
   }
 
-  &__link--active {
-    color: #282830 !important;
-    position: relative;
+  &__link {
+    font-size: 12px;
 
-    &::before {
-      content: "";
-      width: 2px;
-      height: 20px;
-      background: #015CC7;
-      position: absolute;
-      left: 1px;
+    &--active {
+      color: #282830 !important;
+      position: relative;
+  
+      &::before {
+        content: "";
+        width: 2px;
+        height: 20px;
+        background: #015CC7;
+        position: absolute;
+        left: 1px;
+        top: 2px;
+      }
     }
   }
 }

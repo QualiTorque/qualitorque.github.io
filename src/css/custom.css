@@ -7,6 +7,9 @@
  * {
    font-family: 'Kanit', sans-serif !important;
  }
+ body {
+   overflow: overlay !important;
+ }
 /* You can override the default Infima variables here. */
  :root {
   --ifm-color-primary: #009bda;
@@ -19,7 +22,12 @@
   --ifm-code-font-size: 95%;
   --ifm-font-weight-semibold: 0;
   --ifm-heading-font-family: calibri;
-  --ifm-h2-font-size: 1.6rem;
+  --ifm-h1-font-size: 20px;
+  --ifm-h2-font-size: 16px;
+  --ifm-h3-font-size: 15px;
+  --ifm-font-weight-bold: 600;
+  --ifm-heading-font-weight: 500;
+  --sidebar-width: 280px;
 }
 
 
@@ -86,11 +94,73 @@
     no-repeat;
 }
 
-.markdown h1:first-child{
-  --ifm-h1-font-size: 2.5rem;;
+/* Topbar */
+.navbar {
+  position: absolute;
+  width: calc(100vw - var(--sidebar-width));
+  right: 0;
+  background-color: #015CC7;
 }
 
-.markdown > h3 {
-  --ifm-h3-font-size: 1.5rem;
+.navbar .navbar__brand {
+  position: absolute;
+  left: -255px;
 }
 
+.dsla-search-wrapper .aa-Autocomplete {
+  width: 200px;
+}
+
+.dsla-search-wrapper .aa-DetachedSearchButton {
+  height: 28px;
+  padding: 0;
+}
+
+.dsla-search-wrapper svg {
+  transform: scale(0.8);
+}
+
+.aa-DetachedOverlay form {
+  box-shadow: none !important;
+  border: 1px solid #015CC7 !important;
+}
+/* Topbar */
+
+.main-wrapper {
+  padding-top: 60px;
+}
+
+.main-wrapper main > div {
+  max-width: calc(100vw - var(--sidebar-width));
+  padding: 24px 27px;
+}
+
+.theme-doc-markdown h1:first-child {
+  font-size: 20px;
+}
+
+.theme-doc-markdown > h2 {
+  font-size: 16px;
+}
+
+.theme-doc-markdown > h3 {
+  font-size: 15px;
+}
+
+.theme-doc-markdown p, .theme-doc-markdown ol, .theme-doc-markdown ul {
+  font-size: 12px;
+}
+
+ul.table-of-contents {
+  font-size: 10px;
+}
+
+footer.theme-doc-footer {
+  font-size: 12px;
+}
+
+footer.theme-doc-footer svg {
+  transform: scale(0.6);
+  vertical-align: text-bottom;
+  margin-right: 2px;
+}

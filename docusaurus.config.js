@@ -33,17 +33,14 @@ const config = {
           // Please change this to your repo.
           editUrl: 'https://github.com/QualiTorque/torque-docs/tree/master/',
         },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/QualiTorque/torque-docs/tree/master/',
-        },
+        blog: false,
         theme: {
           customCss: [
             require.resolve('./src/css/custom.css'),
             require.resolve('./src/css/sidebar.scss'),
-            require.resolve('./src/css/pagination-nav.scss')
+            require.resolve('./src/css/pagination-nav.scss'),
+            require.resolve('./src/css/breadcrumbs.scss'),
+            require.resolve('./src/css/footer.scss'),
           ],
         },
       }),
@@ -59,13 +56,12 @@ const config = {
           srcDark: "img/Q_Torque_Logo_white_2c.png"
         },
         items: [
-          {
-            type: 'doc',
-            docId: 'intro',
-            position: 'left',
-            label: 'Documentation',
-          },
-          {to: '/blog', label: 'Changelog', position: 'left'},
+          // {
+          //   type: 'doc',
+          //   docId: 'intro',
+          //   position: 'left',
+          //   label: 'Documentation',
+          // },
           {
             href: 'https://github.com/QualiTorque/torque-docs/discussions/categories/announcements',
             className: 'header-announcments-link',
@@ -79,7 +75,6 @@ const config = {
         ],
       },
       footer: {
-        style: 'dark',
         links: [
           {
             title: 'Company',

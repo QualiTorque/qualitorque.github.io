@@ -6,31 +6,26 @@
         max-width: unset;
 
         &:first-child {
-            .pagination-nav__sublabel::before {
-                content: "« "
-            }
-
             .pagination-nav__label {
                 color: #223047;
                 border: 1px solid #223047;
 
                 &::before {
-                    content: "" !important;
+                    content: url("../../static/img/pagination-back-arrow-icon.svg") !important;
+                    vertical-align: middle;
+                    transform: rotate(180);
                 }
             }
         }
 
-        &--next {
-            .pagination-nav__sublabel::after {
-                content: " »"
-            }
-
+        &--next {   
             .pagination-nav__label {
                 color: white;
                 background-color: #223047;
 
                 &::after {
-                    content: "" !important;
+                    content: url("../../static/img/pagination-next-arrow-icon.svg") !important;
+                    vertical-align: middle;
                 }
             }
         }
@@ -41,11 +36,11 @@
     }
 
     &__sublabel {
-        color: #BDBFC3;
-        font-weight: 300;
+        display: none;
     }
 
     &__label {
+        font-size: 12px;
         padding: 5px 20px;
         border-radius: 4px;
         font-weight: 400;

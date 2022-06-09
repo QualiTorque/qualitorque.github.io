@@ -1,0 +1,33 @@
+nav.theme-doc-breadcrumbs {
+    position: absolute;
+    top: 15px;
+    z-index: 200;
+    left: 295px;
+
+    .breadcrumbs {
+        &__item {
+            .breadcrumbs__link {
+                color: #E5E5E8;
+                padding: 0;
+                font-size: 14px;
+
+                &:hover {
+                    background: none;
+                }
+            }
+
+            &--active {
+                .breadcrumbs__link {
+                    background: none;
+                    color: white;
+                }
+            }
+
+            &::after {
+                background: url("../../static/img/breadcrumbs-arrow-icon.svg") center;
+                opacity: unset;
+                width: 5px;
+            }
+        }
+    }
+}

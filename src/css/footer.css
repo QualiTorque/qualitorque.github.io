@@ -1,0 +1,39 @@
+.footer {
+  background-color: #E9F3FF;
+}
+
+.footer__title {
+  font-size: 14px;
+  font-weight: 300;
+  margin-bottom: 8px;
+  color: #4A94BD;
+}
+
+.footer__item a {
+  font-size: 12px;
+  font-weight: 500;
+  color: #6C6D6E;
+}
+
+.footer__item svg {
+  display: none;
+}
+
+.footer .col:first-child .footer__title::before {
+  content: url("../../static/img/company-icon.svg");
+  vertical-align: top;
+  margin-right: 2px;
+}
+
+.footer .col:nth-child(2) .footer__title::before {
+  content: url("../../static/img/community-icon.svg");
+  vertical-align: top;
+  margin-right: 2px;
+}
+
+.footer .col:nth-child(3) .footer__title::before {
+  content: url("../../static/img/more-icon.svg");
+  vertical-align: top;
+  margin-right: 2px;
+}
+/*# sourceMappingURL=footer.css.map */

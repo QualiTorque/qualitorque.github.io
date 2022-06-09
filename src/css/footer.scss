@@ -1,0 +1,42 @@
+@mixin beforeImg($imgUrl) {
+    .footer__title::before {
+        content: url($imgUrl);
+        vertical-align: top;
+        margin-right: 2px;
+    }
+}
+
+.footer {
+    background-color: #E9F3FF;
+
+    &__title {
+        font-size: 14px;
+        font-weight: 300;
+        margin-bottom: 8px;
+        color: #4A94BD;
+    }
+
+    &__item {
+        a {
+            font-size: 12px;
+            font-weight: 500;
+            color: #6C6D6E;
+        }
+
+        svg {
+            display: none;
+        }
+    }
+
+    .col:first-child {
+        @include beforeImg("../../static/img/company-icon.svg");
+    }
+
+    .col:nth-child(2) {
+        @include beforeImg("../../static/img/community-icon.svg");
+    }
+
+    .col:nth-child(3) {
+        @include beforeImg("../../static/img/more-icon.svg");
+    }
+}

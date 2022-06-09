@@ -1,4 +1,13 @@
-.menu__link:hover, .menu__link--active, .menu__list-item-collapsible:hover, .menu__list-item-collapsible--active, .menu__caret:hover {
+aside {
+  width: var(--sidebar-width) !important;
+}
+
+.menu > ul {
+  width: 250px;
+  margin: auto;
+}
+
+.menu__link--active, .menu__list-item-collapsible--active, .menu__caret:hover {
   background: none !important;
 }
 
@@ -30,6 +39,10 @@
           transform: rotateZ(90deg) scale(0.7);
 }
 
+.menu__link {
+  font-size: 12px;
+}
+
 .menu__link--active {
   color: #282830 !important;
   position: relative;
@@ -42,5 +55,6 @@
   background: #015CC7;
   position: absolute;
   left: 1px;
+  top: 2px;
 }
 /*# sourceMappingURL=sidebar.css.map */
