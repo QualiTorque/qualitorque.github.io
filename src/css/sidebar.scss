@@ -1,6 +1,10 @@
 aside {
   width: var(--sidebar-width) !important;
   min-height: calc(100vh - 163px);
+
+  > div {
+    padding-top: 0 !important;
+  }
 }
 
 .menu {
@@ -63,5 +67,12 @@ aside {
         top: 2px;
       }
     }
+  }
+
+  .torque-brand {
+    background: url(../../static/img/logo.svg) no-repeat;
+    height: 35px;
+    margin: 8px 40px 20px 0;
+    background-size: 80% 80%;
   }
 }

@@ -102,9 +102,14 @@
   background-color: #015CC7;
 }
 
+.navbar .navbar__items {
+  padding-right: 5px;
+}
+
 .navbar .navbar__brand {
-  position: absolute;
-  left: -255px;
+  display: none;
+  /* position: absolute;
+  left: -255px; */
 }
 
 .dsla-search-wrapper .aa-Autocomplete {

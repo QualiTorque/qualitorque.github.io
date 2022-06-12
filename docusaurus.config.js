@@ -51,17 +51,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        logo: {
-          src: 'img/logo.svg',
-          srcDark: "img/Q_Torque_Logo_white_2c.png"
-        },
         items: [
-          // {
-          //   type: 'doc',
-          //   docId: 'intro',
-          //   position: 'left',
-          //   label: 'Documentation',
-          // },
           {
             href: 'https://github.com/QualiTorque/torque-docs/discussions/categories/announcements',
             className: 'header-announcments-link',

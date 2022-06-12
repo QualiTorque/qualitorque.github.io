@@ -17,6 +17,10 @@ const sidebars = {
   torqueSidebar: [
     {
       type: 'html',
+      value: '<div class="torque-brand"></div>'
+    },
+    {
+      type: 'html',
       value: '<h2>Documentation</h2>'
     },
     {

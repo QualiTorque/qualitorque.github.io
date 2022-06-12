@@ -57,6 +57,11 @@
   color: #E5E5E8 !important;
 }
 
+[data-theme=dark] .theme-doc-sidebar-container .torque-brand {
+  background: url(../../static/img/logo-dm.svg) no-repeat;
+  background-size: 80% 80%;
+}
+
 [data-theme=dark] .navbar {
   background: #15212E;
 }
