@@ -1,5 +1,5 @@
 .navbar {
-    position: absolute;
+    position: fixed;
     width: calc(100vw - var(--sidebar-width));
     right: 0;
     background-color: #015CC7;

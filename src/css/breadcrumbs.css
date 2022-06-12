@@ -1,5 +1,5 @@
 nav.theme-doc-breadcrumbs {
-  position: absolute;
+  position: fixed;
   top: 15px;
   z-index: 200;
   left: 295px;

@@ -100,15 +100,16 @@
 }
 
 .theme-doc-markdown h1:first-child {
-  font-size: 22px;
+  font-size: 28px;
+  font-weight: 600;
 }
 
 .theme-doc-markdown > h2 {
-  font-size: 18px;
+  font-size: 22px;
 }
 
 .theme-doc-markdown > h3 {
-  font-size: 17px;
+  font-size: 21px;
 }
 
 .theme-doc-markdown p, .theme-doc-markdown ol, .theme-doc-markdown ul {
