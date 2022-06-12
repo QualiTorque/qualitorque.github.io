@@ -1,0 +1,78 @@
+aside {
+  width: var(--sidebar-width) !important;
+  min-height: calc(100vh - 163px);
+
+  > div {
+    padding-top: 0 !important;
+  }
+}
+
+.menu {
+  > ul {
+    width: 250px;
+    margin: auto;
+  }
+
+  &__link--active, &__list-item-collapsible--active, &__caret:hover {
+    background: none !important;
+  }
+
+  &__list-item {
+    .menu__link {
+      color: #A8A7A7;
+    }
+
+    .menu__list {
+      .menu__link {
+        color: #6C6D6E;
+      }
+    }
+
+    &-collapsible {
+      .menu__link--sublist {
+        &[aria-expanded=true]::after {
+            transform: rotate(180deg) scale(0.7);
+        }
+        &[aria-expanded=false]::after {
+            transform: rotateZ(90deg) scale(0.7);
+        }
+      }
+    }
+
+    .menu__caret::before {
+      transform: rotate(180deg) scale(0.7);
+    }
+
+    &--collapsed {
+      .menu__caret::before {
+        transform: rotateZ(90deg) scale(0.7);
+      }
+    }
+  }
+
+  &__link {
+    font-size: 14px;
+
+    &--active {
+      color: #282830 !important;
+      position: relative;
+  
+      &::before {
+        content: "";
+        width: 2px;
+        height: 20px;
+        background: #015CC7;
+        position: absolute;
+        left: 1px;
+        top: 2px;
+      }
+    }
+  }
+
+  .torque-brand {
+    background: url(../../static/img/logo.svg) no-repeat;
+    height: 35px;
+    margin: 8px 40px 20px 0;
+    background-size: 80% 80%;
+  }
+}

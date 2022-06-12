@@ -20,6 +20,7 @@ const config = {
   plugins: [
     // ...
     require.resolve("@cmfcmf/docusaurus-search-local"),
+    require.resolve("docusaurus-plugin-sass")
   ],
   presets: [
     [
@@ -32,14 +33,16 @@ const config = {
           // Please change this to your repo.
           editUrl: 'https://github.com/QualiTorque/torque-docs/tree/master/',
         },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/QualiTorque/torque-docs/tree/master/',
-        },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: [
+            require.resolve('./src/css/custom.css'),
+            require.resolve('./src/css/sidebar.scss'),
+            require.resolve('./src/css/pagination-nav.scss'),
+            require.resolve('./src/css/breadcrumbs.scss'),
+            require.resolve('./src/css/footer.scss'),
+            require.resolve('./src/css/dark-mode.scss'),
+            require.resolve('./src/css/topbar.scss'),
+          ],
         },
       }),
     ],
@@ -49,18 +52,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        logo: {
-          src: 'img/logo.svg',
-          srcDark: "img/Q_Torque_Logo_white_2c.png"
-        },
         items: [
-          {
-            type: 'doc',
-            docId: 'intro',
-            position: 'left',
-            label: 'Documentation',
-          },
-          {to: '/blog', label: 'Changelog', position: 'left'},
           {
             href: 'https://github.com/QualiTorque/torque-docs/discussions/categories/announcements',
             className: 'header-announcments-link',
@@ -74,7 +66,6 @@ const config = {
         ],
       },
       footer: {
-        style: 'dark',
         links: [
           {
             title: 'Company',

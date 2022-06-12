@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-title: Running Your First Workload in Torque
+title: Your First Workload
 ---
 
 ## First time?
