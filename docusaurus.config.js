@@ -33,7 +33,6 @@ const config = {
           // Please change this to your repo.
           editUrl: 'https://github.com/QualiTorque/torque-docs/tree/master/',
         },
-        blog: false,
         theme: {
           customCss: [
             require.resolve('./src/css/custom.css'),
