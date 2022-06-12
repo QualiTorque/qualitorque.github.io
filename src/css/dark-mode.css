@@ -1,0 +1,102 @@
+.footer {
+  background-color: #E9F3FF;
+}
+
+.footer__title {
+  font-size: 14px;
+  font-weight: 300;
+  margin-bottom: 8px;
+  color: #4A94BD;
+}
+
+.footer__item a {
+  font-size: 12px;
+  font-weight: 500;
+  color: #6C6D6E;
+}
+
+.footer__item svg {
+  display: none;
+}
+
+.footer .col:first-child .footer__title::before {
+  content: url("../../static/img/company-icon.svg");
+  vertical-align: top;
+  margin-right: 2px;
+}
+
+.footer .col:nth-child(2) .footer__title::before {
+  content: url("../../static/img/community-icon.svg");
+  vertical-align: top;
+  margin-right: 2px;
+}
+
+.footer .col:nth-child(3) .footer__title::before {
+  content: url("../../static/img/more-icon.svg");
+  vertical-align: top;
+  margin-right: 2px;
+}
+
+[data-theme=dark] {
+  /* sidebar */
+  /* sidebar */
+  /* topbar */
+  /* topbar */
+  /* footer */
+  /* footer */
+  /* pagination */
+  /* pagination */
+}
+
+[data-theme=dark] .theme-doc-sidebar-container {
+  background: #223047;
+  border-right: none;
+}
+
+[data-theme=dark] .theme-doc-sidebar-container .menu__link--active {
+  color: #E5E5E8 !important;
+}
+
+[data-theme=dark] .navbar {
+  background: #15212E;
+}
+
+[data-theme=dark] .footer {
+  background: #15212E;
+}
+
+[data-theme=dark] .footer__title {
+  color: #9C9CA6;
+}
+
+[data-theme=dark] .footer__item a {
+  color: #fff;
+}
+
+[data-theme=dark] .footer .col:first-child .footer__title::before {
+  content: url("../../static/img/company-icon-dm.svg");
+  vertical-align: top;
+  margin-right: 2px;
+}
+
+[data-theme=dark] .footer .col:nth-child(2) .footer__title::before {
+  content: url("../../static/img/community-icon-dm.svg");
+  vertical-align: top;
+  margin-right: 2px;
+}
+
+[data-theme=dark] .footer .col:nth-child(3) .footer__title::before {
+  content: url("../../static/img/more-icon-dm.svg");
+  vertical-align: top;
+  margin-right: 2px;
+}
+
+[data-theme=dark] .pagination-nav__item:first-child .pagination-nav__label {
+  color: #86B2DB;
+  border-color: #86B2DB;
+}
+
+[data-theme=dark] .pagination-nav__item:first-child .pagination-nav__label::before {
+  content: url("../../static/img/pagination-back-arrow-icon-dm.svg") !important;
+}
+/*# sourceMappingURL=dark-mode.css.map */

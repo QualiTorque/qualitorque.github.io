@@ -1,5 +1,6 @@
 aside {
   width: var(--sidebar-width) !important;
+  min-height: calc(100vh - 163px);
 }
 
 .menu > ul {

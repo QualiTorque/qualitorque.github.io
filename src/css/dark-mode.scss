@@ -1,0 +1,61 @@
+@import "footer";
+
+[data-theme=dark] {
+    /* sidebar */
+    .theme-doc-sidebar-container {
+        background: #223047;
+        border-right: none;
+
+        .menu__link--active {
+            color: #E5E5E8 !important;
+        }
+    }
+    /* sidebar */
+
+    /* topbar */
+    .navbar {
+        background: #15212E;
+    }
+    /* topbar */
+
+    /* footer */
+    .footer {
+        background: #15212E;
+
+        &__title {
+            color: #9C9CA6;
+        }
+
+        &__item a{
+            color: #fff;
+        }
+
+        .col:first-child {
+            @include beforeImg("../../static/img/company-icon-dm.svg");
+        }
+    
+        .col:nth-child(2) {
+            @include beforeImg("../../static/img/community-icon-dm.svg");
+        }
+    
+        .col:nth-child(3) {
+            @include beforeImg("../../static/img/more-icon-dm.svg");
+        }
+    }
+    /* footer */
+
+    /* pagination */
+    .pagination-nav__item {
+        &:first-child {
+            .pagination-nav__label {
+                color: #86B2DB;
+                border-color:#86B2DB;
+
+                &::before {
+                    content: url("../../static/img/pagination-back-arrow-icon-dm.svg") !important;
+                }
+            }
+        }
+    }
+    /* pagination */
+}
