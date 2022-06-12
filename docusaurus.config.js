@@ -41,6 +41,7 @@ const config = {
             require.resolve('./src/css/breadcrumbs.scss'),
             require.resolve('./src/css/footer.scss'),
             require.resolve('./src/css/dark-mode.scss'),
+            require.resolve('./src/css/topbar.scss'),
           ],
         },
       }),
