@@ -104,27 +104,27 @@
 }
 
 .theme-doc-markdown h1:first-child {
-  font-size: 20px;
+  font-size: 22px;
 }
 
 .theme-doc-markdown > h2 {
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .theme-doc-markdown > h3 {
-  font-size: 15px;
+  font-size: 17px;
 }
 
 .theme-doc-markdown p, .theme-doc-markdown ol, .theme-doc-markdown ul {
-  font-size: 12px;
+  font-size: 14px;
 }
 
 ul.table-of-contents {
-  font-size: 10px;
+  font-size: 12px;
 }
 
 footer.theme-doc-footer {
-  font-size: 12px;
+  font-size: 14px;
 }
 
 footer.theme-doc-footer svg {
