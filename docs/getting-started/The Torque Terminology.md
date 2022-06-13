@@ -3,7 +3,7 @@ sidebar_position: 1
 title: Torque Terminology
 ---
 
-**Blueprint** - An offline plan (template) of an environment. A blueprint contains *grains*. Each grain represents a specific workload (for example, a Rerraform module or a Helm chart). The blueprint defines the orchestration between the grains (order, dependency, etc.), and deploys a whole environment, from infrastructure to application. Blueprints are defined in source-controlled YAML files.
+**Blueprint** - An offline plan (template) of an environment. A blueprint contains *grains*. Each grain represents a specific workload (for example, a Terraform module or a Helm chart). The blueprint defines the orchestration between the grains (order, dependency, etc.), and deploys a whole environment, from infrastructure to application. Blueprints are defined in source-controlled YAML files.
 
 **Grain** - The Torque representation of an asset (Terraform module or Helm chart). Each grain contains all the information required to deploy the asset such as inputs, versions, etc, as well as a reference to the location of the asset's code (repository).
 
