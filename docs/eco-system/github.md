@@ -7,7 +7,7 @@ Torque supports connecting asset/blueprint repositories on GitHub, GitLab and Bi
 
 For illustration purposes, we will use GitHub.
 
-
+gi
 ## Ensure your account is added to the GitHub organization you're connecting
 
 1. Go to [https://github.com/orgs/{YOUR_ORG}/people](https://github.com/orgs/{YOUR_ORG}/people).
@@ -23,10 +23,14 @@ When connecting a repository, Torque installs an OAuth app called __Torque Contr
   3. In Torque, go to the space's __Settings > Repositories__ area and connect the repository.
   4. Authorize the organization. 
   > ![Locale Dropdown](/img/torque-access.png)
-     
-     At this point, the Torque app is installed in the organization without permissions. If you're not an administrator in the organization, ask the administrator to grant access to the app in the [GitHub Applications](https://github.com/settings/applications) page. 
-     If you already authorized the __Torque Control Plane__ app without also granting access to an organization with repositories you want to connect, click the app's name in the GitHub Applications page, and in the __Organization access__ section, click the organization's __Request__ button.
-  5. Enter your account's password and confirm the action. The Torque app is granted the necessary permissions and the repository is connected.
+  
+  At this point, the Torque app is installed in the organization without permissions. 
+  5. Enter your account's password and confirm the action. 
+     * If you're not an administrator in the organization, ask the administrator to grant access to the app in the [GitHub Applications](https://github.com/settings/applications) page. 
+     * If you already authorized the __Torque Control Plane__ app without also granting access to an organization with repositories you want to connect, click the app's name in the GitHub Applications page, and in the __Organization access__ section, click the organization's __Request__ button.
+  > ![Locale Dropdown](/img/request-org-access.png)
+  
+  The Torque app is granted the necessary permissions and the repository is connected.
   6. Return to Torque and continue setting up the connection.
 
 
