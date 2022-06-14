@@ -7,7 +7,6 @@ Torque supports connecting asset/blueprint repositories on GitHub, GitLab and Bi
 
 For illustration purposes, we will use GitHub.
 
-gi
 ## Ensure your account is added to the GitHub organization you're connecting
 
 1. Go to [https://github.com/orgs/{YOUR_ORG}/people](https://github.com/orgs/{YOUR_ORG}/people).
