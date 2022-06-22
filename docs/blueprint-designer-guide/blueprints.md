@@ -130,6 +130,10 @@ Hosts, or **Execution Hosts** are the locations where grains will be deployed fr
 Hosts gives the flexibility of deploying the same blueprints over different cloud accounts and cloud vendors. For example - the same blueprint can be utilized for Azure or GCP simply by exposing the host as blueprint input allowing the user to choose his favorite cloud provider.
 :::
 
+The Execution host configuration must include:
+* **name** - the given name for the kubernetes cluster configured under the cloud account area where the grain will be executed.
+* **service-account** - The service-account name configured within the kubernetes cluster that will be used to execute the grain 
+
 ### Grain inputs & outputs
 Inputs and outputs are used both in the blueprint level and in the grains level. Grains can use inputs and outputs to pass data between IaC components, validate information and eventually lead to reducing the amount of IaC components that needs to be maintained by the organization.
 
