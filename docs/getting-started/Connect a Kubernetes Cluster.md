@@ -25,7 +25,7 @@ title: Connect a Kubernetes Cluster
   *AWS*
 
   If the resources will be created on your AWS account, there are number of options for the authentication:
-    - (Recommended) Create a designated *service account* with the required permissions, and specify it in the blueprint. See [Service Accounts](/blueprint-designer-guide/>Service%20Accounts) for details. Or,
+    - (Recommended) Create a designated *service account* with the required permissions, and specify it in the blueprint. See [Service Accounts](/blueprint-designer-guide/Service%20Accounts) for details. Or,
     - Ensure that the Cluster service role has sufficient permissions to create the environment. Or,
     - Create a custom script that executes the authentication, and design your sandbox to execute it before the environment is created. 
    
