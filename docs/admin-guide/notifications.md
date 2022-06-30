@@ -12,6 +12,8 @@ Supported sandbox events:
 * Sandbox ended
 * Sandbox active with errors
 * Sandbox ended with errors
+* Blueprint published
+* Blueprint unpublished
 
 __To configure Torque notifications:__
 1. In Torque, access the suitable space.
