@@ -7,9 +7,28 @@ title: Welcome to Torque!
 
 
 ## APPLICATION ENVIRONMENTS - Anytime. Anywhere.
-**Torque** is a SaaS platform delivering Infrastructure Automation at Scale for complex, application-centric environments on cloud technologies including AWS, Azure, and Kubernetes. IT leaders and DevOps innovators around the world trust Quali to enable self-service automation and governance to streamline application development, testing, and release to production.
+Hello, and welcome to Torque. 
 
-## New to Torque? quick demo is all you need: 
+**Torque** is a SaaS platform that specializes in delivering Infrastructure Automation at Scale for complex, application-centric environments on cloud technologies including AWS, Azure, and Kubernetes. IT leaders and DevOps innovators around the world trust Quali to enable self-service automation and governance to streamline application development, testing, and release to production.
+
+Torque is not here to reinvent the wheel, and seemlessly integrates with your application deployment tool of choice. So whether you're using Terraform modules, Helm chats, CloudFormation templates or some other tool, Torque will know how to deploy your application-as-code on the cloud. Using a tool-agnostic approach, you define blueprint templates in YAML files, which reference your application code, and publish them to your end-users through a self-service catalog or automate their deployment and testing via a CI/CD process. When a blueprint is launched, Torque orchestrates the deployment of the blueprint's application stack and notifies the end-user by email when the environment is fully deployed and ready to be used.
+
+### Where are the applications deployed?
+For security and performance reasons, we designed Torque to deploy applications on Kubernetes (EKS on AWS EC2 and AKS on Azure). Support for additional cloud providers is currently in development and will be released soon.
+
+### Can I automate the deployment of Torque blueprints through a CI/CD process?
+Absolutely, Torque supports integration with some of the leading CI/CD tools out there, including Jenkins, Bamboo, CircleCI, TeamCity, GitHub Actions, and more. Click [here](/eco-system/ci-cd) and follow our documentation to set up your pipelines and start seeing value.
+
+### How do you protect my access credentials?
+It's no secret that working with the cloud requires the use of very powerful admin credentials, which can cause some serious damage if they fall in the wrong hands. In Torque, your admin credentials are safely tucked away in the system, within what we call Torque compute services, which allow Torque to access and use the Kubernetes cluster on the cloud. The blueprints reference the compute services but otherwise cannot access the credentials. Same goes for the end-user and CI/CD tool, they have Torque permissions to launch blueprints, while Torque manages the authentication process transparently and securely directly against the cluster.
+
+### What happens when I no longer need the environment?
+Torque environments have a duration period, which autoamatically ends the environment, deleting all the environment's cloud artifacts from the cluster. In addition, Torque allows you to manually end the environment at any time directly from the Torque application. The bottom line is that nothing from the environment is left on the cloud.
+
+### Can I limit the duration of environments?
+Of course. The blueprint designer reserves the right to set a duration policy, per blueprint, which sets the maximum duration for that particular blueprint. So you can limit the blueprint to a certain time frame, which is especially useful for high-cost blueprints, or let it run indefinitely for environments that need to be online at all times.
+
+## New to Torque? A quick demo is all you need: 
 <div align="center">
   <a href="https://youtu.be/kMbJ7IRDV7w"><img src="https://img.youtube.com/vi/kMbJ7IRDV7w/0.jpg" alt="torque"></img></a>
 </div>
