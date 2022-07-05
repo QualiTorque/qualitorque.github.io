@@ -13,6 +13,15 @@ Hello, and welcome to Torque.
 
 Torque is not here to reinvent the wheel, and seemlessly integrates with your application deployment tool of choice. So whether you're using Terraform modules, Helm chats, CloudFormation templates or some other tool, Torque will know how to deploy your application-as-code on the cloud. Using a tool-agnostic approach, you define blueprint templates in YAML files, which reference your application code, and publish them to your end-users through a self-service catalog or automate their deployment and testing via a CI/CD process. When a blueprint is launched, Torque orchestrates the deployment of the blueprint's application stack and notifies the end-user by email when the environment is fully deployed and ready to be used.
 
+### Why should I use Torque if I can manage my application deployments directly on the cloud or through my CI/CD tool?
+To answer this question, we'll focus on 3 basic factors: security, collaboration and cost-savings. There are additional factors like governance, policies, and more, but we can save those for later.
+
+* __Security__: To develop cloud applications, your developers first access the cloud with your admin credentials. These are highly valuable details that must be protected at all costs, and should not be shared liberally. With Torque, the admin feeds these credentials to Torque and they are safeguarded from your application developers and end-users, who only need to access Torque in order to launch their cloud environments, with Torque handling the authentication behind the scenes.
+
+* __Collaboration__: Torque allows you to cultivate team projects in spaces, where all the team's members have access to their cloud assets, and can work together on different environments.
+
+* __Cost-savings__: Whenever you work on the cloud, you run the risk of forgetting to clean up the cloud resources when you're done. This is not the case with Torque, which completely removes all of the environment's cloud infrastructure when the environment is no longer needed. In addition, Torque attaches different tags to each and every cloud resource it deploys, providing your with powerful monitoring capabilities and a comprehensive cost dashboard to help you analyze your cloud spend. The cost data is preserved even after the environments have ended and their cloud resources deleted.
+
 ### Where are the applications deployed?
 For security and performance reasons, we designed Torque to deploy applications on Kubernetes (EKS on AWS EC2 and AKS on Azure). Support for additional cloud providers is currently in development and will be released soon.
 
