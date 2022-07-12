@@ -13,9 +13,11 @@ The basic process for integrating a CI/CD tool with Torque is as follows:
 
 For detailes on setting up your pipeline, see the relevant plugin's README file:
 
-* [Torque](https://marketplace.visualstudio.com/items?itemName=Quali.build-release-task-torque)
-* [Bamboo](https://github.com/QualiTorque/bamboo-torque-plugin)
-* [CircleCI](https://circleci.com/developer/orbs/orb/quali/torque)
+* [Azure DevOps](https://marketplace.visualstudio.com/items?itemName=Quali.build-release-task-torque)
 * [Jenkins](https://github.com/QualiTorque/sandbox-jenkins-plugin)
-* TeamCity
 * GitHub Actions: [torque-start-sb-action](https://github.com/QualiTorque/torque-start-sb-action#readme) / [torque-end-sb-action](https://github.com/QualiTorque/torque-end-sb-action#readme) / [torque-validate-bp-action](https://github.com/QualiTorque/torque-validate-bp-action#readme)
+* Spinnaker (coming soon)
+* TeamCity (coming soon)
+* [CircleCI](https://circleci.com/developer/orbs/orb/quali/torque) (coming soon)
+* [Bamboo](https://github.com/QualiTorque/bamboo-torque-plugin) (coming soon)
+* Jira
