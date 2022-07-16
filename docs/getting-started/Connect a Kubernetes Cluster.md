@@ -39,5 +39,6 @@ title: Connect a Kubernetes Cluster
 3. Once you've filled in the information, Torque will generate the agent's *deployment file*. Copy the file's contents and save it locally. 
 4. Deploy the agent to your cluster as follows:  
    ``` kubectl apply -f <file-name> ```
-5. Click on __Check Connectivity__ to verify that the agent can sucessfully communicate with Torque. 
+
+5. Click __Check Connectivity__ to verify that the agent can sucessfully communicate with Torque. 
 6. Once verified, click **Finish** in the window that pops up.

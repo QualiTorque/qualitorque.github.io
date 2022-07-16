@@ -1,10 +1,14 @@
 ---
-sidebar_position: 1
+sidebar_position: 6
 title: Blueprint YAML
 ---
 
 # Blueprints Design
-Torque's blueprints are reusable components designed to model a required environment from the infrastructure to the application. **Blueprint designers** utilize Torque's VSCode plugin or the Torque's self-service UI to build a YAML based imperative blueprints that aimed to fulfill business requirements in a self-service manner for their end-users.
+Torque's blueprints are reusable components designed to model a required environment from the infrastructure to the application. **Blueprint designers** utilize Torque's VSCode plugin or the Torque's self-service UI to build a YAML based imperative blueprints that aimed to fulfill business requirements in a self-service manner for their end-users. 
+
+:::tip__Note__
+Blueprints are written in YAML files that reside in a __/blueprints__ folder within a git or BitBucket repository. The __/blueprints__ folder must be defined as the blueprint repository in the space's __Settings > Repositories__ page. 
+:::
 
 Common example will be a platform team or a DevOps team building Dev, Test and staging environments for their development, QA and product teams. With Torque, the DevOps team can focus on design, best practices, and security for environment, while their end users are being self-served from the torque UI, API or eco-system integrations based on governance and policies without having the 'keys-to-the-cloud'.
 
@@ -89,6 +93,13 @@ grain_name:
 Note that in auto-generated blueprints, the grain_name.spec.host.name is automatically exposed as a blueprint input for the blueprint designer ease of use. As best practice, it's recommended to remove the host.name from being an input once the blueprint is exposed to the catalog.
 :::
 
+
+The following grains are available:
+* [Terraform](#the-terraform-grain)
+* [Helm](#the-helm-grain)
+* [CloudFormation](#the-cloudformation-grain)
+* [Kubernetes](#the-kubernetes-grain)
+
 ### Source
 Sources are repositories storing IaC, CM or other configuration technology that will be utilized by Torque to launch and operate an environment. Torque supports multiple ways to define grain sources. 
 Sources can be defined in the following ways:
@@ -124,7 +135,7 @@ In case your IaC code is not under folder in the repository, the path should be 
 :::
 
 ### Host
-Hosts, or **Execution Hosts** are the locations where grains will be deployed from. While different grains behave differently, it's important to choose the right execution host for a grain to make sure authentication, networking and  configuration is all set for sandbox consumers use. Execution Host can be different between grains in the same blueprints to allow maximum flexibility during the orchestration processes.
+Hosts, or **Execution Hosts** are the locations where grains will be deployed from. While different grains behave differently, it's important to choose the right execution host for a grain to make sure authentication, networking and  configuration is all set for sandbox consumers use. Different grains in the same blueprint can use different Execution Hosts to allow maximum flexibility during the orchestration processes.
 
 :::info
 Hosts gives the flexibility of deploying the same blueprints over different cloud accounts and cloud vendors. For example - the same blueprint can be utilized for Azure or GCP simply by exposing the host as blueprint input allowing the user to choose his favorite cloud provider.
@@ -197,6 +208,8 @@ grains:
 :::info
 The ability to use outputs from specific grain usually requires the grain deployment to finish successfully. designing a blueprint with output usually requires dependencies between the grains.
 :::
+
+
 
 ### Torque Templating engine
 Templating engines are a great way to enrich the YAML format to allow extensibility points and text manipulations. Torque utilized Shopify's [liquid](https://shopify.github.io/liquid/) engine to allow multiple text manipulations in runtime.
@@ -378,4 +391,108 @@ grains:
         - replicaCount: '{{ .inputs.replicaCount }}'
       commands:
         - dep up bitnami/nginx
+```
+
+## The CloudFormation Grain​
+The CloudFormation grain is Torque's native support for AWS CloudFormation templates. Torque allows designers to use CloudFormation features to easily orchestrate self-developer and community CloudFormation modules in a standard way and share them with others as building blocks.
+
+### source 
+Please see [the grain source](blueprints.md#source) for more details.
+
+### host
+Please see [the grain host](blueprints.md#host) for more details.
+
+### inputs​
+Similar to blueprint inputs, CloudFormation grain inputs allow you to reuse the same CloudFormation module in different ways. Inputs provided to the CloudFormation grain are used when launching the CloudFormation module. CloudFormation grain inputs should be listed in the order defined in the module's _variables.tf_ file.
+
+### tags​
+Whenever a CloudFormation grain is launched, all resources created during the deployment process are automatically tagged with Torque's system tags, blueprint tags and customer tags.
+
+### outputs​
+Outputs are strings generated by CloudFormation during the deployment process.
+
+```yaml"
+grains:
+  database:
+    kind: cloudformation
+    spec:
+      source:
+        path: github.com/org/repo.git//terraform/rds
+        ...
+      outputs:
+        - hostname
+        - connection_string
+```
+
+## The Kubernetes Grain​
+The Kubernetes grain allows you to use native Kubernetes manifests, manifest catalogs in a given user's repository. Currently, the solution has restriction: it is not possible to launch concurrent sandboxes with Kubernetes grain (because the manifest resources are static and their names are not unique).
+The deployment namespace must exist in the cluster prior to the deployment. It must not be equal to the namespaces used by Torque for agent deployments.
+
+### source 
+Please see [the grain source](blueprints.md#source) for more details.
+
+### host
+Please see [the grain host](blueprints.md#host) for more details.
+
+### tags​
+Whenever a Kubernetes grain is launched, all resources created during the deployment process are automatically tagged with Torque's system tags, blueprint tags and customer tags. if you wish to disable tagging for all resources in a specific Kubernetes grain, use the following syntax:
+
+```yaml"
+grains:
+  database:
+    kind: kubernetes
+    spec:
+      tags:
+        auto-tag: false
+```
+
+### namespace
+The deployment namespace must exist in the cluster prior to the deployment. It must not be equal to the namespaces used by Torque for agent deployments.
+
+```yaml"
+grains:
+  web-client:
+    kind: kubernetes
+    spec:
+      sources:
+        ...
+      namespace: '{{ .inputs.namespace }}'
+```
+:::tip __Note__:
+* Launching concurrent sandboxes with Kubernetes grain is not supported for the same namespace. 
+* Make sure the Torque execution host has permissions to use those namespaces.
+:::
+
+## scripts (outputs)
+Due to Kubernetes deployment limitations, outputs need to be generated from a script and provided as part of the grain.
+The script is defined in the blueprint and exetued after the grain's installation.
+
+For example, script named __post-install-script.sh__ that generates two outputs:
+ 
+```yaml"
+outputs:
+  output1:
+    kind: regular
+    value: '{{.grains.nginx.scripts.post-kubernetes-install.outputs.output1}}'
+  output2:
+    kind: regular
+    value: '{{.grains.nginx.scripts.post-kubernetes-install.outputs.output2}}'
+
+grains:
+  nginx:
+    kind: kubernetes
+    spec:
+      source:
+        ...
+      namespace:
+      host:
+        ...
+      scripts:
+        post-kubernetes-install:
+          source:
+            store: Torque-Spec2-Demos
+            path: scripts/post-install-script.sh
+          outputs:
+            - output1
+            - output2
 ```
