@@ -1,5 +1,5 @@
 ---
-sidebar_position: 6
+sidebar_position: 5
 title: Blueprint YAML
 ---
 
@@ -7,13 +7,13 @@ title: Blueprint YAML
 Torque's blueprints are reusable components designed to model a required environment from the infrastructure to the application. **Blueprint designers** utilize Torque's VSCode plugin or the Torque's self-service UI to build a YAML based imperative blueprints that aimed to fulfill business requirements in a self-service manner for their end-users. 
 
 :::tip__Note__
-Blueprints are written in YAML files that reside in a __/blueprints__ folder within a git or BitBucket repository. The __/blueprints__ folder must be defined as the blueprint repository in the space's __Settings > Repositories__ page. 
+Blueprints are written in YAML files that reside in a __/blueprints__ folder within a Github, Gitlab or BitBucket repository. The __/blueprints__ folder must be defined as the blueprint repository in the space's __Settings > Repositories__ page. 
 :::
 
 Common example will be a platform team or a DevOps team building Dev, Test and staging environments for their development, QA and product teams. With Torque, the DevOps team can focus on design, best practices, and security for environment, while their end users are being self-served from the torque UI, API or eco-system integrations based on governance and policies without having the 'keys-to-the-cloud'.
 
 ## Torque's Blueprint YAML
-The Torque's YAML is a the main specification for blueprint designers to build blueprints out of grains and expose environments to end-users in the Torque's catalog. 
+The Torque's blueprint YAML is the main bluperint definition file. It contains general information about the environment as well as the grains that make up the environment's applications and services. The blueprint YAML is published to end-users in Torque's blueprint catalog. 
 
 ### spec_version
 The spec_version determines the blueprint YAML type. Currently, Torque supports spec_version:2 as the default and recommended version. With time, new preview releases and official feature releases will bring more and more features and users will be able to use other spec versions.
@@ -33,7 +33,7 @@ description: Performance testing deployment based on RDS, EKS and Lambda
 ```
 
 ### Inputs
-Blueprint designers can expose blueprint inputs to their end-users to add flexibility while launching a new sandbox from the blueprints - without altering the blueprint code itself. Inputs data can be later used in the blueprint to control orchestration, pass information to automation process and more.
+Blueprint designers can publish blueprint inputs to their end-users to add flexibility while launching a new sandbox from the blueprints - without altering the blueprint code itself. Inputs data can be later used in the blueprint to control orchestration, pass information to automation process and more.
 
 Input definition is composed out of the following fields: 
 - The input name
@@ -90,7 +90,7 @@ grain_name:
 ```
 
 :::info
-Note that in auto-generated blueprints, the grain_name.spec.host.name is automatically exposed as a blueprint input for the blueprint designer ease of use. As best practice, it's recommended to remove the host.name from being an input once the blueprint is exposed to the catalog.
+Note that in auto-generated blueprints, the __grain_name.spec.host.name__ is automatically published as a blueprint input, which the blueprint designer can use. As a best practice, it's recommended to remove the __host.name__ input once the blueprint is published to the catalog.
 :::
 
 
@@ -138,7 +138,7 @@ In case your IaC code is not under folder in the repository, the path should be 
 Hosts, or **Execution Hosts** are the locations where grains will be deployed from. While different grains behave differently, it's important to choose the right execution host for a grain to make sure authentication, networking and  configuration is all set for sandbox consumers use. Different grains in the same blueprint can use different Execution Hosts to allow maximum flexibility during the orchestration processes.
 
 :::info
-Hosts gives the flexibility of deploying the same blueprints over different cloud accounts and cloud vendors. For example - the same blueprint can be utilized for Azure or GCP simply by exposing the host as blueprint input allowing the user to choose his favorite cloud provider.
+Execution hosts gives the flexibility of deploying the same blueprints over different cloud accounts and cloud vendors. For example, the same blueprint can be utilized for Azure or GCP simply by exposing the host as a blueprint input, from which the end-user to choose his preferred cloud provider, each represented with a different execution host.
 :::
 
 The Execution host configuration must include:
@@ -267,7 +267,13 @@ List of supported releases can be found [here](https://releases.hashicorp.com/te
 :::
 
 ### inputs
-Similar to blueprint inputs, the Terraform grain input allowed to reuse the same Terraform module in different ways. Inputs provided to the Terraform grain will be used when launching the Terraform module. Terraform grain inputs should be listed in the order defined in the module's variables.tf file. We recommend using Torque's auto-discovery capability to quickly model your Terraform modules within Torque including all defined inputs.
+Similar to blueprint inputs, the Terraform grain input allows you to reuse the same Terraform module in different ways. Inputs provided to the Terraform grain are used when launching the Terraform module. Terraform grain inputs should be listed in the order defined in the module's variables.tf file. We recommend using Torque's auto-discovery capability to quickly model your Terraform modules within Torque including all defined inputs.
+
+Every value that goes to the Terraform grain's input is interpreted as a json token. So you can pass any valid value by json: number, list, dictionary, boolean, string , etc.
+For details, check out this Terraform Docs section [Variable Definitions (.tfvars) Files](https://www.terraform.io/language/values/variables#variable-definitions-tfvars-files)
+
+Note that invalid tokens will be parsed as strings. Keep in mind that json strings require double quotes, so ```"my value``` is a string but ```my value``` is not a valid json value and therefore will also be passed as a string. As such, the following values will all be passed as strings: ```"my value"```, ```my value```, ```"[1,2,3]"```
+
 
 ```yaml"
 grains:
@@ -287,8 +293,11 @@ grains:
 Note that in the above example, blueprint inputs are used as the values of the Terraform grain inputs, so the sandbox owner is able to choose the db_size and db_name required for his need. The information provided by the user will be passed to Terraform and affect the deployment process
 :::
 
+
+
+
 ### tags  
-Whenever a Terraform grain is launched, all resources created during the deployment process will be automatically tagged with Torque's system tags, blueprint tags and customer tags. if you wish to disable tagging for all resources in a specific Terraform grain, use the following syntax:
+Whenever a Terraform grain is launched, all resources created during the deployment process will be automatically tagged with Torque's system tags, built-in tags and custom tags (for details, see [Tags](/admin-guide/tags). if you wish to disable tagging for all resources in a specific Terraform grain, use the following syntax:
 
 ```yaml" 
 grains:
@@ -300,7 +309,7 @@ grains:
 ```
 
 ### outputs 
-Output are strings generated by Terraform during the deployment process. Outputs should be defined in the outputs.tf file located in the Terraform module folder. We recommend using Torque's auto-discovery capability to quickly model your Terraform modules within Torque including it's defined outputs.
+Output are values generated by Terraform during the deployment process. Outputs should be defined in the outputs.tf file located in the Terraform module folder. We recommend using Torque's auto-discovery capability to quickly model your Terraform modules within Torque including it's defined outputs.
 
 
 ```yaml" 
@@ -356,7 +365,7 @@ Please see [the grain source](blueprints.md#source) for more details.
 Please see [the grain host](blueprints.md#host) for more details.
 
 ### inputs
-Similar to blueprint inputs, and Terraform inputs, the HELM grain inputs allowed to reuse the same HELM chart in different ways using different values override. Inputs provided to the HELM grain will be used when launching the HELM chart. We recommend using Torque's auto-discovery capability to quickly model your HELM chart within Torque including all defined inputs.
+Similar to blueprint inputs and Terraform inputs, the HELM grain inputs allow you to reuse the same HELM chart in different ways using different values overrides. Inputs provided to the HELM grain are used when launching the HELM chart. We recommend using Torque's auto-discovery capability to quickly model your HELM chart within Torque including all defined inputs.
 
 ```yaml"
 grains:
@@ -406,7 +415,7 @@ Please see [the grain host](blueprints.md#host) for more details.
 Similar to blueprint inputs, CloudFormation grain inputs allow you to reuse the same CloudFormation module in different ways. Inputs provided to the CloudFormation grain are used when launching the CloudFormation module. CloudFormation grain inputs should be listed in the order defined in the module's _variables.tf_ file.
 
 ### tags​
-Whenever a CloudFormation grain is launched, all resources created during the deployment process are automatically tagged with Torque's system tags, blueprint tags and customer tags.
+Whenever a CloudFormation grain is launched, all resources created during the deployment process are automatically tagged with Torque's system tags, built-in tags and custom tags.
 
 ### outputs​
 Outputs are strings generated by CloudFormation during the deployment process.
@@ -417,7 +426,7 @@ grains:
     kind: cloudformation
     spec:
       source:
-        path: github.com/org/repo.git//terraform/rds
+        path: github.com/org/repo.git//cloudformation/rds
         ...
       outputs:
         - hostname
@@ -425,8 +434,7 @@ grains:
 ```
 
 ## The Kubernetes Grain​
-The Kubernetes grain allows you to use native Kubernetes manifests, manifest catalogs in a given user's repository. Currently, the solution has restriction: it is not possible to launch concurrent sandboxes with Kubernetes grain (because the manifest resources are static and their names are not unique).
-The deployment namespace must exist in the cluster prior to the deployment. It must not be equal to the namespaces used by Torque for agent deployments.
+The Kubernetes grain allows you to use native Kubernetes manifests, manifest catalogs in a given user's repository. Currently, it is not possible to launch multiple concurrent environments from the same blueprint on the same namespace (because the manifest resources are static and their names are not unique).
 
 ### source 
 Please see [the grain source](blueprints.md#source) for more details.
@@ -435,7 +443,7 @@ Please see [the grain source](blueprints.md#source) for more details.
 Please see [the grain host](blueprints.md#host) for more details.
 
 ### tags​
-Whenever a Kubernetes grain is launched, all resources created during the deployment process are automatically tagged with Torque's system tags, blueprint tags and customer tags. if you wish to disable tagging for all resources in a specific Kubernetes grain, use the following syntax:
+Whenever a Kubernetes grain is launched, all resources created during the deployment process are automatically tagged with Torque's system tags, built-in tags and custom tags. If you wish to disable tagging for all resources in a specific Kubernetes grain, use the following syntax:
 
 ```yaml"
 grains:
@@ -464,8 +472,8 @@ grains:
 :::
 
 ## scripts (outputs)
-Due to Kubernetes deployment limitations, outputs need to be generated from a script and provided as part of the grain.
-The script is defined in the blueprint and exetued after the grain's installation.
+Kubernetes does not natively support outputs. Using Torque, you can overcome this and provide outputs from the manifest installation process using scripts. In this approach, the script must export environment variables. These environment variables can later be declared also as outputs.
+The script is defined in the blueprint and executed after the grain's installation.
 
 For example, script named __post-install-script.sh__ that generates two outputs:
  
