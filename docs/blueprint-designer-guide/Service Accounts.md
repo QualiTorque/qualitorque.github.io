@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 6
 title: Service Accounts
 ---
 
@@ -24,118 +24,76 @@ When you're deploying resources in the cluster using a Helm chart, the service a
 
 ## Terraform modules
 
-### AWS
-If you're using an EKS cluster as your execution host, and you want to deploy resources to an AWS account, you can use service account to do the authentication and permissions between the pod and the AWS account where the resources will be created.
+### Service account configuration for AWS
+If you're using an EKS cluster as your execution host, and you want to deploy resources to an AWS account, you can use service account to do the authentication and permissions between the pod and the AWS account where the resources will be created. This is done by connecting a service account, which contains these permissions, to the container. The permissions are defined in an IAM role that needs to be associated to the service account.
 
-#### Steps
+__Prerequisites__
+
+*	IAM OIDC provider on the cluster’s account, to recognize the cluster on the account
+*	kubectl on the cluster
+*	AWS CLI on your computer
+
+
+### Associate your cluster to the AWS account
+
+Make sure to perform the following steps on every AWS account in which the cluster will perform actions.
+
+__To associate the cluster to the account__:
+1.	In AWS CLI, find the cluster’s OIDC provider by running:
+  ```jsx title=
+  aws eks describe-cluster --name my-cluster --query "cluster.identity.oidc.issuer" --output text
+  ```
+
+  The output looks something like this:
+  ```jsx title=
+  https://oidc.eks.region-code.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE
+  ```
+  Where __EXAMPLED539D4633E53DE1B71EXAMPLE__ is the cluster's OIDC provider
+2.	On the account to be used by the cluster, list an IAM OIDC provider in the account that is associated to the cluster’s OIDC provider:
+  ```jsx title=
+  aws iam list-open-id-connect-providers | grep my-cluster-oidc-provider
+  ```
+  The IAM OIDC provider is displayed:
+  ```
+  "Arn": "arn:aws:iam::111122223333:oidc-provider/oidc.eks.region-code.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE"
+  ```
+3.	If the IAM OIDC provider is nonexistent, do the following to create it:
+  
+  a.	Install __eksctl__ on your computer.
+  
+  b.	Run the following to create the IAM OIDC provider and associate it to your cluster:
+  ```jsx title=
+  eksctl utils associate-iam-oidc-provider --cluster my-cluster –approve
+  ```
+
+  c.	In AWS CLI, run the following to get the IAM OIDC provider you created:
+    ```jsx title=
+    aws iam list-open-id-connect-providers | grep my-cluster-oidc-provider
+    ```
+
+### Create an IAM role for the service account with the required policy
+As we explained before, the service account delegates permissions to the container to perform the Terraform actions. The permissions are defined as a policy in an IAM role that is associated to the service account.
+Perform these steps on every account that will be used by your cluster.
+
+__Prerequisites:__
+*	IAM policy with the desired permissions
+
+__To create the IAM role for the service account__:
+1.	In your AWS Console, go to IAM > Role.
+2.	Click Create role, select Web identity.
+3.	From the Identity provider dropdown list, select your cluster’s OIDC provider.
+4.	From the Audience dropdown list, select sts.amazonaws.com.
+5.	Click Next.
+6.	Select the IAM policy you wish to associate to the IAM role, and click Next.
+7.	Specify a Role name.
+8.	Scroll down and click Create role.
+9.	Get the ARN for this role.
+
+
+
+#### For additional details, see these AWS docs:
 
 1. Create an IAM OIDC provider for your cluster ([Instructions](https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html)).
 2. Create the IAM role to be used by the service account. ([Instructions](https://docs.aws.amazon.com/eks/latest/userguide/create-service-account-iam-policy-and-role.html)).
 3. Associate the IAM role to a service account on your cluster ([Instructions​](https://docs.aws.amazon.com/eks/latest/userguide/specify-service-account-role.html)).  
 If the Terraform resources are to be created in a different AWS account than the one hosting the EKS cluster which is our execution host, you'll need to perform steps (1) and (2) on the target account. See [AWS' Technical overview](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts-technical-overview.html).
-
-
-
-#### Steps
-
-1. Create an IAM [OIDC provider](https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html) for your source EKS cluster account.
-
-  The OIDC provider should be displayed in your cluster's __Details__ page.
-     > ![Locale Dropdown](/img/source-eks-oidc-provider.png)
-2. Create an IAM [OIDC provider](https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html) for your target EKS account.
-
-3. Add the source OIDC provider to the Identity provider.
-
-    a. In the __IAM__ dashboard, select __Identity providers__ from the left menu and click __Add provider__.
-     > ![Locale Dropdown](/img/add-oidc-to-idp.png)
-
-    b. Click __OpenID Connect__ and specify your source cluster's OIDC provider URL.
-     > ![Locale Dropdown](/img/add-oidc-to-idp-2.png)
-4. Create the [IAM role](https://docs.aws.amazon.com/eks/latest/userguide/create-service-account-iam-policy-and-role.html) and policy on the target account for your source service account.
-  
-    There are several ways to create a new IAM permission policy. One way is to copy a complete AWS managed policy that already does some of what you're looking for and then customize it to your specific requirements. Check out the [Role definition examples](#role-definition-examples) at the bottom of this procedure.
-
-    a. In the __Roles__ page, specify the source EKS cluster's IAM OIDC provider. For example:
-    
-     > ![Locale Dropdown](/img/iam-role-for-service-account.png)
-
-       
-    b. In the __Policies__ page, 
-
-5. Create an IAM role for your Kubernetes service accounts to use before you associate it with a service account. The trust relationship is scoped to your cluster and service account __so that each cluster and service account combination requires its own role__. You can then attach a specific IAM policy to the role that gives the containers in your pods the permissions you desire.
-
-    ```
-    kubectl apply –f app-sa.yaml
-
-
-  ```jsx title="app-sa.yaml:"
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::XXX:role/YYY
-  name: app-sa
-  namespace: quali
-automountServiceAccountToken: true
-
-```
-
-5. Create a service account on your source EKS cluster with the Role ARN you created on the target account.
-
-
-### Role definition examples
-
-```jsx title="Example 1:"
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "Federated": "arn:aws:iam::<source EKS cluster IAM OIDC provider>"
-      },
-      "Action": "sts:AssumeRoleWithWebIdentity",
-      "Condition": {
-        "StringEquals": {
-          "oidc.eks.eu-west-1.amazonaws.com/id/C5BASAB7D85CFECA473C4FG7E3BBD57B:sub": "system:serviceaccount:my-service-account:test-terraform-sa",
-          "oidc.eks.eu-west-1.amazonaws.com/id/C5BASAB7D85CFECA473C4FG7E3BBD57B:aud": "sts.amazonaws.com"
-        }
-      }
-    }
-  ]
-}
-```
-
-:::info
-The above example, make sure to specify the source EKS cluster's IAM OIDC provider and service account.
-:::
-
-```jsx title="Example 2:"
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "c828ad4376724afe992ed4670d339cde",
-            "Effect": "Allow",
-            "Principal": {
-                "Federated": "arn:aws:iam::101105463363:oidc-provider/oidc.eks.us-east-1.amazonaws.com/id/28522D8BF95AE6F20147BFCADFB81F0F"
-            },
-            "Action": "sts:AssumeRoleWithWebIdentity",
-            "Condition": {
-                "ForAnyValue:StringLike": {
-                    "oidc.eks.us-east-1.amazonaws.com/id/28522D8BF95AE6F20147BFCADFB81F0F:sub": [
-                        "system:serviceaccount:torque-review1-sb:*",
-                        "system:serviceaccount:torque-sb:torque-services-sa-*"
-                    ],
-                    "oidc.eks.us-east-1.amazonaws.com/id/28522D8BF95AE6F20147BFCADFB81F0F:aud": "sts.amazonaws.com"
-                }
-            }
-        }
-    ]
-}
-
-```
-
-:::info
-The above example, configures a role for any service account that starts with ..
-:::
