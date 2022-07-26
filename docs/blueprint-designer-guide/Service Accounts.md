@@ -25,7 +25,11 @@ When you're deploying resources in the cluster using a Helm chart, the service a
 ## Terraform modules
 
 ### Service account configuration for AWS
-If you're using an EKS cluster as your execution host, and you want to deploy resources to an AWS account, you can use service account to do the authentication and permissions between the pod and the AWS account where the resources will be created. This is done by connecting a service account, which contains these permissions, to the container. The permissions are defined in an IAM role that needs to be associated to the service account.
+If you're using an EKS cluster as your execution host, and you want to deploy resources to an AWS account, you need to grant the appropriate AWS permissions to the cluster. 
+
+There are two ways to do this. 
+1. The easy way is to attach the appropriate policy to the cluster's IAM role Arn, but this grants permissions to the entire cluster. 
+2. The second option is to use a service account, which grants the permissions to the pod responsible for spinning up the environment, and once the environment is fully deployed, the pod and delegated permissions are removed. The configuration process is explained below.
 
 __Prerequisites__
 
@@ -72,26 +76,23 @@ __To associate the cluster to the account__:
     ```
 
 ### Create an IAM role for the service account with the required policy
-As we explained before, the service account delegates permissions to the container to perform the Terraform actions. The permissions are defined as a policy in an IAM role that is associated to the service account.
-Perform these steps on every account that will be used by your cluster.
+As we explained before, the service account delegates permissions to the container to perform the Terraform actions. The permissions are defined as a policy in an IAM role that is associated to the service account. Perform these steps on every account that will be used by your cluster.
 
 __Prerequisites:__
 *	IAM policy with the desired permissions
 
 __To create the IAM role for the service account__:
-1.	In your AWS Console, go to IAM > Role.
-2.	Click Create role, select Web identity.
+1.	In your AWS Console, go to __IAM > Role__.
+2.	Click __Create role__, and select __Web identity__.
 3.	From the Identity provider dropdown list, select your cluster’s OIDC provider.
-4.	From the Audience dropdown list, select sts.amazonaws.com.
-5.	Click Next.
-6.	Select the IAM policy you wish to associate to the IAM role, and click Next.
+4.	From the __Audience__ dropdown list, select __sts.amazonaws.com__.
+5.	Click __Next__.
+6.	Select the IAM policy you wish to associate to the IAM role, and click __Next__.
 7.	Specify a Role name.
-8.	Scroll down and click Create role.
+8.	Scroll down and click __Create role__.
 9.	Get the ARN for this role.
 
-
-
-#### For additional details, see these AWS docs:
+### For additional details, see these AWS docs:
 
 1. Create an IAM OIDC provider for your cluster ([Instructions](https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html)).
 2. Create the IAM role to be used by the service account. ([Instructions](https://docs.aws.amazon.com/eks/latest/userguide/create-service-account-iam-policy-and-role.html)).
