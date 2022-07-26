@@ -33,13 +33,13 @@ description: Performance testing deployment based on RDS, EKS and Lambda
 ```
 
 ### Inputs
-Blueprint designers can publish blueprint inputs to their end-users to add flexibility while launching a new environment from the blueprints - without altering the blueprint code itself. Inputs data can be later used in the blueprint to control orchestration, pass information to automation process and more.
+Blueprint designers can publish blueprint inputs to their end-users to add flexibility while launching a new environment from the blueprints, without altering the blueprint code itself. Input data can be later used in the blueprint to control orchestration, pass information to automation processes, and more.
 
-Input definition is composed out of the following fields: 
+The input definition is composed out of the following fields: 
 - The input name
-- The input description - that will be presented to all users in the Torque UI and API's
-- The input type. Supported types: string.
-- Input default value - the value that will be used in the Torque UI and will be used in case no other value provided for the input.
+- ```description``` to be presented to all users in the Torque UI and API's (Optional)
+- ```sensitive```: ```true``` masks the value behind asterisks in the UI and API. (Default is ```false```) 
+- ```default``` - (Optional) Value to be used in the Torque UI and will be used in case no other value provided for the input. If a default value is not defined, the environment end-user will need to provide one when launching the sandbox.
 
 
 ```yaml"
