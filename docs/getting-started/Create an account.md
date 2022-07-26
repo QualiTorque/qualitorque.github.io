@@ -9,6 +9,6 @@ Your Torque journey starts with creating a Torque account. This account will ser
 2. Click __Create an Account__.
 3. Register with your git user or email address, and follow the instructions on the screen.
    
-   The Welcome page is displayed, prompting you to launch a sample sandbox. To help you gauge the value of Torque, we've set up a __Sample__ space (top-left cornder of the screen) containing various fully-defined blueprints you can play around with.
+   The Welcome page is displayed, prompting you to launch a sample environment. To help you gauge the value of Torque, we've set up a __Sample__ space (top-left cornder of the screen) containing various fully-defined blueprints you can play around with.
 
    > ![Locale Dropdown](/img/welcome-page.png)

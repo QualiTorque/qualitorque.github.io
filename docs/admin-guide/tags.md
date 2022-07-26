@@ -33,7 +33,7 @@ There are 3 types of tags in Torque:
   
   These tags will be created by Torque, but the user who deploys the environments sets the tag's *value*.
   Currently, Torque supports the following built-in tags:
-  - activity_type : the purpose for launching this environemt. It allows the sandbox end-user to indicate the purpose of the sandbox. The end-user can choose from a list of pre-defined values such as dev, test, demo... etc. while the account admin can also edit this list and add more buisness activities to this tag.
+  - activity_type : the purpose for launching this environemt. It allows the environment's end-user to indicate the purpose of the environment. The end-user can choose from a list of pre-defined values such as dev, test, demo... etc. while the account admin can also edit this list and add more buisness activities to this tag.
 
   **To customize the activity_type tag:**
 
