@@ -225,12 +225,29 @@ In the below example the [downcase](https://shopify.github.io/liquid/filters/dow
       host:
         name: '{{ .inputs.host_name }}'
       inputs:
-        - bucket_name: ''{{ .inputs.bucket_name | strip }}'-bucket-{{ sandboxid | downcase }}'
+        - bucket_name: '{{ .inputs.bucket_name | strip }}-bucket-{{ sandboxid | downcase }}'
 ```
 
 :::info
 Blueprint designers might need extra details about the account, space or sandbox during the environment's orchestration. Torque provides dynamic attributes such as a sandboxid, accountid and spaceid that can be used through the orchestration and automation process.   
 :::
+
+### Parameters
+Torque's [Parameters](/admin-guide/params) store allows admins to set pre-defined account-level params. Blueprint designers can pass the params to the blueprint YAML, instead of inputs when you don't want the environment end-user to provide the value, but also don't want to hard-code it in the blueprint.
+
+The syntax is: ```{{.params."param-value"}}```
+
+```yaml" 
+  s3_bucket:
+    kind: terraform
+    spec:
+      source:
+        path: s3
+      host:
+        name: '{{ .inputs.host_name }}'
+      inputs:
+        - bucket_name: '{{ .params.my-bucket }}'
+```
 
 ### Environment Variables
 In many cases, passing information through environment variables is required for IaC modules to properly execute with the right data in mind. The environment variables provided under a specific grain will be accessible only during the grain lifecycle of the specific grain and can be used as a specific string or to be derived from a blueprint input or other grain output. 
