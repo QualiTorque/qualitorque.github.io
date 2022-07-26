@@ -3,11 +3,11 @@ sidebar_position: 3
 title: Blueprint Quickstart Guide
 ---
 
-Now that you have seen how Torque works, it’s time to link your assets to Torque and see how easy what you can do with them.
+Now that you have seen how Torque works, it’s time to link your assets to Torque and see what you can do with them.
 
 ## Prerequisites
 
-* Space
+* You have created your own space
 * Asset repository associated to the space
 * Execution host associated to the space
 
