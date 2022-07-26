@@ -33,7 +33,7 @@ description: Performance testing deployment based on RDS, EKS and Lambda
 ```
 
 ### Inputs
-Blueprint designers can publish blueprint inputs to their end-users to add flexibility while launching a new sandbox from the blueprints - without altering the blueprint code itself. Inputs data can be later used in the blueprint to control orchestration, pass information to automation process and more.
+Blueprint designers can publish blueprint inputs to their end-users to add flexibility while launching a new environment from the blueprints - without altering the blueprint code itself. Inputs data can be later used in the blueprint to control orchestration, pass information to automation process and more.
 
 Input definition is composed out of the following fields: 
 - The input name
@@ -51,7 +51,7 @@ inputs:
 ```
 
 ### Outputs
-Outputs exposes information about your newly deployed sandbox and make it available for the sandbox consumer or automation processes. Outputs will usually be available at the end of the sandbox initialization and accessible throughout the sandbox lifecycle.
+Outputs exposes information about your newly deployed environment and make it available for the environment's end-user or automation processes. Outputs will usually be available at the end of the environment's initialization and accessible throughout the environment lifecycle.
 
 Outputs are a dictionary composed by the output name and the output value.
 
@@ -135,7 +135,7 @@ In case your IaC code is not under folder in the repository, the path should be 
 :::
 
 ### Host
-Hosts, or **Execution Hosts** are the locations where grains will be deployed from. While different grains behave differently, it's important to choose the right execution host for a grain to make sure authentication, networking and  configuration is all set for sandbox consumers use. Different grains in the same blueprint can use different Execution Hosts to allow maximum flexibility during the orchestration processes.
+Hosts, or **Execution Hosts** are the locations where grains will be deployed from. While different grains behave differently, it's important to choose the right execution host for a grain to make sure authentication, networking and configuration is all properly configured. Different grains in the same blueprint can use different Execution Hosts to allow maximum flexibility during the orchestration processes.
 
 :::info
 Execution hosts gives the flexibility of deploying the same blueprints over different cloud accounts and cloud vendors. For example, the same blueprint can be utilized for Azure or GCP simply by exposing the host as a blueprint input, from which the end-user to choose his preferred cloud provider, each represented with a different execution host.
@@ -229,7 +229,7 @@ In the below example the [downcase](https://shopify.github.io/liquid/filters/dow
 ```
 
 :::info
-Blueprint designers might need extra details about the account, space or sandbox during the sandbox orchestration. Torque provides dynamic attributes such as a sandboxid, accountid and spaceid that can be used through the orchestration and automation process.   
+Blueprint designers might need extra details about the account, space or sandbox during the environment's orchestration. Torque provides dynamic attributes such as a sandboxid, accountid and spaceid that can be used through the orchestration and automation process.   
 :::
 
 ### Environment Variables
@@ -290,7 +290,7 @@ grains:
 ```
 
 :::info
-Note that in the above example, blueprint inputs are used as the values of the Terraform grain inputs, so the sandbox owner is able to choose the db_size and db_name required for his need. The information provided by the user will be passed to Terraform and affect the deployment process
+Note that in the above example, blueprint inputs are used as the values of the Terraform grain inputs, so the environment's owner is able to choose the db_size and db_name required for his need. The information provided by the user will be passed to Terraform and affect the deployment process
 :::
 
 
@@ -326,7 +326,7 @@ grains:
 ```
 
 ### scripts
-Torque provides the ability to execute custom code before the executing the Terraform module init and before the Terraform destroy process. Scripts allows to run CLI commands to make sure authentication and requirements are set prior to the Terraform execution at the sandbox initialization and destroy process.
+Torque provides the ability to execute custom code before the executing the Terraform module init and before the Terraform destroy process. Scripts allows to run CLI commands to make sure authentication and requirements are set prior to the Terraform execution at the environment's initialization and destroy process.
 In the below example, authentication script is used to assume role to another AWS account prior to deploying workload into that account.
 
 ```yaml" 
@@ -381,7 +381,7 @@ grains:
 ```
 
 :::info
-Note that in the above example, blueprint input is used as the value of the HELM grain input, so the sandbox owner is able to choose the replicaCount required for his need. The information provided by the user will be passed to HELM chart as values and affect the deployment process.
+Note that in the above example, blueprint input is used as the value of the HELM grain input, so the environment's owner is able to choose the replicaCount required for his need. The information provided by the user will be passed to HELM chart as values and affect the deployment process.
 :::
 
 ### commands
@@ -467,11 +467,11 @@ grains:
       namespace: '{{ .inputs.namespace }}'
 ```
 :::tip __Note__:
-* Launching concurrent sandboxes with Kubernetes grain is not supported for the same namespace. 
+* Launching concurrent environments with a Kubernetes grain is not supported for the same namespace. 
 * Make sure the Torque execution host has permissions to use those namespaces.
 :::
 
-## scripts (outputs)
+### scripts (outputs)
 Kubernetes does not natively support outputs. Using Torque, you can overcome this and provide outputs from the manifest installation process using scripts. In this approach, the script must export environment variables. These environment variables can later be declared also as outputs.
 The script is defined in the blueprint and executed after the grain's installation.
 

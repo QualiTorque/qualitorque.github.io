@@ -3,9 +3,9 @@ sidebar_position: 4
 title: Notifications
 ---
 
-Torque Notifications enable space admins to define notifications for sandbox lifecycle events. The notifications will be sent to Teams or Slack chats, or the automation tool of your choice. You can define multiple notifications for different communication tools, and for different channels in the same communication tool. 
+Torque Notifications enable space admins to define notifications for environment lifecycle events. The notifications will be sent to Teams or Slack chats, or the automation tool of your choice. You can define multiple notifications for different communication tools, and for different channels in the same communication tool. 
 
-Supported sandbox events:
+Supported environment events:
 
 * Sandbox started
 * Sandbox ready

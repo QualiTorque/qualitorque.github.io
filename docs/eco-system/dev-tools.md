@@ -7,7 +7,7 @@ To assist you with your blueprint development activities, we've created the foll
 
 ## Torque CLI 
 
-This tool streamlines the YAML development process by validating changes in real-time and allowing the execution of test sandboxes directly from the development branch, without needing to first merge the changes to production. For details, see [Quali Torque CLI](https://pypi.org/project/torque-cli/).
+This tool streamlines the YAML development process by validating changes in real-time and allowing the execution of test environments directly from the development branch, without needing to first merge the changes to production. For details, see [Quali Torque CLI](https://pypi.org/project/torque-cli/).
 
 ## Torque VSCode plugin
 
