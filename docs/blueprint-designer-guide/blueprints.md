@@ -233,9 +233,9 @@ Blueprint designers might need extra details about the account, space or sandbox
 :::
 
 ### Parameters
-Torque's [Parameters](/admin-guide/params) store allows admins to set pre-defined account-level params. Blueprint designers can pass the params to the blueprint YAML, instead of inputs when you don't want the environment end-user to provide the value, but also don't want to hard-code it in the blueprint.
+Torque's [Parameters](/admin-guide/params) store allows admins to set pre-defined account-level parameters. Blueprint designers can use the parameters in the blueprint YAML, instead of inputs if they don't want the environment end-user to provide the value, but also don't want to hard-code it in the blueprint.
 
-The syntax is: ```{{.params."param-value"}}```
+The syntax is: ```{{.params.param-value}}```
 
 ```yaml" 
   s3_bucket:
