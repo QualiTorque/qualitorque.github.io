@@ -38,9 +38,12 @@ Blueprint designers can publish blueprint inputs to their end-users to add flexi
 The input definition is composed out of the following fields: 
 - The input name
 - ```description``` to be presented to all users in the Torque UI and API's (Optional)
+- ```type``` of the input. Options are:
+  - ```string```
+  - ```execution-host``` which allows the sandbox end-user to select the execution host that will deploy the grain(s) from a dropdown list. All execution hosts are listed in the dropdown list, and you can add ```allowed values``` to only display a subset of the execution hosts. This option also allows Torque to validate that the execution hosts(s) exist - errors are displayed on the blueprint in the __Blueprints__ page, whereas specifying the literal name of the execution host will only raise an error during runtime if the execution host is missing. For details, see [host](#host).
 - ```sensitive```: ```true``` masks the value behind asterisks in the UI and API. (Default is ```false```) 
 - ```default``` - (Optional) Value to be used in the Torque UI and will be used in case no other value provided for the input. If a default value is not defined, the environment end-user will need to provide one when launching the sandbox.
-
+- ```allowed values:``` (Supported by string and execution-host inputs) Converts the input into a dropdown list, allowing the sandbox end-user to select the appropriate value from a list. If a ```default``` is specified, it must be included in the allowed values list. 
 
 ```yaml"
 inputs:
@@ -71,7 +74,7 @@ The example above includes some of the Torque's YAML templating engine capabilit
 ### Grains
 Grains are the basic building blocks of a blueprint utilizing infrastructure as code (IaC) assets or automation processes to orchestrate the desired environment. In many organization, the blueprint designers will have a predefined set of grains they can use in blueprints provided by the IT/Ops/DevOps or platform team. 
 
-basic grain template is composed out of the grain name, kind, inputs and output. specific grains might support other features that are technology specific.
+The basic grain template is composed out of the grain name, kind, inputs and output. specific grains might support other features that are technology specific.
 
 ```yaml" 
 grain_name:
@@ -83,7 +86,7 @@ grain_name:
         name: '{{ .inputs.host_name }}'
       inputs:
         - input1: '{{ .inputs.value1 }}'
-        - input1: '{{ .inputs.value2}}'
+        - input1: '{{ .inputs.value2 }}'
       outputs:
         - output1
         - output2
@@ -136,6 +139,19 @@ In case your IaC code is not under folder in the repository, the path should be 
 
 ### Host
 Hosts, or **Execution Hosts** are the locations where grains will be deployed from. While different grains behave differently, it's important to choose the right execution host for a grain to make sure authentication, networking and configuration is all properly configured. Different grains in the same blueprint can use different Execution Hosts to allow maximum flexibility during the orchestration processes.
+
+You can specify the execution host in two ways:
+- Literally
+- Using an execution-host input allows the sandbox end-user to select the execution host to use from a dropdown list. For details, see the [blueprint yaml's inputs](#inputs) section.
+  ```yaml" 
+grains:
+  # launch an RDS instance using Terraform
+  rds:
+    kind: terraform
+    spec:
+      host:
+        name: '{{ inputs.my_execution_host }}'
+ ```  
 
 :::info
 Execution hosts gives the flexibility of deploying the same blueprints over different cloud accounts and cloud vendors. For example, the same blueprint can be utilized for Azure or GCP simply by exposing the host as a blueprint input, from which the end-user to choose his preferred cloud provider, each represented with a different execution host.
