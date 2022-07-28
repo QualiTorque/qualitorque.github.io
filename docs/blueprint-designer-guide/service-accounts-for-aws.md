@@ -10,15 +10,14 @@ The basic process is as follows:
 * [Create an IAM role for the service account with the required policy](#create-an-iam-role-for-the-service-account-with-the-required-policy)
 * [Create a service account in the cluster’s namespace](#create-a-service-account-in-the-clusters-namespace)
 
+For brevity, the term "__cluster account__" refers to the account hosting the EKS, and "__target accounts__" is where the rest of the AWS resources are created.
 ## Prerequisites
 
 *	[IAM OIDC provider](https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html) on the cluster’s account, to recognize the cluster on the account
-*	[kubectl](https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html) on the cluster
+*	[kubectl](https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html) connected to the cluster
 *	[AWS CLI](https://aws.amazon.com/cli/) on your computer
 
-## Associate your cluster to the AWS account
-
-Make sure to perform steps 2 and 3 on every AWS account in which the cluster will perform actions.
+## Associate your cluster to the cluster account
 
 __To associate the cluster to the account__:
 1.	In AWS CLI, find the cluster’s OIDC provider by running:
@@ -32,7 +31,10 @@ __To associate the cluster to the account__:
   https://oidc.eks.region-code.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE
   ```
   Where __EXAMPLED539D4633E53DE1B71EXAMPLE__ is the cluster's OIDC provider
-2.	On the account to be used by the cluster, list an IAM OIDC provider in the account that is associated to the cluster’s OIDC provider:
+:::info
+Make sure to perform steps 2 and 3 on every target account in which the cluster will perform actions.   
+:::
+2.	Check if the OIDC provider from the cluster's account exists in the target accounts:
   ```jsx title=
   aws iam list-open-id-connect-providers | grep my-cluster-oidc-provider
   ```
@@ -57,7 +59,7 @@ __To associate the cluster to the account__:
 
 ## Create an IAM role for the service account with the required policy
 As we explained before, the service account delegates permissions to the container to perform the Terraform actions. The permissions are defined as a policy in an IAM role that is associated to the service account.
-Perform these steps on every account that will be used by your cluster.
+Perform these steps on every target account that will be used by your cluster.
 
 __Prerequisites__
 *	IAM policy with the desired permissions
