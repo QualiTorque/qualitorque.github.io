@@ -12,13 +12,13 @@ The basic process is as follows:
 
 ## Prerequisites
 
-*	IAM OIDC provider on the cluster’s account, to recognize the cluster on the account
-*	kubectl on the cluster
-*	AWS CLI on your computer
+*	[IAM OIDC provider](https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html) on the cluster’s account, to recognize the cluster on the account
+*	[kubectl](https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html) on the cluster
+*	[AWS CLI](https://aws.amazon.com/cli/) on your computer
 
 ## Associate your cluster to the AWS account
 
-Make sure to perform the following steps on every AWS account in which the cluster will perform actions.
+Make sure to perform steps 2 and 3 on every AWS account in which the cluster will perform actions.
 
 __To associate the cluster to the account__:
 1.	In AWS CLI, find the cluster’s OIDC provider by running:
@@ -53,6 +53,7 @@ __To associate the cluster to the account__:
     ```jsx title=
     aws iam list-open-id-connect-providers | grep my-cluster-oidc-provider
     ```
+    You will need this for step 3 in the following procedure.
 
 ## Create an IAM role for the service account with the required policy
 As we explained before, the service account delegates permissions to the container to perform the Terraform actions. The permissions are defined as a policy in an IAM role that is associated to the service account.
@@ -64,7 +65,7 @@ __Prerequisites__
 __To create the IAM role for the service account__:
 1.	In your AWS Console, go to __IAM > Role__.
 2.	Click __Create role__, select __Web identity__.
-3.	From the __Identity__ provider dropdown list, select your cluster’s OIDC provider.
+3.	From the __Identity__ provider dropdown list, select the IAM OIDC that was generated in step 3-c of the above procedure.
 4.	From the __Audience__ dropdown list, select __sts.amazonaws.com__.
 5.	Click __Next__.
 6.	Select the __IAM policy__ you wish to associate to the IAM role, and click __Next__.
@@ -91,3 +92,10 @@ metadata:
   kubectl apply -f SA.yaml
   ```
 You're done. All that's left to do is specify the service account name in the blueprint YAML. For details, see [Service Accounts](/blueprint-designer-guide/Service%20Accounts).
+
+## For additional details, see these AWS docs:
+
+1. Create an IAM OIDC provider for your cluster ([Instructions](https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html)).
+2. Create the IAM role to be used by the service account. ([Instructions](https://docs.aws.amazon.com/eks/latest/userguide/create-service-account-iam-policy-and-role.html)).
+3. Associate the IAM role to a service account on your cluster ([Instructions​](https://docs.aws.amazon.com/eks/latest/userguide/specify-service-account-role.html)).  
+If the Terraform resources are to be created in a different AWS account than the one hosting the EKS cluster which is our execution host, you'll need to perform steps (1) and (2) on the target account. See [AWS' Technical overview](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts-technical-overview.html).
