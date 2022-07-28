@@ -417,6 +417,21 @@ grains:
 Note that in the above example, blueprint input is used as the value of the HELM grain input, so the environment's owner is able to choose the replicaCount required for his need. The information provided by the user will be passed to HELM chart as values and affect the deployment process.
 :::
 
+### outputs
+Helm does not natively expose outputs. However, this can be done using a ```post-helm-install``` script that assigns environment variables after the grain's deployment. The script must be referenced, along with the names of the variables in the grain's scripts section, as shown in the [scripts](#scripts-1) section below. To expose the outputs to the sandbox, the names of the variables must be referenced in the grain's ```outputs``` section.
+
+For example:
+
+```yaml"
+outputs:
+  output1:
+    kind: regular
+    value: '{{.grains.nginx.scripts.post-helm-install.outputs.test1}}'
+  output2:
+    kind: regular
+    value: '{{.grains.nginx.scripts.post-helm-install.outputs.test2}}'
+```
+
 ### commands
 The commands section allows to execute CLI code prior to the HELM chart deployment to make sure all dependencies are met to ensure a successful deployment. Common use for commands is to execute HELM dependencies update to collect all the sub-charts required for the deployment.
 
@@ -433,6 +448,34 @@ grains:
         - replicaCount: '{{ .inputs.replicaCount }}'
       commands:
         - dep up bitnami/nginx
+```
+
+### scripts
+Torque provides the ability to execute custom code after the executing the Helm chart. This is useful for generating and using outputs, as explained in [helm outputs](#outputs-2)
+
+For example - grain with a post-install script and outputs "test1" and "test2":
+
+```yaml"
+grains:
+  nginx:
+    kind: helm
+    spec:
+      source:
+        path: ...
+      host:
+        name: ...
+        service-account: ...
+      inputs:
+        - replicaCount: ...
+      commands:
+        - dep up bitnami/nginx
+      scripts:
+        post-helm-install:
+          source:  
+            path: github.com/steve/my-public.git//scripts/helm_script.sh
+          outputs:
+            - test1
+            - test2
 ```
 
 ## The CloudFormation Grain​
