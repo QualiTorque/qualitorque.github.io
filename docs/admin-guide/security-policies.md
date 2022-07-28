@@ -16,12 +16,12 @@ Examples include:
 At this point, policies apply to Terraform grains.   
 :::
 
-## How to create a security policy
+## How to add a security policy
 
-1. Open the __Admin Console__ and click __Parameters__.
+1. Open the __Admin Console__ and click __Parameters > Policies__.
 2. Click __New Policy__ in the top right corner of the page.
 3. Give it a __Name__.
-4. Select the suitable policy.
+4. Select the suitable policy template.
 5. Select the __Scope__. __Account__ indicates that the policy applies to your entire Torque account, including all spaces.
 6. Specify the appropriate values. For details, see the appropriate policy's description below.
 
