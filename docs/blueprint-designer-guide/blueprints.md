@@ -427,7 +427,7 @@ Note that in the above example, blueprint input is used as the value of the HELM
 :::
 
 ### outputs
-Helm does not natively expose outputs. However, this can be done using a ```post-helm-install``` script that assigns environment variables after the grain's deployment. The script must be referenced, along with the names of the environment variables in the grain's ```scripts``` section, as shown in the [scripts](#scripts-1) section below. To expose the outputs to the environment, the names of the environment variables must be referenced in the blueprint's ```outputs``` section.
+Helm does not natively expose outputs. However, this can be done using a ```post-helm-install``` script that assigns environment variables after the grain's deployment. The script must be referenced, along with the names of the environment variables in the grain's [scripts](#scripts-1). To expose the outputs to the environment, the names of the environment variables must be referenced in the blueprint's ```outputs``` section.
 
 For example:
 
