@@ -68,7 +68,7 @@ outputs:
 ```
 
 :::info
-The example above includes some of the Torque's YAML templating engine capabilities allowing the blueprint designer more flexibility and leads to less code that will require maintenance. More examples for templating will be described HERE LINK
+The example above includes some of the Torque's YAML templating engine capabilities allowing the blueprint designer more flexibility and leads to less code that will require maintenance. More examples for templating will be described [Torque Templating engine](http://localhost:3002/blueprint-designer-guide/blueprints#torque-templating-engine).
 :::
 
 ### Grains
