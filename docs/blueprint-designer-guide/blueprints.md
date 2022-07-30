@@ -37,13 +37,13 @@ Blueprint designers can publish blueprint inputs to their end-users to add flexi
 
 The input definition is composed out of the following fields: 
 - The input name
-- ```description``` to be presented to all users in the Torque UI and API's (Optional)
+- ```description``` is presented to all users in the Torque UI and API's (Optional)
 - ```type``` of the input. Options are:
   - ```string```
-  - ```execution-host``` which allows the sandbox end-user to select the execution host that will deploy the grain(s) from a dropdown list. All execution hosts are listed in the dropdown list, and you can add ```allowed values``` to only display a subset of the execution hosts. This option also allows Torque to validate that the execution hosts(s) exist - errors are displayed on the blueprint in the __Blueprints__ page, whereas specifying the literal name of the execution host will only raise an error during runtime if the execution host is missing. For details, see [host](#host).
+  - ```execution-host``` allows the environment end-user to select the execution host that will deploy the grain(s) from a dropdown list. By default, all execution hosts are listed in the dropdown list, but you can add ```allowed values``` to only display a subset of the execution hosts. For details, see [host](#host).
 - ```sensitive```: ```true``` masks the value behind asterisks in the UI and API. (Default is ```false```) 
-- ```default``` - (Optional) Value to be used in the Torque UI and will be used in case no other value provided for the input. If a default value is not defined, the environment end-user will need to provide one when launching the sandbox.
-- ```allowed values:``` (Supported by string and execution-host inputs) Converts the input into a dropdown list, allowing the sandbox end-user to select the appropriate value from a list. If a ```default``` is specified, it must be included in the allowed values list. 
+- ```default``` - (Optional) Value to be used in the Torque UI and will be used in case no other value provided for the input. If a default value is not defined, the environment end-user will need to provide one when launching the environment.
+- ```allowed values``` converts the input into a dropdown list, allowing the environment end-user to select the appropriate value. If a ```default``` is specified, it must be included in the allowed values list. 
 
 ```yaml"
 inputs:
@@ -141,8 +141,17 @@ In case your IaC code is not under folder in the repository, the path should be 
 Hosts, or **Execution Hosts** are the locations where grains will be deployed from. While different grains behave differently, it's important to choose the right execution host for a grain to make sure authentication, networking and configuration is all properly configured. Different grains in the same blueprint can use different Execution Hosts to allow maximum flexibility during the orchestration processes.
 
 You can specify the execution host in two ways:
-- Literally
-- Using an execution-host input allows the sandbox end-user to select the execution host to use from a dropdown list. For details, see the [blueprint yaml's inputs](#inputs) section.
+- Literally. For example:
+  ```yaml" 
+grains:
+  # launch an RDS instance using Terraform
+  rds:
+    kind: terraform
+    spec:
+      host:
+        name: my-execution-host
+ ``` 
+- Using an execution-host input, which allows the environment end-user to select the execution host to use from a dropdown list. For details, see the [blueprint yaml's inputs](#inputs) section.
   ```yaml" 
 grains:
   # launch an RDS instance using Terraform
@@ -245,7 +254,7 @@ In the below example the [downcase](https://shopify.github.io/liquid/filters/dow
 ```
 
 :::info
-Blueprint designers might need extra details about the account, space or sandbox during the environment's orchestration. Torque provides dynamic attributes such as a sandboxid, accountid and spaceid that can be used through the orchestration and automation process.   
+Blueprint designers might need extra details about the account, space or environment during the environment's orchestration. Torque provides dynamic attributes such as a sandboxid, accountid and spaceid that can be used through the orchestration and automation process.   
 :::
 
 ### Parameters
@@ -418,18 +427,25 @@ Note that in the above example, blueprint input is used as the value of the HELM
 :::
 
 ### outputs
-Helm does not natively expose outputs. However, this can be done using a ```post-helm-install``` script that assigns environment variables after the grain's deployment. The script must be referenced, along with the names of the variables in the grain's scripts section, as shown in the [scripts](#scripts-1) section below. To expose the outputs to the sandbox, the names of the variables must be referenced in the grain's ```outputs``` section.
+Helm does not natively expose outputs. However, this can be done using a ```post-helm-install``` script that assigns environment variables after the grain's deployment. The script must be referenced, along with the names of the environment variables in the grain's ```scripts``` section, as shown in the [scripts](#scripts-1) section below. To expose the outputs to the environment, the names of the environment variables must be referenced in the blueprint's ```outputs``` section.
 
 For example:
 
 ```yaml"
+spec_version: 2
+description: 
+  ...
+
+inputs:
+  ...
+
 outputs:
   output1:
     kind: regular
-    value: '{{.grains.nginx.scripts.post-helm-install.outputs.test1}}'
+    value: '{{.grains.<grain name>.scripts.post-helm-install.outputs.<output name>}}'
   output2:
     kind: regular
-    value: '{{.grains.nginx.scripts.post-helm-install.outputs.test2}}'
+    value: '{{.grains.<grain name>.scripts.post-helm-install.outputs.<output name>}}'
 ```
 
 ### commands
@@ -451,7 +467,7 @@ grains:
 ```
 
 ### scripts
-Torque provides the ability to execute custom code after the executing the Helm chart. This is useful for generating and using outputs, as explained in [helm outputs](#outputs-2)
+Torque provides the ability to execute custom code after Torque executes the Helm chart. This is useful for generating and using outputs, as explained in [helm outputs](#outputs-2).
 
 For example - grain with a post-install script and outputs "test1" and "test2":
 
