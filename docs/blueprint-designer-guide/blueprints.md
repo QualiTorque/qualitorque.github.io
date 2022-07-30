@@ -106,9 +106,9 @@ The following grains are available:
 ### Source
 Sources are repositories storing IaC, CM or other configuration technology that will be utilized by Torque to launch and operate an environment. Torque supports multiple ways to define grain sources. 
 Sources can be defined in the following ways:
-1. Direct link to a source control folder. Composed from the repository URL followed by the folder structure leading to the folder where IaC code resides. For example:
 
-```yaml" 
+__1) Direct link to a source control folder__: Composed from the repository URL followed by the folder structure leading to the folder where IaC code resides. For example:
+  ```yaml" 
 grains:
   aurora:
     kind: terraform
@@ -117,7 +117,8 @@ grains:
         path: github.com/organization/repository.git//folder1/folder2
 ```
 
-1. location based on a repository (blueprints or assets) onboarded to Torque. The name of the repository should be provided under the 'store' field, while the IaC code folder location should be specified under the path field. In the below example, nginx helm chart resides in the 'nginx' folder within a repository onboarded to Torque with the name 'web_servers'.
+__2) location based on a repository (blueprints or assets) onboarded to Torque__: The name of the repository should be provided under the 'store' field, while the IaC code folder location should be specified under the path field. In the below example, nginx helm chart resides in the 'nginx' folder within a repository onboarded to Torque with the name 'web_servers'.
+
 ```yaml" 
 grains:
   nginx:
@@ -127,7 +128,6 @@ grains:
         store: web_servers
         path: nginx
 ```
-
 :::info
 In case your IaC code is not under folder in the repository, the path should be set as in the following example:
 ```yaml" 
