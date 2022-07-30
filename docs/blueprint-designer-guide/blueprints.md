@@ -302,7 +302,7 @@ Please see [the grain source](blueprints.md#source) for more details.
 Please see [the grain host](blueprints.md#host) for more details.
 
 ### tf-version
-Torque provides the flexability to choose a specific Terraform version with which the Terraform module will be deploy.
+Torque provides the flexibility to choose a specific Terraform version with which the Terraform module will be deployed (minimum supported version is 0.14).
 :::info
 Note that Torque supports all Terraform versions available by Hashicorp without Alpha and Beta versions.
 List of supported releases can be found [here](https://releases.hashicorp.com/terraform/)
