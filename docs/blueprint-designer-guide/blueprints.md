@@ -293,7 +293,7 @@ In many cases, passing information through environment variables is required for
 ```
 
 ## The Terraform Grain
-The Terraform grain is Torque's native support for HashiCorp Terraform modules. Torque allows designers to use Terraform specific features to easily orchestrate self-developer and community Terraform modules in a standard way and share them with others as building blocks.
+The Terraform grain is Torque's native support for HashiCorp Terraform modules. Torque allows designers to use Terraform specific features to easily orchestrate self-developer and community Terraform modules in a standard way and share them with others as building blocks. Note that to deploy Terraform modules, you will need to authenticate Terraform on the Kubernetes cluster. For details, see [Terraform Authentication on EKS](/blueprint-designer-guide/service-accounts-for-aws) or [Terraform Authentication on AKS](/blueprint-designer-guide/service-accounts-for-azure).
 
 ### source 
 Please see [the grain source](blueprints.md#source) for more details.
