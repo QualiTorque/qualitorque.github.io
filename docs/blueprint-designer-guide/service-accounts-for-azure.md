@@ -130,7 +130,14 @@ There are 2 ways to provide these details:
 
  ```jsx title=
   spec_version: 2
+
   description: Azure RG.
+
+  inputs:
+    host_name:
+      type: string
+      display-style: normal
+
   grains:
     azure_resource_group:
       kind: terraform
@@ -139,13 +146,14 @@ There are 2 ways to provide these details:
           store: terraform_repo
           path: terraform/azure-RG
         host:
-          name: 
+          name: '{{ .inputs.host_name }}'
           kubernetes:
             pod-labels:
             - aadpodidbinding: my-pod-identity
         env-vars: 
         - ARM_USE_MSI: true
-        - ARM_SUBSCRIPTION_ID: 0d266a1e-f0a7-4ec5-96a1-061539f16c18
-        - ARM_TENANT_ID: a2526a87-7777-4f7c-92cf-4f0f57136251
-        - ARM_CLIENT_ID: 10e09946-da2c-46ab-b00a-4fe987d39069
+        - ARM_SUBSCRIPTION_ID: 0d266a1e-f6w3-4ec5-96a1-061539f16j32
+        - ARM_TENANT_ID: a2526a87-7777-4f7c-95gt-4f0f57136553
+        - ARM_CLIENT_ID: 108e6546-da2c-46ab-b00a-4fe987d33657
+        tf-version: 1.2.3
     ```
