@@ -49,8 +49,13 @@ The input definition is composed out of the following fields:
 inputs:
   app_version:
     type: string
+    allowed-values: [0.9.7, 0.9.8, 0.9.9]
     default: "0.9.9"
     description: "The version of the application to be deployed on the EKS cluster"
+  host:
+    type: execution-host
+    allowed-values [NY, Tokyo, London]
+    description: "Select your site's host."
 ```
 
 ### Outputs
