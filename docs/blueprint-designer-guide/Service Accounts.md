@@ -20,7 +20,7 @@ grains:
 ```     
 
 ## Helm charts
-When you're deploying resources in the cluster using a Helm chart, the service account you use should have sufficient permissions to create all the resources which the chart will deploy. For details, see [Kubernetes' ServiceAccount permissions](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#service-account-permissions)
+When you're deploying resources in the cluster using a Helm chart, the service account you use should have sufficient permissions to create all the resources which the chart will deploy. For details, see [Kubernetes' Service Account permissions](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#service-account-permissions)
 
 ## Terraform modules
 
