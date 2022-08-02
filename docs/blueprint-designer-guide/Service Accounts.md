@@ -28,5 +28,4 @@ If you're using an EKS cluster as your execution host, and you want to deploy re
 
 There are two ways to do this. 
 1. The easy way is to attach the appropriate policy to the cluster's IAM role Arn, but this grants permissions to the entire cluster. 
-2. The second option is to use a service account, which grants the permissions to the pod responsible for spinning up the environment, and once the environment is fully deployed, the pod and delegated permissions are removed. For details, see [Service Account Configuration for AWS
-](/blueprint-designer-guide/service-accounts-for-aws).
+2. The second option is to use a service account, which grants the permissions to the pod responsible for spinning up the environment, and once the environment is fully deployed, the pod and delegated permissions are removed. For details, see [Terraform Authentication on EKS](/blueprint-designer-guide/service-accounts-for-aws).
