@@ -76,7 +76,7 @@ __To create the IAM role for the service account__:
 9.	Copy the ARN for this role. You will need in the next step.
 
 ## Create a service account in the cluster’s namespace
-Create the service account and associate its IAM role to the IAM role you just created.
+Create the service account in the cluster's namespace you plan on using as the sandbox namespace, and associate its IAM role to the IAM role you just created.
 
 __To create the service account__:
 
@@ -87,8 +87,8 @@ kind: ServiceAccount
 metadata:
     annotations:
       eks.amazonaws.com/role-arn: <enter your role arn here>
-    name: <enter the service account name here>
-    namespace: <enter the namespace name here>  
+    name: <service account name>
+    namespace: <sandbox namespace name>  
 2. From AWS CLI, run the following command:
   ```jsx title=
   kubectl apply -f SA.yaml

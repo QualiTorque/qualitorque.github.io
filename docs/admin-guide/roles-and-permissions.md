@@ -33,15 +33,15 @@ As such, there are 4 roles in Torque:
 | Invite new account admins	   | ![Locale Dropdown](/img/green-dot.png)        |||||
 | Manage account tags	   | ![Locale Dropdown](/img/green-dot.png)        |||||
 | Launch sandboxes   | ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)  |![Locale Dropdown](/img/green-dot.png)|  ![Locale Dropdown](/img/green-dot.png)|
-| Publish blueprints	   | ![Locale Dropdown](/img/green-dot.png)       |||||
-| Manage production environments	   | ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)|||
-| Setup blueprint repositories	   | ![Locale Dropdown](/img/green-dot.png)        ||||
-| Manage space users & roles	   | ![Locale Dropdown](/img/green-dot.png)        ||||
-| Get information on Cloud Account	   | ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)  |||
+| Publish blueprints	   | ![Locale Dropdown](/img/green-dot.png)       |![Locale Dropdown](/img/green-dot.png)||||
+| Manage production environments	   | ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)|![Locale Dropdown](/img/green-dot.png)||
+| Setup blueprint repositories	   | ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)|||
+| Manage space users & roles	   | ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)|||
+| Get information on Cloud Account	   | ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)  |![Locale Dropdown](/img/green-dot.png)||
 | View cost data	   | ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)  |![Locale Dropdown](/img/green-dot.png)|![Locale Dropdown](/img/green-dot.png)|
-| Manage space tags	   | ![Locale Dropdown](/img/green-dot.png)        |||||
-| Manage space policies	   | ![Locale Dropdown](/img/green-dot.png)        |||||
-| Manage blueprint tags	   | ![Locale Dropdown](/img/green-dot.png)|![Locale Dropdown](/img/green-dot.png)|||
+| Manage space tags	   | ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)||||
+| Manage space policies	   | ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)||||
+| Manage blueprint tags	   | ![Locale Dropdown](/img/green-dot.png)|![Locale Dropdown](/img/green-dot.png)|![Locale Dropdown](/img/green-dot.png)||
 
 ## Invite Users to Torque
 
