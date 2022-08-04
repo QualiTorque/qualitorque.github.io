@@ -3,7 +3,7 @@ sidebar_position: 8
 title: Terraform Authentication on AKS
 ---
 
-If you're using an AKS cluster as your execution host, and you want to run Terraform that deploys resources on AKS, you can use a  pod managed identity to do the authentication and permissions between the pod and the Azure account where the resources will be created.
+If you're using an AKS cluster as your execution host, and you want to run Terraform that deploys resources on Azure, you can use a  pod managed identity to do the authentication and permissions between the pod and the Azure account where the resources will be created.
 
 The basic process is as follows:
 * [Configure the pod managed identity](#configure-the-pod-managed-identity)
@@ -113,7 +113,7 @@ There are 2 ways to provide these details:
     ARM_CLIENT_ID: <Client_ID>
   ```
 
-  b. In the Terraform grain, specify the pod's identity name under ```spec``` > ```host```:
+  b. In the Terraform grain, specify the selector value of the Azure identity binding under ```spec``` > ```host```:
 
   ```jsx title=
     spec:
