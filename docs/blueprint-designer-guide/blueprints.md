@@ -7,7 +7,7 @@ title: Blueprint YAML
 Torque's blueprints are reusable components designed to model a required environment from the infrastructure to the application. **Blueprint designers** utilize Torque's VSCode plugin or the Torque's self-service UI to build a YAML based imperative blueprints that aimed to fulfill business requirements in a self-service manner for their end-users. 
 
 :::tip__Note__
-Blueprints are written in YAML files that reside in a __/blueprints__ folder within a Github, Gitlab or BitBucket repository (the folder name is case sensitive). The __/blueprints__ folder must be defined as the blueprint repository in the space's __Settings > Repositories__ page. 
+Blueprints are written in YAML files that reside in a __/blueprints__ folder within a Github, Gitlab or BitBucket repository (the folder name is case-sensitive and must be "blueprints"). The __/blueprints__ folder must be defined as the blueprint repository in the space's __Settings > Repositories__ page. 
 :::
 
 Common example will be a platform team or a DevOps team building Dev, Test and staging environments for their development, QA and product teams. With Torque, the DevOps team can focus on design, best practices, and security for environment, while their end users are being self-served from the torque UI, API or eco-system integrations based on governance and policies without having the 'keys-to-the-cloud'.
@@ -289,12 +289,9 @@ In many cases, passing information through environment variables is required for
     ...
     ...
       env-vars:
-      - name: VAR_NAME1
-        value: value1
-      - name: VAR_NAME2
-        value: '{{ .inputs.input_name }}'
-      - name: VAR_NAME3
-        value: '{{ .grains.vm.outputs.host_name }}'
+      - VAR_NAME1: value1
+      - VAR_NAME2: '{{ .inputs.input_name }}'
+      - VAR_NAME3: '{{ .grains.vm.outputs.host_name }}'
 ```
 
 ## The Terraform Grain
