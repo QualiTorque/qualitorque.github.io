@@ -431,6 +431,10 @@ Note that in the above example, blueprint input is used as the value of the HELM
 ### outputs
 Helm does not natively expose outputs. However, this can be done using a ```post-helm-install``` script that assigns environment variables after the grain's deployment. The script must be referenced, along with the names of the environment variables in the grain's [scripts](#scripts-1). To expose the outputs to the environment, the names of the environment variables must be referenced in the blueprint's ```outputs``` section.
 
+:::tip __tip__
+For illustration purposes, here's a [Helm chart](https://github.com/orel-h/test-spec2-public/blob/master/blueprints/helm-outputs-demo.yaml) that declares a __URL__ environment variable and references the [post-install script](https://github.com/orel-h/test-spec2-public/blob/master/scripts/orel_helm_script_args_demo.sh) that publishes that environment variable as an output.
+:::
+
 For example:
 
 ```yaml"
@@ -495,6 +499,7 @@ grains:
             - test1
             - test2
 ```
+
 
 ## The CloudFormation Grain​
 The CloudFormation grain is Torque's native support for AWS CloudFormation templates. Torque allows designers to use CloudFormation features to easily orchestrate self-developer and community CloudFormation modules in a standard way and share them with others as building blocks.
