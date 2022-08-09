@@ -672,8 +672,8 @@ You can specify the code to be run as freetext bash/python3 commands or by refer
 ```yaml”
 commands
   - "apt-get -y install wget"
-  - wget http://url/a.py
-  - python3 a.py
+  - "wget http://.../check.py"
+  - "python3 check.py"
 ```
 :::
 
