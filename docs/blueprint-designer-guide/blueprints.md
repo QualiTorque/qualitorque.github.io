@@ -3,14 +3,20 @@ sidebar_position: 8
 title: Blueprint YAML
 ---
 
-# Blueprints Design
-Torque's blueprints are reusable components designed to model a required environment from the infrastructure to the application. **Blueprint designers** utilize Torque's VSCode plugin or the Torque's self-service UI to build a YAML based imperative blueprints that aimed to fulfill business requirements in a self-service manner for their end-users. 
+Torque blueprints are reusable components designed to model a required environment from the infrastructure to the application. **Blueprint designers** utilize Torque's VSCode plugin or the Torque's self-service UI to build a YAML based imperative blueprints that aimed to fulfill business requirements in a self-service manner for their end-users. 
 
 :::tip__Note__
 Blueprints are written in YAML files that reside in a __/blueprints__ folder within a Github, Gitlab or BitBucket repository (the folder name is case-sensitive and must be "blueprints"). The __/blueprints__ folder must be defined as the blueprint repository in the space's __Settings > Repositories__ page. 
 :::
 
 Common example will be a platform team or a DevOps team building Dev, Test and staging environments for their development, QA and product teams. With Torque, the DevOps team can focus on design, best practices, and security for environment, while their end users are being self-served from the torque UI, API or eco-system integrations based on governance and policies without having the 'keys-to-the-cloud'.
+
+In this article:
+* [Torque's Blueprint YAML](#torques-blueprint-yaml)
+* [The Terraform Grain](#the-terraform-grain)
+* [The HELM Grain](#the-helm-grain)
+* [The CloudFormation Grain​](#the-cloudformation-grain)
+* [The Kubernetes Grain​](#the-kubernetes-grain)
 
 ## Torque's Blueprint YAML
 The Torque's blueprint YAML is the main bluperint definition file. It contains general information about the environment as well as the grains that make up the environment's applications and services. The blueprint YAML is published to end-users in Torque's blueprint catalog. 
@@ -431,6 +437,10 @@ Note that in the above example, blueprint input is used as the value of the HELM
 ### outputs
 Helm does not natively expose outputs. However, this can be done using a ```post-helm-install``` script that assigns environment variables after the grain's deployment. The script must be referenced, along with the names of the environment variables in the grain's [scripts](#scripts-1). To expose the outputs to the environment, the names of the environment variables must be referenced in the blueprint's ```outputs``` section.
 
+:::tip __tip__
+For illustration purposes, here's a [Helm chart](https://github.com/orel-h/test-spec2-public/blob/master/blueprints/helm-outputs-demo.yaml) that declares a __URL__ environment variable and references the [post-install script](https://github.com/orel-h/test-spec2-public/blob/master/scripts/orel_helm_script_args_demo.sh) that publishes that environment variable as an output.
+:::
+
 For example:
 
 ```yaml"
@@ -495,6 +505,7 @@ grains:
             - test1
             - test2
 ```
+
 
 ## The CloudFormation Grain​
 The CloudFormation grain is Torque's native support for AWS CloudFormation templates. Torque allows designers to use CloudFormation features to easily orchestrate self-developer and community CloudFormation modules in a standard way and share them with others as building blocks.
