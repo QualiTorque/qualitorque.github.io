@@ -669,11 +669,19 @@ grains:
 :::tip __note__
 You can specify the code to be run as freetext bash/python3 commands or by referencing a bash/python3 file:
 
-```yaml”
+```jsx title="Python 3 example:"
 commands
   - "apt-get -y install wget"
-  - "wget http://.../check.py"
+  - "wget https://.../check.py"
   - "python3 check.py"
 ```
+
+```jsx title="Bash example:"
+commands
+  - "apt-get -y install wget"
+  - "wget https://.../check.sh"
+  - "/bin/bash simple.sh"
+```
+
 :::
 
