@@ -18,7 +18,7 @@ __Prerequisites__:
 
 __To configure the pod managed identity__:
 
-1. Update azure cli:
+1. Update Azure cli:
   ```jsx title=
   az update
   ```
@@ -94,10 +94,17 @@ __To configure the pod managed identity__:
 ## Configure Torque's Terraform authentication on AKS
 
 __Prerequisites__:
-* Subscription ID.
-* Tenant ID.
-* Managed identity ID – ID of the managed identity who is configured with pod managed identity, the ID is known as client ID.
-* Azure identity binding selector – The selector value of the AzureIdentityBinding entity, this value will be used as a label for the Terraform runner pod, thus creating the binding between the pod and the managed identity.
+* Subscription ID
+* Tenant ID (displayed in the __Azure Active Directory > Overview__)
+* Managed identity ID – ID of the managed identity configured with pod managed identity (click __Managed Identities >__ the name of the managed identity __> Client ID__).
+* Azure identity binding selector – The selector value of the AzureIdentityBinding entity. This value will be used as a label for the Terraform runner pod, thus creating the binding between the pod and the managed identity. 
+  
+  __To find the identity binding selector:__
+  
+  1. In Azure CLI, run ```kubectl get azureidentitybinding -o json -n <azure_identity_namespace>``` (if you don't know the namespace name, omit ```-n <azure_identity_namespace>```). 
+  2. Select the appropriate azureidentitybinding, located under  "spec" -> "azureIdentity" of the azureidentitybinding - look for the one that has your azure identity name. 
+  3. Once you find the appropriate azureidentitybinding, in json output, you will find the Azure identity binding selector value under __spec > selector__.
+  > ![Locale Dropdown](/img/managed-identity.png)
 
 There are 2 ways to provide these details:
 1.	Adding AKS: When adding a new AKS, the Azure user can provide these details under __Default credentials__.
