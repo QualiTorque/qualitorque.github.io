@@ -646,21 +646,6 @@ grains:
             - "git clone {{ .inputs.repoUrl }}"
 ```
 
-### environment variables
-Like inputs, you can also declare environment variables. These are declared in the __env-vars__ section.
-
-```yaml"
-grains:
-  validate:
-    kind: shell
-    spec:
-      host:
-        name: kubernetes-testing1
-      env-vars:
-        - VAR_NAME1: value1
-        - VAR_NAME2: "{{ .inputs.mySecondVal }}" 
-```
-
 ### commands
 The commands section allows to execute bash/python3 code as part of the launch and/or end of the environment. The Shell grain has two command types - __deploy__ for running code at the launch of the environment, and __destroy__ for running code as part of the environment’s teardown. 
 
