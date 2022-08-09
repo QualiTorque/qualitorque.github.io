@@ -17,6 +17,7 @@ In this article:
 * [The HELM Grain](#the-helm-grain)
 * [The CloudFormation Grain​](#the-cloudformation-grain)
 * [The Kubernetes Grain​](#the-kubernetes-grain)
+* [The Shell Grain](#the-shell-grain)
 
 ## Torque's Blueprint YAML
 The Torque's blueprint YAML is the main bluperint definition file. It contains general information about the environment as well as the grains that make up the environment's applications and services. The blueprint YAML is published to end-users in Torque's blueprint catalog. 
@@ -344,8 +345,6 @@ Note that in the above example, blueprint inputs are used as the values of the T
 :::
 
 
-
-
 ### tags  
 Whenever a Terraform grain is launched, all resources created during the deployment process will be automatically tagged with Torque's system tags, built-in tags and custom tags (for details, see [Tags](/admin-guide/tags). if you wish to disable tagging for all resources in a specific Terraform grain, use the following syntax:
 
@@ -517,7 +516,7 @@ Please see [the grain source](blueprints.md#source) for more details.
 Please see [the grain host](blueprints.md#host) for more details.
 
 ### inputs​
-Similar to blueprint inputs, CloudFormation grain inputs allow you to reuse the same CloudFormation module in different ways. Inputs provided to the CloudFormation grain are used when launching the CloudFormation module. CloudFormation grain inputs should be listed in the order defined in the module's _variables.tf_ file.
+Similar to blueprint inputs, CloudFormation grain inputs allow you to reuse the same CloudFormation module in different ways. Inputs provided to the CloudFormation grain are used when launching the CloudFormation module.
 
 ### tags​
 Whenever a CloudFormation grain is launched, all resources created during the deployment process are automatically tagged with Torque's system tags, built-in tags and custom tags.
@@ -609,3 +608,72 @@ grains:
             - output1
             - output2
 ```
+
+## The Shell Grain
+The Shell grain is an asset-agnostic grain that allows you to run bash/python3 commands as part of your environment’s launch and/or teardown. It’s useful if you need to prepare or clean up your environment’s cloud infrastructure as part of the deployment of other grains. For example, you could use this grain to run "datree" validations on a Kubernetes grain’s asset, or perhaps back up/clone a DB before environment deployment.
+```yaml”
+grains:
+  validate:
+    kind: shell
+    spec:
+      host:
+        name: …
+      activities:
+        deploy:
+          commands:
+            - …
+        destroy:
+          commands:
+            - …
+```
+### host
+Please see [the grain host](blueprints.md#host) for more details.
+
+### inputs
+Similar to blueprint inputs, inputs provided to the Shell grain are used when launching the shell. 
+
+```yaml"
+grains:
+  validate:
+    kind: shell
+    spec:
+      host:
+      ...
+      inputs:
+        - replicaCount: '{{ .inputs.replicaCount }}'
+```
+
+### commands
+The commands section allows to execute bash/python3 code as part of the launch and/or end of the environment. The Shell grain has two command types - __deploy__ for running code at the launch of the environment, and __destroy__ for running code as part of the environment’s teardown. 
+
+```yaml”
+grains:
+  validate:
+    kind: shell
+    spec:
+      host:
+        name: kubernetes-testing1
+      activities:
+        deploy:
+          commands:
+            - "apt-get -y install git unzip curl"
+            - "git clone {{ .inputs.repoUrl }}"
+            - "curl https://get.datree.io | /bin/bash"
+            - "datree test {{.inputs.repoName}}/{{.inputs.filePath}}"
+        destroy:
+          commands:
+            - "https://gist.githubusercontent.com/.../check.py"
+            - "python3 check.py"```
+```
+
+:::tip __note__
+You can specify the code to be run as freetext bash/python3 commands or by referencing a bash/python3 file:
+
+```yaml”
+commands
+  - "apt-get -y install wget"
+  - wget http://url/a.py
+  - python3 a.py
+```
+:::
+
