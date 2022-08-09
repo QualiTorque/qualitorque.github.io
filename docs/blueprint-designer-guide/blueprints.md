@@ -610,7 +610,7 @@ grains:
 ```
 
 ## The Shell Grain
-The Shell grain is an asset-agnostic grain that allows you to run bash/python3 commands as part of your environment’s launch and/or teardown. It’s useful if you need to prepare or clean up your environment’s cloud infrastructure as part of the deployment of other grains. For example, you could use this grain to run "datree" validations on a Kubernetes grain’s asset, or perhaps back up/clone a DB before environment deployment.
+The Shell grain is an asset-agnostic grain that allows you to run bash/python3 commands as part of your environment’s launch and/or teardown. It’s useful if you need to prepare or clean up your environment’s cloud infrastructure as part of the deployment. For example, you could use this grain to run "datree" validations on a Kubernetes grain’s asset, or perhaps back up/clone a DB before environment deployment.
 ```yaml”
 grains:
   validate:
@@ -630,7 +630,7 @@ grains:
 Please see [the grain host](blueprints.md#host) for more details.
 
 ### inputs
-Similar to blueprint inputs, inputs provided to the Shell grain are used when launching the shell. 
+Similar to blueprint inputs, inputs provided to the Shell grain are used when launching the shell. Unlike other grains, in the Shell grain, inputs are used inside the __commands__ section, wrapped in double curly brackets - ```" {{ .inputs.input1 }}"```.
 
 ```yaml"
 grains:
@@ -638,9 +638,27 @@ grains:
     kind: shell
     spec:
       host:
-      ...
-      inputs:
-        - replicaCount: '{{ .inputs.replicaCount }}'
+        name: kubernetes-testing1
+      activities:
+        deploy:
+          commands:
+            - "{{ .inputs.repoURL }}"
+            - "git clone {{ .inputs.repoUrl }}"
+```
+
+### environment variables
+Like inputs, you can also declare environment variables. These are declared in the __env-vars__ section.
+
+```yaml"
+grains:
+  validate:
+    kind: shell
+    spec:
+      host:
+        name: kubernetes-testing1
+      env-vars:
+        - VAR_NAME1: value1
+        - VAR_NAME2: "{{ .inputs.mySecondVal }}" 
 ```
 
 ### commands
@@ -663,7 +681,7 @@ grains:
         destroy:
           commands:
             - "https://gist.githubusercontent.com/.../check.py"
-            - "python3 check.py"```
+            - "python3 check.py"
 ```
 
 :::tip __note__
