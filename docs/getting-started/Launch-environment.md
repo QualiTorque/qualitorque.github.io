@@ -20,7 +20,7 @@ You are now ready to launch your first environment.
 
 :::tip __Tip__:
 
-If someone makes changes to the blueprint's asset or the environment's cloud resources while the environment is running, you will see an __Updates Available__ link in the environment page. Click it to view the updates. It has two sections: 
+If someone makes changes to the blueprint's asset or the environment's cloud resources while the environment is running, you will see an __Updates Available__ link in the environment page. Click it to view and resolve the changes. It has two sections: 
 * __Updates__ shows changes made to the asset's definition file, allowing you to optionally update the environment
 * __Drift Detection__ shows any of the environment's resources that were modified externally. Click the error to see the modifications, and __Reconcile__ to revert a resource back to its original state.
 
