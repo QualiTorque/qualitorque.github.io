@@ -46,10 +46,10 @@ The input definition is composed out of the following fields:
 - ```description``` is presented to all users in the Torque UI and API's (Optional)
 - ```type``` of the input. Options are:
   - ```string```
-  - ```execution-host``` allows the environment end-user to select the execution host that will deploy the grain(s) from a dropdown list. By default, all execution hosts are listed in the dropdown list, but you can add ```allowed values``` to only display a subset of the execution hosts. For details, see [host](#host).
+  - ```execution-host``` allows the environment end-user to select the execution host that will deploy the grain(s) from a dropdown list. By default, all execution hosts are listed in the dropdown list, but you can add ```allowed-values``` to only display a subset of the execution hosts. For details, see [host](#host).
 - ```sensitive```: ```true``` masks the value behind asterisks in the UI and API. (Default is ```false```) 
 - ```default``` - (Optional) Value to be used in the Torque UI and will be used in case no other value provided for the input. If a default value is not defined, the environment end-user will need to provide one when launching the environment.
-- ```allowed values``` converts the input into a dropdown list, allowing the environment end-user to select the appropriate value. If a ```default``` is specified, it must be included in the allowed values list. 
+- ```allowed-values``` converts the input into a dropdown list, allowing the environment end-user to select the appropriate value. If a ```default``` is specified, it must be included in the allowed values list. 
 
 ```yaml"
 inputs:
