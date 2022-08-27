@@ -18,17 +18,14 @@ title: Connect a Kubernetes Cluster
    
 - **Authentication and permissions** - The execution host will need sufficient permissions to create the environment's cloud resources. There are a couple of ways to provide the permissions, depending on where the environment resources will be created.
 
-  *Kubernetes cluster*
-
-  If the resources will be created on the same Kubernetes cluster, Create a designated *service account* with the required permissions, and specify it in the blueprint. See [Service Accounts](/blueprint-designer-guide/Service%20Accounts) for details. 
-
-  *AWS*
-
-  If the resources will be created on your AWS account, there are number of options for the authentication:
-    - (Recommended) Create a designated *service account* with the required permissions, and specify it in the blueprint. See [Service Accounts](/blueprint-designer-guide/Service%20Accounts) for details. Or,
+  - __AWS__: For Terraform deployments, if the resources will be created on your AWS account, there are number of options for the authentication:
+    - (Recommended) Create a designated __service account__ with the required permissions, and specify it in the blueprint. See [Service Accounts](/blueprint-designer-guide/Service%20Accounts) for details. Or,
     - Ensure that the Cluster service role has sufficient permissions to create the environment. Or,
     - Create a custom script that executes the authentication, and design your environment to execute it before the environment is created. 
    
+  - __Azure__: For Azure execution hosts, you will need to pass the account's authentication credentials when creating the execution host in Torque. For details, see [Terraform Authentication on EKS](/blueprint-designer-guide/service-accounts-for-aws).
+
+  - __vCenter__: For vCenter execution hosts, you will need to install Torque Agent on the cluster. When creating the vCenter execution host, Torque will provide you with the Torque Agent zip file, extract it to the cluster and run the __deploy_torque_agent.sh__ file from the extracted folder.
 
 ## Setup
 
