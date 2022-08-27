@@ -3,19 +3,19 @@ sidebar_position: 7
 title: Tags
 ---
 
-The cloud providers cost management pillars provide tools to cover many aspect of your cloud spending, like billing isolation, specific service limits and cost alerts. 3rd party tools also exist which provide enhanced functionality, such as inventory visibility, rightsizing recommendations, idle resources detection etc. 
+The cloud providers cost management pillars provide tools that cover many aspect of your cloud spending, like billing isolation, specific service limits and cost alerts. There are also 3<sup>rd</sup> party tools out there that provide enhanced functionality, such as inventory visibility, rightsizing recommendations, idle resources detection etc. 
 
-All of these are great tools, however, to get valuable insights, this is simply not enough. The key to really understanding where your budget is spent is accurate tagging.
+All of these are great tools. However, to get valuable insights, this is simply not enough. The key to really understanding where your budget is spent requires the use of accurate tagging.
 
 > ![Locale Dropdown](/img/tags-quote.png)
 
 (https://aws.amazon.com/blogs/apn/how-to-optimize-your-aws-workload-cost-with-capgemini-and-virtana/)
 
-Properly and consistently tagging resources tagging is difficult, especially when some resources are automatically created, and some manually, by different teams, in different geographic locations, through different stages of the development pipeline. 
+Properl and consistent resource tagging is difficult, especially since some resources are automatically created, and others manually, by different teams, in different geographic locations, through different stages of the development pipeline. 
 
-The solution: Do it the Torque way → Tag *environments* rather than single *resources*. A whole environment is what makes the business sense and helps you to really understand the data.
+The solution is to do it the Torque way. In other words, tag *environments* rather than single *resources*. A whole environment is what makes the business sense and helps you to really understand the data.
 
-Using Torque tagging capabilities, you can be sure you are covered, enforce your own tag policy, and make sure any launched environment is tagged correctly, with the tags that you need.
+Using Torque tagging capabilities, you can be sure you are covered, enforce your own tagging policy, and make sure any launched environment is tagged correctly, with the tags that you need.
 
 There are 3 types of tags in Torque:
 
@@ -58,10 +58,10 @@ Torque defines 4 scopes for custom tags: account, space, blueprint, and sandbox.
 - *blueprint* scope: The tag's default value is set during the tag's creation, but it can be overrided with separate value on each blueprint by the blueprint developer. All resources created by environments using this blueprint will have the same tag value.
 - *sandbox* scope : The tag's default value is set during the tag's creation, but it can be overrided with separate value by the end user when they deploy an environment.
 
-:::tip Note
+:::tip Notes
 
-Any custom tag will be applied to all resources created in all environments in this Torque account. If its value was not overriden in its defined scope it will be deployed with the default value.
-
+- Any custom tag will be applied to all resources created in all environments in this Torque account. If its value was not overriden in its defined scope it will be deployed with the default value.
+- Torque supports a maximum of 20 custom tags.
 :::
 
 ### Possible Values for custom tags
