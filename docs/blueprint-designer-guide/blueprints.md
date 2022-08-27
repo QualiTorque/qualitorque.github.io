@@ -682,7 +682,7 @@ commands
 ```jsx title="Bash example:"
 commands
   - "apt-get -y install wget"
-  - "wget https://.../check.sh"
+  - "wget https://.../simple.sh"
   - "/bin/bash simple.sh"
 ```
 
