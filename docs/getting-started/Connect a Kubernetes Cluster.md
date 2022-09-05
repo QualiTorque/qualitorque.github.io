@@ -21,7 +21,7 @@ title: Connect a Kubernetes Cluster
     - Ensure that the Cluster service role has sufficient permissions to create the environment. Or,
     - Create a custom script that executes the authentication, and design your environment to execute it before the environment is created. 
    
-  - __Azure__: For Azure execution hosts, you will need to pass the account's authentication credentials when creating the execution host in Torque. For details, see [Terraform Authentication on EKS](/blueprint-designer-guide/service-accounts-for-aws).
+  - __Azure__: For Azure execution hosts, you will need to pass the account's authentication credentials when creating the execution host in Torque. For details, see [Terraform Authentication on EKS](/blueprint-designer-guide/service-accounts-for-azure).
 
   - __vCenter__: For vCenter execution hosts, you will need to install Torque Agent on the cluster. When creating the vCenter execution host, Torque will provide you with the Torque Agent zip file, extract it to the cluster and run the __deploy_torque_agent.sh__ file from the extracted.
 
