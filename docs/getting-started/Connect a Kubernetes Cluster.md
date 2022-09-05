@@ -12,9 +12,7 @@ title: Connect a Kubernetes Cluster
 
 - Have a Kuberentes cluster ready with kubectl available.
    
-- **Agent namespace** - To communicate with the cluster, install the *Torque agent* on your cluster. Create a namespace for the agent and keep note of the name as you will need it in when you connect the cluster to Torque.
-   
-- **Sandbox namespaces** - If your environments will deploy Kubernetes resources (pods, services, etc...), create namespaces where the resources will be created (or have a list of namespaces ready). You will need the names of the namespaces when you connect the cluster to Torque. Note, every space will be attached to one namespace. If you're using the Kubernetes cluster just as a host and don't plan on deploying resources to other namespaces, you can specify the agent namespace as an environment namespace.
+- **Namespace** - A namespace on the cluster where the Torque agent will create resources.
    
 - **Authentication and permissions** - The execution host will need sufficient permissions to create the environment's cloud resources. There are a couple of ways to provide the permissions, depending on where the environment resources will be created.
 
@@ -23,7 +21,7 @@ title: Connect a Kubernetes Cluster
     - Ensure that the Cluster service role has sufficient permissions to create the environment. Or,
     - Create a custom script that executes the authentication, and design your environment to execute it before the environment is created. 
    
-  - __Azure__: For Azure execution hosts, you will need to pass the account's authentication credentials when creating the execution host in Torque. For details, see [Terraform Authentication on EKS](/blueprint-designer-guide/service-accounts-for-aws).
+  - __Azure__: For Azure execution hosts, you will need to pass the account's authentication credentials when creating the execution host in Torque. For details, see [Terraform Authentication on EKS](/blueprint-designer-guide/service-accounts-for-azure).
 
   - __vCenter__: For vCenter execution hosts, you will need to install Torque Agent on the cluster. When creating the vCenter execution host, Torque will provide you with the Torque Agent zip file, extract it to the cluster and run the __deploy_torque_agent.sh__ file from the extracted.
 
