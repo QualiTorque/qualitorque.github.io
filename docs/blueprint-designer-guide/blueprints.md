@@ -176,11 +176,13 @@ grains:
 
 :::info
 Execution hosts gives the flexibility of deploying the same blueprints over different cloud accounts and cloud vendors. For example, the same blueprint can be utilized for Azure or GCP simply by exposing the host as a blueprint input, from which the end-user to choose his preferred cloud provider, each represented with a different execution host.
+
+
 :::
 
 The Execution host configuration must include:
 * **name** - the given name for the kubernetes cluster configured under the cloud account area where the grain will be executed.
-* **service-account** - The service-account name configured within the kubernetes cluster that will be used to execute the grain
+* **service-account** - The service-account name configured within the kubernetes cluster that will be used to execute the grain. A kubernetes service account provides an identity for processes that run in a pod. 
 
 ```yaml" 
 grains:
