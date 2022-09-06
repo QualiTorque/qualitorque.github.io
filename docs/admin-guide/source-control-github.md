@@ -1,5 +1,5 @@
 ---
-sidebar_position: 9
+sidebar_position: 23
 title: GitHub Source Control
 ---
 
