@@ -3,11 +3,6 @@ sidebar_position: 9
 title: Connect a Kubernetes Cluster
 ---
 
-
-## Kubernetes host architecture
-
-> ![Locale Dropdown](/img/k8s-host-architecture.png)
-
 ## Prerequisites
 
 - Kuberentes cluster
@@ -27,7 +22,6 @@ title: Connect a Kubernetes Cluster
 
 ## Setup
 
-
 1. In Torque's **Admin Console** page, open the **Cloud Accounts** tab.
 2. Click **Add Cloud Account** and complete the wizard with the information you collected before. 
    > ![Locale Dropdown](/img/add-k8s-wizard.png)
@@ -38,4 +32,4 @@ title: Connect a Kubernetes Cluster
     kubectl apply -f https://portal.qtorque.io/api/settings/executionhosts/deployment/k***roi/deployment.yaml
     ```
 5. Click __Check Connectivity__ to verify that the agent can sucessfully communicate with Torque. 
-6. Once verified, click **Finish** in the window that pops up.
+6. Once verified, click continue to connect the host to a space, and provide the details you obtained in the prerequisites section.
