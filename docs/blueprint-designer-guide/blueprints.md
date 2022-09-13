@@ -515,7 +515,18 @@ The CloudFormation grain is Torque's native support for AWS CloudFormation templ
 Please see [the grain source](blueprints.md#source) for more details.
 
 ### host
-Please see [the grain host](blueprints.md#host) for more details.
+Host is not required or supported by CloudFormation Grain. Instead, this grain uses direct authentication to the AWS cloud account, as explained below.
+
+### authentication
+To enable Torque to connect to the AWS account and deploy the CloudFormation template, you must supply the following details in the CloudFormation grain's authentication section:
+* __role-arn__: ARN Role with the permission to deploy CloudFormation Template on the AWS Account 
+* __external-id__ of the AWS Cloud Account 
+
+:::tip __Note__:
+As a best practice, we recommend the following:
+* Have the account admin set parameters containing the required authentication values in the [Parameter Store](/admin-guide/params).
+* As the blueprint designer, supply the parameters from the Parameter Store in the CloudFormation Grain ```authentication``` section.
+:::
 
 ### inputs​
 Similar to blueprint inputs, CloudFormation grain inputs allow you to reuse the same CloudFormation module in different ways. Inputs provided to the CloudFormation grain are used when launching the CloudFormation module.
@@ -534,6 +545,9 @@ grains:
       source:
         path: github.com/org/repo.git//cloudformation/rds
         ...
+      authentication:
+        role-arn:
+        external-id:
       outputs:
         - hostname
         - connection_string
