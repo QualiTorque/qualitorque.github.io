@@ -5,22 +5,41 @@ title: Connect a Kubernetes Cluster
 
 ## Prerequisites
 
-- Kuberentes cluster
-- Command-line connected to your cluster with [kubectl installed](https://kubernetes.io/docs/tasks/tools/#kubectl)
-   
-- **Namespace** - A namespace on the cluster where the Torque agent will create resources.
-   
-- **Authentication and permissions** - The execution host will need sufficient permissions to create the environment's cloud resources. There are a couple of ways to provide the permissions, depending on where the environment resources will be created. 
-  - For Helm/kubernetes create a service account with sufficient permissions to create the K8s resources.
-    Example:
-  - For Terraform:
-      - __EKS__ (resources will be created on AWS):
-        - (Recommended) Create a designated __service account__ with the required permissions, and specify it in the blueprint. See [Terraform Authentication on EKS](/blueprint-designer-guide/service-accounts-for-aws) for details. Or,
-        - Ensure that the Cluster service role has sufficient permissions to create the environment. Or,
-      - __AKS__ (resources will be created on Azure): Provide the account's authentication credentials when creating the execution host in Torque. For details, see [Terraform Authentication on AKS](/blueprint-designer-guide/service-accounts-for-azure).
-      - __vCenter__: For vCenter execution hosts, you will need to install Torque Agent on the cluster. When creating the vCenter execution host, Torque will provide you with the Torque Agent zip file, extract it to the cluster and run the __deploy_torque_agent.sh__ file from the extracted.
+- Kuberentes cluster - can be any cluster, including on your on-premise network.
+- Command-line with [kubectl installed](https://kubernetes.io/docs/tasks/tools/#kubectl) connected to your cluster.
+  To connect to the cluster use : 
+  
+  ```jsx title=
+  kubectl config use-context <your-cluster>
+  ```
 
+  For further reading on connecting to clusters hosted on your cloud, check these links: [EKS](https://docs.aws.amazon.com/eks/latest/userguide/create-kubeconfig.html), [AKS](https://docs.microsoft.com/en-us/cli/azure/aks?view=azure-cli-latest#az-aks-get-credentials), [GKE](https://cloud.google.com/sdk/gcloud/reference/container/clusters/get-credentials).
+    
+- One or more target namespaces on the cluster where the Torque agent will create resources.
+   
+- Authentication and permissions - The execution host will need sufficient permissions to create the environment's cloud resources. There are a couple of ways to provide the permissions, depending on where the environment resources will be created. 
+  - If you intend to create K8s resources (Pods, services, secrets... etc.) using K8s manifests or helm charts, create a service account with sufficient permissions to create the K8s resources. 
+    For Example:
+
+    Let's say that you would like to deploy your environments into a namespace called "my-ns". 
+    Use the below commands (change to your real namespace name) to create the appropriate service-account:
+
+    ```jsx title=
+    kubectl create serviceaccount my-ns-edit-sa --namespace=my-ns
+    ```
+    ```jsx title=
+    kubectl create rolebinding my-sa-edit-rb --clusterrole=edit --serviceaccount=my-ns:my-ns-edit-sa --namespace=my-ns
+    ```
+
+  - If you intend to create resources on your cloud using Terraform:
+      - if your cluster is an __EKS__ (resources will be created on AWS):
+        - (Recommended) Create a designated __service account__ annotated with an AWS role. See [Terraform Authentication on EKS](/blueprint-designer-guide/service-accounts-for-aws) for details. Or,
+        - Ensure that the Cluster service role has sufficient permissions to create the environment.
+      - if your cluster is an __AKS__ (resources will be created on Azure): Provide the account's authentication credentials when creating the execution host in Torque. For details, see [Terraform Authentication on AKS](/blueprint-designer-guide/service-accounts-for-azure).
+      - For other types of clusters, or if you want to connect to your AWS/Azure with your basic credentials, there is no built-in authentication with Torque so there are no pre-requisites related to authentication and permissions. You can store your cloud credentials in the Torque secret store and use them for your TF deployment.
+      
 ## Setup
+
 
 1. In Torque's **Admin Console** page, open the **Cloud Accounts** tab.
 2. Click **Add Cloud Account** and complete the wizard with the information you collected before. 
