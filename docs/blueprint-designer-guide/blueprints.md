@@ -347,7 +347,7 @@ grains:
 ```
 
 :::info
-Note that in the above example, some blueprint inputs are used as the values of the Terraform grain inputs, so the environment's owner is able to choose the db_size and db_name required for his need. The information provided by the user will be passed to Terraform and affect the deployment process
+Note that in the above example, some blueprint inputs are used as the values of the Terraform grain inputs, so the environment's owner is able to choose the db_size and db_name required for his need. The information provided by the user will be passed to Terraform and affect the deployment process. The blueprint input type is always "string". the actual parsing of the json type will be done automatically.
 :::
 
 
