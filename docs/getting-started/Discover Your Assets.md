@@ -1,6 +1,6 @@
 ---
 sidebar_position: 5
-title: Connect Your Asset Repository
+title: Discover Your Assets
 ---
 
 Torque needs access to your relevant git repositories to read your Terraform modules or Helm charts.
