@@ -17,7 +17,7 @@ Modifying or deleting a parameter may cause blueprints that use the parameter to
 
 __To add an account-level parameter:__
 
-1. Open the __Admin Console__ and click __Parameters__.
+1. Open the __Administration__ and click __Parameters__.
 2. Click __Add Parameter__ in the top right corner of the page.
 3. Fill in the details:
    * __Parameter Name__: Display name for the parameter.

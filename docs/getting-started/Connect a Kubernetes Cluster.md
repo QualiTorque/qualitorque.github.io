@@ -41,7 +41,7 @@ title: Connect a Kubernetes Cluster
 ## Setup
 
 
-1. In Torque's **Admin Console** page, open the **Cloud Accounts** tab.
+1. In Torque's **Administration** page, open the **Cloud Accounts** tab.
 2. Click **Add Cloud Account** and complete the wizard with the information you collected before. 
    > ![Locale Dropdown](/img/add-k8s-wizard.png)
 3. Fill in the information and click __Next__. 

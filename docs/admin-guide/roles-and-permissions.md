@@ -47,11 +47,11 @@ As such, there are 4 roles in Torque:
 
 Torque role: Account admin
 
-1. Select **Admin Console** from the dropdown list in the top left corner of the application.
+1. Select **Administration** from the dropdown list in the top left corner of the application.
 2. Select **Users**.
 3. Click the **Invite User** button.
 4. Enter a user's email address and press the **[ENTER]** key. Repeat to add additional users.
-5. Select the space settings to apply to the users. For details about each role's permissions, see the **Roles** tab in the **Admin Console** page.
+5. Select the space settings to apply to the users. For details about each role's permissions, see the **Roles** tab in the **Administration** page.
 6. Click **Send Invitation**.
   The users will get a "Welcome to Torque" invitation email, prompting them to login to the space. Once they log in, they will be granted the space role and permissions you specified.
 

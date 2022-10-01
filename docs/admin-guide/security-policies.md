@@ -18,7 +18,7 @@ At this point, policies apply to Terraform grains.
 
 ## How to add a security policy
 
-1. Open the __Admin Console__ and click __Parameters > Policies__.
+1. Open the __Administration__ and click __Parameters > Policies__.
 2. Click __New Policy__ in the top right corner of the page.
 3. Give it a __Name__.
 4. Select the suitable policy template.
