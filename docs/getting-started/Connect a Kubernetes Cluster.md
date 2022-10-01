@@ -7,7 +7,7 @@ title: Connect a Kubernetes Cluster
 
 - Kuberentes cluster - can be any cluster, including on your on-premise network.
 - Command-line with [kubectl installed](https://kubernetes.io/docs/tasks/tools/#kubectl) connected to your cluster.
-  To connect to the cluster use : 
+  To connect to the cluster use: 
   
   ```jsx title=
   kubectl config use-context <your-cluster>
@@ -42,13 +42,14 @@ title: Connect a Kubernetes Cluster
 
 
 1. In Torque's **Administration** page, open the **Cloud Accounts** tab.
-2. Click **Add Cloud Account** and complete the wizard with the information you collected before. 
+2. Click **Connect a Cloud**.
+3. Slect the cloud provider and the type of Kubernetes to use, and give the execution host a name. 
    > ![Locale Dropdown](/img/add-k8s-wizard.png)
-3. Fill in the information and click __Next__. 
+3. Click __Next__. 
 4. Click __Generate__ and copy the command that is displayed
 5. Paste the command in your command-line window to deploy the agent to your cluster. For example:     
      ```jsx title=
     kubectl apply -f https://portal.qtorque.io/api/settings/executionhosts/deployment/k***roi/deployment.yaml
     ```
 5. Click __Check Connectivity__ to verify that the agent can sucessfully communicate with Torque. 
-6. Once verified, click continue to connect the host to a space, and provide the details you obtained in the prerequisites section.
+6. Once verified, click __Associate to Space__ to connect the host to a space, and provide the details you obtained in the prerequisites section.
