@@ -41,8 +41,9 @@ title: Connect a Kubernetes Cluster
 ## Setup
 
 
-1. In Torque's **Admin Console** page, open the **Cloud Accounts** tab.
-2. Click **Add Cloud Account** and complete the wizard with the information you collected before. 
+1. In Torque's **Administration** page, open the **Cloud Accounts** tab.
+2. Click **Connect a Cloud**.
+3. Select the cloud provider and the type of Kubernetes to use, and give the execution host a name. 
    > ![Locale Dropdown](/img/add-k8s-wizard.png)
 3. Fill in the information and click __Next__. 
 4. Click __Generate__ and copy the command that is displayed
@@ -50,5 +51,6 @@ title: Connect a Kubernetes Cluster
      ```jsx title=
     kubectl apply -f https://portal.qtorque.io/api/settings/executionhosts/deployment/k***roi/deployment.yaml
     ```
-5. Click __Check Connectivity__ to verify that the agent can sucessfully communicate with Torque. 
-6. Once verified, click continue to connect the host to a space, and provide the details you obtained in the prerequisites section.
+   A __Connected!__ status is displayed in Torque, indicating that the agent was successfully installed and can communicate with Torque. 
+   > ![Locale Dropdown](/img/agent-connected-status.png)
+6. Click __Associate to Space__ to connect the host to a space, and provide the details you obtained in the prerequisites section.
