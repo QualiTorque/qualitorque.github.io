@@ -6,12 +6,12 @@ title: Audit Log Usage
 Torque audit data is presented in json format. It includes events and with the following information:
   * Timestamp (UTC)
   * Event Type
-  * Event name
-  * Actor (user/automation/torque),
-  * Scope (account, space, environment)
+  * Event Name
+  * Actor (User/Automation/Torque)
+  * Scope (Account/Space/Environment)
   * Result (Success/Failure)
   * Error (in case of failure)
-  * Event-specific data
+  * Event-specific Data
 
 ## Data retention
 Audit data is stored in kept for 3 months.
