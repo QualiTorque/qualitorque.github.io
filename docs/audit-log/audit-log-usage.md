@@ -54,7 +54,7 @@ __User__
 * Invited
 * Invitation Cancelled
 * Joined
-* Modifted
+* Modified
 * Deleted
 * Login
 * Logout
