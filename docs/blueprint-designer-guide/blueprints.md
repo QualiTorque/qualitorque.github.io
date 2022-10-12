@@ -61,7 +61,7 @@ inputs:
     description: "The version of the application to be deployed on the EKS cluster"
   host:
     type: execution-host
-    allowed-values [NY, Tokyo, London]
+    allowed-values: [NY, Tokyo, London]
     description: "Select your site's host."
 ```
 
