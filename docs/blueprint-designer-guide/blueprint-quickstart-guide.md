@@ -20,6 +20,8 @@ Torque launches environments out of blueprints, which are YAML files that repres
 > ![Locale Dropdown](/img/discover-assets.png)
 
 2. Select the assets you want Torque to discover and click __Generate Blueprints__.
+
+> ![Locale Dropdown](/img/select-assets.png)
   
   Torque creates a blueprint YAML for each asset, and lists the blueprints in your space’s __Blueprints__ page. You can click the blueprint to see the YAML file.
 

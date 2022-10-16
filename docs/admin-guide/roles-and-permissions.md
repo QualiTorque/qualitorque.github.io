@@ -47,7 +47,7 @@ As such, there are 4 roles in Torque:
 
 Torque role: Account admin
 
-1. Select **Administration** from the dropdown list in the top left corner of the application.
+1. Open the **Administration** page.
 2. Select **Users**.
 3. Click the **Invite User** button.
 4. Enter a user's email address and press the **[ENTER]** key. Repeat to add additional users.
