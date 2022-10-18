@@ -12,3 +12,7 @@ Your Torque journey starts with creating a Torque account. This account will ser
    The Welcome page is displayed, prompting you to launch a sample environment. To help you gauge the value of Torque, we've set up a __Sample__ space (top-left cornder of the screen) containing various fully-defined blueprints you can play around with.
 
    > ![Locale Dropdown](/img/welcome-page.png)
+4. Click __Let's Get Started__ to start the onboarding process.
+   > ![Locale Dropdown](/img/onboarding.png)
+
+5. Click the checklist at any time to check your progress.

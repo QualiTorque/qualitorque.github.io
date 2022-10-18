@@ -9,5 +9,5 @@ Next, let's connect an execution host to Torque. The execution host is the platf
 The infrastructure resources of the environment may be deployed to other clouds or platforms.
 :::
 
-Supported types of hosts: 
+Supported types of hosts:   
 - [Kubernetes Cluster](/getting-started/Connect%20a%20Kubernetes%20Cluster) 

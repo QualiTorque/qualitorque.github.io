@@ -7,9 +7,9 @@ As we discussed in [The Sample Space](/getting-started/The%20Sample%20Space), th
 
 **To create a space:** 
 
-1. Access the **Administration**. 
+1. Open the **Administration** page. 
 
   > ![Locale Dropdown](/img/admin-console.png)
 
-2. Click **Spaces** > **Create space** and follow the instructions.  
+2. Click **Spaces** > **Create Space** and follow the instructions.  
 **Congratulations! You have created your first space in Torque. Now, connect your asset repository. **

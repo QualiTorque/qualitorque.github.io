@@ -37,7 +37,7 @@ There are 3 types of tags in Torque:
 
   **To customize the activity_type tag:**
 
-    1. Switch to **Administration** and click **Tags**.
+    1. Open **Administration** and click **Tags**.
     2. Edit the **activity_type** tag.
 
     > ![Locale Dropdown](/img/edit-activity-type.png)
@@ -70,7 +70,7 @@ As the account admin, when you create a custom tag you can limit the allowed val
 
 ### Creating a custom tag
 
-1. Switch to **Administration** and click **Tags**.
+1. Open **Administration** and click **Tags**.
 2. click **+ New Tag** and follow the instructions.
 
 ### Overriding a custom tag's default value
