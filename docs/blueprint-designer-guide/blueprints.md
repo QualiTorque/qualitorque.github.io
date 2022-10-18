@@ -6,7 +6,7 @@ title: Blueprint YAML
 Torque blueprints are reusable components designed to model a required environment from the infrastructure to the application. **Blueprint designers** utilize Torque's VSCode plugin or the Torque's self-service UI to build a YAML based imperative blueprints that aimed to fulfill business requirements in a self-service manner for their end-users. 
 
 :::tip__Note__
-Blueprints are written in YAML files that reside in a __/blueprints__ folder within a Github, Gitlab or BitBucket repository (the folder name is case-sensitive and must be "blueprints"). The __/blueprints__ folder must be defined as the blueprint repository in the space's __Settings > Repositories__ page. 
+Blueprints are written in YAML files that reside in a __/blueprints__ folder within a Github, Gitlab or BitBucket repository (the folder name is case-sensitive and must be "blueprints"). The __/blueprints__ folder must be defined as the blueprint repository in the space's __Settings > Repositories__ page. Blueprints file type must be ".yaml" and not ".yml".
 :::
 
 Common example will be a platform team or a DevOps team building Dev, Test and staging environments for their development, QA and product teams. With Torque, the DevOps team can focus on design, best practices, and security for environment, while their end users are being self-served from the torque UI, API or eco-system integrations based on governance and policies without having the 'keys-to-the-cloud'.
@@ -61,7 +61,7 @@ inputs:
     description: "The version of the application to be deployed on the EKS cluster"
   host:
     type: execution-host
-    allowed-values [NY, Tokyo, London]
+    allowed-values: [NY, Tokyo, London]
     description: "Select your site's host."
 ```
 
@@ -272,9 +272,11 @@ Blueprint designers might need extra details about the account, space or environ
 :::
 
 ### Parameters
-Torque's [Parameters](/admin-guide/params) store allows admins to set pre-defined account-level parameters. Blueprint designers can use the parameters in the blueprint YAML, instead of inputs if they don't want the environment end-user to provide the value, but also don't want to hard-code it in the blueprint.
+Torque's [Parameters](/admin-guide/params) store allows admins to set pre-defined account/space-level parameters. Blueprint designers can use the parameters in the blueprint YAML, instead of inputs if they don't want the environment end-user to provide the value, but also don't want to hard-code it in the blueprint.
 
 The syntax is: ```{{.params.param-value}}```
+
+The syntax is the same for both account and space level parameters. A space-level parameter will take precedence over an account-level parameter with the same name.
 
 ```yaml" 
   s3_bucket:
@@ -325,8 +327,7 @@ Similar to blueprint inputs, the Terraform grain input allows you to reuse the s
 Every value that goes to the Terraform grain's input is interpreted as a json token. So you can pass any valid value by json: number, list, dictionary, boolean, string , etc.
 For details, check out this Terraform Docs section [Variable Definitions (.tfvars) Files](https://www.terraform.io/language/values/variables#variable-definitions-tfvars-files)
 
-Note that invalid tokens will be parsed as strings. Keep in mind that json strings require double quotes, so ```"my value``` is a string but ```my value``` is not a valid json value and therefore will also be passed as a string. As such, the following values will all be passed as strings: ```"my value"```, ```my value```, ```"[1,2,3]"```
-
+Example:
 
 ```yaml"
 grains:
@@ -340,11 +341,20 @@ grains:
       inputs:
         - database_size: '{{ .inputs.db_size }}' 
         - database_name: '{{ .inputs.db_name }}' 
+        - input_number: 6
+        - input_string: '{" this is my input string "}'
+        - input_list_strings: '["a","b","c"]'
+        - input_map_strings: '{ "key1":"val1", "key2":"val2" }'
+        - input_object: '{ "key1":val1, "key2":4 }'
 ```
 
 :::info
-Note that in the above example, blueprint inputs are used as the values of the Terraform grain inputs, so the environment's owner is able to choose the db_size and db_name required for his need. The information provided by the user will be passed to Terraform and affect the deployment process
+Note that in the above example, some blueprint inputs are used as the values of the Terraform grain inputs, so the environment's owner is able to choose the db_size and db_name required for his need. The information provided by the user will be passed to Terraform and affect the deployment process. The blueprint input type is always "string". the actual parsing of the json type will be done automatically.
 :::
+
+
+
+Note that invalid tokens will be parsed as strings. Keep in mind that json strings require double quotes, so ```"my value``` is a string but ```my value``` is not a valid json value and therefore will also be passed as a string. As such, the following values will all be passed as strings: ```"my value"```, ```my value```, ```"[1,2,3]"```
 
 
 ### tags  

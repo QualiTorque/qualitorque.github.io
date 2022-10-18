@@ -3,7 +3,7 @@ sidebar_position: 23
 title: GitHub Source Control
 ---
 
-Torque supports connecting asset/blueprint repositories on GitHub, GitLab and BitBucket out of the box. However, to connect a repository, you must have access to the repository and grant Torque permission to the repository's organization, as explained below. For details about connecting a repository, see [Connect Your Asset Repository](/getting-started/Connect%20your%20asset%20repository). You should be able to sign in with an account on any one of these online services and immediately get going with connecting asset repositories and launching environments.
+Torque supports connecting asset/blueprint repositories on GitHub, GitLab and BitBucket out of the box. However, to connect a repository, you must have access to the repository and grant Torque permission to the repository's organization, as explained below. For details about connecting a repository, see [Discover Your Assets](/getting-started/Discover%20Your%20Assets). You should be able to sign in with an account on any one of these online services and immediately get going with connecting asset repositories and launching environments.
 
 For illustration purposes, we will use GitHub.
 

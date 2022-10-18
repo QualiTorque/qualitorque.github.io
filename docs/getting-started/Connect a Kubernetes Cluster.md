@@ -44,8 +44,6 @@ title: Connect a Kubernetes Cluster
 1. In Torque's **Administration** page, open the **Cloud Accounts** tab.
 2. Click **Connect a Cloud**.
 3. Select the cloud provider and the type of Kubernetes to use, and give the execution host a name. 
-   > ![Locale Dropdown](/img/add-k8s-wizard.png)
-3. Fill in the information and click __Next__. 
 4. Click __Generate__ and copy the command that is displayed
 5. Paste the command in your command-line window to deploy the agent to your cluster. For example:     
      ```jsx title=

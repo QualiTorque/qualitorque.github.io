@@ -7,7 +7,7 @@ As we discussed in [The Sample Space](/getting-started/The%20Sample%20Space), th
 
 **To create a space:** 
 
-1. Access the **Admin Console**. 
+1. Access the **Administration**. 
 
   > ![Locale Dropdown](/img/admin-console.png)
 
