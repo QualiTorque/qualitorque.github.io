@@ -31,9 +31,7 @@ There are 3 types of tags in Torque:
 
 ## Built-in Tags
   
-  These tags will be created by Torque, but the user who deploys the environments sets the tag's *value*.
-  Currently, Torque supports the following built-in tags:
-  - activity_type : the purpose for launching this environemt. It allows the environment's end-user to indicate the purpose of the environment. The end-user can choose from a list of pre-defined values such as dev, test, demo... etc. while the account admin can also edit this list and add more buisness activities to this tag.
+  The __activity_type__ tag comes built-in when launching an environment as a drop-down input. The end-user who is launching the environment sets the tag's value, which defines the purpose of the environment. The end-user can choose from a list of pre-defined values such as dev, test, demo... etc. while the account admin can also edit this list and add more business activities to this tag.
 
   **To customize the activity_type tag:**
 
