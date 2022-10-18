@@ -3,11 +3,11 @@ sidebar_position: 16
 title: Blueprint Policies
 ---
 
-As the blueprint designer, you can define the blueprint's max duration or allow it to run indefinitely, to support scenarios that deploy an environment that must be always online, or delivers a static cloud resource.
+As the blueprint designer, you can define the blueprint's max duration or allow it to run indefinitely, to support scenarios that deploy an environment that must be always online or delivers a static cloud resource.
 
 **To set the blueprint's policy:** 
 
-1. In the **"Blueprints** page, clic the blueprint's more actions menu and select **Policies**. 
+1. In the **"Blueprints** page, click the blueprint's more actions menu and select **Policies**. 
 2. Set the max duration or select **Unlimited** to allow the environment end user to run the environment indefinitely.
 
 **Note**: You can end or extend the environment at any time, regardless of its runtime policy.
