@@ -18,9 +18,9 @@ __Prerequisites__:
 
 __To configure the pod managed identity__:
 
-1. Update Azure cli:
+1. Uprade Azure cli:
   ```jsx title=
-  az update
+  az upgrade
   ```
 
 2.	Register the EnablePodIdentityPreview feature: 
@@ -36,14 +36,14 @@ __To configure the pod managed identity__:
 
 4.	Add Azure Container Networking Interface (CNI) to AKS.
   
-    * If you don’t have AKS then create one with azure CNI:
+    * If you don’t have AKS, create one with azure CNI:
 
       ```jsx title=
       az group create --name myResourceGroup --location eastus
       az aks create -g myResourceGroup -n myAKSCluster --enable-pod-identity --network-plugin azure
       ```
 
-     * If you have an existing AKS then update it with Azure CNI:
+     * If you have an existing AKS, update it with Azure CNI:
        ```jsx title=
        az aks update -g $MY_RESOURCE_GROUP -n $MY_CLUSTER --enable-pod-identity
        ```
@@ -74,7 +74,9 @@ __To configure the pod managed identity__:
 
   g. Use the search bar to find and select the managed identity. Then, click __Select__.
 
-7.	Create a pod identity in the sandbox namespace, if you don’t have one the choose/create a namespace for the sandboxes:
+  h. Click __Create__ to create the role assignment.
+
+7.	Create a pod identity in the sandbox namespace. If you don’t have one, choose/create a namespace for the sandboxes:
   ```jsx title=
   export POD_IDENTITY_NAME="my-pod-identity"
   export POD_IDENTITY_NAMESPACE="<sandbox_namespace>"
