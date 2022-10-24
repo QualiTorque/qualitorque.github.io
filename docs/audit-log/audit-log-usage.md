@@ -14,7 +14,7 @@ Torque audit data is presented in json format. It includes events and with the f
   * Event-specific Data
 
 ## Data retention
-Audit data is stored in kept for 3 months.
+Audit data is streamed to the configured log management tool and retained according to the tool's data retention policy.
 
 ## Filters
 Data can be filtered according to:
