@@ -4,7 +4,7 @@ title: Main Concepts
 ---
 
 Before you start on your Torque journey, please take a moment to familiarize yourself with the following key concepts:
-* **Blueprint** - An offline plan (template) of an environment, defining the applications, cloud infrastructure, networking and policies that make up the environment. Blueprints are defined in source-controlled YAML files and contain *grains*. Each grain represents a specific workload (for example, a Terraform module or a Helm chart). The blueprint defines the orchestration between the grains (order, dependency, etc.), and deploys a whole environment, from infrastructure to application. 
+* **Blueprint** - An offline plan (template) of an environment that defines the applications, cloud infrastructure, networking and policies that make up the environment. Blueprints are defined in source-controlled YAML files and contain *grains*. Each grain represents a specific workload (for example, a Terraform module or a Helm chart). The blueprint defines the orchestration between the grains (order, dependency, etc.), and deploys a whole environment, from infrastructure to application. 
 
 * **Environment** - An environment is a live instance of a blueprint. It contains the cloud infrastructure and application(s) that were deployed from the blueprint.
 
