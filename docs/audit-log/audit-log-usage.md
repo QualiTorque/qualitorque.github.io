@@ -16,13 +16,6 @@ Torque audit data is presented in json format. It includes events and with the f
 ## Data retention
 Audit data is streamed to the configured log management tool and retained according to the tool's data retention policy.
 
-## Filters
-(Applies to Elastic Stack) Data can be filtered according to:
-* Timerange
-* Event Type
-* Event Name
-* Event Scope
-
 ## Events
 The following events are captured and streamed:
 
