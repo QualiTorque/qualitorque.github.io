@@ -11,7 +11,7 @@ The basic process for integrating a CI/CD tool with Torque is as follows:
 2. Click the **Integrations** tab.
 3. Click the desired tool's **Connect** button and follow the plugin's instructions. 
 
-For detailes on setting up your pipeline, see the relevant plugin's README file:
+For details on setting up your pipeline, see the relevant plugin's README file:
 
 * [Azure DevOps](https://marketplace.visualstudio.com/items?itemName=Quali.build-release-task-torque)
 * [Jenkins](https://github.com/jenkinsci/sandbox-jenkins-plugin)
