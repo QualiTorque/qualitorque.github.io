@@ -19,6 +19,8 @@ You are now ready to launch your first environment.
 5. Check out the __Resources__ pane to get details about your environment's resources. Use this tab to understand what assets each grain spun up, get connection details to specific resources, and more.
    > ![Locale Dropdown](/img/resource-details.gif)
 
+
+
 :::tip __Tip__:
 
 If someone makes changes to the blueprint's asset or the environment's cloud resources while the environment is running, you will see an __Updates Available__ link in the environment page. Click it to view and resolve the changes. It has two sections: 

@@ -512,6 +512,7 @@ grains:
         post-helm-install:
           source:  
             path: github.com/steve/my-public.git//scripts/helm_script.sh
+          arguments: '{{.inputs.ACCOUNT_ID}}'
           outputs:
             - test1
             - test2
