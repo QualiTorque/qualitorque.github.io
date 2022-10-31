@@ -1,13 +1,13 @@
 ---
 sidebar_position: 13
-title: Terraform Authentication on AKS
+title: Terraform AKS Authentication
 ---
 
 If you're using an AKS cluster as your execution host, and you want to run Terraform that deploys resources on Azure, you can use a  pod managed identity to do the authentication and permissions between the pod and the Azure account where the resources will be created.
 
 The basic process is as follows:
-* [Configure the pod managed identity](#configure-the-pod-managed-identity)
-* [Configure Torque's Terraform authentication on AKS](#configure-torques-terraform-authentication-on-aks)
+- [Configure the pod managed identity](#configure-the-pod-managed-identity)
+- [Configure Torque's Terraform authentication on AKS](#configure-torques-terraform-authentication-on-aks)
 
 ## Configure the pod managed identity
 In this procedure, you will attach a Torque Terraform runner pod to a managed identity.

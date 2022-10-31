@@ -1,14 +1,16 @@
 ---
 sidebar_position: 12
-title: Terraform Authentication on EKS
+title: Terraform EKS Authentication
 ---
 
 If you're using an EKS cluster as your execution host, and you want to run Terraform that deploys resources on AWS, you can use a service account to do the authentication and permissions between the pod and the AWS account where the resources will be created. This is done by connecting a service account, which contains these permissions, to the container. The permissions are defined in an IAM role that needs to be associated to the service account.
 
 The basic process is as follows:
-* [Associate your cluster to the AWS account](#associate-your-cluster-to-the-aws-account)
-* [Create an IAM role for the service account with the required policy](#create-an-iam-role-for-the-service-account-with-the-required-policy)
-* [Create a service account in the cluster’s namespace](#create-a-service-account-in-the-clusters-namespace)
+- [Prerequisites](#prerequisites)
+- [Associate your cluster to the cluster account](#associate-your-cluster-to-the-cluster-account)
+- [Create an IAM role for the service account with the required policy](#create-an-iam-role-for-the-service-account-with-the-required-policy)
+- [Create a service account in the cluster’s namespace](#create-a-service-account-in-the-clusters-namespace)
+- [For additional details, see these AWS docs:](#for-additional-details-see-these-aws-docs)
 
 For brevity, the term "__cluster account__" refers to the account hosting the EKS, and "__target accounts__" is where the rest of the AWS resources are created.
 ## Prerequisites
