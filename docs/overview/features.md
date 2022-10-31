@@ -21,7 +21,7 @@ title: Torque Features
 * __Granular RBAC__: Set up [spaces](/getting-started/Create%20your%20space) for different business units, teams, and projects. Assign assets, [users and roles](/admin-guide/roles-and-permissions) to the users, limiting capabilities based on their needs and access only to the environments that apply to that space. 
 * __Parameter/Secret store support__: Set up an account or space-level [parameter store](/admin-guide/params) and save sensitive or recurring values too, allowing Torque blueprints to dynamically pull the relevant details without saving them to the source control repository.
 * __Governance policies__: [Limit environment durations](/blueprint-designer-guide/Policies) and apply [OPA security policies](/admin-guide/security-policies) to environments.
-* __[Approval flows](/blueprint-designer-guide/approval-flow)__: Define an approval process for production/high-cost environments and review pending requests.
+* __Approval flows__: Define an approval process for production/high-cost environments and review pending requests.
 * __Auto-shutdown and cleanup__: Automatic cleanup of environmnent's cloud resources when environment ends, cutting costs and ensuring nothing is left behind.
 
 
