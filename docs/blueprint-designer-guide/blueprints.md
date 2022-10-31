@@ -360,7 +360,7 @@ Note that invalid tokens will be parsed as strings. Keep in mind that json strin
 ### tags  
 Whenever a Terraform grain is launched, all resources created during the deployment process will be automatically tagged with Torque's system tags, built-in tags and custom tags (for details, see [Tags](/admin-guide/tags). 
 Sometimes, you need to disable tagging for all or specific resources.
-To disable *all* tags in a specific grain use the following syntax:
+To disable *all* resources in a specific grain use the following syntax:
 
 ```yaml" 
 grains:
@@ -371,7 +371,7 @@ grains:
         auto-tag: false
 ```
 
-To disable *specific* tags in a specific grain use the following syntax:
+To disable *specific* resources in a specific grain use the following syntax:
 
 ```yaml" 
 grains:
