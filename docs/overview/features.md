@@ -5,7 +5,7 @@ title: Torque Features
 
 ## Orchestration
 * __Multiple public/private cloud vendors__: Deploy your environment on AWS, Azure, GCP, OCI, vCenter, and more.
-* __IaC and container technologies__: Torque provides out-of-the-box support for Terraform modules, Helm charts, CloudFormation templates, Kukbernetes manifests, and more, allowing Torque to discover your assets and create working blueprints, which can be used as single-asset blueprints or integrated into multi-asset blueprints with dependencies and interconnections. 
+* __IaC and container technologies__: Torque provides out-of-the-box support for Terraform modules, Helm charts, CloudFormation templates, Kubernetes manifests, and more, allowing Torque to discover your assets and create working blueprints, which can be used as single-asset blueprints or integrated into multi-asset blueprints with dependencies and interconnections. 
 
 
 ## Self-service
@@ -22,7 +22,7 @@ title: Torque Features
 * __Parameter/Secret store support__: Set up an account or space-level [parameter store](/admin-guide/params) and save sensitive or recurring values too, allowing Torque blueprints to dynamically pull the relevant details without saving them to the source control repository.
 * __Governance policies__: [Limit environment durations](/blueprint-designer-guide/Policies) and apply [OPA security policies](/admin-guide/security-policies) to environments.
 * __Approval flows__: Define an approval process for production/high-cost environments and review pending requests.
-* __Auto-shutdown and cleanup__: Automatic cleanup of environmnent's cloud resources when environment ends, cutting costs and ensuring nothing is left behind.
+* __Auto-shutdown and cleanup__: Automatic cleanup of environment's cloud resources when environment ends, cutting costs and ensuring nothing is left behind.
 
 
 ## Monitoring and control
