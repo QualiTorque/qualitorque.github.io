@@ -424,7 +424,7 @@ grains:
           source:
             store: tf-repo
             path : scripts/authenticate.sh
-          arguments: "{{.inputs.ACCOUNT_ID}},{{.inputs.ENVIRONMENT_ID}},3"
+          arguments: "{{.inputs.ACCOUNT_ID}},{{.inputs.ID2}},3"
 ```
 
 :::info
@@ -527,7 +527,7 @@ grains:
         post-helm-install:
           source:  
             path: github.com/steve/my-public.git//scripts/helm_script.sh
-          arguments: '{{.inputs.ACCOUNT_ID}}'
+          arguments: "{{.inputs.ACCOUNT_ID}},{{.inputs.ID2}},3"
           outputs:
             - test1
             - test2
