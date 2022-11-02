@@ -53,7 +53,7 @@ Make sure to perform steps 2 and 3 on every target account in which the cluster 
   eksctl utils associate-iam-oidc-provider --cluster my-cluster --approve
   ```
 
-  c.	In AWS CLI, run the following to get the IAM OIDC provider you created:
+  c.	In AWS CLI, run the following to get the Arn for IAM OIDC provider you created:
     ```jsx title=
     aws iam list-open-id-connect-providers | grep my-cluster-oidc-provider
     ```
@@ -90,7 +90,7 @@ metadata:
     annotations:
       eks.amazonaws.com/role-arn: <enter your role arn here>
     name: <service account name>
-    namespace: <sandbox namespace name>  
+    namespace: <environment namespace name>  
 2. From AWS CLI, run the following command:
   ```jsx title=
   kubectl apply -f SA.yaml
