@@ -50,7 +50,7 @@ Make sure to perform steps 2 and 3 on every target account in which the cluster 
   
   b.	Run the following to create the IAM OIDC provider and associate it to your cluster:
   ```jsx title=
-  eksctl utils associate-iam-oidc-provider --cluster my-cluster –approve
+  eksctl utils associate-iam-oidc-provider --cluster my-cluster --approve
   ```
 
   c.	In AWS CLI, run the following to get the IAM OIDC provider you created:
