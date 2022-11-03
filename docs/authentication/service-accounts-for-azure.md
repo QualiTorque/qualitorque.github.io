@@ -1,5 +1,5 @@
 ---
-sidebar_position: 13
+sidebar_position: 8
 title: Terraform AKS Authentication
 ---
 
