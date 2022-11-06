@@ -14,7 +14,7 @@ Torque supports connecting asset/blueprint repositories residing in a self-manag
 
 1. Create Provider via Torque REST API.
 
-   Post: http://colony.localhost/api/settings/repository_providers
+   Post: http://portal.qtorque.io/api/settings/repository_providers
 
   ```{
   "name":"gitlab-1,
