@@ -14,7 +14,7 @@ Before you start on your Torque journey, please take a moment to familiarize you
 
 * **Policies** - Torque policies allow setting an additional layer of governance on top of blueprints and the environments they deploy. These include:
     * [Blueprint policies](/blueprint-designer-guide/Policies) allow blueprint designers to set maximum duration guardrails (for high-cost environments perhaps).
-    * [Security policies](/admin-guide/security-policies) allow the Torque account admin to set account-level limitations on AWS-created environments.
+    * [Policies](/admin-guide/policies) allow the Torque account admin to set account-level limitations on AWS-created environments.
 
 * [**Space**](/getting-started/Create%20your%20space) - A logically separate area that contains an association to one or more execution hosts, asset repositories, a blueprint repository and Ci/CD plugins. Spaces can be used to logically separate between teams, projects, or even development lifecycle stages and allow the relevant end-users, administrators and blueprint designers to access only the relevant blueprints and environments. 
 
