@@ -1,6 +1,6 @@
 ---
 sidebar_position: 15
-title: Security Policies
+title: Policies
 ---
 
 Torque role: Account admin
