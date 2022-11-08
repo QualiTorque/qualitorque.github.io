@@ -5,7 +5,7 @@ title: Policies
 
 Torque role: Account admin
 
-Security policies allow you to govern the way that the self-service users use Torque, and as a result, also the cloud resources. 
+Policies allow you to govern the way that the self-service users use Torque, and as a result, also the cloud resources. 
 
 Examples include:
 * List of allowed AWS regions
@@ -17,7 +17,7 @@ Examples include:
 * At this point, policies apply to Terraform grains.   
 :::
 
-## How to add a security policy
+## How to add a  policy
 
 1. Open the __Administration__ page and click __Policies__.
 2. Click __New Policy__ in the top right corner of the page.
