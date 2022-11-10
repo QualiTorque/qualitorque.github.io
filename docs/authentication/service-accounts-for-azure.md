@@ -36,14 +36,14 @@ __To configure the pod managed identity__:
 
 4.	Add Azure Container Networking Interface (CNI) to AKS.
   
-    * If you don’t have AKS, create one with azure CNI:
+    * If you don’t have an AKS cluster, create one with Azure CNI and the pod managed identity feature:
 
       ```jsx title=
       az group create --name myResourceGroup --location eastus
       az aks create -g myResourceGroup -n myAKSCluster --enable-pod-identity --network-plugin azure
       ```
 
-     * If you have an existing AKS, update it with Azure CNI:
+     * If you have an existing AKS cluster with Azure CNI, update it to enable the pod managed identity feature:
        ```jsx title=
        az aks update -g $MY_RESOURCE_GROUP -n $MY_CLUSTER --enable-pod-identity
        ```
