@@ -23,7 +23,7 @@ __To configure Torque notifications:__
 5. Provide a __Name__ for the notification.
 6. Enter the webhook address, as explained in the desired tool’s official documentation.
    * For Slack, see https://api.slack.com/messaging/webhooks.
-   * For Teams, see https://techcommunity.microsoft.com/t5/microsoft-365-pnp-blog/how-to-configure-and-use-incoming-webhooks-in-microsoft-teams/ba-p/2051118.
+   * For Teams, see https://learn.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook.
    * For your preferred automation tool, see the tool’s documentation.
 7. Test the configuration. 
    * For generic webhooks, optionally provide a token from the tool to send with the notification, and select the desired event to test.
