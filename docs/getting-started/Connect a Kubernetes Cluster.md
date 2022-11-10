@@ -5,7 +5,7 @@ title: Connect a Kubernetes Cluster
 
 ## Prerequisites
 
-- Kuberentes cluster - can be any cluster, including on your on-premise network.
+- Kuberentes cluster - can be any cluster, including on your on-premise network. Please note that Torque __does not support__ cluster nodes on ARM architecture.
 - [Outbound Ports for Kubernetes Cluster Nodes](/misc/torque-outbound-ports) must be open to allow Torque to access and communicate with the cluster.
 - Command-line with [kubectl installed](https://kubernetes.io/docs/tasks/tools/#kubectl) connected to your cluster.
   To connect to the cluster use: 
