@@ -578,7 +578,27 @@ grains:
         - hostname
         - connection_string
 ```
-
+### Example
+```yaml"
+grains:
+  CFN-S3-Bucket:
+    kind: cloudformation
+    spec: 
+      source:
+        # store: autogen_repo_sandbox_4235f76y
+        path: https://.../AWSS3Bucket.yaml
+      region: '{{ .inputs.["AWS Region"] }}'
+      authentication:
+        role-arn: arn:aws:iam::{{ .params.My_Torque_AWS }}:role/{{ .params.My_Torque_Agent_IAM_Role }}
+        external-id: '{{ .params.My_Torque__External_ID }}'
+      inputs:
+        - AccessControl: '{{ .inputs.["Access Control"] }}'
+        - BucketName: '{{ .inputs.["Bucket Name"] }}-{{ sandboxid | downcase }}'
+      outputs:
+         - Arn
+         - DomainName
+```
+For the full blueprint yaml example, see [Example 2: Webgame on S3 (using CloudFormation and Terraform)](/blueprint-designer-guide/blueprint-quickstart-guide#example-2-webgame-on-s3-using-cloudformation-and-terraform).
 ## The Kubernetes Grain​
 The Kubernetes grain allows you to use native Kubernetes manifests, manifest catalogs in a given user's repository. Currently, it is not possible to launch multiple concurrent environments from the same blueprint on the same namespace (because the manifest resources are static and their names are not unique).
 
