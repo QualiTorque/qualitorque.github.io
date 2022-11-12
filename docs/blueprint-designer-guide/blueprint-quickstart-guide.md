@@ -43,7 +43,7 @@ Torque launches environments out of blueprints, which are YAML files that repres
 ## Create a multi-asset blueprint
 So far, we’ve learned how to create single-asset blueprints. But what if you want to create an application-stack environment? This is easily done by nesting single-asset blueprints within a master blueprint as grains. Each grain represents a single-asset blueprint, which can be an application or cloud service deployed via an asset, like a Terraform module, Helm chart, or CloudFormation template, to name a few. For details on defining grains in your blueprint YAML, see [Blueprint YAML](/blueprint-designer-guide/blueprints)
 
-### Example 1: Helm Application with MySQL and S3 Deployed by Terraform (using Terraform and Helm)
+### Example 1: Helm Application with MySQL and S3 Deployed by Terraform
 This blueprint is available in the __Sample__ space [here](https://portal.qtorque.io/Sample/blueprints/[Sample]Helm%20Application%20with%20MySql%20and%20S3%20Deployed%20by%20Terraform), which deploys 2 Terraform modules and a Helm chart:
 
 ```jsx title=
@@ -160,6 +160,7 @@ grains:
       outputs:
          - Arn
          - DomainName
+  
   S3-Upload-Webapp-File:
     kind: terraform
     depends-on: my-S3-Bucket
