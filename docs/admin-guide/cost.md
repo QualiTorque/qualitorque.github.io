@@ -1,6 +1,6 @@
 ---
 sidebar_position: 5
-title: Cost Monitoring
+title: Cost
 ---
 
 Torque's __Cost__ dashboard provides you with actionable insights into the costs of your space's environments. Cost data is collected using a __toque_environment_id__ tag that is assigned (with a unique value) to every new environment's resources.

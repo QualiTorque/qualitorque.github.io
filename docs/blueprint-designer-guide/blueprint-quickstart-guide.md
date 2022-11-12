@@ -5,6 +5,11 @@ title: Blueprint Quickstart Guide
 
 Now that you have seen how Torque works, it’s time to link your assets to Torque and see what you can do with them.
 
+In this article:
+* [Prerequisites](#prerequisites)
+* [Let Torque autogenerate blueprints from your assets](#let-torque-autogenerate-blueprints-from-your-assets)
+* [Create a multi-asset blueprint](#create-a-multi-asset-blueprint)
+
 ## Prerequisites
 
 * You have created your own space
@@ -38,7 +43,8 @@ Torque launches environments out of blueprints, which are YAML files that repres
 ## Create a multi-asset blueprint
 So far, we’ve learned how to create single-asset blueprints. But what if you want to create an application-stack environment? This is easily done by nesting single-asset blueprints within a master blueprint as grains. Each grain represents a single-asset blueprint, which can be an application or cloud service deployed via an asset, like a Terraform module, Helm chart, or CloudFormation template, to name a few. For details on defining grains in your blueprint YAML, see [Blueprint YAML](/blueprint-designer-guide/blueprints)
 
-For example, the __Helm Application with MySQL and S3 Deployed by Terraform__ sample blueprint (available in the Sample space [here](https://portal.qtorque.io/Sample/blueprints/[Sample]Helm%20Application%20with%20MySql%20and%20S3%20Deployed%20by%20Terraform), which deploys 2 Terraform modules and a Helm chart:
+### Example 1: Helm Application with MySQL and S3 Deployed by Terraform (using Terraform and Helm)
+This blueprint is available in the __Sample__ space [here](https://portal.qtorque.io/Sample/blueprints/[Sample]Helm%20Application%20with%20MySql%20and%20S3%20Deployed%20by%20Terraform), which deploys 2 Terraform modules and a Helm chart:
 
 ```jsx title=
 spec_version: 2
@@ -100,4 +106,76 @@ grains:
         - connectionString: '{{ .grains.mySqlDB.outputs.connection_string }}'
         - objectStore.s3BucketArn: '{{ .grains.s3Bucket.outputs.s3_bucket_arn }}'
         - redis.storageClassName: gp2
+```
+
+## Example 2: Webgame on S3 (using CloudFormation and Terraform)
+
+```jsx title=
+spec_version: 2
+description: "S3 Bucket creation with Input and Output parameters"
+
+inputs:
+   # The access_control property is case-sensitive and must be one of the following values: 
+   # Private, PublicRead, PublicReadWrite, AuthenticatedRead, LogDeliveryWrite, BucketOwnerRead, BucketOwnerFullControl, or AwsExecRead
+   Access Control:
+      type: string
+      description: >
+        Type of access to configure on Bucket objects: Private, PublicRead, PublicReadWrite, AuthenticatedRead,
+        LogDeliveryWrite, BucketOwnerRead, BucketOwnerFullControl, or AwsExecRead
+      default: "PublicRead"
+      allowed-values: ["Private", "PublicRead", "PublicReadWrite"]
+   Bucket Name:
+      type: string
+      default: my-bucket-test
+   AWS Region:
+      description: "The name of the AWS Region to use"
+      default: "us-west-1"
+      allowed-values: ["us-west-1", "us-west-2", "eu-west-1"]
+    
+
+outputs:
+   S3 Bucket ARN:
+        value: '{{ .grains.my-S3-Bucket.outputs.Arn }}'
+   S3 Bucket Domain Name:
+        value: '{{ .grains.my-S3-Bucket.outputs.DomainName }}'
+        kind: link
+   Webgame Link:
+        value: '{{ .grains.S3-Upload-Webapp-File.outputs.website_link }}'
+        kind: link
+
+grains:
+  CFN-S3-Bucket:
+    kind: cloudformation
+    spec: 
+      source:
+        # store: autogen_repo_sandbox_2453f24g9
+        path: https://.../AWSS3Bucket.yaml
+      region: '{{ .inputs.["AWS Region"] }}'
+      authentication:
+        role-arn: arn:aws:iam::{{ .params.My_Torque_AWS }}:role/{{ .params.My_Torque_Agent_IAM_Role }}
+        external-id: '{{ .params.My_Torque_External_ID }}'
+      inputs:
+        - AccessControl: '{{ .inputs.["Access Control"] }}'
+        - BucketName: '{{ .inputs.["Bucket Name"] }}-{{ sandboxid | downcase }}'
+      outputs:
+         - Arn
+         - DomainName
+  S3-Upload-Webapp-File:
+    kind: terraform
+    depends-on: my-S3-Bucket
+    spec:
+      source:
+        store: assets
+        path: assets/terraform/s3-deploy-webapp
+      host:
+        name: demo-prod
+        service-account: app-sa
+      inputs:
+      - bucket_name: '{{ .inputs.["Bucket Name"] }}-{{ sandboxid | downcase }}'
+      - region: '{{ .inputs.["AWS Region"] }}'
+      outputs:
+      - website_link
+    # The terraform version that will be used to deploy the module
+    tf-version: 1.2.3
+
 ```
