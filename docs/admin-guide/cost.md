@@ -37,4 +37,3 @@ __To create a cost collection target:__
 
 Torque calls your cloud provider's API to query the cost. This operation might incur additional charges from your cloud provider.
 
-## Troubleshooting
