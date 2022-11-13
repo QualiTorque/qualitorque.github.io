@@ -76,10 +76,10 @@ __To configure the pod managed identity__:
 
   h. Click __Create__ to create the role assignment.
 
-7.	Create a pod identity in the sandbox namespace. If you don’t have one, choose/create a namespace for the sandboxes:
+7.	Create a pod identity in the environment namespace. If you don’t have one, choose/create a namespace for the environments:
   ```jsx title=
   export POD_IDENTITY_NAME="my-pod-identity"
-  export POD_IDENTITY_NAMESPACE="<sandbox_namespace>"
+  export POD_IDENTITY_NAMESPACE="<environment_namespace>"
   az aks pod-identity add --resource-group myResourceGroup --cluster-name myAKSCluster --namespace ${POD_IDENTITY_NAMESPACE}  --name ${POD_IDENTITY_NAME} --identity-resource-id ${IDENTITY_RESOURCE_ID}
   ```
 
