@@ -22,7 +22,7 @@ __How to get External ID and ARN Role:__
 4. Select __Require external ID__.
 5. Enter an __External ID__ of your choosing. The External Id will be used to validate the Consumer of the ARN Role.
 6. In __Next:Permissions__, select __aws-portal:ViewBilling__ for cost exploration permission.
-7. Choose __Next__.
+7. Click __Next__.
 8. Enter a __Role Rame__ or role name suffix to help you identify the purpose of this role or use AWS defined Name.
 9. Click __Create Role__.
 10. (Optional) Enter a __Description__ for the new role.
