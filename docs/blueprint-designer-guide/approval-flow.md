@@ -18,5 +18,5 @@ __Notes__:
 Environment is created in __Pending Approval__ status.
 3. Space admins receive a notification email with a link to the environment, prompting them to __Approve__ or __Deny__ the request, and provide a reason justifying their decision.
 4. Space admin approves the request.
-Environment's status changes to __Approval__, and the end user receives a notification email.
+Environment's status changes to __Approved__, and the end user receives a notification email.
 5. End-user launches the sandbox.
