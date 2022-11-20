@@ -31,9 +31,7 @@ inputs:
     type: string
   AWS_SECRET_KEY:
     type: string
-  AWS_SESSION_TOKEN:
-    type: string
-  
+
   host_name:
     type: execution-host
 
@@ -55,7 +53,6 @@ grains:
       env-vars: 
         - AWS_ACCESS_KEY: '{{ .inputs.AWS_ACCESS_KEY }}'
         - AWS_SECRET_KEY: '{{ .inputs.AWS_SECRET_KEY }}'
-        - AWS_SESSION_TOKEN: '{{ .inputs.AWS_SESSION_TOKEN }}'
       
       outputs: []
 
