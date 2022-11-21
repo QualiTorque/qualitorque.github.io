@@ -1,5 +1,5 @@
 ---
-sidebar_position: 7
+sidebar_position: 6
 title: Connect an Agent to your space
 ---
 
@@ -9,6 +9,6 @@ Next, let's connect an agent Torque. The agent is Torque code which will launch 
 The infrastructure resources of the environment may be deployed to other clouds or platforms.
 :::
 
-Torque supports two types of agents: 
-- Quali hosted agent   
-- Self hosted agent [Kubernetes Cluster](/getting-started/Connect%20a%20Kubernetes%20Cluster) 
+Torque supports two types of agents:
+- Quali hosted agent - see [details](/getting-started/Quali-hosted-agent.md) 
+- Self hosted agent [Kubernetes Cluster](/getting-started/Install-and-connect-self-hosted-agent.md) 
