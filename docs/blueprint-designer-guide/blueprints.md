@@ -25,7 +25,7 @@ The Torque's blueprint YAML is the main bluperint definition file. It contains g
 ### spec_version
 The spec_version determines the blueprint YAML type. Currently, Torque supports spec_version:2 as the default and recommended version. With time, new preview releases and official feature releases will bring more and more features and users will be able to use other spec versions.
 
-```yaml"
+```yaml
 spec_version: 2
 ```
 
@@ -33,7 +33,7 @@ spec_version: 2
 The blueprint’s description is an optional but recommended field. Blueprint description will be presented in the Torque's UI and API so users consuming environment will have more information about the blueprints to batter match their business need to the available set of blueprints published in the account catalog.
 
 
-```yaml"
+```yaml
 spec_version: 2
 description: Performance testing deployment based on RDS, EKS and Lambda
 
@@ -52,7 +52,7 @@ The input definition is composed out of the following fields:
 - ```default``` - (Optional) Value to be used in the Torque UI and will be used in case no other value provided for the input. If a default value is not defined, the environment end-user will need to provide one when launching the environment.
 - ```allowed-values``` converts the input into a dropdown list, allowing the environment end-user to select the appropriate value. If a ```default``` is specified, it must be included in the allowed values list. 
 
-```yaml"
+```yaml
 inputs:
   app_version:
     type: string
@@ -70,7 +70,7 @@ Outputs exposes information about your newly deployed environment and make it av
 
 Outputs are a dictionary composed by the output name and the output value.
 
-```yaml"
+```yaml
 outputs:
   WebsiteUrl:
     value: 'application-name-{{ sandboxid | downcase }}.testquali.click:8080'
@@ -88,7 +88,7 @@ Grains are the basic building blocks of a blueprint utilizing infrastructure as 
 
 The basic grain template is composed out of the grain name, kind, inputs and output. specific grains might support other features that are technology specific.
 
-```yaml" 
+```yaml 
 grain_name:
     kind: terraform
     spec:
@@ -120,7 +120,7 @@ Sources are repositories storing IaC, CM or other configuration technology that 
 Sources can be defined in the following ways:
 
 __1) Direct link to a source control folder__: Composed from the repository URL followed by the folder structure leading to the folder where IaC code resides. For example:
-  ```yaml" 
+  ```yaml 
 grains:
   aurora:
     kind: terraform
@@ -131,7 +131,7 @@ grains:
 
 __2) location based on a repository (blueprints or assets) onboarded to Torque__: The name of the repository should be provided under the 'store' field, while the IaC code folder location should be specified under the path field. In the below example, nginx helm chart resides in the 'nginx' folder within a repository onboarded to Torque with the name 'web_servers'.
 
-```yaml" 
+```yaml 
 grains:
   nginx:
     kind: helm
@@ -142,7 +142,7 @@ grains:
 ```
 :::info
 In case your IaC code is not under folder in the repository, the path should be set as in the following example:
-```yaml" 
+```yaml 
       source:
         store: web_servers
         path: .
@@ -154,7 +154,7 @@ Hosts, or **Execution Hosts** are the locations where grains will be deployed fr
 
 You can specify the execution host in two ways:
 - Literally. For example:
-  ```yaml" 
+  ```yaml 
 grains:
   # launch an RDS instance using Terraform
   rds:
@@ -164,7 +164,7 @@ grains:
         name: my-execution-host
  ``` 
 - Using an execution-host input, which allows the environment end-user to select the execution host to use from a dropdown list. For details, see the [blueprint yaml's inputs](#inputs) section.
-  ```yaml" 
+  ```yaml 
 grains:
   # launch an RDS instance using Terraform
   rds:
@@ -184,7 +184,7 @@ The Execution host configuration must include:
 * **name** - the given name for the kubernetes cluster configured under the cloud account area where the grain will be executed.
 * **service-account** - The service-account name configured within the kubernetes cluster that will be used to execute the grain. A kubernetes service account provides an identity for processes that run in a pod. 
 
-```yaml" 
+```yaml 
 grains:
   # launch an RDS instance using Terraform
   rds:
@@ -200,7 +200,7 @@ grains:
 Inputs and outputs are used both in the blueprint level and in the grains level. Grains can use inputs and outputs to pass data between IaC components, validate information and eventually lead to reducing the amount of IaC components that needs to be maintained by the organization.
 
 In the below example, a Terraform deployment generates a connection string to a managed database that can then be utilized by the application itself using the ability to pass output from one grain as a input to the other.
-```yaml" 
+```yaml 
 grains:
   # launch an RDS instance using Terraform
   rds:
@@ -226,7 +226,7 @@ The need to deploy one IaC component before the other is common and usually requ
 
 In the example below, 3 grain in the bluerpint will be deployed in the following order: rds and redis will be deployed in parallel - and my_app will be deployed next, only in case of a successful deployment.
 
-```yaml" 
+```yaml 
 grains:
   # launch an RDS instance using Terraform
   rds:
@@ -255,7 +255,7 @@ Templating engines are a great way to enrich the YAML format to allow extensibil
 
 In the below example the [downcase](https://shopify.github.io/liquid/filters/downcase/) and [strip](https://shopify.github.io/liquid/filters/strip/) keywords are used with concatenation of the sandbox id to create a new S3 bucket (AWS) using Terraform while making sure the bucket name will be valid and unique.
 
-```yaml" 
+```yaml 
   s3_bucket:
     kind: terraform
     spec:
@@ -278,7 +278,7 @@ The syntax is: ```{{.params.param-value}}```
 
 The syntax is the same for both account and space level parameters. A space-level parameter will take precedence over an account-level parameter with the same name.
 
-```yaml" 
+```yaml 
   s3_bucket:
     kind: terraform
     spec:
@@ -293,7 +293,7 @@ The syntax is the same for both account and space level parameters. A space-leve
 ### Environment Variables
 In many cases, passing information through environment variables is required for IaC modules to properly execute with the right data in mind. The environment variables provided under a specific grain will be accessible only during the grain lifecycle of the specific grain and can be used as a specific string or to be derived from a blueprint input or other grain output. 
 
-```yaml" 
+```yaml 
   s3_bucket:
     kind: 
     spec:
@@ -331,7 +331,7 @@ For details, check out this Terraform Docs section [Variable Definitions (.tfvar
 
 Example:
 
-```yaml"
+```yaml
 grains:
   database:
     kind: terraform
@@ -364,7 +364,7 @@ Whenever a Terraform grain is launched, all resources created during the deploym
 Sometimes, you need to disable tagging for all or specific resources.
 To disable *all* resources in a specific grain use the following syntax:
 
-```yaml" 
+```yaml 
 grains:
   database:
     kind: terraform
@@ -375,7 +375,7 @@ grains:
 
 To disable *specific* resources in a specific grain use the following syntax:
 
-```yaml" 
+```yaml 
 grains:
   database:
     kind: terraform
@@ -390,7 +390,7 @@ grains:
 Output are values generated by Terraform during the deployment process. Outputs should be defined in the outputs.tf file located in the Terraform module folder. We recommend using Torque's auto-discovery capability to quickly model your Terraform modules within Torque including it's defined outputs.
 
 
-```yaml" 
+```yaml 
 grains:
   database:
     kind: terraform
@@ -407,7 +407,7 @@ grains:
 Torque provides the ability to execute custom code before the executing the Terraform module init and before the Terraform destroy process. Scripts allows to run CLI commands to make sure authentication and requirements are set prior to the Terraform execution at the environment's initialization and destroy process.
 In the below example, authentication script is used to assume role to another AWS account prior to deploying workload into that account.
 
-```yaml" 
+```yaml 
 grains:
   amazon_emr:
     kind: terraform
@@ -445,7 +445,7 @@ Please see [the grain host](blueprints.md#host) for more details.
 ### inputs
 Similar to blueprint inputs and Terraform inputs, the HELM grain inputs allow you to reuse the same HELM chart in different ways using different values overrides. Inputs provided to the HELM grain are used when launching the HELM chart. We recommend using Torque's auto-discovery capability to quickly model your HELM chart within Torque including all defined inputs.
 
-```yaml"
+```yaml
 grains:
   nginx:
     kind: helm
@@ -471,7 +471,7 @@ For illustration purposes, here's a [Helm chart](https://github.com/orel-h/test-
 
 For example:
 
-```yaml"
+```yaml
 spec_version: 2
 description: 
   ...
@@ -491,7 +491,7 @@ outputs:
 ### commands
 The commands section allows to execute CLI code prior to the HELM chart deployment to make sure all dependencies are met to ensure a successful deployment. Common use for commands is to execute HELM dependencies update to collect all the sub-charts required for the deployment.
 
-```yaml"
+```yaml
 grains:
   nginx:
     kind: helm
@@ -511,7 +511,7 @@ Torque provides the ability to execute custom code after Torque executes the Hel
 
 For example - grain with a post-install script and outputs "test1" and "test2":
 
-```yaml"
+```yaml
 grains:
   nginx:
     kind: helm
@@ -565,7 +565,7 @@ Whenever a CloudFormation grain is launched, all resources created during the de
 ### outputs​
 Outputs are strings generated by CloudFormation during the deployment process.
 
-```yaml"
+```yaml
 grains:
   database:
     kind: cloudformation
@@ -581,7 +581,7 @@ grains:
         - connection_string
 ```
 ### Example
-```yaml"
+```yaml
 grains:
   CFN-S3-Bucket:
     kind: cloudformation
@@ -613,7 +613,7 @@ Please see [the grain host](blueprints.md#host) for more details.
 ### tags​
 Whenever a Kubernetes grain is launched, all resources created during the deployment process are automatically tagged with Torque's system tags, built-in tags and custom tags. If you wish to disable tagging for all resources in a specific Kubernetes grain, use the following syntax:
 
-```yaml"
+```yaml
 grains:
   database:
     kind: kubernetes
@@ -625,7 +625,7 @@ grains:
 ### namespace
 The deployment namespace must exist in the cluster prior to the deployment. It must not be equal to the namespaces used by Torque for agent deployments.
 
-```yaml"
+```yaml
 grains:
   web-client:
     kind: kubernetes
@@ -645,7 +645,7 @@ The script is defined in the blueprint and executed after the grain's installati
 
 For example, script named __post-install-script.sh__ that generates two outputs:
  
-```yaml"
+```yaml
 outputs:
   output1:
     kind: regular
@@ -697,7 +697,7 @@ Please see [the grain host](blueprints.md#host) for more details.
 ### inputs
 Similar to blueprint inputs, inputs provided to the Shell grain are used when launching the shell. Unlike other grains, in the Shell grain, inputs are used inside the __commands__ section, wrapped in double curly brackets - ```" {{ .inputs.input1 }}"```.
 
-```yaml"
+```yaml
 grains:
   validate:
     kind: shell
