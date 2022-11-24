@@ -11,10 +11,13 @@ Torque's __Cost__ dashboard provides you with actionable insights into the costs
 * Kubernetes (EKS/AKS)
 
 ## Prerequisites
-* IAM user that has access to billing data. For details, see this official AWS help page: [IAM tutorial: Delegate access to the billing console](https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_billing.html?icmpid=docs_iam_console#tutorial-billing-step1).
-* [AWS Cost setup](#aws-cost-setup) / [Azure Cost setup](#azure-cost-setup)
-* __External Id__: To grant Cost Collection permission to Torque, use the AssumeRole API. __External Id__ is one of the parameters of the AssumeRole API that can be used to delegate access from your account to Torque. The combination of this value and the ARN key ensure that only Torque can access the role. 
-* __ARN key__: Make sure the ARN role includes a cost exploration permission.
+
+__AWS__ 
+* Ensure you have an IAM user that has access to billing data. For details, see this official AWS help page: [IAM tutorial: Delegate access to the billing console](https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_billing.html?icmpid=docs_iam_console#tutorial-billing-step1).
+* Perform the following steps : [AWS Cost setup](#aws-cost-setup)
+* Get the following information:
+  * __External Id__: To grant Cost Collection permission to Torque, use the AssumeRole API. __External Id__ is one of the parameters of the AssumeRole API that can be used to delegate access from your account to Torque. The combination of this value and the ARN key ensure that only Torque can access the role. 
+  * __ARN key__: Make sure the ARN role includes a cost exploration permission.
    
 __How to get External ID and ARN Role:__
 
@@ -29,6 +32,68 @@ __How to get External ID and ARN Role:__
 9. Click __Create Role__.
 10. (Optional) Enter a __Description__ for the new role.
 11. Review the role and then click __Create role__.
+
+##### __AWS Cost setup__
+
+1. Enable billing retrieval via the IAM user:
+   1. In AWS, login as your root user.
+   2. In the top toolbar, click your __username__ and then select __My Account__.
+   3. Select the __IAM User & Role Access to Billing Information__ checkbox.
+
+2. Verify your IAM user has access to Billing:
+   1. In AWS, login as your root user.
+   2. In the top toolbar, select __Services__. 
+   3. Search for __Billing__ and select it from the result list.
+     The __Billing and Cost Management Dashboard__ displays.
+
+   If you do not have access to the dashboard, follow these steps:
+
+   4. In AWS, login as your root user.
+   5. From the top toolbar, select __Services__.
+   6. Select __IAM__.
+   7. From the left toolbar, select __Users__ and select the __IAM user__ requiring the service permission.
+   8. Select __Add Permissions__.
+   9. Select __Attach existing policies directly__.
+   10. Search for __PowerUserAccess__ and __Add__ the policy to the IAM user.
+
+3. To configure Torque’s Cost Allocation Tags:
+   1. In AWS, login as the __IAM user__ role name.
+   2. In the top toolbar, select __Services__.
+   3. Search for __Billing__ and select it from the result list. This was enabled during the previous steps.
+   4. Select __Cost Allocation Tags__.
+   5. Search for the following tags: __torque-blueprint-name__, __torque-cloud-account-id__, __torque-environment-id__.
+   6. Select the box to the left of each tag and select __Activate__.
+
+:::tip Note: In order to see the tags noted in the steps below, first launch a sandbox via Torque.
+:::
+
+
+
+__Azure__
+
+1. Create an application and register it in Azure AD. 
+2. Assign the "Cost Management Reader" (or, "Cost Management Contributor") Role to the application.
+
+Get the following information for the application:
+  * __Subscription Id__
+  * __Tennant Id__
+  * __Application Id__
+  * __Application Secret__ 
+   
+__Kubernetes__
+
+K8S cost data is collected by Torque using Kubecost. Please perform this procedure to enable K8s cost collection.
+
+1. Deploy Kubecost in your cluster.
+   * For deployment instructions, see: https://www.kubecost.com/install.html#show-instructions
+   * Make sure the kubecost default namespace is used (Namespace kubecost)
+
+
+__To validate the setup:__
+1. Wait at least 24 hours after configuration and then log in to your Torque account.
+2. Select __Cost__ to see your values. The data will show you the costs for the last 24 hours.
+3. If there are any errors, begin troubleshooting this procedure.
+
 
 ## Configuration
 Torque collects cost data using cost collection targets, which are managed in the __Administration__ page's __Cost__ page.
@@ -57,13 +122,10 @@ __To create a cost collection target:__
 
 Torque calls your cloud provider's API to query the cost. This operation might incur additional charges from your cloud provider.
 
-## KubeCost deployment
 
-K8S cost data is collected by Torque using Kubecost. Please perform this procedure if your Cost Collection Target failed validation.
-
-1. Verify that Kubecost is deployed in the cluster.
-   * For deployment instructions, see: https://www.kubecost.com/install.html#show-instructions
-   * Make sure the kubecost default namespace is used (Namespace kubecost)
+## Troubleshooting
+   
+1. Verify that Kubecost is deployed in the cluster. 
 2. In Torque, try to re-enable the K8S cost collection target and validate that it works.
 3. If the error still exists, run the ```Get agent deployment file``` API call with the following body: 
     ```jsx title=
@@ -84,54 +146,4 @@ K8S cost data is collected by Torque using Kubecost. Please perform this procedu
 6. Try to re-validate the cost collection target.
 7. If the error still exists, call Torque support.
 
-## AWS Cost setup
-
-__To enable billing retrieval via the IAM user:__
-1. In AWS, login as your root user.
-2. In the top toolbar, click your __username__ and then select __My Account__.
-3. Select the __IAM User & Role Access to Billing Information__ checkbox.
-
-__To verify your IAM user has access to Billing:__
-1. In AWS, login as your root user.
-2. In the top toolbar, select __Services__. 
-3. Search for __Billing__ and select it from the result list.
-  The __Billing and Cost Management Dashboard__ displays.
-
-If you do not have access to the dashboard, follow these steps:
-
-1. In AWS, login as your root user.
-2. From the top toolbar, select __Services__.
-3. Select __IAM__.
-4. From the left toolbar, select __Users__ and select the __IAM user__ requiring the service permission.
-5. Select __Add Permissions__.
-6. Select __Attach existing policies directly__.
-7. Search for __PowerUserAccess__ and __Add__ the policy to the IAM user.
-
-__To configure Torque’s Cost Allocation Tags:__
-Note: In order to see the tags noted in the steps below, first launch a sandbox via Torque.
-
-1. In AWS, login as the __IAM user__ role name.
-2. In the top toolbar, select __Services__.
-3. Search for __Billing__ and select it from the result list. This was enabled during the previous steps.
-4. Select __Cost Allocation Tags__.
-5. Search for the following tags: __torque-blueprint-name__, __torque-cloud-account-id__, __torque-environment-id__.
-6. Select the box to the left of each tag and select __Activate__.
-
-Note: Torque will begin to pull the data via the API and aggregate the information. Learn more about [AWS User-Defined Costs](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/custom-tags.html).
-
-__To validate the setup:__
-1. Wait at least 24 hours after configuration and then log in to your Torque account.
-2. Select __Cost__ to see your values. The data will show you the costs for the last 24 hours.
-3. If there are any errors, begin troubleshooting this procedure.
-
-
-## Azure Cost setup
-__To setup cost tracking in your Azure account:__
-1. Log in to your Azure account.
-2. Select __Subscriptions__ and open the subscription that Torque is using.
-3. Select __Cost analysis__ from the subscription menu.
-4. Make sure you can see cost information. If not, contact Azure's support and configure your access to cost information.
-5. Wait at least 24 hours after configuration and then log in to your Torque account.
-6. Select __Cost__ to see your values. The data will show you the costs for the last 24 hours.
-7. If there are any errors, begin troubleshooting this procedure.
 
