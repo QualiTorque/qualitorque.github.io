@@ -57,3 +57,49 @@ grains:
       outputs: []
 
 ```
+
+## Azure authentication 
+The Quali-hosted agent needs Azure credentials to provision the environment on your Azure account.
+
+To provide the credentials, modify your blueprint's **inputs** and **env-vars** sections, as follows:
+
+
+```yaml
+spec_version: 2
+description: Auto generated blueprint for terraform module 
+
+inputs:
+  
+  ARM_CLIENT_ID:
+    type: string
+  ARM_CLIENT_SECRET:
+    type: string
+  ARM_SUBSCRIPTION_ID:
+    type: string
+  ARM_TENANT_ID:
+    type: string
+
+  host_name:
+    type: execution-host
+
+outputs: {}
+
+grains:
+  azure-storage-create:
+    kind: terraform
+    spec:
+      source:
+        store: terraform
+        path: azure-storag-create
+      host:
+        name: '{{ .inputs.host_name }}'
+      
+      env-vars: 
+        - ARM_CLIENT_ID: '{{ .inputs.ARM_CLIENT_ID }}'
+        - ARM_CLIENT_SECRET: '{{ .inputs.ARM_CLIENT_SECRET }}'
+        - ARM_SUBSCRIPTION_ID: '{{ .inputs.ARM_SUBSCRIPTION_ID }}'
+        - ARM_TENANT_ID: '{{ .inputs.ARM_TENANT_ID }}'        
+      
+      outputs: []
+
+```
