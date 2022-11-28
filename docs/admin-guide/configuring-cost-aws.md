@@ -62,7 +62,7 @@ To configure Torque’s Cost Allocation Tags:
    1. Go to __Administration > Cloud Accounts > Cost Collection Target__.
    2. Click the desired cost collection target's __Enabled__ toggle.
 
-     > ![Locale Dropdown](/img/enable-cost-target.png)
+     > ![Locale Dropdown](/img/aws-cost-target.png)
 
 
 ## Troubleshooting
