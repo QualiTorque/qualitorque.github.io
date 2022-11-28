@@ -58,6 +58,10 @@ grains:
 
 ```
 
+:::info Note:
+The AWS credentials need to match what is required for your terraform module to run correctly.
+:::
+
 ## Azure authentication 
 The Quali-hosted agent needs Azure credentials to provision the environment on your Azure account.
 
@@ -103,3 +107,6 @@ grains:
       outputs: []
 
 ```
+:::info Note:
+The Azure credentials need to match what is required for your terraform module to run correctly.
+:::
