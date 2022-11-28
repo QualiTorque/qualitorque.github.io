@@ -15,4 +15,4 @@ Launch one or more of the examples to understand how the end users would experie
   * Get the deployment's output.
   * See the tags that the environment deployed on the cloud resources.
 
-_To launch a sample, go to the __Sample__ space, click __Sandbox Environments__ and then click __New Sandbox__._
+_To launch a sample, go to the __Sample__ space, click __Environments__ and then click __New Sandbox__._
