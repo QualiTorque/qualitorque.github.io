@@ -3,7 +3,7 @@ sidebar_position: 7
 title: Audit Log Events
 ---
 
-These events are captured by Audit Log.
+These events are captured by Audit Log. All events are of type "string".
 
 ## Account
 
