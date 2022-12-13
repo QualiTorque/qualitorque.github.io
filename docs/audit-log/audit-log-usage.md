@@ -20,16 +20,6 @@ Torque audit data is presented in json format. It includes events and with the f
 
 ## Event structure
 
-__index__ containing the Torque events ("quali").
-
-__type__ of the event ("doc)
-
-__id__ of the event
-
-__score__: 
-
-__source__: Details about the event
-
 |Element                                |Description                             |
 |------------------------|----------------------------------------------------|
 |name|Name of the event, as listed in [Audit Log Events](/audit-log/events)|

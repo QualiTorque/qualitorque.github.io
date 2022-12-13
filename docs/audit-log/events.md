@@ -18,7 +18,7 @@ These events are captured by Audit Log.
 |------------------------|---------------------------|-----------------------------------|--------------------------------------------|
 |Content Modified|Blueprint YAML was modified.|Account/Space/Blueprint||
 |Published|Blueprint was published|Account/Space/Blueprint.|- Repository name|
-|Removed|Blueprint was removed from a space (removed from an asset repository connected to the space).|Account/Space/Blueprint||
+|Removed|User removed blueprint. This applies to blueprints that were discovered from assets, not for blueprints who are defined in the repository.||
 |Unpublished|Blueprint was unpublished.|Account/Space/Blueprint|- Repository name|
 
 ## Cloud Account (cost target)
