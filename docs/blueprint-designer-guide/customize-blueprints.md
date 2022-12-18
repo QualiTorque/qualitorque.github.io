@@ -17,4 +17,4 @@ Torque only saves the latest version. So if you need versioning, you're welcome 
 
   Torque validates the blueprint and immediately displays any errors in a tooltip next to the blueprint's name.
 > ![Locale Dropdown](/img/blueprint-errors.png)
-5. Launch the blueprint to make sure it runs as expected.
+5. Launch the blueprint from the __Catalog__ to make sure it runs as expected.
