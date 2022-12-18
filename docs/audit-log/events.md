@@ -36,11 +36,11 @@ These events are captured by Audit Log. All events are of type "string".
 
 ## Credential
 
-|Event                   |Scopes                             |Data (parameters)                                 |
-|------------------------|-----------------------------------|--------------------------------------------|
-|Created|Account|- Name<br />- Cloud Type<br />- Credential Type|
-|Deleted|Account|- Name|
-|Modified|Account|- Name|
+|Event                   |Description|Scopes                             |Data (parameters)                                 |
+|------------------------|----------------------------------|-----------------------------------|--------------------------------------------|
+|Created|New credential was created in the __Credentials__ store.|Account|- Name<br />- Cloud Type<br />- Credential Type|
+|Deleted|A credential was deleted.|Account|- Name|
+|Modified|A credential was modified.|Account|- Name|
 
 ## Environment
 
