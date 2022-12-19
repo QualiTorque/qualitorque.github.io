@@ -9,7 +9,7 @@ When you use our services, you trust us with your personal information. At Quali
 
 * Contact data (First name, last name, email address) 
 * Social media login data (Username/email address when registering with a git account
-* Password of git or non-SSO users
+* Password of non-SSO users
 
 ## Confidential information  
 
@@ -27,9 +27,9 @@ When you use our services, you trust us with your personal information. At Quali
         * Cloud resources deployed as part of the environment. See [Launch Your Blueprint](/getting-started/Launch-environment)
         * Events 
     * [Cost](/admin-guide/cost) information (optional) 
-    * [Audit Log](/audit-log/audit-log-overview) 
+    * [Audit Log events](/audit-log/events)
 
-## What does Torque connect to? 
+## What does Torque connect to 
 
 * [Cloud account](/getting-started/Install-and-connect-self-hosted-agent)
 * [Git repositories](/getting-started/Install-and-connect-self-hosted-agent)

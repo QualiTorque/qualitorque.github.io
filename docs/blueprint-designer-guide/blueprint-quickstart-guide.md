@@ -32,7 +32,11 @@ Torque launches environments out of blueprints, which are YAML files that repres
 
 > ![Locale Dropdown](/img/new-assets.png)
 
-3. __Publish__ the blueprints and you’re good to go.
+3. You can optionally set the blueprint's duration policy or attach a label to visually group blueprints according to some shared quality or characteristic, and set blueprint's tags.
+
+> ![Locale Dropdown](/img/blueprint-options.png)
+
+4. __Publish__ the blueprints and you’re good to go.
 
 > ![Locale Dropdown](/img/publish-blueprint.png)
   
