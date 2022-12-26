@@ -733,7 +733,7 @@ grains:
 ```
 
 ### commands
-The commands section allows to execute bash/python3 code as part of the launch and/or end of the environment. The Shell grain has two command types - __deploy__ for running code at the launch of the environment, and __destroy__ for running code as part of the environment’s teardown. 
+The commands section allows to execute bash/python3 code or files stored in one of the space's repositories as part of the launch and/or end of the environment. The Shell grain has two command types - __deploy__ for running code at the launch of the environment, and __destroy__ for running code as part of the environment’s teardown. 
 
 ```yaml”
 grains:
@@ -756,7 +756,30 @@ grains:
 ```
 
 :::tip __note__
-You can specify the code to be run as freetext bash/python3 commands or by referencing a bash/python3 file:
+You can specify the code to be run as freetext bash/python3 commands or by referencing a file (any file type can be run, not just bash or python3). 
+
+To run a file, specify the file and its repo in the ```files``` section and the file name and extension under ```commands```. For example, file "post-install-script.sh":
+
+```jsx title=
+grains:
+  validate:
+    kind: shell
+    spec:
+      host:
+        name: ...
+      files:
+        - path: "scripts/post-install-script.sh"
+          source: my-repo
+      activities:
+        deploy:
+          commands:
+            - "apt-get -y install git unzip curl"
+            - "git clone {{ .inputs.repoUrl }}"
+            - "curl https://get.datree.io | /bin/bash"
+            - "./post-install-script.sh"
+            - name: generate_report
+              command: "datree test {{.inputs.repoName}}/{{.inputs.filePath}}"
+```
 
 ```jsx title="Python 3 example:"
 commands
@@ -771,6 +794,5 @@ commands
   - "wget https://.../simple.sh"
   - "/bin/bash simple.sh"
 ```
-
 :::
 
