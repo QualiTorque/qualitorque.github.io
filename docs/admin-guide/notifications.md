@@ -14,7 +14,7 @@ Supported environment events:
 * Environment Ending Failed
 * Environment Force Ended
 * Environment Launch Approved
-* Environment Launch Denied*
+* Environment Launch Denied
 
 __To configure Torque notifications:__
 1. In Torque, access the suitable space.
