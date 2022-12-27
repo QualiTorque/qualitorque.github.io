@@ -7,13 +7,14 @@ Torque Notifications enable space admins to define notifications for environment
 
 Supported environment events:
 
-* Sandbox started
-* Sandbox ready
-* Sandbox ended
-* Sandbox active with errors
-* Sandbox ended with errors
-* Blueprint published
-* Blueprint unpublished
+* Environment Launched
+* Environment Deployed
+* Environment Active With Error
+* Environment Ended
+* Environment Ending Failed
+* Environment Force Ended
+* Environment Launch Approved
+* Environment Launch Denied
 
 __To configure Torque notifications:__
 1. In Torque, access the suitable space.
