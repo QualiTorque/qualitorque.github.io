@@ -9,12 +9,12 @@ When you use our services, you trust us with your personal information. At Quali
 
 * Contact data (First name, last name, email address) 
 * Social media login data (Username/email address when registering with a git account
-* Password of non-SSO users 
+* Password of non-SSO users
 
 ## Confidential information  
 
 * Account data 
-    * [SSO](/admin-guide/sso) status (enabled or not) (optional) 
+    * [SSO](/authentication/sso) status (enabled or not) (optional) 
     * Git repositories ([GitHub](/admin-guide/source-control-github), [GitLab](/admin-guide/source-control-gitlab), [self-managed](/admin-guide/source-managed-self-service))
         * User authentication/credentials 
         * [IaC](/overview/supported-platforms#infrastructure-as-code) asset files. For example: Terraform, Helm, Kubernetes manifests. For more details, see [Discover Your Assets](/getting-started/Discover%20Your%20Assets)
