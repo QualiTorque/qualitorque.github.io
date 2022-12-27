@@ -9,7 +9,7 @@ When you use our services, you trust us with your personal information. At Quali
 
 * Contact data (First name, last name, email address) 
 * Social media login data (Username/email address when registering with a git account
-* Password of non-SSO users
+* Password of non-SSO users 
 
 ## Confidential information  
 
