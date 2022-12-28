@@ -316,6 +316,21 @@ Please see [the grain source](blueprints.md#source) for more details.
 ### host
 Please see [the grain host](blueprints.md#host) for more details.
 
+### authentication
+To enable Torque to connect to the AWS account and deploy the CloudFormation template, you must supply the Role Arn and external ID in the CloudFormation grain's ```authentication``` section. This is done by referencing a [credential](/admin-guide/credentials) that contains these authentication details. There are two ways to specify the credential, literally by name or using an input:
+
+```yaml
+grains:
+  database:
+    kind: terraform
+    spec:
+      source:
+        store: infra 
+        path: terraform/rds
+      authentication:
+        - credential_name or {{.inputs.credentials_input_name}} 
+```        
+
 ### tf-version
 Torque provides the flexibility to choose a specific Terraform version with which the Terraform module will be deployed (minimum supported version is 0.14).
 :::info
@@ -339,6 +354,8 @@ grains:
       source:
         store: infra 
         path: terraform/rds
+      authentication:
+        - ...        
       ...
       inputs:
         - database_size: '{{ .inputs.db_size }}' 
@@ -416,6 +433,8 @@ grains:
       source:
         store: tf-repo
         path: .
+      authentication:
+        - aws-auth        
       scripts: 
         pre-tf-init:
           source:
@@ -546,15 +565,19 @@ Please see [the grain source](blueprints.md#source) for more details.
 Host is not required or supported by CloudFormation Grain. Instead, this grain uses direct authentication to the AWS cloud account, as explained below.
 
 ### authentication
-To enable Torque to connect to the AWS account and deploy the CloudFormation template, you must supply the following details in the CloudFormation grain's authentication section:
-* __role-arn__: ARN Role with the permission to deploy CloudFormation Template on the AWS Account 
-* __external-id__ of the AWS Cloud Account 
+To enable Torque to connect to the AWS account and deploy the CloudFormation template, you must supply the Role Arn and external ID in the CloudFormation grain's ```authentication``` section. This is done by referencing a [credential](/admin-guide/credentials) that contains these authentication details. There are two ways to specify the credential, literally by name or using an input:
 
-:::tip __Note__:
-As a best practice, we recommend the following:
-* Have the account admin set parameters containing the required authentication values in the [Parameter Store](/admin-guide/params).
-* As the blueprint designer, supply the parameters from the Parameter Store in the CloudFormation Grain ```authentication``` section.
-:::
+```yaml
+grains:
+  database:
+    kind: cloudformation
+    spec:
+      source:
+        path: github.com/org/repo.git//cloudformation/rds
+        ...
+      authentication:
+        - credential_name or {{.inputs.credentials_input_name}}
+```
 
 ### inputs​
 Similar to blueprint inputs, CloudFormation grain inputs allow you to reuse the same CloudFormation module in different ways. Inputs provided to the CloudFormation grain are used when launching the CloudFormation module.
@@ -574,8 +597,7 @@ grains:
         path: github.com/org/repo.git//cloudformation/rds
         ...
       authentication:
-        role-arn:
-        external-id:
+        ...
       outputs:
         - hostname
         - connection_string
@@ -591,8 +613,7 @@ grains:
         path: https://.../AWSS3Bucket.yaml
       region: '{{ .inputs.["AWS Region"] }}'
       authentication:
-        role-arn: arn:aws:iam::{{ .params.My_Torque_AWS }}:role/{{ .params.My_Torque_Agent_IAM_Role }}
-        external-id: '{{ .params.My_Torque__External_ID }}'
+        - aws-auth
       inputs:
         - AccessControl: '{{ .inputs.["Access Control"] }}'
         - BucketName: '{{ .inputs.["Bucket Name"] }}-{{ sandboxid | downcase }}'
@@ -712,7 +733,7 @@ grains:
 ```
 
 ### commands
-The commands section allows to execute bash/python3 code as part of the launch and/or end of the environment. The Shell grain has two command types - __deploy__ for running code at the launch of the environment, and __destroy__ for running code as part of the environment’s teardown. 
+The commands section allows to execute bash/python3 code or files stored in one of the space's repositories as part of the launch and/or end of the environment. The Shell grain has two command types - __deploy__ for running code at the launch of the environment, and __destroy__ for running code as part of the environment’s teardown. 
 
 ```yaml”
 grains:
@@ -735,7 +756,30 @@ grains:
 ```
 
 :::tip __note__
-You can specify the code to be run as freetext bash/python3 commands or by referencing a bash/python3 file:
+You can specify the code to be run as freetext bash/python3 commands or by referencing a file (any file type can be run, not just bash or python3). 
+
+To run a file, specify the file and its repo in the ```files``` section and the file name and extension under ```commands```. For example, file "post-install-script.sh":
+
+```jsx title=
+grains:
+  validate:
+    kind: shell
+    spec:
+      host:
+        name: ...
+      files:
+        - path: "scripts/post-install-script.sh"
+          source: my-repo
+      activities:
+        deploy:
+          commands:
+            - "apt-get -y install git unzip curl"
+            - "git clone {{ .inputs.repoUrl }}"
+            - "curl https://get.datree.io | /bin/bash"
+            - "./post-install-script.sh"
+            - name: generate_report
+              command: "datree test {{.inputs.repoName}}/{{.inputs.filePath}}"
+```
 
 ```jsx title="Python 3 example:"
 commands
@@ -750,6 +794,5 @@ commands
   - "wget https://.../simple.sh"
   - "/bin/bash simple.sh"
 ```
-
 :::
 

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 10
 title: Configuring Cost for AWS
 ---
 
@@ -16,11 +16,11 @@ title: Configuring Cost for AWS
 #### __AWS Cost setup:__
 
 To configure Torque’s Cost Allocation Tags:
-   1. Launch a sandbox via Torque OR add tags called __torque-cloud-account-id__ and __torque-environment-id__ to any resource in your AWS account.
+   1. Launch a sandbox via Torque OR add tags called __torque-account-id__ and __torque-environment-id__ to any resource in your AWS account.
    2. Login to your AWS management console and in the top toolbar, select __Services__.
    3. Search for __Billing__ and select it from the result list.
    4. Select __Cost Allocation Tags__.
-   5. Search for the following tags: __torque-cloud-account-id__, __torque-environment-id__.
+   5. Search for the following tags: __torque-account-id__, __torque-environment-id__.
    6. Select the box to the left of each tag and select __Activate__.
 
 
@@ -34,7 +34,7 @@ To configure Torque’s Cost Allocation Tags:
 
 3. In the navigation pane of the IAM console, select __Roles__, and then click __Create Role__.
    1. From __Select trusted entity__, choose __AWS Account__.
-   2. Under An AWS account ID, select __An AWS account__ and enter 833621130516.
+   2. Under An AWS account ID, select __An AWS account__ and enter 833621130516. (This is the Torque AWS account # where we will query the cost from).
    3. Select __Require external ID__.
    4. Enter an __External ID__ of your choosing. The External Id will be used to validate the Consumer of the ARN Role. __Keep note of the external ID as you will need it later in the configuration step__. 
    5. In __Next:Permissions__, select the policy you have just created in step 1 for cost exploration permission.
@@ -62,7 +62,7 @@ To configure Torque’s Cost Allocation Tags:
    1. Go to __Administration > Cloud Accounts > Cost Collection Target__.
    2. Click the desired cost collection target's __Enabled__ toggle.
 
-     > ![Locale Dropdown](/img/enable-cost-target.png)
+     > ![Locale Dropdown](/img/aws-cost-target.png)
 
 
 ## Troubleshooting

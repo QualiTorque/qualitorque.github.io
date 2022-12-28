@@ -1,6 +1,6 @@
 ---
 sidebar_position: 5
-title: Audit Log Usage
+title: Audit Log Event Structure and Contents
 ---
 
 Torque audit data is presented in json format. It includes events and with the following information:
@@ -13,52 +13,21 @@ Torque audit data is presented in json format. It includes events and with the f
   * Error (in case of failure)
   * Event-specific Data
 
-## Data retention
-Audit data is streamed to the configured log management tool and retained according to the tool's data retention policy.
+> ![Locale Dropdown](/img/audit-log-json.png)
 
-## Events
-The following events are captured and streamed:
 
-__Environments__
-* Environment Launch Started
-* Environment Launch Completed
-* Drift Detected
-* Drift Reconcile Started
-* Drift Reconcile Completed
-* Drift Dismissed
-* Updates Detected
-* Update started
-* Update Complete
-* Update Dismissed
-* Terminate Started
-* Terminate completed
-* Force terminate
 
-__Account__
-* Created
-* Deleted
 
-__Space__
-* Create
-* Modify
-* Delete
+## Event structure
 
-__User__
-* Invited
-* Invitation Cancelled
-* Joined
-* Modified
-* Deleted
-* Login
-* Logout
-* Reset Password
-* Forgot Password
-* User Added to Space
-
-__Host/Agent__
-* Created
-* Deleted 
-* Deleted
-* Added to Space
-* Removed From Space
-* Renamed
+|Element                                |Description                             |
+|------------------------|----------------------------------------------------|
+|name|Name of the event, as listed in [Audit Log Events](/audit-log/events)|
+|event_type|Type of event. Options are account, space, bluperint, and environment.|
+|event_status|Status of the event (success / failure)|
+|scope|Scope(s) of the event, as listed under [Audit Log Events](/audit-log/events). Supported scopes are account, space, blueprint, and environment.|
+|actor|Initiator of the event. Options are user, automation, and torque.|
+|timestamp|Time at which the event occurred.|
+|traceid|Used for internal purposes.|
+|data|Changes that were made in the event, as listed in [Audit Log Events](/audit-log/events)|.
+|errors|Errors returned for failed events (http status code and description)|

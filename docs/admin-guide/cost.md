@@ -1,9 +1,9 @@
 ---
-sidebar_position: 3
+sidebar_position: 9
 title: Cost
 ---
 
-Torque's __Cost__ dashboard provides you with actionable insights into the costs of your environments. Cost data is collected using a __toque_environment_id__ tag that is assigned (with a unique value) to every new environment's resources. To learn more about Torque tagging, see [tags](tags.md).
+Torque's __Cost__ dashboard provides you with actionable insights into the costs of your environments. Cost data is collected using the __torque-environment-id__ and __torque-account-id__ tags which are assigned (with a unique value) to every new environment's resources. To learn more about Torque tagging, see [tags](tags.md).
 
 > ![Locale Dropdown](/img/cost-dashboard.png)
 

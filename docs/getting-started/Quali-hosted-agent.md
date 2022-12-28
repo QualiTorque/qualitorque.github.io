@@ -9,7 +9,7 @@ The Quali-hosted agent is a built-in agent in the system that can be used withou
 It can provision environments with the following limitations:
 - Only a single environment can be provisioned using the Quali-hosted agent
 - The environment must have only a single asset (grain), which is a terraform module
-- At this point, the Quali-hosted agent can only provision environments in __AWS__ using __terraform modules__ by using the terraform __AWS provider__. Support for other providers as well as other deployment technologies (such as helm) and clouds will be added gradually.
+- At this point, the Quali-hosted agent can only provision environments in __AWS__ or __Azure__ using __terraform modules__ by using the terraform __AWS provider__ and __azurerm provider__ respectively. Support for other providers as well as other deployment technologies (such as helm) and clouds will be added gradually.
 - To provision environments using other terraform providers, please install your own hosted agent, which supports the suitable cloud and provider. See [Install and connect a self-hosted agent](/getting-started/Install-and-connect-self-hosted-agent) .
 
 
@@ -57,3 +57,56 @@ grains:
       outputs: []
 
 ```
+
+:::info Note:
+The AWS credentials need to match what is required for your terraform module to run correctly.
+:::
+
+## Azure authentication 
+The Quali-hosted agent needs Azure credentials to provision the environment on your Azure account.
+
+To provide the credentials, modify your blueprint's **inputs** and **env-vars** sections, as follows:
+
+
+```yaml
+spec_version: 2
+description: Auto generated blueprint for terraform module 
+
+inputs:
+  
+  ARM_CLIENT_ID:
+    type: string
+  ARM_CLIENT_SECRET:
+    type: string
+  ARM_SUBSCRIPTION_ID:
+    type: string
+  ARM_TENANT_ID:
+    type: string
+
+  host_name:
+    type: execution-host
+
+outputs: {}
+
+grains:
+  azure-storage-create:
+    kind: terraform
+    spec:
+      source:
+        store: terraform
+        path: azure-storag-create
+      host:
+        name: '{{ .inputs.host_name }}'
+      
+      env-vars: 
+        - ARM_CLIENT_ID: '{{ .inputs.ARM_CLIENT_ID }}'
+        - ARM_CLIENT_SECRET: '{{ .inputs.ARM_CLIENT_SECRET }}'
+        - ARM_SUBSCRIPTION_ID: '{{ .inputs.ARM_SUBSCRIPTION_ID }}'
+        - ARM_TENANT_ID: '{{ .inputs.ARM_TENANT_ID }}'        
+      
+      outputs: []
+
+```
+:::info Note:
+The Azure credentials need to match what is required for your terraform module to run correctly.
+:::

@@ -13,7 +13,7 @@ __Notes__:
 
 1. In the __Blueprints__ page, the blueprint designer enables the __Require approval__ toggle for the blueprint.
   > ![Locale Dropdown](/img/approval-flow-enable.png)
-2. Environment end-user launches the blueprint from the __Environments__ catalog, fills in the environment's details, and clicks the environment's __Request Approval__ button. Optionally, the end-user can provide a comment justifying their need for the environment.
+2. Environment end-user launches the blueprint from the __Environments__ catalog, fills in the environment's details, and clicks the environment's __Request Approval__ button. Optionally, the end-user can provide a comment justifying their request.
   > ![Locale Dropdown](/img/approval-flow-request.png)
 Environment is created in __Pending Approval__ status, and can be found in the __Environments__ page (note the filters marked in red).
   > ![Locale Dropdown](/img/approval-flow-Environments-page.png)
