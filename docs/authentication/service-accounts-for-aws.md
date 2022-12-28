@@ -78,7 +78,7 @@ __To create the IAM role for the service account__:
 9.	Copy the ARN for this role. You will need in the next step.
 
 ## Create a service account in the cluster’s namespace
-Create the service account in the cluster's namespace you plan on using as the sandbox namespace, and associate its IAM role to the IAM role you just created.
+Create the service account in the cluster's namespace you plan on using as the environment namespace, and associate its IAM role to the IAM role you just created.
 
 __To create the service account__:
 
