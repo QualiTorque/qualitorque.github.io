@@ -14,7 +14,7 @@ title: Torque Features
 
 
 ## GitOps
-* __Update assets on push/merge__: Torque supports the use of git repositories on GitHub, GitLab and BitBucket. When changes are merged into the space's repository, the appropriate blueprints are immediately updated with the changes.
+* __Update assets on push/merge__: Torque supports the use of git repositories on GitHub, GitLab, BitBucket and Azure DevOps. When changes are merged into the space's repository, the appropriate blueprints are immediately updated with the changes.
 * __[Automatic drift detection](/getting-started/Launch-environment#drift)__: See what external changes have occurred to your environment and its resources, revert the changes to bring your environment back to its initial state.
 
 ## Governance and workflows
