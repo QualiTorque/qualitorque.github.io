@@ -1,17 +1,17 @@
 ---
-sidebar_position: 2
+sidebar_position: 39
 title: SSO Configuration
 ---
 
-With just a few simple steps, your organization’s employees can log into Torque with their corporate accounts using SSO.
+With just a few simple steps, your organization’s employees can log into Torque with their corporate accounts using SSO. 
 
 SSO integration provides enhanced security and significant cost-savings as you no longer need to manage your user accounts in Torque and your employees don’t need to remember another set of credentials. Quick, easy and hassle-free.
 
 This is done by integrating your organization's identity provider with Torque's identity management system. Torque uses Okta for identity management and supports integration with all identity providers (IdPs).
 In this article:
-* [How this works](/authentication/sso#how-this-works)
-* [Integrating your IdP with Torque](/authentication/sso#integrating-your-idp-with-torque)
-* [Associating a user to multiple spaces](/authentication/sso#associating-a-user-to-multiple-spaces)
+* [How this works](/admin-guide/sso#how-this-works)
+* [Integrating your IdP with Torque](/admin-guide/sso#integrating-your-idp-with-torque)
+* [Associating a user to multiple spaces](/admin-guide/sso#associating-a-user-to-multiple-spaces)
 
 ## How this works
 1. Your Idp admin creates an application on your IdP that defines the relevant users, as explained in the section below.

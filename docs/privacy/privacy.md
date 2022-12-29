@@ -14,7 +14,7 @@ When you use our services, you trust us with your personal information. At Quali
 ## Confidential information  
 
 * Account data 
-    * [SSO](/authentication/sso) status (enabled or not) (optional) 
+    * [SSO](/admin-guide/sso) status (enabled or not) (optional) 
     * Git repositories ([GitHub](/admin-guide/source-control-github), [GitLab](/admin-guide/source-control-gitlab), [self-managed](/admin-guide/source-managed-self-service))
         * User authentication/credentials 
         * [IaC](/overview/supported-platforms#infrastructure-as-code) asset files. For example: Terraform, Helm, Kubernetes manifests. For more details, see [Discover Your Assets](/getting-started/Discover%20Your%20Assets)
