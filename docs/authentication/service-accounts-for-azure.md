@@ -6,16 +6,16 @@ title: Terraform AKS Authentication
 If you're using an AKS cluster as your execution host, and you want to run Terraform that deploys resources on Azure, you can use a Azure Workload Identity (valid for AKS clusters version 1.22+) that allows the cluster to securely authenticate with Azure using K8s service account and an Open ID connect (OIDC) token.
 
 The basic process is as follows:
-- [__Configure Azure Workload Identity__](#configure-azure-workload-identity)
-  - [__Prerequisites__:](#prerequisites)
-  - [__To configure the Azure Workload Identity__:](#to-configure-the-azure-workload-identity)
-- [__Configure Torque's Terraform authentication on AKS__](#configure-torques-terraform-authentication-on-aks)
-  - [__Prerequisites__:](#prerequisites-1)
-  - [__Configure the AKS authentication in Torque:__](#configure-the-aks-authentication-in-torque)
+- [__Azure Configuration__](#azure-configuration)
+  - [__Prerequisites__](#prerequisites)
+  - [__Configure the Azure Workload Identity__](#configure-the-azure-workload-identity)
+- [__Torque Configuration__](#torque-configuration)
+  - [__Prerequisites__](#prerequisites-1)
+  - [__Configure the AKS authentication in Torque__](#configure-the-aks-authentication-in-torque)
 
-## __Configure Azure Workload Identity__
+## __Azure Configuration__
 
-### __Prerequisites__:
+### __Prerequisites__
 1. Azure CLI installed locally or use Azure CLI in Azure portal
     * If not installed: Download the MSI from https://aka.ms/installazurecliwindows and run the installer.
     * Update to latest:  
@@ -35,9 +35,9 @@ The basic process is as follows:
   kubectl config use-context <your-cluster>
   ```
 
-### __To configure the Azure Workload Identity__:
+### __Configure the Azure Workload Identity__
 
-1.  Set CLI context to the Azure Subscription the AKS cluster is in
+1.  Set CLI context to the Azure Subscription the AKS cluster is in:
   ```jsx title=
   az account set --subscription (subscription name or ID)
   ```
@@ -68,7 +68,7 @@ The basic process is as follows:
 
   __Copy the "issuerURl" from the response to this command to a note for use later as OIDC_ISSUER_URL.__
 
-6.  Create a managed identity and grant permissions (Skip if you already have a Managed identity or App Registration):
+1.  Create a managed identity and grant permissions:
   ```jsx title=
   az identity create --name {Managed_Identity_Name} --resource-group {AKS_Resource_Group_Name} --location {resource_group_location} --subscription {aks_cluster_subscription_id}
   ```
@@ -96,11 +96,11 @@ The basic process is as follows:
 8. Create a file called aks_workload_id_service_account.yaml with the below content:
 
   :::note
-  Note: replace the {property name} with the corresponding values.
+  Replace the {property name} with the corresponding values.
 
   For service account name, choose a new name.
   
-  Note the namespace that you select for Torque Environments and use it in the Torque configuration part
+  Take a note of the namespace that you select for Torque Environments (it will be in use in the next part - Torque configuration)
   :::
  
   ```jsx title=
@@ -127,20 +127,31 @@ The basic process is as follows:
   az identity federated-credential create --name {federated_credential_name} --identity-name {managed_identity_name} --resource-group {managed_identity_resource_group} --issuer {AKS_cluster_OIDC_issuer_URL} --subject system:serviceaccount:{Torque_Environments_K8s_namespace}:{service_account_name}
   ```
 
-## __Configure Torque's Terraform authentication on AKS__
+## __Torque Configuration__
 
-### __Prerequisites__:
+### __Prerequisites__
 
 Have the following formation ready (from the previous section)
 
 * Tenant ID (displayed in the __Azure Active Directory > Overview__)
 * Subscription ID
+* The namespace where the Torque environments will run (which you chose previously) and the service account name (which you also created in the previous step).
 
-### __Configure the AKS authentication in Torque:__ 
+### __Configure the AKS authentication in Torque__ 
 
 There are 2 ways to acomplish this:
 
-1.	When adding a new AKS agent, you can provide the __default tenant Id__, and when attaching it a space you can provide the __default_subscription__. 
+1.	(Recommended) When adding a new AKS agent, you can provide the __default tenant Id__, and when attaching it a space you can provide the __default_subscription__. 
+  - From the ```Administration``` menu, select ```Cloud Accounts ``` and then ```Connect a Cloud``` 
+  - Choose "Azure" then "AKS" and fill the information:
+
+  > ![Locale Dropdown](/img/AKS-doc.png)
+
+  - Connect the agent to one or more spaces:
+  
+  > ![Locale Dropdown](/img/AKS-doc-2.png)
+
+  Note: select the namespace and the service account you configured in the previous step.
 
 2.	You may override the default credentials defined for the AKS agent, or define the credentials if no credentials were configured as the default.
 
