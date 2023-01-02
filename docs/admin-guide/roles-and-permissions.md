@@ -23,25 +23,42 @@ As such, there are 4 roles in Torque:
 * **Space Developer** tracks the space's usage and cost. As such, this user also manages the tags that are attached to each cloud resource luanched as part of the space's environmnents.
 * **Space Member** is the end-user of the environment. This user browses the blueprint catalog and launches the environment they need. Typical examples of a space member include a developer who is tasked with creating the blueprint, and a QA specialist who needs to run validation tests before pushing the updates to production.
 
-| Permission      | Account admin | Space admin | Space developer   | Space member |
-| ----------- | ----------- | ----------- | ----------- | ----------- |
-| Add / Remove Cloud Accounts	   | ![Locale Dropdown](/img/green-dot.png)      |||||
-| Create Spaces	   | ![Locale Dropdown](/img/green-dot.png)        |||||
-| Integrate IDP	   | ![Locale Dropdown](/img/green-dot.png)        |||||
-| Create Roles	   | ![Locale Dropdown](/img/green-dot.png)        |||||
-| Full access to all spaces	   | ![Locale Dropdown](/img/green-dot.png)        |||||
-| Invite new account admins	   | ![Locale Dropdown](/img/green-dot.png)        |||||
-| Manage account tags	   | ![Locale Dropdown](/img/green-dot.png)        |||||
-| Launch sandboxes   | ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)  |![Locale Dropdown](/img/green-dot.png)|  ![Locale Dropdown](/img/green-dot.png)|
-| Publish blueprints	   | ![Locale Dropdown](/img/green-dot.png)       |![Locale Dropdown](/img/green-dot.png)||||
-| Manage production environments	   | ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)|![Locale Dropdown](/img/green-dot.png)||
-| Setup blueprint repositories	   | ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)|||
-| Manage space users & roles	   | ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)|||
-| Get information on Cloud Account	   | ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)  |![Locale Dropdown](/img/green-dot.png)||
-| View cost data	   | ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)  |![Locale Dropdown](/img/green-dot.png)|![Locale Dropdown](/img/green-dot.png)|
-| Manage space tags	   | ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)||||
-| Manage space policies	   | ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)||||
-| Manage blueprint tags	   | ![Locale Dropdown](/img/green-dot.png)|![Locale Dropdown](/img/green-dot.png)|![Locale Dropdown](/img/green-dot.png)||
+| Permission      | Description |Account admin | Space admin | Space developer   | Space member |
+| ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
+| Manage account	   |1. Config audit log target.<br />2. Delete the account.<br />3. View account usage and cost.| ![Locale Dropdown](/img/green-dot.png)      |||||
+| [Manage agents](/getting-started/Install-and-connect-self-hosted-agent)	   |Install new Torque agents (requires K8s cluster or Vcenter access), delete agents, edit agents properties.| ![Locale Dropdown](/img/green-dot.png)      |||||
+| [Manage cloud accounts for cost collection](/admin-guide/cost)	   |Add/remove cloud accounts for Torque to collect environment cost from.| ![Locale Dropdown](/img/green-dot.png)      |||||
+| [Manage spaces](/getting-started/Create%20your%20space)	   |1. Create/delete/rename spaces.<br />2. Associate/remove agents to/from spaces.| ![Locale Dropdown](/img/green-dot.png)        |||||
+| [Manage users](#invite-users-to-torque)	   |Invite users to Torque, cancel users invitations, add users to space, change users roles.| ![Locale Dropdown](/img/green-dot.png)        ||||
+| [Manage account parameters](/admin-guide/params)	   |Create/update/delete names and values of parameters, which are available across the account.| ![Locale Dropdown](/img/green-dot.png)        |||||
+| [Manage credentials](/admin-guide/credentials)	   |Create/update/delete credentials to cloud accounts, which can later be used for infra provisioning, cost or actions.| ![Locale Dropdown](/img/green-dot.png)        |||||
+| [Manage account tags](/admin-guide/tags)	   |Create custom tags definitions to be applied across the account.| ![Locale Dropdown](/img/green-dot.png)        |||||
+| [Manage policies](/admin-guide/policies)	   |Create/update/delete policies to control security and cost across the account.| ![Locale Dropdown](/img/green-dot.png)        |||||
+| [Manage space notifications](/admin-guide/notifications)	   |Create/delete/modify target for Torque notifications for space events.| ![Locale Dropdown](/img/green-dot.png)       |![Locale Dropdown](/img/green-dot.png)||||
+| [Manage space tags](/admin-guide/tags)	   |Set space specific values to Tags defined by the account admin for the "space" scope.| ![Locale Dropdown](/img/green-dot.png)       |![Locale Dropdown](/img/green-dot.png)||||
+| [Manage space parameters](/admin-guide/params)	   |Create/update/delete names and values of parameters which are available across the space.| ![Locale Dropdown](/img/green-dot.png)       |![Locale Dropdown](/img/green-dot.png)||||
+| [Customize space color and icon](/admin-guide/params)	   || ![Locale Dropdown](/img/green-dot.png)       |![Locale Dropdown](/img/green-dot.png)||||
+| [Publish blueprints](/blueprint-designer-guide/blueprint-quickstart-guide)	   |Add/remove blueprints from the catalog.| ![Locale Dropdown](/img/green-dot.png)       |![Locale Dropdown](/img/green-dot.png)||||
+| [Manage space repositories](/getting-started/Discover%20Your%20Assets)	  |1. Add/remove git repositories containing Torque blueprints or IaC assets to a space.<br />2. Run discovery on the repositories to find and add assets to Torque (as autogenerated blueprints). | ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)|||
+| [Manage space users and roles](#add-existing-users-to-your-space)	   |Add Torque users to a space and set their role in the space.| ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)|||
+| [Manage space blueprints](/blueprint-designer-guide/blueprint-quickstart-guide)	   |1. Modify the contents of a blueprint that resides in Torque (not in source control) or delete it.<br />2. Edit blueprint metadata (lables, icons).| ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)  |![Locale Dropdown](/img/green-dot.png)||
+| [Manage blueprint tags](/admin-guide/tags)	   |Set blueprint-specific values for tags defined by the account admin for the "blueprint" scope.| ![Locale Dropdown](/img/green-dot.png)|![Locale Dropdown](/img/green-dot.png)|![Locale Dropdown](/img/green-dot.png)||
+| Force terminate environment    |Terminate a blueprint that failed normal termination while ignoring previous errors.| ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)  |![Locale Dropdown](/img/green-dot.png)||
+| View agents	   |View the list of Torque agents connected to an account.| ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)|![Locale Dropdown](/img/green-dot.png)|||
+| View space users	   |View the list of users in a space.| ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)|![Locale Dropdown](/img/green-dot.png)|||
+| View space repositories	   |View the list of repositories in a space.| ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)|![Locale Dropdown](/img/green-dot.png)|||
+| View space notifications	   |View the list of notification targets and configuration of a space.| ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)|![Locale Dropdown](/img/green-dot.png)|||
+| View account tags	   |View the list of tags in the account.| ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)|![Locale Dropdown](/img/green-dot.png)|||
+| View account parameters	   |View the list of parameters in the account.| ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)|![Locale Dropdown](/img/green-dot.png)|||
+| View space cost dashboard	   |View the cost dashboard of a space.| ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)|![Locale Dropdown](/img/green-dot.png)|||
+| Update Grains (Iac Assets)	   |Update the IaC code to a different version.| ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)|![Locale Dropdown](/img/green-dot.png)|||
+| [View Catalog](/getting-started/Launch-environment)   |View the list of published blueprints in the blueprint catalog. | ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)  |![Locale Dropdown](/img/green-dot.png)|  ![Locale Dropdown](/img/green-dot.png)|
+| [Launch environments](/getting-started/Launch-environment)   |Provision an environment from a blueprint. | ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)  |![Locale Dropdown](/img/green-dot.png)|  ![Locale Dropdown](/img/green-dot.png)|
+| Extend environments   |Extend the duration of an environment. | ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)  |![Locale Dropdown](/img/green-dot.png)|  ![Locale Dropdown](/img/green-dot.png)|
+| Terminate environments   |End the environment before the scheduled end time. | ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)  |![Locale Dropdown](/img/green-dot.png)|  ![Locale Dropdown](/img/green-dot.png)|
+| [Manage environment drift](/getting-started/Launch-environment)   |View the diff between the plan (blueprint) and the reality (resources in the cloud) and revert the cloud status to the plan. | ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)  |![Locale Dropdown](/img/green-dot.png)|  ![Locale Dropdown](/img/green-dot.png)|
+| [Run API calls](/rest-api)   |Use Torque's REST API to perform different operations (based on permissions). | ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)  |![Locale Dropdown](/img/green-dot.png)|  ![Locale Dropdown](/img/green-dot.png)|
+| View environment cost data	   |View expected cost of the environment at launch time and the actual cost of an environment on the environment page.| ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)  |![Locale Dropdown](/img/green-dot.png)|![Locale Dropdown](/img/green-dot.png)|
 
 ## Invite Users to Torque
 
