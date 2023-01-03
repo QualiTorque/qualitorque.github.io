@@ -52,8 +52,8 @@ These events are captured by Audit Log. All events are of type "string".
 |Drift Reconcile Started|Environment's __Reconcile__ operation was initiated to reset the environment to its original state.|Account/Space/Environment|- Grain|
 |Drift Reconcile Completed|Environment's Reconcile operation completed.|Account/Space/Environment|- Grain|
 |Environment Extended|Environment's duration was extended.|Account/Space/Environment|- Extension Duration|
-|Environment Launch Started|Environment was launched.|Account/Space/Environment|- is_sample: Indicates if the environment was created from a sample blueprint|
-|Environment Launch Completed|Environment's launch completed and the environment's state changed to Active.|Account/Space/Environment|- is_sample: Indicates if the environment was created from a sample blueprint<br />- Duration|
+|Environment Launch Started|Environment was launched.|Account/Space/Environment|- is_sample: "true" indicates that the environment was created from a sample blueprint|
+|Environment Launch Completed|Environment's launch completed and the environment's state changed to Active.|Account/Space/Environment|- is_sample: "true" indicates that the environment was created from a sample blueprint<br />- Duration|
 |Termination Started|Environment's termination was initiated.|Account/Space/Environment||
 |Termination Completed|Environment's termination completed.|Account/Space/Environment||
 |Force Terminate|Environment was force terminated immmediately.|Account/Space/Environment||
