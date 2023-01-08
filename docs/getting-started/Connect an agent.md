@@ -10,5 +10,5 @@ The infrastructure resources of the environment may be deployed to other clouds 
 :::
 
 Torque supports two types of agents:
-- Quali-hosted agent - see [Using the Quali-hosted agent](/getting-started/Quali-hosted-agent.md) 
-- Self-hosted agent [Connect a Kubernetes Cluster](/getting-started/Install-and-connect-self-hosted-agent.md) 
+- Quali-hosted agent is provided with Torque and supports running single-asset blueprints one at a time. See [Using the Quali-hosted agent](/getting-started/Quali-hosted-agent.md) 
+- Self-hosted agent is an agent you create and connect to the cluster. See [Connect a Kubernetes Cluster](/getting-started/Install-and-connect-self-hosted-agent.md).
