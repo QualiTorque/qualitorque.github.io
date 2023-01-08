@@ -5,6 +5,12 @@ nav.theme-doc-breadcrumbs {
   left: 295px;
 }
 
+@media only screen and (max-width: 600px) {
+  nav.theme-doc-breadcrumbs {
+    display: none;
+  }
+}
+
 nav.theme-doc-breadcrumbs .breadcrumbs__item .breadcrumbs__link {
   color: #E5E5E8;
   padding: 0;

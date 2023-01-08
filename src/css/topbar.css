@@ -5,6 +5,12 @@
   background-color: #015CC7;
 }
 
+@media only screen and (max-width: 600px) {
+  .navbar {
+    width: 100%;
+  }
+}
+
 .navbar__items {
   padding-right: 5px;
 }
