@@ -3,7 +3,9 @@ sidebar_position: 8
 title: Terraform AKS Authentication
 ---
 
+
 If you're using an AKS cluster as your execution host, and you want to run Terraform that deploys resources on Azure, you can use a Azure Workload Identity (valid for AKS clusters version 1.22+) that allows the cluster to securely authenticate with Azure using K8s service account and an Open ID connect (OIDC) token.
+For a step-by-step tutorial, see [Video: Connecting a new agent and using it in a blueprint](#video-connecting-a-new-agent-and-using-it-in-a-blueprint).
 
 The basic process is as follows:
 - [__Azure Configuration__](#azure-configuration)
@@ -95,12 +97,8 @@ The basic process is as follows:
 
 8. Create a file called aks_workload_id_service_account.yaml with the below content:
 
-  :::note
-  Replace the {property name} with the corresponding values.
-
-  For service account name, choose a new name.
-  
-  Take a note of the namespace that you select for Torque Environments (it will be in use in the next part - Torque configuration)
+  :::tip
+  Replace the {property name} with the corresponding values. For service account name, choose a new name. Take a note of the namespace that you select for Torque Environments (it will be in use in the next part - Torque configuration)
   :::
  
   ```jsx title=
@@ -141,37 +139,38 @@ Have the following formation ready (from the previous section)
 
 There are 2 ways to acomplish this:
 
-1.	(Recommended) When adding a new AKS agent, you can provide the __default tenant Id__, and when attaching it a space you can provide the __default_subscription__. 
-  - From the ```Administration``` menu, select ```Cloud Accounts ``` and then ```Connect a Cloud``` 
-  - Choose "Azure" then "AKS" and fill the information:
+1. (Recommended) When adding a new AKS agent, you can provide the **default tenant Id**, and when attaching it a space you can provide the **default_subscription**.
 
-  > ![Locale Dropdown](/img/AKS-doc.png)
-
-  - Connect the agent to one or more spaces:
+  a. From the **Administration** menu, select **Cloud Accounts** and then **Connect a Cloud**.
   
-  > ![Locale Dropdown](/img/AKS-doc-2.png)
+  b. Choose "Azure" then "AKS" and fill the information:
+   > ![Locale Dropdown](/img/AKS-doc-2.png)
 
-  Note: select the namespace and the service account you configured in the previous step.
+  c. Generate the "kubectl apply" command and run it in Azure CLI.
+   > ![Locale Dropdown](/img/AKS-doc-3.png)
 
-2.	You may override the default credentials defined for the AKS agent, or define the credentials if no credentials were configured as the default.
+  d. Click **Associate to Space** and connect the agent to one or more spaces. Select the namespace and the service account you configured in the previous step.
+     > ![Locale Dropdown](/img/AKS-doc-4.png)
 
-  a. In the ```Terraform grain```, specify the service-account name under ```spec``` > ```host```:
 
-  ```jsx title=
-    spec:
-      source:
-        ...
-      namespace:
-      host:
-        name: {aks_torque_agent_name}
-        service account: {new_service_account_name} # this is the k8s service account created above
-
+2. You may override the default credentials defined for the AKS agent, or define the credentials if no credentials were configured as the default.
+  a. In the Terraform grain, specify the service-account name under spec > host:
+    ```jsx title=
+  spec:
+    source:
+      ...
+    namespace:
+    host:
+      name: {aks_torque_agent_name}
+      service account: {new_service_account_name} # this is the k8s service account created above    
   ```
+  b. Under ```env-vars```, add the following (will override the default definition of the AKS agent):
+    ```jsx title=
+  ARM_SUBSCRIPTION_ID: <Subscription_ID>
+  ARM_TENANT_ID: <Tenant_ID>
+  ARM_CLIENT_ID: <Client_ID>
 
-  b. Under ```env-vars``` add the following (will override the default definition of the AKS agent)
-
-  ```jsx
-    ARM_SUBSCRIPTION_ID: <Subscription_ID>
-    ARM_TENANT_ID: <Tenant_ID>
-    ARM_CLIENT_ID: <Client_ID>
-  ```
+## Video: Connecting a new agent and using it in a blueprint
+<video controls width="75%">
+  <source src="/img/connect azure agent.mp4"/>
+</video>
