@@ -3,163 +3,166 @@ sidebar_position: 8
 title: Terraform AKS Authentication
 ---
 
-
-If you're using an AKS cluster as your execution host, and you want to run Terraform that deploys resources on Azure, you can use a Azure Workload Identity (valid for AKS clusters version 1.22+) that allows the cluster to securely authenticate with Azure using K8s service account and an Open ID connect (OIDC) token.
-For a step-by-step tutorial video, see [Video: Connecting a new agent and using it in a blueprint](#video-connecting-a-new-agent-and-using-it-in-a-blueprint).
+If you're using an AKS cluster as your execution host, and you want to run Terraform that deploys resources on Azure, you can use a  pod managed identity to do the authentication and permissions between the pod and the Azure account where the resources will be created.
 
 The basic process is as follows:
+- [Configure the pod managed identity](#configure-the-pod-managed-identity)
+- [Configure Torque's Terraform authentication on AKS](#configure-torques-terraform-authentication-on-aks)
 
-* [Azure Configuration](#azure-configuration)
-  * [Prerequisites](#prerequisites)
-  * [Configure the Azure Workload Identity](#configure-the-azure-workload-identity)
-* [Torque Configuration](#torque-configuration)
-  * [Prerequisites](#prerequisites-1)
-  * [Configure the AKS authentication in Torque](#configure-the-aks-authentication-in-torque)
+## Configure the pod managed identity
+In this procedure, you will attach a Torque Terraform runner pod to a managed identity.
 
-## Azure Configuration
-
-### Prerequisites
-
+__Prerequisites__:
 * Azure CLI installed locally or use Azure CLI in Azure portal
-  * If not installed: Download the MSI from https://aka.ms/installazurecliwindows and run the installer.
-Update to latest:
+
+
+__To configure the pod managed identity__:
+
+1. Uprade Azure cli:
   ```jsx title=
-az upgrade
+  az upgrade
+  ```
 
-2. Install aks-preview Azure CLI extension and update extension to latest:
+2.	Register the EnablePodIdentityPreview feature: 
   ```jsx title=
-az extension add --name aks-preview
-az extension update --name aks-preview
+  az feature register --name EnablePodIdentityPreview --namespace Microsoft.ContainerService
+  ```
 
-3. Command-line with kubectl installed connected the cluster where you installed the Torque agent. To connect to the cluster use:
+3.	Install the aks-preview Azure CLI:
   ```jsx title=
-kubectl config use-context <your-cluster>
+  az extension add --name aks-preview
+  az extension update --name aks-preview
+  ```
 
+4.	Add Azure Container Networking Interface (CNI) to AKS.
+  
+    * If you don’t have an AKS cluster, create one with Azure CNI and the pod managed identity feature:
 
-### Configure the Azure Workload Identity
+      ```jsx title=
+      az group create --name myResourceGroup --location eastus
+      az aks create -g myResourceGroup -n myAKSCluster --enable-pod-identity --network-plugin azure
+      ```
 
-1. Set CLI context to the Azure Subscription the AKS cluster is in:
+     * If you have an existing AKS cluster with Azure CNI, update it to enable the pod managed identity feature:
+       ```jsx title=
+       az aks update -g $MY_RESOURCE_GROUP -n $MY_CLUSTER --enable-pod-identity
+       ```
+
+5.	Create identity:
   ```jsx title=
-az account set --subscription (subscription name or ID)
+  az group create --name myIdentityResourceGroup --location eastus
+  export IDENTITY_RESOURCE_GROUP="myIdentityResourceGroup"
+  export IDENTITY_NAME="application-identity"
+  az identity create --resource-group ${IDENTITY_RESOURCE_GROUP} --name ${IDENTITY_NAME}
+  export IDENTITY_CLIENT_ID="$(az identity show -g ${IDENTITY_RESOURCE_GROUP} -n ${IDENTITY_NAME} --query clientId -otsv)"
+  export IDENTITY_RESOURCE_ID="$(az identity show -g ${IDENTITY_RESOURCE_GROUP} -n ${IDENTITY_NAME} --query id -otsv)"
+  ```
 
-2. Enable WorkloadIdentity feature on Azure Subscription:
-  ```jsx title=
-az feature register --namespace "Microsoft.ContainerService" --name "EnableWorkloadIdentityPreview"
+6.	Add contributor permissions to the managed identity at the subscription level using azure portal (or the required permissions for TF to deploy the resources in azure):
 
-TIP
-This step may take 10-20 minutes until it is in effect, use the below command to check the state of the registration until it says "Registered"
-
-3. Check registration status:
-  ```jsx title=
-az feature show --namespace "Microsoft.ContainerService" --name "EnableWorkloadIdentityPreview"
-
-4. Propogate registration:
-  ```jsx title=
-az provider register --namespace Microsoft.ContainerService
-
-5. Update the AKS cluster to enable OIDC and Workload Identity:
-  ```jsx title=
-az aks update -g {aks_resource_group_name} -n {aks_cluster_name} --enable-oidc-issuer --enable-workload-identity  
-
-6. Copy the "issuerURl" from the response to this command to a note for use later as OIDC_ISSUER_URL.
-
-7. Create a managed identity and grant permissions:
-  ```jsx title=
-az identity create --name {Managed_Identity_Name} --resource-group {AKS_Resource_Group_Name} --location {resource_group_location} --subscription {aks_cluster_subscription_id}
-
-8. Copy the Managed Identity's name and "client id" to a note for use later.
-
-9. Add permissions to the managed identity at the subscription level using Azure portal (this example uses the "contributor" role. You can select a different role, that has enough permissions to run your terraform modules):
-
-  a. Go to the **Subscriptions** page (type in the search box “subscriptions”).
+  a. Go to the __Subscriptions__ page (type in the search box “subscriptions”).
 
   b. Click the appropriate subscription.
 
-  c. Select **Access Control (IAM)**.
+  c. Select __Access Control (IAM)__.
 
-  d. Click **+ Add** and select **Add role assignment**.
+  d. Click __+ Add__ and select __Add role assignment__.
 
-  e. Select **Contributor** and click **Next**.
+  e. Select __Contributor__ and click __Next__.
 
-  f. In the **Members** page, select the **User, group or service principle** option and click the *+ Select members* link.
+  f. In the __Members__ page, select the __User, group or service principle__ option and click the __+ Select members__ link.
 
-  g. Use the search bar to find and select the managed identity. Then, click **Select**.
+  g. Use the search bar to find and select the managed identity. Then, click __Select__.
 
-  h. Click **Create** to create the role assignment.
+  h. Click __Create__ to create the role assignment.
 
-10. Create a file called **_aks_workload_id_service_account.yaml_** with the below content:
-
-NOTE
-Replace the {property name} with the corresponding values.
-
-For service account name, choose a new name.
-
-Take a note of the namespace that you select for Torque Environments (it will be in use in the next part - Torque configuration)
-
-```jsx title=
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  annotations:
-    azure.workload.identity/client-id: {Managed_Identity_Client_ID}
-  labels:
-    azure.workload.identity/use: "true"
-  name: {New_Service_Account_Name}
-  namespace: {Torque_Environments_K8s_Namespace} 
-```
-11. Apply the file on your AKS Cluster
+7.	Create a pod identity in the environment namespace. If you don’t have one, choose/create a namespace for the environments:
   ```jsx title=
-kubectl apply -f {path_to_file}\aks_workload_id_service_account.yaml  
-
-12. Establish federated identity credential (Allow the AKS Cluster's OIDC provider access to the Managed Identity via the service account)
-  ```jsx title=
-az identity federated-credential create --name {federated_credential_name} --identity-name {managed_identity_name} --resource-group {managed_identity_resource_group} --issuer {AKS_cluster_OIDC_issuer_URL} --subject system:serviceaccount:{Torque_Environments_K8s_namespace}:{service_account_name}
-
-## Torque Configuration
-
-### Prerequisites
-* Have the following formation ready (from the previous section)
-  * Tenant ID (displayed in **Azure Active Directory > Overview**)
-  * Subscription ID
-  * The namespace where the Torque environments will run (which you chose previously) and the service account name (which you also created in the previous step).
-
-### Configure the AKS authentication in Torque
-                                                                    
- There are 2 ways to acomplish this:
-
-1. (Recommended) When adding a new AKS agent, you can provide the **default tenant Id**, and when attaching it a space you can provide the **default_subscription**.
-
-  a. From the **Administration** menu, select **Cloud Accounts** and then **Connect a Cloud**.
-  
-  b. Choose "Azure" then "AKS" and fill the information:
-   > ![Locale Dropdown](/img/AKS-doc-2.png)
-
-  c. Generate the "kubectl apply" command and run it in Azure CLI.
-   > ![Locale Dropdown](/img/AKS-doc-3.png)
-
-  d. Click **Associate to Space** and connect the agent to one or more spaces. Select the namespace and the service account you configured in the previous step.
-     > ![Locale Dropdown](/img/AKS-doc-4.png)
-
-
-2. You may override the default credentials defined for the AKS agent, or define the credentials if no credentials were configured as the default.
-  a. In the Terraform grain, specify the service-account name under spec > host:
-    ```jsx title=
-  spec:
-    source:
-      ...
-    namespace:
-    host:
-      name: {aks_torque_agent_name}
-      service account: {new_service_account_name} # this is the k8s service account created above    
+  export POD_IDENTITY_NAME="my-pod-identity"
+  export POD_IDENTITY_NAMESPACE="<environment_namespace>"
+  az aks pod-identity add --resource-group myResourceGroup --cluster-name myAKSCluster --namespace ${POD_IDENTITY_NAMESPACE}  --name ${POD_IDENTITY_NAME} --identity-resource-id ${IDENTITY_RESOURCE_ID}
   ```
-  b. Under ```env-vars```, add the following (will override the default definition of the AKS agent):
+
+8.	Once the pod identity is created, Azure will create an AzureIdentity resource in your cluster. This resource represents the identity in Azure, and an AzureIdentityBinding resource, which connects the AzureIdentity to a selector. You can view these resources with the following commands:
+  ```jsx title=
+  kubectl get azureidentity -n $POD_IDENTITY_NAMESPACE
+  kubectl get azureidentitybinding -n $POD_IDENTITY_NAMESPACE
+  ```
+
+9.	Get the aadpodidbinding pod label, which is needed to support Terraform authentication on AKS: 
+
+  To use AAD pod-managed identity, the pod needs an aadpodidbinding label with a value that matches a selector from a AzureIdentityBinding. By default, the selector matches the name of the pod identity, but you can also set it using the ```--binding-selector``` option when calling ```az aks pod-identity add```.
+
+## Configure Torque's Terraform authentication on AKS
+
+__Prerequisites__:
+* Subscription ID
+* Tenant ID (displayed in the __Azure Active Directory > Overview__)
+* Managed identity ID – ID of the managed identity configured with pod managed identity (click __Managed Identities >__ the name of the managed identity __> Client ID__).
+* Azure identity binding selector – The selector value of the AzureIdentityBinding entity. This value will be used as a label for the Terraform runner pod, thus creating the binding between the pod and the managed identity. 
+  
+  __To find the identity binding selector:__
+  
+  1. In Azure CLI, run ```kubectl get azureidentitybinding -o json -n <azure_identity_namespace>``` (if you don't know the namespace name, omit ```-n <azure_identity_namespace>```). 
+  2. Select the appropriate azureidentitybinding, located under  "spec" -> "azureIdentity" of the azureidentitybinding - look for the one that has your azure identity name. 
+  3. Once you find the appropriate azureidentitybinding, in json output, you will find the Azure identity binding selector value under __spec > selector__.
+  > ![Locale Dropdown](/img/managed-identity.png)
+
+There are 2 ways to provide these details:
+1.	Adding AKS: When adding a new AKS, the Azure user can provide these details under __Default credentials__.
+
+2.	Blueprint: The Torque user can override the default credentials defined in the AKS, or create one no credentials were supplied.
+
+  a. Under ```env-vars``` of the Terraform grain add the following:
+
     ```jsx title=
-  ARM_SUBSCRIPTION_ID: <Subscription_ID>
-  ARM_TENANT_ID: <Tenant_ID>
-  ARM_CLIENT_ID: <Client_ID>
+    ARM_USE_MSI: true
+    ARM_SUBSCRIPTION_ID: <Subscription_ID>
+    ARM_TENANT_ID: <Tenant_ID>
+    ARM_CLIENT_ID: <Client_ID>
+  ```
 
+  b. In the Terraform grain, specify the selector value of the Azure identity binding under ```spec``` > ```host```:
 
-## Video: Connecting a new agent and using it in a blueprint
-<video controls width="75%">
-  <source src="/img/connect azure agent.mp4"/>
-</video>
+  ```jsx title=
+    spec:
+      source:
+        ...
+      namespace:
+      host:
+        kubernetes:
+          pod-labels:
+          - aadpodidbinding: <pod-identity-name>
+    ```
+
+  As you can see, we added a new section called “kubernetes” for all Kubernetes configurations, which includes ```pod-labels```. Any values provided under ```pod-labels``` will be used as labels for the Terraform runner pod. See the following blueprint YAML as an example:
+
+ ```jsx title=
+  spec_version: 2
+
+  description: Azure RG.
+
+  inputs:
+    host_name:
+      type: string
+      display-style: normal
+
+  grains:
+    azure_resource_group:
+      kind: terraform
+      spec:
+        source:
+          store: terraform_repo
+          path: terraform/azure-RG
+        host:
+          name: '{{ .inputs.host_name }}'
+          kubernetes:
+            pod-labels:
+            - aadpodidbinding: my-pod-identity
+        env-vars: 
+        - ARM_USE_MSI: true
+        - ARM_SUBSCRIPTION_ID: 0d266a1e-f6w3-4ec5-96a1-061539f16j32
+        - ARM_TENANT_ID: a2526a87-7777-4f7c-95gt-4f0f57136553
+        - ARM_CLIENT_ID: 108e6546-da2c-46ab-b00a-4fe987d33657
+        tf-version: 1.2.3
+    ```
