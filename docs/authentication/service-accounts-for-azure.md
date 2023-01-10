@@ -5,6 +5,7 @@ title: Terraform AKS Authentication
 
 
 If you're using an AKS cluster as your execution host, and you want to run Terraform that deploys resources on Azure, you can use a Azure Workload Identity (valid for AKS clusters version 1.22+) that allows the cluster to securely authenticate with Azure using K8s service account and an Open ID connect (OIDC) token.
+For a step-by-step tutorial video, see [Video: Connecting a new agent and using it in a blueprint](#video-connecting-a-new-agent-and-using-it-in-a-blueprint).
 
 The basic process is as follows:
 
@@ -156,3 +157,9 @@ az identity federated-credential create --name {federated_credential_name} --ide
   ARM_SUBSCRIPTION_ID: <Subscription_ID>
   ARM_TENANT_ID: <Tenant_ID>
   ARM_CLIENT_ID: <Client_ID>
+
+
+## Video: Connecting a new agent and using it in a blueprint
+<video controls width="75%">
+  <source src="/img/connect azure agent.mp4"/>
+</video>
