@@ -45,6 +45,10 @@
         border-radius: 4px;
         font-weight: 400;
 
+        @media only screen and (max-width: 600px) {
+            text-align: center;
+        }
+
         &:hover {
             opacity: 0.8;
         }
