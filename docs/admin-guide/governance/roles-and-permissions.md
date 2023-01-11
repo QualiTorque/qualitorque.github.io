@@ -1,6 +1,6 @@
 ---
-sidebar_position: 2
-title: Roles and Permissions
+sidebar_position: 3
+title: Users, Roles and Permissions
 ---
 
 Now that you understand how Torque works, it's time to understand how roles and permissions work, and invite other members of your team to your Torque account and spaces. 
@@ -27,22 +27,22 @@ As such, there are 4 roles in Torque:
 | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
 | Manage account	   |1. Config audit log target.<br />2. Delete the account.<br />3. View account usage and cost.| ![Locale Dropdown](/img/green-dot.png)      |||||
 | [Manage agents](/getting-started/Install-and-connect-self-hosted-agent)	   |Install new Torque agents (requires K8s cluster or Vcenter access), delete agents, edit agents properties.| ![Locale Dropdown](/img/green-dot.png)      |||||
-| [Manage cloud accounts for cost collection](/admin-guide/cost)	   |Add/remove cloud accounts for Torque to collect environment cost from.| ![Locale Dropdown](/img/green-dot.png)      |||||
+| [Manage cloud accounts for cost collection](/admin-guide/cost-tracking/cost)	   |Add/remove cloud accounts for Torque to collect environment cost from.| ![Locale Dropdown](/img/green-dot.png)      |||||
 | [Manage spaces](/getting-started/Create%20your%20space)	   |1. Create/delete/rename spaces.<br />2. Associate/remove agents to/from spaces.| ![Locale Dropdown](/img/green-dot.png)        |||||
 | [Manage users](#invite-users-to-torque)	   |Invite users to Torque, cancel users invitations, add users to space, change users roles.| ![Locale Dropdown](/img/green-dot.png)        ||||
-| [Manage account parameters](/admin-guide/params)	   |Create/update/delete names and values of parameters, which are available across the account.| ![Locale Dropdown](/img/green-dot.png)        |||||
-| [Manage credentials](/admin-guide/credentials)	   |Create/update/delete credentials to cloud accounts, which can later be used for infra provisioning, cost or actions.| ![Locale Dropdown](/img/green-dot.png)        |||||
-| [Manage account tags](/admin-guide/tags)	   |Create custom tags definitions to be applied across the account.| ![Locale Dropdown](/img/green-dot.png)        |||||
-| [Manage policies](/admin-guide/policies)	   |Create/update/delete policies to control security and cost across the account.| ![Locale Dropdown](/img/green-dot.png)        |||||
+| [Manage account parameters](/admin-guide/general/params)	   |Create/update/delete names and values of parameters, which are available across the account.| ![Locale Dropdown](/img/green-dot.png)        |||||
+| [Manage credentials](/admin-guide/general/credentials)	   |Create/update/delete credentials to cloud accounts, which can later be used for infra provisioning, cost or actions.| ![Locale Dropdown](/img/green-dot.png)        |||||
+| [Manage account tags](/admin-guide/governance/tags)	   |Create custom tags definitions to be applied across the account.| ![Locale Dropdown](/img/green-dot.png)        |||||
+| [Manage policies](/admin-guide/governance/policies)	   |Create/update/delete policies to control security and cost across the account.| ![Locale Dropdown](/img/green-dot.png)        |||||
 | [Manage space notifications](/admin-guide/notifications)	   |Create/delete/modify target for Torque notifications for space events.| ![Locale Dropdown](/img/green-dot.png)       |![Locale Dropdown](/img/green-dot.png)||||
-| [Manage space tags](/admin-guide/tags)	   |Set space specific values to Tags defined by the account admin for the "space" scope.| ![Locale Dropdown](/img/green-dot.png)       |![Locale Dropdown](/img/green-dot.png)||||
-| [Manage space parameters](/admin-guide/params)	   |Create/update/delete names and values of parameters which are available across the space.| ![Locale Dropdown](/img/green-dot.png)       |![Locale Dropdown](/img/green-dot.png)||||
-| [Customize space color and icon](/admin-guide/params)	   || ![Locale Dropdown](/img/green-dot.png)       |![Locale Dropdown](/img/green-dot.png)||||
+| [Manage space tags](/admin-guide/governance/tags)	   |Set space specific values to Tags defined by the account admin for the "space" scope.| ![Locale Dropdown](/img/green-dot.png)       |![Locale Dropdown](/img/green-dot.png)||||
+| [Manage space parameters](/admin-guide/general/params)	   |Create/update/delete names and values of parameters which are available across the space.| ![Locale Dropdown](/img/green-dot.png)       |![Locale Dropdown](/img/green-dot.png)||||
+| [Customize space color and icon](/admin-guide/general/params)	   || ![Locale Dropdown](/img/green-dot.png)       |![Locale Dropdown](/img/green-dot.png)||||
 | [Publish blueprints](/blueprint-designer-guide/blueprint-quickstart-guide)	   |Add/remove blueprints from the catalog.| ![Locale Dropdown](/img/green-dot.png)       |![Locale Dropdown](/img/green-dot.png)||||
 | [Manage space repositories](/getting-started/Discover%20Your%20Assets)	  |1. Add/remove git repositories containing Torque blueprints or IaC assets to a space.<br />2. Run discovery on the repositories to find and add assets to Torque (as autogenerated blueprints). | ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)|||
 | [Manage space users and roles](#add-existing-users-to-your-space)	   |Add Torque users to a space and set their role in the space.| ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)|||
 | [Manage space blueprints](/blueprint-designer-guide/blueprint-quickstart-guide)	   |1. Modify the contents of a blueprint that resides in Torque (not in source control) or delete it.<br />2. Edit blueprint metadata (lables, icons).| ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)  |![Locale Dropdown](/img/green-dot.png)||
-| [Manage blueprint tags](/admin-guide/tags)	   |Set blueprint-specific values for tags defined by the account admin for the "blueprint" scope.| ![Locale Dropdown](/img/green-dot.png)|![Locale Dropdown](/img/green-dot.png)|![Locale Dropdown](/img/green-dot.png)||
+| [Manage blueprint tags](/admin-guide/governance/tags)	   |Set blueprint-specific values for tags defined by the account admin for the "blueprint" scope.| ![Locale Dropdown](/img/green-dot.png)|![Locale Dropdown](/img/green-dot.png)|![Locale Dropdown](/img/green-dot.png)||
 | Force terminate environment    |Terminate a blueprint that failed normal termination while ignoring previous errors.| ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)  |![Locale Dropdown](/img/green-dot.png)||
 | View agents	   |View the list of Torque agents connected to an account.| ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)|![Locale Dropdown](/img/green-dot.png)|||
 | View space users	   |View the list of users in a space.| ![Locale Dropdown](/img/green-dot.png)        |![Locale Dropdown](/img/green-dot.png)|![Locale Dropdown](/img/green-dot.png)|||

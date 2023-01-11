@@ -18,15 +18,15 @@ title: Torque Features
 * __[Automatic drift detection](/getting-started/Launch-environment#drift)__: See what external changes have occurred to your environment and its resources, revert the changes to bring your environment back to its initial state.
 
 ## Governance and workflows
-* __Granular RBAC__: Set up [spaces](/getting-started/Create%20your%20space) for different business units, teams, and projects. Assign assets, [users and roles](/admin-guide/roles-and-permissions) to the users, limiting capabilities based on their needs and access only to the environments that apply to that space. 
-* __Parameter/Secret store support__: Set up an account or space-level [parameter store](/admin-guide/params) and save sensitive or recurring values too, allowing Torque blueprints to dynamically pull the relevant details without saving them to the source control repository.
-* __Governance policies__: [Limit environment durations](/blueprint-designer-guide/Policies) and apply [OPA security policies](/admin-guide/policies) to environments.
+* __Granular RBAC__: Set up [spaces](/getting-started/Create%20your%20space) for different business units, teams, and projects. Assign assets, [users and roles](/admin-guide/governance/roles-and-permissions) to the users, limiting capabilities based on their needs and access only to the environments that apply to that space. 
+* __Parameter/Secret store support__: Set up an account or space-level [parameter store](/admin-guide/general/params) and save sensitive or recurring values too, allowing Torque blueprints to dynamically pull the relevant details without saving them to the source control repository.
+* __Governance policies__: [Limit environment durations](/blueprint-designer-guide/Policies) and apply [OPA security policies](/admin-guide/governance/policies) to environments.
 * __Approval flows__: Define an approval process for production/high-cost environments and review pending requests.
 * __Auto-shutdown and cleanup__: Automatic cleanup of environment's cloud resources when environment ends, cutting costs and ensuring nothing is left behind.
 
 
 ## Monitoring and control
-* __[Cost management and estimation](/admin-guide/cost)__: Easily view the cloud costs of your environments, as well as current/estimated spending by blueprint, environment or space.
+* __[Cost management and estimation](/admin-guide/cost-tracking/cost)__: Easily view the cloud costs of your environments, as well as current/estimated spending by blueprint, environment or space.
 * __[Introspection](/getting-started/Launch-environment)__: Drill-down into each environment's cloud resources, elements and metadata directly from Torque.
 * __[CI/CD Integration](/eco-system/Integrations/ci-cd)__: Configure environments to be spun up and tested as part of a CI/CD process using some of the leading tools on the market, including Jenkins, Azure DevOps, CircleCI, Bamboo, and more.
 * __[Slack and Teams notifications](/admin-guide/notifications)__: Get notifications for different environment lifecycle phases to the Teams/Slack channel of your choice.

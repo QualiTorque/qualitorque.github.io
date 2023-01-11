@@ -1,9 +1,9 @@
 ---
-sidebar_position: 21
+sidebar_position: 6
 title: Credentials
 ---
 
-The Torque __Credentials__ store allows your CloudFormation and Terraform grains to securely access your cloud authentication details from a single location. Credentials are similar to [Parameters](/admin-guide/params), but unlike parameters which are single-value parameters, credentials are classes that contain multiple parameters. Torque credentials are supported on AWS and Azure.
+The Torque __Credentials__ store allows your CloudFormation and Terraform grains to securely access your cloud authentication details from a single location. Credentials are similar to [Parameters](/admin-guide/general/params), but unlike parameters which are single-value parameters, credentials are classes that contain multiple parameters. Torque credentials are supported on AWS and Azure.
 
 
 __To add a credential:__

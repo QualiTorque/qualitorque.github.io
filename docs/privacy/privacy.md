@@ -19,15 +19,15 @@ When you use our services, you trust us with your personal information. At Quali
         * User authentication/credentials 
         * [IaC](/overview/supported-platforms#infrastructure-as-code) asset files. For example: Terraform, Helm, Kubernetes manifests. For more details, see [Discover Your Assets](/getting-started/Discover%20Your%20Assets)
     * [Agents](/getting-started/Install-and-connect-self-hosted-agent) 
-    * Role that allows cost information gathering - [AWS](/admin-guide/configuring-cost-aws), [Azure](/admin-guide/configuring-cost-azure), [Kubernetes](/admin-guide/configuring-cost-k8s) (optional)
+    * Role that allows cost information gathering - [AWS](/admin-guide/cost-tracking/configuring-cost-aws), [Azure](/admin-guide/cost-tracking/configuring-cost-azure), [Kubernetes](/admin-guide/cost-tracking/configuring-cost-k8s) (optional)
     * Cloud authentication data for Terraform deployments on [EKS](/authentication/service-accounts-for-aws), [AKS](/authentication/service-accounts-for-azure), or [GKE](/authentication/service-accounts-for-gcp))
-    * [Parameters](/admin-guide/params) (optional) 
+    * [Parameters](/admin-guide/general/params) (optional) 
 * Ongoing usage data 
     * Environment history  
         * Cloud resources deployed as part of the environment. See [Launch Your Blueprint](/getting-started/Launch-environment)
         * Events 
-    * [Cost](/admin-guide/cost) information (optional) 
-    * [Audit Log events](/audit-log/events)
+    * [Cost](/admin-guide/cost-tracking/cost) information (optional) 
+    * [Audit Log events](/admin-guide/governance/audit-log/events)
 
 ## What does Torque connect to 
 
