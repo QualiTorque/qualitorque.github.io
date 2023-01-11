@@ -28,7 +28,7 @@ title: Torque Features
 ## Monitoring and control
 * __[Cost management and estimation](/admin-guide/cost)__: Easily view the cloud costs of your environments, as well as current/estimated spending by blueprint, environment or space.
 * __[Introspection](/getting-started/Launch-environment)__: Drill-down into each environment's cloud resources, elements and metadata directly from Torque.
-* __[CI/CD Integration](/eco-system/ci-cd)__: Configure environments to be spun up and tested as part of a CI/CD process using some of the leading tools on the market, including Jenkins, Azure DevOps, CircleCI, Bamboo, and more.
+* __[CI/CD Integration](/eco-system/Integrations/ci-cd)__: Configure environments to be spun up and tested as part of a CI/CD process using some of the leading tools on the market, including Jenkins, Azure DevOps, CircleCI, Bamboo, and more.
 * __[Slack and Teams notifications](/admin-guide/notifications)__: Get notifications for different environment lifecycle phases to the Teams/Slack channel of your choice.
 
 
