@@ -146,7 +146,10 @@ There are 2 ways to acomplish this:
   b. Choose "Azure" then "AKS" and fill the information:
    > ![Locale Dropdown](/img/AKS-doc-2.png)
 
-  c. Generate the "kubectl apply" command and run it in Azure CLI.
+  c. __Generate__ the "kubectl apply" command and run it in Azure CLI.
+    > ![Locale Dropdown](/img/AKS-doc-2-a.png)
+
+  d. Return to Torque and wait for the connection status to change to a green "Connected!".
    > ![Locale Dropdown](/img/AKS-doc-3.png)
 
   d. Click **Associate to Space** and connect the agent to one or more spaces. Select the namespace and the service account you configured in the previous step.
