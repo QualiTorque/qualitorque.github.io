@@ -272,7 +272,7 @@ Blueprint designers might need extra details about the account, space or environ
 :::
 
 ### Parameters
-Torque's [Parameters](/admin-guide/params) store allows admins to set pre-defined account/space-level parameters. Blueprint designers can use the parameters in the blueprint YAML, instead of inputs if they don't want the environment end-user to provide the value, but also don't want to hard-code it in the blueprint.
+Torque's [Parameters](/admin-guide/general/params) store allows admins to set pre-defined account/space-level parameters. Blueprint designers can use the parameters in the blueprint YAML, instead of inputs if they don't want the environment end-user to provide the value, but also don't want to hard-code it in the blueprint.
 
 The syntax is: ```{{.params.param-value}}```
 
@@ -317,7 +317,7 @@ Please see [the grain source](blueprints.md#source) for more details.
 Please see [the grain host](blueprints.md#host) for more details.
 
 ### authentication
-To enable Torque to connect to the AWS account and deploy the CloudFormation template, you must supply the Role Arn and external ID in the CloudFormation grain's ```authentication``` section. This is done by referencing a [credential](/admin-guide/credentials) that contains these authentication details. There are two ways to specify the credential, literally by name or using an input:
+To enable Torque to connect to the AWS account and deploy the CloudFormation template, you must supply the Role Arn and external ID in the CloudFormation grain's ```authentication``` section. This is done by referencing a [credential](/admin-guide/general/credentials) that contains these authentication details. There are two ways to specify the credential, literally by name or using an input:
 
 ```yaml
 grains:
@@ -377,7 +377,7 @@ Note that invalid tokens will be parsed as strings. Keep in mind that json strin
 
 
 ### tags  
-Whenever a Terraform grain is launched, all resources created during the deployment process will be automatically tagged with Torque's system tags, built-in tags and custom tags (for details, see [Tags](/admin-guide/tags). 
+Whenever a Terraform grain is launched, all resources created during the deployment process will be automatically tagged with Torque's system tags, built-in tags and custom tags (for details, see [Tags](/admin-guide/governance/tags). 
 Sometimes, you need to disable tagging for all or specific resources.
 To disable *all* resources in a specific grain use the following syntax:
 
@@ -565,7 +565,7 @@ Please see [the grain source](blueprints.md#source) for more details.
 Host is not required or supported by CloudFormation Grain. Instead, this grain uses direct authentication to the AWS cloud account, as explained below.
 
 ### authentication
-To enable Torque to connect to the AWS account and deploy the CloudFormation template, you must supply the Role Arn and external ID in the CloudFormation grain's ```authentication``` section. This is done by referencing a [credential](/admin-guide/credentials) that contains these authentication details. There are two ways to specify the credential, literally by name or using an input:
+To enable Torque to connect to the AWS account and deploy the CloudFormation template, you must supply the Role Arn and external ID in the CloudFormation grain's ```authentication``` section. This is done by referencing a [credential](/admin-guide/general/credentials) that contains these authentication details. There are two ways to specify the credential, literally by name or using an input:
 
 ```yaml
 grains:
