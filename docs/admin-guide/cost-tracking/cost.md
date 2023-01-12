@@ -3,7 +3,7 @@ sidebar_position: 9
 title: Cost
 ---
 
-Torque's __Cost__ dashboard provides you with actionable insights into the costs of your environments. Cost data is collected using the __torque-environment-id__ and __torque-account-id__ tags which are assigned (with a unique value) to every new environment's resources. To learn more about Torque tagging, see [tags](tags.md).
+Torque's __Cost__ dashboard provides you with actionable insights into the costs of your environments. Cost data is collected using the __torque-environment-id__ and __torque-account-id__ tags which are assigned (with a unique value) to every new environment's resources. To learn more about Torque tagging, see [Tags](/admin-guide/governance/tags).
 
 > ![Locale Dropdown](/img/cost-dashboard.png)
 
@@ -14,9 +14,9 @@ With the cost dashboard, you can understand your business activities cost:
 
 
 ## Supported cloud providers
-* [AWS](configuring-cost-aws.md)
-* [Azure](configuring-cost-azure.md)
-* [Kubernetes](configuring-cost-k8s.md)
+* [AWS](/admin-guide/cost-tracking/configuring-cost-aws)
+* [Azure](/admin-guide/cost-tracking/configuring-cost-azure)
+* [Kubernetes](/admin-guide/cost-tracking/configuring-cost-k8s)
 
 
 :::note __Note__
