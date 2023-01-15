@@ -7,17 +7,20 @@ The cloud providers cost management pillars provide tools that cover many aspect
 
 All of these are great tools. However, to get valuable insights, this is simply not enough. The key to really understanding where your budget is spent requires the use of accurate tagging.
 
+:::tip Notes
+
+- Tags apply to AWS, Azure and Google Cloud.
+:::
+
 > ![Locale Dropdown](/img/tags-quote.png)
 
 (https://aws.amazon.com/blogs/apn/how-to-optimize-your-aws-workload-cost-with-capgemini-and-virtana/)
 
-Properl and consistent resource tagging is difficult, especially since some resources are automatically created, and others manually, by different teams, in different geographic locations, through different stages of the development pipeline. 
+Proper and consistent resource tagging is difficult, especially since some resources are automatically created, and others manually, by different teams, in different geographic locations, through different stages of the development pipeline. 
 
-The solution is to do it the Torque way. In other words, tag *environments* rather than single *resources*. A whole environment is what makes the business sense and helps you to really understand the data.
+The solution is to do it the Torque way. In other words, tag *environments* rather than single *resources*. A whole environment is what makes the business sense and helps you to really understand the data. Using Torque tagging capabilities, you can be sure you are covered, enforce your own tagging policy, and make sure any launched environment is tagged correctly, with the tags that you need.
 
-Using Torque tagging capabilities, you can be sure you are covered, enforce your own tagging policy, and make sure any launched environment is tagged correctly, with the tags that you need.
-
-There are 3 types of tags in Torque:
+There are 3 types of tags in Torque - [System tags](#system-tags), [built-in tags](#built-in-tags), and [custom tags](#custom-tags):
 
 ## System Tags
   
