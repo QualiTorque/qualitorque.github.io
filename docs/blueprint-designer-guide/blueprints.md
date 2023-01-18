@@ -316,10 +316,10 @@ The Terraform grain is Torque's native support for HashiCorp Terraform modules. 
 Note that to deploy Terraform modules, you will need to authenticate Terraform on the Kubernetes cluster. For details, see [Terraform EKS Authentication](/authentication/service-accounts-for-aws), [Terraform AKS Authentication](/authentication/service-accounts-for-azure), or [Terraform GKE Authentication](/authentication/service-accounts-for-gcp).
 
 ### source 
-Please see [the grain source](blueprints.md#source) for more details.
+Please see [the grain source](blueprints#source) for more details.
 
 ### host
-Please see [the grain host](blueprints.md#host) for more details.
+Please see [the grain host](blueprints#host) for more details.
 
 ### authentication
 To enable Torque to connect to the AWS account and deploy the CloudFormation template, you must supply the Role Arn and external ID in the CloudFormation grain's ```authentication``` section. This is done by referencing a [credential](/admin-guide/general/credentials) that contains these authentication details. There are two ways to specify the credential, literally by name or using an input:
@@ -461,10 +461,10 @@ Note that scripts should be stored next to your IaC code to be used under the sc
 The HELM grain is Torque's native support for HELM v3 charts. Torque allows designers to use HELM specific features to easily orchestrate self-developer and community charts in a standard way and share them with others as building blocks. For a full blueprint yaml example, see [Example 1: Helm Application with MySQL and S3 Deployed by Terraform](/blueprint-designer-guide/blueprint-quickstart-guide#example-1-helm-application-with-mysql-and-s3-deployed-by-terraform).
 
 ### source 
-Please see [the grain source](blueprints.md#source) for more details.
+Please see [the grain source](blueprints#source) for more details.
 
 ### host
-Please see [the grain host](blueprints.md#host) for more details.
+Please see [the grain host](blueprints#host) for more details.
 
 ### inputs
 Similar to blueprint inputs and Terraform inputs, the HELM grain inputs allow you to reuse the same HELM chart in different ways using different values overrides. Inputs provided to the HELM grain are used when launching the HELM chart. We recommend using Torque's auto-discovery capability to quickly model your HELM chart within Torque including all defined inputs.
@@ -564,7 +564,7 @@ grains:
 The CloudFormation grain is Torque's native support for AWS CloudFormation templates. Torque allows designers to use CloudFormation features to easily orchestrate self-developer and community CloudFormation modules in a standard way and share them with others as building blocks. For the full blueprint yaml example, see [Example 2: Webgame on S3 (using CloudFormation and Terraform)](/blueprint-designer-guide/blueprint-quickstart-guide#example-2-webgame-on-s3-using-cloudformation-and-terraform).
 
 ### source 
-Please see [the grain source](blueprints.md#source) for more details.
+Please see [the grain source](blueprints#source) for more details.
 
 ### host
 Host is not required or supported by CloudFormation Grain. Instead, this grain uses direct authentication to the AWS cloud account, as explained below.
@@ -631,10 +631,10 @@ grains:
 The Kubernetes grain allows you to use native Kubernetes manifests, manifest catalogs in a given user's repository. Currently, it is not possible to launch multiple concurrent environments from the same blueprint on the same namespace (because the manifest resources are static and their names are not unique).
 
 ### source 
-Please see [the grain source](blueprints.md#source) for more details.
+Please see [the grain source](blueprints#source) for more details.
 
 ### host
-Please see [the grain host](blueprints.md#host) for more details.
+Please see [the grain host](blueprints#host) for more details.
 
 ### tags​
 Whenever a Kubernetes grain is launched, all resources created during the deployment process are automatically tagged with Torque's system tags, built-in tags and custom tags. If you wish to disable tagging for all resources in a specific Kubernetes grain, use the following syntax:
