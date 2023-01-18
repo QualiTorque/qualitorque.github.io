@@ -718,7 +718,7 @@ grains:
             - …
 ```
 ### host
-Please see [the grain host](blueprints.md#host) for more details.
+Please see [the grain host](blueprints#host) for more details.
 
 ### inputs
 Similar to blueprint inputs, inputs provided to the Shell grain are used when launching the shell. Unlike other grains, in the Shell grain, inputs are used inside the __commands__ section, wrapped in double curly brackets - ```" {{ .inputs.input1 }}"```.
