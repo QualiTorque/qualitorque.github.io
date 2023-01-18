@@ -18,7 +18,7 @@ title: Install and connect a self hosted agent on your K8s cluster
     
 - One or more target namespaces on the cluster where the Torque agent will create resources.
    
-- Authentication and permissions - The execution host will need sufficient permissions to create the environment's cloud resources. There are a couple of ways to provide the permissions, depending on where the environment resources will be created. 
+- Authentication and permissions - The agent will need sufficient permissions to create the environment's cloud resources. There are a couple of ways to provide the permissions, depending on where the environment resources will be created. 
   - To create K8s resources (Pods, services, secrets... etc.) using K8s manifests or helm charts, create a service account with sufficient permissions to create the K8s resources. 
     For Example:
 
@@ -36,7 +36,7 @@ title: Install and connect a self hosted agent on your K8s cluster
       - if your cluster is an __EKS__ (resources will be created on AWS):
         - (Recommended) Create a designated __service account__ annotated with an AWS role. See [Terraform Authentication on EKS](/authentication/service-accounts-for-aws) for details. Or,
         - Ensure that the Cluster service role has sufficient permissions to create the environment.
-      - if your cluster is an __AKS__ (resources will be created on Azure): Provide the account's authentication credentials when creating the execution host in Torque. For details, see [Terraform Authentication on AKS](/authentication/service-accounts-for-azure).
+      - if your cluster is an __AKS__ (resources will be created on Azure): Provide the account's authentication credentials when creating the agent in Torque. For details, see [Terraform Authentication on AKS](/authentication/service-accounts-for-azure).
       - If your cluster is a __GKE__ (resources will be createdon GCP), see [Terraform GKE Authentication](/authentication/service-accounts-for-gcp).
       - For other types of clusters, or if you want to connect to your AWS/Azure with your basic credentials, there is no built-in authentication with Torque so there are no pre-requisites related to authentication and permissions. You can store your cloud credentials in the Torque secret store and use them for your TF deployment.
 
@@ -45,7 +45,7 @@ title: Install and connect a self hosted agent on your K8s cluster
 
 1. In Torque's **Administration** page, open the **Cloud Accounts** tab.
 2. Click **Connect a Cloud**.
-3. Select the cloud provider and the type of Kubernetes to use, and give the execution host a name. 
+3. Select the cloud provider and the type of Kubernetes to use, and give the agent a name. 
    > ![Locale Dropdown](/img/add-k8s-wizard.png)
 3. Click __Next__. 
 4. Click __Generate__ and copy the command that is displayed

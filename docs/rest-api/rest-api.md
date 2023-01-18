@@ -8,7 +8,7 @@ The Torque REST API allows client applications to perform some of the actions yo
 * Update/delete editable blueprints
 * Manage blueprint policy
 * Launch/manage environments
-* Get/create execution hosts
+* Get/create agents
 * Manage account security policies
 * Manage Torque settings*
 
