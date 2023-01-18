@@ -251,7 +251,12 @@ The ability to use outputs from specific grain usually requires the grain deploy
 
 
 ### Torque Templating engine
-Templating engines are a great way to enrich the YAML format to allow extensibility points and text manipulations. Torque utilized Shopify's [liquid](https://shopify.github.io/liquid/) engine to allow multiple text manipulations in runtime.
+Templating engines are a great way to enrich the YAML format to allow extensibility points and text manipulations. Torque utilizes a GO-Lang style engine called [Shopify Liquid](https://shopify.github.io/liquid/) to allow dynamic injection of parameters and inputs as well as provider attribute values via reference of other attributes within the same YAML. 
+Example:
+* Insert Blueprint input from the user as a value for a Grain input. 
+* Insert Parameter Store information as a value for a Grain attribute or input. 
+* Reference an output from a grain as an input or attribute of another grain (mandates "depends-on:" relationship between the grains)
+
 
 In the below example the [downcase](https://shopify.github.io/liquid/filters/downcase/) and [strip](https://shopify.github.io/liquid/filters/strip/) keywords are used with concatenation of the sandbox id to create a new S3 bucket (AWS) using Terraform while making sure the bucket name will be valid and unique.
 
