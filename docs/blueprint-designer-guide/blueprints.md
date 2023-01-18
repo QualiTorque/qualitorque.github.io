@@ -47,7 +47,7 @@ The input definition is composed out of the following fields:
 - ```description``` is presented to all users in the Torque UI and API's (Optional)
 - ```type``` of the input. Options are:
   - ```string```
-  - ```execution-host``` allows the environment end-user to select the execution host that will deploy the grain(s) from a dropdown list. By default, all execution hosts are listed in the dropdown list, but you can add ```allowed-values``` to only display a subset of the execution hosts. For details, see [host](#host).
+  - ```execution-host``` allows the environment end-user to select the agent that will deploy the grain(s) from a dropdown list. By default, all agents are listed in the dropdown list, but you can add ```allowed-values``` to only display a subset of the agents. For details, see [host](#host).
 - ```sensitive```: ```true``` masks the value behind asterisks in the UI and API. (Default is ```false```) 
 - ```default``` - (Optional) Value to be used in the Torque UI and will be used in case no other value provided for the input. If a default value is not defined, the environment end-user will need to provide one when launching the environment.
 - ```allowed-values``` converts the input into a dropdown list, allowing the environment end-user to select the appropriate value. If a ```default``` is specified, it must be included in the allowed values list. 
@@ -150,9 +150,9 @@ In case your IaC code is not under folder in the repository, the path should be 
 :::
 
 ### Host
-Hosts, or **Execution Hosts** are the locations where grains will be deployed from. While different grains behave differently, it's important to choose the right execution host for a grain to make sure authentication, networking and configuration is all properly configured. Different grains in the same blueprint can use different Execution Hosts to allow maximum flexibility during the orchestration processes.
+```host``` defines the agent that will deploy the grain. While different grains behave differently, it's important to choose the right agent for a grain to make sure authentication, networking and configuration is all properly configured. Different grains in the same blueprint can use different agents to allow maximum flexibility during the orchestration processes.
 
-You can specify the execution host in two ways:
+You can specify the agent in two ways:
 - Literally. For example:
   ```yaml 
 grains:
@@ -161,9 +161,9 @@ grains:
     kind: terraform
     spec:
       host:
-        name: my-execution-host
+        name: my-agent
  ``` 
-- Using an execution-host input, which allows the environment end-user to select the execution host to use from a dropdown list. For details, see the [blueprint yaml's inputs](#inputs) section.
+- Using an "execution-host" input type, which allows the environment end-user to select the agent to use from a dropdown list. For details, see the [blueprint yaml's inputs](#inputs) section.
   ```yaml 
 grains:
   # launch an RDS instance using Terraform
@@ -171,16 +171,16 @@ grains:
     kind: terraform
     spec:
       host:
-        name: '{{ inputs.my_execution_host }}'
+        name: '{{ inputs.my_agent_ }}'
  ```  
 
 :::info
-Execution hosts gives the flexibility of deploying the same blueprints over different cloud accounts and cloud vendors. For example, the same blueprint can be utilized for Azure or GCP simply by exposing the host as a blueprint input, from which the end-user to choose his preferred cloud provider, each represented with a different execution host.
+Agents gives the flexibility of deploying the same blueprints over different cloud accounts and cloud vendors. For example, the same blueprint can be utilized for Azure or GCP simply by exposing the host as a blueprint input, from which the end-user to choose his preferred cloud provider, each represented with a different agent.
 
 
 :::
 
-The Execution host configuration must include:
+The agent's configuration must include:
 * **name** - the given name for the kubernetes cluster configured under the cloud account area where the grain will be executed.
 * **service-account** - The service-account name configured within the kubernetes cluster that will be used to execute the grain. A kubernetes service account provides an identity for processes that run in a pod. 
 
@@ -662,7 +662,7 @@ grains:
 ```
 :::tip __Note__:
 * Launching concurrent environments with a Kubernetes grain is not supported for the same namespace. 
-* Make sure the Torque execution host has permissions to use those namespaces.
+* Make sure the Torque agent has permissions to use those namespaces.
 :::
 
 ### scripts (outputs)
