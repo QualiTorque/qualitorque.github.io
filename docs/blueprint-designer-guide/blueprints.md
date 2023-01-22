@@ -47,7 +47,7 @@ The input definition is composed out of the following fields:
 - ```description``` is presented to all users in the Torque UI and API's (Optional)
 - ```type``` of the input. Options are:
   - ```string```
-  - ```execution-host``` allows the environment end-user to select the agent that will deploy the grain(s) from a dropdown list. By default, all agents are listed in the dropdown list, but you can add ```allowed-values``` to only display a subset of the agents. For details, see [host](#host).
+  - ```agent``` allows the environment end-user to select the agent that will deploy the grain(s) from a dropdown list. By default, all agents are listed in the dropdown list, but you can add ```allowed-values``` to only display a subset of the agents. For details, see [agent](#host).
 - ```sensitive```: ```true``` masks the value behind asterisks in the UI and API. (Default is ```false```) 
 - ```default``` - (Optional) Value to be used in the Torque UI and will be used in case no other value provided for the input. If a default value is not defined, the environment end-user will need to provide one when launching the environment.
 - ```allowed-values``` converts the input into a dropdown list, allowing the environment end-user to select the appropriate value. If a ```default``` is specified, it must be included in the allowed values list. 
@@ -59,10 +59,10 @@ inputs:
     allowed-values: [0.9.7, 0.9.8, 0.9.9]
     default: "0.9.9"
     description: "The version of the application to be deployed on the EKS cluster"
-  host:
-    type: execution-host
+  agent:
+    type: agent
     allowed-values: [NY, Tokyo, London]
-    description: "Select your site's host."
+    description: "Select your site's agent."
 ```
 
 ### Outputs
@@ -94,8 +94,8 @@ grain_name:
     spec:
       source: 
         path: <path to repository>
-      host:
-        name: '{{ .inputs.host_name }}'
+      agent:
+        name: '{{ .inputs.agent_name }}'
       inputs:
         - input1: '{{ .inputs.value1 }}'
         - input1: '{{ .inputs.value2 }}'
@@ -149,8 +149,8 @@ In case your IaC code is not under folder in the repository, the path should be 
 ```
 :::
 
-### Host
-```host``` defines the agent that will deploy the grain. While different grains behave differently, it's important to choose the right agent for a grain to make sure authentication, networking and configuration is all properly configured. Different grains in the same blueprint can use different agents to allow maximum flexibility during the orchestration processes.
+### Agent
+```agent``` defines the agent that will deploy the grain. While different grains behave differently, it's important to choose the right agent for a grain to make sure authentication, networking and configuration is all properly configured. Different grains in the same blueprint can use different agents to allow maximum flexibility during the orchestration processes.
 
 You can specify the agent in two ways:
 - Literally. For example:
@@ -160,22 +160,22 @@ grains:
   rds:
     kind: terraform
     spec:
-      host:
+      agent:
         name: my-agent
  ``` 
-- Using an "execution-host" input type, which allows the environment end-user to select the agent to use from a dropdown list. For details, see the [blueprint yaml's inputs](#inputs) section.
+- Using an input of type "agent", which allows the environment end-user to select the agent to use from a dropdown list. For details, see the [blueprint yaml's inputs](#inputs) section.
   ```yaml 
 grains:
   # launch an RDS instance using Terraform
   rds:
     kind: terraform
     spec:
-      host:
+      agent:
         name: '{{ inputs.my_agent_ }}'
  ```  
 
 :::info
-Agents gives the flexibility of deploying the same blueprints over different cloud accounts and cloud vendors. For example, the same blueprint can be utilized for Azure or GCP simply by exposing the host as a blueprint input, from which the end-user to choose his preferred cloud provider, each represented with a different agent.
+Agents gives the flexibility of deploying the same blueprints over different cloud accounts and cloud vendors. For example, the same blueprint can be utilized for Azure or GCP simply by exposing the agent as a blueprint input, from which the end-user to choose his preferred cloud provider, each represented with a different agent.
 
 
 :::
@@ -190,7 +190,7 @@ grains:
   rds:
     kind: terraform
     spec:
-      host:
+      agent:
         name: eks-ohio
         service-account: torque-sa
  ```   
@@ -266,8 +266,8 @@ In the below example the [downcase](https://shopify.github.io/liquid/filters/dow
     spec:
       source:
         path: s3
-      host:
-        name: '{{ .inputs.host_name }}'
+      agent:
+        name: '{{ .inputs.agent_name }}'
       inputs:
         - bucket_name: '{{ .inputs.bucket_name | strip }}-bucket-{{ sandboxid | downcase }}'
 ```
@@ -289,8 +289,8 @@ The syntax is the same for both account and space level parameters. A space-leve
     spec:
       source:
         path: s3
-      host:
-        name: '{{ .inputs.host_name }}'
+      agent:
+        name: '{{ .inputs.agent_name }}'
       inputs:
         - bucket_name: '{{ .params.my-bucket }}'
 ```
@@ -307,7 +307,7 @@ In many cases, passing information through environment variables is required for
       env-vars:
       - VAR_NAME1: value1
       - VAR_NAME2: '{{ .inputs.input_name }}'
-      - VAR_NAME3: '{{ .grains.vm.outputs.host_name }}'
+      - VAR_NAME3: '{{ .grains.vm.outputs.agent_name }}'
 ```
 
 ## The Terraform Grain
@@ -318,8 +318,8 @@ Note that to deploy Terraform modules, you will need to authenticate Terraform o
 ### source 
 Please see [the grain source](blueprints#source) for more details.
 
-### host
-Please see [the grain host](blueprints#host) for more details.
+### agent
+Please see [the grain agent](blueprints#host) for more details.
 
 ### authentication
 To enable Torque to connect to the AWS account and deploy the CloudFormation template, you must supply the Role Arn and external ID in the CloudFormation grain's ```authentication``` section. This is done by referencing a [credential](/admin-guide/general/credentials) that contains these authentication details. There are two ways to specify the credential, literally by name or using an input:
@@ -421,7 +421,7 @@ grains:
         path: github.com/org/repo.git//terraform/rds
       ...
       outputs:
-        - hostname
+        - agent_name
         - connection_string
 ```
 
@@ -463,8 +463,8 @@ The HELM grain is Torque's native support for HELM v3 charts. Torque allows desi
 ### source 
 Please see [the grain source](blueprints#source) for more details.
 
-### host
-Please see [the grain host](blueprints#host) for more details.
+### agent
+Please see [the grain agent](blueprints#host) for more details.
 
 ### inputs
 Similar to blueprint inputs and Terraform inputs, the HELM grain inputs allow you to reuse the same HELM chart in different ways using different values overrides. Inputs provided to the HELM grain are used when launching the HELM chart. We recommend using Torque's auto-discovery capability to quickly model your HELM chart within Torque including all defined inputs.
@@ -476,7 +476,7 @@ grains:
     spec:
       source:
         path: https://github.com/bitnami/charts.git//bitnami/nginx
-      host:
+      agent:
       ...
       inputs:
         - replicaCount: '{{ .inputs.replicaCount }}'
@@ -522,7 +522,7 @@ grains:
     spec:
       source:
         path: https://github.com/bitnami/charts.git//bitnami/nginx
-      host:
+      agent:
         name: aws-demo
       inputs:
         - replicaCount: '{{ .inputs.replicaCount }}'
@@ -542,7 +542,7 @@ grains:
     spec:
       source:
         path: ...
-      host:
+      agent:
         name: ...
         service-account: ...
       inputs:
@@ -566,8 +566,8 @@ The CloudFormation grain is Torque's native support for AWS CloudFormation templ
 ### source 
 Please see [the grain source](blueprints#source) for more details.
 
-### host
-Host is not required or supported by CloudFormation Grain. Instead, this grain uses direct authentication to the AWS cloud account, as explained below.
+### agent
+```agent``` is not required or supported by CloudFormation Grain. Instead, this grain uses direct authentication to the AWS cloud account, as explained below.
 
 ### authentication
 To enable Torque to connect to the AWS account and deploy the CloudFormation template, you must supply the Role Arn and external ID in the CloudFormation grain's ```authentication``` section. This is done by referencing a [credential](/admin-guide/general/credentials) that contains these authentication details. There are two ways to specify the credential, literally by name or using an input:
@@ -604,7 +604,7 @@ grains:
       authentication:
         ...
       outputs:
-        - hostname
+        - agent_name
         - connection_string
 ```
 ### Example
@@ -633,8 +633,8 @@ The Kubernetes grain allows you to use native Kubernetes manifests, manifest cat
 ### source 
 Please see [the grain source](blueprints#source) for more details.
 
-### host
-Please see [the grain host](blueprints#host) for more details.
+### agent
+Please see [the grain agent](blueprints#host) for more details.
 
 ### tags​
 Whenever a Kubernetes grain is launched, all resources created during the deployment process are automatically tagged with Torque's system tags, built-in tags and custom tags. If you wish to disable tagging for all resources in a specific Kubernetes grain, use the following syntax:
@@ -687,7 +687,7 @@ grains:
       source:
         ...
       namespace:
-      host:
+      agent:
         ...
       scripts:
         post-kubernetes-install:
@@ -707,7 +707,7 @@ grains:
   validate:
     kind: shell
     spec:
-      host:
+      agent:
         name: …
       activities:
         deploy:
@@ -717,8 +717,8 @@ grains:
           commands:
             - …
 ```
-### host
-Please see [the grain host](blueprints#host) for more details.
+### agent
+Please see [the grain agent](blueprints#host) for more details.
 
 ### inputs
 Similar to blueprint inputs, inputs provided to the Shell grain are used when launching the shell. Unlike other grains, in the Shell grain, inputs are used inside the __commands__ section, wrapped in double curly brackets - ```" {{ .inputs.input1 }}"```.
@@ -728,7 +728,7 @@ grains:
   validate:
     kind: shell
     spec:
-      host:
+      agent:
         name: kubernetes-testing1
       activities:
         deploy:
@@ -745,7 +745,7 @@ grains:
   validate:
     kind: shell
     spec:
-      host:
+      agent:
         name: kubernetes-testing1
       activities:
         deploy:
@@ -770,7 +770,7 @@ grains:
   validate:
     kind: shell
     spec:
-      host:
+      agent:
         name: ...
       files:
         - path: "scripts/post-install-script.sh"
