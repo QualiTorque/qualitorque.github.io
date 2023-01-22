@@ -15,7 +15,7 @@ In this article:
 
 * You have created your own space
 * Asset repository associated to the space
-* Execution host associated to the space
+* Agent associated to the space
 
 ## Let Torque autogenerate blueprints from your assets
 
@@ -58,7 +58,7 @@ __To nest a blueprint as a grain in another blueprint:__
     * Change the __kind_ param to: ```kind: blueprint```
     * In __store__, specify the name of the blueprint repository defined in the space.
     * In __path__, specify ```blueprints/<blueprint file name without ".yaml">```. Alternatively, specify only ```blueprints``` and change the grain name to the blueprint file name without ".yaml".
-    * Specify the execution host as an input of ```type: execution-host``` on the blueprint level, and reference it from the grain, both as an input and in the host section.
+    * Specify the agent as an input of ```type: execution-host``` on the blueprint level, and reference it from the grain, both as an input and in the host section.
 6. If the grain should run after the deployment of another grain, add ```__depends_on: <name of grain dependency>```:
   ```jsx title=
 grains:
