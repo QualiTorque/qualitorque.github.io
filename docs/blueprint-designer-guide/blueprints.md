@@ -119,8 +119,10 @@ The following grains are available:
 Sources are repositories storing IaC, CM or other configuration technology that will be utilized by Torque to launch and operate an environment. Torque supports multiple ways to define grain sources. 
 Sources can be defined in the following ways:
 
-__1) Direct link to a source control folder__: Composed from the repository URL followed by the folder structure leading to the folder where IaC code resides. For example:
-  ```yaml 
+__1. Direct link to a source control folder__:
+
+Composed from the repository URL followed by the folder structure leading to the folder where IaC code resides. For example:
+```yaml 
 grains:
   aurora:
     kind: terraform
@@ -129,7 +131,9 @@ grains:
         path: github.com/organization/repository.git//folder1/folder2
 ```
 
-__2) location based on a repository (blueprints or assets) onboarded to Torque__: The name of the repository should be provided under the 'store' field, while the IaC code folder location should be specified under the path field. In the below example, nginx helm chart resides in the 'nginx' folder within a repository onboarded to Torque with the name 'web_servers'.
+__2. Location based on a repository (blueprints or assets) onboarded to Torque__: 
+
+The name of the repository should be provided under the 'store' field, while the IaC code folder location should be specified under the path field. In the below example, nginx helm chart resides in the 'nginx' folder within a repository onboarded to Torque with the name 'web_servers'.
 
 ```yaml 
 grains:
@@ -149,12 +153,35 @@ In case your IaC code is not under folder in the repository, the path should be 
 ```
 :::
 
+__3. Working with branches, commits and tags__:
+
+The following example shows how to reference an asset in other branches, commit or tag:
+
+```yaml 
+grains:
+  dev-env:
+    kind: terraform
+    spec:
+      source:
+        store: infra
+        path: vms
+        branch: feature/one
+        commit: b39e0a9e86aab97d255af22507f700936a3f2ef5
+        tag: test-133 
+```
+:::tip note
+* You can specify only one of the parameters
+* In case "tag" is provided, we track the repo for newer tags, i.e., if a newer tag was found then an "update" will be detected
+* In case "branch" without commit is provided, we track the head of the branch, i.e. when new commits arrive, an "update" will be detected
+* In case "commit" or "branch"+"commit" are provided, we **don't** track changes
+:::
+
 ### Agent
 ```agent``` defines the agent that will deploy the grain. While different grains behave differently, it's important to choose the right agent for a grain to make sure authentication, networking and configuration is all properly configured. Different grains in the same blueprint can use different agents to allow maximum flexibility during the orchestration processes.
 
 You can specify the agent in two ways:
 - Literally. For example:
-  ```yaml 
+```yaml 
 grains:
   # launch an RDS instance using Terraform
   rds:
@@ -164,7 +191,7 @@ grains:
         name: my-agent
  ``` 
 - Using an input of type "agent", which allows the environment end-user to select the agent to use from a dropdown list. For details, see the [blueprint yaml's inputs](#inputs) section.
-  ```yaml 
+```yaml 
 grains:
   # launch an RDS instance using Terraform
   rds:
@@ -480,6 +507,7 @@ grains:
       ...
       inputs:
         - replicaCount: '{{ .inputs.replicaCount }}'
+        - service.image: '{{ .inputs.image }}'
 ```
 
 :::info
