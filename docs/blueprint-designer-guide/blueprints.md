@@ -171,13 +171,13 @@ grains:
 ```
 :::tip note
 * You can specify only one of the parameters
-* In case "tag" is provided, we track the repo for newer tags, i.e., if a newer tag was found then an "update" will be detected
-* In case "branch" without commit is provided, we track the head of the branch, i.e. when new commits arrive, an "update" will be detected
-* In case "commit" or "branch"+"commit" are provided, we **don't** track changes
+* If "tag" is provided, Torque will track the repo for newer tags. In other words, if a newer tag is found, then an "update" will be detected.
+* If "branch" without commit is provided, Torque will track the head of the branch. In other words, when new commits arrive, an "update" will be detected.
+* If "commit" or "branch"+"commit" are provided, Torque __will not__ track changes.
 :::
 
 ### Agent
-```agent``` defines the agent that will deploy the grain. While different grains behave differently, it's important to choose the right agent for a grain to make sure authentication, networking and configuration is all properly configured. Different grains in the same blueprint can use different agents to allow maximum flexibility during the orchestration processes.
+The ```agent``` defines the agent that will deploy the grain. While different grains behave differently, it's important to choose the right agent for a grain to make sure authentication, networking and configuration is all properly configured. Different grains in the same blueprint can use different agents to allow maximum flexibility during the orchestration processes.
 
 You can specify the agent in two ways:
 - Literally. For example:
