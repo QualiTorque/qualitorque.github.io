@@ -155,9 +155,9 @@ In case your IaC code is not under folder in the repository, the path should be 
 
 __3. Working with branches, commits and tags__:
 
-The following example shows how to reference an asset in other branches, commit or tag:
+You can reference an asset in a specific branch, commit or tag.
 
-```yaml 
+```yaml: 
 grains:
   dev-env:
     kind: terraform
@@ -169,8 +169,9 @@ grains:
         commit: b39e0a9e86aab97d255af22507f700936a3f2ef5
         tag: test-133 
 ```
+
 :::tip note
-* You can specify only one of the parameters.
+* You can specify only one of the parameters (```branch``` or ```commit``` or ```tag```).
 * If "tag" is provided, Torque will track the repo for newer tags. In other words, if a newer tag is found, then an "update" will be detected.
 * If "branch" without commit is provided, Torque will track the head of the branch. In other words, when new commits arrive, an "update" will be detected.
 * If "commit" or "branch"+"commit" are provided, Torque __will not__ track changes.
