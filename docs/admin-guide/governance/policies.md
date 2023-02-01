@@ -5,36 +5,88 @@ title: Policies
 
 Torque role: Account admin
 
-Policies allow you to govern the way that the self-service users use Torque, and as a result, also the cloud resources. 
+Torque policies are triggered as part of the environment deployment pipeline for specific environment lifecycle events (launch, extend environment for example) or during the deployment of environments (e.g. when evaluating a Terraform module included in the environment).
+In this article:
+* [How policies work](#how-policies-work)
+* [Types of policies](#types-of-policies)
+* [Torque built-in policies](#torque-built-in-policies)
+* [Custom policies](#custom-policies)
+* [Environment Approval policies](#environment-approval-policies)
+* [How to set up a policy](#how-to-set-up-a-policy)
+* [Duplicate a policy](#duplicate-a-policy)
 
-Examples include:
-* List of allowed AWS regions
-* Require the use of private S3 buckets
-* Prohibited instance types 
+## How policies work
+Policies are based on two basic elements: trigger and context. Trigger determines when the policy is activated, and context is the data the policy needs to get. The context is provided automatically by Torque and by user data defined in the policy. Torque data is the actual data the environment is trying to deploy, and user data covers limitations imposed by the admin who set up the policy.
 
-:::info
-* Policies are triggered at environment launch.
-* At this point, policies apply to Terraform grains.   
+Torque supports two types of triggers, which are defined by the package being used in the policy's .rego file:
+-	Environement lifecycle policies (triggered on launch/extend). To define an environment lifecycle policy, the ".rego" file must use the package name __torque.environment__
+-	Terraform evaluation policies (triggered on terraform plan for terraform grains). To define a terraform plan evaluation policy, the ".rego" file must use the package name __torque.terraform_plan__
+
+## Types of policies
+There are 4 types of policies in Torque, and they are each labeled accordingly in the __Policies__ administration page:
+
+* __Built-in__ policies come with Torqueץ For details about the policies, see [https://github.com/QualiTorque/opa](https://github.com/QualiTorque/opa)
+* __Terraform__ policies execute a Terraform plan on the environment's Terraform grain. These policies are triggered when Torque deplioys the Terraform grain's plan during the environment's initialization
+* __Environment__ policies are triggered when the environment is launched or extended
+* __Approval__ policies are environment policies that require approval to launch the environment
+
+> ![Locale Dropdown](/img/policy-labels.png)
+
+## Torque built-in policies 
+Torque provides many built-in policies, both for environment lifecycle and Terraform plan evaluation, which represent some of the more common use cases when deploying environments. Some examples include:
+* Allow only specific AWS instance types to be used
+* Allow deploying only to specific Azure locations
+* Allow only environments with expected cost of < 10$
+
+## Custom policies
+
+There may come a time when you will need to go beyond the common use case and write your own policies and rules. This is possible using custom policies. Custom policies are .rego files that reside in your git repository. When you add the policy repository to Torque, Torque automatically discovers the repository and identifies its .rego files as policies, allowing you to choose which policies to import into Torque. Same as with built-in policies, you select where to apply the policy (on the entire account or specific teams), and configure the relevant data. 
+
+For details on how to develop policies, see [OPA documentation](https://www.openpolicyagent.org/docs/latest/) and [OPA playground](https://play.openpolicyagent.org/).
+
+:::tip Notes
+* For example custom policies, see [Quali Torque built-in OPA policy templates](https://github.com/QualiTorque/opa).
+* Note that Torque points to a specific commit. Therefore, to introduce a new version of a custom policy, develop, test and pass the policy through your regular git flow. Once you are done, update the commit version in Torque.
 :::
 
-## How to add a  policy
+## Environment Approval policies
 
-1. Open the __Administration__ page and click __Policies__.
-2. Click __New Policy__ in the top right corner of the page.
-3. Select the suitable policy template.
-4. Give it a __Name__.
-5. Select the __Scope__. __Account__ indicates that the policy applies to your entire Torque account, including all spaces.
-6. Specify the appropriate values, if required. For details, see the policy's description below.
+Environment policies Torque allows you to configure your policy with conditions that will trigger manual approval of an environment request by a set of designated approvers via multiple optional channels: email, Microsoft Teams or Slack channels, ServiceNow and more. 
 
-## Available policies
+For example, you could have an approval policy that sets the max_duration for environments at 180 minutes, so attempting to launch an environment with a duration that is longer than 3 hours will require approval.
 
-* __Allowed Providers__: Lists the allowed Terraform providers an environment is allowed to deploy on. For example: aws, azurerm. 
-* __AWS Allowed Regions__: Lists the AWS allowed regions for deploying environments. For example, us-east-2, eu-west-1. The list of AWS regions and codes is [here](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions).
-* __AWS Allowed Resource Types__: Lists the AWS resource types an environment is allowed to deploy. The allowed resource types are those beginning with "aws_" (for example: aws_vpc, aws_instance, etc.).
-* __AWS Prohibited Instance Types__: Lists the instance types (such as for EC2) that environments are not allowed to deploy on AWS. The list of AWS instance types is [here](https://aws.amazon.com/ec2/instance-types/).
-* __AWS Only Private S3 Buckets__: Allows to deploy only private AWS S3 Bucket.
-* __Azure Allowed Locations__: Lists the Azure allowed regions for deploying environments. The list of Azure regions and codes is [here](https://azureprice.net/regions).
-* __Azure Only Private Blob Storage__: Allows to deploy only private Azure blob storage.
-* __Azure Allowed Resource Types__: Lists the Azure resource types an environment is allowed to deploy.
-* __Azure Prohibited VM Sizes__: Lists the VM sizes that environments are not allowed to deploy on Azure. The list of Azure VM sizes is [here](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes).
+:::tip Notes
+* Environment Approval policies use the __torque.environment__ package. 
+* Approvers are defined in the __[Approval Channels](/admin-guide/governance/approval-channels)__ administration page.
+:::
 
+## How to set up a policy
+
+1. Go to __Administration > Policy Repositories__ and click __Add a Repository__.
+2. Select the git repository, specify the repository's URL, and give it a name.
+   > ![Locale Dropdown](/img/repository-information.png)
+3. Click __Connect__. Provide authorization credentials if the repository is private.
+
+   A green checkmark next to the repository's URL indicates that the repository has been added successfully.
+      > ![Locale Dropdown](/img/repository-connection.png)
+4. Click __Discover Policies__.
+5. Select the policies you want to import into Torque, and click __Generate Policies__.
+   > ![Locale Dropdown](/img/policy-import.png)
+
+    The policies are displayed in the __Policies__ page.
+   > ![Locale Dropdown](/img/new-custom-policies.png)    
+6. Click a generated policy and edit the details.
+
+   a. Optionally change the __Name__, and provide a __Description__.
+
+   b. In __Spaces__, set the scope of the policy - __All spaces__ or specific ones.
+
+   c. In __Data__, set the policy's limitations.
+7. Click __Save__.
+8. __Enable__ the policy.
+   > ![Locale Dropdown](/img/enable-custom-policy.png)    
+
+## Duplicate a policy
+
+You can also duplicate any built-in or custom policy to create a similar version with different settings. For example, You could have a policy that allows the use of cloud region "us-east-1" for the US team, and another one for the EU team that allows region "eu-west-1".
+> ![Locale Dropdown](/img/duplicate-policy.png)
