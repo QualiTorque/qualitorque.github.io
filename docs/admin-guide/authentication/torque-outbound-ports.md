@@ -1,6 +1,6 @@
 ---
-sidebar_position: 3
-title: Outbound Ports for Kubernetes Cluster Nodes
+sidebar_position: 14
+title: Outbound Ports for Self-hosted Agents
 ---
 
 This table lists the outbound ports that are requried for Kubernetes cluster nodes to fully function when hosting a Torque agent.

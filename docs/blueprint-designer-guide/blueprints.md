@@ -341,7 +341,23 @@ In many cases, passing information through environment variables is required for
 ## The Terraform Grain
 The Terraform grain is Torque's native support for HashiCorp Terraform modules. Torque allows designers to use Terraform-specific features to easily orchestrate self-developer and community Terraform modules in a standard way and share them with others as building blocks. For a full blueprint yaml example, see the examples in section [Create a multi-asset blueprint](/blueprint-designer-guide/blueprint-quickstart-guide#create-a-multi-asset-blueprint).
 
-Note that to deploy Terraform modules, you will need to authenticate Terraform on the Kubernetes cluster. For details, see [Terraform EKS Authentication](/authentication/service-accounts-for-aws), [Terraform AKS Authentication](/authentication/service-accounts-for-azure), or [Terraform GKE Authentication](/authentication/service-accounts-for-gcp).
+Note that to deploy Terraform modules, you will need to authenticate Terraform on the Kubernetes cluster. For details, see [Terraform EKS Authentication](/admin-guide/authentication/service-accounts-for-aws), [Terraform AKS Authentication](/admin-guide/authentication/service-accounts-for-azure), or [Terraform GKE Authentication](/admin-guide/authentication/service-accounts-for-gcp).
+
+### Tools and technologies
+The following tools and technologies are installed out of the box on our agents in the Kubernetes pods and can be used when writing grain scripts (pre/post, etc.):
+
+- dotnet
+- terraform
+- git
+- python3
+- pip3
+- jq
+- docker-compose
+- curl|- hcl2json
+- awscli
+- kubectl
+- helm
+- opa
 
 ### source 
 Please see [the grain source](blueprints#source) for more details.
@@ -487,6 +503,18 @@ Note that scripts should be stored next to your IaC code to be used under the sc
 
 ## The HELM Grain
 The HELM grain is Torque's native support for HELM v3 charts. Torque allows designers to use HELM specific features to easily orchestrate self-developer and community charts in a standard way and share them with others as building blocks. For a full blueprint yaml example, see [Example 1: Helm Application with MySQL and S3 Deployed by Terraform](/blueprint-designer-guide/blueprint-quickstart-guide#example-1-helm-application-with-mysql-and-s3-deployed-by-terraform).
+
+### Tools and technologies
+The following tools and technologies are installed out of the box on our agents in the Kubernetes pods and can be used when writing grain scripts (pre/post, etc.):
+
+- dotnet
+- curl
+- tar
+- unzip
+- kubectl
+- kustomize
+- helm
+- awscli
 
 ### source 
 Please see [the grain source](blueprints#source) for more details.
@@ -659,6 +687,14 @@ grains:
 ## The Kubernetes Grain​
 The Kubernetes grain allows you to use native Kubernetes manifests, manifest catalogs in a given user's repository. Currently, it is not possible to launch multiple concurrent environments from the same blueprint on the same namespace (because the manifest resources are static and their names are not unique).
 
+### Tools and technologies
+The following tools and technologies are installed out of the box on our agents in the Kubernetes pods and can be used when writing grain scripts (pre/post, etc.):
+
+- dotnet
+- curl
+- kubectl
+- jq
+
 ### source 
 Please see [the grain source](blueprints#source) for more details.
 
@@ -748,6 +784,13 @@ grains:
 ```
 ### agent
 Please see [the grain agent](blueprints#host) for more details.
+
+### Tools and technologies
+The following tools and technologies are installed out of the box on our agents in the Kubernetes pods and can be used when writing grain scripts (pre/post, etc.):
+
+- dotnet
+- python3
+- pip3
 
 ### inputs
 Similar to blueprint inputs, inputs provided to the Shell grain are used when launching the shell. Unlike other grains, in the Shell grain, inputs are used inside the __commands__ section, wrapped in double curly brackets - ```" {{ .inputs.input1 }}"```.

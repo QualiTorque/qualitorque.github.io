@@ -20,7 +20,7 @@ When you use our services, you trust us with your personal information. At Quali
         * [IaC](/overview/supported-platforms#infrastructure-as-code) asset files. For example: Terraform, Helm, Kubernetes manifests. For more details, see [Discover Your Assets](/getting-started/Discover%20Your%20Assets)
     * [Agents](/getting-started/Install-and-connect-self-hosted-agent) 
     * Role that allows cost information gathering - [AWS](/admin-guide/cost-tracking/configuring-cost-aws), [Azure](/admin-guide/cost-tracking/configuring-cost-azure), [Kubernetes](/admin-guide/cost-tracking/configuring-cost-k8s) (optional)
-    * Cloud authentication data for Terraform deployments on [EKS](/authentication/service-accounts-for-aws), [AKS](/authentication/service-accounts-for-azure), or [GKE](/authentication/service-accounts-for-gcp))
+    * Cloud authentication data for Terraform deployments on [EKS](/admin-guide/authentication/service-accounts-for-aws), [AKS](/admin-guide/authentication/service-accounts-for-azure), or [GKE](/admin-guide/authentication/service-accounts-for-gcp))
     * [Parameters](/admin-guide/general/params) (optional) 
 * Ongoing usage data 
     * Environment history  
