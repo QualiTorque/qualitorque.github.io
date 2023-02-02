@@ -9,7 +9,7 @@ Torque policies are triggered as part of the environment deployment pipeline for
 
 In this article:
 * [How policies work](#how-policies-work)
-* [Types of policies](#types-of-policies)u
+* [Types of policies](#types-of-policies)
 * [Torque built-in policies](#torque-built-in-policies)
 * [Custom policies](#custom-policies)
 * [Environment Approval policies](#environment-approval-policies)
