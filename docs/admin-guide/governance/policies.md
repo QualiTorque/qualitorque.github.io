@@ -20,8 +20,12 @@ In this article:
 Policies are based on two basic elements: trigger and context. Trigger determines when the policy is activated, and context is the data the policy needs to get ("input" in OPA terms). The context is provided automatically by Torque. Users can also define user data ("data" in OPA terms) in the Torque policy. The context (or input) is the actual environment data the end user is trying to deploy, and the user data sets values to the limitations imposed by the admin who set up the policy.
 
 Torque supports two types of triggers, which are defined by the package being used in the policy's .rego file:
--	Environement lifecycle policies (triggered on launch/extend). To define an environment lifecycle policy, the ".rego" file must use the package name __torque.environment__
+-	Environment lifecycle policies (triggered on launch/extend). To define an environment lifecycle policy, the ".rego" file must use the package name __torque.environment__
 -	Terraform evaluation policies (triggered on terraform plan for terraform grains). To define a terraform plan evaluation policy, the ".rego" file must use the package name __torque.terraform_plan__
+
+:::tip Note
+Policies are applied on the space or account level, as explained in [How to set up a policy](#how-to-set-up-a-policy).
+:::
 
 ## Policy labels
 There are 4 labels that will be automatically applied to policies in Torque, in the __Policies__ administration page:
@@ -57,7 +61,7 @@ Torque allows you to configure your policy with conditions that will trigger man
 For example, you could have an approval policy that sets the max_duration for environments at 3 hours, so attempting to launch an environment with a duration that is longer than 3 hours will require approval.
 
 :::tip Notes
-* Approvers are defined in the __[Approval Channels](/admin-guide/governance/approval-channels)__ administration page.
+Approvers are defined in the __[Approval Channels](/admin-guide/governance/approval-channels)__ administration page.
 :::
 
 ## How to set up a policy
