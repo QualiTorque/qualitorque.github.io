@@ -5,14 +5,14 @@ title: Policies
 
 Torque role: Account admin
 
-Torque policies are triggered as part of the environment deployment pipeline for specific environment lifecycle events (launch, extend environment for example) or during the deployment of environments (e.g. when evaluating a Terraform module included in the environment). The Torque policies are powered by OPA (Open Policy Agent). 
+Torque policies are triggered as part of the environment deployment pipeline for specific environment lifecycle events (launch, extend environment for example) or during the deployment of environments (e.g. when evaluating a Terraform module included in the environment). Torque policies are powered by OPA (Open Policy Agent). 
 
 In this article:
 * [How policies work](#how-policies-work)
-* [Types of policies](#types-of-policies)
+* [Policy labels](#policy-labels)
 * [Torque built-in policies](#torque-built-in-policies)
 * [Custom policies](#custom-policies)
-* [Environment Approval policies](#environment-approval-policies)
+* [Approval policies](#approval-policies)
 * [How to set up a policy](#how-to-set-up-a-policy)
 * [Duplicate a policy](#duplicate-a-policy)
 
@@ -26,10 +26,10 @@ Torque supports two types of triggers, which are defined by the package being us
 ## Policy labels
 There are 4 labels that will be automatically applied to policies in Torque, in the __Policies__ administration page:
 
-* __Built-in__ label is assigned to policies which come out of the box with Torque. For details about the policies, see [https://github.com/QualiTorque/opa](https://github.com/QualiTorque/opa)
-* __Terraform__ label is assigned to policies which evaluate the Terraform plan on the environment's Terraform grain. These policies are triggered when Torque deploys the Terraform grain's plan during the environment's initialization
-* __Environment__ label is assigned to policies which are triggered when the environment is launched or extended
-* __Approval__ label is assigned to policies which could require approval to launch the environment
+* __Built-in__ label is assigned to policies that come out of the box with Torque. For details about the policies, see [https://github.com/QualiTorque/opa](https://github.com/QualiTorque/opa)
+* __Terraform__ label is assigned to policies that evaluate the Terraform plan on the environment's Terraform grain. These policies are triggered when Torque deploys the Terraform grain's plan during the environment's initialization
+* __Environment__ label is assigned to policies that are triggered when the environment is launched or extended
+* __Approval__ label is assigned to policies that could require approval to launch the environment
 
 > ![Locale Dropdown](/img/policy-labels.png)
 

@@ -13,7 +13,7 @@ title: Torque Features and Capabilities
     * __Parameter Store__: Torque contains a built-in Parameter Store that allows space admins and account admins to store both sensitive and non-sensitive key-value based information in a centralized location that can be accessed by blueprint designers via the Liquid engine. 
     * __Credential Store__: Torque contains a built-in Credentials Store that allows account admins to safely store cloud account credentials (or Role ARNs for assumable roles) that can later be used for authentication with the provider in an IaC grain (such as Terraform or CloudFormation). 
     * Secret providers in IaC: Torque allows blueprint and asset designers to rely on secret management capabilities of the supported IaC technologies. For example retreiving a KMS decryption key or AWS Secret Store Secret via AWS, an Azure Secret from Azure Vault, or a Secret or Sensitive information stored in Hashicorp Vault.
-* __Approval flows__: Define an approval process for production/high-cost environments and review pending requests.
+* __Approval policies__: Define an [approval policy](/admin-guide/governance/policies#approval-policies) for production/high-cost environments and review pending requests.
 * __Auto-shutdown and cleanup__: Automatic cleanup of environment's cloud resources when environment ends, cutting costs and ensuring nothing is left behind.
 
 ## Automation
