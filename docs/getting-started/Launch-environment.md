@@ -15,6 +15,10 @@ You are now ready to launch your first environment.
 3. In the __Catalog__, __Launch__ the blueprint.
 4. Specify the environment's inputs.
 5. Optionally assign collaborators to the environment. While everyone in the space has "read" permission to its environments, only the environment's owner and collaborators can perform actions that change the environment: extend end the environment, reconcile or update resource changes, etc. When launching the environment, the new owner/collaborators will receive a notification email if you have [Notifications](/admin-guide/notifications) configured in the space.
+6. Click __Next__, specify the environment's inputs and tags, and click __Launch__.
+   
+   If the space has an approval policy, your environment will enter a "Pending" state while you wait to get approval from a moderator. Click __View Request__ to view or cancel your request.
+   > ![Locale Dropdown](/img/pending-approval.png)   
 4. Wait until the environment is active and use as needed. URLs to the environment's applications are typically provided as outputs - these can be found in the environment's __Quicklinks__ on the right, or in the __Parameters__ pane.
    > ![Locale Dropdown](/img/outputs.gif)
 5. Check out the __Resources__ pane to get details about your environment's resources. Use this tab to understand what assets each grain spun up, get connection details to specific resources, and more.
