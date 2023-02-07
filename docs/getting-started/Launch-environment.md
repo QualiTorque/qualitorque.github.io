@@ -19,19 +19,7 @@ You are now ready to launch your first environment.
    
    If the space has an approval policy, your environment will enter a "Pending" state while you wait to get approval from a moderator. Click __View Request__ to view or cancel your request.
    > ![Locale Dropdown](/img/pending-approval.png)   
-4. Wait until the environment is active and use as needed. URLs to the environment's applications are typically provided as outputs - these can be found in the environment's __Quicklinks__ on the right, or in the __Parameters__ pane.
+7. Wait until the environment is active and use as needed. URLs to the environment's applications are typically provided as outputs - these can be found in the environment's __Quicklinks__ on the right, or in the __Parameters__ pane.
    > ![Locale Dropdown](/img/outputs.gif)
-5. Check out the __Resources__ pane to get details about your environment's resources. Use this tab to understand what assets each grain spun up, get connection details to specific resources, and more.
+8. Check out the __Resources__ pane to get details about your environment's resources. Use this tab to understand what assets each grain spun up, get connection details to specific resources, and more.
    > ![Locale Dropdown](/img/resource-details.gif)
-
-
-
-:::tip __Tip__:
-
-If someone makes changes to the blueprint's asset or the environment's cloud resources while the environment is running, you will see an __Updates Available__ link in the environment page. Click it to view and resolve the changes. It has two sections: 
-* __Updates__ shows changes made to the asset's definition file, allowing you to optionally update the environment
-* __Drift Detection__ shows any of the environment's resources that were modified externally. Click the error to see the modifications, and __Reconcile__ to revert a resource back to its original state.
-
-   > ![Locale Dropdown](/img/updates-available.png)
-
-:::
