@@ -7,6 +7,11 @@ title: Terraform AKS Authentication
 If you're using an AKS cluster as your agent, and you want to run Terraform that deploys resources on Azure, you can use a Azure Workload Identity (valid for AKS clusters version 1.22+) that allows the cluster to securely authenticate with Azure using K8s service account and an Open ID connect (OIDC) token.
 For a step-by-step tutorial, see [Video: Connecting a new agent and using it in a blueprint](#video-connecting-a-new-agent-and-using-it-in-a-blueprint).
 
+  :::tip __IMPORTANT__
+  Torque does not support running the Torque Agent on an AKS cluster using [Burst Type VMs](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes-b-series-burstable) as cluster worker nodes.  Please use a different VM type.
+  :::
+
+
 The basic process is as follows:
 - [__Azure Configuration__](#azure-configuration)
   - [__Prerequisites__](#prerequisites)
