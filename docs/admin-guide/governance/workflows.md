@@ -5,7 +5,7 @@ title: Workflows
 
 Torque role: Account admin
 
-_Workflows_ allow you to schedule actions on all resources of a certain cloud provider (AWS or Azure) in the relevant environment. Each workflow is triggered at its scheduled time and can also be executed by the sandbox end-user from the resource's __Workflows__ tab.
+__Workflows__ allow you to schedule actions on all resources of a certain cloud provider (AWS or Azure) in the relevant environment. For example, to power off all VMs daily at the end of the work day. Each workflow is triggered at its scheduled time and can also be executed by the end-user from the __Workflows__ tab of the environment's resource.
 
 
 :::tip Note
