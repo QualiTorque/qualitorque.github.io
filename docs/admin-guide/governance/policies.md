@@ -8,13 +8,16 @@ Torque role: Account admin
 Torque policies are triggered as part of the environment deployment pipeline for specific environment lifecycle events (launch, extend environment for example) or during the deployment of environments (e.g. when evaluating a Terraform module included in the environment). Torque policies are powered by OPA (Open Policy Agent). 
 
 In this article:
-* [How policies work](#how-policies-work)
-* [Policy labels](#policy-labels)
-* [Torque built-in policies](#torque-built-in-policies)
-* [Custom policies](#custom-policies)
-* [Approval policies](#approval-policies)
-* [How to set up a policy](#how-to-set-up-a-policy)
-* [Duplicate a policy](#duplicate-a-policy)
+- [How policies work](#how-policies-work)
+- [Policy labels](#policy-labels)
+- [Torque built-in policies](#torque-built-in-policies)
+- [Custom policies](#custom-policies)
+  - [Developing policies](#developing-policies)
+    - [Inputs](#inputs)
+    - [data](#data)
+- [Approval policies](#approval-policies)
+- [How to set up a policy](#how-to-set-up-a-policy)
+- [Duplicate a policy](#duplicate-a-policy)
 
 ## How policies work
 Policies are based on two basic elements: trigger and context. Trigger determines when the policy is activated, and context is the data the policy needs to get ("input" in OPA terms). The context is provided automatically by Torque. Users can also define user data ("data" in OPA terms) in the Torque policy. The context (or input) is the actual environment data the end user is trying to deploy, and the user data sets values to the limitations imposed by the admin who set up the policy.
@@ -47,11 +50,83 @@ Torque provides many built-in policies, both for environment lifecycle and Terra
 
 There may come a time when you will need to go beyond the common use case and write your own policies and rules. This is possible using custom policies. Custom policies are .rego files that reside in your git repository. When you add the policy repository to Torque, Torque automatically discovers the repository and identifies its .rego files as policies, allowing you to choose which policies to import into Torque. Same as with built-in policies, you select where to apply the policy (on the entire account or specific teams), and configure the relevant data. 
 
-For details on how to develop policies, see [OPA documentation](https://www.openpolicyagent.org/docs/latest/) and [OPA playground](https://play.openpolicyagent.org/).
+### Developing policies
+
+#### Inputs
+
+Based on the policy type (environment or terraform_plan) Torque will provide *input* to OPA once the policy is injected.
+For terraform_plan policies, the input is the terraform plan output. 
+For __environment__ policies, the input is the following json object:
+
+   ```jsx 
+   {
+   "blueprint": {
+      "name": "example_blueprint_name",
+      "repository": "example_repository",
+      "labels": "label1"
+      "url": "www.exampleurl"
+      "last_modified": "0001-01-01T00:00:00"
+     },
+   "inputs": [
+      {
+         "name": "example input1",
+         "type": "string",
+         "value": "example value1",
+         "sensitive": false,
+         "description": null
+      },
+      {
+         "name": "example input2",
+         "type": "string",
+         "value": "example value2",
+         "sensitive": false,
+         "description": null
+      }
+
+   ],
+   "duration_minutes": 119,
+   "blueprint_avg_hourly_cost": 0.5,
+   "user_name": "example user",
+   "user_space_role": "space_member", //options are : 
+   "user_account_role": "Member",     // options are: Admin, Member  
+   "user_email": "example@myorg.com",
+   "action_name": "launch"            // options are: launch, extend
+   }
+```
+
+An example of usage:
+
+```jsx title="A policy to deny any environment where the requested duration is more than 3 hours:"
+result = { "decision": "Denied", "reason": "Requested environment duration exceeds 180 minutes" } if {
+   input.duration_minutes > 180
+} 
+```
+
+#### data
+
+The *data* object is the user defined inputs that will also be passed to OPA for evaluation. The data object structure is defined by the policy writer, and the values are provided through the Torque UI.
+
+For example, the policy can look like this:
+
+```jsx title="A policy to deny any environment where the requested duration is more than what's defined in the *data* object:"
+result = { "decision": "Denied", "reason": "Environemtn duration exceeds the configured max duration" } if {
+   input.duration_minutes > data.max_duration_minutes
+} 
+```
+
+In this case, the policy expects a data object with one key : max_duration_minutes.
+
+In Toruqe it would look like this:
+
+![Locale Dropdown](/img/policy_data.png)
+
+So you can enter whatever value you want as the maximal duration to be enforced on environments.
+
+For more details on how to develop policies, see [OPA documentation](https://www.openpolicyagent.org/docs/latest/) and [OPA playground](https://play.openpolicyagent.org/).
 
 :::tip Notes
 * For example custom policies, see [Quali Torque built-in OPA policy templates](https://github.com/QualiTorque/opa).
-* Note that Torque points to a specific commit. Therefore, to introduce a new version of a custom policy, develop, test and pass the policy through your regular git flow. Once you are done, update the commit version in Torque.
+* Note that Torque points to a specific commit. Therefore, to introduce a new version of a custom policy, develop, test and pass the policy through your regular git flow. Once you are done, update the commit version in Torque by clicking "Update Rego".
 :::
 
 ## Approval policies
