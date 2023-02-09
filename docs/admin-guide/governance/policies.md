@@ -13,8 +13,9 @@ In this article:
 - [Torque built-in policies](#torque-built-in-policies)
 - [Custom policies](#custom-policies)
   - [Developing policies](#developing-policies)
-    - [Inputs](#inputs)
-    - [data](#data)
+    - [__Inputs__](#inputs)
+    - [__data__](#data)
+    - [__Rego restricted functions__](#rego-restricted-functions)
 - [Approval policies](#approval-policies)
 - [How to set up a policy](#how-to-set-up-a-policy)
 - [Duplicate a policy](#duplicate-a-policy)
@@ -52,7 +53,7 @@ There may come a time when you will need to go beyond the common use case and wr
 
 ### Developing policies
 
-#### Inputs
+#### __Inputs__
 
 Based on the policy type (environment or terraform_plan) Torque will provide *input* to OPA once the policy is injected.
 For terraform_plan policies, the input is the terraform plan output. 
@@ -102,7 +103,7 @@ result = { "decision": "Denied", "reason": "Requested environment duration excee
 } 
 ```
 
-#### data
+#### __data__
 
 The *data* object is the user defined inputs that will also be passed to OPA for evaluation. The data object structure is defined by the policy writer, and the values are provided through the Torque UI.
 
@@ -121,6 +122,16 @@ In Toruqe it would look like this:
 ![Locale Dropdown](/img/policy_data.png)
 
 So you can enter whatever value you want as the maximal duration to be enforced on environments.
+
+#### __Rego restricted functions__
+
+Torque supports all rego built in functions, except the following list:
+- "http.send";
+- "opa.runtime";
+- "rego.parse_module"; 
+- "time.now_ns";
+- "trace";
+
 
 For more details on how to develop policies, see [OPA documentation](https://www.openpolicyagent.org/docs/latest/) and [OPA playground](https://play.openpolicyagent.org/).
 
