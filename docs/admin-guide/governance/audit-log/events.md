@@ -18,8 +18,8 @@ These events are captured by Audit Log. All events are of type "string".
 |------------------------|---------------------------|-----------------------------------|--------------------------------------------|
 |Add approval channel    | New approval channel was added to Torque's __Approval Channels__ administration page.. |  |- Name<br />- Type|
 |Delete approval channel | Approval channel was deleted from Torque's __Approval Channels__ administration page.   | |- Name<br />- Type|
-|Policy auto approved    |  |  Account/Space  |- Name<br />- Type|
-|Update approval channel | Approval channel's settings were updated. |                   |- Approval type (auto/manual)<br />- Approval status (approved/denied)<br />- Entity type<br />- Entity name<br />- Action (Launch/Extend)<br />- Policy path + name<br />- Approver Email (if approval type is manual)<br />- Notes (if exist)|
+|Policy auto approved    | Custom policy was approved automatically by OPA. This applies to non-approval custom policies as approval policies require an Approval Channel member to approve the end-user's request to launch an environment. |  Account/Space  |- Name<br />- Type|
+|Update approval channel | Approval channel's settings were updated, like description or approvers list. |                   |- Approval type (auto/manual)<br />- Approval status (approved/denied)<br />- Entity type<br />- Entity name<br />- Action (Launch/Extend)<br />- Policy path + name<br />- Approver Email (if approval type is manual)<br />- Notes (if exist)|
 
 
 
@@ -141,7 +141,7 @@ These events are captured by Audit Log. All events are of type "string".
 |Created|New tag created in the __Tags__ administration page.|Account|- Name<br />- Scope<br />- possibleValues<br />- description|
 |Deleted|Tag was deleted.|Account|- Name|
 |Modified|Tag was modified.|Account|-Name<br />- Scope<br />- oldProperties<br />- newProperties|
-|Overriden||Account| - Name<br />- OldValue<br />- NewValue|
+|Overriden|User changed a space-level tag's value in the space's __Tags__ settings page.|Account| - Name<br />- OldValue<br />- NewValue|
 
 ## User
 
