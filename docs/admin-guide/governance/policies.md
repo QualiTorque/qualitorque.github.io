@@ -55,7 +55,7 @@ There may come a time when you will need to go beyond the common use case and wr
 
 #### __Inputs__
 
-Based on the policy type (environment or terraform_plan) Torque will provide *input* to OPA once the policy is injected.
+Based on the policy type (__environment__ or __terraform_plan__) Torque will provide *input* to OPA once the policy is injected.
 For terraform_plan policies, the input is the terraform plan output. 
 For __environment__ policies, the input is the following json object:
 
@@ -95,9 +95,9 @@ For __environment__ policies, the input is the following json object:
    }
 ```
 
-An example of usage:
+Usage example:
 
-```jsx title="A policy to deny any environment where the requested duration is more than 3 hours:"
+```jsx title="A policy that denies environments with a requested duration over 3 hours:"
 result = { "decision": "Denied", "reason": "Requested environment duration exceeds 180 minutes" } if {
    input.duration_minutes > 180
 } 
@@ -105,27 +105,27 @@ result = { "decision": "Denied", "reason": "Requested environment duration excee
 
 #### __data__
 
-The *data* object is the user defined inputs that will also be passed to OPA for evaluation. The data object structure is defined by the policy writer, and the values are provided through the Torque UI.
+The *data* object is the user-defined inputs that will also be passed to OPA for evaluation. The data object structure is defined by the policy writer, and the values are provided through the Torque UI.
 
 For example, the policy can look like this:
 
-```jsx title="A policy to deny any environment where the requested duration is more than what's defined in the *data* object:"
+```jsx title="A policy that denies environments with a requested duration that is longer than defined in the *data* object:"
 result = { "decision": "Denied", "reason": "Environemtn duration exceeds the configured max duration" } if {
    input.duration_minutes > data.max_duration_minutes
 } 
 ```
 
-In this case, the policy expects a data object with one key : max_duration_minutes.
+In this case, the policy expects a data object with one key: ```max_duration_minutes```.
 
-In Toruqe it would look like this:
+In Torque, it would look like this:
 
 ![Locale Dropdown](/img/policy_data.png)
 
-So you can enter whatever value you want as the maximal duration to be enforced on environments.
+So you can enter whichever value you want as the maximum duration to be enforced on environments.
 
 #### __Rego restricted functions__
 
-Torque supports all rego built in functions, except the following list:
+Torque supports all rego built-in functions, except the following list:
 - "http.send";
 - "opa.runtime";
 - "rego.parse_module"; 
