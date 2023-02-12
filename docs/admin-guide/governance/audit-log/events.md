@@ -18,7 +18,7 @@ These events are captured by Audit Log. All events are of type "string".
 |------------------------|---------------------------|-----------------------------------|--------------------------------------------|
 |Add approval channel    | New approval channel was added to Torque's __Approval Channels__ administration page.. |  |- Name<br />- Type|
 |Delete approval channel | Approval channel was deleted from Torque's __Approval Channels__ administration page.   | |- Name<br />- Type|
-|Policy auto approved    | Custom policy was approved automatically by OPA. This applies to non-approval custom policies as approval policies require an Approval Channel member to approve the end-user's request to launch an environment. |  Account/Space  |- Name<br />- Type|
+|Policy auto approved    | Policy was approved automatically by OPA. |  Account/Space  |- Name<br />- Type|
 |Update approval channel | Approval channel's settings were updated, like description or approvers list. |                   |- Approval type (auto/manual)<br />- Approval status (approved/denied)<br />- Entity type<br />- Entity name<br />- Action (Launch/Extend)<br />- Policy path + name<br />- Approver Email (if approval type is manual)<br />- Notes (if exist)|
 
 
@@ -113,7 +113,7 @@ These events are captured by Audit Log. All events are of type "string".
 |Enabled | Policy was enabled.          |Account|- policyName<br />- enabledValue|
 |Imported|  Policy was imported from a connected policy repository.         |Account|- policyName|
 |Modified|  Policy's settings were modified.         |Account|- policyName|
-|Synchronized|         |Account|- policyName|
+|Synchronized| The version of a custom policy in Torque was synced with the policy version in the repository.|Account|- policyName|
 
 
 ## Repository
@@ -141,7 +141,7 @@ These events are captured by Audit Log. All events are of type "string".
 |Created|New tag created in the __Tags__ administration page.|Account|- Name<br />- Scope<br />- possibleValues<br />- description|
 |Deleted|Tag was deleted.|Account|- Name|
 |Modified|Tag was modified.|Account|-Name<br />- Scope<br />- oldProperties<br />- newProperties|
-|Overriden|User changed a space-level tag's value in the space's __Tags__ settings page.|Account| - Name<br />- OldValue<br />- NewValue|
+|Overridden|User changed a space-level tag's value in the space's __Tags__ page.|Account| - Name<br />- OldValue<br />- NewValue|
 
 ## User
 
@@ -165,5 +165,5 @@ These events are captured by Audit Log. All events are of type "string".
 |Deleted| Deleted a workflow from Torque.|Account |- Name|
 |Disabled| Disabled a workflow.|Account |- Name|
 |Enabled| Enabled a workflow.|Account |- Name|
-|Ended|Workflow's execution was terminated, either by the worklow's defined schedule or manually by the environment end-user. |Account/Environment |- Name<br />- Actor (User/Schedule)<br />-If the actor is User, user details (email) is displayed|
+|Ended|Workflow's execution ended at the completion of all its actions. |Account/Environment |- Name<br />- Actor (User/Schedule)<br />-If the actor is User, user details (email) is displayed|
 |Invoked|Workflow was triggered, either by the worklow's defined schedule or manually by the environment end-user. |Account/Environment |- Name<br />- Actor (User/Schedule)<br />-If the actor is User, user details (email) is displayed|
