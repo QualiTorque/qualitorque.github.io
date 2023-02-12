@@ -18,7 +18,7 @@ These events are captured by Audit Log. All events are of type "string".
 |------------------------|---------------------------|-----------------------------------|--------------------------------------------|
 |Add approval channel    | New approval channel was added to Torque's __Approval Channels__ administration page.. |  |- Name<br />- Type|
 |Delete approval channel | Approval channel was deleted from Torque's __Approval Channels__ administration page.   | |- Name<br />- Type|
-|Policy auto approved    | Custom policy was approved automatically by OPA. This applies to non-approval custom policies as approval policies require an Approval Channel member to approve the end-user's request to launch an environment. |  Account/Space  |- Name<br />- Type|
+|Policy auto approved    | Policy was approved automatically by OPA. |  Account/Space  |- Name<br />- Type|
 |Update approval channel | Approval channel's settings were updated, like description or approvers list. |                   |- Approval type (auto/manual)<br />- Approval status (approved/denied)<br />- Entity type<br />- Entity name<br />- Action (Launch/Extend)<br />- Policy path + name<br />- Approver Email (if approval type is manual)<br />- Notes (if exist)|
 
 
