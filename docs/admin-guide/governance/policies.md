@@ -5,9 +5,10 @@ title: Policies
 
 Torque role: Account admin
 
-Torque policies are triggered as part of the environment deployment pipeline for specific environment lifecycle events (launch, extend environment for example) or during the deployment of environments (e.g. when evaluating a Terraform module included in the environment). Torque policies are powered by OPA (Open Policy Agent). 
+Torque policies are triggered as part of the environment deployment pipeline for specific environment lifecycle events (launch, extend environment for example) or during the deployment of environments (e.g. when evaluating a Terraform module included in the environment). Torque policies are powered by OPA (Open Policy Agent). For a step-by-step tutorial, see [Video: Torque policies (step-by-step tutorial)](#video-torque-policies-end-to-end-tutorial).
 
 In this article:
+
 - [How policies work](#how-policies-work)
 - [Policy labels](#policy-labels)
 - [Torque built-in policies](#torque-built-in-policies)
@@ -19,6 +20,7 @@ In this article:
 - [Approval policies](#approval-policies)
 - [How to set up a policy](#how-to-set-up-a-policy)
 - [Duplicate a policy](#duplicate-a-policy)
+- [Video: Torque policies (step-by-step-tutorial)](#video-torque-policies-end-to-end-tutorial)
 
 ## How policies work
 Policies are based on two basic elements: trigger and context. Trigger determines when the policy is activated, and context is the data the policy needs to get ("input" in OPA terms). The context is provided automatically by Torque. Users can also define user data ("data" in OPA terms) in the Torque policy. The context (or input) is the actual environment data the end user is trying to deploy, and the user data sets values to the limitations imposed by the admin who set up the policy.
@@ -180,3 +182,9 @@ Approvers are defined in the __[Approval Channels](/admin-guide/governance/appro
 
 You can also duplicate any built-in or custom policy to create a similar version with different user data. For example, You could have a policy that allows the use of cloud region "us-east-1" for the US team, and another one for the EU team that allows region "eu-west-1".
 > ![Locale Dropdown](/img/duplicate-policy.png)
+
+## Video: Torque policies (end-to-end tutorial)
+
+<video controls width="75%">
+  <source src="/img/policies-full.mp4"/>
+</video>
