@@ -15,7 +15,7 @@ In this article:
 - [Torque built-in policies](#torque-built-in-policies)
 - [Custom policies](#custom-policies)
   - [Developing policies](#developing-your-own-policies)
-    - [__Developing Torque policies__(#developing-torque-policies)
+    - [__Developing Torque policies__](#developing-torque-policies)
     - [__Inputs__](#inputs)
     - [__data__](#data)
     - [__Rego restricted functions__](#rego-restricted-functions)
@@ -74,7 +74,6 @@ deny[reason] {
     reason:= "Deployment contains IAM changes"
 }
 
-} 
 ```
 
 3. __environment__ policies need to return at least one __result__ object with a __decision__ element in it. The decision value can be one of "Denied", "Manual" or "Approved". In addition to the __decision__ element, you can optionally add a __reason__ element that explains the reason for the decition.
