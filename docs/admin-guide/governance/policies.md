@@ -14,7 +14,8 @@ In this article:
 - [Policy labels](#policy-labels)
 - [Torque built-in policies](#torque-built-in-policies)
 - [Custom policies](#custom-policies)
-  - [Developing policies](#developing-policies)
+  - [Developing policies](#developing-your-own-policies)
+    - [__Developing Torque policies__(#developing-torque-policies)
     - [__Inputs__](#inputs)
     - [__data__](#data)
     - [__Rego restricted functions__](#rego-restricted-functions)
@@ -55,7 +56,40 @@ Torque provides many built-in policies, both for environment lifecycle and Terra
 
 There may come a time when you will need to go beyond the common use case and write your own policies and rules. This is possible using custom policies. Custom policies are .rego files that reside in your git repository. When you add the policy repository to Torque, Torque automatically discovers the repository and identifies its .rego files as policies, allowing you to choose which policies to import into Torque. Same as with built-in policies, you select where to apply the policy (on the entire account or specific teams), and configure the relevant data. 
 
-### Developing policies
+### Developing your own policies
+
+#### __Developing Torque policies__
+
+1. __Package__: for Torque to recognize and be able to execute your policy, you need to use the torque packages. The packages that are currently available are torque.environment and torque.tf_plan. So your first line of the rego file which is the package name should be one of these packages.
+2. __terraform_plan__ policies need at least one __deny__ rule to be valid.
+For example, a __terraform_plan__ policy can look like this:
+
+```jsx
+
+package torque.terraform_plan
+
+deny[reason] {
+    all := resources["aws_iam"]
+    count(all) > 0
+    reason:= "Deployment contains IAM changes"
+}
+
+} 
+```
+
+3. __environment__ policies need to return at least one __result__ object with a __decision__ element in it. The decision value can be one of "Denied", "Manual" or "Approved". In addition to the __decision__ element, you can optionally add a __reason__ element that explains the reason for the decition.
+For example, an __environment__ policy can look like this:
+
+```jsx
+
+package torque.environment
+
+result = { "decision": "Denied", "reason": "Environemtn duration exceeds 5 hours" } if {
+   input.duration_minutes > 300
+
+} 
+```
+ 
 
 #### __Inputs__
 
@@ -92,7 +126,7 @@ For __environment__ policies, the input is the following json object:
    "duration_minutes": 119,
    "blueprint_avg_hourly_cost": 0.5,
    "user_name": "example user",
-   "user_space_role": "space_member", //options are : 
+   "user_space_role": "space_member", //options are : Admin, Developer, Member
    "user_account_role": "Member",     // options are: Admin, Member  
    "user_email": "example@myorg.com",
    "action_name": "launch"            // options are: launch, extend
