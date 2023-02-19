@@ -133,6 +133,7 @@ For __environment__ policies, the input is the following json object:
     "action_type": "Launch" # options: "Launch", "Extend"
   }
 }
+```
 
 Usage example:
 
