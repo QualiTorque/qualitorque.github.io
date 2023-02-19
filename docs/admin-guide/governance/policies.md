@@ -97,40 +97,42 @@ For terraform_plan policies, the input is the terraform plan output.
 For __environment__ policies, the input is the following json object:
 
    ```jsx 
-   {
-   "blueprint": {
-      "name": "example_blueprint_name",
-      "repository": "example_repository",
-      "labels": "label1"
-      "url": "www.exampleurl"
-      "last_modified": "0001-01-01T00:00:00"
-     },
-   "inputs": [
-      {
-         "name": "example input1",
-         "type": "string",
-         "value": "example value1",
-         "sensitive": false,
-         "description": null
-      },
-      {
-         "name": "example input2",
-         "type": "string",
-         "value": "example value2",
-         "sensitive": false,
-         "description": null
-      }
-
-   ],
-   "duration_minutes": 119,
-   "blueprint_avg_hourly_cost": 0.5,
-   "user_name": "example user",
-   "user_space_role": "space_member", //options are : Admin, Developer, Member
-   "user_account_role": "Member",     // options are: Admin, Member  
-   "user_email": "example@myorg.com",
-   "action_name": "launch"            // options are: launch, extend
-   }
-```
+{
+  "blueprint": {
+    "name": "my-bp-name",
+    "repository": "my-repo",
+    "labels": [],
+    "url": "https://github.com/...",
+    "last_modified": "0001-01-01T00:00:00",
+    "grains": [
+      {
+        "kind": "terraform",
+        "name": "helloTF"
+      }
+    ]
+  },
+  "inputs": [
+    {
+      "name": "input_name",
+      "type": "string",
+      "value": "input_value",
+      "sensitive": false, # true|false
+      "description": null
+    }
+  ],
+  "duration_minutes": 100, 
+  "blueprint_avg_hourly_cost": null,
+  "space_name": "my_space",
+  "user_space_role": null, # options are: "Space Admin"  "Space Developer"  "Space Member"
+  "user_account_role": "Admin", # options are: "Admin", "Member" . If "Admin", user_space_role is null.
+  "user_email": "me.l@mycorp.com",
+  "entity_name": "my-env", # environment name
+  "action_identifier": {
+    "entity_type": "Environment",
+    "entity_id": null,
+    "action_type": "Launch" # options: "Launch", "Extend"
+  }
+}
 
 Usage example:
 
