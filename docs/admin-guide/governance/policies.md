@@ -60,7 +60,7 @@ There may come a time when you will need to go beyond the common use case and wr
 
 #### __Developing Torque policies__
 
-1. __Package__: for Torque to recognize and be able to execute your policy, you need to use the torque packages. The packages that are currently available are torque.environment and torque.tf_plan. So your first line of the rego file which is the package name should be one of these packages.
+1. __Package__: for Torque to recognize and be able to execute your policy, you need to use the torque packages. The packages that are currently available are torque.environment and torque.terraform_plan. So your first line of the rego file which is the package name should be one of these packages.
 2. __terraform_plan__ policies need at least one __deny__ rule to be valid.
 For example, a __terraform_plan__ policy can look like this:
 
