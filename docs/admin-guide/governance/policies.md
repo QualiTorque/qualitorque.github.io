@@ -76,14 +76,14 @@ deny[reason] {
 
 ```
 
-3. __environment__ policies need to return at least one __result__ object with a __decision__ element in it. The decision value can be one of "Denied", "Manual" or "Approved". In addition to the __decision__ element, you can optionally add a __reason__ element that explains the reason for the decition.
+3. __environment__ policies need to return at least one __result__ object with a __decision__ element in it. The decision value can be one of "Denied", "Manual" or "Approved". In addition to the __decision__ element, you can optionally add a __reason__ element that explains the reason for the decision.
 For example, an __environment__ policy can look like this:
 
 ```jsx
 
 package torque.environment
 
-result = { "decision": "Denied", "reason": "Environemtn duration exceeds 5 hours" } if {
+result = { "decision": "Denied", "reason": "Environment duration exceeds 5 hours" } if {
    input.duration_minutes > 300
 
 } 
