@@ -380,6 +380,100 @@ grains:
         - credential_name or {{.inputs.credentials_input_name}} 
 ```        
 
+### terraform.tfstate remote backend storage
+
+When launching the environment, Torque creates a tfstate file for each Terraform grain in the blueprint. By default, the file is saved locally on the PVC of the grain runner (volume for Docker agents). However, as the TF state file may contain sensitive information, Torque allows you to optionally choose to save the file in your own remote backend storage. Torque supports the following remote backends: __[S3](https://developer.hashicorp.com/terraform/language/settings/backends/s3)__, __[gcs](https://developer.hashicorp.com/terraform/language/settings/backends/gcs)__, __[azurerm](https://developer.hashicorp.com/terraform/language/settings/backends/azurerm)__, and __[http](https://developer.hashicorp.com/terraform/language/settings/backends/http)__.
+
+__Prerequisites:__
+* The remote backend must already exist. Torque will not create the remote backend if it doesn't exist.
+* Role Arn or service account defined in the ```authentication``` must have access permissions to the remote backend.
+
+The remote backend is specified in the ```backend``` section of the grain. Based on the blueprint YAML definition, Torque will create an override file that contains the remote backend configurations.
+
+__Example__:
+
+```yaml
+grains:
+  database:
+    kind: terraform
+    spec:
+      ...
+    backend:
+      type: "s3"
+      bucket: "my-bucket-name"
+      region: "us-east-1"
+      key-prefix: "folder1/folder2"
+``` 
+
+__Properties__:
+* __type__: s3, azurern, gcs, http
+* __bucket__: Mandatory for s3 and gcs
+* __region__: Mandatory for S3
+* __storage-account-name__: Mandatory for azurerm
+* __container-name__: Mandatory for azurerm
+* __base-address__: Mandatory for http
+* __key-prefix__: Optional. Ttfstate file path in the remote storage. Relevant for s3, azurerm, gcs. 
+   * S3, Azure Blobs & GCS have a key name limit of 1024 ascii chars
+
+__S3__:
+
+```yaml
+backend:
+  type: "s3"
+  bucket: "my-bucket-name"
+  region: "us-east-1"
+  key-prefix: folder1/folder2"
+``` 
+
+__azurerm__:
+
+```yaml
+backend:
+  type: "azurern"
+  storage-account-name: "terraform123abc"
+  container-name: "terraform-state"
+  key-prefix: folder1/folder2"
+```
+
+__gcs__:
+
+```yaml
+backend:
+  type: "gcs"
+  bucket: "my-bucket-name"
+  key-prefix: folder1/folder2"
+```
+
+__http__:
+
+```yaml
+backend:
+  type: "http"
+  base-address: "http://myrest.api.com/foo"
+```
+
+Torque uses a "1 to many" model, meaning that one blueprint definition is used to launch many standalone environments. When using a backend for Terraform grains, it is important to ensure that each live instance of the grain has its own unique tfstate file, so Torque will autogenerate the tfstate file name. 
+
+For s3, gcs, azurerm backends, the tfstate file location will be: 
+
+* Format when the “key-prefix” is not defined: 
+  ```yaml“
+  torque-remote-state/{environmentId}_{grainName}.tfstate“
+* Format when “key-prefix” defined in the blueprint: 
+   Using the optional “key-prefix” property the blueprint designer can choose the folder where the tfstate file will be located. 
+
+   ```yaml
+   “{key-prefix}/{environmentId}_{grainName}.tfstate 
+* For http backend the tfstate file address will be: 
+
+   ```yaml
+   “{base-address}/{environmentId}_{grainName}” 
+
+
+__Cleaning up the tfstate file when the Terraform grain is destroyed:__
+
+When destroying a Terraform environment, Terraform does not delete the tfstate file but rather leaves behind an empty file. To clean up the leftovers, set a file retention policy on the remote storage to ensure the removal of files that have not been recently accessed. Since Torque runs drift detection on a 1-hour schedule, the tfstate file will be considered as “accessed” by the remote storage when running drift detection. And when the Torque environment ends, the tfstate file will not be “accessed” anymore by Torque. 
+
 ### tf-version
 Torque provides the flexibility to choose a specific Terraform version with which the Terraform module will be deployed (minimum supported version is 0.14).
 :::info
