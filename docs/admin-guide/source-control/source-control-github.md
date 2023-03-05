@@ -3,9 +3,12 @@ sidebar_position: 30
 title: GitHub Source Control
 ---
 
-Torque supports connecting asset/blueprint repositories on GitHub, GitLab, Azure repos and BitBucket out of the box. However, to connect a repository, you must have access to the repository and grant Torque permission to the repository's organization, as explained below. For details about connecting a repository, see [Discover Your Assets](/getting-started/Discover%20Your%20Assets). You should be able to sign in with an account on any one of these online services and immediately get going with connecting asset repositories and launching environments.
+Torque supports connecting asset/blueprint repositories on GitHub out of the box. However, to connect a repository, you must have access to the repository and grant Torque permission to the repository's organization, as explained below. For details about connecting a repository, see [Discover Your Assets](/getting-started/Discover%20Your%20Assets). You should be able to sign in with an account on any one of these online services and immediately get going with connecting asset repositories and launching environments.
 
-For illustration purposes, we will use GitHub.
+In this article:
+* [Ensure your account is added to the GitHub organization you're connecting](#ensure-your-account-is-added-to-the-github-organization-youre-connecting)
+* [Ensure your organization has granted access to Torque](#ensure-your-organization-has-granted-access-to-torque)
+* [Token expiration and revokation](#token-expiration-and-revokation)
 
 ## Ensure your account is added to the GitHub organization you're connecting
 
@@ -32,4 +35,6 @@ When connecting a repository, Torque installs an OAuth app called __Torque Contr
   The Torque app is granted the necessary permissions and the repository is connected.
   6. Return to Torque and continue setting up the connection.
 
+## Token expiration and revokation
 
+GitHub imposes a limit on the number of tokens an application can create for the same user, and will revoke the oldest one once this limit is passed. For details, see [GitHub token expiration and revokation policy](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/token-expiration-and-revocation#token-revoked-due-to-excess-of-tokens-for-an-oauth-app-with-the-same-scope).
