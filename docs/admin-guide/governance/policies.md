@@ -98,55 +98,54 @@ For __environment__ policies, the input is the following json object:
 
    ```jsx 
 {
-  "blueprint": {
-    "name": "my-bp-name",
-    "repository": "my-repo",
-    "labels": [],
-    "url": "https://github.com/...",
-    "last_modified": "0001-01-01T00:00:00",
-    "grains": [
-      {
-        "kind": "terraform",
-        "name": "helloTF"
-      }
-    ]
-  },
-  "inputs": [
-    {
-      "name": "input_name",
-      "type": "string",
-      "value": "input_value",
-      "sensitive": false, # true|false
-      "description": null
-    }
-  ],
-  "workflows": [
-     {
-       "name": "<workflow_name>",
-       "schedules": [ 
-         "* * * * *",
-         "0 * * * *"   # null in schedules means the schedule was disabled       
-       ],
-       "inputs": {
-         "<input_name_1>": <input_value_1>,
-         "<input_name_2>": <input_value_2>
-       }
-     }
-   ],
-  "timezone": "Asia/Jerusalem",
-  "duration_minutes": 100, # in launch, the requested duration. In extend, the total duration before the extention
-  "extend_duration_minutes": 100, # null if the action is "launch"
-  "blueprint_avg_hourly_cost": null,
-  "space_name": "my_space",
-  "user_space_role": null, # options are: "Space Admin"  "Space Developer"  "Space Member"
-  "user_account_role": "Admin", # options are: "Admin", "Member" . If "Admin", user_space_role is null.
-  "user_email": "me.l@mycorp.com",
-  "entity_name": "my-env", # environment name
-  "action_identifier": {
-    "entity_type": "Environment",
-    "entity_id": null,
-    "action_type": "Launch" # options: "Launch", "Extend"
-  }
+    "blueprint": {
+        "name": "my-bp-name",
+        "repository": "my-repo",
+        "labels": [],
+        "url": "https://github.com/...",
+        "last_modified": "0001-01-01T00:00:00",
+        "grains": [
+            {
+                "kind": "terraform",
+                "name": "helloTF"
+            }
+        ]
+    },
+    "inputs": [
+        {
+            "name": "input_name",
+            "type": "string",
+            "value": "input_value",
+            "sensitive": false, // true|false
+            "description": null
+        }
+    ],
+    "workflows": [
+        {
+            "name": "<workflow_name>",
+            "schedules": [
+                "* * * * *",
+                "0 * * * *" //null in schedules means the schedule was disabled
+            ],
+            "inputs": {
+                "<input_name_1>": "<input_value_1>",
+                "<input_name_2>": "<input_value_2>"
+            }
+        }
+    ],
+    "timezone": "Asia/Jerusalem",
+    "duration_minutes": 100, // in launch, the requested duration. In extend, the total duration before the extention
+    "extend_duration_minutes": 100, // null if the action is "launch""blueprint_avg_hourly_cost": null,
+    "space_name": "my_space",
+    "user_space_role": null, // options are: "Space Admin""Space Developer""Space Member"
+    "user_account_role": "Admin", // options are: "Admin", "Member" . If "Admin", user_space_role is null.
+    "user_email": "me.l@mycorp.com",
+    "entity_name": "my-env", //environment name
+    "action_identifier": {
+        "entity_type": "Environment",
+        "entity_id": null,
+        "action_type": "Launch" // options: "Launch", "Extend"
+    }
 }
 ```
 
