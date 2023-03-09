@@ -120,6 +120,21 @@ For __environment__ policies, the input is the following json object:
       "description": null
     }
   ],
+  "workflows": [
+     {
+       "name": "<workflow_name>",
+       "schedules": [ 
+         "* * * * *",
+         "0 * * * *" 
+         # null in schedules means the schedule was disabled
+       ],
+       "inputs": {
+         "<input_name_1>": <input_value_1>,
+         "<input_name_2>": <input_value_2>
+       }
+     }
+   ],
+  "timezone": "Asia/Jerusalem",
   "duration_minutes": 100, # in launch, the requested duration. In extend, the total duration before the extention
   "extend_duration_minutes": 100 # null if the action is "launch"
   "blueprint_avg_hourly_cost": null,
