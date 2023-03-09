@@ -204,8 +204,6 @@ grains:
 
 :::info
 Agents gives the flexibility of deploying the same blueprints over different cloud accounts and cloud vendors. For example, the same blueprint can be utilized for Azure or GCP simply by exposing the agent as a blueprint input, from which the end-user to choose his preferred cloud provider, each represented with a different agent.
-
-
 :::
 
 The agent's configuration must include:
@@ -223,6 +221,20 @@ grains:
         service-account: torque-sa
  ```   
 
+You can add the ```nodeSelector``` section to your grain and specify the node labels you want the target node(s) to have. The nodeSelector and its labels will be applied on the pod specification. Kubernetes only schedules the pod onto nodes that have each of the labels you specify. For example:
+```yaml
+grains:
+  nginx:
+    kind: helm
+    spec: 
+      source:
+        ...
+      host:
+        name:
+        kubernetes:
+          nodeSelector:
+          - app: torque
+```
 
 ### Grain inputs & outputs
 Inputs and outputs are used both in the blueprint level and in the grains level. Grains can use inputs and outputs to pass data between IaC components, validate information and eventually lead to reducing the amount of IaC components that needs to be maintained by the organization.
@@ -794,6 +806,7 @@ Please see [the grain source](blueprints#source) for more details.
 
 ### agent
 Please see [the grain agent](blueprints#host) for more details.
+
 
 ### tags​
 Whenever a Kubernetes grain is launched, all resources created during the deployment process are automatically tagged with Torque's system tags, built-in tags and custom tags. If you wish to disable tagging for all resources in a specific Kubernetes grain, use the following syntax:
