@@ -29,7 +29,7 @@ Torque provides out-of-the-box support for Terraform modules, Helm charts, Cloud
 * __[Automatic drift detection](/getting-started/Launch-environment#drift)__: See what external changes have occurred to your environment and its resources, revert the changes to bring your environment back to its initial state.
 
 ## Monitoring and control
-* __[Cost management and estimation](/admin-guide/cost-tracking/cost)__: Easily view the cloud costs of your environments, as well as current/estimated spending by blueprint, environment or space.
+* __[Cost management and estimation](/governance/cost-tracking/cost)__: Easily view the cloud costs of your environments, as well as current/estimated spending by blueprint, environment or space.
 * __[Introspection](/getting-started/Launch-environment)__: Drill-down into each environment's cloud resources, elements and metadata directly from Torque.
 * __[CI/CD Integration](/eco-system/Integrations/ci-cd)__: Configure environments to be spun up and tested as part of a CI/CD process using some of the leading tools on the market, including Jenkins, Azure DevOps, CircleCI, Bamboo, and more.
 * __[Slack and Teams notifications](/admin-guide/notifications)__: Get notifications for different environment lifecycle phases to the Teams/Slack channel of your choice.
