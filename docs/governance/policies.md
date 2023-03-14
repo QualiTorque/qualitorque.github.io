@@ -1,5 +1,5 @@
 ---
-sidebar_position: 9
+sidebar_position: 12
 title: Policies
 ---
 
@@ -201,7 +201,7 @@ Torque allows you to configure your policy with conditions that will trigger man
 For example, you could have an approval policy that sets the max_duration for environments at 3 hours, so attempting to launch an environment with a duration that is longer than 3 hours will require approval.
 
 :::tip Notes
-Approvers are defined in the __[Approval Channels](/admin-guide/governance/approval-channels)__ administration page.
+Approvers are defined in the __[Approval Channels](/governance/approval-channels)__ administration page.
 :::
 
 ## How to set up a policy

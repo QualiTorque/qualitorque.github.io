@@ -27,7 +27,7 @@ When you use our services, you trust us with your personal information. At Quali
         * Cloud resources deployed as part of the environment. See [Launch Your Blueprint](/getting-started/Launch-environment)
         * Events 
     * [Cost](/admin-guide/cost-tracking/cost) information (optional) 
-    * [Audit Log events](/admin-guide/governance/audit-log/events)
+    * [Audit Log events](/governance/audit-log/events)
 
 ## What does Torque connect to 
 
