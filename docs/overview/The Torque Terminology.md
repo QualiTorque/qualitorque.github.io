@@ -15,10 +15,10 @@ Before you start on your Torque journey, please take a moment to familiarize you
 
 * **Policies** - Torque policies allow setting an additional layer of governance on top of blueprints and the environments they deploy. These include:
     * [Blueprint policies](/blueprint-designer-guide/Policies) allow blueprint designers to set maximum duration guardrails (for high-cost environments perhaps).
-    * [Policies](/admin-guide/governance/policies) allow the Torque account admin to set account-level limitations on AWS-created environments.
+    * [Policies](/governance/policies) allow the Torque account admin to set account-level limitations on AWS-created environments.
 
 * **Repository** - A git-based folder containing the IaC assets, container files and multi-asset blueprints that make up the Torque self-service catalog, and are consumed by your end-users. For details, see [Architecture](/overview/architecture).
 
 * [**Space**](/getting-started/Create%20your%20space) - A logically separate area that contains an association to one or more agents, asset repositories, a blueprint repository and Ci/CD plugins. Spaces can be used to logically separate between teams, projects, or even development lifecycle stages and allow the relevant end-users, administrators and blueprint designers to access only the relevant blueprints and environments. 
 
-* [**Tag**](/admin-guide/governance/tags) - A key-value pairing that is set by Torque to all of the resources and infrastructure entities provisioned by an environment (example: Owner = John.D@somecompany.com) There are 2 types of tags: System tags and custom tags. System tags are tags that are defined by Torque (for example, environment id, space name, etc) while the users define the custom tags according to their needs. 
+* [**Tag**](/governance/tags) - A key-value pairing that is set by Torque to all of the resources and infrastructure entities provisioned by an environment (example: Owner = John.D@somecompany.com) There are 2 types of tags: System tags and custom tags. System tags are tags that are defined by Torque (for example, environment id, space name, etc) while the users define the custom tags according to their needs. 

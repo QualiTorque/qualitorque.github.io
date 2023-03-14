@@ -28,7 +28,3 @@ At this time, Workflows are supported only for VM esources.
    For example:
   > ![Locale Dropdown](/img/workflow-1.png)
 4. Click __Save__.
-
-
-
-
