@@ -418,7 +418,7 @@ grains:
 ``` 
 
 __Properties__:
-* __type__: s3, azurern, gcs, http
+* __type__: s3, azurerm, gcs, http
 * __bucket__: Mandatory for s3 and gcs
 * __region__: Mandatory for S3
 * __storage-account-name__: Mandatory for azurerm
@@ -441,7 +441,7 @@ __azurerm__:
 
 ```yaml
 backend:
-  type: "azurern"
+  type: "azurerm"
   storage-account-name: "terraform123abc"
   container-name: "terraform-state"
   key-prefix: folder1/folder2"
