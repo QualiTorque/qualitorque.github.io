@@ -135,7 +135,8 @@ For __environment__ policies, the input is the following json object:
     ],
     "timezone": "Asia/Jerusalem",
     "duration_minutes": 100, // in launch, the requested duration. In extend, the total duration before the extention
-    "extend_duration_minutes": 100, // null if the action is "launch""blueprint_avg_hourly_cost": null,
+    "extend_duration_minutes": 100, // null if the action is "launch"
+    "blueprint_avg_hourly_cost": null,
     "space_name": "my_space",
     "user_space_role": null, // options are: "Space Admin""Space Developer""Space Member"
     "user_account_role": "Admin", // options are: "Admin", "Member" . If "Admin", user_space_role is null.
