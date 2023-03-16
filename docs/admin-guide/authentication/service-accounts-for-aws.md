@@ -95,7 +95,7 @@ metadata:
   ```jsx title=
   kubectl apply -f SA.yaml
   ```
-You're done. All that's left to do is specify the service account name in the blueprint YAML. For details, see [Host](/blueprint-designer-guide/blueprints#host).
+You're done. All that's left to do is specify the service account name in the blueprint YAML. For details, see [Agent](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#agent).
 
 ## For additional details, see these AWS docs:
 
