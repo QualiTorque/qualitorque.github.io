@@ -7,5 +7,5 @@ By now, you have succeeded to run your first workload with Torque, set up your d
 
 Continue developing your blueprints to enjoy the full capabilities of Torque, such as multi-grain, multi-techology blueprints, with advanced automation and orchestration capabilities. Working in your VCS will allow you to deploy GitOps processes to your blueprint development.
 
-To view the full blueprint schema visit the [Blueprint Designer Guide](/blueprint-designer-guide/blueprints). 
+To view the full blueprint schema visit the [Blueprint Designer Guide](/blueprint-designer-guide/blueprints/blueprints-overview). 
 

@@ -27,7 +27,7 @@ __To add an account-level parameter:__
    * __Value__: Parameter’s value
    * __Description__: Informative description of the parameter or value it contains
 4. Click __Apply__.
-   The parameter is stored in the parameter store and can be used in your blueprint YAMLs in the format: ```{{.params.param-name}}```. For details, see [Parameters](/blueprint-designer-guide/blueprints#parameters).
+   The parameter is stored in the parameter store and can be used in your blueprint YAMLs in the format: ```{{.params.param-name}}```. For details, see [Parameters](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#parameters).
 
 ## Creating space-level parameters
 
@@ -45,7 +45,7 @@ __To add a space-level parameter:__
    * __Value__: Parameter’s value
    * __Description__: Informative description of the parameter or value it contains
 4. Click __Apply__.
-   The parameter is stored in the parameter store and can be used in your blueprint YAMLs in the format: ```{{.params.param-name}}```. For details, see [Parameters](/blueprint-designer-guide/blueprints#parameters).
+   The parameter is stored in the parameter store and can be used in your blueprint YAMLs in the format: ```{{.params.param-name}}```. For details, see [Parameters](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#parameters).
 
 :::tip 
 A space-level parameter will take precedence over an account-level parameter with the same name
