@@ -92,7 +92,7 @@ grains:
     spec:
       source:
         path: github.com/QualiTorque/samples.git//terraform/rds
-      host:
+      agent:
         name: eks-demo
       inputs:
         - sandbox_id: '{{ sandboxid | downcase }}'
@@ -113,7 +113,7 @@ grains:
     spec: 
       source:
         path: github.com/QualiTorque/samples.git//terraform/s3
-      host:
+      agent:
         name: eks-demo
       inputs:
         - region: eu-west-1
@@ -128,7 +128,7 @@ grains:
     spec:
       source:
         path: https://github.com/QualiTorque/samples.git//helm/robotshop
-      host:
+      agent:
         name: eks-demo
       inputs:
         - hostname: 'robotshop-{{ sandboxid | downcase }}'
@@ -198,7 +198,7 @@ grains:
       source:
         store: assets
         path: assets/terraform/s3-deploy-webapp
-      host:
+      agent:
         name: demo-prod
         service-account: app-sa
       inputs:
