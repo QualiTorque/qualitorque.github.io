@@ -4,8 +4,8 @@ title: Getting Started with Designing Blueprints
 ---
 
 In this article:
-* [Let Torque autogenerate blueprints from your assets](#let-torque-autogenerate-blueprints-from-your-assets)
-* [Create a multi-asset blueprint](#create-a-multi-asset-blueprint)
+* [Let Torque autogenerate blueprints from your assets](#option-a-let-torque-generate-blueprints-from-your-assets)
+* [Create a multi-asset blueprint](#option-b-create-a-multi-asset-blueprint-in-your-source-control-repository)
 * [Removing a blueprint](#removing-a-blueprint)
 
 ## What is a Torque blueprint?
@@ -48,22 +48,38 @@ These generated blueprints are stored in Torque's backend, and you can customize
   You and your space’s users can now launch environments from these blueprints via the **Catalog**. 
 
 ## Option B: Create a multi-asset blueprint in your source control repository
-So far, we’ve learned how to create single-asset blueprints via autogeneration. But what if you want to create an application-stack environment? This is easily done by having multiple grains in a single blueprint or nesting an existing blueprint within a master blueprint as a grain. 
+So far, we’ve learned how to create single-asset blueprints via autogeneration. But what if you want to create an application-stack environment? This is easily done by having multiple grains in a single blueprint or nesting an existing blueprint within a master blueprint as a grain. To create such a blueprint, you will need an IDE environment that has access to a clone of your repository, in which you can create the new blueprint's YAML file and edit it, and then commit it into your repository and push the changes to the remote repository from which Torque will automatically synchronize the new blueprint.
 
-In order to create such a blueprint, you will need an IDE environment that has access to a clone of your repository, in which you can create the new blueprint's YAML file and edit it, and then commit it into your repository and push the changes to the remote repository from which Torque will automatically synchronize the new blueprint.
+By enforcing usage of a source control repository, each blueprint in Torque will have:
+* A full history of tracked changes
+* The ability to identify which developer authored those changes
+* The ability to retrieve or rollback to the contents of previous versions of the blueprint file
 
-If you are using VSCode to create and edit your blueprint file, we recommend using our official VSCode plugin (link here). For other IDEs, you can download our [official JSON schema](https://github.com/QualiTorque/torque-vs-code-extensions/blob/master/client/schemas/blueprint-spec2-schema.json) for the blueprint YAML and enforce it with your plugin of choice. 
+:::tip __Tips__
+* If you are using VSCode to create and edit your blueprint file, we recommend using our official VSCode plugin (link here). For other IDEs, you can download our [official JSON schema](https://github.com/QualiTorque/torque-vs-code-extensions/blob/master/client/schemas/blueprint-spec2-schema.json) for the blueprint YAML and enforce it with your plugin of choice. 
+* When connecting a repository containing blueprint files to Torque, it is possible to reference a branch of the repository and not its main, allowing designers the ability to test changes to blueprints before pushing them to the main/master branch and affecting the production catalog. 
+:::
 
-By enforcing usage of a source cocntrol repository, each blueprint in Torque will have a full history of tracked changes, as well as the ability to identify which developer authored those changes, and the ability to retrieve or rollback to the contents of previous versions of the blueprint file.
-
-Additionally, when connecting a repository containing blueprint files to Torque, it is possible to reference a branch of the repository and not its main, allowing designers the ability to test changes to blueprints before pushing them to the main/master branch and affecting the production catalog. 
-
-1. Generate a Single-asset blueprint for the first grain in your blueprint (following the instructions in Option A) and download it as a file from Torque
-2. Save the file in the "blueprints" folder in your cloned repository (create it if it doesn't exist) and rename it to the name of the new blueprint.
-3. for each additional grain, you can either copy an exmaple of that grain from a generated blueprint, or you can use the sample structure for that grain type in the corresponding page in the "Blueprint Grains" section
-4. if grains depend on each other, add a "depends-on" section to the grain (in the top level, next to kind: and spec:) and provide the names of the dependent grains in a comma-separated list. 
-5. once a grain depends on another grain, the output values from that grain can be used as values for any of the grain's inputs or attributes using the syntax {{ .grains.grain_name.outputs.output_name}}, see the examples section of this page for examples. 
-6. customize the inputs and outputs sections of the blueprint to contain only the relevant inputs that the entire environment needs, and to reflect the outputs from the grains that you would like to make available to the environment user.
+__To create a multi-asset blueprint:__
+1. Generate a single-asset blueprint for the first grain in your blueprint, as explained in [Let Torque autogenerate blueprints from your assets](#option-a-let-torque-generate-blueprints-from-your-assets).
+2. Download the blueprint as a file from Torque.
+  > ![Locale Dropdown](/img/download_blueprint-yaml.png)
+2. Save the file in the "/blueprints" folder in your cloned repository (create it if it doesn't exist) and rename it to the name of the new blueprint.
+3. Modify the grain type and spec to reflect the new component of your environment. For example:
+  ```"yaml
+grains:
+  database:
+    kind: terraform
+    spec:
+      source:
+        store: infra 
+        path: terraform/rds
+4. For each additional grain, do one of the following:
+   * Copy an example of that grain from a generated blueprint.
+   * Use the sample structure for that grain type in the corresponding page in [The Blueprint YAML](/blueprint-designer-guide/blueprints/blueprints-overview).
+5. If grains depend on each other, add a ```depends-on``` section to the grain (in the top level, next to ```kind:``` and ```spec:```) and provide the names of the dependent grains in a comma-separated list. 
+6. Once a grain depends on another grain, the output values from that grain can be used as values for any of the grain's inputs or attributes using the syntax ```{{ .grains.grain_name.outputs.output_name}}```, see the examples below. 
+7. Customize the ```inputs``` and ```outputs``` sections of the blueprint to contain only the relevant inputs that the entire environment needs, and to reflect the outputs from the grains that you would like to make available to the environment's end-user.
 
 ## Removing a blueprint
 As mentioned above, there are two types of blueprints, autogenerated blueprints (stored in Torque) and source-controlled blueprints (stored in your repository). 
