@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-title: Getting Started with Designing Blueprints
+title: Getting Started With Designing Blueprints
 ---
 
 In this article:
