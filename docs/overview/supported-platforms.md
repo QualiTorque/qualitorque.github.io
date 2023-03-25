@@ -23,4 +23,4 @@ Torque supports the following IaC assets:
 * Cloudformation
 * Shell (asset-agnostic grain that allows you to run bash/python3 commands as part of your environment’s launch and/or teardown)
 
-For details, see [Blueprint YAML](/blueprint-designer-guide/blueprints).
+For details, see [Blueprint YAML](/blueprint-designer-guide/blueprints/blueprints-overview).

@@ -32,8 +32,8 @@ inputs:
   AWS_SECRET_KEY:
     type: string
 
-  host_name:
-    type: execution-host
+  agent_name:
+    type: agent
 
 outputs: {}
 
@@ -44,8 +44,8 @@ grains:
       source:
         store: terraform
         path: s3-create
-      host:
-        name: '{{ .inputs.host_name }}'
+      agent:
+        name: '{{ .inputs.agent_name }}'
 
       inputs:
       - BUCKET_NAME: '{{ .inputs.BUCKET_NAME }}'
@@ -83,8 +83,8 @@ inputs:
   ARM_TENANT_ID:
     type: string
 
-  host_name:
-    type: execution-host
+  agent_name:
+    type: agent
 
 outputs: {}
 
@@ -95,8 +95,8 @@ grains:
       source:
         store: terraform
         path: azure-storag-create
-      host:
-        name: '{{ .inputs.host_name }}'
+      agent:
+        name: '{{ .inputs.agent_name }}'
       
       env-vars: 
         - ARM_CLIENT_ID: '{{ .inputs.ARM_CLIENT_ID }}'

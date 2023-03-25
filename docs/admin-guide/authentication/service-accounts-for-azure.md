@@ -162,13 +162,13 @@ There are 2 ways to acomplish this:
 
 
 2. You may override the default credentials defined for the AKS agent, or define the credentials if no credentials were configured as the default.
-  a. In the Terraform grain, specify the service-account name under spec > host:
+  a. In the Terraform grain, specify the service-account name under spec > agent:
     ```jsx title=
   spec:
     source:
       ...
     namespace:
-    host:
+    agent:
       name: {aks_torque_agent_name}
       service account: {new_service_account_name} # this is the k8s service account created above    
   ```
