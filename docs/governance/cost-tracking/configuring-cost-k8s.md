@@ -17,7 +17,7 @@ Follow the next steps to start collecting cost on your K8s cluster:
    2. Click the cost collection target's 3 dot menu and select __Validate__ to make sure it works (i.e. cost data can be collected).
       * If validation fails, perform the procedure described in [Troubleshooting](#troubleshooting).
 3. Enable the relevant cost collection target:
-   1. Go to __Administration > Cloud Accounts > Cost Collection Target__.
+   1. Go to __Administration > Cost > Clouds__.
    2. Click the desired cost collection target's __Enabled__ toggle.
 
      > ![Locale Dropdown](/img/enable-cost-target.png)
@@ -27,21 +27,4 @@ Follow the next steps to start collecting cost on your K8s cluster:
 1. Verify that Kubecost is deployed in the cluster. 
    1. Navigate your browser to http://localhost:9090/. If you can see kubecost data, it means it's working. If you can't, see [this guide](https://docs.kubecost.com/troubleshooting/troubleshoot-install) for help.
 2. In Torque, try to re-enable the K8S cost collection target and validate that it works.
-3. If the error still exists, run the [Get agent deployment file](https://portal.qtorque.io/api_reference/#/paths/api-settings-computeservices-deployment/post) API call with the following body: 
-    ```jsx title=
-    {
-        "service_type": "k8s",
-        "service_name": "[the name of the agent]",
-        "details": {
-            "include_agent_deployment": false,
-            "enable_kubecost": true
-        }
-    }
-    ```
-4. Save the output to a deployment file.
-5. Run the following command on the cluster:
-    ```jsx title=
-    kubectl apply -f “[generated deployment file]”
-    ```
-6. Try to re-validate the cost collection target.
-7. If the error still exists, call Torque support.
+3. If the error still exists, contact Torque support.
