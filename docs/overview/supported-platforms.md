@@ -16,24 +16,24 @@ Torque supports installation of an agent over the following platforms:
 ## Infrastructure as Code Frameworks
 Torque provides native support for IaC assets residing in a git repository. When connecting an IaC asset repository to Torque, Torque maps your repository's assets, prompts you to select the ones you would like to use in Torque, and auto-creates working blueprints out of the selected assets. Additionally, Torque allows you to insert custom Linux-script based automation as a component of a blueprint.
 
-Torque supports the following IaC assets:
-* [Terraform](/docs/blueprint-designer-guide/blueprints/terraform-grain.md)
-* [Kubernetes](/docs/blueprint-designer-guide/blueprints/kubernetes-grain.md)
-    * [Helm](/docs/blueprint-designer-guide/blueprints/helm-grain.md)
-* [AWS CloudFormation](/docs/blueprint-designer-guide/blueprints/cloudformation-grain.md)
-* [Ansible](/docs/blueprint-designer-guide/blueprints/ansible-grain.md)
-* [Shell](/docs/blueprint-designer-guide/blueprints/shell-grain.md) - (asset-agnostic grain that allows you to run bash/python3 commands as part of your environment’s launch and/or teardown)
+Torque supports the following IaC frameworks:
+* [Terraform](/blueprint-designer-guide/blueprints/terraform-grain.md)
+* [Kubernetes](/blueprint-designer-guide/blueprints/kubernetes-grain.md)
+    * [Helm](/blueprint-designer-guide/blueprints/helm-grain.md)
+* [AWS CloudFormation](/blueprint-designer-guide/blueprints/cloudformation-grain.md)
+* [Ansible](/blueprint-designer-guide/blueprints/ansible-grain.md)
+* [Shell](/blueprint-designer-guide/blueprints/shell-grain.md) - (asset-agnostic grain that allows you to run bash/python3 commands as part of your environment’s launch and/or teardown)
 
 For details, see [Blueprint YAML](/blueprint-designer-guide/blueprints/blueprints-overview).
 
 ## CI/CD Tooling
 Torque enables you to integrate with various leading CI/CD tools such as Bamboo, Jenkins and TeamCity, to facilitate your application development activities.
 
-* [Azure DevOps](/docs/eco-system/cd-cd-tooling/azure-devops.md)
-* [CircleCI](/docs/eco-system/cd-cd-tooling/circle-ci.md)
-* [GitHub Actions](/docs/eco-system/cd-cd-tooling/github-actions.md)
-* [Spinnaker](/docs/eco-system/cd-cd-tooling/spinnaker.md)
-* [TeamCity](/docs/eco-system/cd-cd-tooling/teamcity.md)
-* [Jenkins](/docs/eco-system/cd-cd-tooling/jenkins.md)
+* [Azure DevOps](/eco-system/cd-cd-tooling/azure-devops.md)
+* [CircleCI](/eco-system/cd-cd-tooling/circle-ci.md)
+* [GitHub Actions](/eco-system/cd-cd-tooling/github-actions.md)
+* [Spinnaker](/eco-system/cd-cd-tooling/spinnaker.md)
+* [TeamCity](/eco-system/cd-cd-tooling/teamcity.md)
+* [Jenkins](/eco-system/cd-cd-tooling/jenkins.md)
 * Bamboo (coming soon)
 * Jira (coming soon)
