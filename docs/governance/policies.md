@@ -14,7 +14,7 @@ In this article:
 - [Policy labels](#policy-labels)
 - [Torque built-in policies](#torque-built-in-policies)
 - [Custom policies](#custom-policies)
-  - [Developing policies](#developing-your-own-policies)
+  - [Developing your own policies](#developing-your-own-policies)
     - [__Developing Torque policies__](#developing-torque-policies)
     - [__Inputs__](#inputs)
     - [__data__](#data)
@@ -43,6 +43,7 @@ There are 4 labels that will be automatically applied to policies in Torque, in 
 * __Terraform__ label is assigned to policies that evaluate the Terraform plan on the environment's Terraform grain. These policies are triggered when Torque deploys the Terraform grain's plan during the environment's initialization
 * __Environment__ label is assigned to policies that are triggered when the environment is launched or extended
 * __Approval__ label is assigned to policies that could require approval to launch the environment
+* __Annotations__ lable is assigned to files which are used to evaluate dynamic environment annotations. See [Environment Annotations](governance/environment-annotations.md).
 
 > ![Locale Dropdown](/img/policy-labels.png)
 
