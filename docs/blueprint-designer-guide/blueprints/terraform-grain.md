@@ -206,7 +206,7 @@ grains:
     spec:
       tags:
         disable-tags-for:
-        - aws_s3_bucket_object
+        - aws_s3_bucket_object ## the terraform resource type
 ```
 
 
