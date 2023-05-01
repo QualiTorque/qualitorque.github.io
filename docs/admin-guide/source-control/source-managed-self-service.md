@@ -16,15 +16,16 @@ Torque supports connecting asset/blueprint repositories residing in a self-manag
 
    Post: http://portal.qtorque.io/api/settings/repository_providers
 
-  ```{
-  "name":"gitlab-1,
-  "type":"gitLabEnterprise",
-  "details": {
+  ```jsx
+  {
+    "name":"gitlab-1,
+    "type":"gitLabEnterprise",
+    "details": {
       "token":"NzcmESA2NjQ4MjUzOiCO87F2eTXL9TbHeWpeZO3p3GS9",
       "base_url": http://private.mygitlab.org/,
-  },
-  "repos": []
-}
+    },
+    "repos": []
+  }
   ```
 
    * __name__: Display name of repository
