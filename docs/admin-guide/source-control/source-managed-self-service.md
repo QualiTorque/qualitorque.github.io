@@ -18,7 +18,7 @@ Torque supports connecting asset/blueprint repositories residing in a self-manag
 
   ```jsx
   {
-    "name":"gitlab-1,
+    "name":"gitlab-1",
     "type":"gitLabEnterprise",
     "details": {
       "token":"NzcmESA2NjQ4MjUzOiCO87F2eTXL9TbHeWpeZO3p3GS9",
