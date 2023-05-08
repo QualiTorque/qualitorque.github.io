@@ -46,6 +46,31 @@ grains:
             - "git clone {{ .inputs.repoUrl }}"
 ```
 
+### Outputs
+The Shell grain output can be captured during the shell execution and than be used as a blueprint output or as input for another grain. Note that the Shell grain output is the entire stdout of the grain execution.
+
+```yaml”
+outputs:
+  deploy-output:
+    value: '{{.grains.grain1.activities.deploy.commands.bash.output}}'
+
+grains:
+  grain1:
+    kind: shell
+    spec:
+      files:
+      - path: "dependencies/script.sh"
+        source: shell-example
+      agent:
+      # The Torque agent that will be used to provision the environment.
+        name: '{{ .inputs.agent }}'
+      activities:
+        deploy:
+          commands:
+            - name: bash
+              command: "./script.sh"
+```
+
 ### commands
 The commands section allows to execute bash/python3 code or files stored in one of the space's repositories as part of the launch and/or end of the environment. The Shell grain has two command types - __deploy__ for running code at the launch of the environment, and __destroy__ for running code as part of the environment’s teardown. 
 
@@ -109,4 +134,3 @@ commands
   - "/bin/bash simple.sh"
 ```
 :::
-
