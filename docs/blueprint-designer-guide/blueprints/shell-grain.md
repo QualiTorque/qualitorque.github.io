@@ -4,7 +4,7 @@ title: The Shell Grain
 ---
 
 The Shell grain is an asset-agnostic grain that allows you to run bash/python3 commands as part of your environment’s launch and/or teardown. It’s useful if you need to prepare or clean up your environment’s cloud infrastructure as part of the deployment. For example, you could use this grain to run "datree" validations on a Kubernetes grain’s asset, or perhaps back up/clone a DB before environment deployment.
-```yaml”
+```jsx
 grains:
   validate:
     kind: shell
@@ -32,7 +32,7 @@ The following tools and technologies are installed out of the box on our agents 
 ### inputs
 Similar to blueprint inputs, inputs provided to the Shell grain are used when launching the shell. Unlike other grains, in the Shell grain, inputs are used inside the __commands__ section, wrapped in double curly brackets - ```" {{ .inputs.input1 }}"```.
 
-```yaml
+```jsx
 grains:
   validate:
     kind: shell
@@ -49,7 +49,7 @@ grains:
 ### Outputs
 The Shell grain output can be captured during the shell execution and than be used as a blueprint output or as input for another grain. Note that the Shell grain output is the entire stdout of the grain execution.
 
-```yaml”
+```jsx
 outputs:
   deploy-output:
     value: '{{.grains.grain1.activities.deploy.commands.bash.output}}'
@@ -74,7 +74,7 @@ grains:
 ### commands
 The commands section allows to execute bash/python3 code or files stored in one of the space's repositories as part of the launch and/or end of the environment. The Shell grain has two command types - __deploy__ for running code at the launch of the environment, and __destroy__ for running code as part of the environment’s teardown. 
 
-```yaml”
+```jsx
 grains:
   validate:
     kind: shell
