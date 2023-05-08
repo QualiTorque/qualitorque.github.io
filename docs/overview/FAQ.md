@@ -16,7 +16,7 @@ To answer this question, we'll focus on 3 basic factors: security, collaboration
 For security and performance reasons, we designed Torque to deploy applications on Kubernetes (EKS on AWS EC2 and AKS on Azure). Support for additional cloud providers is currently in development and will be released soon.
 
 ### Can I automate the deployment of Torque blueprints through a CI/CD process?
-Absolutely, Torque supports integration with some of the leading CI/CD tools out there, including Jenkins, Bamboo, CircleCI, TeamCity, GitHub Actions, and more. Click [here](/eco-system/ci-cd-tooling) and follow our documentation to set up your pipelines and start seeing value.
+Absolutely, Torque supports integration with some of the leading CI/CD tools out there, including Jenkins, Bamboo, CircleCI, TeamCity, GitHub Actions, and more. Click [here](/overview/supported-platforms#cicd-tooling) and follow our documentation to set up your pipelines and start seeing value.
 
 ### How do you protect my access credentials?
 It's no secret that working with the cloud requires the use of very powerful admin credentials, which can cause some serious damage if they fall in the wrong hands. In Torque, your admin credentials are safely tucked away in the system, within what we call Torque agents, which allow Torque to access and use the Kubernetes cluster on the cloud. The blueprints reference the agents but otherwise cannot access the credentials. Same goes for the end-user and CI/CD tool, the end-users who launch the environments don't have access to the to the actual Azure keys from the token.
