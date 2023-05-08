@@ -29,11 +29,11 @@ For details, see [Blueprint YAML](/blueprint-designer-guide/blueprints/blueprint
 ## CI/CD Tooling
 Torque enables you to integrate with various leading CI/CD tools such as Bamboo, Jenkins and TeamCity, to facilitate your application development activities.
 
-* [Azure DevOps](/eco-system/cd-cd-tooling/azure-devops.md)
-* [CircleCI](/eco-system/cd-cd-tooling/circle-ci.md)
-* [GitHub Actions](/eco-system/cd-cd-tooling/github-actions.md)
-* [Spinnaker](/eco-system/cd-cd-tooling/spinnaker.md)
-* [TeamCity](/eco-system/cd-cd-tooling/teamcity.md)
-* [Jenkins](/eco-system/cd-cd-tooling/jenkins.md)
+* [Azure DevOps](/eco-system/ci-cd-tooling/azure-devops.md)
+* [CircleCI](/eco-system/ci-cd-tooling/circle-ci.md)
+* [GitHub Actions](/eco-system/ci-cd-tooling/github-actions.md)
+* [Spinnaker](/eco-system/ci-cd-tooling/spinnaker.md)
+* [TeamCity](/eco-system/ci-cd-tooling/teamcity.md)
+* [Jenkins](/eco-system/ci-cd-tooling/jenkins.md)
 * Bamboo (coming soon)
 * Jira (coming soon)
