@@ -42,7 +42,6 @@ title: Install and connect a self hosted agent on your K8s cluster
 
 ## Setup
 
-
 1. In Torque's **Administration** page, open the **Cloud Accounts** tab.
 2. Click **Connect a Cloud**.
 3. Select the cloud provider and the type of Kubernetes to use, and give the agent a name. 
@@ -56,3 +55,25 @@ title: Install and connect a self hosted agent on your K8s cluster
 5. A __Connected!__ status is displayed in Torque, indicating that the agent was successfully installed and can communicate with Torque. 
     > ![Locale Dropdown](/img/agent-connected-status.png)
 6. Click __Associate to Space__ to connect the host to a space, and provide the details you obtained in the prerequisites section.
+
+
+## Troubleshooting
+
+If the agent fails to connect with Torque, you can try the following to identify the problem.
+
+Replace tbe "agent-namespace" with your agent's namespace. You can find it in: 
+
+_Administration --> Agents --> Identify your agent --> Click on the 3 dots menu --> Edit Agent --> Advanced K8s settings:_
+
+1. Make sure the agent pod is running and healthy. You can run the following command on your cluster: 
+     ```jsx title=
+     kubectl get pods -n <agent-namespace> -l app=torque-agent
+     ```
+2. Make sure outbound http connection to Torque is open:  
+     ```jsx title=
+     kubectl exec -it $(kubectl get pods -n <agent-namespace> | grep torque-agent | awk '/'$2'/ {print $1;exit}') -n <agent-namespace> -- /bin/sh -c "curl -v http://portal.qtorque.io/hub/agent";
+     ```
+3. Check the agent pod logs. You can run the following command:
+     ```jsx title=
+     kubectl logs $(kubectl get pods -n <agent-namespace> | grep torque-agent | awk '/'$2'/ {print $1;exit}') -n <agent-namespace>
+     ```
