@@ -3,22 +3,22 @@ sidebar_position: 6
 title: Credentials
 ---
 
-The Torque __Credentials__ store is a built-in capability for Torque to securely store your Public Cloud authentication details in order for CloudFormation and Terraform type grains to securely access them. Credentials are similar in usage to [Parameters](/admin-guide/general/params), but unlike parameters which are single-value, credentials are specialized objects that contain multiple values with different structure depending on the credential type. Torque Credentials are supported for AWS (role based and access key based) and Azure (secret based) authentication.
+The Torque __Credentials__ store is a built-in capability for Torque to securely store your Public Cloud authentication details in order for CloudFormation and Terraform type grains to securely access them. Credentials are similar in usage to [Parameters](/admin-guide/params), but unlike parameters which are single-value, credentials are specialized objects that contain multiple values with different structure depending on the credential type. Torque Credentials are supported for AWS (role based and access key based) and Azure (secret based) authentication.
 
 __To add a credential:__
 
 1. Go to __Administration > Credentials__.
 2. Click __Add Credentials__.
   > ![Locale Dropdown](/img/credentials.png)
-3. Give the credential a name and optionally a description.
-4. Select the cloud provider (AWS / Azure).
-5. Select the credential type and enter the authentication details. 
+1. Give the credential a name and optionally a description.
+2. Select the cloud provider (AWS / Azure).
+3. Select the credential type and enter the authentication details. 
     * For AWS, role assumption and access key credentials are supported. Make sure you have a Role Arn that allows Torque access. For details, see the [Get Role ARN and external ID](#get-role-arn-and-external-id) section below. 
     > ![Locale Dropdown](/img/aws-provider-details.png)
     * For Azure, only Service Principle Client ID and Secret are supported.
     > ![Locale Dropdown](/img/azure-provider-details.png)
-6. Click __Apply__.
-7. Reference the credential in the grain's ```authentication``` section.
+4. Click __Apply__.
+5. Reference the credential in the grain's ```authentication``` section.
   > ![Locale Dropdown](/img/credential-reference.png)
 
 

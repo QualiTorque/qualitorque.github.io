@@ -7,9 +7,9 @@ Now that you understand how Torque works, it's time to understand how roles and 
 
 In this article:
 
-* [Roles in Torque](#roles-in-torque)
-* [Invite Users to Torque](#invite-users-to-torque)
-* [Add Existing Users to Your Space](#add-existing-users-to-your-space)
+- [Roles in Torque](#roles-in-torque)
+- [Invite Users to Torque](#invite-users-to-torque)
+- [Add Existing Users to Your Space](#add-existing-users-to-your-space)
 
 ## Roles in Torque
 
@@ -30,8 +30,8 @@ As such, there are 4 roles in Torque:
 | [Manage cloud accounts for cost collection](/governance/cost-tracking/cost)	   |Add/remove cloud accounts for Torque to collect environment cost from.| ![Locale Dropdown](/img/green-dot.png)      |||||
 | [Manage spaces](/getting-started/Create%20your%20space)	   |1. Create/delete/rename spaces.<br />2. Associate/remove agents to/from spaces.| ![Locale Dropdown](/img/green-dot.png)        |||||
 | [Manage users](#invite-users-to-torque)	   |Invite users to Torque, cancel users invitations, add users to space, change users roles.| ![Locale Dropdown](/img/green-dot.png)        ||||
-| [Manage account parameters](/admin-guide/general/params)	   |Create/update/delete names and values of parameters, which are available across the account.| ![Locale Dropdown](/img/green-dot.png)        |||||
-| [Manage credentials](/admin-guide/general/credentials)	   |Create/update/delete credentials to cloud accounts, which can later be used for infra provisioning, cost or actions.| ![Locale Dropdown](/img/green-dot.png)        |||||
+| [Manage account parameters](/admin-guide/params)	   |Create/update/delete names and values of parameters, which are available across the account.| ![Locale Dropdown](/img/green-dot.png)        |||||
+| [Manage credentials](/admin-guide/credentials)	   |Create/update/delete credentials to cloud accounts, which can later be used for infra provisioning, cost or actions.| ![Locale Dropdown](/img/green-dot.png)        |||||
 | [Manage account tags](/governance/tags)	   |Create custom tags definitions to be applied across the account.| ![Locale Dropdown](/img/green-dot.png)        |||||
 | [Manage policies](/governance/policies)	   |Create/update/delete policies to control security and cost across the account.| ![Locale Dropdown](/img/green-dot.png)        |||||
 | [Manage space notifications](/admin-guide/notifications)	   |Create/delete/modify target for Torque notifications for space events.| ![Locale Dropdown](/img/green-dot.png)       |![Locale Dropdown](/img/green-dot.png)||||

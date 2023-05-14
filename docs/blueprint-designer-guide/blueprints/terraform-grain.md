@@ -30,7 +30,7 @@ Please see [the grain source](/blueprint-designer-guide/blueprints/blueprints-ya
 Please see [the grain agent](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#agent) for more details.
 
 ### authentication
-To enable Torque to connect to the AWS account and deploy the CloudFormation template, you must supply the Role Arn and external ID in the CloudFormation grain's ```authentication``` section. This is done by referencing a [credential](/admin-guide/general/credentials) that contains these authentication details. There are two ways to specify the credential, literally by name or using an input:
+To enable Torque to connect to the AWS account and deploy the CloudFormation template, you must supply the Role Arn and external ID in the CloudFormation grain's ```authentication``` section. This is done by referencing a [credential](/admin-guide/credentials) that contains these authentication details. There are two ways to specify the credential, literally by name or using an input:
 
 ```yaml
 grains:

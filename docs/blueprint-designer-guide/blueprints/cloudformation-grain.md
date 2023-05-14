@@ -17,7 +17,7 @@ Please see [the grain source](/blueprint-designer-guide/blueprints/blueprints-ya
 ```agent``` is not required or supported by CloudFormation Grain. Instead, this grain uses direct authentication to the AWS cloud account, as explained below.
 
 ### authentication
-To enable Torque to connect to the AWS account and deploy the CloudFormation template, you must supply the Role Arn and external ID in the CloudFormation grain's ```authentication``` section. This is done by referencing a [credential](/admin-guide/general/credentials) that contains these authentication details. There are two ways to specify the credential, literally by name or using an input:
+To enable Torque to connect to the AWS account and deploy the CloudFormation template, you must supply the Role Arn and external ID in the CloudFormation grain's ```authentication``` section. This is done by referencing a [credential](/admin-guide/credentials) that contains these authentication details. There are two ways to specify the credential, literally by name or using an input:
 
 ```yaml
 grains:
