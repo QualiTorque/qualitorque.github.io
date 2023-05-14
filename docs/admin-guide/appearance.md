@@ -1,6 +1,6 @@
 ---
-sidebar_position: 7
-title: Appearence 
+sidebar_position: 1
+title: Appearance & Rebranding 
 ---
 
 __Uploading your logo__

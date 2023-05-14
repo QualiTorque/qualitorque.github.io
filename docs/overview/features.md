@@ -1,6 +1,6 @@
 ---
 sidebar_position: 9
-title: Torque Features and Capabilities
+title: Main Features and Capabilities
 ---
 
 ## Orchestration

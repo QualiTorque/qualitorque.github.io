@@ -3,6 +3,11 @@ sidebar_position: 15
 title: The CloudFormation Grain
 ---
 
+:::caution
+Note that the Torque CloudFormation grain is currently in **Beta**.
+We will be happy to get your feedback using the [Torque community](https://github.com/orgs/QualiTorque/discussions/new/choose)
+:::
+
 The CloudFormation grain is Torque's native support for AWS CloudFormation templates. Torque allows designers to use CloudFormation features to easily orchestrate self-developer and community CloudFormation modules in a standard way and share them with others as building blocks. For the full blueprint yaml example, see [Example 2: Webgame on S3 (using CloudFormation and Terraform)](/blueprint-designer-guide/blueprint-quickstart-guide#example-2-webgame-on-s3-using-cloudformation-and-terraform).
 
 ### source 

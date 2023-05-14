@@ -3,10 +3,13 @@ sidebar_position: 1
 slug: /
 custom_edit_url: null
 title: Welcome to Torque!
+hide_table_of_contents: true
+
 ---
 
 
-## APPLICATION ENVIRONMENTS - Anytime. Anywhere.
+## Orchestrate & Operate Your IaC & Kubernetes Infrastructure
+
 Hello, and welcome to Torque.
 
 Torque is an Environment-as-a-Service (EaaS) control plane and self-service catalog allowing you to deploy and manage cloud environments comprising the infrastructure, applications, and any dependencies or external services necesaary for applications or services to rely on.
