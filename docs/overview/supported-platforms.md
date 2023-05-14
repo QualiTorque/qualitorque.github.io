@@ -24,7 +24,28 @@ Torque supports the following IaC frameworks:
 * [Ansible](/blueprint-designer-guide/blueprints/ansible-grain.md)
 * [Shell](/blueprint-designer-guide/blueprints/shell-grain.md) - (asset-agnostic grain that allows you to run bash/python3 commands as part of your environment’s launch and/or teardown)
 
-For details, see [Blueprint YAML](/blueprint-designer-guide/blueprints/blueprints-overview).
+
+This table lists the capabilities supported for each IaC or container technology. 
+
+|              | Terraform | Helm      | K8S native | CloudFormation | vCenter |
+| ------------ | --------- | --------- | ---------  | ---------      | ------- |
+|Inputs/Outputs|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
+|Tags|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:ballot_box_with_check:|:heavy_check_mark:|
+|Update (commits behind)|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:||:heavy_check_mark:|
+|Drift|:heavy_check_mark:||||:heavy_check_mark:|
+|Policies|:heavy_check_mark:||||:heavy_check_mark:|
+|Discovery|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:ballot_box_with_check:|:heavy_check_mark:|
+|Logs/infra|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
+|Introspection|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:||:heavy_check_mark:|
+|Scripts (extensibility)|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:||:heavy_check_mark:|
+|Day-2 (VM power commands)|:heavy_check_mark:|||||
+|SSH/RDP|:heavy_check_mark:|||||
+|Secret management|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
+
+
+:ballot_box_with_check: = Beta
+
+For more details, see [Blueprint YAML](/blueprint-designer-guide/blueprints/blueprints-overview).
 
 ## CI/CD Tooling
 Torque enables you to integrate with various leading CI/CD tools such as Bamboo, Jenkins and TeamCity, to facilitate your application development activities.

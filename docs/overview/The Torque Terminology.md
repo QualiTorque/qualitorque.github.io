@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-title: Main Concepts
+title: Terminology
 ---
 
 Before you start on your Torque journey, please take a moment to familiarize yourself with Torque's key concepts and infrastructure components. This article lists the main concepts you will come across in Torque, while the [**Architecture**](/overview/architecture) article that follows provides a diagram of the Torque architecture and its main components.

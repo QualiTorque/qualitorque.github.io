@@ -21,7 +21,7 @@ When you use our services, you trust us with your personal information. At Quali
     * [Agents](/getting-started/Install-and-connect-self-hosted-agent) 
     * Role that allows cost information gathering - [AWS](/governance/cost-tracking/configuring-cost-aws), [Azure](/governance/cost-tracking/configuring-cost-azure), [Kubernetes](/governance/cost-tracking/configuring-cost-k8s) (optional)
     * Cloud authentication data for Terraform deployments on [EKS](/admin-guide/authentication/service-accounts-for-aws), [AKS](/admin-guide/authentication/service-accounts-for-azure), or [GKE](/admin-guide/authentication/service-accounts-for-gcp))
-    * [Parameters](/admin-guide/general/params) (optional) 
+    * [Parameters](/admin-guide/params) (optional) 
 * Ongoing usage data 
     * Environment history  
         * Cloud resources deployed as part of the environment. See [Launch Your Blueprint](/getting-started/Launch-environment)
