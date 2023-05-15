@@ -22,6 +22,31 @@ description: Performance testing deployment based on RDS, EKS and Lambda
 
 ```
 
+### Instructions
+
+Instructions are the recommended way for the blueprint developer to communicate with the end user and explain how to use this blueprint. The instructions can be simple text, or a complete MarkDown file, hosted in your git repository. 
+
+```yaml
+spec_version: 2
+description: Performance testing deployment based on RDS, EKS and Lambda
+instructions:
+  text: "This is what you need to know ... " # text option
+  source:
+    store: <The name of the repository which contains the instructions as it was onboarded to Torque>
+    path : <instructions/something.md> # path inside the repository where the instructions md file is located. Must be in a folder called "instructions".
+
+```
+
+:::info
+- Blueprint instructions can be located in the same repository as the blueprints or a different repository
+- Torque will use only markdown files located in the “/instructions” folder under the root of the onboarded repository
+- Torque will support external resources embed in the markdown under the following rules:
+  - Any link to external and publicly exposed resource
+  - Relative path to images, svg and gif files located within the /instructions folder
+- Torque will not support relative .md references -Torque will not allow to load/redirect to another markdown mentioned in the markdown provided as the blueprint instructions.
+:::
+
+
 ### Inputs
 Blueprint designers can publish blueprint inputs to their end-users to add flexibility while launching a new environment from the blueprints, without altering the blueprint code itself. Input data can be later used in the blueprint to control orchestration, pass information to automation processes, and more.
 
