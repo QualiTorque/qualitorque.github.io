@@ -32,7 +32,7 @@ This table lists the capabilities supported for each IaC or container technology
 |Inputs/Outputs|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
 |Tags|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:ballot_box_with_check:|:heavy_check_mark:|
 |Update (commits behind)|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:||:heavy_check_mark:|
-|Drift|:heavy_check_mark:||||:heavy_check_mark:|
+|Drift|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:||:heavy_check_mark:|
 |Policies|:heavy_check_mark:||||:heavy_check_mark:|
 |Discovery|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:ballot_box_with_check:|:heavy_check_mark:|
 |Logs/infra|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|

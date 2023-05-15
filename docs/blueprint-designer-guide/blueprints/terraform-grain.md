@@ -182,6 +182,34 @@ Note that in the above example, some blueprint inputs are used as the values of 
 
 Note that invalid tokens will be parsed as strings. Keep in mind that json strings require double quotes, so ```"my value``` is a string but ```my value``` is not a valid json value and therefore will also be passed as a string. As such, the following values will all be passed as strings: ```"my value"```, ```my value```, ```"[1,2,3]"```
 
+### tfvars files as inputs to Terraform grain
+
+In Terraform, a tfvars file (short for "Terraform variables file") is a plain text file that contains a set of key-value pairs representing values for Terraform variables. Torque supports referencing tfvars files as inputs to the terraform grain, with the following syntax:
+
+```yaml
+grains:
+  database:
+    kind: terraform
+    spec:
+      source:
+        store: infra 
+        path: terraform/rds
+      authentication:
+        - ...        
+      ...
+      inputs:
+        ...
+      tfvars-files:
+      - source:
+          store: <> 
+          path: <>
+      - source:
+          store: <>
+          path: <>
+
+```
+
+
 
 ### tags  
 Whenever a Terraform grain is launched, all resources created during the deployment process will be automatically tagged with Torque's system tags, built-in tags and custom tags (for details, see [Tags](/governance/tags). 
