@@ -1,6 +1,6 @@
 ---
-sidebar_position: 10
-title: Run Day 2 Actions on Your Environment
+sidebar_position: 1
+title: Day 2 Operations
 ---
 
 Now that you have a running environment, let's see what you can do in it.

@@ -1,6 +1,8 @@
 import React from 'react';
 import clsx from 'clsx';
 import styles from './styles.module.css';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 const FeatureList = [
   {

@@ -1,6 +1,7 @@
 ---
 sidebar_position: 18
 title: FAQ
+hide_table_of_contents: true
 ---
 
 ### Why should I use Torque if I can manage my application deployments directly on the cloud or through my CI/CD tool?
