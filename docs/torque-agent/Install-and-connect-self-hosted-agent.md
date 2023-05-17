@@ -1,6 +1,6 @@
 ---
 sidebar_position: 9
-title: Install and connect a self hosted agent on your K8s cluster
+title: Kubernetes Authentication
 ---
 
 ## Prerequisites
