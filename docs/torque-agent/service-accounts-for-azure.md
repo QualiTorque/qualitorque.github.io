@@ -1,5 +1,5 @@
 ---
-sidebar_position: 8
+sidebar_position: 2
 title: Terraform AKS Authentication
 ---
 
@@ -19,6 +19,7 @@ The basic process is as follows:
 - [__Torque Configuration__](#torque-configuration)
   - [__Prerequisites__](#prerequisites-1)
   - [__Configure the AKS authentication in Torque__](#configure-the-aks-authentication-in-torque)
+- [Video: Connecting a new agent and using it in a blueprint](#video-connecting-a-new-agent-and-using-it-in-a-blueprint)
 
 ## __Azure Configuration__
 

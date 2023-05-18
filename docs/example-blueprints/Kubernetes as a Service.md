@@ -3,57 +3,49 @@ sidebar_position: 2
 title: Kubernetes as a Service
 ---
 
-### Step #1: Create your account
-Your Torque journey starts with creating a Torque account. This account will serve your organization with your application development needs. As the creator of the account, you are the Account Owner, which basically means you're a super admin that can also create other account admins.
+As Kubernetes continues to dominate as the preferred orchestrator for modern applications, IT and DevOps teams are encountering a growing demand for "certified" Kubernetes clusters. These certified clusters can encompass various offerings, such as PaaS-based solutions provided by cloud providers, OpenShift clusters, and even on-premises deployments on vCenter or bare-metal infrastructure. However, regardless of the deployment method, these clusters need to adhere to standardized and approved configurations while being pre-installed with essential prerequisites for running organizational applications. Inclusion of common tools like Kiali and Istio, along with their respective configurations, is crucial for ensuring the proper functioning of modern applications.
 
-1. Go to [https://portal.qtorque.io/login](https://portal.qtorque.io/login).
-2. Click __Create an Account__.
-3. Register with your git user or email address, and follow the instructions on the screen.
+In the following example, Terraform is utilized to orchestrate a GKE (Google Cloud managed Kubernetes cluster) cluster, while Kubernetes manifests (YAML files) are used to orchestrate an application. The capability to deploy ephemeral Kubernetes clusters on-demand, with the application already installed and configured to meet specific requirements, empowers IT and DevOps teams to enhance customer service. Moreover, this approach ensures strong oversight of environment usage and enables optimization of both cloud resources and operational costs.
+
+> ![GKE Environment](/img/gke-cluster.png)
+
+The following blueprint is build out of two grains dependent on one another. The application will be deployed only once the GKE cluster will be fully up and running including all required networking, storage and compute elements. Part of the GKE orchestration includes saving the kube config file available for the Torque agent, so __the application can be installed without a Torque agent in the newly created cluster__. The Torque agent, will use the kube-config file to authenticate into the GKE cluster and execute the application.
+
+```jsx
+spec_version: 2
+description: e-commerce application deployed on a GKE cluster
+
+outputs:
+  Application Access:
+    value: http://{{ .grains.portal.scripts.post-kubernetes-install.outputs.frontend }}
+    kind: link
+grains:
+  gke-cluster:
+    kind: terraform
+    ....
    
-   The Welcome page is displayed, prompting you to launch a sample environment. To help you gauge the value of Torque, we've set up a __Sample__ space (top-left cornder of the screen) containing various fully-defined blueprints you can play around with.
-
-   > ![Locale Dropdown](/img/welcome-page.png)
-4. Click __Let's Get Started__ to start the onboarding process.
-   > ![Locale Dropdown](/img/onboarding.png)
-
-5. Click the checklist at any time to check your progress.
-
-### Step #2: Understanding the Sample Space
-
-Torque comes out of the box with a single space - the __Sample__ space. This space contains several example blueprints for you to play with and get familiarized with the product.
-Launch one or more of the examples to understand how the end users would experience Torque:
-
-  * Define the environment's duration or end time - all resources are automatically torn down when the duration expires. 
-  * Fill in inputs (the inputs that can be provided are defined in the blueprint).
-  * View the deployment logs.
-  * Extend the duration of the environment or end it before the duration expires.
-  * View the expected and actual cloud cost of the environment. 
-  * Get the deployment's output.
-  * See the tags that the environment deployed on the cloud resources.
-
-_To launch a sample, go to the __Sample__ space, click __Environments__ and then click __New Sandbox__._
+  portal:
+    kind: kubernetes
+    depends-on: gke-cluster
+    spec:
+      agent:
+        kubernetes:
+          permissions:
+            destination-context-name: '{{ .grains.gke-cluster.outputs.kubernetes_cluster_name }}'
+            secret-name: '{{ .grains.gke-cluster.outputs.secret-name }}'
+            secret-namespace: '{{ .grains.gke-cluster.outputs.secret-namespace }}'
+    ....
+        post-kubernetes-install:
+          source:
+            store: assets
+            path: scripts/get-external-frontend.sh
+          outputs:
+            - frontend
 
 
+```
 
-### Step #4: Launch your first environment
+The application frontend URL, exposed through GCP load balancer is published as an blueprint output for the end-user to use. 
 
-At this point, you have done the following:
-* Created a space
-* Connected an asset repository and autogenerated blueprints out of some assets
-* Created an agent that will handle the deployment and teardown of the environments in the Kubernetes cluster
-
-You are now ready to launch your first environment.
-
-1. Open your space.
-2. In the __Blueprints__ page, __Publish__ a suitable autogenerated blueprint.
-3. In the __Catalog__, __Launch__ the blueprint.
-4. Specify the environment's inputs.
-5. Optionally assign collaborators to the environment. While everyone in the space has "read" permission to its environments, only the environment's owner and collaborators can perform actions that change the environment: extend end the environment, reconcile or update resource changes, etc. When launching the environment, the new owner/collaborators will receive a notification email if you have [Notifications](/admin-guide/notifications) configured in the space.
-6. Click __Next__, specify the environment's inputs and tags, and click __Launch__.
-   
-   If the space has an approval policy, your environment will enter a "Pending" state while you wait to get approval from a moderator. Click __View Request__ to view or cancel your request.
-   > ![Locale Dropdown](/img/pending-approval.png)   
-7. Wait until the environment is active and use as needed. URLs to the environment's applications are typically provided as outputs - these can be found in the environment's __Quicklinks__ on the right, or in the __Parameters__ pane.
-   > ![Locale Dropdown](/img/outputs.gif)
-8. Check out the __Resources__ pane to get details about your environment's resources. Use this tab to understand what assets each grain spun up, get connection details to specific resources, and more.
-   > ![Locale Dropdown](/img/resource-details.gif)
+The environment consumer can also download the kube-config file directly from the environment introspection data to later connect to the cluster.
+> ![GKE Access token](/img/gke-auth.png)

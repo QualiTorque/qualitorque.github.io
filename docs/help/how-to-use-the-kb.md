@@ -7,8 +7,6 @@ The Torque knowledgebase is our one-stop-shop for all your Torque education need
 
 Before you start, please familiarize yourself with the [Main Concepts](/overview/The%20Torque%20Terminology) of Torque.
 
-If you're new to Torque or perhaps need a refresher course, please follow the [Getting Started](/getting-started/Create%20an%20account) procedure to set up your Torque account for the first time and start deploying environments.
-
 ### We value your feedback
 We take our documentation very seriously, and your feedback is always welcome. So, if you find any errors, gaps or areas we could improve, please send us feedback in the __Discussions__ section of the Torque knowledgebase repo.
 

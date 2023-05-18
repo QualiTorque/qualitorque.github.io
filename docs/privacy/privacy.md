@@ -18,19 +18,19 @@ When you use our services, you trust us with your personal information. At Quali
     * Git repositories ([GitHub](/admin-guide/source-control/source-control-github), [GitLab](/admin-guide/source-control/source-control-gitlab), [self-managed](/admin-guide/source-control/source-managed-self-service))
         * User authentication/credentials 
         * [IaC](/overview/supported-platforms#infrastructure-as-code) asset files. For example: Terraform, Helm, Kubernetes manifests. For more details, see [Discover Your Assets](/getting-started/Discover%20Your%20Assets)
-    * [Agents](/getting-started/Install-and-connect-self-hosted-agent) 
+    * [Agents](/torque-agent/Install-and-connect-self-hosted-agent) 
     * Role that allows cost information gathering - [AWS](/governance/cost-tracking/configuring-cost-aws), [Azure](/governance/cost-tracking/configuring-cost-azure), [Kubernetes](/governance/cost-tracking/configuring-cost-k8s) (optional)
-    * Cloud authentication data for Terraform deployments on [EKS](/admin-guide/authentication/service-accounts-for-aws), [AKS](/admin-guide/authentication/service-accounts-for-azure), or [GKE](/admin-guide/authentication/service-accounts-for-gcp))
+    * Cloud authentication data for Terraform deployments on [EKS](/torque-agent/service-accounts-for-aws), [AKS](/torque-agent/service-accounts-for-azure), or [GKE](/torque-agent/service-accounts-for-gcp)
     * [Parameters](/admin-guide/params) (optional) 
 * Ongoing usage data 
     * Environment history  
-        * Cloud resources deployed as part of the environment. See [Launch Your Blueprint](/getting-started/Launch-environment)
+        * Cloud resources deployed as part of the environment. See [Launch Your Blueprint](/getting-started/Getting starting with terraform)
         * Events 
     * [Cost](/governance/cost-tracking/cost) information (optional) 
     * [Audit Log events](/governance/audit-log/events)
 
 ## What does Torque connect to 
 
-* [Cloud account](/getting-started/Install-and-connect-self-hosted-agent)
-* [Git repositories](/getting-started/Install-and-connect-self-hosted-agent)
+* [Cloud account](/torque-agent/Install-and-connect-self-hosted-agent)
+* [Git repositories](/torque-agent/Install-and-connect-self-hosted-agent)
 * Optional integrations - will be provided soon

@@ -42,7 +42,7 @@ Now, that you have a new space configured, we will associate a repository to the
 In this step, we will configure our newly created blueprint (Created in step #2) to use "Quali Hosted Agent"
 
 :::info
-__Quali Hosted Agent__ is a free pre-configured agent hosted by Quali allowing you to execute automation without the need to install, configure and maintain a "self hosted agent". In case you wish to use your own agent, follow the steps in [this](/somehthing) article and continue to step #4 in this article once you fully configured your agent.
+__Quali Hosted Agent__ is a free pre-configured agent hosted by Quali allowing you to execute automation without the need to install, configure and maintain a "self hosted agent". In case you wish to use your own agent, follow the steps in [this](/torque-agent/Install-and-connect-self-hosted-agent) article and continue to step #4 in this article once you fully configured your agent.
 :::
 
 1. In the "Connect an agent" dialog, select the __"Quali Hosted Agent"__. This will associate the "Quali Hosted Agent" with the newly created space allowing automation in the space to be execute on it.
