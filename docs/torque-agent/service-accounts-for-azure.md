@@ -1,6 +1,6 @@
 ---
-sidebar_position: 2
-title: Terraform AKS Authentication
+sidebar_position: 4
+title: Terraform AKS/Azure Authentication
 ---
 
 
