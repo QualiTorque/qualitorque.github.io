@@ -8,7 +8,7 @@ title: Main Features and Capabilities
 * __Blueprint YAML__: Environment plans are stored in YAML files. Torque can generate and single-asset blueprint YAMLs for each IaC or container technology file in your repository, while multi-asset blueprints can easily be written in YAML files stored in your source control repositories.
     * Liquid: See Parameter Store below.
 * __Policies__: [Limit environment durations](/blueprint-designer-guide/Policies) and apply [OPA security policies](/governance/policies) to environments.
-* __Spaces__ and __Role-based Access Control (RBAC)__: Set up [spaces](/getting-started/Create%20your%20space) for different business units, teams, and projects. Assign assets, [users and roles](/governance/roles-and-permissions) to the users, limiting capabilities based on their needs and access only to the environments that apply to that space. 
+* __Spaces__ and __Role-based Access Control (RBAC)__: Set up a space for different business units, teams, and projects. Assign assets, [users and roles](/governance/roles-and-permissions) to the users, limiting capabilities based on their needs and access only to the environments that apply to that space. 
 * Secret management in Torque: Torque manages Secrets in 3 different ways 
     * __Parameter Store__: Torque contains a built-in Parameter Store that allows space admins and account admins to store both sensitive and non-sensitive key-value based information in a centralized location that can be accessed by blueprint designers via the Liquid engine. 
     * __Credential Store__: Torque contains a built-in Credentials Store that allows account admins to safely store cloud account credentials (or Role ARNs for assumable roles) that can later be used for authentication with the provider in an IaC grain (such as Terraform or CloudFormation). 
@@ -26,10 +26,10 @@ Torque provides out-of-the-box support for Terraform modules, Helm charts, Cloud
 
 ## GitOps
 * __Update assets on push/merge__: Torque supports the use of git repositories on GitHub, GitLab, BitBucket and Azure DevOps. When changes are merged into the space's repository, the appropriate blueprints are immediately updated with the changes.
-* __[Automatic drift detection](/getting-started/Launch-environment#drift)__: See what external changes have occurred to your environment and its resources, revert the changes to bring your environment back to its initial state.
+* __[Automatic drift detection](/environment-services/Drift and update)__: See what external changes have occurred to your environment and its resources, revert the changes to bring your environment back to its initial state.
 
 ## Monitoring and control
 * __[Cost management and estimation](/governance/cost-tracking/cost)__: Easily view the cloud costs of your environments, as well as current/estimated spending by blueprint, environment or space.
-* __[Introspection](/getting-started/Launch-environment)__: Drill-down into each environment's cloud resources, elements and metadata directly from Torque.
+* __[Introspection](/environment-services/Introspection and layouts)__: Drill-down into each environment's cloud resources, elements and metadata directly from Torque.
 * __[CI/CD Integration](/overview/supported-platforms#cicd-tooling)__: Configure environments to be spun up and tested as part of a CI/CD process using some of the leading tools on the market, including Jenkins, Azure DevOps, CircleCI, Bamboo, and more.
 * __[Slack and Teams notifications](/admin-guide/notifications)__: Get notifications for different environment lifecycle phases to the Teams/Slack channel of your choice.

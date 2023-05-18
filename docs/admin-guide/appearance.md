@@ -3,6 +3,11 @@ sidebar_position: 1
 title: Appearance & Rebranding 
 ---
 
+
+:::info
+This capability is optionally available only in Torque Enterprise. 
+:::
+
 __Uploading your logo__
 
 When you upload your own logo, it will replace the existing Torque logo throughout the system. To make sure that your logo looks great in all areas of the system, we recommend uploading all three logo types:

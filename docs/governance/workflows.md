@@ -20,7 +20,7 @@ At this time, Workflows are supported only for VM esources.
    * __Name__: Workflow name
    * __Display name__: Provide an informative one as this will be the Workflow's display name in the environment. For example, "Power off all Azure VMs EOD". 
    * __Description__
-   * __Action__ to be performed in the environment. Workflows support all resource actions (__Power on__, __Power off__, __Restart__, __Connect__) as well as __Terminate__, which ends the environment. For details about resource actions, see [Run Day 2 Actions on Your Environment](/getting-started/Run%20day2%20actions).
+   * __Action__ to be performed in the environment. Workflows support all resource actions (__Power on__, __Power off__, __Restart__, __Connect__) as well as __Terminate__, which ends the environment. For details about resource actions, see [Run Day 2 Actions on Your Environment](/environment-services/Actions and workflows).
    * __Spaces__: Toggle blue to apply the workflow to all spaces or select specific ones.
    * __Schedule__: Workflow's scheduled execution time. You can specify the time and day(s) using the editor, or toggle __Custom CRON__ to specify the schedule in CRON format.
    * __Allow overriding schedule on launch__: Toggle blue to enable the environment's end-user to manually run the workflow from the resource's __Workflows__ tab.
