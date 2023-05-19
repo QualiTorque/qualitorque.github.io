@@ -1,5 +1,5 @@
 ---
-sidebar_position: 14
+sidebar_position: 7
 title: Outbound Ports for Self-hosted Agents
 ---
 

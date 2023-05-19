@@ -1,6 +1,6 @@
 ---
-sidebar_position: 1
-title: Terraform EKS Authentication
+sidebar_position: 3
+title: Terraform EKS/AWS Authentication
 ---
 
 If you're using an EKS cluster as your agent, and you want to run Terraform that deploys resources on AWS, you can use a service account to do the authentication and permissions between the pod and the AWS account where the resources will be created. This is done by connecting a service account, which contains these permissions, to the container. The permissions are defined in an IAM role that needs to be associated to the service account.

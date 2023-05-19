@@ -1,6 +1,6 @@
 ---
-sidebar_position: 3
-title: Terraform GKE Authentication
+sidebar_position: 5
+title: Terraform GKE/GCP Authentication
 ---
 
 If you're using an GKE cluster as your agent, and you want to run Terraform that deploys resources on GCP, you can use *Workload Identity* to do the authentication and permissions between the pod and the GCP account where the resources will be created.

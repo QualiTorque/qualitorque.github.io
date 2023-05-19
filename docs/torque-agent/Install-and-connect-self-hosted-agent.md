@@ -1,6 +1,6 @@
 ---
-sidebar_position: 4
-title: Kubernetes Authentication
+sidebar_position: 2
+title: Install an Agent on your Kubernetes Cluster
 ---
 
 ## Prerequisites

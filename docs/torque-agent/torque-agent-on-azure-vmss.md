@@ -1,5 +1,5 @@
 ---
-sidebar_position: 15
+sidebar_position: 6
 title: Torque Agent on Azure VMSS
 ---
 
