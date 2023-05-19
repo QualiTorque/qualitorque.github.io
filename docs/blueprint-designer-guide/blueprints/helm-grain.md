@@ -10,11 +10,13 @@ Torque provides two methods for deploying helm charts:
 1. Deploy the Torque helm grain in the target namespace (where your helm chart will also be deployed) and use a local service account with a role binding with the proper access. This option is more secure, but requires to have the service account in each namespace you deploy to. With either option you need to make sure the service account has enough permissions to create/read/delete everything in the helm chart and also create/read/delete secrets and volumes.
 
 > In your blueprint YAML, configure the following configuration for Helm grains
-> ![Catalog cost](/img/helm-auth_1.png)
-> It's also possible to use parameters for the service-account name. When service account is not provided in the grain, the default service account provided on the agent will be used.
+> 
+> ![Catalog cost](/img/helm-auth_1.png) 
+>  
+> It's also possible to use parameters for the service-account name. Note that when service account is not provided in the grain, the default service account provided on the agent will be used.
 > ![Catalog cost](/img/helm-auth.png)
 
-2. Use the same namespace for the Torque  helm grain deployment and give the service account being used a cluster role binding (global cluster permissions) with the proper access. Note that this method will only work if the Helm chart includes a namespace specified in each manifest in the helm chart templates.
+1. Use the same namespace for the Torque  helm grain deployment and give the service account being used a cluster role binding (global cluster permissions) with the proper access. Note that this method will only work if the Helm chart includes a namespace specified in each manifest in the helm chart templates.
 > In the following example, both the namespace and the agent service account are provided in the blueprint YAML:
 > ![Catalog cost](/img/helm-auth_2.png)
 
