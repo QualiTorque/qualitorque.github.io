@@ -48,11 +48,9 @@ In order to configure the ServiceNow integration, you will need to have the Torq
      3. Fill a name and description of your choice and click on the ServiceNow icon.
      4. Fill the following details:
         1. ServiceNow address URL - your base service now tenant URL. For example: https://mytenant.service-now.com/
-        2. Create Ticket Relative URL - "api/ial/torque/createrequest"
-        3. Cancel Ticket Relative URL - "api/ial/torque/cancelrequest"
-        4. Username - The Torque dedicated ServiceNow user which you created in [Step 2](#2-create-a-service-user-for-torque)
-        5. Password - The Torque dedicated ServiceNow password of the same user
-        6. Approvers - the Torque approver user which you selected/created in step 3.1. It must be the same user to which the Torque token belongs.
+        2. Username - The Torque dedicated ServiceNow user which you created in [Step 2](#2-create-a-service-user-for-torque)
+        3. Password - The Torque dedicated ServiceNow password of the same user
+        4. Approvers - the Torque approver user which you selected/created in step 3.1. It must be the same user to which the Torque token belongs.
 
 
 4. In ServiceNow: Review Approval Flow template
