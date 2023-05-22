@@ -1,6 +1,6 @@
 ---
 sidebar_position: 36
-title: Self-managed Source Control
+title: Self-Managed GitLab
 ---
 
 Torque supports connecting asset/blueprint repositories residing in a self-managed GitLab repository. 
