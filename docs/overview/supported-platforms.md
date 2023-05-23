@@ -34,7 +34,7 @@ This table lists the capabilities supported for each IaC or container technology
 |Update (commits behind)|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|`beta`|:heavy_check_mark:|
 |Drift|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:||:heavy_check_mark:|
 |Policies|:heavy_check_mark:||||:heavy_check_mark:|
-|Discovery|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:ballot_box_with_check:|:heavy_check_mark:|
+|Discovery|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|`beta`|:heavy_check_mark:|
 |Logs/infra|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
 |Introspection|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:||:heavy_check_mark:|
 |Scripts (extensibility)|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:||:heavy_check_mark:|
