@@ -22,25 +22,26 @@ Torque supports the following IaC frameworks:
     * [Helm](/blueprint-designer-guide/blueprints/helm-grain.md)
 * [AWS CloudFormation](/blueprint-designer-guide/blueprints/cloudformation-grain.md)
 * [Ansible](/blueprint-designer-guide/blueprints/ansible-grain.md)
+* [CloudShell](/blueprint-designer-guide/blueprints/cloudshell-grain.md)
 * [Shell](/blueprint-designer-guide/blueprints/shell-grain.md) - (asset-agnostic grain that allows you to run bash/python3 commands as part of your environment’s launch and/or teardown)
 
 
 This table lists the capabilities supported for each IaC or container technology. 
 
-|              | Terraform | Helm      | K8S native | CloudFormation | vCenter |
-| ------------ | --------- | --------- | ---------  | ---------      | ------- |
-|Inputs/Outputs|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
-|Tags|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|`beta`|:heavy_check_mark:|
-|Update (commits behind)|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
-|Drift|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:||:heavy_check_mark:|
-|Policies|:heavy_check_mark:||||:heavy_check_mark:|
-|Discovery|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|`beta`|:heavy_check_mark:|
-|Logs/infra|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
-|Introspection|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:||:heavy_check_mark:|
-|Scripts (extensibility)|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:||:heavy_check_mark:|
-|Day-2 (VM power commands)|:heavy_check_mark:|||||
-|SSH/RDP|:heavy_check_mark:|||||
-|Secret management|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
+|              | Terraform | Helm      | K8S native | CloudFormation | vCenter |  CloudShell |
+| ------------ | --------- | --------- | ---------  | ---------      | ------- |   ------- |
+|Inputs/Outputs|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:| :heavy_check_mark:|
+|Tags|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|`beta`|:heavy_check_mark:||
+|Update|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:||
+|Drift|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:||:heavy_check_mark:||
+|Policies|:heavy_check_mark:||||:heavy_check_mark:||
+|Discovery|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|`beta`|:heavy_check_mark:|:heavy_check_mark:|
+|Logs/infra|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
+|Introspection|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:||:heavy_check_mark:|:heavy_check_mark:|
+|Scripts (extensibility)|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:||:heavy_check_mark:||
+|Day-2 (VM power commands)|:heavy_check_mark:||||||
+|SSH/RDP|:heavy_check_mark:||||||
+|Secret management|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:||
 
 For more details, see [Blueprint YAML](/blueprint-designer-guide/blueprints/blueprints-overview).
 
