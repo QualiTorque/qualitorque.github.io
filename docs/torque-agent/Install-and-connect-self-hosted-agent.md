@@ -73,6 +73,10 @@ _Administration --> Agents --> Identify your agent --> Click on the 3 dots menu 
      ```jsx title=
      kubectl exec -it $(kubectl get pods -n <agent-namespace> | grep torque-agent | awk '/'$2'/ {print $1;exit}') -n <agent-namespace> -- /bin/sh -c "curl -v http://portal.qtorque.io/hub/agent";
      ```
+     and also 
+     ```jsx title=
+     kubectl exec -it $(kubectl get pods -n <agent-namespace> | grep torque-agent | awk '/'$2'/ {print $1;exit}') -n <agent-namespace> -- /bin/sh -c "nmap -p 5671 acrobatic-lime-gerbil.rmq3.cloudamqp.com";
+     ```
 3. Check the agent pod logs. You can run the following command:
      ```jsx title=
      kubectl logs $(kubectl get pods -n <agent-namespace> | grep torque-agent | awk '/'$2'/ {print $1;exit}') -n <agent-namespace>
