@@ -124,6 +124,7 @@ The following grains are available:
 * [Kubernetes](/blueprint-designer-guide/blueprints/kubernetes-grain)
 * [Shell](/blueprint-designer-guide/blueprints/shell-grain)
 * [Ansible](/blueprint-designer-guide/blueprints/ansible-grain)
+* [CloudShell](/blueprint-designer-guide/blueprints/cloudshell-grain)
 * [Blueprint](/blueprint-designer-guide/blueprints/blueprint-grain)
 
 ### Source

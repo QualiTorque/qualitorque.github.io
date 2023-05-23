@@ -1,5 +1,5 @@
 ---
-sidebar_position: 27
+sidebar_position: 30
 title: The Blueprint Grain
 ---
 

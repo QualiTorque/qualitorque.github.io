@@ -19,4 +19,5 @@ In this section:
 * [The Kubernetes Grain​](/blueprint-designer-guide/blueprints/kubernetes-grain)
 * [The Shell Grain](/blueprint-designer-guide/blueprints/shell-grain)
 * [The Ansible Grain](/blueprint-designer-guide/blueprints/ansible-grain)
+* [The CloudShell Grain](/blueprint-designer-guide/blueprints/cloudshell-grain)
 * [The Blueprint Grain](/blueprint-designer-guide/blueprints/blueprint-grain)
