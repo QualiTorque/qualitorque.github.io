@@ -30,8 +30,8 @@ This table lists the capabilities supported for each IaC or container technology
 |              | Terraform | Helm      | K8S native | CloudFormation | vCenter |
 | ------------ | --------- | --------- | ---------  | ---------      | ------- |
 |Inputs/Outputs|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
-|Tags|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:ballot_box_with_check:|:heavy_check_mark:|
-|Update (commits behind)|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:||:heavy_check_mark:|
+|Tags|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|`beta`|:heavy_check_mark:|
+|Update (commits behind)|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|`beta`|:heavy_check_mark:|
 |Drift|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:||:heavy_check_mark:|
 |Policies|:heavy_check_mark:||||:heavy_check_mark:|
 |Discovery|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:ballot_box_with_check:|:heavy_check_mark:|
@@ -41,9 +41,6 @@ This table lists the capabilities supported for each IaC or container technology
 |Day-2 (VM power commands)|:heavy_check_mark:|||||
 |SSH/RDP|:heavy_check_mark:|||||
 |Secret management|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
-
-
-:ballot_box_with_check: = Beta
 
 For more details, see [Blueprint YAML](/blueprint-designer-guide/blueprints/blueprints-overview).
 
