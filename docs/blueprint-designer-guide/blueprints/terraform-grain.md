@@ -73,6 +73,7 @@ __Properties__:
 * __type__: s3, azurerm, gcs, http
 * __bucket__: Mandatory for s3 and gcs
 * __region__: Mandatory for S3
+* __resource-group-name__ : Mandatory for azurerm
 * __storage-account-name__: Mandatory for azurerm
 * __container-name__: Mandatory for azurerm
 * __base-address__: Mandatory for http
@@ -94,6 +95,7 @@ __azurerm__:
 ```yaml
 backend:
   type: "azurerm"
+  resource-group-name: "my_rg"
   storage-account-name: "terraform123abc"
   container-name: "terraform-state"
   key-prefix: folder1/folder2"
