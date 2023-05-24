@@ -3,7 +3,7 @@ sidebar_position: 7
 title: Changing advanced K8s settings
 ---
 
-While Torque offers a best practice configuration settings for deploying environments from your cluster, there may arise certain situations where overriding Torque's default settings becomes necessary based on your specific requirements.
+While Torque offers a best practice configuration settings for deploying environments from your cluster, there may arise certain situations where overriding Torque's default settings becomes necessary based on your specific requirements. You can modify certain settings of the Torque runners (i.e. it will NOT affect your workloads, only the Torque workloads).
 
 Modifying these settings should be performed by the cluster administrator or subject to their approval, ensuring alignment with other existing cluster configurations you may have in place.
 
@@ -18,7 +18,7 @@ In addition, you can retrieve the namespace where the Torque agent is running (b
 ## Advanced Settings
 
 - Storage Class is a K8s resource which allows you to request to create persistent volumes with certain properties. The storage class describes the properties then Torque 
-will request for the runner to create storage according to these properties.
+will request for the runner to create storage according to these properties. By default it is set to "Cluster's default" which means the Torque runners will request the storage properties according to what is defined as the default storage class in the cluster. If you change it to other value, Torque runners will request the storage class based on the new value.
 
 :::note
 For reclaimPolicy (delete|retain) - we recommend using "delete" (extra care should be taken if the policy is set to "retain").
