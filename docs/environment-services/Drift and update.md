@@ -8,6 +8,6 @@ Torque continuously monitors the environment as well as its source files and wil
 
 > ![Locale Dropdown](/img/updates-and-drift.png)
 
-* __Updates__ shows changes made to the asset's definition file, allowing you to optionally update the environment
+* __Updates__ shows changes made to the asset's definition file, allowing you to optionally update the environment. You can also update the grain manually with new inputs, without code changes. 
 * __Drift Detection__ shows any of the environment's resources that were modified externally. Click the error to see the modifications, and __Reconcile__ to revert a resource back to its original state.
 
