@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Torque',
   tagline: 'Dinosaurs are cool',
-  url: 'https://your-docusaurus-test-site.com',
+  url: 'http://docs.qtorque.io/',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -17,6 +17,10 @@ const config = {
   projectName: 'torque-docs', // Usually your repo name.
   deploymentBranch: 'gh-pages',
   trailingSlash: false,
+  scripts: [
+    // One Trust Cookie policy
+    '<script type="text/javascript" src="https://cdn.cookielaw.org/consent/47d0fdb5-1ced-4a6a-a893-847e68cce066/OtAutoBlock.js" ></script><script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="47d0fdb5-1ced-4a6a-a893-847e68cce066" ></script>    <script type="text/javascript">    function OptanonWrapper() { }    </script>',
+  ],
   plugins: [
     // ...
     require.resolve("@cmfcmf/docusaurus-search-local"),
