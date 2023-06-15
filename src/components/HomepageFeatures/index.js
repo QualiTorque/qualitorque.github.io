@@ -62,21 +62,3 @@ export default function HomepageFeatures() {
     </section>
   );
 }
-
-import Head from '@docusaurus/Head';
- 
-function Home() {
-  const context = useDocusaurusContext();
-  const { siteConfig = {} } = context;
-  return (
-    <Layout>
-      <Head>
-      <script type="text/javascript" src="https://cdn.cookielaw.org/consent/47d0fdb5-1ced-4a6a-a893-847e68cce066/OtAutoBlock.js" ></script>
-      <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="47d0fdb5-1ced-4a6a-a893-847e68cce066" ></script>
-      <script type="text/javascript">
-      function OptanonWrapper() { }
-      </script>
-      </Head>
-    </Layout>
-  );
-}
