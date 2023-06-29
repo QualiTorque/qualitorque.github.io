@@ -350,8 +350,13 @@ Here is an example of how it can be used:
   s3_bucket:
       ...
       inputs:
-        - bucket_name: bucket-{{ envid | downcase }}'
+        - bucket_name: bucket-{{ envId | downcase }}'
 ```
+
+:::note
+The dynamic attributes calculation is case insensitive so you can use either "envId" or "envid" etc.
+:::
+
 
 ### Parameters
 Torque's [Parameters](/admin-guide/params) store allows admins to set pre-defined account/space-level parameters. Blueprint designers can use the parameters in the blueprint YAML, instead of inputs if they don't want the environment end-user to provide the value, but also don't want to hard-code it in the blueprint.
