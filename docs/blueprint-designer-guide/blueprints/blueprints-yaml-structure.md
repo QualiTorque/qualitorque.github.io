@@ -331,12 +331,27 @@ In the below example the [downcase](https://shopify.github.io/liquid/filters/dow
       agent:
         name: '{{ .inputs.agent_name }}'
       inputs:
-        - bucket_name: '{{ .inputs.bucket_name | strip }}-bucket-{{ sandboxid | downcase }}'
+        - bucket_name: '{{ .inputs.bucket_name | strip }}-bucket-{{ envid | downcase }}'
 ```
 
-:::info
-Blueprint designers might need extra details about the account, space or environment during the environment's orchestration. Torque provides dynamic attributes such as a sandboxid, accountid and spaceid that can be used through the orchestration and automation process.   
-:::
+### Dynamic Attributes
+Blueprint designers might need extra details about the account, space or environment during the environment's orchestration. Torque provides dynamic attributes which are pre-defined parameters blueprints designers can use. The currently supported dynamic attributes are:
+
+- envId
+- blueprintName 
+- ownerEmail
+- environmentName
+- accountName
+- spaceName
+
+Here is an example of how it can be used:
+
+```yaml 
+  s3_bucket:
+      ...
+      inputs:
+        - bucket_name: bucket-{{ envid | downcase }}'
+```
 
 ### Parameters
 Torque's [Parameters](/admin-guide/params) store allows admins to set pre-defined account/space-level parameters. Blueprint designers can use the parameters in the blueprint YAML, instead of inputs if they don't want the environment end-user to provide the value, but also don't want to hard-code it in the blueprint.
