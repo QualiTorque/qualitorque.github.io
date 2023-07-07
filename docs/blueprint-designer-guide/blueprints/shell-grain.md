@@ -19,17 +19,17 @@ grains:
           commands:
             - …
 ```
-### agent
+### Agent
 Please see [the grain agent](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#agent) for more details.
 
-### Tools and technologies
+### Tools and Technologies
 The following tools and technologies are installed out of the box on our agents in the Kubernetes pods and can be used when writing grain scripts (pre/post, etc.):
 
 - dotnet
 - python3
 - pip3
 
-### inputs
+### Inputs
 Similar to blueprint inputs, inputs provided to the Shell grain are used when launching the shell. Unlike other grains, in the Shell grain, inputs are used inside the __commands__ section, wrapped in double curly brackets - ```" {{ .inputs.input1 }}"```.
 
 ```jsx
@@ -71,7 +71,7 @@ grains:
               command: "./script.sh"
 ```
 
-### commands
+### Commands
 The commands section allows to execute bash/python3 code or files stored in one of the space's repositories as part of the launch and/or end of the environment. The Shell grain has two command types - __deploy__ for running code at the launch of the environment, and __destroy__ for running code as part of the environment’s teardown. 
 
 ```jsx
@@ -93,6 +93,26 @@ grains:
             - "https://gist.githubusercontent.com/.../check.py"
             - "python3 check.py"
 ```
+
+> :warning: **Warning**
+> Each command new line from the above example is segregated in its own shell, so running these commands:
+> ```jsx
+>       activities:
+>        deploy:
+>          commands:
+>            - "cd /home"
+>            - "cat file.txt"
+>```
+> Would **not** work as expected. The correct syntax would be:
+> ```jsx
+>       activities:
+>        deploy:
+>          commands:
+>            - "cd /home; cat file.txt"
+>```
+> Another option would be to have a script file and call it directly only on one line. 
+>
+> **Note**: only the **last command or script** provided is evaluated for a successful exit code, all previous commands or scripts will still be ran regardless of failures.
 
 :::tip __note__
 You can specify the code to be run as freetext bash/python3 commands or by referencing a file (any file type can be run, not just bash or python3). 
