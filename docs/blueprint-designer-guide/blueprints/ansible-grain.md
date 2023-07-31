@@ -46,6 +46,59 @@ My_Ansible_Grain:
 ### agent
 Please see [the grain agent](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#host) for more details.
 
+### inputs
+Inputs which are provided to the ansible grain will be used in the ansible command line as "extra-vars".
+The syntax is similar to any grain inputs.
+
+Let's look at an example. In the example we have a blueprint with 2 grains: a VM and an ansible playbook to configure it.
+
+**Blueprint:**
+
+```yaml
+spec_version: 2
+   ...   
+grains:
+  my_vm:
+    kind: terraform
+    spec:
+      source:
+        store: assets
+        path:terraform/vcenter/linux_vm
+      outputs:
+      - vm_ip
+      - vm_link
+      - vm_name
+
+  configure-vm:
+    depends-on: my_vm
+    kind: ansible
+    spec:
+      source:
+        store: assets
+        path: assets/ansible/configure.yaml
+      inputs:
+        - nodes: '{{ grains.my_vm.outputs.vm_ip }}'
+        - username: '{{ .params.vc_ubuntu_user }}'
+        - password: '{{ .params.vc_ubuntu_password }}'
+```
+
+**Playbook:**
+
+```yaml
+- hosts: {{ nodes }}
+  tasks:
+  - name: configure virtual machine
+    azure_rm_virtualmachine:
+      username: "{{ username }}"
+      password: "{{ password }}"
+      …          
+```
+
+The playbook will be run with the extra vars like so:
+```
+ansible-playbook myplaybook.yaml --extra-vars "nodes=<...> "username"=<...> "password=<...>”
+```
+
 ### Inventory-file
 
 Inventory file is a special grain section unique to the ansible grain, that allows you to provide in a YAML structured format, the content of the Ansible inventory file that will be generated for the Ansible playbook to use. For a deep understanding of the format of this file, please see Ansible’s official documentation at https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html#inventory-basics-formats-hosts-and-groups.
