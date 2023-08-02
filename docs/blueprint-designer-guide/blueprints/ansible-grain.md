@@ -174,3 +174,50 @@ __Example:__ Below is an example of a grains section of a blueprint, containing 
           vars:
             person_name: Doe
 ```
+
+### Outputs
+
+Ansible does not support outputs from playbooks natively so Torque adds this support on top of the ansible capabilities.
+Why would you need outputs from your ansible grain?
+Output from the ansible grain can be passed to another grain (ansible or not) or to become one of the blueprint outputs so can be provided to the blueprint consumer (the end user).
+
+For this purpose, we have developed the Torque ansible module "export-torque-outputs".
+
+The module accepts a dictionary of output names and values. 
+
+Usage example:
+
+**Playbook:**
+```yaml
+tasks:
+  - name: task1
+      configure_vm:
+      …
+      register: result1
+    …
+  - name: task2
+      do_something_else:
+      …
+      register: result2
+    
+
+  - name: Print playbook outputs
+      export-torque-outputs:
+        playbook_outputs:
+          output1: “{{ result1 }}”
+          output2: “{{ result2 }}”
+```
+
+
+**Blueprint:**
+
+```yaml
+grains:
+   configure-vm:
+      kind: ansible
+      spec:
+       ...
+       outputs:
+          - output1
+          - output2  
+```
