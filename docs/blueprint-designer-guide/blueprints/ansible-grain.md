@@ -201,8 +201,10 @@ tasks:
       register: result2
     
 
-  - name: Print playbook outputs
-      export-torque-outputs:
+ - name: Export outputs
+    torque.collections.export_torque_outputs:
+      outputs: 
+        output1: "my output"
         playbook_outputs:
           output1: “{{ result1 }}”
           output2: “{{ result2 }}”
@@ -221,3 +223,6 @@ grains:
           - output1
           - output2  
 ```
+
+If you wish to install the module locally to test it, please run ```ansible-galaxy collection install torque.collections```
+The module resides in the marketplace : https://galaxy.ansible.com/torque/collections

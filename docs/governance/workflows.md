@@ -72,9 +72,8 @@ For each resource the context contains:
 
 1. name (Resource name)
 2. type (Resource type)
-3. status(Resource status)
-4. identifier (Resource identifier)
-5. attributes (A list of the resource attributes)
+3. identifier (Resource identifier)
+4. attributes (A list of the resource attributes)
 
 ### Examples
 
