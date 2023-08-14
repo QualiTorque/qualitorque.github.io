@@ -92,7 +92,7 @@ grains:
       …          
 ```
 
-The playbook will be run with the extra vars like so:
+Torque wil create a JSON file containing the grain inputs under the path: /var/run/ansible/inputs/inputs.json.
 
 ```json
 {
@@ -100,6 +100,8 @@ The playbook will be run with the extra vars like so:
   "username": ...,
   "password": ...
 }
+
+The playbook will be executed with the extra vars in the following way:
 ```
 ansible-playbook myplaybook.yaml --extra-vars "@/var/run/ansible/inputs/inputs.json"
 ```
