@@ -100,6 +100,7 @@ Torque wil create a JSON file containing the grain inputs under the path: /var/r
   "username": ...,
   "password": ...
 }
+```
 
 The playbook will be executed with the extra vars in the following way:
 ```
