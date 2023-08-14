@@ -5,8 +5,6 @@ title: The Ansible Grain
 
 The Ansible grain is Torque’s native support for orchestrating the execution of Ansible playbooks as part of a Torque blueprint. The referenced playbook can rely on vars or inventory-hosts that are dynamically provided by Torque, and then utilize them to perform configuration management, updates, a health check or any other flow that is executable from Ansible. 
 
-Note: an Ansible grain does not provide grain outputs. 
-
 ### Tools and technologies
 
 The following tools and technologies are installed out of the box on our agents in the Kubernetes pods and can be used when writing grain scripts (pre/post, etc.):
@@ -95,8 +93,15 @@ grains:
 ```
 
 The playbook will be run with the extra vars like so:
+
+```json
+{
+  "nodes": [...],
+  "username": ...,
+  "password": ...
+}
 ```
-ansible-playbook myplaybook.yaml --extra-vars "nodes=<...> "username"=<...> "password=<...>”
+ansible-playbook myplaybook.yaml --extra-vars "@/var/run/ansible/inputs/inputs.json"
 ```
 
 ### Inventory-file
@@ -203,11 +208,9 @@ tasks:
 
  - name: Export outputs
     torque.collections.export_torque_outputs:
-      outputs: 
-        output1: "my output"
-        playbook_outputs:
-          output1: “{{ result1 }}”
-          output2: “{{ result2 }}”
+      outputs:
+        output1: “{{ result1 }}”
+        output2: “{{ result2 }}”
 ```
 
 
