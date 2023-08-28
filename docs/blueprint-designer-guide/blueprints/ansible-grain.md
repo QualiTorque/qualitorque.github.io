@@ -80,6 +80,10 @@ grains:
         - password: '{{ .params.vc_ubuntu_password }}'
 ```
 
+:::info
+Torque supports playbooks which use ansible roles.
+:::
+
 **Playbook:**
 
 ```yaml
@@ -216,6 +220,9 @@ tasks:
         output2: “{{ result2 }}”
 ```
 
+:::info
+The task which runs the "export_torque_outputs" module must be run on localhost. 
+:::
 
 **Blueprint:**
 
