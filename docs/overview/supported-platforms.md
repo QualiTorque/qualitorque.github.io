@@ -28,8 +28,8 @@ Torque supports the following IaC frameworks:
 
 This table lists the capabilities supported for each IaC or container technology. 
 
-|              | Terraform | Helm      | K8S native | CloudFormation | vCenter |  CloudShell | Ansible
-| ------------ | --------- | --------- | ---------  | ---------      | ------- |   ------- |   ------- |
+|              | Terraform | Helm      | K8S native | CloudFormation | vCenter |   Ansible
+| ------------ | --------- | --------- | ---------  | ---------      | ------- |   ------- |
 |Inputs/Outputs|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
 |Tags|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|`beta`|:heavy_check_mark:||
 |Update|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
