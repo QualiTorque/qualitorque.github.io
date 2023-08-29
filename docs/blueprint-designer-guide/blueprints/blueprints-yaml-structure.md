@@ -83,9 +83,12 @@ outputs:
   WebsiteUrl:
     value: 'application-name-{{ sandboxid | downcase }}.testquali.click:8080'
     kind: link
+    quick: true
   DB_Hostname:
     value: '{{ .grains.mySqlDB.outputs.hostname }}'
 ```
+
+The "quick" attribute is optional and defaults to false. Setting it to "true" will cause the specific output to be presented in the quick access secion of the environment for ease of use.
 
 :::info
 The example above includes some of the Torque's YAML templating engine capabilities allowing the blueprint designer more flexibility and leads to less code that will require maintenance. More examples for templating will be described [Torque Templating engine](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#torque-templating-engine).
