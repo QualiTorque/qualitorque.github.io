@@ -9,7 +9,8 @@ As the blueprint designer, you can define the blueprint's default and max durati
 
 1. In the **Blueprints** page, click the blueprint's more actions menu and select **Manage Policies**. 
 2. In the dialog box, set the default durations as appropriate:
+    * __Active environment limit__: Set a permitted amount for active Environments that could be launched from this Blueprint.
     * __Max Duration__: Set the max duration or select **Unlimited** to allow the environment end user to run the environment indefinitely.Note that end-users will still have the option to end or extend the environment at any time, regardless of its runtime policy.
     * __Default Duration__: Set the default duration that is used when launching a new environment.
     * __Default Extend Duration__: Set the default duration when end-users extend the environment.
-3. Click __Apply__.
+4. Click __Apply__.
