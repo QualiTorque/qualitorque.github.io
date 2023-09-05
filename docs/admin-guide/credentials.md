@@ -33,7 +33,7 @@ __To add a credential:__
 
 3. In the navigation pane of the IAM console, select __Roles__, and then click __Create Role__.
    1. From __Select trusted entity__, choose __AWS Account__.
-   2. Under An AWS account ID, select __An AWS account__ and enter 3491482046. (This is the Torque AWS account from which we will query the cost).
+   2. Under An AWS account ID, select __An AWS account__ and enter 349148204654. (This is the Torque AWS account from which we will query the cost).
    3. Select __Require external ID__.
    4. Enter an __External ID__ of your choosing. The External Id will be used to validate the Consumer of the ARN Role. __Keep note of the external ID as you will need it later in the configuration step__. 
    5. In __Next:Permissions__, select the policy you have just created in step 1 for cost exploration permission.
