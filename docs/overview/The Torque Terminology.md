@@ -9,7 +9,7 @@ Before you start on your Torque journey, please take a moment to familiarize you
 
     * [**Grain**](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#grains) - The Torque representation of an asset (e.g. Terraform module or Helm chart). Each grain contains all the information required to deploy the asset, such as inputs and versions, as well as a reference to the location of the asset's code (repository).
 
-    * [**Environment**](/getting-started/Getting starting with terraform) - An environment is a live instance of a blueprint. It contains the cloud infrastructure and application(s) that were deployed from the blueprint. The environment has a defined duration that can be manually extended or ended, as well as links to its applications, automation commands to run on the different cloud resources.
+    * [**Environment**](/getting-started/Getting-starting-with-terraform) - An environment is a live instance of a blueprint. It contains the cloud infrastructure and application(s) that were deployed from the blueprint. The environment has a defined duration that can be manually extended or ended, as well as links to its applications, automation commands to run on the different cloud resources.
 
     * **Repository** - A git-based folder containing the IaC assets, container files and multi-asset blueprints that make up the Torque self-service catalog, and are consumed by your end-users. For details, see [Architecture](/overview/architecture).
 
