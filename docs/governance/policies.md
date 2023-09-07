@@ -148,6 +148,10 @@ For __environment__ policies, the input is the following json object:
         "entity_id": null,
         "action_type": "Launch" // options: "Launch", "Extend"
     }
+    "owner_active_environments_in_space" : <number>// # of the current owner's active environments in space 
+    "owner_active_environments_in_account" <number> : //  # of the current owner's active environments in the account 
+    "active_environments_in_space": <number> // total # of active environments in the space 
+    "active_environments_in_account": <number> // total # of active environments in the account 
 }
 ```
 
