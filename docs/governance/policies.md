@@ -5,8 +5,8 @@ title: Policies
 
 Torque role: Account admin
 
-## Why use poslicies?
-Using policies for the consumption of environments, offers a multitude of benefits that empower organizations to optimize their cloud usage. Firstly, policies allow for effective cost control by setting limits on resource consumption, ensuring that cloud spending remains within budgetary constraints. Moreover, these policies enable the efficient management of resources by capping the number of concurrent resources per user, preventing resource sprawl and ensuring fair allocation. Additionally, policies can restrict the duration of environments uptime, enhancing security and minimizing the risk of unused resources running indefinitely. In sum, the implementation of policies for environment consumption not only fosters financial prudence but also enhances resource governance and security, making it an invaluable asset in the realm of cloud management.
+## Why use policies?
+Using policies for the consumption of environments offers a multitude of benefits that empower organizations to optimize their cloud usage. Firstly, policies allow for effective cost control by setting limits on resource consumption, ensuring that cloud spending remains within budgetary constraints. Moreover, these policies enable the efficient management of resources by capping the number of concurrent resources per user, preventing resource sprawl, and ensuring fair allocation. Additionally, policies can restrict the duration of an environments uptime, enhancing security and minimizing the risk of unused resources running indefinitely. In sum, the implementation of policies for environment consumption not only fosters financial prudence but also enhances resource governance and security, making it an invaluable asset in the realm of cloud management.
 
 Torque policies are triggered as part of the environment deployment pipeline for specific environment lifecycle events (launch, extend environment for example) or during the deployment of environments (e.g. when evaluating a Terraform module included in the environment). Torque policies are powered by OPA (Open Policy Agent). For a step-by-step tutorial, see [Video: Torque policies (end-to-end)](#video-torque-policies-end-to-end-tutorial).
 
@@ -51,7 +51,7 @@ There are 4 labels that will be automatically applied to policies in Torque, in 
 * __Terraform__ label is assigned to policies that evaluate the Terraform plan on the environment's Terraform grain. These policies are triggered when Torque deploys the Terraform grain's plan during the environment's initialization
 * __Environment__ label is assigned to policies that are triggered when the environment is launched or extended
 * __Approval__ label is assigned to policies that could require approval to launch the environment
-* __Annotations__ lable is assigned to files which are used to evaluate dynamic environment annotations. See [Environment Annotations](/environment-services/environment-annotations.md).
+* __Annotations__ lable is assigned to files that are used to evaluate dynamic environment annotations. See [Environment Annotations](/environment-services/environment-annotations.md).
 
 > ![Locale Dropdown](/img/policy-labels.png)
 
@@ -59,17 +59,17 @@ There are 4 labels that will be automatically applied to policies in Torque, in 
 Torque provides many built-in policies, both for environment lifecycle and Terraform plan evaluation, which represent some of the more common use cases when deploying environments. Some examples include:
 * Allow only specific AWS instance types to be used
 * Allow deploying only to specific Azure locations
-* Allow only environments with expected cost of < 10$
+* Allow only environments with an expected cost of < 10$
 
 ## Custom policies
 
-There may come a time when you will need to go beyond the common use case and write your own policies and rules. This is possible using custom policies. Custom policies are .rego files that reside in your git repository. When you add the policy repository to Torque, Torque automatically discovers the repository and identifies its .rego files as policies, allowing you to choose which policies to import into Torque. Same as with built-in policies, you select where to apply the policy (on the entire account or specific teams), and configure the relevant data. 
+There may come a time when you will need to go beyond the common use case and write your own policies and rules. This is possible using custom policies. Custom policies are .rego files that reside in your git repository. When you add the policy repository to Torque, Torque automatically discovers the repository and identifies its .rego files as policies, allowing you to choose which policies to import into Torque. Same as with built-in policies, you select where to apply the policy (on the entire account or specific teams) and configure the relevant data. 
 
 ### Developing your own policies
 
 #### __Developing Torque policies__
 
-1. __Package__: for Torque to recognize and be able to execute your policy, you need to use the torque packages. The packages that are currently available are torque.environment and torque.terraform_plan. So your first line of the rego file which is the package name should be one of these packages.
+1. __Package__: For Torque to recognize and be able to execute your policy, you need to use the torque packages. The packages that are currently available are torque.environment and torque.terraform_plan. So your first line of the rego file which is the package name should be one of these packages.
 2. __terraform_plan__ policies need at least one __deny__ rule to be valid.
 For example, a __terraform_plan__ policy can look like this:
 
@@ -143,7 +143,7 @@ For __environment__ policies, the input is the following json object:
         }
     ],
     "timezone": "Asia/Jerusalem",
-    "duration_minutes": 100, // in launch, the requested duration. In extend, the total duration before the extention
+    "duration_minutes": 100, // in launch, the requested duration. In extend, the total duration before the extension
     "extend_duration_minutes": 100, // null if the action is "launch"
     "blueprint_avg_hourly_cost": null,
     "space_name": "my_space",
@@ -178,7 +178,7 @@ The *data* object is the user-defined inputs that will also be passed to OPA for
 For example, the policy can look like this:
 
 ```jsx title="A policy that denies environments with a requested duration that is longer than defined in the *data* object:"
-result = { "decision": "Denied", "reason": "Environemtn duration exceeds the configured max duration" } if {
+result = { "decision": "Denied", "reason": "Environment duration exceeds the configured max duration" } if {
    input.duration_minutes > data.max_duration_minutes
 } 
 ```
@@ -204,7 +204,7 @@ Torque supports all rego built-in functions, except the following list:
 For more details on how to develop policies, see [OPA documentation](https://www.openpolicyagent.org/docs/latest/) and [OPA playground](https://play.openpolicyagent.org/).
 
 :::tip Notes
-* For example custom policies, see [Quali Torque built-in OPA policy templates](https://github.com/QualiTorque/opa).
+* For example, custom policies, see [Quali Torque built-in OPA policy templates](https://github.com/QualiTorque/opa).
 * Note that Torque points to a specific commit. Therefore, to introduce a new version of a custom policy, develop, test and pass the policy through your regular git flow. Once you are done, update the commit version in Torque by clicking "Update Rego".
 :::
 
@@ -228,7 +228,7 @@ Approvers are defined in the __[Approval Channels](/governance/approval-channels
    A green checkmark next to the repository's URL indicates that the repository has been added successfully.
       > ![Locale Dropdown](/img/repository-connection.png)
 4. Click __Discover Policies__.
-5. Select the policies you want to import into Torque, and click __Generate Policies__.
+5. Select the policies you want to import into Torque and click __Generate Policies__.
    > ![Locale Dropdown](/img/policy-import.png)
 
     The policies are displayed in the __Policies__ page.
