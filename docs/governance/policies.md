@@ -18,6 +18,8 @@ You can use Torque policies for cost and consumption control. Examples include:
 - And more.
 
 In this article:
+- [Why use policies?](#why-use-policies)
+- [Example Use Cases](#example-use-cases)
 - [How policies work](#how-policies-work)
 - [Policy labels](#policy-labels)
 - [Torque built-in policies](#torque-built-in-policies)
@@ -30,6 +32,7 @@ In this article:
 - [Approval policies](#approval-policies)
 - [How to set up a policy](#how-to-set-up-a-policy)
 - [Duplicate a policy](#duplicate-a-policy)
+- [Updating policies](#updating-policies)
 - [Video: Torque policies (end-to-end tutorial)](#video-torque-policies-end-to-end-tutorial)
 
 
@@ -248,6 +251,20 @@ Approvers are defined in the __[Approval Channels](/governance/approval-channels
 
 You can also duplicate any built-in or custom policy to create a similar version with different user data. For example, You could have a policy that allows the use of cloud region "us-east-1" for the US team, and another one for the EU team that allows region "eu-west-1".
 > ![Locale Dropdown](/img/duplicate-policy.png)
+
+
+## Updating policies
+
+Torque's custom policies are version controlled in git. Next to each policy, you can see the specific commit which is currently being used for that policy across the account:
+> ![Locale Dropdown](/img/policy_commit.png)
+
+From time to time, there will be a need to modify the policy's code (rego file). However, we must update the policy without any disruption to the users. This means that the data object format and the rego file must match. 
+
+Clicking on the policy there is an option to update the rego:
+> ![Locale Dropdown](/img/update-rego.png)
+
+If there is no change in the data object format, the update is completed and applied across the account. However, if there is a change in the data object, we cannot complete the update until the user will complete the change of the data object, otherwise the policy will start failing and will cause a disruption for the account users. Therefore, when Torque detects a change in the format of the data object, it will load the new data object structure and wait for the user to modify it.
+Once done, the user needs to invoke the "update-rego" again and at this point it will complete successfully as the rego code and the data format match.
 
 ## Video: Torque policies (end-to-end tutorial)
 
