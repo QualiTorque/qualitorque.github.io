@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: rojopolis/spellcheck-github-actions@0.33.1
+        name: Spellcheck
       - uses: actions/setup-node@v3
         with:
           node-version: 16.x
