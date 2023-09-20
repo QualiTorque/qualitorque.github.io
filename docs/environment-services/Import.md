@@ -43,7 +43,7 @@ curl -L 'https://portal.qtorque.io/api/spaces/<SPACE_NAME>/environments/import' 
 
 Full API reference is available [here](https://portal.qtorque.io/api_reference/#/paths/api-spaces-space_name--environments-import/post).
 
-* It's important to note that the backend section is mandatory and must reference a *.tfstate file in a supported backend (s3/azurerm/gcs/http). Also, the input values that are provided as part of the import request must be the same values that were used to provision the terraform module. If there's a missmatch in the input values then Torque will detect a drift and fail the import.
+* It's important to note that the backend section is mandatory and must reference a *.tfstate file in a supported backend (s3/azurerm/gcs/http). Also, the input values that are provided as part of the import request must be the same values that were used to provision the terraform module. If the input values do not match, Torque will detect a drift and fail the import.
 
 
 ### Import using existing blueprint
