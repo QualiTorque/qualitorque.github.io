@@ -7,7 +7,7 @@ In this article:
 - [What is a Torque blueprint?](#what-is-a-torque-blueprint)
 - [Option A: Let Torque generate blueprints from your assets](#option-a-let-torque-generate-blueprints-from-your-assets)
 - [Option B: Create a multi-asset blueprint in your source control repository](#option-b-create-a-multi-asset-blueprint-in-your-source-control-repository)
-- [Example multi-grain blueprint 2: Webgame on S3 (using CloudFormation and Terraform)](#example-multi-grain-blueprint-2-webgame-on-s3-using-cloudformation-and-terraform)
+- [Example multi-grain blueprint 2: Web-game on S3 (using CloudFormation and Terraform)](#example-multi-grain-blueprint-2-web-game-on-s3-using-cloudformation-and-terraform)
 
 ## What is a Torque blueprint?
 A blueprint is a template for provisioning an environment that contains references to different IaC Components ("Grains") that together define the applications, cloud infrastructure, networking and policies that make up a specific environment to be deployed. Blueprints are stored as source-controlled YAML files, and each grain in a blueprint is a reference to one IaC or automation file (for example, a Terraform module or a Helm chart) that will be deployed as part of the environment, and the component's designated inputs, outputs and execution information. 
@@ -34,7 +34,7 @@ These generated blueprints are stored in Torque's backend, and you can customize
   
 > ![Locale Dropdown](/img/new-assets.png)
 
-3. You can click the blueprint to open it in the embedded VSCode editor. In this editor you can view the blueprint's contents, modify it, preview changes after modification, save the changes, and launch an environment fron the blueprint.
+3. You can click the blueprint to open it in the embedded VSCode editor. In this editor you can view the blueprint's contents, modify it, preview changes after modification, save the changes, and launch an environment from the blueprint.
 
 
 
@@ -49,7 +49,7 @@ These generated blueprints are stored in Torque's backend, and you can customize
   You and your space’s users can now launch environments from these blueprints via the **Catalog**. 
 
 ## Option B: Create a multi-asset blueprint in your source control repository
-So far, we’ve learned how to create single-asset blueprints via autogeneration. But what if you want to create an application-stack environment? This is easily done by having multiple grains in a single blueprint or nesting an existing blueprint within a master blueprint as a grain. To create such a blueprint, you will need an IDE environment that has access to a clone of your repository, in which you can create the new blueprint's YAML file and edit it, and then commit it into your repository and push the changes to the remote repository from which Torque will automatically synchronize the new blueprint.
+So far, we’ve learned how to create single-asset blueprints via auto-generation. But what if you want to create an application-stack environment? This is easily done by having multiple grains in a single blueprint or nesting an existing blueprint within a master blueprint as a grain. To create such a blueprint, you will need an IDE environment that has access to a clone of your repository, in which you can create the new blueprint's YAML file and edit it, and then commit it into your repository and push the changes to the remote repository from which Torque will automatically synchronize the new blueprint.
 
 By enforcing usage of a source control repository, each blueprint in Torque will have:
 * A full history of tracked changes
@@ -95,7 +95,7 @@ This blueprint is available in the __Sample__ space [here](https://portal.qtorqu
 
 ```jsx title=
 spec_version: 2
-description: Robotshot microservices application deployed on K8S with Helm and RDS deployed with TF
+description: Robotshop microservices application deployed on K8S with Helm and RDS deployed with TF
 
 outputs:
   WebsiteUrl:
@@ -155,7 +155,7 @@ grains:
         - redis.storageClassName: gp2
 ```
 
-## Example multi-grain blueprint 2: Webgame on S3 (using CloudFormation and Terraform)
+## Example multi-grain blueprint 2: Web-game on S3 (using CloudFormation and Terraform)
 
 ```jsx title=
 spec_version: 2

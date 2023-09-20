@@ -37,7 +37,7 @@ title: Install an Agent on your Kubernetes Cluster
         - (Recommended) Create a designated __service account__ annotated with an AWS role. See [Terraform Authentication on EKS](/torque-agent/service-accounts-for-aws) for details. Or,
         - Ensure that the Cluster service role has sufficient permissions to create the environment.
       - If your cluster is an __AKS__ (resources will be created on Azure): Provide the account's authentication credentials when creating the agent in Torque. For details, see [Terraform Authentication on AKS](/torque-agent/service-accounts-for-azure).
-      - If your cluster is a __GKE__ (resources will be createdon GCP), see [Terraform GKE Authentication](/torque-agent/service-accounts-for-gcp).
+      - If your cluster is a __GKE__ (resources will be created on GCP), see [Terraform GKE Authentication](/torque-agent/service-accounts-for-gcp).
       - For other types of clusters, or if you want to connect to your AWS/Azure with your basic credentials, there is no built-in authentication with Torque so there are no pre-requisites related to authentication and permissions. You can store your cloud credentials in the Torque secret store and use them for your TF deployment.
 
 ## Setup
@@ -61,7 +61,7 @@ title: Install an Agent on your Kubernetes Cluster
 
 If the agent fails to connect with Torque, you can try the following to identify the problem.
 
-Replace tbe "agent-namespace" with your agent's namespace. You can find it in: 
+Replace the "agent-namespace" with your agent's namespace. You can find it in: 
 
 _Administration --> Agents --> Identify your agent --> Click on the 3 dots menu --> Edit Agent --> Advanced K8s settings:_
 

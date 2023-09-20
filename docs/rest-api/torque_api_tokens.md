@@ -7,7 +7,7 @@ For programmatic access to Torque and to use the different integrations Torque h
 
 To get a new API Token:
 
-1. On your Torque UI, navigate to one ofyour spaces.
+1. On your Torque UI, navigate to one of your spaces.
 2. On the left panel, under settings, click on "Integrations".
 3. Choose one of the CI/CI integrations, and click on "Connect".
 4. A right panel will open, click on "Configure" and then "Generate New Token".

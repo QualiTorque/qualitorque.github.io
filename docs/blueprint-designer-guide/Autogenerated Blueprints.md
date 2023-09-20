@@ -4,7 +4,7 @@ title: Auto-generated Blueprints
 ---
 
 ## Torque auto-generated blueprints
-Torque autogenerates blueprints based on your assets (Terraform modules, Helm Charts). However, you may need to adjust these blueprints to your specific needs. You can modify auto-generated blueprints directly in Torque or in your preferred editor.
+Torque auto-generated blueprints based on your assets (Terraform modules, Helm Charts). However, you may need to adjust these blueprints to your specific needs. You can modify auto-generated blueprints directly in Torque or in your preferred editor.
 
 ### Common fields
 

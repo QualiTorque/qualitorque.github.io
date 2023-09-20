@@ -7,7 +7,7 @@ While Torque offers a best practice configuration settings for deploying environ
 
 Modifying these settings should be performed by the cluster administrator or subject to their approval, ensuring alignment with other existing cluster configurations you may have in place.
 
-To modify these advanced settigs, navigate to Administration --> Agents and select the agent which resides on the relevant cluster. 
+To modify these advanced settings, navigate to Administration --> Agents and select the agent which resides on the relevant cluster. 
 On the left 3-dot menu, click on "Edit Agent" --> Then open the "Advanced Kubernetes Settings" dropdown.
 
 ![](/img/k8s-advanced-settings.png)

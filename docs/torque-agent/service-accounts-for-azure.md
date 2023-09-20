@@ -64,7 +64,7 @@ The basic process is as follows:
   az feature show --namespace "Microsoft.ContainerService" --name "EnableWorkloadIdentityPreview"
   ```
 
-4.  Propogate registration:
+4.  Propagate registration:
   ```jsx title=
   az provider register --namespace Microsoft.ContainerService
   ```
@@ -143,7 +143,7 @@ Have the following formation ready (from the previous section)
 
 ### __Configure the AKS authentication in Torque__ 
 
-There are 2 ways to acomplish this:
+There are 2 ways to accomplish this:
 
 1. (Recommended) When adding a new AKS agent, you can provide the **default tenant Id**, and when attaching it a space you can provide the **default_subscription**.
 

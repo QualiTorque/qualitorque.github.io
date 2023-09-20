@@ -39,7 +39,7 @@ To configure Torque’s Cost Allocation Tags:
    4. Enter an __External ID__ of your choosing. The External Id will be used to validate the Consumer of the ARN Role. __Keep note of the external ID as you will need it later in the configuration step__. 
    5. In __Next:Permissions__, select the policy you have just created in step 1 for cost exploration permission.
    6. Click __Next__.
-   7. Enter a __Role Rame__ or role name suffix to help you identify the purpose of this role or use AWS defined Name.
+   7. Enter a __Role Name__ or role name suffix to help you identify the purpose of this role or use AWS defined Name.
    8.  Click __Create Role__.
    9.  (Optional) Enter a __Description__ for the new role.
    10. Review the role and then click __Create role__. Keep note of the role ARN as you will need it later in the configuration step.

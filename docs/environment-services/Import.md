@@ -5,11 +5,11 @@ title: Existing Environment Import
 
 ## Import
 
-Torque lets you import your existing environments. Once the environment is imported it becomes a fully mananged environment in Torque. This allows you to gain visibility of all the environments that were created outside of Torque and use Torque environment services like drift detection, updates, cost tracking & introspection with the imported environments.
+Torque lets you import your existing environments. Once the environment is imported it becomes a fully managed environment in Torque. This allows you to gain visibility of all the environments that were created outside of Torque and use Torque environment services like drift detection, updates, cost tracking & introspection with the imported environments.
 
 ### Import without a blueprint
 
-The import flow supports auto-generating a blueprint as part of the import request. This is usefull in case you need to import an environment with a single grain and you don't have a corresponding blueprint yet. 
+The import flow supports auto-generating a blueprint as part of the import request. This is useful in case you need to import an environment with a single grain and you don't have a corresponding blueprint yet. 
 
 Example of a basic API request:
 ```jsx
@@ -48,7 +48,7 @@ Full API reference is available [here](https://portal.qtorque.io/api_reference/#
 
 ### Import using existing blueprint
 
-The import feature also supports using an existing blueprint. It's usefull in case where you need to import an environment with multiple grains or in case that you need to import multiple environments that were created from the same configurations. Full API reference is available [here](https://portal.qtorque.io/api_reference/#/paths/api-spaces-space_name--environments-import_using_blueprint/post).
+The import feature also supports using an existing blueprint. It's useful in case where you need to import an environment with multiple grains or in case that you need to import multiple environments that were created from the same configurations. Full API reference is available [here](https://portal.qtorque.io/api_reference/#/paths/api-spaces-space_name--environments-import_using_blueprint/post).
 
 
 ### Limitations

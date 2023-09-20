@@ -3,7 +3,7 @@ sidebar_position: 6
 title: Blueprint YAML Structure
 ---
 
-The Torque's blueprint YAML is the main bluperint definition file. It contains general information about the environment as well as the grains that make up the environment's applications and services. The blueprint YAML is published to end-users in Torque's blueprint catalog. 
+The Torque's blueprint YAML is the main blueprint definition file. It contains general information about the environment as well as the grains that make up the environment's applications and services. The blueprint YAML is published to end-users in Torque's blueprint catalog. 
 
 ### spec_version
 The spec_version determines the blueprint YAML type. Currently, Torque supports spec_version:2 as the default and recommended version. With time, new preview releases and official feature releases will bring more and more features and users will be able to use other spec versions.
@@ -88,7 +88,7 @@ outputs:
     value: '{{ .grains.mySqlDB.outputs.hostname }}'
 ```
 
-The "quick" attribute is optional and defaults to false. Setting it to "true" will cause the specific output to be presented in the quick access secion of the environment for ease of use.
+The "quick" attribute is optional and defaults to false. Setting it to "true" will cause the specific output to be presented in the quick access section of the environment for ease of use.
 
 :::info
 The example above includes some of the Torque's YAML templating engine capabilities allowing the blueprint designer more flexibility and leads to less code that will require maintenance. More examples for templating will be described [Torque Templating engine](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#torque-templating-engine).

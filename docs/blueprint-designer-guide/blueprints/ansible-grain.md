@@ -96,7 +96,7 @@ Torque supports playbooks which use ansible roles.
       …          
 ```
 
-Torque wil create a JSON file containing the grain inputs under the path: /var/run/ansible/inputs/inputs.json.
+Torque will create a JSON file containing the grain inputs under the path: /var/run/ansible/inputs/inputs.json.
 
 ```json
 {
