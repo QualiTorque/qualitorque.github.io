@@ -67,7 +67,7 @@ set_annotations = [{"key": "power", "value": "on"}] {
 Currently the only supported annotations are "power:on" and "power:off". We will add more annotations and open it for custom annotations soon.
 :::
 
-**Step 2: Inport the rego file into Torque **
+**Step 2: Import the rego file into Torque **
 
 1. If the git repository where the relevant rego file resides was not yet connected to Torque, perform the following :
    1. Go to __Administration > Policy Repositories__ and click __Add a Repository__.

@@ -55,13 +55,13 @@ Custom tags are tags that are completely defined by you according to your policy
 Torque defines 4 scopes for custom tags: account, space, blueprint, and sandbox. 
 
 - *account* scope: The tag's value is set once during the tag's creation by the account admin. The tag's value will be identical for all resources in all environments. 
-- *space* scope: The tag's default value is set during the tag's creation, but it can be overrided with separate value on each space by the space admin. All resources created by all environments in the same space will have the same tag value.
-- *blueprint* scope: The tag's default value is set during the tag's creation, but it can be overrided with separate value on each blueprint by the blueprint developer. All resources created by environments using this blueprint will have the same tag value.
-- *sandbox* scope : The tag's default value is set during the tag's creation, but it can be overrided with separate value by the end user when they deploy an environment.
+- *space* scope: The tag's default value is set during the tag's creation, but it can be overridden with separate value on each space by the space admin. All resources created by all environments in the same space will have the same tag value.
+- *blueprint* scope: The tag's default value is set during the tag's creation, but it can be overridden with separate value on each blueprint by the blueprint developer. All resources created by environments using this blueprint will have the same tag value.
+- *sandbox* scope : The tag's default value is set during the tag's creation, but it can be overridden with separate value by the end user when they deploy an environment.
 
 :::tip Notes
 
-- Any custom tag will be applied to all resources created in all environments in this Torque account. If its value was not overriden in its defined scope it will be deployed with the default value.
+- Any custom tag will be applied to all resources created in all environments in this Torque account. If its value was not overridden in its defined scope it will be deployed with the default value.
 - Torque supports a maximum of 20 custom tags.
 :::
 

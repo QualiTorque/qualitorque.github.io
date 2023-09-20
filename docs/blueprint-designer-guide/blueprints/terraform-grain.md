@@ -77,7 +77,7 @@ __Properties__:
 * __storage-account-name__: Mandatory for azurerm
 * __container-name__: Mandatory for azurerm
 * __base-address__: Mandatory for http
-* __key-prefix__: Optional. Ttfstate file path in the remote storage. Relevant for s3, azurerm, gcs. 
+* __key-prefix__: Optional. tfstate file path in the remote storage. Relevant for s3, azurerm, gcs. 
    * S3, Azure Blobs & GCS have a key name limit of 1024 ascii chars
 
 __S3__:
@@ -118,7 +118,7 @@ backend:
   base-address: "http://myrest.api.com/foo"
 ```
 
-Torque uses a "1 to many" model, meaning that one blueprint definition is used to launch many standalone environments. When using a backend for Terraform grains, it is important to ensure that each live instance of the grain has its own unique tfstate file, so Torque will autogenerate the tfstate file name. 
+Torque uses a "1 to many" model, meaning that one blueprint definition is used to launch many standalone environments. When using a backend for Terraform grains, it is important to ensure that each live instance of the grain has its own unique tfstate file, so Torque will auto-generate the tfstate file name. 
 
 For s3, gcs, azurerm backends, the tfstate file location will be: 
 

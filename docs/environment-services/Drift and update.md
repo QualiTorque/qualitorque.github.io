@@ -45,7 +45,7 @@ Here's how Torque handles tracking based on different scenarios:
 
 By intelligently tracking your IaC repository based on your blueprint specifications, Torque ensures that your environment remains synchronized with the latest changes while providing the flexibility to tailor the tracking behavior to your specific requirements.
 
-When Torque detects a change (new commits), it will alret you visually. You can then choose to accept the new code and redeploy the grain with the new code , or dismiss this change. If you dismiss, the alert will be gone but you can always come back and update it.
+When Torque detects a change (new commits), it will alert you visually. You can then choose to accept the new code and redeploy the grain with the new code , or dismiss this change. If you dismiss, the alert will be gone but you can always come back and update it.
 If at any point in time a new change is committed, you will be alerted again.
 
 ### Auto-Retry failed deployments

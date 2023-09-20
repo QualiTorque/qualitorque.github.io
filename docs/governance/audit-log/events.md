@@ -68,7 +68,7 @@ These events are captured by Audit Log. All events are of type "string".
 |Environment Launch Completed|Environment's launch completed and the environment's state changed to Active.|Account/Space/Environment|- is_sample: "true" indicates that the environment was created from a sample blueprint<br />- Duration|
 |Termination Started|Environment's termination was initiated.|Account/Space/Environment||
 |Termination Completed|Environment's termination completed.|Account/Space/Environment||
-|Force Terminate|Environment was force terminated immmediately.|Account/Space/Environment||
+|Force Terminate|Environment was force terminated immediately.|Account/Space/Environment||
 |Owner changed|Environment's owner was changed.|Account/Space/Environment|- New owner|
 |Updates Detected|Torque detected a change in the asset files in the repository.|Account/Space/Environment|- Grain|
 |Update Started|Environment's update was initiated by the user to update the environment with the latest changes to the asset files.|Account/Space/Environment|- Grain|
@@ -82,8 +82,8 @@ These events are captured by Audit Log. All events are of type "string".
 |Added to Space|Added an agent to a space.|Account/Space|- Host name<br />- Cloud<br />- Type (Docker, K8s), Space|
 |Created|Created a new agent.|Account|- Host name<br />- Cloud<br />- Type (Docker, K8s)|
 |Connected|Agent was successfully connected to the cluster.|Account|- host_name<br />- Type (Docker, K8s)|
-|Deleted|Sgent was deleted from Torque.|Account|- Host name<br />- Cloud<br />- Type (Docker, K8s)|
-|Removed From Space|Sgent was removed from a space.|Account/Space|- Host name<br />- Cloud<br />- Type (Docker, K8s), Space|
+|Deleted|Agent was deleted from Torque.|Account|- Host name<br />- Cloud<br />- Type (Docker, K8s)|
+|Removed From Space|Agent was removed from a space.|Account/Space|- Host name<br />- Cloud<br />- Type (Docker, K8s), Space|
 |Renamed| Agent's name was changed.|Account|-old_host_name<br />- new_host_name<br />- type|
 
 ## Notification
@@ -93,7 +93,7 @@ These events are captured by Audit Log. All events are of type "string".
 |Added|New notification target was created.|Account, Space|- Name<br />- Target| 
 |Deleted|Notification target was deleted from Torque.|Account/Space|- Old Name<br />- New Name<br />- Old Target type<br />- New Target type|
 |Enabled Toggled|Notifications were enabled for a notification target.|Account/Space|- Name<br />- Old enabled <br />- New enabled|
-|Modified|Notification target was modified (name, eanbled notifications, etc.|Account/Space|- Name|
+|Modified|Notification target was modified (name, enabled notifications, etc.|Account/Space|- Name|
 
 ## Parameter
 
@@ -166,4 +166,4 @@ These events are captured by Audit Log. All events are of type "string".
 |Disabled| Disabled a workflow.|Account |- Name|
 |Enabled| Enabled a workflow.|Account |- Name|
 |Ended|Workflow's execution ended at the completion of all its actions. |Account/Environment |- Name<br />- Actor (User/Schedule)<br />-If the actor is User, user details (email) is displayed|
-|Invoked|Workflow was triggered, either by the worklow's defined schedule or manually by the environment end-user. |Account/Environment |- Name<br />- Actor (User/Schedule)<br />-If the actor is User, user details (email) is displayed|
+|Invoked|Workflow was triggered, either by the workflow's defined schedule or manually by the environment end-user. |Account/Environment |- Name<br />- Actor (User/Schedule)<br />-If the actor is User, user details (email) is displayed|

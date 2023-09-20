@@ -9,7 +9,7 @@ __Workflows__ allow you to schedule actions on all resources of a certain cloud 
 
 
 :::tip Note
-At this time, Workflows are supported only for VM esources.
+At this time, Workflows are supported only for VM resources.
 :::
 
 ## How to add a workflow
@@ -67,7 +67,7 @@ The job context contains the following:
 
 ## Step Context
 
-The steop context contains a list of all the resources in the environment. 
+The step context contains a list of all the resources in the environment. 
 For each resource the context contains:
 
 1. name (Resource name)

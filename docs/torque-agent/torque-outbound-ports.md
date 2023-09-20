@@ -3,7 +3,7 @@ sidebar_position: 7
 title: Outbound Ports for Self-hosted Agents
 ---
 
-This table lists the outbound ports that are requried for Kubernetes cluster nodes to fully function when hosting a Torque agent.
+This table lists the outbound ports that are required for Kubernetes cluster nodes to fully function when hosting a Torque agent.
 
 |Target Name                                |Target Address/Hostname                             |Type        |Ports|Traffic Purpose                                |
 |------------------------------------       |----------------------------------------------------|------------|-----|-----------------------------------------------|

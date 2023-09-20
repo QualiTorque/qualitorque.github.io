@@ -29,13 +29,13 @@ In this article:
    2. For each user, specify the following:
       * __space_name__: Torque Space in which the user will operate.
       * __space_role__: User's role in that space, as defined in __Administration > Roles > Space Roles__. To add a user to multiple spaces, see Associating a user to multiple spaces section below.
-      * (Optiona) __timezone__ : The user's timezone in IANA format (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
+      * (Optional) __timezone__ : The user's timezone in IANA format (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
 3. Save the application.
 4. Copy the relevant details from the application. These may change depending on your IdP - see this Okta help article for details. For example, these are the details for SAML 2.0:
    * IdP Issuer URI
    * IdP Single Sign-On URL
    * IdP Signature Certificate
-5. Go to Quali’s Support Center and add a new ticket, requesting SSO integration:
+5. Go to the Quali Support Center and add a new ticket, requesting SSO integration:
    1. Click __+ Add__ in the top left corner.
    2. From the __Requester__ drop-down list, select __Torque__.
    3. From the __Form__ drop-down list, select __Torque Support Request__.

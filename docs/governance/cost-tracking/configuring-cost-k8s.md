@@ -13,7 +13,7 @@ Follow the next steps to start collecting cost on your K8s cluster:
       * For deployment instructions, see: https://www.kubecost.com/install.html#show-instructions
       * Make sure the kubecost default namespace is used (Namespace kubecost)
 2. Validate the relevant cost collection target:
-   1. Identifiy the relevant cost collection target. Its name will be the same name as the agent installed on the cluster. 
+   1. Identify the relevant cost collection target. Its name will be the same name as the agent installed on the cluster. 
    2. Click the cost collection target's 3 dot menu and select __Validate__ to make sure it works (i.e. cost data can be collected).
       * If validation fails, perform the procedure described in [Troubleshooting](#troubleshooting).
 3. Enable the relevant cost collection target:

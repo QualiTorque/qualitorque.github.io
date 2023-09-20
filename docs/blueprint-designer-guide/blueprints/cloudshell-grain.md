@@ -5,9 +5,9 @@ title: The CloudShell Grain
 
 The CloudShell grain allows to integrate Torque with Quali CloudShell. CloudShell blueprints are treated as assets in Torque. This integration allows to extend Torque capabilities to manage physical resources. 
 
-When launching an enviorment in Torque with the CloudShell grain, Torque will start a sandbox in CloudShell with the same duration. If the Torque enviorment is extended the CloudShell sandbox will be extended accordingly. And when the Torque enviorment ends the CloudShell sandbox will be terminated as well.
+When launching an environment in Torque with the CloudShell grain, Torque will start a sandbox in CloudShell with the same duration. If the Torque environment is extended the CloudShell sandbox will be extended accordingly. And when the Torque environment ends the CloudShell sandbox will be terminated as well.
 
-Note that to use the CloudShell grain it's requiered to have a healthy CloudShell instance and to properly configure the integration. For details, see [Self-Managed Quali CloudShell](/admin-guide/source-control/source-managed-cloudshell).
+Note that to use the CloudShell grain it's required to have a healthy CloudShell instance and to properly configure the integration. For details, see [Self-Managed Quali CloudShell](/admin-guide/source-control/source-managed-cloudshell).
 
 ### source 
 The 'path' property of the source section should reference the CloudShell Blueprint name.

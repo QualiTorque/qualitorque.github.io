@@ -115,7 +115,7 @@ grains:
 > **Note**: only the **last command or script** provided is evaluated for a successful exit code, all previous commands or scripts will still be ran regardless of failures.
 
 :::tip __note__
-You can specify the code to be run as freetext bash/python3 commands or by referencing a file (any file type can be run, not just bash or python3). 
+You can specify the code to be run as free text bash/python3 commands or by referencing a file (any file type can be run, not just bash or python3). 
 
 To run a file, specify the file and its repo in the ```files``` section and the file name and extension under ```commands```. For example, file "post-install-script.sh":
 

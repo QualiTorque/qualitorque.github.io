@@ -49,21 +49,21 @@ For Kubernetes workloads, Torque requires a self-hosted agent to be installed in
 2. Provide a new for the agent, and click "Next"
 3. Click on "Generate", this will generate a CLI command based on ```kubectl``` that you can now execute on the Kubernetes cluster. Here is an example output of the command. 
 
-> Note that the command creates a new namespaces, and deploys the Torque agent in it. It might take up to 2 minuts for the Agent to get up and running, so want for the Torque self-service indication to make sure the agent is connected.
+> Note that the command creates a new namespaces, and deploys the Torque agent in it. It might take up to 2 minutes for the Agent to get up and running, so want for the Torque self-service indication to make sure the agent is connected.
 > ![Agent Connected](/img/k8s-agent-connected.png)
 
 :::info
 In case the agent is not connected to Torque after 2 minutes, we recommend checking the pod statuses using the following command looking for the Torque agent pods and further debug ```kubectl get pod --all-namespaces```. In some cases, Kubernetes clusters are pre-configured with proxies, private registries and limited outbound connectivity - in those cases, contact Quali Support and we will make sure to assist you with the installation.
 :::
 
-4. Now, lt's associate our newly connected agent with our space. Click the "Associate to space".
+4. Now, it's associate our newly connected agent with our space. Click the "Associate to space".
 5. The space is already selected for you, but, you still need to set the default namespace and service-account that will be used by Torque to deploy workloads into the cluster. It's always possible to change the default values in the "Administration" section under the "Agents" section.
 
 ## Step #4: Launch your blueprint
 
  🚀🚀 Congrats! you are finally now ready to launch your first environment!  🚀🚀
 
-1. To expose the new blueprint into the __Space catalog__, naviate into the __Blueprints__ page and toggle the  __Publish__ option.
+1. To expose the new blueprint into the __Space catalog__, navigate into the __Blueprints__ page and toggle the  __Publish__ option.
 2. Navigate to the __Catalog__ and click the __Launch__ button on the blueprint card.
 3. Specify the environment's name, duration, tags and inputs - note that some of the inputs may be the authentication information required for AWS or Azure as describes in step #3.
 4. Optionally assign collaborators to the environment. While everyone in the space has "read" permission to its environments, only the environment's owner and collaborators can perform actions that change the environment: extend end the environment, reconcile or update resource changes, etc. When launching the environment, the new owner/collaborators will receive a notification email if you have [Notifications](/admin-guide/notifications) configured in the space.

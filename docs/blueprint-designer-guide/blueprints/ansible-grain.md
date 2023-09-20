@@ -96,7 +96,7 @@ Torque supports playbooks which use ansible roles.
       …          
 ```
 
-Torque wil create a JSON file containing the grain inputs under the path: /var/run/ansible/inputs/inputs.json.
+Torque will create a JSON file containing the grain inputs under the path: /var/run/ansible/inputs/inputs.json.
 
 ```json
 {
@@ -113,7 +113,7 @@ ansible-playbook myplaybook.yaml --extra-vars "@/var/run/ansible/inputs/inputs.j
 
 ### Inventory-file
 
-Inventory file is a special grain section unique to the ansible grain, that allows you to provide in a YAML structured format, the content of the Ansible inventory file that will be generated for the Ansible playbook to use. For a deep understanding of the format of this file, please see Ansible’s official documentation at https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html#inventory-basics-formats-hosts-and-groups.
+Inventory file is a special grain section unique to the ansible grain, that allows you to provide in a YAML structured format, the content of the Ansible inventory file that will be generated for the Ansible playbook to use. For a deep understanding of the format of this file, please see the Ansible official documentation at https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html#inventory-basics-formats-hosts-and-groups.
 The general standard structure for such a file is as follows:
 
 ```yaml 

@@ -11,7 +11,7 @@ To integrate Torque with the Spinnaker plugin, make sure to complete the next fe
 
 1. Open the Torque Plugin page in the Jetbrains marketplace.
 2. Download the latest version of the Torque plugin.
-3. Open TeamCity’s web UI as an administrator and perform the following steps:
+3. Open the TeamCity web UI as an administrator and perform the following steps:
    * Browse to the __Administration > Plugins__ page.
    * Click the __Upload plugin__ zip and upload the __*teamcity-torque-plugin.zip*__. A warning message is displayed recommending that you restart the TeamCity Server.
    * Click __Restart__ and wait for TeamCity to initiate.

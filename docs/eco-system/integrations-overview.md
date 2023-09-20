@@ -8,4 +8,4 @@ Torque supports three types of integrations:
 * Issue trackers and notification (collaboration) apps for communicating environment lifecycle events to your teams 
 * CI/CD tools for consuming environments as part of your DevOps pipeline
 
-Integrations are configured on the **Space** level allowing each space admin to set up the integrations and capabilties to their team and project.
+Integrations are configured on the **Space** level allowing each space admin to set up the integrations and capabilities to their team and project.
