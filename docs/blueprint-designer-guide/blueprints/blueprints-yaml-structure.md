@@ -353,7 +353,7 @@ Here is an example of how it can be used:
   s3_bucket:
       ...
       inputs:
-        - bucket_name: bucket-{{ envId | downcase }}'
+        - bucket_name: 'bucket-{{ envId | downcase }}'
 ```
 
 :::note
