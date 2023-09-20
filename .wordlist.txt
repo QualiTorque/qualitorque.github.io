@@ -85,6 +85,7 @@ Terraform
 lifecycle
 terraform
 QualiTorque
+qualitorque
 Rego
 rego
 bp
@@ -334,6 +335,7 @@ GCP
 OCI
 OKE
 VMWare
+VMware
 vCenter
 Ansible
 CloudFormation
@@ -355,7 +357,6 @@ Docusaurus
 kubernetes
 tooltip
 namespaces
-Ansible’s
 blueprintName
 envid
 IDEs

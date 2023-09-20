@@ -35,7 +35,7 @@ In this article:
    * IdP Issuer URI
    * IdP Single Sign-On URL
    * IdP Signature Certificate
-5. Go to Quali’s Support Center and add a new ticket, requesting SSO integration:
+5. Go to the Quali Support Center and add a new ticket, requesting SSO integration:
    1. Click __+ Add__ in the top left corner.
    2. From the __Requester__ drop-down list, select __Torque__.
    3. From the __Form__ drop-down list, select __Torque Support Request__.
