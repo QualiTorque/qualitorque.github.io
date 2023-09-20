@@ -23,7 +23,7 @@ Torque audit data is presented in json format. It includes events and with the f
 |Element                                |Description                             |
 |------------------------|----------------------------------------------------|
 |name|Name of the event, as listed in [Audit Log Events](/governance/audit-log/events)|
-|event_type|Type of event. Options are account, space, bluperint, and environment.|
+|event_type|Type of event. Options are account, space, blueprint, and environment.|
 |event_status|Status of the event (success / failure)|
 |scope|Scope(s) of the event, as listed under [Audit Log Events](/governance/audit-log/events). Supported scopes are account, space, blueprint, and environment.|
 |actor|Initiator of the event. Options are user, automation, and torque.|

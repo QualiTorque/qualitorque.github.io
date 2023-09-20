@@ -69,8 +69,8 @@ To configure Torque’s Cost Allocation Tags:
 
 What can be done if you don't see cost in Torque's cost dashboard?
 
-1. Cost collection happens only once a day and takes time. Make sure at least *48 hours passed* since you configured cost and you have environments running during that timeframe.
-2. Choose one of the environemnts that should have cost associated with them in your AWS cloud, and do the following:
+1. Cost collection happens only once a day and takes time. Make sure at least *48 hours passed* since you configured cost and you have environments running during that time frame.
+2. Choose one of the environments that should have cost associated with them in your AWS cloud, and do the following:
    1. Obtain the environment id - it appears in the URL of the environment page:
    > ![Locale Dropdown](/img/environment-id.png)
    2. In your AWS console, navigate to the billing service (e.g. https://us-east-1.console.aws.amazon.com/billing/home?region=us-east-1#/) and on the left panel select __Cost Expolorer > Daily Spend View__.
