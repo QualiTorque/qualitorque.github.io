@@ -73,6 +73,31 @@ inputs:
     description: "Select your site's agent."
 ```
 
+The inputs section in the Torque blueprint YAML also supports spaces to make inputs more user friendly. Configuring an input with a friendly name can be done in the following way:
+
+```yaml
+inputs:
+  Application Version:
+    type: string
+    default: "0.4.3"
+    description: "The version of the microservices application"
+```
+
+To use an input that was configured using spaces, make sure to encase the input in the following way:
+
+```yaml
+inputs:
+  Application Version:
+    type: string
+
+grains:
+  nested-bp:
+    kind: blueprint
+    spec: 
+      inputs: 
+        - version: '{{ .inputs.["Application Version"] }}'
+```
+
 ### Outputs
 Outputs exposes information about your newly deployed environment and make it available for the environment's end-user or automation processes. Outputs will usually be available at the end of the environment's initialization and accessible throughout the environment lifecycle.
 
@@ -93,6 +118,30 @@ The "quick" attribute is optional and defaults to false. Setting it to "true" wi
 :::info
 The example above includes some of the Torque's YAML templating engine capabilities allowing the blueprint designer more flexibility and leads to less code that will require maintenance. More examples for templating will be described [Torque Templating engine](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#torque-templating-engine).
 :::
+
+The outputs section in the Torque blueprint YAML also supports spaces to make outputs more user friendly in the following way:
+
+```yaml
+outputs:
+  Database Connection String:
+    value: '{{ .grains.mySqlDB.outputs.connection_string }}'
+```
+
+When using outputs with spaces in a nested blueprint, make sure encase the output name in the following way:
+
+```yaml
+outputs:
+  Database Connection String:
+    value: '{{ .grains.mySqlDB.outputs.["Database Connection String"] }}'
+
+grains:
+  nested-bp:
+    kind: blueprint
+    spec: 
+      outputs: 
+      - "Database Connection String"
+```
+
 
 ### Grains
 Grains are the basic building blocks of a blueprint utilizing infrastructure as code (IaC) assets or automation processes to orchestrate the desired environment. In many organization, the blueprint designers will have a predefined set of grains they can use in blueprints provided by the IT/Ops/DevOps or platform team. 
