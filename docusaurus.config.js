@@ -20,12 +20,13 @@ const config = {
   scripts: [
     // One Trust Cookie policy
     {
-      src: 'https://cdn.cookielaw.org/consent/47d0fdb5-1ced-4a6a-a893-847e68cce066/OtAutoBlock.js'
+      src: 'https://cdn.cookielaw.org/consent/31859194-4ed7-4958-bfc5-08046e0f6ab7/OtAutoBlock.js'
     },
     {
       src: 'https://cdn.cookielaw.org/scripttemplates/otSDKStub.js',
       charset: 'UTF-8',
-      "data-domain-script": "47d0fdb5-1ced-4a6a-a893-847e68cce066"
+      type: "text/javascript",
+      "data-domain-script": "31859194-4ed7-4958-bfc5-08046e0f6ab7"
     },
     "http://docs.qtorque.io/one-trust.js"
   ],
