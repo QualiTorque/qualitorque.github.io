@@ -20,7 +20,8 @@ const config = {
   scripts: [
     // One Trust Cookie policy
     {
-      src: 'https://cdn.cookielaw.org/consent/31859194-4ed7-4958-bfc5-08046e0f6ab7/OtAutoBlock.js'
+      src: 'https://cdn.cookielaw.org/consent/31859194-4ed7-4958-bfc5-08046e0f6ab7/OtAutoBlock.js',
+      type: "text/javascript",
     },
     {
       src: 'https://cdn.cookielaw.org/scripttemplates/otSDKStub.js',
@@ -28,7 +29,9 @@ const config = {
       type: "text/javascript",
       "data-domain-script": "31859194-4ed7-4958-bfc5-08046e0f6ab7"
     },
-    "http://docs.qtorque.io/one-trust.js"
+    {  src: 'http://docs.qtorque.io/one-trust.js',
+      type: "text/javascript"
+    }
   ],
   plugins: [
     // ...
