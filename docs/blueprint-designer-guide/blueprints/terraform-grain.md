@@ -107,7 +107,7 @@ __gcs__:
 backend:
   type: "gcs"
   bucket: "my-bucket-name"
-  key-prefix: folder1/folder2"
+  key-prefix: "folder1/folder2"
 ```
 
 __http__:
