@@ -23,6 +23,18 @@ The ability to customize provisioned environments according to evolving requirem
    
 Keeping infrastructure up-to-date with the latest enhancements and bug fixes is vital for maintaining performance and security. The Updates feature simplifies the deployment of IaC code changes by automatically detecting new commits in associated git repositories. DevOps teams can effortlessly introduce the latest improvements, ensuring that users benefit from an environment built on the most recent codebase. This streamlined process minimizes disruptions, eliminates compatibility concerns, and enhances the overall stability and reliability of provisioned infrastructures.
 
+### Environment Updates
+
+Environment updates are initiated manually by users, specifically those with expertise in infrastructure (such as devops), rather than end-users or consumers.
+An update is initiated for a specific grain and can encompass the following changes:
+  - Uploading a new version of Infrastructure as Code (IaC) from the Git repository.
+  - Providing new values for the grain's inputs.
+  - Triggering a restart of the grain (essentially redeploying it) without making any alterations.
+
+Torque applies a smart rolling update mechanism that calculates which grains are affected by the updated one and ensures they are updated as well. This keeps the environment up-to-date while minimizing the impact. 
+Users can choose to update the code version, inputs, both, or none during the same update operation.
+
+To enhance user awareness and control, the user will see a "review" pop-up that summarizes the impending changes to the environment. This allows users to review the proposed modifications and either acknowledge or cancel them.
 
 ### Tracking code changes
 
@@ -47,6 +59,7 @@ By intelligently tracking your IaC repository based on your blueprint specificat
 
 When Torque detects a change (new commits), it will alert you visually. You can then choose to accept the new code and redeploy the grain with the new code , or dismiss this change. If you dismiss, the alert will be gone but you can always come back and update it.
 If at any point in time a new change is committed, you will be alerted again.
+
 
 ### Auto-Retry failed deployments
 In some situations, environment deployment may fail with transient errors - ones that if you just retried, will deploy successfully. 
