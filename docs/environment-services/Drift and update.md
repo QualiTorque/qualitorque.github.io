@@ -25,7 +25,7 @@ Keeping infrastructure up-to-date with the latest enhancements and bug fixes is 
 
 ### Environment Updates
 
-Environment updates are initiated manually by users, specifically those with expertise in infrastructure (such as devops), rather than end-users or consumers.
+Environment updates are initiated manually by users, specifically those with expertise in infrastructure (such as DevOps), rather than end-users or consumers.
 An update is initiated for a specific grain and can encompass the following changes:
   - Uploading a new version of Infrastructure as Code (IaC) from the Git repository.
   - Providing new values for the grain's inputs.
