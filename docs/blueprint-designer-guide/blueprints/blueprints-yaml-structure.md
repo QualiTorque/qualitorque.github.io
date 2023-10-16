@@ -443,3 +443,23 @@ In many cases, passing information through environment variables is required for
       - VAR_NAME2: '{{ .inputs.input_name }}'
       - VAR_NAME3: '{{ .grains.vm.outputs.agent_name }}'
 ```
+
+### Disabling Auto-Retry
+In some situations, Torque will automatically retry to deploy failed grains. This behavior is usually very benefitial but it might not be suitable in all cases.
+In case you wish to exclude a specific grain from the auto-retry, include the following in the blueprint:
+
+:::note
+The auto-retry currently applies only to terraform grain. To learn more about auto retry, see [auto-retry](/environment-services/drift-and-update#auto-retry-failed-deployments)
+:::
+
+
+```yaml 
+grain_name:
+    kind: terraform
+    spec:
+      source:
+      ...
+      auto-retry: false  
+```
+
+The auto-retry element is optional . If not present, it defaults to "true". Can be "true" or "false".
