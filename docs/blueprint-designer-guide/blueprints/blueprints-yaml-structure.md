@@ -445,7 +445,7 @@ In many cases, passing information through environment variables is required for
 ```
 
 ### Disabling Auto-Retry
-In some situations, Torque will automatically retry to deploy failed grains. This behavior is usually very benefitial but it might not be suitable in all cases.
+In some situations, Torque will automatically retry to deploy failed grains. This behavior is usually very beneficial but it might not be suitable in all cases.
 In case you wish to exclude a specific grain from the auto-retry, include the following in the blueprint:
 
 :::note
