@@ -6,6 +6,7 @@ yaml
 jsx
 overridable
 yml
+ReadWriteMany
 apn
 aws
 capgemini
@@ -400,4 +401,3 @@ GitOps
 EaaS
 Eliav
 Pavel
-ReadWriteMany

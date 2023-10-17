@@ -17,7 +17,7 @@ In addition, you can retrieve the namespace where the Torque agent is running (b
 
 ## Advanced Settings
 
-- Storage Class is a K8s resource which allows you to request to create persistent volumes with certain properties. The storage class describes the properties then Torque 
+- **Storage Class** is a K8s resource which allows you to request to create persistent volumes with certain properties. The storage class describes the properties then Torque 
 will request for the runner to create storage according to these properties. By default it is set to "Cluster's default" which means the Torque runners will request the storage properties according to what is defined as the default storage class in the cluster. If you change it to other value, Torque runners will request the storage class based on the new value.
 
 :::note
@@ -26,6 +26,18 @@ For reclaimPolicy (delete|retain) - we recommend using "delete" (extra care shou
 
 Learn more [here](https://kubernetes.io/docs/concepts/storage/storage-classes/)
 
-- Runner Startup Timeout - the time Torque will wait for a runner pod to be provisioned. If you cluster is slow in creating pods/nodes in autoscaling, you may need to increase it. Be careful of setting too large timeouts, because if there is an inherent problem in the POD the error will suffice later. 
+- **Runners pod startup timeout (seconds)** - The time Torque will wait for a runner pod to be provisioned. If you cluster is slow in creating pods/nodes in autoscaling, you may need to increase it. Be careful of setting too large timeouts, because if there is an inherent problem in the POD the error will suffice later. 
 
+- **Runner pod idle timeout (seconds)** - The time Torque will wait before terminating and idle Runner. Any non-negative value is accepted. As runners are allocated from a shared pool, setting the timeout to higher values will optimize the current operation which already "owns" the runner, but will decrease the average pool size so the next operations may need to wait longer before they get a runner. Higher values can also be used for debugging purposes, as it allows more time to connect to the runner, look at its logs and debug issues.
+
+- **Resource consumption** - The level of resources consumption (Memory + CPU) that will be requested by the Runners. The values are “Low”, “Medium”, “High”. The actual eventual values of the resources are calculated according to this field. Higher values ensure better performance of the POD, but be careful not to set it too high as it may be impossible to schedule it given the cluster's resources.
+The value may be set for low for dev&test use cases, and high for production environments.
+
+- **Storage class supports ReadWriteMany** - Check this checkbox if the storage class supports ReadWriteMany capability. Only storage classes which support this capability can share resources. If it is false there will not be sharing and each operation will spawn a new runner pod. Torque cannot query the cluster to understand if it does or does not have this capability so we rely on your information. If you check this checkbox, you must also set the storage_class_name and not leave it empty. Even if the default storage class supports ReadWriteMany, please state the name explicitly.  
+
+- **Environment variables** - key-values pairs of environment variables to set on the runner pod. This can be useful for configuring global configuration such as HTTP_PROXY. It will affect all runners in the cluster.
+
+:::note
+Changes to the configuration only takes effect on new environments. Existing environments will keep the values configured at the time of the launch.
+:::
 
