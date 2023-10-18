@@ -6,6 +6,7 @@ yaml
 jsx
 overridable
 yml
+ReadWriteMany
 apn
 aws
 capgemini

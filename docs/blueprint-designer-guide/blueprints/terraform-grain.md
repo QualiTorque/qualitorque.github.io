@@ -288,3 +288,19 @@ grains:
 :::info
 Note that scripts should be stored next to your IaC code to be used under the scripts section.
 :::
+
+When writing the scripts, you can take advantage of the following out of the box environment variables provided by Torque:
+
+- TORQUE_TF_EXECUTABLE - the terraform executable file name
+- TORQUE_TF_MODULE_PATH - the path to the terraform executable.
+
+For example, the script can contain the following :
+
+```bash 
+$TORQUE_TF_EXECUTABLE -chdir=$TORQUE_TF_MODULE_PATH state rm $1
+```
+Or
+
+```bash 
+$TORQUE_TF_EXECUTABLE -chdir=$TORQUE_TF_MODULE_PATH state rm <hardcoded_resource>
+```

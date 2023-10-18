@@ -67,6 +67,12 @@ Torque comes with out-of-the-box knowledge of such errors, and will automaticall
 This capability currently applies only to terraform grains. 
 If you encounter such a failure which Torque did not recognize as transient, yet you believe should be auto-retried, please send us an email to torque-feedback@quali.com, or leave a post in our [community](https://github.com/orgs/QualiTorque/discussions).
 
+#### Disabling the auto-retry mechanism
+In some specific cases, you may wish to exclude a specific grain from the auto-retry mechanism.
+To achieve this, see [Disabling auto-retry](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#disabling-auto-retry)
+
+
+
 ## Drift detection 
 Torque continuously monitors the environment as well will notify you via the Drift tab if someone makes changes to the environment's cloud resources while the environment is running. Click the Drift tab to view and resolve the changes. 
 
