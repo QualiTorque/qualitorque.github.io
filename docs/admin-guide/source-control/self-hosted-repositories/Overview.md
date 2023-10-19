@@ -18,5 +18,5 @@ See the following sections with specific details how to configure each self-mana
 
 1. [GitHub Enterprise (on-premise)](/admin-guide/source-control/self-hosted-repositories/self-managed-github.md)
 2. [GitLab on-premise](/admin-guide/source-control/self-hosted-repositories/self-managed-gitlab.md)
-3. [Azure Repositories on-premise](/admin-guide/source-control/self-hosted-repositories/self-managed-ado.md)
-4. [BitBucket Enterprise (on-premise)](/admin-guide/source-control/self-hosted-repositories/self-managed-bitbucket.md)
+3. Azure Repositories on-premise - Supported, Please contact support for detailed instructions
+4. BitBucket Enterprise (on-premise) - Supported, Please contact support for detailed instructions
