@@ -195,18 +195,21 @@ grains:
     kind: cloudformation
     spec: 
       source:
-        # store: autogen_repo_sandbox_2453f24g9
         path: https://.../AWSS3Bucket.yaml
       region: '{{ .inputs.["AWS Region"] }}'
-      authentication:
-        role-arn: arn:aws:iam::{{ .params.My_Torque_AWS }}:role/{{ .params.My_Torque_Agent_IAM_Role }}
-        external-id: '{{ .params.My_Torque_External_ID }}'
+      agent:
+        name: demo-prod
+        service-account: app-sa
       inputs:
         - AccessControl: '{{ .inputs.["Access Control"] }}'
         - BucketName: '{{ .inputs.["Bucket Name"] }}-{{ sandboxid | downcase }}'
       outputs:
          - Arn
          - DomainName
+      template-storage:
+         bucket-name: my-bucket
+         region: us-east-1
+         key-prefix: temp-cfn
   
   S3-Upload-Webapp-File:
     kind: terraform
