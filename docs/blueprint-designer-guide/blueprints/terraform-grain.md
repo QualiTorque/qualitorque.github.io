@@ -259,6 +259,11 @@ grains:
 
 ### scripts
 Torque provides the ability to execute custom code before the executing the Terraform module init and before the Terraform destroy process. Scripts allows to run CLI commands to make sure authentication and requirements are set prior to the Terraform execution at the environment's initialization and destroy process.
+
+The available script hooks are:
+- pre-tf-init: The script will run before the command ```terraform init```
+- post-tf-plan: The script will run after the command ```terraform plan``` 
+- pre-tf-destroy: The script will run before the command ```terraform destroy```
 In the below example, authentication script is used to assume role to another AWS account prior to deploying workload into that account.
 
 ```yaml 
@@ -278,6 +283,11 @@ grains:
             store: tf-repo
             path : scripts/authenticate.sh
           arguments: '{{.inputs.ACCOUNT_ID}}'
+        post-tf-plan:
+          source:
+            store: tf-repo
+            path : scripts/verify-plan.sh
+          arguments: '{{.inputs.ID2}'          
         pre-tf-destroy:
           source:
             store: tf-repo
@@ -293,6 +303,7 @@ When writing the scripts, you can take advantage of the following out of the box
 
 - TORQUE_TF_EXECUTABLE - the terraform executable file name
 - TORQUE_TF_MODULE_PATH - the path to the terraform executable.
+- TORQUE_TF_PLAN_PATH - path to the results of the terraform plan command. This is very useful to be used in a post-tf-plan script for verification of the plan.
 
 For example, the script can contain the following :
 
