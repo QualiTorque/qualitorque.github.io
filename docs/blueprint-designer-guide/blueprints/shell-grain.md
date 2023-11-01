@@ -42,7 +42,7 @@ grains:
       activities:
         deploy:
           commands:
-            - "{{ .inputs.repoURL }}"
+            - "apt-get -y install git unzip curl"
             - "git clone {{ .inputs.repoUrl }}"
 ```
 
