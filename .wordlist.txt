@@ -402,3 +402,5 @@ EaaS
 Eliav
 Pavel
 githubEnterprise
+Repos
+usersSettings
