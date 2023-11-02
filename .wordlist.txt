@@ -404,3 +404,5 @@ Pavel
 githubEnterprise
 Repos
 usersSettings
+Bitbucket
+QTorque
