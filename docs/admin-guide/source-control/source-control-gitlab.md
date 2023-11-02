@@ -5,6 +5,8 @@ title: GitLab Source Control
 
 Torque supports connecting asset/blueprint repositories on GitLab out of the box. To connect a repository, you must have access to the repository and grant Torque permission to the repository's organization, as explained below. For details about connecting a repository, see [Discover Your Assets](/getting-started/Discover%20Your%20Assets). You should be able to sign in with an account on any one of these online services and immediately get going with connecting asset repositories and launching environments.
 
+**This article refers to the SAAS version of GitLab. If you're using self hosted GitLab, check [here](/admin-guide/source-control/self-hosted-repositories/Overview)**.
+
 ## Ensure the Torque application was added to the GitLab organization you're connecting
 
 1. Go to [https://gitlab.com/-/profile/applications](https://gitlab.com/-/profile/applications).

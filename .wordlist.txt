@@ -402,3 +402,7 @@ EaaS
 Eliav
 Pavel
 githubEnterprise
+Repos
+usersSettings
+Bitbucket
+QTorque
