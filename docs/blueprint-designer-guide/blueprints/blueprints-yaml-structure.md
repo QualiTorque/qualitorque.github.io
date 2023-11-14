@@ -43,6 +43,7 @@ instructions:
 - Torque will support external resources embed in the markdown under the following rules:
   - Any link to external and publicly exposed resource
   - Relative path to images, svg and gif files located within the /instructions folder
+  - Images, svg and gif files smaller than 1MB.
 - Torque will not support relative .md references -Torque will not allow to load/redirect to another markdown mentioned in the markdown provided as the blueprint instructions.
 :::
 
