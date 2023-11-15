@@ -7,13 +7,13 @@ The activity report furnishes comprehensive details regarding the usage and adop
 
 Here are examples of insights obtainable from this report:
 
-Trend in environment launches
-Trend in active users (Note: A user is deemed active if they have launched at least one environment within the defined timeframe)
-Holistic view of environment statuses, including those requiring immediate attention
-Segmentation of environments based on space and blueprint
-Identification of the most active users
-Evaluation of the most and least used blueprints
-Assessment of environments running for the longest durations
+- Trend in environment launches
+- Trend in active users (Note: A user is deemed active if they have launched at least one environment within the defined timeframe)
+- Holistic view of environment statuses, including those requiring immediate attention
+- Segmentation of environments based on space and blueprint
+- Identification of the most active users
+- Evaluation of the most and least used blueprints
+- Assessment of environments running for the longest durations
 
 Let's examine a real-life application of the activity report:
 
