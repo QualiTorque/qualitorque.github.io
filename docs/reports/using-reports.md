@@ -16,18 +16,18 @@ On the top of every report you can find the **filter**.
 - **Space** allows you to filter a specific space. The entire data in the report will be filtered. This is relevant only to account level reports. Space level reports are already filtered by the space.
 - **ENV_ID** allows you to focus on a single environment throughout the report.
 
-## Widget Options ##
+## Chart Options ##
 
-On the top right corner of every widegt you will find the widget options:
+On the top right corner of every chart you will find the chart options:
 > ![Locale Dropdown](/img/reports-options.png)
 
-- The left one shows what this widget is filtered by right now
-- The elipsys menu on the right allows you to take actions on the data such as refresh it, view as table, share and download.
+- The left one shows what this chart is filtered by right now
+- The ellipsis menu on the right allows you to take actions on the data such as refresh it, view as table, share and download.
 
 ## Filtering by Legend Items ##
 
-Clicking on an item in the legend will filter it **out** and re-scale the widget according to the remaining legend items. You can filter out multiple legend items.
-For example, clicking on "Terminate" in the legent on the following widget will filter out all terminated environments and show only the ones that are not terminated.
+Clicking on an item in the legend will filter it **out** and re-scale the chart according to the remaining legend items. You can filter out multiple legend items.
+For example, clicking on "Terminate" in the legend on the following chart will filter out all terminated environments and show only the ones that are not terminated.
 
 > ![Locale Dropdown](/img/reports-legend.png) 
 > ![Locale Dropdown](/img/reports-legend-2.png)
@@ -36,7 +36,7 @@ To clear the legend filter, click again on the legend item.
 
 ## Cross Filtering ##
 
-Cross filtering on a widget will impact the entire report.
+Cross filtering on a chart will impact the entire report.
 The way to achieve cross filtering is by clicking on the **value** in the graph which you want to filter by.
 The chosen value will be applied as a filter across the entire report.
 
@@ -48,7 +48,7 @@ Clicking on the green area with the value of 57 will filter the entire report to
 
 > ![Locale Dropdown](/img/reports-cross-filter-2.png)
 
-Note the cross filter sign now next to the widget filters:
+Note the cross filter sign now next to the chart filters:
 
 > ![Locale Dropdown](/img/reports-cross-filter-3.png)
 

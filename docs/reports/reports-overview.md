@@ -5,8 +5,8 @@ title: Reporting Overview
 
 ## Introduction ## 
 Whether you're a DevOps lead, Infrastructure lead, or a FinOps manager, monitoring activity and costs goes beyond being a mere task — it is at the heart of responsible cloud management. Torque Reports provide the essential data required to navigate complexities, offering precise insights into expenditure allocation and ensuring that your organization's cloud bill aligns with expectations. These reports act as a lens, revealing crucial information that might have otherwise remained obscured, empowering you to make informed decisions and optimize your cloud strategy effectively.
-
 > ![Locale Dropdown](/img/reports-intro.png)
+
 
 ## Torque Reports Types ## 
 

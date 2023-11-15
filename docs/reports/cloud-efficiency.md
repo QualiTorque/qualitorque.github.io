@@ -16,7 +16,7 @@ This report empowers users to answer key questions such as:
 
 - How is each cloud account contributing to the total bill ?
 - How is the total bill divided between the different spaces, blueprints and users? 
-- Are there users who spend significantly more then their coleagues? 
+- Are there users who spend significantly more then their colleagues? 
 - What are the most expensive environments?
 - What are the most expensive blueprints?
 
@@ -32,7 +32,7 @@ We can now [cross-filter](/reports/using-reports#cross-filtering) by this space 
 
 The Realized Savings Report provides a comprehensive overview of the cost savings achieved through the use of Torque. By employing Torque's [actions and workflows](/environment-services/Actions%20and%20workflows) after the deployment of environments, users can efficiently (manually or automatically) start and stop cloud resources within an environment when they are not in use. When resources are stopped, users avoid incurring costs, resulting in tangible savings on cloud expenses.
 
-Torque actively monitors the status of resources in each environment, distinguishing between running and stopped states. The occurences where resources are stopped, facilitated by Torque actions, contribute to the realized savings. The report offers a macroscopic view of overall savings, allowing users to comprehend the impact of their actions and workflows.
+Torque actively monitors the status of resources in each environment, distinguishing between running and stopped states. The occurrences where resources are stopped, facilitated by Torque actions, contribute to the realized savings. The report offers a macroscopic view of overall savings, allowing users to comprehend the impact of their actions and workflows.
 
 > ![Locale Dropdown](/img/reports-realized-1.png)
 
@@ -52,7 +52,7 @@ Each resource has the following information attached to it:
 - The total time across the analyzed period in which the resource was running
 - The total time across the analyzed period in which the resource was stopped
 
-If we look at the first resource - its type is "Standard_B4ms". Querying Azure, the hourly price for this type of VM is 0.05$/hour. Multipying the hourly cost with the number of "off" hours yields:
+If we look at the first resource - its type is "Standard_B4ms". Querying Azure, the hourly price for this type of VM is 0.05$/hour. Multiplying the hourly cost with the number of "off" hours yields:
 
 ``` 
 0.05*80 = 4$
