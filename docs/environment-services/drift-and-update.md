@@ -69,7 +69,7 @@ If you encounter such a failure which Torque did not recognize as transient, yet
 
 #### Disabling the auto-retry mechanism
 In some specific cases, you may wish to exclude a specific grain from the auto-retry mechanism.
-To achieve this, see [Disabling auto-retry](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#disabling-auto-retry)
+To achieve this, see [Disabling auto-retry](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#disabling-auto-retry).
 
 
 
