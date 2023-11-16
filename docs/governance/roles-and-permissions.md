@@ -10,6 +10,7 @@ In this article:
 - [Roles in Torque](#roles-in-torque)
 - [Invite Users to Torque](#invite-users-to-torque)
 - [Add Existing Users to Your Space](#add-existing-users-to-your-space)
+- [Adding Users Without Invitation](#adding-users-without-invitation)
 
 ## Roles in Torque
 
@@ -83,3 +84,8 @@ Torque role: Account admin, space admin
 5. Click **Done**.
    By default, new users are assigned the **Space Member** role. 
 6. Change the roles as needed.
+
+## Adding Users Without Invitation
+
+In some situations, the accout admin may want to add users to the Torque account without sending invitations to the users. 
+This can be done via an API call only. Check the API documentation in *Governance -> Add Users to Account Manually* for details.
