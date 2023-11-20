@@ -5,7 +5,7 @@ title: Configuring Cost for Azure
 
 ## Prerequisites 
 
-1. Create an application and register it in Azure AD. To do so, navigate to "App Registrations" and click on __New Registration__. Follow the steps (no need to provide redirect URl, just the name will do). Take a note of the  __Tennant Id__ and  __Application Id__ as they will be needed later in the process. 
+1. Create an application and register it in Azure AD. To do so, navigate to "App Registrations" and click on __New Registration__. Follow the steps (no need to provide redirect URl, just the name will do). Take a note of the  __Tenant Id__ and  __Application Id__ as they will be needed later in the process. 
 2. Click on __Add a Certificate or Secret --> New client secret__ --> __Add__, and take a note of the created __Value__ (it will be used later in the application secret configuration)
 3. Assign the __Cost Management Reader__ (or, __Cost Management Contributor__) Role to the application:
    1. Navigate to __Subscriptions__ and click on the subscription where you would like Torque to collect the cost
@@ -19,7 +19,7 @@ title: Configuring Cost for Azure
 
 Make sure you have all the following information for the application:
   * __Subscription Id__
-  * __Tennant Id__
+  * __Tenant Id__
   * __Application Id__
   * __Application Secret__ 
 
@@ -31,7 +31,7 @@ Make sure you have all the following information for the application:
    3. Select __Azure__.
    4. Specify the cloud account's details (see [Prerequisites](#prerequisites)):
       * __Subscription Id__
-      * __Tennant Id__
+      * __Tenant Id__
       * __Application Id__
       * __Application Secret__ 
    5. Click __Finish__.
