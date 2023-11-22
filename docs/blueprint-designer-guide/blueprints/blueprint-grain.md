@@ -47,7 +47,7 @@ grains:
 ### outputs 
 Blueprint grain outputs are the names of the outputs of the nested blueprint, which will determine which outputs will be populated on the blueprint grain to be later referenced by other grains or by the nesting blueprint’s ```outputs``` section. These names must exactly match the input names in the ```outputs:``` section of the nested blueprint’s blueprint YAML.
 
-__Example:__ Below is an example of a grains section of a nesting blueprint, containing a blueprint grain and a helm grain that depends on it"
+__Example:__ Below is an example of a grains section of a nesting blueprint, containing a blueprint grain and a helm grain that depends on it:
 
 ```yaml 
 grains:
