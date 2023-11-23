@@ -89,5 +89,3 @@ Torque role: Account admin, space admin
 
 In some situations, the account admin may want to add users to the Torque account without sending invitations to the users. 
 This can be done via an API call only. Check the API documentation in *Governance -> Add Users to Account without invitation* for details.
-
-HHII
