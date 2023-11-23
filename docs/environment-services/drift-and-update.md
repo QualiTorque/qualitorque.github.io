@@ -34,6 +34,10 @@ An update is initiated for a specific grain and can encompass the following chan
 Torque applies a smart rolling update mechanism that calculates which grains are affected by the updated one and ensures they are updated as well. This keeps the environment up-to-date while minimizing the impact. 
 Users can choose to update the code version, inputs, both, or none during the same update operation.
 
+:::note Note
+When updating a templated input to a fixed value, the connection between the element referenced in the template and the modified input is broken. Therefore they will not be considered as dependency going forward.  
+:::
+
 To enhance user awareness and control, the user will see a "review" pop-up that summarizes the impending changes to the environment. This allows users to review the proposed modifications and either acknowledge or cancel them.
 
 ### Tracking code changes

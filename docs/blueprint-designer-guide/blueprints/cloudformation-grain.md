@@ -159,3 +159,7 @@ grains:
          - Arn
          - DomainName
 ```
+
+### Note about reconciling an drifted Cloudformation grain
+
+Resolving drift in AWS CloudFormation involves acknowledging the updated configuration as the intended state and adjusting the stack template accordingly. Conversely, in Torque, the process of drift resolution or reconciliation entails undoing changes made to cloud resources and restoring them to the original template. It is important to understand this distinction before reconciling CloudFormation grains.

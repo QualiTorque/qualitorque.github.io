@@ -409,3 +409,4 @@ QTorque
 timeframes
 FinOps
 subtypes
+templated
