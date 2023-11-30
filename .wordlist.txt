@@ -388,6 +388,7 @@ gitlab
 Idp
 URI
 Quali’s
+Quali's
 Rebranding
 Favicon
 cloudformation
@@ -410,3 +411,4 @@ timeframes
 FinOps
 subtypes
 templated
+Quali’s
