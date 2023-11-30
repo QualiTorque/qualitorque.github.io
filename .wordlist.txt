@@ -410,3 +410,4 @@ timeframes
 FinOps
 subtypes
 templated
+Quali’s
