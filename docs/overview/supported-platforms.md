@@ -33,17 +33,19 @@ This table lists the capabilities supported for each IaC or container technology
 |Inputs/Outputs|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
 |Tags|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
 |Update|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:||
-|Drift|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:||
+|Drift|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:*||
 |Technology specific Policies|:heavy_check_mark:|||||
 |Consumption Policies|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
 |Discovery|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:||
 |Logs/infra|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|
 |Introspection|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:||
 |Scripts (extensibility)|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:||
-|Day-2|:heavy_check_mark:|||||
+|Day-2|:heavy_check_mark:|||:heavy_check_mark:||
 |Secret management|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:|:heavy_check_mark:||
 
 For more details, see [Blueprint YAML](/blueprint-designer-guide/blueprints/blueprints-overview).
+
+\* Cloudformation drift reconciliation is in beta 
 
 ## CI/CD Tooling
 Torque enables you to integrate with various leading CI/CD tools such as Bamboo, Jenkins and TeamCity, to facilitate your application development activities.
