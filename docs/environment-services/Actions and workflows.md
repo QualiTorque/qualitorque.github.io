@@ -23,17 +23,17 @@ __Database Servers__
 - __Stop__
 - __Start__
 
-__Kubernetes Clustesrs__
+__Kubernetes Clusters__
 - __Pause__
 - __Resume__
 
 #### **Workflows**
 
-__Workflows__ take actions another step forward. They are scheduled automations that run on all resrouces from the same type in the environment. 
+__Workflows__ take actions another step forward. They are scheduled automations that run on all resources from the same type in the environment. 
 Examples of workflows include:
 
 - Power-off all VMs in the environment every day at 6PM
-- Pause (scale to minimim) the dev K8s cluster every weekend
+- Pause (scale to minimum) the dev K8s cluster every weekend
 
 To learn how to create workflows in your Torque account, click [here](governance/workflows.md).
 

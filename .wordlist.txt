@@ -412,3 +412,4 @@ FinOps
 subtypes
 templated
 Quali’s
+automations
