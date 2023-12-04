@@ -9,7 +9,7 @@ __Workflows__ allow you to schedule actions on all resources of a certain cloud 
 
 
 :::tip Note
-At this time, Workflows are supported only for VM resources.
+Workflows are supported only for VMs, Database servers and K8s clusters.
 :::
 
 ## How to add a workflow

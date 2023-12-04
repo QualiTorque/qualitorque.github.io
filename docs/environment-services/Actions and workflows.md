@@ -1,18 +1,50 @@
 ---
 sidebar_position: 3
-title: Actions & workflows
+title: Actions and workflows
 ---
 
-## Resource Actions and Workflows
+## Resource  and Workflows
 
-Torque provides a built-in set of __Actions__ you can run on specific AWS and Azure VMs in the environment. These include __Power on__, __Power off__, __Restart__ as well as __Connect__, which creates an RDP or SSH connection to the VM directly from Torque. __Workflows__ are scheduled actions (created by your admin) that run on all VMs of a certain cloud provider (AWS or Azure) in all of the space's environments.
+### Overview
+
+#### **Actions** 
+
+Stopping cloud resources when they are not in use is a prudent practice that offers several benefits. First and foremost, it helps to optimize costs by preventing unnecessary expenditure on computing resources. Cloud services are typically billed on a pay-as-you-go model, so keeping instances running when they are idle contributes to higher expenses. Additionally, stopping unused resources promotes environmental sustainability by reducing overall energy consumption and the carbon footprint associated with data centers. From a security standpoint, inactive resources can be potential targets for unauthorized access or attacks, and shutting them down mitigates these risks. Moreover, resource termination enhances overall system performance by freeing up valuable computing resources for other critical tasks. In essence, the proactive management of cloud resources aligns with efficiency, cost-effectiveness, and environmental responsibility in the dynamic landscape of cloud computing.
+
+Torque provides a built-in set of __actions__ you can run on specific cloud resources in the environment to stop them and gain the aforementioned benefits. The built-in actions currently available out of the box by Torque are:
+
+__Virtual Machines__
+- __Power on__
+- __Power off__
+- __Restart__ 
+- __Connect__ - a special kind of action which creates an RDP or SSH connection to the VM directly from Torque, allowing environment users to access env vms directly.
+
+__Database Servers__
+- __Stop__
+- __Start__
+
+__Kubernetes Clustesrs__
+- __Pause__
+- __Resume__
+
+#### **Workflows**
+
+__Workflows__ take actions another step forward. They are scheduled automations that run on all resrouces from the same type in the environment. 
+Examples of workflows include:
+
+- Power-off all VMs in the environment every day at 6PM
+- Pause (scale to minimim) the dev K8s cluster every weekend
+
+To learn how to create workflows in your Torque account, click [here](governance/workflows.md).
+
+#### **Invoke actions and workflows in the environment**
 
 1. Switch to __Resources__ view.
    > ![Locale Dropdown](/img/resources-view.png)
 
 2. Click a resource tile.
 
-   The resource's __Actions__ as well as attributes and tags are displayed in the left pane.
+   The resource's __actions__ as well as attributes and tags are displayed in the left pane.
 3. Hover over the relevant action and click __Run__.
    > ![Locale Dropdown](/img/resource-actions.png)
 4. Click the action's name to see its progress.
