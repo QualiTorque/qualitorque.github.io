@@ -119,7 +119,8 @@ grains:
          key-prefix: <prefix> # optional, can be templated . This is the file path where the template will be located inside the bucket.
 ```
 
-The template-storage is an optional element in the grain, however if you will not provide it only templates which are smaller than 50K bytes will be supported. 
+The template-storage is an optional element in the grain, however if you will not provide it only templates which are smaller than 50K bytes will be supported. It is also required when using nested stacks.
+If you provide a bucket for template-storage, ensure that your service-account or credentials which you provided for Torque to provision your stack contain the permissions to read from the bucket as above.
 
 ### inputs​
 Similar to blueprint inputs, CloudFormation grain inputs allow you to reuse the same CloudFormation module in different ways. Inputs provided to the CloudFormation grain are used when launching the CloudFormation module.
@@ -160,6 +161,9 @@ grains:
          - DomainName
 ```
 
-### Note about reconciling an drifted Cloudformation grain
+### Note about reconciling an drifted Cloudformation grain (Beta)
 
 Resolving drift in AWS CloudFormation involves acknowledging the updated configuration as the intended state and adjusting the stack template accordingly. Conversely, in Torque, the process of drift resolution or reconciliation entails undoing changes made to cloud resources and restoring them to the original template. It is important to understand this distinction before reconciling CloudFormation grains.
+
+Due to AWS limitations, if the drift includes deleted resources Torque will not be able to restore these via reconciliation. It is advise to reconcile the stack manually via the AWS console or CLI.
+
