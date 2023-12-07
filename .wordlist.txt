@@ -413,3 +413,10 @@ subtypes
 templated
 Quali’s
 automations
+Deallocate
+MySql
+Postgres
+mariadb
+mssql
+mysql
+postgresql
