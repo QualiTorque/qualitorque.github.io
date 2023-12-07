@@ -13,19 +13,48 @@ Stopping cloud resources when they are not in use is a prudent practice that off
 
 Torque provides a built-in set of __actions__ you can run on specific cloud resources in the environment to stop them and gain the aforementioned benefits. The built-in actions currently available out of the box by Torque are:
 
-__Virtual Machines__
-- __Power on__
-- __Power off__
-- __Restart__ 
-- __Connect__ - a special kind of action which creates an RDP or SSH connection to the VM directly from Torque, allowing environment users to access env vms directly.
+**Virtual Machines**
+- Power on
+- Power off
+- Restart
+- Connect - a special kind of action which creates an RDP or SSH connection to the VM directly from Torque, allowing environment users to access env vms directly.
 
-__Database Servers__
-- __Stop__
-- __Start__
+**Database Servers**
+- Stop
+- Start
 
-__Kubernetes Clusters__
-- __Pause__
-- __Resume__
+**Kubernetes Clusters**
+- Pause
+- Resume
+
+Please see the below table for additional details.
+
+| Resource   Type | Action Name | Cloud | Grain technology | Resource type | Description | Limitations |
+|---|---|---|---|---|---|---|
+| Virtual Machines | Power On VM | AWS | Terraform | aws_instance | Start an EC2 instance |   |
+|  |  |  | CloudFormation | AWS::EC2::Instance |  |  |
+|  |  | Azure | Terraform | azurerm_virtual_machine | Start an Azure VM |  |
+|  | Power Off VM | AWS | Terraform | aws_instance | Stop an EC2 instance  |  |
+|  |  |  | CloudFormation | AWS::EC2::Instance |  |  |
+|  |  | Azure | CloudFormation | azurerm_virtual_machine | Stop and Deallocate an Azure VM |  |
+|  | Restart VM | AWS | Terraform | aws_instance | Restart an EC2 instance |  |
+|  |  |  | Cloudformation | AWS::EC2::Instance |  |  |
+|  |  | Azure | Terraform | azurerm_virtual_machine | Restart an Azure VM |  |
+|  | Connect to a VM | AWS | Terraform | aws_instance | a special kind of action which creates an RDP or SSH connection to the VM directly from Torque, allowing environment users to access env vms directly. |  |
+|  |  | AWS | Cloudformation | AWS::EC2::Instance |  |  |
+|  |  | Azure | Terraform | azurerm_virtual_machine |  |  |
+| Databases | Stop   RDS instance | AWS | Terraform | aws_db_instance | Temporarily stop an RDS instance | The RDS will be restarted after   7 days if the action will not be repeated. |
+|  |  |  | CloudFormation | Coming Soon |   |   |
+|  | Start RDS instance | AWS | Terraform | aws_db_instance | Start a stopped RDS instance |  |
+|  |  |  | CloudFormation | Coming Soon |   |  |
+|  | Delete RDS instance | AWS | Terraform | aws_db_instance | Delete an RDS instance |  |
+|  | Stop Database Server | Azure | Terraform | MySql -   azurerm_mysql_server MySql Flexible - azurerm_mysql_flexible_server MariaDB - azurerm_mariadb_server Postgres flexible - azurerm_postgresql_flexible_server | Temporarily stop a DB server | The DB server will be restarted   after a period of time (dependent on the engine type) if the action will not   be repeated. |
+|  | Start Database Server | Azure | Terraform | MySql -   azurerm_mysql_server MySql Flexible - azurerm_mysql_flexible_server MariaDB - azurerm_mariadb_server Postgres flexible - azurerm_postgresql_flexible_server | Start a stopped DB server |   |
+|  | Delete database | Azure | Terraform | azurerm_mysql_database azurerm_mariadb_database azurerm_postgresql_database azurerm_mssql_database azurerm_mysql_flexible_database azurerm_postgresql_flexible_server_database | Delete a database |   |
+| Kubernetes Clusters | Pause | Azure (AKS) | Terraform | azurerm_kubernetes_cluster | Reduce the number of agents   (VMs) in all node pools in the cluster to 1 |   |
+|  |  | AWS   (EKS) | Terraform | Coming Soon |   |   |
+|  | Resume | Azure (AKS) | Terraform | azurerm_kubernetes_cluster | Increase the number of agents   (VMs) in all node pools in the cluster to the original number |   |
+|  |  | AWS   (EKS) | Terraform | Coming Soon |   |   |                                                     	|
 
 #### **Workflows**
 
