@@ -275,7 +275,12 @@ Agents gives the flexibility of deploying the same blueprints over different clo
 
 The agent's configuration must include:
 * **name** - the given name for the kubernetes cluster configured under the cloud account area where the grain will be executed.
-* **service-account** - The service-account name configured within the kubernetes cluster that will be used to execute the grain. A kubernetes service account provides an identity for processes that run in a pod. 
+
+
+Optionally, the agent configuration may include:
+* **service-account** - The service-account name configured within the kubernetes cluster that will be used to execute the grain. A kubernetes 
+service account provides an identity for processes that run in a pod. If not specified, Torque will use the default service account defined for the agent. 
+* **storage-size** - set the size of storage allocated to this grain. The size is in MB. If not defined, Torque will use the default size. This is an advanced configuration option, it is recommended to consult with Torque's support team before making a change.
 
 ```yaml 
 grains:
@@ -284,8 +289,9 @@ grains:
     kind: terraform
     spec:
       agent:
-        name: eks-ohio
-        service-account: torque-sa
+        name: eks-ohio # Required
+        service-account: torque-sa # Optional
+        storage-size: 800 # Optional. 
  ```   
 
 You can add the ```nodeSelector``` section to your grain and specify the node labels you want the target node(s) to have. The nodeSelector and its labels will be applied on the pod specification. Kubernetes only schedules the pod onto nodes that have each of the labels you specify. For example:
