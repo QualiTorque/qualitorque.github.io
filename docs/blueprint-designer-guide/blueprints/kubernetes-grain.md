@@ -32,17 +32,19 @@ grains:
         auto-tag: false
 ```
 
-### namespace
-The deployment namespace must exist in the cluster prior to the deployment. It must not be equal to the namespaces used by Torque for agent deployments.
+### Namespace
+Torque will install the k8s manifest in the namespace referred to in *target-namespace*. The target namespace must exist in the cluster prior to the deployment. It must not be equal to the namespaces used by Torque for agent deployments. Make sure the service account has enough permissions to create/read/delete everything in the manifest and also create/read/delete secrets and volumes.
 
 ```yaml
-grains:
-  web-client:
-    kind: kubernetes
-    spec:
-      sources:
-        ...
-      namespace: '{{ .inputs.namespace }}'
+helloKubernetes:
+  kind: kubernetes
+  spec:
+    source:
+      path: github.com/<>...
+    target-namespace: '{{ .inputs.namespace }}'  
+    agent:
+      name: '{{.inputs.execution_host}}'
+      service-account: '{{ .inputs.service_account }}'
 ```
 :::tip __Note__:
 * Launching concurrent environments with a Kubernetes grain is not supported for the same namespace. 

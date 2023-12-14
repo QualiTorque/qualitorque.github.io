@@ -278,9 +278,11 @@ The agent's configuration must include:
 
 
 Optionally, the agent configuration may include:
+* **storage-size** - Set the size of storage allocated to this grain. The size is in MB. The size must be smaller than the overall storage size which was defined in the [agent settings](torque-agent/advanced-settings.md). If not defined, Torque will use the default size. This is an advanced configuration option, it is recommended to consult with Torque's support team before making a change.
+* **runner-namespace** - The namespace where the runner pod will be provisioned. If not defined, the runners will be provisioned in the default namespace defined in the agent level. This is an advanced configuration option, it is recommended to consult with Torque's support team before making a change.
 * **service-account** - The service-account name configured within the kubernetes cluster that will be used to execute the grain. A kubernetes 
-service account provides an identity for processes that run in a pod. If not specified, Torque will use the default service account defined for the agent. 
-* **storage-size** - set the size of storage allocated to this grain. The size is in MB. If not defined, Torque will use the default size. This is an advanced configuration option, it is recommended to consult with Torque's support team before making a change.
+service account provides an identity for processes that run in a pod. If not specified, Torque will use the default service account defined for the agent. The service account must be defined in the runner namespace. 
+
 
 ```yaml 
 grains:
@@ -290,8 +292,9 @@ grains:
     spec:
       agent:
         name: eks-ohio # Required
-        service-account: torque-sa # Optional
         storage-size: 800 # Optional. 
+        runner-namespace: my-namespace # Optional
+        service-account: torque-sa # Optional
  ```   
 
 You can add the ```nodeSelector``` section to your grain and specify the node labels you want the target node(s) to have. The nodeSelector and its labels will be applied on the pod specification. Kubernetes only schedules the pod onto nodes that have each of the labels you specify. For example:
