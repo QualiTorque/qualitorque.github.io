@@ -16,10 +16,11 @@ helloHelm:
   kind: helm
   spec:
     source:
-      path: github.com/<>...
-    target-namespace: '{{ .inputs.namespace }}'  # This is the namespace which is passed along to the helm installtion.
+      store: my-repo
+      path: folder/my-app
+    target-namespace: '{{ .inputs.namespace }}'  # This is the namespace which is passed along to the helm installation.
     agent:
-      name: '{{.inputs.execution_host}}'
+      name: '{{.inputs.agent}}'
       service-account: '{{ .inputs.service_account }}'
 ```
 
@@ -55,7 +56,8 @@ grains:
     kind: helm
     spec:
       source:
-        path: https://github.com/bitnami/charts.git//bitnami/nginx
+        store: my-repo 
+        path: my-asset     
       agent:
       ...
       inputs:
@@ -102,7 +104,8 @@ grains:
     kind: helm
     spec:
       source:
-        path: https://github.com/bitnami/charts.git//bitnami/nginx
+        store: my-repo 
+        path: my-asset     
       agent:
         name: aws-demo
       inputs:
@@ -132,10 +135,11 @@ grains:
         - dep up bitnami/nginx
       scripts:
         post-helm-install:
-          source:  
-            path: github.com/steve/my-public.git//scripts/helm_script.sh
-          arguments: "{{.inputs.ACCOUNT_ID}},{{.inputs.ID2}},3"
-          outputs:
-            - test1
-            - test2
+        source:
+          store: my-repo 
+          path: my-asset     
+        arguments: "{{.inputs.ACCOUNT_ID}},{{.inputs.ID2}},3"
+        outputs:
+          - test1
+          - test2
 ```
