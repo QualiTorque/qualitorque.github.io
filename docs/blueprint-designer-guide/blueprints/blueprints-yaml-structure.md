@@ -57,6 +57,7 @@ The input definition is composed out of the following fields:
 - ```type``` of the input. Options are:
   - ```string```
   - ```agent``` allows the environment end-user to select the agent that will deploy the grain(s) from a dropdown list. By default, all agents are listed in the dropdown list, but you can add ```allowed-values``` to only display a subset of the agents. For details, see [agent](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#agent).
+  - ```parameter``` will take the input's allowed values from the parameter-store, from a parameter with the name ```parameter-name```. The parameter can be defined either in the account level or in the space level. If the parameter's value is built as a comma separated list, Torque will convert them to a set of values and present it to the end-user as a drop down list of the values. See an example below. For more info about the parameter store, click [here](admin-guide/params.md).
   - ```credentials``` allows the environment end-user to select the credentials that will be used to deploy the grain(s) from a dropdown list. By default, all credentials in the account are listed in the dropdown list, but you can add ```allowed-values``` to only display a subset of the credentials. 
 - ```sensitive```: ```true``` masks the value behind asterisks in the UI and API. (Default is ```false```) 
 - ```default``` - (Optional) Value to be used in the Torque UI and will be used in case no other value provided for the input. If a default value is not defined, the environment end-user will need to provide one when launching the environment.
@@ -100,6 +101,18 @@ grains:
       inputs: 
         - version: '{{ .inputs.["Application Version"] }}'
 ```
+
+To apply a set of allowed input values from the parameter store, use the following syntax:
+
+```yaml
+inputs:
+  region:
+    type: parameter
+    parameter-name: aws-allowed-regions 
+```
+
+We then configure a parameter with name: aws-allowed-regions and value "us-east-1,us-east2" .
+The end user will be presented with a drop down of these 2 values as the allowed values options.
 
 ### Outputs
 Outputs exposes information about your newly deployed environment and make it available for the environment's end-user or automation processes. Outputs will usually be available at the end of the environment's initialization and accessible throughout the environment lifecycle.
@@ -195,7 +208,9 @@ grains:
     kind: terraform
     spec:
       source:
-        path: github.com/organization/repository.git//folder1/folder2
+        store: my-repo
+        path: folder/my-app
+
 ```
 
 __2. Location based on a repository (blueprints or assets) onboarded to Torque__: 
