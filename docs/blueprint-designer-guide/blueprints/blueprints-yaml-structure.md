@@ -256,7 +256,7 @@ grains:
 * You can specify only one of the parameters (```branch``` or ```commit``` or ```tag```).
 * If "tag" is provided, Torque will track the repo for newer tags. In other words, if a newer tag is found, then an "update" will be detected.
 * If "branch" without commit is provided, Torque will track the head of the branch. In other words, when new commits arrive, an "update" will be detected.
-* If "commit" or "branch"+"commit" are provided, Torque __will not__ track changes.
+* If "commit" is provided, Torque __will not__ track changes.
 :::
 
 ### Agent
