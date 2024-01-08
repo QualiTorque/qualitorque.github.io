@@ -420,3 +420,5 @@ mariadb
 mssql
 mysql
 postgresql
+CodeCommit
+AWSCodeCommitReadOnly
