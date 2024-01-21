@@ -27,7 +27,7 @@ At this point, the Torque app was given the necessary permissions to the organiz
 #### Troubleshooting
 In some cases, repository access might be restricted or limited due to several seasons. Following the below steps and retry to onboard your repository once you apply the changes.
 
-1. Make sure your Azure DevOps instance is open for accepting external communication - make sure no security/networking rule is applied between Torque and Azure repos.
+1. Make sure your Azure DevOps instance is open for accepting external communication - make sure no security/networking rule is applied between Torque and Azure DevOps.
 2. In the Azure DevOps security organization settings - make sure that "Third-party application access via OAuth" is enabled
 > ![Troubleshooting](/img/ado_access.png)
 
