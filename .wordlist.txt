@@ -422,3 +422,10 @@ mysql
 postgresql
 CodeCommit
 AWSCodeCommitReadOnly
+AAD
+idp
+JWT
+jwt
+AzureAD
+appuser
+addon

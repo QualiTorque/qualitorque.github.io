@@ -12,6 +12,7 @@ In this article:
 * [How this works](/admin-guide/sso#how-this-works)
 * [Integrating your IdP with Torque](/admin-guide/sso#integrating-your-idp-with-torque)
 * [Associating a user to multiple spaces](/admin-guide/sso#associating-a-user-to-multiple-spaces)
+* [Mapping Torque user groups to IdP groups](/admin-guide/sso#mapping-torque-user-groups-to-idp-groups)
 
 ## How this works
 1. Your Idp admin creates an application on your IdP that defines the relevant users, as explained in the section below.
@@ -57,3 +58,88 @@ __Points to consider:__
 * If there are more spaces than roles, assign Space Member to the extra spaces.
 * If there are more roles than spaces, ignore those extra roles.
 * If the space name is invalid (unknown value in Torque), ignore that space and its corresponding role.
+
+## Mapping Torque user groups to IdP groups
+
+Each group in Torque as an ‘IdP identifier’ field. For SSO users to be assigned to the group automatically, the field must contain the same identifier (usually a GUID) as the group in the IdP (the groups don’t have to have the exact same name)
+
+In Torque, this is can be set by editing a group in the ‘Groups’ page under account settings.
+
+> ![Locale Dropdown](/img/groups-1.png)
+
+Finding the group identifier in the IdP is specific for each IdP, in the case of Azure active directory, this is the ‘Object Id’ field of a group:
+
+> ![Locale Dropdown](/img/groups-2.png)
+
+For groups that have this field set, users are assigned and unassigned automatically with each login based on the groups they belong to in the IdP.
+
+Users that do not come from an IdP (have a password) or come from an unsupported IdP (all but Okta and Azure AD) can still be added and removed manually from mapped groups.
+
+### Configuring Azure active directory to include group information.
+
+Assuming a working AAD SSO setup, the app in Azure needs to be configured to include the groups additional claim.
+In ‘App registration’ find the relevant app and go to Token configuration.
+Add the groups claim (using the default settings)
+
+> ![Locale Dropdown](/img/groups-3.png)
+
+On the next login, users should be assigned automatically to groups they belong to in Azure and are mapped in Torque (note it sometimes takes a short time before the claims start being sent by AAD after this change)
+
+### Troubleshooting
+
+If this doesn't work, it is possible to debug the SSO flow from the browser of an authenticated user.
+open the network tab in the development tools of the browser, check the ‘Preserve log’ option or equivalent and perform an SSO login.
+one of the calls will be to ‘idp-callback’, inspect the payload of this call.
+
+> ![Locale Dropdown](/img/groups-4.png)
+
+The call should contain an id_token field, the contents is a JWT token containing all the claims (user information) sent from the IdP to Torque (through the browser).
+Copy the entire contents of this field (without the field name) and paste it into a JWT token decoder (e.d., on https://jwt.io) to view the contents.
+
+> ![Locale Dropdown](/img/groups-5.png)
+
+Verify that group information is being included in a format similar to the above or update the app settings in AAD if it’s missing.
+
+You can also look for log entries 'Valid login through AzureAD Idp detected' that should include information about group Ids received from the IdP.
+
+### Configuring Okta to include group information.
+
+Assuming a working Okta configuration, to get group sync working we need to have group information passed to Okta from the IdP and forwarded from it to Torque with each user login.
+
+This document will show how this is done when the IdP behind Okta happens to be Azure AD (in a SAML 2 configuration and not the OIDC/JWT flow as above), but it is probably similar for other IdPs.
+
+When configuring Azure AD to Okta, you usually set custom attribute in the profile editor to match claim coming from the IDP:
+
+> ![Locale Dropdown](/img/groups-6.png)
+
+Each custom attribute has an ‘external name’:
+
+> ![Locale Dropdown](/img/groups-7.png)
+
+Then click ‘edit on ‘attributes & Claims’
+The long URLs (claim names) are what you need to set as ‘external name’ in the attribute in Okta.
+
+> ![Locale Dropdown](/img/groups-8.png)
+
+On this screen you are also able to have Azure AD send group related information
+Click the “+Add a group clam” button and use the default setting.
+
+In Okta, create a new attribute in the profile editor for groups (note the type is string array), the external name might be different from the example below.
+
+> ![Locale Dropdown](/img/groups-9.png)
+
+Next, we need to map the groups attribute we just created (that will be filled with group data on login) to a ‘Groups’ field in the user profile that is sent to Torque. Open the ‘mappings’ screen:
+
+> ![Locale Dropdown](/img/groups-10.png)
+
+The mapping should include a ‘groups’ field, map to it the attribute we just added (appuser.groups)
+
+> ![Locale Dropdown](/img/groups-11.png)
+
+### Troubleshooting
+
+If groups still don’t get sync automatically after this is done, it is possible to inspect the information sent from a browser of an authenticated user using a SAML inspection addon.
+
+This shows what to expect when using SAML-tracer:
+
+> ![Locale Dropdown](/img/groups-12.png)
