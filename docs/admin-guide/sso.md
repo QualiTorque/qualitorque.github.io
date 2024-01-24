@@ -71,7 +71,7 @@ Finding the group identifier in the IdP is specific for each IdP, in the case of
 
 > ![Locale Dropdown](/img/groups-2.png)
 
-For groups that have this field set, users are assigned and un-assigned automatically with each login based on the groups they belong to in the IdP.
+For groups that have this field set, users are assigned and unassigned automatically with each login based on the groups they belong to in the IdP.
 
 Users that do not come from an IdP (have a password) or come from an unsupported IdP (all but Okta and Azure AD) can still be added and removed manually from mapped groups.
 
