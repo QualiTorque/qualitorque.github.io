@@ -20,7 +20,7 @@ A Torque group consists of:
 - The group permissions
 - The group users
 
-A user can be a member of multiple groups. Torque will calculate the superset of all the permissions that the user has in the platform (those that were given them explicity and those which they inherited from the set of groups they belong to). 
+A user can be a member of multiple groups. Torque will calculate the super-set of all the permissions that the user has in the platform (those that were given them explicitly and those which they inherited from the set of groups they belong to). 
 
 A group can be assigned multiple roles in multiple spaces and a single account level role. 
 
@@ -28,7 +28,7 @@ Group management is performed from the "Account Settings" menu.
 
 If your Torque account is configured to use SSO for authentication, the assignment of SSO users to groups in Torque can be synchronized automatically from the IdP assignments (currently supported in Okta and Azure active directory).
 
-For detailed instructions on how to mapp Torque user groups to your IdP groups, click [here](/admin-guide/sso#mapping-torque-user-groups-to-idp-groups).
+For detailed instructions on how to map Torque user groups to your IdP groups, click [here](/admin-guide/sso#mapping-torque-user-groups-to-idp-groups).
 
 ## Roles in Torque
 
