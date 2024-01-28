@@ -344,7 +344,7 @@ grains:
     kind: terraform
     spec:
     ...
-    auto-approve: false
+      auto-approve: false
 ```
 
 :::info
