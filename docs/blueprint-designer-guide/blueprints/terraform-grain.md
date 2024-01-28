@@ -214,7 +214,7 @@ grains:
 
 
 ### tags  
-Whenever a Terraform grain is launched, all resources created during the deployment process will be automatically tagged with Torque's system tags, built-in tags and custom tags (for details, see [Tags](/governance/tags). 
+Whenever a Terraform grain is launched, all resources created during the deployment process will be automatically tagged with Torque's system tags, built-in tags and custom tags. For details, see [Tags](/governance/tags). 
 Sometimes, you need to disable tagging for all or specific resources.
 To disable *all* resources in a specific grain use the following syntax:
 
@@ -250,7 +250,8 @@ grains:
     kind: terraform
     spec:
       source:
-        path: github.com/org/repo.git//terraform/rds
+        store: my-repo 
+        path: my-asset     
       ...
       outputs:
         - agent_name
@@ -331,3 +332,23 @@ else
 fi
 
 ```
+
+### auto-approve flag
+The "auto-approve" flag in Terraform is used to automatically approve and apply changes without requiring manual confirmation. It is helpful in automation workflows or scripts where user interaction is not feasible, allowing for unattended execution of Terraform commands without the need for explicit approval during the apply phase. By default, Torque will apply the terraform module with auto-approval.
+However, you might specifically want to ensure that critical or potentially destructive changes are reviewed and approved by a user before being applied. This adds an extra layer of safety, especially in scenarios where unintended consequences could result from applying infrastructure changes. It provides an opportunity to carefully inspect the proposed changes before confirming their execution.
+To do that, you can set the auto-approve flag in the terraform grain spec to false (default will be true):
+
+```yaml 
+grains:
+  my-tf-grain:
+    kind: terraform
+    spec:
+    ...
+    auto-approve: false
+```
+
+:::info
+Initial provisioning will always be automatically approved. Setting auto-approve to false will only affect subsequent updates. 
+:::
+
+
