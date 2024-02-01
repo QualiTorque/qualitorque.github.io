@@ -174,7 +174,7 @@ result = { "decision": "Denied", "reason": "Requested environment duration excee
 } 
 ```
 
-For __consumption__ policies, the input is similar to the object in __environment__ policies, except the __consumption__ policies are triggered before the user completes the launch dialog, which means the blueprint input values and workflow details are not available yet. Therefore, the relevant sections are ommitted from the input json object:
+For __consumption__ policies, the input is similar to the object in __environment__ policies, except the __consumption__ policies are triggered before the user completes the launch dialog, which means the blueprint input values and workflow details are not available yet. Therefore, the relevant sections are omitted from the input json object:
 
    ```jsx 
 {
