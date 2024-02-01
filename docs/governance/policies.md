@@ -39,8 +39,9 @@ In this article:
 ## How policies work
 Policies are based on two basic elements: trigger and context. Trigger determines when the policy is activated, and context is the data the policy needs to get ("input" in OPA terms). The context is provided automatically by Torque. Users can also define user data ("data" in OPA terms) in the Torque policy. The context (or input) is the actual environment data the end user is trying to deploy, and the user data sets values to the limitations imposed by the admin who set up the policy.
 
-Torque supports two types of triggers, which are defined by the package being used in the policy's .rego file:
--	Environment lifecycle policies (triggered on launch/extend). To define an environment lifecycle policy, the ".rego" file must use the package name __torque.environment__
+Torque supports 3 types of triggers, which are defined by the package being used in the policy's .rego file:
+-	Consumption policies (triggered on catalog launch). To define a consumption policy, the ".rego" file must use the package name __torque.consumption__
+-	Environment lifecycle policies (triggered on launch after completing the launch dialog, or extend). To define an environment lifecycle policy, the ".rego" file must use the package name __torque.environment__
 -	Terraform evaluation policies (triggered on terraform plan for terraform grains). To define a terraform plan evaluation policy, the ".rego" file must use the package name __torque.terraform_plan__
 
 :::tip Note
@@ -48,11 +49,12 @@ Policies are applied on the space or account level, as explained in [How to set 
 :::
 
 ## Policy labels
-There are 4 labels that will be automatically applied to policies in Torque, in the __Policies__ administration page:
+There are 5 labels that will be automatically applied to policies in Torque, in the __Policies__ administration page:
 
 * __Built-in__ label is assigned to policies that come out of the box with Torque. For details about the policies, see [https://github.com/QualiTorque/opa](https://github.com/QualiTorque/opa)
 * __Terraform__ label is assigned to policies that evaluate the Terraform plan on the environment's Terraform grain. These policies are triggered when Torque deploys the Terraform grain's plan during the environment's initialization
-* __Environment__ label is assigned to policies that are triggered when the environment is launched or extended
+* __Environment__ label is assigned to policies that are triggered when the environment is launched (upon completing the launch wizard) or extended 
+* __Consumption__ label is assigned to policies that are triggered when the catalog item is clicked 
 * __Approval__ label is assigned to policies that could require approval to launch the environment
 * __Annotations__ label is assigned to files that are used to evaluate dynamic environment annotations. See [Environment Annotations](/environment-services/environment-annotations.md).
 
@@ -72,7 +74,7 @@ There may come a time when you will need to go beyond the common use case and wr
 
 #### __Developing Torque policies__
 
-1. __Package__: For Torque to recognize and be able to execute your policy, you need to use the torque packages. The packages that are currently available are torque.environment and torque.terraform_plan. So your first line of the rego file which is the package name should be one of these packages.
+1. __Package__: For Torque to recognize and be able to execute your policy, you need to use the torque packages. The packages that are currently available are torque.consumption, torque.environment and torque.terraform_plan. So your first line of the rego file which is the package name should be one of these packages.
 2. __terraform_plan__ policies need at least one __deny__ rule to be valid.
 For example, a __terraform_plan__ policy can look like this:
 
@@ -88,7 +90,7 @@ deny[reason] {
 
 ```
 
-3. __environment__ policies need to return at least one __result__ object with a __decision__ element in it. The decision value can be one of "Denied", "Manual" or "Approved". In addition to the __decision__ element, you can optionally add a __reason__ element that explains the reason for the decision.
+3. __environment__  and __consumption__ policies need to return at least one __result__ object with a __decision__ element in it. The decision value can be one of "Denied", "Manual" or "Approved". In addition to the __decision__ element, you can optionally add a __reason__ element that explains the reason for the decision.
 For example, an __environment__ policy can look like this:
 
 ```jsx
@@ -104,7 +106,7 @@ result = { "decision": "Denied", "reason": "Environment duration exceeds 5 hours
 
 #### __Inputs__
 
-Based on the policy type (__environment__ or __terraform_plan__) Torque will provide *input* to OPA once the policy is injected.
+Based on the policy type (__environment__ , __consumption__ or __terraform_plan__) Torque will provide *input* to OPA once the policy is injected.
 For terraform_plan policies, the input is the terraform plan output. 
 For __environment__ policies, the input is the following json object:
 
@@ -171,6 +173,44 @@ result = { "decision": "Denied", "reason": "Requested environment duration excee
    input.duration_minutes > 180
 } 
 ```
+
+For __consumption__ policies, the input is similar to the object in __environment__ policies, except the __consumption__ policies are triggered before the user completes the launch dialog, which means the blueprint input values and workflow details are not available yet. Therefore, the relevant sections are ommitted from the input json object:
+
+   ```jsx 
+{
+    "blueprint": {
+        "name": "my-bp-name",
+        "repository": "my-repo",
+        "labels": [],
+        "url": "https://github.com/...",
+        "last_modified": "0001-01-01T00:00:00",
+        "grains": [
+            {
+                "kind": "terraform",
+                "name": "helloTF"
+            }
+        ]
+    },
+
+    "timezone": "Asia/Jerusalem",
+    "duration_minutes": 100, // in launch, the requested duration. In extend, the total duration before the extension
+    "extend_duration_minutes": 100, // null if the action is "launch"
+    "blueprint_avg_hourly_cost": null,
+    "space_name": "my_space",
+    "user_email": "me.l@mycorp.com",
+    "entity_name": "my-env", //environment name
+    "action_identifier": {
+        "entity_type": "Environment",
+        "entity_id": null,
+        "action_type": "Launch" // options: "Launch", "Extend"
+    }
+    "owner_active_environments_in_space": 1// # of the current owner's active environments in space 
+    "owner_active_environments_in_account": 1  //  # of the current owner's active environments in the account 
+    "active_environments_in_space": 1 // total # of active environments in the space 
+    "active_environments_in_account": 2 // total # of active environments in the account 
+}
+```
+
 
 #### __data__
 
