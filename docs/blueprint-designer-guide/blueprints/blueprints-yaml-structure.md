@@ -413,6 +413,8 @@ In the below example the [downcase](https://shopify.github.io/liquid/filters/dow
         - bucket_name: '{{ .inputs.bucket_name | strip }}-bucket-{{ envid | downcase }}'
 ```
 
+For details and examples of how to use the parameters from the parameter store inside blueprints, check [this article](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#parameters).
+
 ### Dynamic Attributes
 Blueprint designers might need extra details about the account, space or environment during the environment's orchestration. Torque provides dynamic attributes which are pre-defined parameters blueprints designers can use. The currently supported dynamic attributes are:
 
