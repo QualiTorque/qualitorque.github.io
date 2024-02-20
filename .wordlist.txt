@@ -389,6 +389,8 @@ Idp
 URI
 Quali’s
 Quali's
+EaC
+recoverability
 Rebranding
 Favicon
 cloudformation
