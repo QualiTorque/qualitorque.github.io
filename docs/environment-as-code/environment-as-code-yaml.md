@@ -3,10 +3,10 @@ sidebar_position: 1
 title: The Environment YAML
 ---
 
-Torque environments are executions of a Torque blueprint, launched for a specific business purpose. Environments can be launched using the Enviornment as code YAML for teams practicing GitOps, or using the Torque self-service portal.
+Torque environments are executions of a Torque blueprint, launched for a specific business purpose. Environments can be launched using the Environment as code YAML for teams practicing GitOps, or using the Torque self-service portal.
 
 :::tip__Note__
-Environments are written in YAML files that reside in a __/enviornments__ folder within a source control repository onboarded to Torque (the folder name is case-sensitive and must be "environments"). Environments kept in the  __/enviornments__  folder must be of type ".yaml" and not ".yml" to be used in Torque.
+Environments are written in YAML files that reside in a __/environments__ folder within a source control repository onboarded to Torque (the folder name is case-sensitive and must be "environments"). Environments kept in the  __/environments__  folder must be of type ".yaml" and not ".yml" to be used in Torque.
 :::
 
 When environments are being launched from the Torque self-service portal, the environment YAML will be "stored in Torque" and it will be possible to download it and save it in Git when needed.
