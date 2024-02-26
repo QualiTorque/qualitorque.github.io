@@ -492,3 +492,24 @@ grain_name:
 ```
 
 The auto-retry element is optional . If not present, it defaults to "true". Can be "true" or "false".
+
+
+### layout 
+
+Layout is a separate yaml that will be referenced from the blueprint yaml like so:
+
+```yaml
+spec_version: 2
+description: ...
+layout:
+  source:
+    store:
+    path:
+  exclude-from-layout:  # optional
+    - grain_name_1
+    - grain_name_2
+```
+
+The **layout** element is where the blueprint references the layout that will be applied to environments created from it. To learn more, visit [layouts](blueprint-designer-guide/layouts)
+
+The **exclude-from-layout** element is optional, use it in case you need to apply the layout only to part of the grains but not all of them.

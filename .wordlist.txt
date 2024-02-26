@@ -432,3 +432,6 @@ jwt
 AzureAD
 appuser
 addon
+ec2
+EC2
+ec
