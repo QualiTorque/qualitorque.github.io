@@ -3,8 +3,7 @@ sidebar_position: 1
 title: The layout yaml
 ---
 
-
-With the layout yaml file, you can devops to customize the way end users see resources and their properties, both on the table view as well as the resource cards (catalog).
+With the layout yaml file, you can customize the way end users see resources and their properties, both on the table view as well as the resource cards (catalog).
 
 Example use-cases:
 - Hide specific resources from the end users view due to security considerations or simplicity
@@ -28,7 +27,7 @@ layout:
 ```
 
 - The **layout** element is where the blueprint references the layout that will be applied to environments created from it.
-  - *source* is similart to the source element in the blueprint yaml. See [source](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#source) for more details.
+  - *source* is similar to the source element in the blueprint yaml. See [source](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#source) for more details.
 
 - The **exclude-from-layout** element is optional, use it in case you need to apply the layout only to part of the grains but not all of them.
 
