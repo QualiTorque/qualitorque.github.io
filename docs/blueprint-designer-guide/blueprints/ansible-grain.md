@@ -7,7 +7,7 @@ The Ansible grain is Torque’s native support for orchestrating the execution o
 
 ### Tools and technologies
 
-The following tools and technologies are installed out of the box on our agents in the Kubernetes pods and can be used when writing grain scripts (pre/post, etc.):
+The following tools and technologies are installed out of the box on our agents in the Kubernetes pods and can be used when designing ansible playbook execution:
 
 * dotnet
 * git
