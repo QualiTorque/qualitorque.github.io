@@ -47,6 +47,9 @@ table:
       - "AWS::BUCKET"
       - "*"
 ```
+:::note
+The layout yaml must reside inside a folder named "layouts".
+:::
 
 The main entries in the file are the "table" and "catalog" - each affecting the relevant view. Currently, only "table" is supported, but resources hidden will also be hidden from the resource cards.
 - **hide**: resource types listed under hide will be invisible in the relevant view.
