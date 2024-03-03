@@ -510,6 +510,11 @@ layout:
     - grain_name_2
 ```
 
-The **layout** element is where the blueprint references the layout that will be applied to environments created from it. To learn more, visit [layouts](blueprint-designer-guide/layouts)
+:::note
+The layout yaml must reside inside a folder named "layouts".
+:::
+
+
+The **layout** element is where the blueprint references the layout that will be applied to environments created from it. To learn more, visit [layouts](blueprint-designer-guide/layouts/layouts.md)
 
 The **exclude-from-layout** element is optional, use it in case you need to apply the layout only to part of the grains but not all of them.

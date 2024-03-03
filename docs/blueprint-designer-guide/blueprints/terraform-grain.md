@@ -293,7 +293,7 @@ grains:
           source:
             store: tf-repo
             path : scripts/authenticate.sh
-          arguments: "{{.inputs.ACCOUNT_ID}},{{.inputs.ID2}},3"
+          arguments: "{{.inputs.ACCOUNT_ID}} {{.inputs.ID2}} 3"
 ```
 
 :::info
