@@ -46,6 +46,10 @@
   padding: 0 var(--ifm-pre-padding);
 }
 
+.navbar--fixed-top {
+  left: 280px;
+}
+
 .aa-Autocomplete {
   width: 150px;
 }
