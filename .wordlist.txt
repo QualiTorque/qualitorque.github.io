@@ -402,6 +402,9 @@ ARNs
 KMS
 scalability
 GitOps
+terraformer
+Terraformer
+Waze
 EaaS
 Eliav
 Pavel
