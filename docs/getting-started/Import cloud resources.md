@@ -25,7 +25,7 @@ NOTE: This guide will focus on AWS workloads as an example, but it's possible to
 [**Terraformer**](https://github.com/GoogleCloudPlatform/terraformer) is an open source tool created by the Waze SRE team at Google. Terraformer is a CLI tool that generates tf/json and tfstate files based on existing infrastructure (reverse Terraform). Terraformer supports large number of providers, see full list [here](https://github.com/GoogleCloudPlatform/terraformer/tree/master/docs)
 :::
 
-1. Install Terraformer using th following [installation instructions](https://github.com/GoogleCloudPlatform/terraformer/tree/master/docs)
+1. Install Terraformer using the following [installation instructions](https://github.com/GoogleCloudPlatform/terraformer/tree/master/docs)
 2. Make sure to get authenticated to your cloud provider/service of choice. This can be done using the dedicated cloud CLI or using environment variables. For example, when exporting AWS resources, you can authenticate by adding AWS_ACCESS_KEY_ID,  AWS_SECRET_ACCESS_KEY and AWS_SESSION_TOKEN to the terminal environment variables.
 3. Execute terraformer with your desire command line parameters to export the desire cloud resource. It's possible to export only a subset of resources by type, name or other filters.
 
@@ -39,7 +39,7 @@ The exported files will be placed in your working directory and will include the
 
 
 :::info
-When authentication to AWS using SSO, make sure to add --profile="" to your CLi command to properly authenticate to AWS using Terraformer
+When authentication to AWS using SSO, make sure to add --profile="" to your CLI command to properly authenticate to AWS using Terraformer
 :::
 
 
@@ -76,7 +76,7 @@ Now, that you have a code representation of your cloud resources, we will import
       tf-version: 1.5.5
 ```
 
-2. Upload the state file to your prefered Terraform backend, in this example, we've uploaded the state file to an s3 bucket.
+2. Upload the state file to your preferred Terraform backend, in this example, we've uploaded the state file to an s3 bucket.
   
 ![state in s3](/img/tfstate-aws.png)
 
