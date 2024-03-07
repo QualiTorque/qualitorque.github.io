@@ -400,8 +400,12 @@ Atlassian
 durations
 ARNs
 KMS
+SRE
 scalability
 GitOps
+terraformer
+Terraformer
+Waze
 EaaS
 Eliav
 Pavel
