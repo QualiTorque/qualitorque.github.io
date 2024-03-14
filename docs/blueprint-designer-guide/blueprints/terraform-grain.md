@@ -305,6 +305,7 @@ When writing the scripts, you can take advantage of the following out of the box
 - TORQUE_TF_EXECUTABLE - the terraform executable file name
 - TORQUE_TF_MODULE_PATH - the path to the terraform executable.
 - TORQUE_TF_PLAN_PATH - path to the results of the terraform plan command. This is very useful to be used in a post-tf-plan script for verification of the plan.
+- TORQUE_TF_PLAN_JSON_PATH - path to the results of the terraform plan command in json format. 
 
 For example, the script can contain the following :
 
@@ -323,7 +324,7 @@ Here is another example which shows how to use the plan output in a post-tf-plan
 
 ## validate-no-new-resources.sh
 
-if grep -q 'Plan: [1-9][0-9]* to add, 0 to change, 0 to destroy' "$TORQUE_TF_PLAN_PATH"; then
+if grep -q 'Plan: [1-9][0-9]* to add, 0 to change, 0 to destroy' "$TORQUE_TF_PLAN_JSON_PATH"; then
   echo "Error: The plan indicates new resources"
   exit 1
 else
