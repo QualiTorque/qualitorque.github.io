@@ -438,4 +438,11 @@ appuser
 addon
 ec2
 EC2
-ec
+SCIM
+checkboxes
+scim
+userName
+Entra
+deprovisioning
+deprovisioning
+Okta's
