@@ -169,7 +169,7 @@ grains:
 ```
 
 :::info
-The only platform supported for terraform binaris is linux_amd.
+The only platform supported for terraform binaries is linux_amd.
 Please also note that no validation will be done on the binary link, it is the responsibility of the user.
 :::
 

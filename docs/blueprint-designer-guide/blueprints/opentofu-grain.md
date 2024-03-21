@@ -18,4 +18,4 @@ grains:
       ...
 ```        
 
-The rest of the syntax and strucure is identical to [the terraform grain](blueprint-designer-guide/blueprints/terraform-grain.md). 
+The rest of the syntax and structure is identical to [the terraform grain](blueprint-designer-guide/blueprints/terraform-grain.md). 

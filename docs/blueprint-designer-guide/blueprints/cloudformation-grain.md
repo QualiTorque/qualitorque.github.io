@@ -63,7 +63,7 @@ To grant Torque the necessary permissions to successfully provision resources, y
 ```
 
 ### region
-Region is a reuired key in the cloudformation grain. It defines where the stack will be created.
+Region is a required key in the cloudformation grain. It defines where the stack will be created.
 
 
 ### source 
