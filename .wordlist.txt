@@ -447,3 +447,8 @@ deprovisioning
 deprovisioning
 Okta's
 ec
+OpenTofu
+wget
+amd
+linux
+deprovisioned
