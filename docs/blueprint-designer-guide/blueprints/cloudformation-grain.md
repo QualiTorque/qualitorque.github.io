@@ -25,7 +25,7 @@ To grant Torque the necessary permissions to successfully provision resources, y
 	"Version": "2012-10-17",
 	"Statement": [
 		{
-			"Sid": "BasicBucketOperations",  // Sid for the template-storage bucket. If all your temaplates are smaller than 50K, this can be ommitted. 
+			"Sid": "BasicBucketOperations",  // Sid for the template-storage bucket. If all your temaplates are smaller than 50K, this can be omitted. 
 			"Effect": "Allow",
 			"Action": [
 				"s3:PutObject",
@@ -62,6 +62,9 @@ To grant Torque the necessary permissions to successfully provision resources, y
 }
 ```
 
+### region
+Region is a reuired key in the cloudformation grain. It defines where the stack will be created.
+
 
 ### source 
 Please see [the grain source](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#source) for more details.
@@ -81,8 +84,8 @@ grains:
     kind: cloudformation
     spec:
       source:
-        path: github.com/org/repo.git//cloudformation/rds
-        ...
+        store: my-repo
+        path: folder/my-app
       agent: 
         name: my-agent  
       authentication:
@@ -96,8 +99,9 @@ grains:
     kind: cloudformation
     spec:
       source:
-        path: github.com/org/repo.git//cloudformation/rds
-        ...
+        store: my-repo
+        path: folder/my-app
+      ...
       agent:
         name: my-agent 
         service-account: agent-service-account # Optional. If not provided, Torque will try to use the default service account of the agent.
@@ -137,7 +141,8 @@ grains:
     kind: cloudformation
     spec:
       source:
-        path: github.com/org/repo.git//cloudformation/rds
+        store: my-repo
+        path: folder/my-app
         ...
       authentication:
         ...

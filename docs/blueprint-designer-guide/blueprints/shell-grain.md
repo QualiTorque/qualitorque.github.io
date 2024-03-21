@@ -27,7 +27,15 @@ The following tools and technologies are installed out of the box on our agents 
 
 - dotnet
 - python3
-- pip3
+- pip
+- curl
+- wget
+- jq
+- git
+- zip
+- unzip
+- kubectl
+- awscli
 
 ### Inputs
 Similar to blueprint inputs, inputs provided to the Shell grain are used when launching the shell. Unlike other grains, in the Shell grain, inputs are used inside the __commands__ section, wrapped in double curly brackets - ```" {{ .inputs.input1 }}"```.

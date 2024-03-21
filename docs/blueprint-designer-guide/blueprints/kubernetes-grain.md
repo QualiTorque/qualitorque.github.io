@@ -40,7 +40,8 @@ helloKubernetes:
   kind: kubernetes
   spec:
     source:
-      path: github.com/<>...
+      store: my-repo 
+      path: my-asset     
     target-namespace: '{{ .inputs.namespace }}'  
     agent:
       name: '{{.inputs.execution_host}}'
@@ -78,7 +79,7 @@ grains:
       scripts:
         post-kubernetes-install:
           source:
-            store: Torque-Spec2-Demos
+            store: Torque-Demos
             path: scripts/post-install-script.sh
           outputs:
             - output1
