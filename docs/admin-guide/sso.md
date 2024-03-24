@@ -153,7 +153,7 @@ User provisioning with SCIM is optional when configuring SSO. When it is not con
 * Users are created in Torque when added in the IdP, potentially before their first log in. - This allows an admin to get a better picture of who are the users in the Torque account and to perform actions on them before the first time they logged in such as already associating them to spaces, setting them as collaborators on some environments and so on.
 * Users are deprovisioned - Normally, when a user is removed from the IdP, he can no longer login to the Torque account, but the Torque user still appears in the account. Deprovisioning means that one a user cannot SSO into a Torque account, he is removed from it.
 
-The process of user de/provisioning is one directional. changes to users in Torque do not affect the IdP.
+The process of user provisioning/deprovisioning is one directional. changes to users in Torque do not affect the IdP.
 
 ### Relation to SSO
 User provisioning (SCIM) is an optional component of SSO and can be omitted, as mentioned above, but when active, it would create a new user in Torque to match a user created or associated in the IdP.

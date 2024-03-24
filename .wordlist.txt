@@ -444,6 +444,9 @@ scim
 userName
 Entra
 deprovisioning
-deprovisioning
+deprovisioned
+provisioning
 Okta's
 ec
+Cross
+swappable
