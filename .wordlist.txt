@@ -448,5 +448,10 @@ deprovisioned
 provisioning
 Okta's
 ec
+OpenTofu
+wget
+amd
+linux
+deprovisioned
 Cross
 swappable

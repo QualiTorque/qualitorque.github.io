@@ -54,7 +54,12 @@ Please see the below table for additional details.
 | Kubernetes Clusters | Pause | Azure (AKS) | Terraform | azurerm_kubernetes_cluster | Reduce the number of agents   (VMs) in all node pools in the cluster to 1 |   |
 |  |  | AWS   (EKS) | Terraform | Coming Soon |   |   |
 |  | Resume | Azure (AKS) | Terraform | azurerm_kubernetes_cluster | Increase the number of agents   (VMs) in all node pools in the cluster to the original number |   |
-|  |  | AWS   (EKS) | Terraform | Coming Soon |   |   |                                                     	|
+|  |  | AWS   (EKS) | Terraform | Coming Soon |   |   |    |
+
+**Debugging Actions** 
+                                               	
+If you need verbose output from the actions in order to debug them, you can add a parameter like so:
+SYSTEM_ACTIONS_VERBOSE_MODE=true (or false) in the account level.
 
 #### **Workflows**
 

@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Appearance & Rebranding 
+title: Appearance, Rebranding and Announcements
 ---
 
 
@@ -25,3 +25,11 @@ To upload your logos, follow these steps:
 - Wait for the upload to complete and confirm that the logo has been successfully uploaded.
 
 That's it! By uploading all three logo types, you'll ensure that your brand looks consistent and professional throughout the system.
+
+__Announcements__
+
+The announcements feature allows you to announce important messages to your end-users using a banner at the top of every page. You can choose which spaces the banner displays on, or you can apply it to all spaces. You can customize the message, banner color, and more.
+
+Additionally, you can use this screen to enforce "maintenance mode" on your Torque account.
+
+The selected spaces will not be able to launch new environments while in maintenance mode. 

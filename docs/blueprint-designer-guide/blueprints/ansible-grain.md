@@ -27,7 +27,9 @@ My_Ansible_Grain:
   kind: ansible
   spec:
     source:
-      path: https://github.com/MyOrg/my-repo//ansible/install_httpd_rhel.yaml
+      store: my-repo
+      path: folder/my-app
+
 ```
 
 __Example - repository:__
@@ -61,7 +63,7 @@ grains:
     spec:
       source:
         store: assets
-        path:terraform/vcenter/linux_vm
+        path: terraform/vcenter/linux_vm
       outputs:
       - vm_ip
       - vm_link
