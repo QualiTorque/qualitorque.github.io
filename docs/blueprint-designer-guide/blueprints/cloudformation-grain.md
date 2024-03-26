@@ -174,12 +174,12 @@ Due to AWS limitations, if the drift includes deleted resources Torque will not 
 
 ### Setting stack prefixes
 
-You can prefix all stacks created by Toque with some cusotomized prefix, to adhere to your organization standards or conventions. There are several ways to do it.
-1. Define a system param
+You can prefix all stacks created by Toque with some customized prefix, to adhere to your organization standards or conventions. There are several ways to do it.
+1. Define a system eter
 2. Define it in the blueprint
 
-Defining a system param means to create an account level or space level parameter with the predefined name SYSTEM_CFN_STACK_NAME_PREFIX and the string you wish to use as a prefix as value.
-Using this system param means that the prefix will be applied to all CFN stacks that are created by Torque in the entire account (if it's in the account level) or in the space (if it's a space level).
+Defining a system parameter means to create an account level or space level parameter with the predefined name SYSTEM_CFN_STACK_NAME_PREFIX and the string you wish to use as a prefix as value.
+Using this system parameter means that the prefix will be applied to all Cloudformation stacks that are created by Torque in the entire account (if it's in the account level) or in the space (if it's a space level).
  
 To be more granular one can also define it in a specific blueprint like so:
 
