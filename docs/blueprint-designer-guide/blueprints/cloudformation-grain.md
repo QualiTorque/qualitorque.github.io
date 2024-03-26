@@ -153,7 +153,7 @@ grains:
 ### Example
 ```yaml
 grains:
-  CFN-S3-Bucket:
+  S3-Bucket:
     kind: cloudformation
     spec: 
       source:
@@ -175,7 +175,7 @@ Due to AWS limitations, if the drift includes deleted resources Torque will not 
 ### Setting stack prefixes
 
 You can prefix all stacks created by Toque with some customized prefix, to adhere to your organization standards or conventions. There are several ways to do it.
-1. Define a system eter
+1. Define a system parameter
 2. Define it in the blueprint
 
 Defining a system parameter means to create an account level or space level parameter with the predefined name SYSTEM_CFN_STACK_NAME_PREFIX and the string you wish to use as a prefix as value.
