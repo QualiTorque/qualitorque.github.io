@@ -153,7 +153,7 @@ grains:
 ### Example
 ```yaml
 grains:
-  CFN-S3-Bucket:
+  S3-Bucket:
     kind: cloudformation
     spec: 
       source:
@@ -171,4 +171,27 @@ grains:
 Resolving drift in AWS CloudFormation involves acknowledging the updated configuration as the intended state and adjusting the stack template accordingly. Conversely, in Torque, the process of drift resolution or reconciliation entails undoing changes made to cloud resources and restoring them to the original template. It is important to understand this distinction before reconciling CloudFormation grains.
 
 Due to AWS limitations, if the drift includes deleted resources Torque will not be able to restore these via reconciliation. It is advise to reconcile the stack manually via the AWS console or CLI.
+
+### Setting stack prefixes
+
+You can prefix all stacks created by Toque with some customized prefix, to adhere to your organization standards or conventions. There are several ways to do it.
+1. Define a system parameter
+2. Define it in the blueprint
+
+Defining a system parameter means to create an account level or space level parameter with the predefined name SYSTEM_CFN_STACK_NAME_PREFIX and the string you wish to use as a prefix as value.
+Using this system parameter means that the prefix will be applied to all Cloudformation stacks that are created by Torque in the entire account (if it's in the account level) or in the space (if it's a space level).
+ 
+To be more granular one can also define it in a specific blueprint like so:
+
+```yaml
+grains:
+  stack1:
+    kind: cloudformation
+    spec:
+      ...
+      stack-name-prefix: some-prefix
+      ...
+```
+Where the value for the prefix can be fixed, come from input, or be a liquid template.
+
 
