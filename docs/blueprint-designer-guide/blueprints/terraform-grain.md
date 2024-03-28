@@ -140,9 +140,8 @@ __Cleaning up the tfstate file when the Terraform grain is destroyed:__
 
 When destroying a Terraform environment, Terraform does not delete the tfstate file but rather leaves behind an empty file. To clean up the leftovers, set a file retention policy on the remote storage to ensure the removal of files that have not been recently accessed. Since Torque runs drift detection on a 1-hour schedule, the tfstate file will be considered as “accessed” by the remote storage when running drift detection. And when the Torque environment ends, the tfstate file will not be “accessed” anymore by Torque. 
 
-### version and binary
-Torque provides the flexibility to choose a specific Terraform version with which the Terraform module will be deployed (minimum supported version is 0.14, last version supported is 1.5.5). Otherwise, you can specify a reference to a binary file containing some executable that can deploy the resources.
-Only one of *version* **or** *binary* can be declared but not both.
+### version 
+Torque provides the flexibility to choose a specific Terraform version with which the Terraform module will be deployed (minimum supported version is 0.14, last version supported is 1.5.5). Otherwise, you can use the [custom-grain option](/blueprint-designer-guide/blueprints/custom-grain).
 
 ```yaml
 grains:
@@ -155,24 +154,6 @@ grains:
         path: hello
       ...
 ```
-
-```yaml
-grains:
-  hello_world:
-    kind: terraform
-    spec:
-      binary: https://releases.hashicorp.com/terraform/1.5.5/terraform_1.5.5_linux_amd64.zip
-      source:
-        store: terraform
-        path: hello
-      ...
-```
-
-:::info
-The only platform supported for terraform binaries is linux_amd.
-Please also note that no validation will be done on the binary link, it is the responsibility of the user.
-:::
-
 
 ### inputs
 Similar to blueprint inputs, the Terraform grain input allows you to reuse the same Terraform module in different ways. Inputs provided to the Terraform grain are used when launching the Terraform module. Terraform grain inputs should be listed in the order defined in the module's variables.tf file. We recommend using Torque's auto-discovery capability to quickly model your Terraform modules within Torque including all defined inputs.
