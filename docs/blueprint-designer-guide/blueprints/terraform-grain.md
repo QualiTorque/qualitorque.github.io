@@ -141,7 +141,7 @@ __Cleaning up the tfstate file when the Terraform grain is destroyed:__
 When destroying a Terraform environment, Terraform does not delete the tfstate file but rather leaves behind an empty file. To clean up the leftovers, set a file retention policy on the remote storage to ensure the removal of files that have not been recently accessed. Since Torque runs drift detection on a 1-hour schedule, the tfstate file will be considered as “accessed” by the remote storage when running drift detection. And when the Torque environment ends, the tfstate file will not be “accessed” anymore by Torque. 
 
 ### version 
-Torque provides the flexibility to choose a specific Terraform version with which the Terraform module will be deployed (minimum supported version is 0.14, last version supported is 1.5.5). Otherwise, you can use the [custom-grain option](/blueprint-designer-guide/blueprints/custom-grain.md)
+Torque provides the flexibility to choose a specific Terraform version with which the Terraform module will be deployed (minimum supported version is 0.14, last version supported is 1.5.5). Otherwise, you can use the [custom-grain option](/blueprint-designer-guide/blueprints/custom-grain).
 
 ```yaml
 grains:
