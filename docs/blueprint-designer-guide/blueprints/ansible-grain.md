@@ -23,13 +23,10 @@ __Example - direct:__
 
 ```yaml 
 My_Ansible_Grain:
-  depends-on: Ubuntu_VM
   kind: ansible
   spec:
     source:
-      store: my-repo
-      path: folder/my-app
-
+      path: https://github.com/quali/demo/blob/main/assets/ansible/install_apache2_ubuntu.yaml
 ```
 
 __Example - repository:__
