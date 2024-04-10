@@ -238,3 +238,11 @@ grains:
 
 If you wish to install the module locally to test it, please run ```ansible-galaxy collection install torque.collections```
 The module resides in the marketplace : https://galaxy.ansible.com/torque/collections
+
+### Installing Ansible Requirements
+
+Torque is designed to streamline the installation of your module’s dependencies. It accomplishes this by automatically detecting and installing the requirements specified in a ``requirements.yaml`` or ``requirements.yml`` file. This file should be located in the root directory of your module.
+
+For instance, if your module’s main file is located at ``ansible/my-module/main.yaml``, the corresponding requirements file should be placed in the same directory, i.e., ``ansible/my-module/``.
+
+By adhering to this structure, you can ensure that Torque correctly identifies and installs all necessary requirements for your module.
