@@ -3,10 +3,9 @@ sidebar_position: 12
 title: The Helm Grain
 ---
 
-## The HELM Grain
 The HELM grain is Torque's native support for HELM v3 charts. Torque allows designers to use HELM specific features to easily orchestrate self-developer and community charts in a standard way and share them with others as building blocks. For a full blueprint yaml example, see [Example 1: Helm Application with MySQL and S3 Deployed by Terraform](/blueprint-designer-guide/blueprint-quickstart-guide#example-1-helm-application-with-mysql-and-s3-deployed-by-terraform).
 
-## Namespace
+### Deploy in target namespace
 Torque will install the helm release in the namespace referred to in *target-namespace*. The target namespace must exist in the cluster prior to the deployment. It must not be equal to the namespaces used by Torque for agent deployments. Make sure the service account has enough permissions to create/read/delete everything in the helm chart and also create/read/delete secrets and volumes.
 
 In your blueprint YAML, configure the following configuration for Helm grains
@@ -30,7 +29,7 @@ helloHelm:
 
 
 ### Tools and technologies
-The following tools and technologies are installed out of the box on our agents in the Kubernetes pods and can be used when writing grain scripts (pre/post, etc.):
+The following tools and technologies are installed out of the box on our agents in the Kubernetes and Helm runners and can be used when writing grain scripts (pre/post, etc.):
 
 - dotnet
 - curl
@@ -68,6 +67,34 @@ grains:
 :::info
 Note that in the above example, blueprint input is used as the value of the HELM grain input, so the environment's owner is able to choose the replicaCount required for his need. The information provided by the user will be passed to HELM chart as values and affect the deployment process.
 :::
+
+### values.yaml as inputs to Helm grain
+In Helm, the values.yaml file is a critical component that allows you to configure and customize the behavior of your Kubernetes application deployment.
+
+The `values.yaml` file contains the default configuration values for the templates used in the Helm chart. These values can be overridden at the time of deployment or during an upgrade by providing a different set of values.
+
+Torque supports referencing `values.yaml` files as inputs to the Helm grain, with the following syntax:
+
+```yaml
+grains:
+  nginx:
+    kind: helm
+    spec:
+      source:
+        store: my-repo 
+        path: my-asset     
+      agent: ...
+      inputs:
+        - replicaCount: '{{ .inputs.replicaCount }}'
+        - service.image: '{{ .inputs.image }}'
+      values-files:
+      - source:
+          store: <> 
+          path: <>
+      - source:
+          store: <>
+          path: <>
+```
 
 ### outputs
 Helm does not natively expose outputs. However, this can be done using a ```post-helm-install``` script that assigns environment variables after the grain's deployment. The script must be referenced, along with the names of the environment variables in the grain's [scripts](#scripts). To expose the outputs to the environment, the names of the environment variables must be referenced in the blueprint's ```outputs``` section.
@@ -135,11 +162,11 @@ grains:
         - dep up bitnami/nginx
       scripts:
         post-helm-install:
-        source:
-          store: my-repo 
-          path: my-asset     
-        arguments: "{{.inputs.ACCOUNT_ID}},{{.inputs.ID2}},3"
-        outputs:
-          - test1
-          - test2
+          source:
+            store: my-repo 
+            path: my-asset     
+          arguments: "{{.inputs.ACCOUNT_ID}},{{.inputs.ID2}},3"
+          outputs:
+            - test1
+            - test2
 ```
