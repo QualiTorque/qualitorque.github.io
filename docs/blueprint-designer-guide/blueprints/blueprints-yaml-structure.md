@@ -63,6 +63,8 @@ The input definition is composed out of the following fields:
 - ```default``` - (Optional) Value to be used in the Torque UI and will be used in case no other value provided for the input. If a default value is not defined, the environment end-user will need to provide one when launching the environment.
 - ```allowed-values``` converts the input into a dropdown list, allowing the environment end-user to select the appropriate value. If a ```default``` is specified, it must be included in the allowed values list. 
 - ```quick``` is an optional boolean value. Setting it to "true" or omitting it will cause the input to be presented to the end user in the "quick links" section of the environment. Setting it to "false" means it will not appear in that section.
+- ```pattern``` is an optional regular expression pattern that the input value must match. If provided, Torque will validate the user input against this pattern during environment launch and prevent launching if the input does not conform to the specified pattern.
+- ```validation-description``` is an optional user-friendly message or description that will be shown to the user if the provided input value does not match the specified `pattern`. This helps provide better guidance to the user on the expected input format or constraints.
 
 ```yaml
 inputs:
@@ -75,6 +77,11 @@ inputs:
     type: agent
     allowed-values: [NY, Tokyo, London]
     description: "Select your site's agent."
+  email_address:
+    type: string
+    description: "Enter a valid email address"
+    pattern: '^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$'
+    validation-description: "The provided value is not a valid email address. Please enter an email in the format 'name@example.com'."
 ```
 
 The inputs section in the Torque blueprint YAML also supports spaces to make inputs more user friendly. Configuring an input with a friendly name can be done in the following way:
