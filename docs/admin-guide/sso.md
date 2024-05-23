@@ -235,3 +235,43 @@ Associate a user to the app normally (under the "Users and groups" tab) and obse
 * __Important note__: User provisioning is an offline process in Azure. Changes to user association may take up to 40 minutes to be provisioned. Provisioning logs may also take minutes to show changes.
 
 > ![Locale Dropdown](/img/scim-7.png)
+
+---
+
+## Configuring Azure AD SSO (OIDC) on Private SaaS
+
+### Overview
+When users navigate to an instance of the private SaaS application with Azure AD single sign-on (SSO) enabled, they will see a 'Sign in with Azure' button.
+
+> ![Locale Dropdown](/img/aad-sso.png)
+
+Clicking this button will redirect them to the configured Azure AD tenant/app where they will be verified. Upon successful verification, users will be redirected back to the application.
+
+On first login, a new user will be created in the application and assigned to a default space with a pre-configured role. The user can then be assigned additional roles in other spaces for subsequent logins.
+
+### Prerequisites
+* A pre-existing account created with at least one admin user with email login
+* The application instance is configured for single tenant or private SaaS usage
+
+### Azure AD App Registration
+In the Azure portal, go to Azure Active Directory > App registrations
+Select your app registration and note the Application (client) ID shown under 'Essentials'.
+
+In the app's 'Authentication' section, add a redirect URL matching your application instance URL in the format:
+```https://your_app_instance.qtorque.io/api/accounts/idp-callback```
+
+### Configurations needed
+To complete the configuration, once successfully registered an AzureAD application, you'll need to provider the following to your Torque Account Manager/Tech support:
+
+* `Tenant ID`: Your Azure AD tenant ID
+* `Client ID`: The client ID of your Azure AD app registration
+
+### Group Synchronization
+The Azure AD SSO integration supports synchronizing user groups from Azure AD to the application. 
+
+See the See [**Configuring IdP for Synchronizing User Groups**](/admin-guide/sso#mapping-torque-user-groups-to-idp-groups) documentation for setup details.
+
+With this configuration, users will be able to seamlessly sign in to your private SaaS application using their Azure AD credentials, with new users automatically provisioned with pre-defined roles and spaces. 
+
+The group synchronization feature allows mirroring the group assignment from Azure AD.
+
