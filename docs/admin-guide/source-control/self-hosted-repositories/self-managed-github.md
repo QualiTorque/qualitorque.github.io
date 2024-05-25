@@ -3,8 +3,7 @@ sidebar_position: 2
 title: Self-Managed GitHub
 ---
 
-Torque supports connecting asset/blueprint repositories residing in a self-managed GitHub repository. 
-
+Torque supports connecting to self-managed GitHub repositories, allowing you to discover and manage assets stored in your on-premises GitHub instance.
 ## Prerequisites
 
 * GitHub personal access token with read access for repositories in the server
