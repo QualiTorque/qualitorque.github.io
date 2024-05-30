@@ -31,6 +31,16 @@ Torque supports connecting assets, blueprints and policies repositories on CodeC
     1.  Follow the steps in [AWS article](https://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-gc.html#setting-up-gc-iam), Step 3 only.
     2.  📝***Take note of the the user name and password***.📝
 
+4.  Initialize your CodeCommit Repository
+    1.  CodeCommit does not have default files or a default branch until a file is committed, blocking Torque from adding this repo
+    > ![Locale Dropdown](/img/code-commit/code-commit-uninit-branch.png)
+    > ![Locale Dropdown](/img/code-commit/code-commit-uninit-code.png)
+    2.  We recommend making a "blueprints" folder at the root of the repo with a single dummy yaml file. Please note the file extensions in the image below.
+    > ![Locale Dropdown](/img/code-commit/code-commit-make-commit.png)
+    3.  Now we will verify the file is there and that the main branch has created. 
+    > ![Locale Dropdown](/img/code-commit/code-commit-verify-code.png)
+    > ![Locale Dropdown](/img/code-commit/code-commit-verify-branch.png)
+    4.  Finally we can now onboard the repo into Torque!
 
 ## Connecting a CodeCommit Repository to Torque
 
