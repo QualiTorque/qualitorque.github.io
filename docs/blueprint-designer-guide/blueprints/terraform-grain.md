@@ -44,6 +44,77 @@ grains:
         - credential_name or {{.inputs.credentials_input_name}} 
 ```        
 
+### provider-overrides
+
+The `provider-overrides` block allows you to dynamically inject provider blocks with custom attributes to Terraform grains. This is useful when you need to make submodules "runnable" or "testable" in different cloud environments.
+
+To use provider overrides, add a `provider-overrides` block to the Terraform grain spec:
+
+```yaml
+grains:
+  terraform-aws-instance:
+    kind: terraform 
+    spec:
+      provider-overrides:
+        - name: aws1
+          source: hashicorp/aws
+          version: ~>5.0.0 # Optional 
+          attributes:
+            alias: uw1
+            region: us-east-1
+            assume_role: "arn:aws:iam::{{ .inputs.target-account }}:role/role-name"
+        - name: aws2 
+          source: hashicorp/aws
+          attributes:
+            alias: ue2
+            region: us-east-2
+      
+      source: ...
+      agent: ...
+      inputs: ...
+      outputs: ...
+```
+
+The `provider-overrides` block is a list where each item has:
+
+- `name`: A unique name for the provider
+- `source`: The source location for the provider (e.g. `hashicorp/aws`)
+- `version` (optional): The version constraint for the provider
+- `attributes`: Key/value attributes to set on the provider block
+
+This will generate the following Terraform code:
+
+```hcl
+terraform {
+  required_providers {
+    aws1 = {
+      source = "hashicorp/aws"
+      version = "~>5.0.0" 
+    }
+
+    aws2 = {
+      source = "hashicorp/aws"
+    }
+  }
+}
+
+provider "aws1" {
+  alias       = "uw1"
+  region      = "us-east-1"
+  assume_role = "arn:aws:iam::{{ .inputs.target-account }}:role/role-name"
+}
+
+provider "aws2" {
+  alias       = "ue2" 
+  region      = "us-east-2"
+}
+```
+
+The `attributes` map allows setting any attributes on the generated provider blocks. Note that there is no schema validation on these attributes.
+
+Liquid templating is supported in the `attributes` values, allowing blueprint inputs to be referenced like `{{ .inputs.target-account }}`.
+
+
 ### terraform.tfstate remote backend storage
 
 When launching the environment, Torque creates a tfstate file for each Terraform grain in the blueprint. By default, the file is saved locally on the PVC of the grain runner (volume for Docker agents). However, as the TF state file may contain sensitive information, Torque allows you to optionally choose to save the file in your own remote backend storage. Torque supports the following remote backends: __[S3](https://developer.hashicorp.com/terraform/language/settings/backends/s3)__, __[gcs](https://developer.hashicorp.com/terraform/language/settings/backends/gcs)__, __[azurerm](https://developer.hashicorp.com/terraform/language/settings/backends/azurerm)__, and __[http](https://developer.hashicorp.com/terraform/language/settings/backends/http)__.
