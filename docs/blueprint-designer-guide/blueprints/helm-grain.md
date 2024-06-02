@@ -5,7 +5,7 @@ title: The Helm Grain
 
 The HELM grain is Torque's native support for HELM v3 charts. Torque allows designers to use HELM specific features to easily orchestrate self-developer and community charts in a standard way and share them with others as building blocks. For a full blueprint yaml example, see [Example 1: Helm Application with MySQL and S3 Deployed by Terraform](/blueprint-designer-guide/blueprint-quickstart-guide#example-1-helm-application-with-mysql-and-s3-deployed-by-terraform).
 
-### Deploy in target namespace
+### Deploy in target-namespace
 Torque will install the helm release in the namespace referred to in *target-namespace*. The target namespace must exist in the cluster prior to the deployment. It must not be equal to the namespaces used by Torque for agent deployments. Make sure the service account has enough permissions to create/read/delete everything in the helm chart and also create/read/delete secrets and volumes.
 
 In your blueprint YAML, configure the following configuration for Helm grains
@@ -170,3 +170,88 @@ grains:
             - test1
             - test2
 ```
+
+Here's a new section covering the "command-arguments" feature for the Helm Grain:
+
+### command-arguments
+
+The `command-arguments` field allows you to specify a set of option flags that will be passed to the `helm upgrade` command when deploying the Helm chart. This lets you customize the upgrade command in the same way you would when running it manually.
+
+For example:
+
+```yaml
+grains:
+  nginx-simple:
+    kind: helm
+    spec:
+      source:
+        store: helm-charts-repo
+        path: helm/nginx
+      command-arguments: '--version 1.2.3 --verify --wait'
+```
+
+This will run `helm upgrade` with the `--version 1.2.3 --verify --wait` flags appended.
+
+Here's a complete example showing usage of `command-arguments` along with other Helm grain features:
+
+```yaml
+spec_version: 2
+
+description: |
+  Example Helm deployment showing:
+  - Deploying from Tag  
+  - Values files
+  - Command arguments
+  - Environment variables
+  - Scripts 
+  - Outputs
+
+inputs:
+  agent:
+    type: agent
+  release: 
+    type: string
+    default: "v1.0.0"
+
+outputs:
+  public_ip:
+    value: 'https://{{.grains.nginx-simple.scripts.post-helm-install.outputs.public_ip}}'
+  dns:
+    value: '{{.grains.nginx-simple.scripts.post-helm-install.outputs.dns}}'
+    kind: link
+
+grains:
+  nginx-simple:
+    kind: helm
+    spec:
+      agent:
+        name: '{{.inputs.agent}}'
+      source:
+        store: helm-charts-repo
+        path: helm/nginx
+        tag: '{{ .inputs.release }}'
+      target-namespace: '{{ .inputs.namespace }}'  # This is the namespace which is passed along to the helm installation.
+      commands:
+        - dep up helm/nginx
+      values-files:
+        - source:
+            store: application-config-repo
+            path: helm/nginx/values.yaml
+            tag: '{{ .inputs.release }}' 
+      inputs: # will override values passed from the values.yaml
+        - replicaSet: 1
+        - applicationName: 'test'
+      command-arguments: '--version 3.0.0'
+      env-vars:
+        - debug: true
+      scripts:
+        post-helm-install:
+          source:
+            store: scripts-repo
+            path: scripts/post-install-script.sh
+          outputs:
+            - public_ip
+            - dns
+```
+
+In this example, the `command-arguments: '--version 3.0.0'` line specifies that when deploying the nginx-simple Helm chart, the `helm upgrade` command should include the `--version 3.0.0` flag.
