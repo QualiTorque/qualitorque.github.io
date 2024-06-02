@@ -20,7 +20,7 @@ The following tools and technologies are installed out of the box on our agents 
 
 Auto-discovery of Ansible playbooks requires parsing the file content to differentiate playbooks from other YAML files. The validation process checks if a `yaml` file contains the `tasks` property, which is a key indicator of an Ansible playbook.
 
-The process is optimizied to ensure efficient and targeted scanning.
+The process is optimized to ensure efficient and targeted scanning.
 
 The structure of a playbook directory should be as follows:
 
