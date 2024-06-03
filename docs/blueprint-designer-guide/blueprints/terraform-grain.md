@@ -51,20 +51,17 @@ The `provider-overrides` block allows you to dynamically inject provider blocks 
 To use provider overrides, add a `provider-overrides` block to the Terraform grain spec:
 
 ```yaml
-grains:
-  terraform-aws-instance:
-    kind: terraform 
-    spec:
-      provider-overrides:
-        - name: aws1
+provider-overrides:
+        - name: aws
           source: hashicorp/aws
           version: ~>5.0.0 # Optional 
           attributes:
             alias: uw1
             region: us-east-1
             assume_role: "arn:aws:iam::{{ .inputs.target-account }}:role/role-name"
-        - name: aws2 
+        - name: aws
           source: hashicorp/aws
+          version: ~>5.0.0 # Optional 
           attributes:
             alias: ue2
             region: us-east-2
@@ -87,26 +84,23 @@ This will generate the following Terraform code:
 ```hcl
 terraform {
   required_providers {
-    aws1 = {
+    aws = {
       source = "hashicorp/aws"
       version = "~>5.0.0" 
-    }
-
-    aws2 = {
-      source = "hashicorp/aws"
-    }
+    }   
   }
 }
 
-provider "aws1" {
-  alias       = "uw1"
-  region      = "us-east-1"
-  assume_role = "arn:aws:iam::{{ .inputs.target-account }}:role/role-name"
-}
-
-provider "aws2" {
-  alias       = "ue2" 
-  region      = "us-east-2"
+provider {
+ "aws": [{
+    alias       = "uw1"
+    region      = "us-east-1"
+    assume_role = "arn:aws:iam::{{ .inputs.target-account }}:role/role-name"
+  },
+  {
+    alias       = "ue2" 
+    region      = "us-east-2"
+  }]
 }
 ```
 
