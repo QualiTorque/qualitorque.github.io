@@ -46,19 +46,24 @@ grains:
 
 ### provider-overrides
 
-The `provider-overrides` block allows you to dynamically inject provider blocks with custom attributes to Terraform grains. This is useful when you need to make submodules "runnable" or "testable" in different cloud environments.
+The `provider-overrides` block allows you to dynamically inject provider blocks with custom attributes to Terraform grains. This is useful when you need to make modules "runnable" or "testable" in different cloud environments.
 
 To use provider overrides, add a `provider-overrides` block to the Terraform grain spec:
 
 ```yaml
-provider-overrides:
-        - name: aws
+grains:
+  database:
+    kind: terraform
+    spec:
+      source: ..
+      provider-overrides:
+        - name: aws # in case no provider block is defined in the tf configuration
           source: hashicorp/aws
-          version: ~>5.0.0 # Optional 
+          version: ~>5.0.0 
           attributes:
-            alias: uw1
             region: us-east-1
-            assume_role: "arn:aws:iam::{{ .inputs.target-account }}:role/role-name"
+            assume_role: # the mounted service-account should have permissions to assume role
+              role_arn: "arn:aws:iam::{{ .inputs.target-account }}:role/role-name"
         - name: aws
           source: hashicorp/aws
           version: ~>5.0.0 # Optional 
@@ -93,9 +98,10 @@ terraform {
 
 provider {
  "aws": [{
-    alias       = "uw1"
     region      = "us-east-1"
-    assume_role = "arn:aws:iam::{{ .inputs.target-account }}:role/role-name"
+    assume_role {
+      role_arn = "arn:aws:iam::{{ .inputs.target-account }}:role/role-name"
+    }
   },
   {
     alias       = "ue2" 
