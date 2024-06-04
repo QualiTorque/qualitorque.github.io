@@ -60,7 +60,7 @@ export output_script_2=$cmd2_output
 
 
 ### agent
-Please see [the grain agent](/bluemy_script-designer-guide/bluemy_scripts/bluemy_scripts-yaml-structure#agent) for more details.
+Please see [the grain agent](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#agent) for more details.
 
 ### Tools and Technologies
 The following tools and technologies are installed out of the box on our agents in the Kubernetes pods and can be used when writing grain scripts (pre/post, etc.):
@@ -79,7 +79,11 @@ The following tools and technologies are installed out of the box on our agents 
 
 ### inputs
 
-Similar to bluemy_script inputs, inputs provided to the Shell grain are used when launching the shell. Unlike other grains, in the Shell grain, inputs are used inside the __commands__ section, wrapped in double curly brackets - ```" {{ .inputs.input1 }}"```.
+Inputs provided to the shell grain are used when launching the shell. 
+
+:::tip__note__
+Unlike other grains, in the shell grain, inputs are used inside the __commands__ section, wrapped in double curly brackets - `"{{ .inputs.repoUrl }}"`.
+:::
 
 ```yaml
 grains:
