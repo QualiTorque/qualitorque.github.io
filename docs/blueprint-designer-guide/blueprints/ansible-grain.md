@@ -409,3 +409,53 @@ Note that this is a very simple example, and roles can be much more complex, con
 In this blueprint, when executing the `print_hello` Ansible grain, the `ansible-playbook` command will include the `--skip-tags deploy --version` flags specified in the `command-arguments` field.
 
 The `command-arguments` value can include any valid arguments that could be passed to `ansible-playbook`. This allows customizing things like tags to run/skip, handling behavior, displaying version info, and more.
+
+
+### pre-ansible-run scripts
+
+Torque allows you to run scripts before executing the Ansible playbook. This can be useful for various purposes, such as setting up the environment or performing prerequisite tasks.
+
+To run a script before the Ansible playbook execution, you can define it under the `scripts` section of the Ansible grain. The `pre-ansible-run` key is used to specify the script to be executed.
+
+#### Use Case: Creating a Vault Password File
+
+One common use case is to create a file containing the Ansible Vault password. This password is required when working with encrypted data in Ansible playbooks. Here's an example of how you can pass a token from the parameter store as the Vault password:
+
+```yaml
+spec_version: 2
+description: Ansible playbook example with pre-ansible-run scripts
+inputs: ...
+grains:
+  ansible_playbook:
+    kind: ansible
+    spec:
+      source:
+        store: ansible-repo
+        path: ansible/playbook.yml
+      agent: ...
+      command-arguments: "--vault-password-file ~/.vault_pass.txt"
+      scripts:
+        pre-ansible-run:
+          source:
+            store: my-script-repo
+            path: scripts/create_vault_file.sh
+          arguments: '{{ .params.vault_pass }}'
+```
+
+In this example, the `pre-ansible-run` script is defined under the `scripts` section. The `source` field specifies the location of the script (in this case, a Git repository named `my-script-repo`), and the `path` field specifies the relative path to the script within the repository.
+
+The `arguments` field allows you to pass arguments to the script. In this case, the value of `{{ .params.vault_pass }}` is used, which retrieves the Vault password from the parameter store.
+
+The script `create_vault_file.sh` should create a file named `.vault_pass.txt` in the current working directory and write the Vault password to it. Ansible will then use this file to decrypt the encrypted data in the playbook, as specified by the `--vault-password-file` argument in the `command-arguments` field.
+
+#### Script Execution Environment
+
+The pre-Ansible run scripts are executed within the same environment as the Ansible playbook itself. This means that any environment variables or files created by the script will be accessible to the Ansible playbook.
+
+#### Additional Notes
+
+- The scripts are executed in the order they are defined.
+- If a script fails (non-zero exit code), the Ansible playbook execution will be aborted.
+- Make sure to include any required dependencies or libraries for the scripts within the script repository or the Ansible repository.
+
+By using pre-Ansible run scripts, you can enhance the flexibility and functionality of your Ansible playbooks within the Torque ecosystem.

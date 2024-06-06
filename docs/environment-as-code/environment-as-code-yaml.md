@@ -3,163 +3,144 @@ sidebar_position: 1
 title: The Environment YAML
 ---
 
-Torque environments are executions of a Torque blueprint, launched for a specific business purpose. Environments can be launched using the Environment as code YAML for teams practicing GitOps, or using the Torque self-service portal.
+If you know how to write Torque blueprints, you can write Environment as Code (EaC) YAML files. 
+The structure of an EaC YAML file is similar to a blueprint, with the addition of an 'environment' section that defines the properties of the specific environment instance.
+
 
 :::tip__Note__
 Environments are written in YAML files that reside in a __/environments__ folder within a source control repository onboarded to Torque (the folder name is case-sensitive and must be "environments"). Environments kept in the  __/environments__  folder must be of type ".yaml" and not ".yml" to be used in Torque.
 :::
 
-When environments are being launched from the Torque self-service portal, the environment YAML will be "stored in Torque" and it will be possible to download it and save it in Git when needed.
+Environment YAML files must be placed under the 'environments' directory in the repository. Torque periodically scans this directory for environment YAML files and stores them internally.
 
-In the below example, GitHub repository is used for managing environments in a GitOps manner. <br />
+For the Blueprint example above, the directory structure is:
 
-![Environment as Code YAML](/img/eac-yaml-folder.png)
-
-# Environment YAML Structure
-
-The Torque's blueprint YAML is the main blueprint definition file. It contains general information about the environment as well as the grains that make up the environment's applications and services. The blueprint YAML is published to end-users in Torque's blueprint catalog. 
-
-:::info
-Any Torque environment is based on an environment.yaml that can be managed in Git repository or to be viewed and managed through the Torque self-service UI.
-
-Here is a Torque environment yaml that was launched from the Torque UI.
-```yaml
-kind: environment                               
-environment_name: "Event microservice Production"
-description: "Kubernetes based deployment of the event-ms optimized for production"
-state: active
-owner_email: user@quali.com
-blueprint:                                      
-  name: "test-workstation"
-  repository_name: "cloud-native-application"
-  branch: "main"
-  commit: "697d1a81fed31adf2eb9e75349def8245f80f87d"
-inputs:
-  service-account: "app-sa"
-  agent: "demo-prod"
-grains:
-  create-ec2:
-      source:
-        commit: 697d1a81fed31adf2eb9e75349def8245f80f87d
-  configure-workstation:
-      source:
-        commit: 697d1a81fed31adf2eb9e75349def8245f80f87d
+```bash
+environments/
+    production.yaml
+    staging.yaml
+    devbox.yaml
 ```
+
+When a new environment YAML file is detected or an existing one is modified, Torque performs validations on the file. If the file is valid, a snapshot is saved, which will be used to create or reconcile the environment. If the file is invalid, it will not affect the existing snapshot or the environment.
+
+If a user modifies the environment YAML file, the changes will be applied to the corresponding environment.
+
+Possible applicable changes:
+- Add/remove grains
+- Change commit/tag
+- Enviornment inputs
+- Grain inputs
+
+:::tip__info__
+All sources must contain a commit hash or tag.
 :::
+   
 
+### complete example
 
-### kind
-Torque environments should be set with the environment kind to indicate to torque that they should be operated automatically by the Environment as code engine.
-
-```yaml
-kind: environment  
-```
-
-### Description
-The environment description is an optional but recommended field. Environment description will be presented in the Torque's UI and API so users consuming the environment will have more information about it.
+Here's an example of a Torque environment YAML file:
 
 ```yaml
-kind: environment
-description: "Production instance of events-ms in GCP"
+spec_version: 2
 
-```
-
-### Environment name
-The name of the environment that will be presented in the Torque portal and API. Note that the environment name is not unique in Torque.
-
-```yaml
-kind: environment
-description: "Production instance of events-ms in GCP"
-environment_name: "name"
-
-```
-
-
-### Environment state
-The desired state of the environment. Setting this key to 'active' will start the orchestration process of the environment to launch the required infrastructure and application. Setting this key to 'inactive' will start the termination process of the environment.
-
-```yaml
-kind: environment
-description: "Production instance of events-ms in GCP"
-environment_name: "name"
-state: active ## active / inactive
-
-```
-
-### Environment owner
-The user email of the owner of the environment.
-
-```yaml
-kind: environment
-description: "Production instance of events-ms in GCP"
-environment_name: "name"
-state: active 
-owner_email: example@example.com
-
-```
-
-### Environment collaborators
-Additional users that can access the environment.
-
-```yaml
-kind: environment
-...
-
-owner_email: example@example.com
-collaborators:
-  collaborators_emails:
-    - collaborator1@example.com
-    - collaborator2@example.com
-
-```
-
-### Environment blueprint
-The underlying blueprint that defines the environment grains and inputs. The blueprint is not required to be published in the catalog.
-As the blueprint name in Torque is not unique across multiple repositories and spaces, the environment YAML requires both the blueprint name and repository. The branch name and commit will help select the blueprint's specific "point-in-time" version.
-
-```yaml
-kind: environment
-...
-
-blueprint:                                      
-  name: "test-workstation"
-  repository_name: "cloud-native-application"
-  branch: "main"
-  commit: "697d1a81fed31adf2eb9e75349def8245f80f87d"
-
-```
-
-
-### Environment inputs
-Environment inputs are key-value pairs of metadata defined in the blueprint allowing the user to provide data when the environment is launched.
-
-```yaml
-kind: environment
-...
-
-blueprint:                                      
-    ....
-
+environment:
+  environment_name: eac-env
+  description: eac example
+  owner_email: me@quali.com
+  state: active
+    
 inputs:
-  service-account: "app-sa"
-  agent: "demo-prod"
+  agent:
+    type: agent
+    default: production-k8s
 
+  tf_input:
+    type: string
+    default: default_input
+    
+outputs:
+  tf_output: 
+    value: '{{ .grains.tf1.outputs.output2 }}'
+    
+grains:
+  tf1:
+    kind: terraform
+    tf-version: 1.5.5
+    spec:
+      source:
+        store: iac-repo
+        path: terraform/complex-references1
+        tag: v1.0.1 
+      agent:
+        name: '{{ .inputs.agent }}'
+      inputs:
+        - test_input1: '{{ .inputs.tf_input }}'
+        - test_input2: "input2"
+      outputs:
+        - output2
+
+  tf2:
+    kind: terraform
+    tf-version: 1.5.5
+    spec:
+      source:
+        store: iac-repo
+        path: terraform/complex-references2
+        tag: v1.0.2
+      agent:
+        name: '{{ .inputs.agent }}'
+      inputs:
+        - test_input1: '{{.inputs.tf_input}}'
+        - test_input2: "input2"
+      outputs:
+        - output2
+      scripts: 
+        pre-tf-init:
+          source:
+            store: scripts-repo
+            path : scripts/user_script.sh
+          arguments: "value"
+        pre-tf-destroy:
+          source:
+            store: scripts-repo
+            path : scripts/user_script.sh
+          arguments: "value"
+  
+  bp1:
+    kind: blueprint
+    spec:
+      source:
+        store: iac-repo
+        path: blueprints/building-block.yaml
+        tag: official-1.0.1
+      inputs:
+        - agent: '{{ .inputs.agent }}'
 ```
 
+In this example, the `environment` section defines the environment name, description, owner email, and state. The `inputs` and `outputs` sections define the environment-level inputs and outputs, respectively.
 
-### Environment grains
-The environment grains section should contain the list of grains defined in the blueprint including the specific commit. Changes in the environment will usually be scoped to a new version of a grain that can be updated manually or GitOps based changes.
+The `grains` section contains the list of grains that make up the environment, similar to a blueprint. Each grain specifies its kind (e.g., `terraform`, `blueprint`, etc.), version, and other configuration details specific to that grain type.
+
+By following this structure, users can define and manage their environments as code, allowing for version control, collaboration, and automated deployments using Torque's Environment as Code (EaC) functionality.
+
+### environment
+Torque environment section contains all of the specific data related to the environment instance.
 
 ```yaml
-kind: environment
-...
-
-grains:
-  create-ec2:
-      source:
-        commit: 697d1a81fed31adf2eb9e75349def8245f80f87d
-  configure-workstation:
-      source:
-        commit: 697d1a81fed31adf2eb9e75349def8245f80f87d
-
+environment:
+  environment_name: eac-env
+  description: eac example
+  owner_email: me@quali.com
+  state: active # desired state: active/inactive
+  collaborators: 
+    collaborators_emails:
+      - collaborator1@quali.com
+      - collaborator2@quali.com
+  spaces:
+    - spaceA
+    - spaceB
+  tags:
+    key1: value1
+    key2: value2
 ```
