@@ -29,7 +29,7 @@ If a user modifies the environment YAML file, the changes will be applied to the
 Possible applicable changes:
 - Add/remove grains
 - Change commit/tag
-- Enviornment inputs
+- Environment inputs
 - Grain inputs
 
 :::tip__info__
