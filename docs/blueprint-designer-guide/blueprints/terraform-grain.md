@@ -381,10 +381,10 @@ Note that scripts should be stored next to your IaC code to be used under the sc
 
 When writing the scripts, you can take advantage of the following out of the box environment variables provided by Torque:
 
-- TORQUE_TF_EXECUTABLE - the terraform executable file name
-- TORQUE_TF_MODULE_PATH - the path to the terraform executable.
-- TORQUE_TF_PLAN_PATH - path to the results of the terraform plan command. This is very useful to be used in a post-tf-plan script for verification of the plan.
-- TORQUE_TF_PLAN_JSON_PATH - path to the results of the terraform plan command in json format. 
+- **TORQUE_TF_EXECUTABLE** - the terraform executable file name
+- **TORQUE_TF_MODULE_PATH** - the path to the terraform executable.
+- **TORQUE_TF_PLAN_PATH** - path to the results of the terraform plan command. This is very useful to be used in a post-tf-plan script for verification of the plan.
+- **TORQUE_TF_PLAN_JSON_PATH** - path to the results of the terraform plan command in json format. 
 
 For example, the script can contain the following :
 
@@ -430,5 +430,51 @@ grains:
 :::info
 Initial provisioning will always be automatically approved. Setting auto-approve to false will only affect subsequent updates. 
 :::
+
+### environment variables
+
+The environment variables declared in the terraform grain will be available during the grain deployment as well as the grain destroy phase.
+
+In this example, terraform is using a backend of type [remote](https://developer.hashicorp.com/terraform/language/settings/backends/remote) with a custom host that requires a custom certificate.
+
+You can mount the Terraform Runner, a Kubernetes secret containing the certificate file(s) to a directory in the container, and the certificate(s) will be available for use **without** running any additional commands (like "sudo update-ca-certificates")
+
+:::tip
+*Learn how to mount secrets to a runner - [Agent Advanced Settings](/torque-agent/advanced-settings#secret-mount) *
+:::
+
+**Environment variables usage example:**
+
+```yaml
+spec_version: 2
+description: Passing environment variables to Terraform and using scripts before tf-init
+
+inputs: ...
+outputs: ...
+
+grains:
+  provision-s3-bucket:
+    kind: terraform
+    spec:  
+      source:
+        store: terraform-mono-repo
+        path: aws/s3-bucket
+      scripts:
+        pre-tf-init: 
+          source:
+            store: scripts-repo
+            path : scripts/gen-custom-remote-backend.sh
+          arguments: '{{ .inputs.org }} {{ .inputs.workspace }}'
+      agent: ...
+      inputs: ...
+      outputs: ...
+      
+      # The environment variables declared in this section will be available 
+      #  during the grain deployment as well as the grain destroy phase
+      env-vars: 
+        - SSL_CERT_FILE: /etc/tls-certs/custom-cert.crt # This is a custom SSL cert file
+        - CUSTOM_TOKEN: '{{ .params.token }}'
+
+```
 
 
