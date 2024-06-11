@@ -437,7 +437,7 @@ The environment variables declared in the terraform grain will be available duri
 
 In this example, terraform is using a backend of type [remote](https://developer.hashicorp.com/terraform/language/settings/backends/remote) with a custom host that requires a custom certificate.
 
-You can mount the Terrafor Runner, a Kubernetes secret containing the certificate file(s) to a directory in the container, and the certificate(s) will be available for use without running any additional commands (like "sudo update-ca-certificates")
+You can mount the Terraform Runner, a Kubernetes secret containing the certificate file(s) to a directory in the container, and the certificate(s) will be available for use **without** running any additional commands (like "sudo update-ca-certificates")
 
 :::tip
 *Learn how to mount secrets to a runner - [Agent Advanced Settings](/torque-agent/advanced-settings#secret-mount) *
