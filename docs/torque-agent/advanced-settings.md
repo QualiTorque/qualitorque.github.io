@@ -66,3 +66,55 @@ The value may be set for low for dev&test use cases, and high for production env
 **Secret mount** - key-values pairs of Secret name to mount path to set on the runner pod. This can be useful for a mounting a certificate, located in a Kubernetes secret, to a directory in the container. It will affect all runners in the cluster.
 
 ![agent-advanced-settings](/img/k8s-advanced-settings-secrets.png)
+
+### pod labels
+
+Similar to Environment Variables and Secret Mounts, Torque allows you to specify labels that will be applied to the runner pods. These labels can be useful for various purposes, such as identifying and grouping pods, applying network policies, or integrating with external tools that rely on labels.
+
+To configure runner pod labels, navigate to **Administration** > **Agents**, and select the desired agent. In the agent's details panel, click on the three-dot menu and select "Edit Agent." Then, open the "Advanced Kubernetes Settings" dropdown.
+
+In the `Advanced Kubernetes Settings` section, you will find the `Labels` field, where you can define key-value pairs of labels to be applied to the runner pods.
+
+
+You can define runners pod labels on a grain level as well.
+
+Here's an example of how you can define labels in the Blueprint:
+
+```yaml
+spec_version: 2
+description: Deploying Helm Chart by tag version
+
+inputs:
+  agent:
+    type: agent
+
+grains:
+  tiaa-standard-helm-chart:
+    kind: helm
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+        kubernetes:
+          pod-labels:
+            - app: quali-torque
+            - app.kubernetes.io/managed-by: Helm
+            - app_cmdb_id: A1755468
+            - app_family: cloud_product_mgmt
+            - app_pod_name: quali-torque
+            - app_version: 2.0.7113607701
+            - assignment_group: DL_IAD_Development_Operations
+            - container_name: quali-torque
+            - platform_short_name: cloud_product_mgmt
+            - support_escalation_group: DL_IAD_Development_Operations
+            - version: 2.0.7113607701
+```
+
+In the above example, the `pod-labels` section under `kubernetes` defines a list of key-value pairs that will be applied as labels to the runner pods.
+
+:::note
+- Labels are applied to all runner pods created by the agent, regardless of the environment or blueprint.
+- Changes to the labels will only take effect for new environments. Existing environments will retain the labels configured at the time of launch.
+- Labels should be configured by the cluster administrator or someone with appropriate permissions, as they can impact the behavior and management of pods in the cluster.
+:::
+
+Using labels can help you organize and manage your runner pods more effectively. You can leverage labels for various purposes, such as filtering, grouping, or applying policies to specific sets of pods. Additionally, labels can be used for integration with external tools or services that rely on label selectors for their operations.
