@@ -170,8 +170,100 @@ grains:
             - test1
             - test2
 ```
+**Extracting outputs using scripts**
 
-Here's a new section covering the "command-arguments" feature for the Helm Grain:
+This Blueprint is designed to deploy the MLflow platform, an open-source platform for managing the end-to-end machine learning lifecycle, using a Helm chart. 
+
+```yaml
+spec_version: 2
+description: |
+  MLflow provides an open-source platform to manage the end-to-end machine learning lifecycle. Key capabilities include experiment tracking, model management, model deployment, generative AI support, model evaluation, and integration with popular libraries. It enables data scientists to streamline ML development, maintain lineage, and operationalize models consistently across environments.
+
+inputs:
+  namespace:
+    type: string
+  admin-password: 
+    type: string
+    default: 'admin'
+    sensitive: true
+  agent:
+    type: agent
+    default: 'ml-agent'
+
+outputs:
+  URL: 
+    value: 'http://{{.grains.mlflow.scripts.post-helm-install.outputs.url}}'
+    kind: link
+    quick: true
+  credentials:
+    value: 'user / {{ .inputs.admin-password }}'
+    quick: true
+
+grains:
+  mlflow:
+    kind: helm
+    spec:
+      source:
+        store: ml-repo
+        path: helm/mlflow
+      target-namespace: '{{ .inputs.namespace }}'
+      agent:
+        name: '{{ .inputs.agent }}'
+      inputs:
+      - nameOverride: '{{ envid | downcase }}'
+      - tracking.auth.password: '{{ .inputs.admin-password }}'
+      scripts:
+        post-helm-install:
+          source:
+            store: ml-repo
+            path:  scripts/get-url.sh
+          arguments: '{{ envid | downcase }} {{ .inputs.namespace }}'
+          outputs:
+            - url
+      commands:
+      - dep up helm/mlflow
+```
+
+**get-url.sh**
+
+```shell
+echo "Getting url service address"
+
+export RELEASE_NAME=$1
+export NAMESPACE=$2
+export url=$(kubectl get service -n $NAMESPACE | grep $RELEASE_NAME | grep LoadBalancer | awk '{print $1}' | xargs kubectl get service -n $NAMESPACE --no-headers | awk '{print $4}')
+
+echo url=$url
+```
+
+Let's break down the different sections of the Blueprint:
+
+1. **Inputs**:
+   - `namespace`: A string input that specifies the Kubernetes namespace where the MLflow deployment will be created.
+   - `admin-password`: A sensitive string input that sets the password for the admin user in the MLflow deployment.The default value is `'admin'`.
+   - `agent`: An agent input that specifies the name of the Kubernetes agent to be used for the deployment. The default value is `'ml-agent'`.
+
+2. **Outputs**:
+   - `URL`: A link output that provides the URL to access the deployed MLflow instance. It uses the `post-helm-install` script's output (`url`) to generate the URL.
+   - `credentials`: A quick output that displays the credentials (user/password) for accessing the MLflow instance.
+
+3. **Grains**:
+   - `mlflow`: A Helm grain that defines the specifications for deploying the MLflow Helm chart.
+     - `source`: Specifies the location of the Helm chart repository (`ml-repo`) and the path to the MLflow Helm chart (`helm/mlflow`).
+     - `target-namespace`: The Kubernetes namespace where the deployment will be created, using the `namespace` input value.
+     - `agent`: The name of the Kubernetes agent to be used, using the `agent` input value.
+     - `inputs`: A list of input values to be passed to the Helm chart during installation.
+       - `nameOverride`: Overrides the name of the Helm release with the environment ID (in lowercase).
+       - `tracking.auth.password`: Sets the password for the admin user, using the `admin-password` input value.
+     - `scripts`:
+       - `post-helm-install`: A script that runs after the Helm chart installation.
+         - `source`: Specifies the location of the script (`ml-repo` repository and `scripts/get-url.sh` path).
+         - `arguments`: Passes the environment ID (in lowercase) and the namespace as arguments to the script.
+         - `outputs`: Captures the `url` output from the script, which is used in the `URL` output.
+     - `commands`:
+       - `dep up helm/mlflow`: A command that runs the `dep` dependency management tool to update the dependencies for the MLflow Helm chart.
+
+In summary, this Blueprint automates the deployment of the MLflow platform using a Helm chart. It allows you to specify the namespace, admin password, and the Kubernetes agent to be used. After the deployment, it provides the URL and credentials for accessing the MLflow instance. Additionally, it includes a `post-helm-install` script that retrieves the URL for the deployed MLflow instance and outputs it as a link.
 
 ### command-arguments
 
