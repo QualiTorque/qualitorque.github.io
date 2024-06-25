@@ -133,11 +133,11 @@ grains:
     kind: terraform
     spec:
       ...
-    backend:
-      type: "s3"
-      bucket: "my-bucket-name"
-      region: "us-east-1"
-      key-prefix: "folder1/folder2"
+      backend:
+        type: "s3"
+        bucket: "my-bucket-name"
+        region: "us-east-1"
+        key-prefix: "folder1/folder2"
 ``` 
 
 __Properties__:
