@@ -62,6 +62,7 @@ inputs:
 outputs:
   tf_output: 
     value: '{{ .grains.tf1.outputs.output2 }}'
+    quick: true
     
 grains:
   tf1:
