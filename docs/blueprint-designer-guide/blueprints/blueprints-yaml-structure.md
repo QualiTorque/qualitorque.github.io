@@ -509,7 +509,7 @@ The auto-retry element is optional . If not present, it defaults to "true". Can 
 ## workspace-directories
 
 :::note
-The `workspace-directories` is supported only for Helm grains at the moment.
+The `workspace-directories` is supported for all grain types.
 :::
 
 The `workspace-directories` section allows you to specify a list of source repositories that will be checked out and made available in the workspace during the deployment process. These repositories can contain files that are required, such as configuration files, scripts, or any other supporting files.
