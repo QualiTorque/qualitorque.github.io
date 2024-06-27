@@ -117,6 +117,8 @@ grains:
       files:
         - source: my_scripts_repo
           path: scripts/script.sh
+          branch: my-branch # optional
+          commit: d39c5737f2fa999c20f12d09c5b46a4f67f47b98 # optional
       activities:
         deploy:
           commands:
