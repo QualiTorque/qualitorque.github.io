@@ -406,7 +406,7 @@ In order to use the built-in workflows, a `built-in` field is required and under
 
 ```yaml
 spec_version: 2
-description: manual blueprint for delete AWS RDS resource action
+description: This workflow pauses an EKS cluster on-demand
 
 workflow:
   scope: env
