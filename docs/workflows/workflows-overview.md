@@ -5,7 +5,9 @@ title: Torque Workflows
 
 ## Workflow
 
-Workflows in Torque are a powerful way to automate and orchestrate complex processes. They allow you to define a series of actions and steps that are executed in a specific order. Workflows can be triggered by events or scheduled to run at specific times.
+Workflows are a powerful way to automate and orchestrate complex processes. They allow you to define a series of actions and steps that are executed in a specific order. Workflows can be triggered by events or scheduled to run at specific times.
+
+Workflow discovry is done in the same way of Blueprints. The yaml needs to be under the `blueprints/` directory in the repository.
 
 The Workflow YAML standard is similar to the Blueprint standard. The only addition to the Workflow specification is the the `workflow` block.
 
@@ -26,7 +28,7 @@ The `scope` field in a Torque workflow determines where the workflow is availabl
 1. `env`: Workflows with this scope are available at the environment level. This means that they can be triggered and executed for the entire environment. These workflows can be used to automate and orchestrate processes that involve multiple resources within the environment.
 
 2. `env_resource`: Workflows with this scope are available at the resource level. The availability of these workflows is based on the resource type defined in the `label-selector` field. Only resources that match the specified resource type will have access to these workflows. This allows for more granular control and customization of workflows based on specific resource types.
-For examle:
+For example:
 ```yaml showLineNumbers
 spec_version: 2
 description: This Resource Workflow will ...
@@ -210,26 +212,27 @@ Here is an example of a `contract.json` file:
 }
 ```
 
-### Workflow Triggers
+### Triggers
 
 Workflows can be triggered by various types of events or schedules:
-
-1. `env-event`: Environment events can be events such as drift detected, updates detected, approval requests, and more. The events include:
-   - Drift Detected
-   - Updates Detected
-   - Approval request: `approval_approved`, `approval_denied`, `approval_canceled`
-   - Environment Deployed
-   - Environment Ended
-   - Environment Launched
-   - Environment Active With Error
-   - Environment Ending Failed
-   - Environment Force Ended
-   - Environment Extended
-   - Collaborator Added
-   - Environment Idle
-
-2. `cron`: Schedules based on cron expressions.
-3. `manual`: Manually triggered workflows, optionally restricted to specific user groups.
+1. `cron`: Schedules based on cron expressions.
+   - `overridable`: Optional field to allow end-users to override the cron
+2. `manual`: Manually triggered workflows, optionally restricted to specific user groups.
+   -  `groups`: Optional field to allow only users in the specified groups to run the workflow
+3. `env-event`: Environment events can be events such as drift detected, updates detected, approval requests, and more. The events include:
+   - `Drift Detected`
+   - `Updates Detected`
+   - `Approval Request Approved`
+   - `Approval Request Denied`
+   - `Approval Request Cancelled`
+   - `Environment Ended`
+   - `Environment Launched`
+   - `Environment Active With Error`
+   - `Environment Ending Failed`
+   - `Environment Force Ended`
+   - `Environment Extended`
+   - `Collaborator Added`
+   - `Environment Idle`
 
 ```yaml
 spec_version: 2
@@ -240,23 +243,24 @@ workflow:
 
 // highlight-start
   triggers:
-  - type: env-event
-    events: ['drift-detected','updates-detected'] 
+    - type: env-event
+      events:
+        - 'Approval Request Approved'
+        - 'Approval Request Cancelled'
 
-  - type: cron 
-    cron: '0 22 * * *' # every day at 22:00
-    overridable: true # Allow end-users to override the cron
+    - type: cron 
+      cron: '0 22 * * *' # every day at 22:00
+      overridable: true # Allow end-users to override the cron
 
-  - type: manual 
-    groups: ['Admins'] # Optional, allow only users in the "Admin" group to run the workflow
+    - type: manual 
+      groups: # Optional, allow only users in the "Admin" group to run the workflow
+        - 'Admins' 
 // highlight-end
    
 inputs: ...
 outputs: ...
 grains: ...
 ```
-
-
 
 ### YAML 
 
@@ -371,52 +375,86 @@ Playbook example:
 Torque provides some out-of-the-box workflows for you to use.
 
 :::note
-All the built-in workflows are `Ansible` based and available here:
+All the built-in workflows are `Ansible` based and available here: https://github.com/QualiTorque/torque-actions
 :::
 
-In order to use the built-in workflows, a `built-in` field is required. 
+In order to use the built-in workflows, a `built-in` field is required and under source.path you need to point to the relevat action. E.g.:
+```yaml
+      built-in: true
+      source:
+        path: https://github.com/QualiTorque/torque-actions.git//resource/<action>.yaml
+```
 
-The list of the `built-in` workflows are:
-- `aws-pause-eks-tf`
-- `aws-pause-eks-tf`
+**The list of the available actions:**
+- `aws-power-on-ec2-tf`: This workflow is used to power on an EC2 instance in AWS that was provisioned using Terraform.
+- `aws-power-off-ec2-tf`: This workflow is used to power off an EC2 instance in AWS that was provisioned using Terraform.
+- `aws-restart-ec2-tf`: This workflow is used to restart an EC2 instance in AWS that was provisioned using Terraform.
+- `azure-power-on-vm-tf`: This workflow is used to power on a virtual machine in Azure that was provisioned using Terraform.
+- `azure-power-off-vm-tf`: This workflow is used to power off a virtual machine in Azure that was provisioned using Terraform.
+- `azure-restart-vm-tf`: This workflow is used to restart a virtual machine in Azure that was provisioned using Terraform.
+- `netapp-cvo-azure-power-on-vm-tf`: This workflow is used to power on a NetApp Cloud Volumes ONTAP virtual machine in Azure that was provisioned using Terraform.
+- `netapp-cvo-azure-deallocate-vm-tf`: This workflow is used to deallocate a NetApp Cloud Volumes ONTAP virtual machine in Azure that was provisioned using Terraform.
+- `netapp-cvo-azure-restart-vm-tf`: This workflow is used to restart a NetApp Cloud Volumes ONTAP virtual machine in Azure that was provisioned using Terraform.
+- `aws-temp-stop-rds-tf`: This workflow is used to temporarily stop an RDS instance in AWS that was provisioned using Terraform.
+- `aws-delete-rds-tf`: This workflow is used to delete an RDS instance in AWS that was provisioned using Terraform.
+- `azure-delete-mariadb-tf`: This workflow is used to delete a MariaDB server in Azure that was provisioned using Terraform.
+- `azure-delete-mysql-tf`: This workflow is used to delete a MySQL server in Azure that was provisioned using Terraform.
+- `azure-delete-postgresql-tf`: This workflow is used to delete a PostgreSQL server in Azure that was provisioned using Terraform.
+- `azure-delete-flexible-mysql-tf`: This workflow is used to delete a flexible MySQL server in Azure that was provisioned using Terraform.
+- `azure-delete-flexible-postgresql-tf`: This workflow is used to delete a flexible PostgreSQL server in Azure that was provisioned using Terraform.
+- `azure-delete-mssql-tf`: This workflow is used to delete an MSSQL server in Azure that was provisioned using Terraform.
+- `azure-stop-mysql-server-tf`: This workflow is used to stop a MySQL server in Azure that was provisioned using Terraform.
+- `azure-start-mysql-server-tf`: This workflow is used to start a MySQL server in Azure that was provisioned using Terraform.
+- `azure-stop-mariadb-server-tf`: This workflow is used to stop a MariaDB server in Azure that was provisioned using Terraform.
+- `azure-start-mariadb-server-tf`: This workflow is used to start a MariaDB server in Azure that was provisioned using Terraform.
+- `azure-stop-flexible-postgresql-server-tf`: This workflow is used to stop a flexible PostgreSQL server in Azure that was provisioned using Terraform.
+- `azure-start-flexible-postgresql-server-tf`: This workflow is used to start a flexible PostgreSQL server in Azure that was provisioned using Terraform.
+- `azure-stop-flexible-mysql-server-tf`: This workflow is used to stop a flexible MySQL server in Azure that was provisioned using Terraform.
+- `azure-start-flexible-mysql-server-tf`: This workflow is used to start a flexible MySQL server in Azure that was provisioned using Terraform.
+- `azure-restart-mariadb-server-tf`: This workflow is used to restart a MariaDB server in Azure that was provisioned using Terraform.
+- `azure-restart-mysql-server-tf`: This workflow is used to restart a MySQL server in Azure that was provisioned using Terraform.
+- `azure-restart-flexible-mysql-server-tf`: This workflow is used to restart a flexible MySQL server in Azure that was provisioned using Terraform.
+- `azure-restart-flexible-postgresql-server-tf`: This workflow is used to restart a flexible PostgreSQL server in Azure that was provisioned using Terraform.
+- `azure-restart-postgresql-server-tf`: This workflow is used to restart a PostgreSQL server in Azure that was provisioned using Terraform.
+- `aws-start-rds-tf`: This workflow is used to start an RDS instance in AWS that was provisioned using Terraform.
+- `aws-power-on-ec2-cfn`: This workflow is used to power on an EC2 instance in AWS that was provisioned using CloudFormation..
+- `aws-power-off-ec2-cfn`: This workflow is used to power off an EC2 instance in AWS that was provisioned using CloudFormation..
+- `aws-restart-ec2-cfn`: This workflow is used to restart an EC2 instance in AWS that was provisioned using CloudFormation..
+- `aws-temp-stop-rds-cfn`: This workflow is used to temporarily stop an RDS instance in AWS that was provisioned using CloudFormation..
+- `aws-start-rds-cfn`: This workflow is used to start an RDS instance in AWS that was provisioned using CloudFormation..
+- `azure-pause-aks-tf`: This workflow is used to pause an AKS cluster in Azure that was provisioned using Terraform.
+- `azure-resume-aks-tf`: This workflow is used to resume an AKS cluster in Azure that was provisioned using Terraform.
+- `aws-pause-eks-tf`: This workflow is used to pause an EKS cluster in AWS that was provisioned using Terraform.
+- `aws-resume-eks-tf`: This workflow is used to resume an EKS cluster in AWS that was provisioned using Terraform.
 
+**Example of `built-in` workflow:**
 
 ```yaml
 spec_version: 2
-description: Workflow for delete AWS RDS resource action
+description: manual blueprint for delete AWS RDS resource action
 
 workflow:
   scope: env
-  label-selector: rds
+  label-selector: eks_cluster
+  triggers:
+    - type: manual
 
 inputs:
   agent:
     type: agent
-    display-style: normal
-    description: "execution host name"
-  identifier:
-    type: string
-  role_arn:
-    type: string
-outputs:
-  result: 
-    value: '{{ .grains.delete_rds.outputs.result }}'
+    default: cloud-agent
 
 grains:
-  delete_rds:
+  pause_eks:
     kind: ansible
     spec:
+// highlight-start
       built-in: true
       source:
-        store: torque-actions
-        path: resource/aws-pause-eks-tf.yaml
+        path: https://github.com/QualiTorque/torque-actions.git//resource/aws-pause-eks-tf.yaml
+// highlight-end
       agent:
-        name: '{{ .inputs.agent}}'
-      inputs:
-       - identifier: '{{ .inputs.identifier }}'
-       - arn: '{{ .inputs.role_arn }}'
-      outputs:
-       - result
+        name: '{{ .inputs.agent }}'
 ``` 
 
 :::note
