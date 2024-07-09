@@ -462,3 +462,11 @@ runnable
 decrypt
 sudo
 MLflow
+snapshotting
+EBS
+VM's
+cron
+showLineNumbers
+NetApp
+ONTAP
+deallocate
