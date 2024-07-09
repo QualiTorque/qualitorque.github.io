@@ -343,31 +343,6 @@ echo $state_tr
 export $state_tr
 ```
 
-
-This workflow runs on an Azure VM deployed with Terraform
-It extracts the power state of the VM and return it as output.
-
-A way to launch built-in actions playbooks. 
-
-Playbook example:
-```yaml
-- name: Delete Aws RDS 
-  hosts: localhost
-  connection: local
-  tasks:
-    - name: Delete aws rds instance by its ID
-      amazon.aws.rds_instance:
-        db_instance_identifier: "{{ identifier }}"
-        region: "{{ (arn | split(':'))[3] }}"
-        state: absent
-        skip_final_snapshot: true
-        wait: true
-      register: result
-    - copy:
-        content: "{{ result }}"
-        dest: qtorque_outputs.json
-```
-
 ## Torque `built-in` Workflows
 
 ### `built-in` workflows
