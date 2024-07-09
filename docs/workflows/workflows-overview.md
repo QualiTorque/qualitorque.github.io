@@ -7,7 +7,7 @@ title: Torque Workflows
 
 Workflows are a powerful way to automate and orchestrate complex processes. They allow you to define a series of actions and steps that are executed in a specific order. Workflows can be triggered by events or scheduled to run at specific times.
 
-Workflow discovry is done in the same way of Blueprints. The yaml needs to be under the `blueprints/` directory in the repository.
+Workflow discovery is done in the same way of Blueprints. The yaml needs to be under the `blueprints/` directory in the repository.
 
 The Workflow YAML standard is similar to the Blueprint standard. The only addition to the Workflow specification is the the `workflow` block.
 
@@ -378,7 +378,7 @@ Torque provides some out-of-the-box workflows for you to use.
 All the built-in workflows are `Ansible` based and available here: https://github.com/QualiTorque/torque-actions
 :::
 
-In order to use the built-in workflows, a `built-in` field is required and under source.path you need to point to the relevat action. E.g.:
+In order to use the built-in workflows, a `built-in` field is required and under source.path you need to point to the relevant action. E.g.:
 ```yaml
       built-in: true
       source:

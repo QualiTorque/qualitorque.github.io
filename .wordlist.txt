@@ -467,3 +467,6 @@ EBS
 VM's
 cron
 showLineNumbers
+NetApp
+ONTAP
+deallocate
