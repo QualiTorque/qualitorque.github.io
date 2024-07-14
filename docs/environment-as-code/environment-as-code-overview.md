@@ -27,5 +27,3 @@ Torque **Environment as code** provides an additional layer of control based on 
 
 ## Implementing Environment as Code with Torque
 Implementing Environment as Code using Torque involves discovering your infrastructure-as-code assets as blueprints and combining them using the Torque environment YAML together with metadata that will be kept and evaluated upon launch, updates and termination of the environment. Every Toruqe environment, regardless if operated in a GitOps manner or not, is managed using an environment YAML behind the scenes. Browsing to the environment YAML in the Torque self-service portal on any running environment can give a glimpse of how the YAML looks like for the specific environment launch.
-
-![Environment as Code YAML](/img/eac-yaml.png)
