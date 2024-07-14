@@ -69,7 +69,9 @@ Examples of workflows include:
 - Power-off all VMs in the environment every day at 6PM
 - Pause (scale to minimum) the dev K8s cluster every weekend
 
-To learn how to create workflows in your Torque account, click [here](governance/workflows.md).
+:::info
+To learn how to create workflows in your Torque account, click [here](workflows/workflows-overview.md).
+:::
 
 #### **Invoke actions and workflows in the environment**
 
