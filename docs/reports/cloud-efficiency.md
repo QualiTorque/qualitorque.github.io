@@ -30,7 +30,7 @@ We can now [cross-filter](/reports/using-reports#cross-filtering) by this space 
 
 ## The Realized Savings Report
 
-The Realized Savings Report provides a comprehensive overview of the cost savings achieved through the use of Torque. By employing Torque's [actions and workflows](/environment-services/Actions%20and%20workflows) after the deployment of environments, users can efficiently (manually or automatically) start and stop cloud resources within an environment when they are not in use. When resources are stopped, users avoid incurring costs, resulting in tangible savings on cloud expenses.
+The Realized Savings Report provides a comprehensive overview of the cost savings achieved through the use of Torque. By employing Torque's Workflows after the deployment of environments, users can efficiently (manually or automatically) start and stop cloud resources within an environment when they are not in use. When resources are stopped, users avoid incurring costs, resulting in tangible savings on cloud expenses.
 
 Torque actively monitors the status of resources in each environment, distinguishing between running and stopped states. The occurrences where resources are stopped, facilitated by Torque actions, contribute to the realized savings. The report offers a macroscopic view of overall savings, allowing users to comprehend the impact of their actions and workflows.
 
