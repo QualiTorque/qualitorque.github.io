@@ -470,3 +470,10 @@ showLineNumbers
 NetApp
 ONTAP
 deallocate
+kubeconfig
+CVO
+ConfigMap
+GDPR
+Explainability
+Interpretability
+DBA
