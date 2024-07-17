@@ -228,3 +228,46 @@ commands
   - "/bin/bash simple.sh"
 ```
 :::
+
+
+```yaml title="Using destroy command"
+spec_version: 2
+description: Cleanup task example
+
+inputs:
+  agent:
+    type: agent
+
+grains:
+  create_task:
+    kind: shell
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      files:
+        - source: blueprints
+          path: blueprints/workflows/scripts/create-something.sh
+      activities:
+        deploy:
+          commands:
+            - name: create-task
+              command:  'source create-something.sh'
+
+  cleanup_task:
+    kind: shell
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      files:
+        - source: blueprints
+          path: blueprints/workflows/scripts/clean-something.sh
+      activities:
+        # required to have a deploy section, even if it does nothing
+        deploy:
+          commands:
+            - "echo NOTHING-TO-DO"
+        destroy:
+          commands:
+            - name: cleanup-task
+              command:  'source clean-something.sh'
+```
