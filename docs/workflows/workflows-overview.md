@@ -219,7 +219,7 @@ Workflows can be triggered by various types of events or schedules:
    - `overridable`: Optional field to allow end-users to override the cron
 2. `manual`: Manually triggered workflows, optionally restricted to specific user groups.
    -  `groups`: Optional field to allow only users in the specified groups to run the workflow
-3. `env-event`: Environment events can be events such as drift detected, updates detected, approval requests, and more. The events include:
+3. `event`: Environment events can be events such as drift detected, updates detected, approval requests, and more. The events include:
    - `Drift Detected`
    - `Updates Detected`
    - `Approval Request Approved`
@@ -243,8 +243,8 @@ workflow:
 
 // highlight-start
   triggers:
-    - type: env-event
-      events:
+    - type: event
+      event:
         - 'Approval Request Approved'
         - 'Approval Request Cancelled'
 
