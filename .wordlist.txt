@@ -477,3 +477,5 @@ GDPR
 Explainability
 Interpretability
 DBA
+Artifactory
+Proxying

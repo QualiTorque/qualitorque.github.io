@@ -559,6 +559,86 @@ In the above example, the `cp` command copies files from the `src/main/config` d
 
 In this case, the entire repository will be checked out, and the `name` specified (`ROOT_DIR`) can be used to access the root directory in the workspace.
 
+### Working with Artifactory as Binary Repository
+
+Artifactory is a popular binary repository manager that can store and manage various types of artifacts, including Docker images, Helm charts, and other binary files. In Torque, you can use Artifactory as a source for binary files that are required during the deployment process. This can be particularly useful for scenarios such as:
+
+- Storing and managing Helm charts or other application configuration files
+- Storing and managing Terraform state files or other infrastructure-related artifacts
+- Storing and managing Docker images or other container-related artifacts
+
+**Motivation and Scope**
+
+Using Artifactory as a binary repository in Torque provides several benefits:
+
+1. **Centralized Artifact Management**: Artifactory acts as a centralized repository for all your binary artifacts, making it easier to manage and distribute them across multiple environments.
+
+2. **Version Control**: Artifactory supports versioning and tagging of artifacts, allowing you to track changes and roll back to previous versions if needed.
+
+3. **Access Control**: Artifactory provides granular access control mechanisms, allowing you to control who can access and modify specific artifacts.
+
+4. **Caching and Proxying**: Artifactory can cache and proxy remote repositories, reducing network traffic and improving performance.
+
+5. **Integration with CI/CD Pipelines**: Artifactory integrates seamlessly with various CI/CD tools, making it easier to manage artifacts throughout the software delivery pipeline.
+
+**Usage Example**
+
+To use Artifactory as a binary repository in Torque, you need to configure it as a workspace directory within your blueprint. Here's an example:
+
+```yaml title="Artifactory - Blueprint usage example"
+vm-grain:
+    kind: terraform
+    spec:
+      source:
+        store: tf-modules
+        path: aws/deploy_vm
+      agent:
+        name: '{{.inputs.agent}}'
+      inputs:
+        - name: '{{.inputs.vm_name}}'
+      workspace-directories:
+// highlight-start
+        - source:
+            name: file1            
+            store: artifactory/my-artifactory-store # working with Artifactory
+            path: helm/charts.tar.gz
+        - source:
+            name: file2
+            store: artifactory/my-artifactory
+            path: artifactory/tf/workspaces/jfrog-ws1/state.latest.json 
+// highlight-end
+        - source: 
+            name: dir1
+            store: my-repo # working with repositories
+            commit: eb7bf547f916ff11f0f95e35fb1e8c6fd6535ce1
+```
+
+In this example, we have two workspace directories (`file1` and `file2`) that are configured to use Artifactory as the source. The `store` parameter specifies the Artifactory store name, which should be prefixed with `artifactory/`. The `path` parameter specifies the path within the Artifactory store where the desired artifact is located.
+
+**Setup**
+
+To use Artifactory with Torque, you need to configure an Artifactory credential in the Credentials Store. Here's an example of how to create an Artifactory credential using the Torque REST API:
+
+```curl title="API call to setup Artifactory credentials"
+POST {{host}}/api/spaces/{{space}}/settings/credentialstore
+{
+  "name": "my-artifactory",
+  "allowed_space_names": ["Test"],
+  "cloud_identifier": "artifactory",
+  "cloud_type": "artifactory",
+  "credential_data": {
+    "server_url": "https://artifactory.jfrog.io/artifactory",
+    "token": "1234",
+    "type": "artifactory"
+  }
+}
+```
+
+In this example, we're creating an Artifactory credential named `my-artifactory` with the server URL and a token for authentication. Currently, Torque supports Artifactory token authentication.
+
+Once the Artifactory credential is configured, you can reference it in your blueprint's `workspace-directories` section using the `store` parameter, as shown in the usage example above.
+
+
 ## layout 
 
 Layout is a separate yaml that will be referenced from the blueprint yaml like so:
