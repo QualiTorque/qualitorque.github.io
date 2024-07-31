@@ -1,11 +1,11 @@
 ---
-sidebar_position: 9
+sidebar_position: 36
 title: The Terragrunt Grain
 ---
 
 # The Terragrunt Grain
 
-The Terragrunt grain is Torque's native support for Terragrunt modules. Terragrunt is a thin wrapper that provides extra tools for working with multiple Terraform modules and keeping your configurations DRY. Torque allows designers to use Terragrunt-specific features to easily orchestrate self-developed and community Terragrunt modules in a standard way and share them as building blocks.
+The Terragrunt grain is Torque's native support for Terragrunt modules. [Terragrunt](https://terragrunt.gruntwork.io/) is a thin wrapper that provides extra tools for working with multiple Terraform modules and keeping your configurations DRY. Torque allows designers to use Terragrunt-specific features to easily orchestrate self-developed and community Terragrunt modules in a standard way and share them as building blocks.
 
 ## Terragrunt Grain Specification
 
