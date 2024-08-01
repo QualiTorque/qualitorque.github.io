@@ -617,18 +617,26 @@ In this example, we have two workspace directories (`file1` and `file2`) that ar
 
 **Setup**
 
-To use Artifactory with Torque, you need to configure an Artifactory credential in the Credentials Store. Here's an example of how to create an Artifactory credential using the Torque REST API:
+To use Artifactory with Torque, you need to configure an Artifactory credential in the Credentials Store. 
 
-```curl title="API call to setup Artifactory credentials"
+In Torque portal, navigate to the `Account Settings` and to the Credentials page. Click on the `Add Credentials` button and choose `JFrog Artifactory`.
+
+Provide a `Name` and a `Description`, select the allowed `Spaces` that can use that Artifactory server, fill in the `Server URL` and the `Token` and hit the `Apply` button.
+
+![artifactory](/img/artifactory.png)
+
+You are also able to create an Artifactory credential using the Torque REST API as well. Here is an example on setting up Artifactory credentials on a space level:
+
+```curl title="API call to setup Artifactory credentials on a space level"
 POST {{host}}/api/spaces/{{space}}/settings/credentialstore
 {
-  "name": "my-artifactory",
-  "allowed_space_names": ["Test"],
-  "cloud_identifier": "artifactory",
+  "name": "my-artifactory",             # need to change
+  "allowed_space_names": ["{{space}}"], # need to change
+  "cloud_identifier": "artifactory", 
   "cloud_type": "artifactory",
   "credential_data": {
-    "server_url": "https://artifactory.jfrog.io/artifactory",
-    "token": "1234",
+    "server_url": "https://artifactory.jfrog.io/artifactory", # need to change
+    "token": "1234",                    # need to change
     "type": "artifactory"
   }
 }
