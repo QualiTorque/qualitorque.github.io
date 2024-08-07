@@ -347,3 +347,62 @@ grains:
 ```
 
 In this example, the `command-arguments: '--version 3.0.0'` line specifies that when deploying the nginx-simple Helm chart, the `helm upgrade` command should include the `--version 3.0.0` flag.
+
+### Working with Helm Charts Registries
+
+Managing Helm charts through registries allows for centralized storage and version control of Kubernetes application packages. By using registries, teams can efficiently share and deploy consistent application versions across environments. This approach enhances security, simplifies updates, and improves collaboration.
+
+#### Use Case
+
+Consider a scenario where your organization needs to deploy applications across multiple environments, each requiring different configurations. By utilizing Helm charts stored in a registry, such as Artifactory or a Git repository, you can streamline the deployment process, ensuring that the correct versions and configurations are applied consistently.
+
+The following example demonstrates how to configure Helm grains to pull charts from different registries, ensuring flexibility and control over your deployments.
+
+```yaml
+spec_version: 2
+
+inputs:
+  agent:
+    type: agent
+  source_name:
+    default: 'account-artifactory'
+  chart_name:
+    default: 'app-0.1.0.tgz'
+
+grains:
+  helm-artifactory:
+    kind: helm
+    spec:
+      source:
+        path: helm/{{ .inputs.chart_name }}
+        store: artifactory/{{ .inputs.source_name }}
+        resource-type: helm-chart
+      agent:        
+        name: '{{.inputs.agent}}'
+      inputs:
+        - replicaCount: 3
+        - nameOverride: {{ .inputs.chart_name }}
+ 
+  helm-bitnami:
+    kind: helm
+    spec:
+      source:
+        path: kubernetes-event-exporter
+        store: artifactory/public-bitnami # points to credentials
+        resource-type: helm-chart
+        chart-version: 3.0.0 # optional. chart version to install
+      agent:        
+        name: '{{ .inputs.agent }}'
+      inputs:
+        - replicaCount: 2
+ 
+  helm-git:
+    kind: helm
+    spec:
+      source:
+        path: https://github.com/my-org/my-helm-repo.git//helm/nginx-test
+      agent:
+        name: '{{.inputs.agent}}'
+      commands:
+        - dep up helm/nginx-test
+```
