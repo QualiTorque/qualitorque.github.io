@@ -14,7 +14,7 @@ Before you start on your Torque journey, please take a moment to familiarize you
     * **Repository** - A git-based folder containing the IaC assets, container files and multi-asset blueprints that make up the Torque self-service catalog, and are consumed by your end-users. For details, see [Architecture](/overview/architecture).
 
 * **Policies** - Torque policies allow setting an additional layer of governance on top of blueprints and the environments they deploy. These include:
-    * [Blueprint policies](/blueprint-designer-guide/Policies) allow blueprint designers to set maximum duration guardrails (for high-cost environments perhaps).
+    * [Blueprint consumption policies](/blueprint-designer-guide/blueprint-consumption-policies) allow blueprint designers to set maximum duration guardrails (for high-cost environments perhaps).
     * [Policies](/governance/policies) allow the Torque account admin to set account-level limitations on AWS-created environments.
 
 * [**Space**](/getting-started/Getting%20starting%20with%20terraform) - A logically separate area that contains an association to one or more agents, asset repositories, a blueprint repository and Ci/CD plugins. Spaces can be used to logically separate between teams, projects, or even development lifecycle stages and allow the relevant end-users, administrators and blueprint designers to access only the relevant blueprints and environments.

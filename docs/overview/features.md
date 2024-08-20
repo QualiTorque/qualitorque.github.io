@@ -7,7 +7,7 @@ title: Main Features and Capabilities
 
 * __Blueprint YAML__: Environment plans are stored in YAML files. Torque can generate and single-asset blueprint YAMLs for each IaC or container technology file in your repository, while multi-asset blueprints can easily be written in YAML files stored in your source control repositories.
     * Liquid: See Parameter Store below.
-* __Policies__: [Limit environment durations](/blueprint-designer-guide/Policies) and apply [OPA security policies](/governance/policies) to environments.
+* __Policies__: [Limit environment durations](/blueprint-designer-guide/blueprint-consumption-policies) and apply [OPA security policies](/governance/policies) to environments.
 * __Spaces__ and __Role-based Access Control (RBAC)__: Set up a space for different business units, teams, and projects. Assign assets, [users and roles](/governance/roles-and-permissions) to the users, limiting capabilities based on their needs and access only to the environments that apply to that space. 
 * Secret management in Torque: Torque manages Secrets in 3 different ways 
     * __Parameter Store__: Torque contains a built-in Parameter Store that allows space admins and account admins to store both sensitive and non-sensitive key-value based information in a centralized location that can be accessed by blueprint designers via the Liquid engine. 
