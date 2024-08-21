@@ -5,6 +5,8 @@ title: Environment Labels
 
 ## Overview
 Environment Labels are metadata tags that can be assigned to different environments within your deployment infrastructure. These labels serve as values or key-value pairs that help organize, manage, and filter environments efficiently. By attaching labels to environments, users can easily filter, categorize and identify environments based on various criteria such as purpose, region, or application stage.
+> ![img](/img/env-labels.png)
+
  
 ## Concept
 Each environment label is a value or a combination of a key and a value. For example, a label could be `purpose:production`, where "purpose" is the key and "production" is the value. Another example can be 'Kubernetes' as a value of a label indicating the environment is a Kubernetes cluster.
@@ -25,9 +27,13 @@ You can filter and search environments using labels. This is particularly useful
 Labels can be utilized in scripts or automation tools to perform operations on specific groups of environments. For instance, you can create scripts that only affect environments labeled as `env:staging`.
  
 ## Usage
-__Creating and Assigning Labels__: Labels can be assigned when creating a new environment or added to existing environments via the Torque dashboard or API.
+### Creating and Assigning Labels
+Labels can be assigned when creating a new environment or added to existing environments via the `Torque dashboard` or `API`.
+> ![img](/img/env-labels-create.png)
 
-__Best Practices__: It's recommended to establish a consistent labeling strategy within your organization to ensure labels are meaningful and useful. Agree on standard keys and values that everyone should use.
+### Best Practices
+* It's recommended to establish a consistent labeling strategy within your organization to ensure labels are meaningful and useful.
+* Agree on standard keys and values that everyone should use.
 
 There are a few system reserved labels in Torque that are used to mark certain states. Here is a list of the system labels:
 * `Drift Detected`
