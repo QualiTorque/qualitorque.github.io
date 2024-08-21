@@ -3,6 +3,11 @@ sidebar_position: 16
 title: Environment Labels
 ---
 
+:::warning
+**This feature is currently in private preview.**
+Please contact our support team for more information on how to access and utilize this feature.
+:::
+
 ## Overview
 Environment Labels are metadata tags that can be assigned to different environments within your deployment infrastructure. These labels serve as values or key-value pairs that help organize, manage, and filter environments efficiently. By attaching labels to environments, users can easily filter, categorize and identify environments based on various criteria such as purpose, region, or application stage.
 > ![img](/img/env-labels.png)
