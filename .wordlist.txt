@@ -482,3 +482,5 @@ Proxying
 Terragrunt
 JSONPath
 JIT
+ubuntu
+barebone
