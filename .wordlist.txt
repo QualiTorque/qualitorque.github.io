@@ -480,3 +480,5 @@ DBA
 Artifactory
 Proxying
 Terragrunt
+JSONPath
+JIT
