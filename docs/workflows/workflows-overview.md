@@ -27,16 +27,18 @@ The `scope` field in a Torque workflow determines where the workflow is availabl
 
 1. `env`: Workflows with this scope are available at the environment level. This means that they can be triggered and executed for the entire environment. These workflows can be used to automate and orchestrate processes that involve multiple resources within the environment.
 
-2. `env_resource`: Workflows with this scope are available at the resource level. The availability of these workflows is based on the resource type defined in the `label-selector` field. Only resources that match the specified resource type will have access to these workflows. This allows for more granular control and customization of workflows based on specific resource types.
+2. `env_resource`: Workflows with this scope are available at the resource level. The availability of these workflows is based on the resource type defined in the `resource-types` field. Only resources that match the specified resource type will have access to these workflows. This allows for more granular control and customization of workflows based on specific resource types.
 For example:
 ```yaml showLineNumbers
 spec_version: 2
 description: This Resource Workflow will ...
 
+3. `labels-selector`: 
+
 // highlight-start
 workflow:
   scope: env_resource
-  label-selector: aws_instance
+  resource-types: aws_instance
 // highlight-end
 
 

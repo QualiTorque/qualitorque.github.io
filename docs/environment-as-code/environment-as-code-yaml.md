@@ -45,10 +45,12 @@ Here's an example of a Torque environment YAML file:
 spec_version: 2
 
 environment:
-  environment_name: eac-env
-  description: eac example
+  environment_name: eac-env-name
   owner_email: me@quali.com
   state: active
+  env-labels:
+    - production
+    - ML
     
 inputs:
   agent:
