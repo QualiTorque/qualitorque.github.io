@@ -71,21 +71,26 @@ Torque role: Space Developer
 
 To use an input source in a blueprint:
 
-**1. Define the Input:** In your blueprint YAML, define an input with the type input-source.
-**2. Reference the Source:** Use the source-name attribute to reference the created input source.
-**3. Specify Dependencies (if any):** Use the depends-on and overrides attributes to manage dynamic dependencies, such as bucket names or object keys.
-**4. Retrieve and Use Values:** The blueprint will now dynamically retrieve and display the values from the specified input source when launching the environment.
-Example YAML snippet:
-```yaml
+1. **Define the Input:** In your blueprint YAML, define an input with the type input-source.
+2. **Reference the Source:** Use the source-name attribute to reference the created input source.
+3. **Specify Dependencies (if any):** Use the depends-on and overrides attributes to manage dynamic dependencies, such as bucket names or object keys.
+4. **Retrieve and Use Values:** The blueprint will now dynamically retrieve and display the values from the specified input source when launching the environment.
 
+**Example YAML snippet** - in this example the blueprint input `bucket` is used to dynamically set the source bucket from which the `object` input's allowed values list will be populated:
+
+```yaml
 inputs:
   bucket:
     type: string
   object:
+    # set the object input to be an input-source type input
     type: input-source
+    # define which input source to use
     source-name: bucket-objects-source
+    # create a dependency on the "bucket" input to allow its value to be used to set the input source's source bucket
     depends-on:
     - bucket
+    # because "bucket-objects-source" allows overriding of the "bucket_name" attribute, we can define its new value in the blueprint yaml
     overrides:
     - bucket_name: '{{ .inputs.bucket }}'
 
