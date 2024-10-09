@@ -1,8 +1,8 @@
 ---
 sidebar_position: 2
-title: Getting Started with Terraform
+title: Provision Terraform
 ---
-__Torque Control plane__ offers centralized orchestration and management for Terraform and other IaC tools. In this guide, we will go over some of Torque basic features allowing quick onboarding of Terraform modules into the platform, standardization of Terraform automation using blueprints and securing deployment process using tagging, policies and RBAC.
+__Torque Control Plane__ offers centralized orchestration and management for Terraform and other IaC tools. In this guide, we will go over some of Torque basic features allowing quick onboarding of Terraform modules into the platform, standardization of Terraform automation using blueprints and securing deployment process using tagging, policies and RBAC.
 
 In this quick-start guide, we will cover the following topics:
 1. Create a new Torque Space
@@ -12,7 +12,7 @@ In this quick-start guide, we will cover the following topics:
 
 > NOTE: This guide will focus on AWS and Azure Terraform workloads, [click here](/overview/supported-platforms.md) for more information about Torque supported platform.
 
-## Step #1: Create a new Torque Space
+## Step #1: Create a space
 :::info
 __Spaces__ are logically separate area that contains an association to one or more agents, asset and blueprint repositories and set of permitted users. Spaces can be used to logically separate between teams, projects, or even development lifecycle stages and allow the relevant end-users, administrators and blueprint designers to access only the relevant blueprints and environments.
 :::
@@ -26,7 +26,7 @@ __Spaces__ are logically separate area that contains an association to one or mo
 > ![Create Space](/img/getting-space.png)
 
 
-## Step #2: Onboard a Git Repository & Auto-Discover automation assets
+## Step #2: Connect a repository
 Now, that you have a new space configured, we will associate a repository to the space and generate blueprints using the automation-assets that will be discovered by Torque in that repository. We recommend using your-own repository hosted in one of the supported Git Providers. For using on-prem/hosted versions of one of the supported (Version Control System)) providers, see [Repository Setup](/admin-guide/source-control/source-control-github).
 
 1. In the __repository onboarding__ wizard, choose your VCS provider, provide the repository URL and click "Connect". Torque will open a new windows where you will be requested to authenticate to the VSC provider. VCS providers work differently, but usually, a token will be generated for your user and Torque will use that for any communication with that VCS. 
@@ -38,7 +38,7 @@ Now, that you have a new space configured, we will associate a repository to the
 
 > ![Onboard Repository](/img/getting-repository-ongoarding.gif)
 
-## Step #3: Modify blueprint to use the Quali Hosted agent
+## Step #3: Set Quali Agent
 In this step, we will configure our newly created blueprint (Created in step #2) to use "Quali Hosted Agent"
 
 :::info
@@ -77,6 +77,7 @@ The Quali-hosted agent needs your __Azure credentials__ to provision the environ
 
 1. Add the following inputs under the input section of the blueprint:
 ```yaml
+inputs:
   ARM_CLIENT_ID:
     type: string
   ARM_CLIENT_SECRET:
@@ -95,7 +96,7 @@ The Quali-hosted agent needs your __Azure credentials__ to provision the environ
         - ARM_TENANT_ID: '{{ .inputs.ARM_TENANT_ID }}'        
 ```
 
-## Step #4: Launch your blueprint
+## Step #4: Launch an Environment
 
 At this point, you have done the following:
 * Created a new space
@@ -108,9 +109,6 @@ At this point, you have done the following:
 2. Navigate to the __Catalog__ and click the __Launch__ button on the blueprint card.
 3. Specify the environment's name, duration, tags and inputs - note that some of the inputs may be the authentication information required for AWS or Azure as describes in step #3.
 4. Optionally assign collaborators to the environment. While everyone in the space has "read" permission to its environments, only the environment's owner and collaborators can perform actions that change the environment: extend end the environment, reconcile or update resource changes, etc. When launching the environment, the new owner/collaborators will receive a notification email if you have [Notifications](/admin-guide/notifications) configured in the space.
-5. Finally ,click __Launch__.
-    
-6. Wait until the environment is active and use as needed. URLs to the environment's applications are typically provided as outputs - these can be found in the environment's __Quicklinks__ on the right, or in the __Parameters__ pane.
-   > ![Locale Dropdown](/img/outputs.gif)
+5. Finally, click __Launch__.
+6. Wait until the environment is active and use as needed. URLs to the environment's applications are typically provided as outputs - these can be found in the environment's __Quicklinks__ on the right pane.
 7. Check out the __Resources__ pane to get details about your environment's resources. Use this tab to understand what assets each grain spun up, get connection details to specific resources, and more.
-   > ![Locale Dropdown](/img/resource-details.gif)
