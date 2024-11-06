@@ -48,10 +48,10 @@ environment:
   environment_name: eac-env-name
   owner_email: me@quali.com
   state: active
-  env-labels:
-    - production
-    - ML
-    
+  labels:
+    label-key: label-value
+    label-key2: # for "value only" labels
+     
 inputs:
   agent:
     type: agent
