@@ -50,7 +50,7 @@ environment:
   state: active
   labels:
     label-key: label-value
-    label-key2: # for key with not value
+    label-key2: # for "value only" labels
      
 inputs:
   agent:
