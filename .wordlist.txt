@@ -484,3 +484,4 @@ JSONPath
 JIT
 ubuntu
 barebone
+curation
