@@ -9,7 +9,7 @@ In the below article, we will cover the following steps for importing cloud reso
 1. Generate **Terraform code (modules)** representing your existing deployed resources in the cloud.
 2. Generate **Terraform state file** that represent the deployment status.
 3. Generate **Torque blueprint** that uses the Terraform code as an automation grain. 
-4. Import your cloud resources into a fully managed **Torque nvironment**.
+4. Import your cloud resources into a fully managed **Torque Environment**.
 
 :::info
 NOTE: This guide will focus on AWS workloads as an example, but it's possible to use it for other cloud providers (cloud and on-prem), network providers, monitoring systems and more.
