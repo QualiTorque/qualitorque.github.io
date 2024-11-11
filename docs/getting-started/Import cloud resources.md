@@ -6,10 +6,10 @@ title: Import Cloud Resources
 __Torque Control plane__ helps you to accelerate migration of existing cloud resources into fully managed Torque environments with a few simple steps regardless of how the resources were deploy in the cloud in the first place. 
 
 In the below article, we will cover the following steps for importing cloud resources into Torque using Terraform generation:
-1. Generate **Terraform code(modules)** representing your existing deployed resources in the cloud.
+1. Generate **Terraform code (modules)** representing your existing deployed resources in the cloud.
 2. Generate **Terraform state file** that represent the deployment status.
 3. Generate **Torque blueprint** that uses the Terraform code as an automation grain. 
-4. Import your cloud resources into a fully managed **Torque environment**.
+4. Import your cloud resources into a fully managed **Torque nvironment**.
 
 :::info
 NOTE: This guide will focus on AWS workloads as an example, but it's possible to use it for other cloud providers (cloud and on-prem), network providers, monitoring systems and more.
@@ -19,102 +19,103 @@ NOTE: This guide will focus on AWS workloads as an example, but it's possible to
 ![import flow](/img/tf-export.png)
 
 
+# Importing an Environment into Torque
 
-## Step #1: Export your cloud resources to Terraform format using [**Terraformer**](https://github.com/GoogleCloudPlatform/terraformer)
-:::info
-[**Terraformer**](https://github.com/GoogleCloudPlatform/terraformer) is an open source tool created by the Waze SRE team at Google. Terraformer is a CLI tool that generates tf/json and tfstate files based on existing infrastructure (reverse Terraform). Terraformer supports large number of providers, see full list [here](https://github.com/GoogleCloudPlatform/terraformer/tree/master/docs)
-:::
+This guide walks you through the process of importing an existing environment into Torque, starting from resource curation to final import using the API. Follow these steps to successfully onboard an environment into Torque.
 
-1. Install Terraformer using the following [installation instructions](https://github.com/GoogleCloudPlatform/terraformer/tree/master/docs)
-2. Make sure to get authenticated to your cloud provider/service of choice. This can be done using the dedicated cloud CLI or using environment variables. For example, when exporting AWS resources, you can authenticate by adding AWS_ACCESS_KEY_ID,  AWS_SECRET_ACCESS_KEY and AWS_SESSION_TOKEN to the terminal environment variables.
-3. Execute terraformer with your desire command line parameters to export the desire cloud resource. It's possible to export only a subset of resources by type, name or other filters.
+### Step 1: Curate and codify a Resource
+- Start by curating the resource you want to manage in Torque. After curating, you'll obtain the Terraform files and the corresponding `tfstate` file.
 
-```cli
-  terraformer import aws --resources=vpc,subnet --filter=vpc=myvpcid --regions=eu-west-1
-```
+### Step 2: Edit the Providers File
+- Open the `providers` file within the Terraform files and remove the following sensitive credentials:
+  - Access Key
+  - Secret Key
+  - Token
 
-The exported files will be placed in your working directory and will include the Terraform code and the state file for the cloud resources.
+### Step 3: Upload Terraform Files to Git
+- Upload all the Terraform files, excluding the `tfstate` file, to your Git repository. For this example, place them under the folder `terraform/curate-example`.
 
-![import flow](/img/exported-tf.png)
-
-
-:::info
-When authentication to AWS using SSO, make sure to add --profile="" to your CLI command to properly authenticate to AWS using Terraformer
-:::
+> ![import flow](/img/exported-tf.png)
 
 
-## Step #2: Import Terraform configuration into Torque
-Now, that you have a code representation of your cloud resources, we will import the code and state file into Torque, this will include multiple steps:
+### Step 4: Create a Matching Blueprint
+- Create a corresponding Torque blueprint for the environment, named `curate-example.yaml`. Here's an example blueprint:
 
-1. Terraform module - Commit the Terraform module into your repository and onboard the repository to Torque. Auto-discover the terraform module to create a blueprint representation for the module. This will create a single grain blueprint that points to the generated Terraform module.
-
-```yaml
+  ```yaml
   spec_version: 2
-  description: Torque auto generated blueprint
   inputs:
     agent:
-      type: agent
-  outputs:
-    s3_aws_s3_bucket_tfer--cf-templates-1uu4hi2nxisgp-eu-west-1_id:
-      value: '{{ .grains.s3.outputs.aws_s3_bucket_tfer--cf-templates-1uu4hi2nxisgp-eu-west-1_id }}'
-      quick: true
-    s3_aws_s3_bucket_tfer--torque-demo-webapp-bucket-0anevfcj2sfv_id:
-      value: '{{ .grains.s3.outputs.aws_s3_bucket_tfer--torque-demo-webapp-bucket-0anevfcj2sfv_id }}'
-      quick: true
+      type: 'agent'
   grains:
     s3:
-      kind: terraform
+      kind: 'terraform'
       spec:
         source:
-          store: tf-import
-          path: generated/aws/s3
+          store: 'bps'
+          path: 'terraform/curate-example'
         agent:
           name: '{{ .inputs.agent }}'
-        outputs:
-        - aws_s3_bucket_tfer--cf-templates-1uu4hi2nxisgp-eu-west-1_id
-        - aws_s3_bucket_tfer--torque-demo-webapp-bucket-0anevfcj2sfv_id
-      tf-version: 1.5.5
-```
+        inputs: []
+  ```
+- **Note**: There is no need to specify the Terraform backend in the blueprint.
 
-2. Upload the state file to your preferred Terraform backend, in this example, we've uploaded the state file to an s3 bucket.
-  
-![state in s3](/img/tfstate-aws.png)
+### Step 5: Create an S3 Bucket and upload the tfstate File
+- Create a new S3 bucket to store the `tfstate` file, which will act as the Terraform backend for state management.
+- Upload the `tfstate` file you received during the curation process to the S3 bucket created.
 
-## Step #3: Create a Torque environment using the blueprint and state file
-Using the Toruqe API, use the ["Import Using Blueprint"](https://portal.qtorque.io/api_reference/#/paths/api-spaces-space_name--environments-import_using_blueprint/post) method in the following way:
+> ![state in s3](/img/tfstate-aws.png)
 
 
-```cli
-  curl -L 'https://portal.qtorque.io/api/spaces/01-Development/environments/import_using_blueprint' \
-  -H 'Authorization: Bearer <Torque token>' \
-  -H 'Content-Type: application/json' \
+### Step 6: Use the Import API
+- To import the environment using the Torque API, make the following POST request using `curl`.
+- The API response will include the `environment-id`. After importing, you will see an import step, followed by an apply step with Torque tags applied to the environment.
+
+  ```bash
+  curl -X POST "https://api.torque.quali.com/api/spaces/{space_name}/environments/import_using_blueprint" \
+  -H "Content-Type: application/json" \
   -d '{
-      "environment_name": "imported-from-cloud",
-      "source": {        
-          "blueprint_name": "s3",
-          "repository_name": "tf-import",
-          "branch": "master"
-      },
-      "inputs": {
-          "agent": "demo-dev"
-      },
-      "grains": [
-          {
-              "kind": "terraform",
-              "name": "s3_bucket",            
-              "backend": {
-                  "type": "s3",
-                  "bucket": "terraform-production-state",
-                  "region": "eu-central-1",
-                  "key": "terraform.tfstate"
-              }
-          }
-      ]
+    "source": {
+      "blueprint_name": "curate-example",
+      "repository_name": "bps"
+    },
+    "environment_name": "my-env",
+    "owner_email": "email@quali.com",
+    "grains": [
+      {
+        "kind": "terraform",
+        "name": "s3",
+        "agent": {
+          "name": "agent-name"
+        },
+        "backend": {
+          "type": "s3",
+          "bucket": "my-state-bucket",
+          "region": "eu-west-1",
+          "key": "terraform/terraform.tfstate"
+        }
+      }
+    ],
+    "inputs": {
+      "agent": "agent-name"
+    }
   }'
-```
+  ```
+
+### Important Considerations
+- **Destroying Resources**: If you are importing a resource that already exists in the cloud, keep in mind that ending the environment in Torque will destroy the resource.
+- To avoid unintended deletion, you can release the environment by running the following API command using `curl`:
+  
+  ```bash
+  curl -X DELETE "https://api.torque.quali.com/api/spaces/{space_name}/environments/{environment_id}/release?force={false/true}"
+  ```
+- Use the `release` API to ensure resources are not deleted during the termination process.
+
+---
 
 :::info
 1. Make sure to provide the Torque authentication token. This can be a short or long-token
 2. The source section points to the blueprint generated and the repository name onboarded to Torque.
-3. The backend section added in under the grain should point to the state file exported and uploaded to the remote backend of choice.
+3. The backend section added in under the grain should point to the state file exported and uploaded to the backend of choice.
 :::
+
+By following these steps, you'll be able to successfully import and manage an environment in Torque while ensuring security and state management.
