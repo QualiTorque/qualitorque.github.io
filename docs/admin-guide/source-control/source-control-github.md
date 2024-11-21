@@ -10,7 +10,7 @@ In this article:
 - [Ensure your organization has granted access to Torque](#ensure-your-organization-has-granted-access-to-torque)
 - [Token expiration and revocation](#token-expiration-and-revocation)
 
-**This article refers to the SAAS version of GitHub (github.com). If you're using self hosted GitHub Enterprise, check [here](/admin-guide/source-control/self-hosted-repositories/Overview)**.
+**This article refers to the SAAS version of GitHub (github.com). If you're using self hosted GitHub Enterprise, check [here](/admin-guide/source-control/self-hosted-repositories/overview)**.
 
 
 ## Ensure your account is added to the GitHub organization you're connecting
