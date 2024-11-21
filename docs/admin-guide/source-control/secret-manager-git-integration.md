@@ -52,6 +52,11 @@ Integrating AWS Secrets Manager into Torque allows users to manage repository cr
 1. **Install the Agent**: Ensure that the Torque agent is installed.
 2. **Navigate to Torque Credentials**: In the Torque portal, navigate to the **Account Admin** -> **Credentials** page.
 3. **Add New Git Credential**: Click on **Add New Credential** and select the credential type as **Gitlab**. In the dropdown list, choose the **Secret Manager** option.
+
+import pic1 from '/img/git-secret-manager.png';
+
+> <img src={pic1} alt="git-secret-manager" style={{width: 400}} />
+
 4. **Fill Out Credential Details**:
    - Provide the **Role ARN** and **External ID** of the role created in Step 2.
    - The following fields are mandatory:
