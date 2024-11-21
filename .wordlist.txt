@@ -485,3 +485,7 @@ JIT
 ubuntu
 barebone
 curation
+CloudTrail
+SDK
+img
+png
