@@ -28,7 +28,7 @@ Torque Resources Inventory offers a suite of features to help you manage your cl
 
 ## Adding a Cloud Account
 
-To begin using Torque Resources Inventory, you must connect your cloud account. Currently, AWS and Azure clouds are supportsd. Follow these steps to add your Azure subscription:
+To begin using Torque Resources Inventory, you must connect your cloud account. Currently, AWS and Azure clouds are supported. Follow these steps to add your Azure subscription:
 
 ### Prerequisites
 
