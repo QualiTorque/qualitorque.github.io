@@ -1,23 +1,25 @@
 ---
 sidebar_position: 1
-title: Cloud Curate
+title: Resources Inventory
 ---
 
 ## Introduction
 
-Welcome to CloudCurate, an advanced SaaS solution designed to facilitate comprehensive visibility and governance over your cloud infrastructure. CloudCurate connects to your cloud accounts with read-only permissions, allowing for in-depth discovery, categorization, and curation of cloud resources. Users can filter their resources based on type, location, or Infrastructure as Code (IaC) status, providing fine-grained control over their cloud estate.
+Welcome to Torque Resources Inventory, an advanced solution designed to facilitate comprehensive visibility and governance over your cloud infrastructure. Torque Resources Inventory connects to your cloud accounts with read-only permissions, allowing for in-depth discovery, categorization, and curation of cloud resources. Users can filter their resources based on type, location, or Infrastructure as Code (IaC) status, providing fine-grained control over their cloud estate.
 
-CloudCurate classifies resources by their IaC status as follows:
+Torque Resources Inventory classifies resources by their IaC status as follows:
 
 - **Unmanaged**: Resources that have been created manually and are not governed by IaC.
 - **Codified**: Resources that are integrated with and managed by your existing IaC practices.
 - **Managed**: Resources that are managed under Quali's governance framework.
 
-CloudCurate allows users to curate selected resources into a cart, transforming them into Terraform configuration files and state files. These artifacts are readily available for download, enabling seamless integration into Infrastructure as Code workflows.
+Torque Resources Inventory allows users to curate selected resources into a cart, transforming them into Terraform configuration files and state files. These artifacts are readily available for download, enabling seamless integration into Infrastructure as Code workflows.
+
+> ![resource-inventory](/img/resource-inventory.png)
 
 ## Key Features
 
-CloudCurate offers a suite of features to help you manage your cloud infrastructure effectively:
+Torque Resources Inventory offers a suite of features to help you manage your cloud infrastructure effectively:
 
 - **Cloud Resource Discovery**: Automatically discovers and inventories all resources within your Azure subscription, providing a holistic view of your cloud environment.
 - **Resource Filtering**: Offers advanced filtering capabilities, allowing resources to be categorized by type, geographical region, and IaC status for efficient management.
@@ -26,7 +28,7 @@ CloudCurate offers a suite of features to help you manage your cloud infrastruct
 
 ## Adding a Cloud Account
 
-To begin using CloudCurate, you must connect your cloud account. Currently, CloudCurate supports Azure cloud accounts. Follow these steps to add your Azure subscription:
+To begin using Torque Resources Inventory, you must connect your cloud account. Currently, AWS and Azure clouds are supportsd. Follow these steps to add your Azure subscription:
 
 ### Prerequisites
 
@@ -43,30 +45,31 @@ To begin using CloudCurate, you must connect your cloud account. Currently, Clou
 
 ### Minimal Permissions Required
 
-CloudCurate requires read-only access to inventory and manage cloud resources. The following permissions are required:
+Torque Resources Inventory requires read-only access to inventory and manage cloud resources. The following permissions are required:
 
 - Reader role assigned to the Azure subscription.
 - The ability to list resources, read metadata, and access resource details for all resources within the subscription.
 
 ### Adding Your Azure Account
 
-1. Log in to CloudCurate.
-2. Navigate to Cloud Accounts in the sidebar.
-3. Click Add Account.
-4. Select Azure as the cloud provider.
-5. Provide the necessary details, including subscription ID, Tenant ID, Application ID, and the client secret with read-only permissions.
-6. Click Connect.
-7. Once connected, CloudCurate will begin scanning and discovering your cloud resources.
+Navigate to the `Accout Center`.
+
+1. Under the `Curate`, go to `Resources Inventory` in the sidebar.
+2. Click on the `Connect a New Cloud Account`.
+3. Select Azure as the cloud provider.
+4. Provide the necessary details, including `Subscription ID`, `Tenant ID`, `Application ID`, and the `Application Secret` with read-only permissions.
+5. Click Connect.
+6. Once connected, Torque Resources Inventory will begin scanning and discovering your cloud resources.
 
 ## Cloud Resources Inventory
 
-Upon connecting your Azure account, CloudCurate will automatically perform a full scan and inventory all resources in your subscription. The Cloud Resources Inventory page presents a comprehensive view of your resources, which can be filtered by:
+Upon connecting your account, Torque Resources Inventory will automatically perform a full scan and inventory all resources in your subscription. The Cloud Resources Inventory page presents a comprehensive view of your resources, which can be filtered by:
 
 - **Resource Type**: Categories such as virtual machines, databases, and networking components.
 - **Location**: Filter resources by their geographical deployment region.
 - **IaC Status**: Indicate whether resources are unmanaged, codified, or managed.
 
-CloudCurate provides insights into which resources are under IaC management and highlights unmanaged resources that may need to be incorporated into governance frameworks.
+Torque Resources Inventory provides insights into which resources are under IaC management and highlights unmanaged resources that may need to be incorporated into governance frameworks.
 
 ### Resource Details View
 
@@ -88,7 +91,7 @@ Curate your cloud resources with ease and transform them into Terraform configur
    - **Individual Add Method**: Click the plus icon next to each resource to add it individually to the cart.
 4. Review the items in your cart to ensure all desired resources are included.
 5. Click Curate. A summary dialog will appear, allowing you to confirm your selection. Click Approve & Curate to proceed.
-6. CloudCurate will generate a Terraform configuration and state file for the curated resources. The curation process may take a few minutes.
+6. Torque Resources Inventory will generate a Terraform configuration and state file for the curated resources. The curation process may take a few minutes.
 7. Once completed, the generated artifacts will be available for download.
 
 ### Downloading the Artifacts
@@ -102,16 +105,16 @@ The Cart feature allows you to select and curate multiple resources before gener
 
 ### What Can Be Done with the Downloaded Terraform Files
 
-The Terraform configuration and state files generated by CloudCurate can be used to manage your cloud resources through Infrastructure as Code. Possible actions include:
+The Terraform configuration and state files generated by Torque Resources Inventory can be used to manage your cloud resources through Infrastructure as Code. Possible actions include:
 
 - **Integration with Existing IaC Projects**: Incorporate the generated Terraform files into existing IaC projects to maintain consistency in infrastructure management.
 - **Manage Resources via Terraform**: Utilize the generated files to manage manually provisioned resources, simplifying their incorporation into existing IaC frameworks.
 - **Resource Deployment and Modification**: With Terraform, apply, modify, or destroy cloud resources, granting precise control over curated infrastructure.
 - **Version Control**: Store the Terraform files in a version control system such as Git, enabling collaborative management, change tracking, and versioning of infrastructure.
 
-## Best Practices for Using CloudCurate
+## Best Practices for Using Torque Resources Inventory
 
-To maximize the benefits of CloudCurate, consider the following best practices:
+To maximize the benefits of Torque Resources Inventory, consider the following best practices:
 
 - **Tag Resources Consistently**: Ensure that all cloud resources are tagged appropriately for easier filtering and curation.
 - **Frequent Scans**: Regularly scan your cloud accounts to maintain up-to-date visibility of resources and changes.
@@ -122,11 +125,11 @@ To maximize the benefits of CloudCurate, consider the following best practices:
 
 ### What Cloud Providers Are Supported?
 
-Currently, CloudCurate supports only Azure cloud accounts. Support for other cloud providers, such as AWS and Google Cloud, is planned for future releases.
+Currently, Torque Resources Inventory supports only Azure and AWS clouds. Support for other cloud providers, such as Google Cloud, is planned for future releases.
 
-### What Permissions Are Required for CloudCurate?
+### What Permissions Are Required for Torque Resources Inventory?
 
-CloudCurate requires read-only permissions to your Azure subscription, specifically the Reader role, to perform resource discovery and inventory.
+Torque Resources Inventory requires read-only permissions to your Azure subscription, specifically the Reader role, to perform resource discovery and inventory.
 
 ### Can I Edit the Generated Terraform Files?
 
@@ -140,23 +143,23 @@ It is recommended to scan your cloud account at least weekly to ensure that your
 
 ### Unable to Connect to Azure Account
 
-If you are experiencing issues while connecting your Azure account to CloudCurate, verify the following:
+If you are experiencing issues while connecting your Azure account to Torque Resources Inventory, verify the following:
 
 - The provided credentials have read-only permissions.
 - The subscription ID is accurate.
-- There are no network or firewall settings preventing CloudCurate from accessing Azure.
+- There are no network or firewall settings preventing Torque Resources Inventory from accessing Azure.
 
 ### Terraform Generation Failed
 
 If Terraform generation fails:
 
 - Verify that all selected resources have the necessary metadata available.
-- Ensure there are no permission issues preventing CloudCurate from accessing resource details.
-- Contact CloudCurate support if the issue persists.
+- Ensure there are no permission issues preventing Torque Resources Inventory from accessing resource details.
+- Contact Torque Resources Inventory support if the issue persists.
 
 ## Support
 
-For further assistance, please contact the CloudCurate support team at [support@cloudcurate.io](mailto:support@cloudcurate.io) or visit our [support page](https://support.cloudcurate.io).
+For further assistance, please contact the Torque Resources Inventory support team at [support@quali.com](mailto:support@quali.com) or visit our [support page](https://support.quali.com).
 
 ## Glossary
 
@@ -164,4 +167,4 @@ For further assistance, please contact the CloudCurate support team at [support@
 - **Terraform**: An open-source IaC tool that allows users to define and provision infrastructure using a declarative configuration language.
 - **Reader Role**: A built-in Azure role that provides read-only access to cloud resources.
 
-CloudCurate provides an effective mechanism to address cloud sprawl, enabling you to transition unmanaged resources into managed, codified infrastructure seamlessly integrated into your IaC strategy.
+Torque Resources Inventory provides an effective mechanism to address cloud sprawl, enabling you to transition unmanaged resources into managed, codified infrastructure seamlessly integrated into your IaC strategy.
