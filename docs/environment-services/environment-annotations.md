@@ -3,6 +3,14 @@ sidebar_position: 15
 title: Environment Annotations
 ---
 
+:::tip __Important__
+Please note that the "Environment Annotations" feature will be deprecated as of end of 2024 and will no longer be supported or available.
+
+We recommend transitioning to our new "**Environment Labels**" solution, which offers enhanced capabilities and improved integration. 
+
+Thank you for your understanding and support.
+:::
+
 ## __Environment Annotations: What They Are and How you can leverage them to optimize processes__
 
 Environment annotations are labels or metadata that can be added to environments to provide additional information about them. Annotations can be used to define the purpose, status, or configuration of an environment, as well as to track changes or updates.
