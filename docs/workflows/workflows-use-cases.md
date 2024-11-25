@@ -21,7 +21,7 @@ description: Workflow with extract Azure VM power state
 
 workflow:
   scope: env_resource
-  label-selector: azurerm_linux_virtual_machine # will be available for all azure VM resources type
+  labels-selector: azurerm_linux_virtual_machine # will be available for all azure VM resources type
   
 inputs:
   agent:
@@ -92,7 +92,7 @@ description: Attach an EBS volume to an EC2 instance using Ansible grain
 
 workflow:
   scope: env_resource
-  label-selector: aws_instance # will be available for all aws ec2 resources type
+  labels-selector: aws_instance # will be available for all aws ec2 resources type
 
 inputs:
   ebs_volume_size:
@@ -225,7 +225,7 @@ description: Detach an EBS volume from an EC2 instance
 
 workflow:
   scope: env_resource
-  label-selector: aws_instance
+  labels-selector: aws_instance
 
 inputs:
   volume_id:

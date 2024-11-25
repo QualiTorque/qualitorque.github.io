@@ -15,20 +15,27 @@ The Workflow YAML standard is similar to the Blueprint standard. The only additi
 spec_version: 2
 description: This Workflow will ...
 
-// highlight-start
 workflow:
+  # scope possible values are: space, env or env_resource
   scope: env
-// highlight-end
 
 grains: ...
 ```
 
+### scope
+
 The `scope` field in a Torque workflow determines where the workflow is available. There are two possible values for the `scope` field:
 
-1. `env`: Workflows with this scope are available at the environment level. This means that they can be triggered and executed for the entire environment. These workflows can be used to automate and orchestrate processes that involve multiple resources within the environment.
+1. `space`: Workflows with this scope are available at the space level, and can be triggered and executed without any dependencies.
+2. `env`: Workflows with this scope are available at the environment level. This means that they can be triggered and executed for the entire environment. These workflows can be used to automate and orchestrate processes that involve multiple resources within the environment.
+3. `env_resource`: Workflows with this scope will be available at the resource level (e.g. for a VM or DB). The type of resource for which the workflow will be available is defined by the `resource-types` field. Only resources that match the specified resource types will have access to these workflows. This allows for more granular control and customization of workflows based on specific resource types.
 
-2. `env_resource`: Workflows with this scope will be available at the resource level (e.g. for a VM or DB). The type of resource for which the workflow will be available is defined by the `resource-types` field. Only resources that match the specified resource types will have access to these workflows. This allows for more granular control and customization of workflows based on specific resource types.
-For example:
+### resource-types
+
+When scoping a the workflow to an `env_resource`, the `resource-types` field allow to attach that workflow to the specified resource types.
+
+In this example, we scope this workflow only AWS EC2 instances resources:
+
 ```yaml 
 spec_version: 2
 description: This Resource Workflow will ...
@@ -38,13 +45,31 @@ workflow:
   # note: more than one resource type can be specified in CSV format.
   resource-types: aws_instance
 
-
 grains: ...
 ```
 
 By specifying the appropriate scope for your workflows, you can ensure that they are available and applicable to the desired level of your infrastructure. Whether you need to automate processes at the environment level or target specific resources, Torque workflows provide the flexibility to meet your automation needs.
 
-### Bindings
+### labels-selector
+
+The `labels-selector` field can be used to "attach" workflows to Blueprints or running Environments that have matching labels.
+
+In case `labels-selector` field is not defined, the workflow will be available to all of the Blueprints and running Environments.
+
+```yaml 
+spec_version: 2
+description: This Resource Workflow will ...
+
+workflow:
+  scope: env
+  # note: more than one label can be specified in CSV format.
+  # any blueprint or environment with K8s label, will have this workflow available
+  labels-selector: K8s
+
+grains: ...
+```
+
+### bindings
 
 In a workflow, you can define bindings to access environment and resource information. Bindings are automatic variables that provide context to the workflow. The available bindings depend on the scope of the workflow.
 
@@ -58,7 +83,7 @@ For workflows with scope `env_resource`, the following automatic variables are a
 
 The binding variables will provide the relevant context to access the relevant resource introspection data in the `contract` object available in the workflow.
 
-### Environment `contract` Object
+### environment `contract` Object
 
 When a workflow is executed with a specific scope, the environment **context** JSON object is provided in a file called `contract.json`. This file is accessible from the Runner and contains information about the environment, such as its ID, name, owner email, inputs and all grains introspection data.
 
@@ -211,7 +236,7 @@ Here is an example of a `contract.json` file:
 }
 ```
 
-### Triggers
+### triggers
 
 Workflows can be triggered by various types of events or schedules:
 1. `cron`: Schedules based on cron expressions.
@@ -240,7 +265,6 @@ description: ...
 workflow:
   scope: env
 
-// highlight-start
   triggers:
     - type: event
       event:
@@ -253,8 +277,7 @@ workflow:
 
     - type: manual 
       groups: # Optional, allow only users in the "Admin" group to run the workflow
-        - 'Admins' 
-// highlight-end
+        - 'Admins'
    
 inputs: ...
 outputs: ...
@@ -271,8 +294,11 @@ description: Workflow with shell grains
 
 workflow:
   scope: env_resource
-  label-selector: azurerm_linux_virtual_machine
-  
+  # note: more than one resource type can be specified in CSV format.
+  resource-types: aws_instance,azurerm_linux_virtual_machine
+  # note: more than one label can be specified in CSV format.
+  labels-selector: VMs
+
 inputs:
   input1:
     type: string
@@ -409,7 +435,7 @@ description: This workflow pauses an EKS cluster on-demand
 
 workflow:
   scope: env
-  label-selector: eks_cluster
+  resource-types: eks_cluster
   triggers:
     - type: manual
 
@@ -422,11 +448,9 @@ grains:
   pause_eks:
     kind: ansible
     spec:
-// highlight-start
       built-in: true
       source:
         path: https://github.com/QualiTorque/torque-actions.git//resource/aws-pause-eks-tf.yaml
-// highlight-end
       agent:
         name: '{{ .inputs.agent }}'
 ``` 
