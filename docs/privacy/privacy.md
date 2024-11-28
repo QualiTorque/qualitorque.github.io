@@ -33,4 +33,6 @@ When you use our services, you trust us with your personal information. At Quali
 
 * [Cloud account](/torque-agent/Install-and-connect-self-hosted-agent)
 * [Git repositories](/torque-agent/Install-and-connect-self-hosted-agent)
-* Optional integrations - will be provided soon
+
+## For our full privacy policy
+Please visit our [privacy policy](https://www.quali.com/privacy-policy/) page.
