@@ -89,7 +89,7 @@ inputs:
     type: agent
 
 grains:
-  tiaa-standard-helm-chart:
+  standard-helm-chart:
     kind: helm
     spec:
       agent:
