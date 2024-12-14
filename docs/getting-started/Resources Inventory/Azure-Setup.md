@@ -31,8 +31,8 @@ Torque Resources Inventory requires read-only access to inventory and manage clo
 
 Navigate to the `Account Center`.
 
-1. Under the `Curate`, go to `Resources Inventory` in the sidebar.
-2. Click on the `Connect a New Cloud Account`.
+1. Under the `Curate` tab, go to `Resources Inventory` in the sidebar.
+2. Click on `Connect a New Cloud Account`.
 3. Select Azure as the cloud provider.
 4. Provide the necessary details, including `Subscription ID`, `Tenant ID`, `Application ID`, and the `Application Secret` with read-only permissions.
 5. Click Connect.
