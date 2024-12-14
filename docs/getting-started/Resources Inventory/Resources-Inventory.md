@@ -28,38 +28,11 @@ Torque Resources Inventory offers a suite of features to help you manage your cl
 
 ## Adding a Cloud Account
 
-To begin using Torque Resources Inventory, you must connect your cloud account. Currently, AWS and Azure clouds are supported. Follow these steps to add your Azure subscription:
+To begin using Torque Resources Inventory, you must connect your cloud account. Currently, AWS and Azure clouds are supported.
 
-### Prerequisites
-
-- An Azure subscription.
-- Steps to create and register an application in Azure Active Directory (AD):
-  - Navigate to "App Registrations" in Azure AD and click New Registration. Follow the prompts (you only need to provide the name of the application). Note the Tenant ID and Application ID as these are required later.
-  - Go to Certificates & Secrets and create a new client secret. Note the Secret Value for use in the application configuration.
-  - Assign the Reader role to the application:
-    - Navigate to Subscriptions and select the appropriate subscription.
-    - Under Access Control (IAM), click Role assignments and select Add role assignment.
-    - In the Roles tab, search for the Reader role, and click Next.
-    - On the Members tab, select User, group, or service principal and search for the registered application.
-    - Click Select, then Review and Assign to complete the setup.
-
-### Minimal Permissions Required
-
-Torque Resources Inventory requires read-only access to inventory and manage cloud resources. The following permissions are required:
-
-- Reader role assigned to the Azure subscription.
-- The ability to list resources, read metadata, and access resource details for all resources within the subscription.
-
-### Adding Your Azure Account
-
-Navigate to the `Accout Center`.
-
-1. Under the `Curate`, go to `Resources Inventory` in the sidebar.
-2. Click on the `Connect a New Cloud Account`.
-3. Select Azure as the cloud provider.
-4. Provide the necessary details, including `Subscription ID`, `Tenant ID`, `Application ID`, and the `Application Secret` with read-only permissions.
-5. Click Connect.
-6. Once connected, Torque Resources Inventory will begin scanning and discovering your cloud resources.
+### Supported cloud providers
+* [AWS](/getting-started/Resources-Inventory/AWS-Setup)
+* [Azure](/getting-started/Resources-Inventory/Azure-Setup)
 
 ## Cloud Resources Inventory
 
