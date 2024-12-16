@@ -118,3 +118,48 @@ In the above example, the `pod-labels` section under `kubernetes` defines a list
 :::
 
 Using labels can help you organize and manage your runner pods more effectively. You can leverage labels for various purposes, such as filtering, grouping, or applying policies to specific sets of pods. Additionally, labels can be used for integration with external tools or services that rely on label selectors for their operations.
+
+
+### pod annotations
+
+Similar to Environment Variables, Secret Mounts and pod labels, Torque allows you to specify annotations that will be applied to the runner pods. These annotations can be useful for various purposes, such as identifying and grouping pods, applying network policies, or integrating with external tools that rely on annotations.
+
+To configure runner pod annotations, navigate to **Administration** > **Agents**, and select the desired agent. In the agent's details panel, click on the three-dot menu and select "Edit Agent." Then, open the "Advanced Kubernetes Settings" dropdown.
+
+In the `Advanced Kubernetes Settings` section, you will find the `Annotations` field, where you can define key-value pairs of annotations to be applied to the runner pods.
+
+
+You can define runners pod annotations on a grain level as well.
+
+Here's an example of how you can define annotations in the Blueprint:
+
+```yaml
+spec_version: 2
+description: Deploying Helm Chart by tag version
+
+inputs:
+  agent:
+    type: agent
+
+grains:
+  standard-helm-chart:
+    kind: helm
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+        kubernetes:
+          pod-annotations:
+            - app: quali-torque
+            - app_cmdb_id: A1755468
+
+```
+
+In the above example, the `pod-annotations` section under `kubernetes` defines a list of key-value pairs that will be applied as annotations to the runner pods.
+
+:::note
+- Annotations are applied to all runner pods created by the agent, regardless of the environment or blueprint.
+- Changes to the annotations will only take effect for new environments. Existing environments will retain the annotations configured at the time of launch.
+- Annotations should be configured by the cluster administrator or someone with appropriate permissions, as they can impact the behavior and management of pods in the cluster.
+:::
+
+Using annotations can help you organize and manage your runner pods more effectively. You can leverage annotations for various purposes, such as filtering, grouping, or applying policies to specific sets of pods. Additionally, annotations can be used for integration with external tools or services that rely on an annotation for their operations.
