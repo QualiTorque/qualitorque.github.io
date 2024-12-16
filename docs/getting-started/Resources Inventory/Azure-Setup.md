@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 title: Azure Setup
 ---
 
@@ -38,4 +38,4 @@ Navigate to the `Account Center`.
 5. Click Connect.
 6. Once connected, Torque Resources Inventory will begin scanning and discovering your cloud resources.
 
-### [Continue Setup](/getting-started/Resources-Inventory/Resources-Inventory#Cloud-Resources-Inventory)
+### [Continue Setup](/getting-started/Resources%20Inventory/Resources-Inventory)

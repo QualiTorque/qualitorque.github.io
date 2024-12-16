@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 title: AWS Setup
 ---
 
@@ -23,7 +23,7 @@ The Resource Explorer indexing process, once turned on, can take up to 72 hours 
 
 - Create an `IAM User`
     - Create an `IAM User` under the IAM Service
-    - Give a `Permission Policy` to that user. Minimum policy is `AWSResourceExplorerReadOnlyAccess`. Ideal policy is `ReadOnlyAccess` explained under [Minimal Permissions Required](/getting-started/Resources-Inventory/AWS-Setup#Minimal-Permissions-Required)
+    - Give a `Permission Policy` to that user. Minimum policy is `AWSResourceExplorerReadOnlyAccess`. Ideal policy is `ReadOnlyAccess` explained under [Minimal Permissions Required](/getting-started/Resources%20Inventory/AWS-Setup#minimal-permissions-required)
     - Create `Access Keys` under `Security credentials` and take note of the `Access and Secret Keys` values
 
 :::info
@@ -49,4 +49,4 @@ Navigate to the `Account Center`.
 5. Click Save.
 6. Once connected, Torque Resources Inventory will begin scanning and discovering your cloud resources.
 
-### [Continue Setup](/getting-started/Resources-Inventory/Resources-Inventory#Cloud-Resources-Inventory)
+### [Continue Setup](/getting-started/Resources%20Inventory/Resources-Inventory)
