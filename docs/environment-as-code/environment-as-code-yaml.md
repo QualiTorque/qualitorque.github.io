@@ -140,6 +140,9 @@ environment:
     collaborators_emails:
       - collaborator1@quali.com
       - collaborator2@quali.com
+    collaborators_groups:
+      - Group1
+      - Group2
   spaces:
     - spaceA
     - spaceB
