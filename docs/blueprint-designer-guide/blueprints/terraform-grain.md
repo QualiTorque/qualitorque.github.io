@@ -141,7 +141,7 @@ grains:
 ``` 
 
 __Properties__:
-* __type__: s3, azurerm, gcs, http
+* __type__: s3, azurerm, gcs, http, remote
 * __bucket__: Mandatory for s3 and gcs
 * __region__: Mandatory for S3
 * __resource-group-name__ : Mandatory for azurerm
@@ -188,6 +188,36 @@ backend:
   type: "http"
   base-address: "http://myrest.api.com/foo"
 ```
+
+__remote__:
+
+```yaml
+grains:
+  remote:
+    kind: 'terraform'
+    spec:
+      source:
+        store: 'common'
+        path: 'terraform/rds'
+      backend:
+        type: 'remote'
+        hostname: 'app.terraform.io'
+        token: '{{ params.my_token }}'
+        organization: 'my_org'
+        workspaces:
+          - name: 'my_workspace' # IMPORTANT: only one (name or prefix) is needed in each workspace element
+            prefix: 'my_prefix'
+      agent:
+        name: '{{ .inputs.agent }}'
+```
+
+`remote` token options:
+
+* Using the `token` filed in the `remote` backend definition is best practice.
+* "TF_TOKEN" `env_var`, followed by the hostname (with replace of '.' in '_') is an alternative way to provide a token.
+  * For example for the host 'app.terraform.io', the env-var name should be `TF_TOKEN_app_terraform_io`
+
+Note:
 
 Torque uses a "1 to many" model, meaning that one blueprint definition is used to launch many standalone environments. When using a backend for Terraform grains, it is important to ensure that each live instance of the grain has its own unique tfstate file, so Torque will auto-generate the tfstate file name. 
 
