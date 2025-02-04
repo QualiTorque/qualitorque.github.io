@@ -7,7 +7,7 @@ The Terraform grain is Torque's native support for HashiCorp Terraform modules. 
 
 Note that to deploy Terraform modules, you will need to authenticate Terraform on the Kubernetes cluster. For details, see [Terraform EKS Authentication](/torque-agent/service-accounts-for-aws), [Terraform AKS Authentication](/torque-agent/service-accounts-for-azure), or [Terraform GKE Authentication](/torque-agent/service-accounts-for-gcp).
 
-### Tools and technologies
+## Tools and technologies
 The following tools and technologies are installed out of the box on our agents in the Kubernetes pods and can be used when writing grain scripts (pre/post, etc.):
 
 - dotnet
@@ -23,13 +23,13 @@ The following tools and technologies are installed out of the box on our agents 
 - helm
 - opa
 
-### source 
+## source 
 Please see [the grain source](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#source) for more details.
 
-### agent
+## agent
 Please see [the grain agent](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#agent) for more details.
 
-### authentication
+## authentication
 To authenticate with AWS and deploy the terraform module, Torque will try to use the default service account configured for the selected agent. You can also supply different credentials in the  grain's ```authentication``` section. This is done by referencing a [credential](/admin-guide/credentials) that contains these authentication details. There are two ways to specify the credential, literally by name or using an input:
 
 ```yaml
@@ -44,7 +44,7 @@ grains:
         - credential_name or {{.inputs.credentials_input_name}} 
 ```        
 
-### provider-overrides
+## provider-overrides
 
 The `provider-overrides` block allows you to dynamically inject provider blocks with custom attributes to Terraform grains. This is useful when you need to make modules "runnable" or "testable" in different cloud environments.
 
@@ -115,15 +115,15 @@ The `attributes` map allows setting any attributes on the generated provider blo
 Liquid templating is supported in the `attributes` values, allowing blueprint inputs to be referenced like `{{ .inputs.target-account }}`.
 
 
-### terraform.tfstate remote backend storage
+## backend support
 
-When launching the environment, Torque creates a tfstate file for each Terraform grain in the blueprint. By default, the file is saved locally on the PVC of the grain runner (volume for Docker agents). However, as the TF state file may contain sensitive information, Torque allows you to optionally choose to save the file in your own remote backend storage. Torque supports the following remote backends: __[S3](https://developer.hashicorp.com/terraform/language/settings/backends/s3)__, __[gcs](https://developer.hashicorp.com/terraform/language/settings/backends/gcs)__, __[azurerm](https://developer.hashicorp.com/terraform/language/settings/backends/azurerm)__, and __[http](https://developer.hashicorp.com/terraform/language/settings/backends/http)__.
+When launching the environment, Torque creates a tfstate file for each Terraform grain in the blueprint. By default, the state is saved locally on the PVC of the grain runner (volume for Docker agents). However, Torque allows you to optionally choose to save the terraform state in a backend of your choice. Torque supports the following backends: __[S3](https://developer.hashicorp.com/terraform/language/settings/backends/s3)__, __[gcs](https://developer.hashicorp.com/terraform/language/settings/backends/gcs)__, __[azurerm](https://developer.hashicorp.com/terraform/language/settings/backends/azurerm)__, __[http](https://developer.hashicorp.com/terraform/language/settings/backends/http)__, and __[remote](https://developer.hashicorp.com/terraform/language/backend/remote)__.
 
 __Prerequisites:__
-* The remote backend must already exist. Torque will not create the remote backend if it doesn't exist.
-* Role Arn or service account defined in the ```authentication``` must have access permissions to the remote backend.
+* The backend must already exist. Torque will not create the backend if it doesn't exist.
+* RoleARN in the `service-account` or `authentication` block, must have access permissions to the backend specified.
 
-The remote backend is specified in the ```backend``` section of the grain. Based on the blueprint YAML definition, Torque will create an override file that contains the remote backend configurations.
+Based on the `backend` block in the blueprint definition, Torque will create an override file that contains the backend configurations.
 
 __Example__:
 
@@ -141,64 +141,59 @@ grains:
 ``` 
 
 __Properties__:
-* __type__: s3, azurerm, gcs, http, remote
-* __bucket__: Mandatory for s3 and gcs
-* __region__: Mandatory for S3
-* __resource-group-name__ : Mandatory for azurerm
-* __storage-account-name__: Mandatory for azurerm
-* __container-name__: Mandatory for azurerm
-* __base-address__: Mandatory for http
-* __key-prefix__: Optional. tfstate file path in the remote storage. Relevant for s3, azurerm, gcs. 
-   * S3, Azure Blobs & GCS have a key name limit of 1024 ascii chars
+* __type__: `s3`, `azurerm`, `gcs`, `http`, `remote`
+* __bucket__: Mandatory for `s3` and `gcs`
+* __region__: Mandatory for `s3`
+* __resource-group-name__ : Mandatory for `azurerm`
+* __storage-account-name__: Mandatory for `azurerm`
+* __container-name__: Mandatory for `azurerm`
+* __base-address__: Mandatory for `http`
+* __organization__: Mandatory for `remote`
+* __workspaces__: Mandatory for `remote`
+* __key-prefix__: Optional. tfstate file path in the backend storage. Relevant for `s3`, `azurerm`, `gcs`. 
+   * s3, Azure Blobs & GCS have a key name limit of 1024 ascii chars
 
-__S3__:
+### s3
 
 ```yaml
-backend:
-  type: "s3"
-  bucket: "my-bucket-name"
-  region: "us-east-1"
-  key-prefix: folder1/folder2"
+      backend:
+        type: "s3"
+        bucket: "my-bucket-name"
+        region: "us-east-1"
+        key-prefix: folder1/folder2"
 ``` 
 
-__azurerm__:
+### azurerm
 
 ```yaml
-backend:
-  type: "azurerm"
-  resource-group-name: "my_rg"
-  storage-account-name: "terraform123abc"
-  container-name: "terraform-state"
-  key-prefix: folder1/folder2"
+      backend:
+        type: "azurerm"
+        resource-group-name: "my_rg"
+        storage-account-name: "terraform123abc"
+        container-name: "terraform-state"
+        key-prefix: folder1/folder2"
 ```
 
-__gcs__:
+### gcs
 
 ```yaml
-backend:
-  type: "gcs"
-  bucket: "my-bucket-name"
-  key-prefix: "folder1/folder2"
+      backend:
+        type: "gcs"
+        bucket: "my-bucket-name"
+        key-prefix: "folder1/folder2"
 ```
 
-__http__:
+### http
 
 ```yaml
-backend:
-  type: "http"
-  base-address: "http://myrest.api.com/foo"
+      backend:
+        type: "http"
+        base-address: "http://myrest.api.com/foo"
 ```
 
-__remote__:
+### remote
 
 ```yaml
-grains:
-  remote:
-    kind: 'terraform'
-    spec:
-      source:
-        store: 'common'
-        path: 'terraform/rds'
       backend:
         type: 'remote'
         hostname: 'app.terraform.io'
@@ -207,13 +202,11 @@ grains:
         workspaces:
           - name: 'my_workspace' # IMPORTANT: only one (name or prefix) is needed in each workspace element
             prefix: 'my_prefix'
-      agent:
-        name: '{{ .inputs.agent }}'
 ```
 
 `remote` token options:
 
-* Using the `token` filed in the `remote` backend definition is best practice.
+* Using the `token` field in the `remote` backend definition is best practice.
 * "TF_TOKEN" `env_var`, followed by the hostname (with replace of '.' in '_') is an alternative way to provide a token.
   * For example for the host 'app.terraform.io', the env-var name should be `TF_TOKEN_app_terraform_io`
 
@@ -223,25 +216,26 @@ Torque uses a "1 to many" model, meaning that one blueprint definition is used t
 
 For s3, gcs, azurerm backends, the tfstate file location will be: 
 
-* Format when the “key-prefix” is not defined: 
-  ```yaml“
-  torque-remote-state/{environmentId}_{grainName}.tfstate“
-* Format when “key-prefix” defined in the blueprint: 
-   Using the optional “key-prefix” property the blueprint designer can choose the folder where the tfstate file will be located. 
-
+* The format when the `key-prefix` is not defined in the blueprint:
+  ```yaml
+  torque-remote-state/{environmentId}_{grainName}.tfstate
+  ```
+* The format when `key-prefix` is defined in the blueprint: 
+  * Using the optional “key-prefix” property the blueprint designer can choose the folder where the tfstate file will be located. 
    ```yaml
-   “{key-prefix}/{environmentId}_{grainName}.tfstate 
-* For http backend the tfstate file address will be: 
-
+   {key-prefix}/{environmentId}_{grainName}.tfstate
+   ```
+* For `http` backend the tfstate file address will be:
    ```yaml
-   “{base-address}/{environmentId}_{grainName}” 
+   {base-address}/{environmentId}_{grainName}
+   ```
 
 
 __Cleaning up the tfstate file when the Terraform grain is destroyed:__
 
 When destroying a Terraform environment, Terraform does not delete the tfstate file but rather leaves behind an empty file. To clean up the leftovers, set a file retention policy on the remote storage to ensure the removal of files that have not been recently accessed. Since Torque runs drift detection on a 1-hour schedule, the tfstate file will be considered as “accessed” by the remote storage when running drift detection. And when the Torque environment ends, the tfstate file will not be “accessed” anymore by Torque. 
 
-### version 
+## version 
 Torque provides the flexibility to choose a specific Terraform version with which the Terraform module will be deployed (minimum supported version is 0.14, last version supported is 1.5.5). Otherwise, you can use the [custom-grain option](/blueprint-designer-guide/blueprints/custom-grain).
 
 ```yaml
@@ -256,7 +250,7 @@ grains:
       ...
 ```
 
-### inputs
+## inputs
 Similar to blueprint inputs, the Terraform grain input allows you to reuse the same Terraform module in different ways. Inputs provided to the Terraform grain are used when launching the Terraform module. Terraform grain inputs should be listed in the order defined in the module's variables.tf file. We recommend using Torque's auto-discovery capability to quickly model your Terraform modules within Torque including all defined inputs.
 
 Every value that goes to the Terraform grain's input is interpreted as a json token. So you can pass any valid value by json: number, list, dictionary, boolean, string , etc.
@@ -293,7 +287,7 @@ Note that in the above example, some blueprint inputs are used as the values of 
 
 Note that invalid tokens will be parsed as strings. Keep in mind that json strings require double quotes, so ```"my value``` is a string but ```my value``` is not a valid json value and therefore will also be passed as a string. As such, the following values will all be passed as strings: ```"my value"```, ```my value```, ```"[1,2,3]"```
 
-### tfvars files as inputs to Terraform grain
+### tfvars files
 
 In Terraform, a tfvars file (short for "Terraform variables file") is a plain text file that contains a set of key-value pairs representing values for Terraform variables. Torque supports referencing tfvars files as inputs to the terraform grain, with the following syntax:
 
@@ -322,7 +316,7 @@ grains:
 
 
 
-### tags  
+## tags  
 Whenever a Terraform grain is launched, all resources created during the deployment process will be automatically tagged with Torque's system tags, built-in tags and custom tags. For details, see [Tags](/governance/tags). 
 Sometimes, you need to disable tagging for all or specific resources.
 To disable *all* resources in a specific grain use the following syntax:
@@ -349,7 +343,7 @@ grains:
 ```
 
 
-### outputs 
+## outputs 
 Output are values generated by Terraform during the deployment process. Outputs should be defined in the outputs.tf file located in the Terraform module folder. We recommend using Torque's auto-discovery capability to quickly model your Terraform modules within Torque including it's defined outputs.
 
 
@@ -367,7 +361,7 @@ grains:
         - connection_string
 ```
 
-### scripts
+## scripts
 Torque provides the ability to execute custom code before the executing the Terraform module init and before the Terraform destroy process. Scripts allows to run CLI commands to make sure authentication and requirements are set prior to the Terraform execution at the environment's initialization and destroy process.
 
 The available script hooks are:
@@ -443,7 +437,7 @@ fi
 
 ```
 
-### auto-approve flag
+## auto-approve flag
 The "auto-approve" flag in Terraform is used to automatically approve and apply changes without requiring manual confirmation. It is helpful in automation workflows or scripts where user interaction is not feasible, allowing for unattended execution of Terraform commands without the need for explicit approval during the apply phase. By default, Torque will apply the terraform module with auto-approval.
 However, you might specifically want to ensure that critical or potentially destructive changes are reviewed and approved by a user before being applied. This adds an extra layer of safety, especially in scenarios where unintended consequences could result from applying infrastructure changes. It provides an opportunity to carefully inspect the proposed changes before confirming their execution.
 To do that, you can set the auto-approve flag in the terraform grain spec to false (default will be true):
@@ -461,7 +455,7 @@ grains:
 Initial provisioning will always be automatically approved. Setting auto-approve to false will only affect subsequent updates. 
 :::
 
-### environment variables
+## environment variables
 
 The environment variables declared in the terraform grain will be available during the grain deployment as well as the grain destroy phase.
 
@@ -506,5 +500,3 @@ grains:
         - CUSTOM_TOKEN: '{{ .params.token }}'
 
 ```
-
-
