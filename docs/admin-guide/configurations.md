@@ -28,7 +28,7 @@ This feature allows you to:
 
 3. Confirm that your logo uploads successfully.
 
-:::info 🔒  White Labeling is optionally available for **Enterprise plans only**.::::
+:::info 🔒  White Labeling is optionally available for **Enterprise plans only**.:::
 
 ---
 
@@ -61,9 +61,9 @@ Options include:
 - Torque Audit: Forward logs to Torque, and retain for 18 months..  
   
 **How to set up an Audit Log destination**  
-📖 Learn more about [Torque Audit](https://docs.qtorque.io/governance/audit-log/audit-log-configuration)
+📖 Learn more about [Torque Audit](/governance/audit-log#audit-log-configuration).
   
-:::info 🔒  Audit log integration is  available for **Enterprise plans only** and requires a specific licensing feature.::::
+:::info 🔒  Audit log integration is  available for **Enterprise plans only** and requires a specific licensing feature.:::
 
 ---
 
@@ -72,7 +72,8 @@ Options include:
 Enable Torque’s AI-powered assistant to provide recommendations and enhance workflow automation, within your account.  
   
 These settings include 2 features:  
-**1. Torque Copilot** – Easily navigate Torque with our AI chatbot, always accessible and leveraging the official documentation for swift exploration.  
+#### Torque Copilot
+Easily navigate Torque with our AI chatbot, always accessible and leveraging the official documentation for swift exploration.  
 (This feature is based on a 3rd party tool called DocsBot)  
 ![DocsBot](/img/docsbot.png)
 
@@ -82,7 +83,8 @@ These settings include 2 features:
 2.  Toggle on the ‘Torque Copilot’ toggle to show the AI chatbot button at the top header, next to the rest of the utilities.
 3.  Toggle off to hide the AI chatbot and to prevent access from all users.
 
-**2. Cloud Copilot** – Your internal AI assistance to create and customize Blueprints, auto-generate descriptions, and resolve live environment errors.  
+#### Cloud Copilot
+Your internal AI assistance to create and customize Blueprints, auto-generate descriptions, and resolve live environment errors.  
 This AI assistant tool is subject to the [Torque MSA](https://www.quali.com/legal-torque-master-subscription-agreement/) and requires user consent.  
   
 With this feature you can:  
@@ -123,15 +125,16 @@ Streamline authentication with Single Sign-On (SSO) integration.
 1.  Navigate to **Configuration > SSO Login**.
 2.  To enable SSO, click ‘Send a Request’ to connect with an account manager.
 
-- 📖 [How SSO Configuration Works](https://docs.qtorque.io/admin-guide/sso)
+- 📖 [How SSO Configuration Works](/admin-guide/sso#how-this-works).
   
-:::info 🔒  SSO Login is optionally available for **Enterprise plans only**.::::
+:::info 🔒  SSO Login is optionally available for **Enterprise plans only**.:::
 
 
 ---
 
 
 ### 6. Email Reports  
+
 Subscribe to the ‘Weekly Digest’, a summary email providing key account activity insights.  
 Torque's weekly digest reports condense the most important information from a week's worth of data collected in Torque, making it easier for Torque administrators to quickly understand the most critical developments.  
 Torque ‘Weekly Digest’ emails are being sent to Torque administrators and will highlight:
@@ -161,7 +164,7 @@ Control the visibility of the Approval Requests page. Approval policies will sti
 1.  Navigate to **Configuration > Approval Requests**.
 2.  Toggle the setting to **show or hide** the Approval Requests page.
 
-:::info Notice that hiding the page does NOT prevent users from applying approval requests for launching, or extending environments.::::
+:::info Notice that hiding the page does NOT prevent users from applying approval requests for launching, or extending environments.:::
 
 
   
