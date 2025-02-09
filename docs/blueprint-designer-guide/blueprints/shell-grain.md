@@ -271,3 +271,28 @@ grains:
             - name: cleanup-task
               command:  'source clean-something.sh'
 ```
+#### Using Multiline Shell Commands in YAML
+When using multiline shell commands in YAML, you can use the >- syntax to indicate that the content is a folded block scalar. Each line should end with a semicolon (;), double ampersand (&&), or double vertical bar (||) to ensure the commands are executed correctly. For example:
+
+```yaml
+grains:
+  validate:
+    kind: shell
+    spec:
+      agent:
+        name: kubernetes-testing1
+      activities:
+        deploy:
+          commands:
+            - >- # you can use this syntax in the commands sections
+              apt-get -y install git unzip curl &&
+              git clone {{ .inputs.repoUrl }} &&
+              curl https://get.datree.io | /bin/bash &&
+              datree test {{.inputs.repoName}}/{{.inputs.filePath}}
+        destroy:
+          commands:
+            - name: my_script
+              command: >- # or like so in the command section
+                curl https://get.datree.io | /bin/bash ;
+                source script.sh {{ .inputs.script_input1 }}
+```
