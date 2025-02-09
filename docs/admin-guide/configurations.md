@@ -86,7 +86,7 @@ These settings include 2 features:
 This AI assistant tool is subject to the [Torque MSA](https://www.quali.com/legal-torque-master-subscription-agreement/) and requires user consent.  
   
 With this feature you can:  
-- **Auto-generate descriptions** for blueprints, to effortlesly expand the details on every blueprint in the account.  
+- **Auto-generate descriptions** for blueprints, to effortlessly expand the details on every blueprint in the account.  
 - **(Blueprint) Cloud Copilot** - Create and customize blueprints from your Building Blocks Library, using simple language prompts and the power of AI.
 ![Cloud Copilot](file:///Users/tali.n/Desktop/Announcemnets%20GIF/NEW_Jan%202025_Configiration%20Page/Cloud%20Copilot%20Panel.png)
 
