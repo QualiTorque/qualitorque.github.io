@@ -74,7 +74,7 @@ Enable Torque’s AI-powered assistant to provide recommendations and enhance wo
 These settings include 2 features:  
 **1. Torque Copilot** – Easily navigate Torque with our AI chatbot, always accessible and leveraging the official documentation for swift exploration.  
 (This feature is based on a 3rd party tool called DocsBot)  
-![DocsBot](file:///Users/tali.n/Desktop/Announcemnets%20GIF/NEW_Jan%202025_Configiration%20Page/DocsBot.png)
+![DocsBot](/img/docsbot.png)
 
 **How to enable Torque Copilot**
 
@@ -88,10 +88,10 @@ This AI assistant tool is subject to the [Torque MSA](https://www.quali.com/lega
 With this feature you can:  
 - **Auto-generate descriptions** for blueprints, to effortlessly expand the details on every blueprint in the account.  
 - **(Blueprint) Cloud Copilot** - Create and customize blueprints from your Building Blocks Library, using simple language prompts and the power of AI.
-![Cloud Copilot](file:///Users/tali.n/Desktop/Announcemnets%20GIF/NEW_Jan%202025_Configiration%20Page/Cloud%20Copilot%20Panel.png)
+![Cloud Copilot](/img/cloud_copilot_panel.png)
 
 - **AI Insights** - Get AI assistant when you need it. Resolve issues in live environments, by clicking the “Get AI Insights” button, on every error log in your environment. 
-![AI Insights](file:///Users/tali.n/Desktop/Announcemnets%20GIF/NEW_Jan%202025_Configiration%20Page/AI%20Insights.png)
+![AI Insights](/img/ai_insights.png)
 
 
 
@@ -142,7 +142,7 @@ Torque ‘Weekly Digest’ emails are being sent to Torque administrators and wi
 -   Cloud Cost
 -   Top used IaC modules
 -   Top contributors to the operation
-![Weekly Digest Example](file:///Users/tali.n/Desktop/Announcemnets%20GIF/NEW_Jan%202025_Configiration%20Page/Mockup_Weekly%20Digest.png)
+![Weekly Digest Example](/img/mockup_weekly_digest.png)
   
 **How to Enable Email Reports**
 
