@@ -73,6 +73,80 @@ grains: ...
 
 In a workflow, you can define bindings to access environment and resource information. Bindings are automatic variables that provide context to the workflow. The available bindings depend on the scope of the workflow.
 
+For both `env` and `env_resource` scope workflows, accessing the env ("bound entity") inputs and outputs, will be as follow:
+* `{{ .bindings.inputs.<the env input name> }}`
+* `{{ .bindings.outputs.<the env output name> }}`
+
+For `env` scoped workflow, the env `introspection` can be access like so:
+* `{{ bindings.resource_type.<the resource type>.attributes.<the attribute>}}`
+
+:::info
+If more then 1 resource type like this exist in this env then we take the first one)
+:::
+
+For `env_resource` scoped workflow, the env `introspection` can be access like so:
+* `{{ bindings.attributes.<the attribute>}}`
+
+
+**Bindings example**
+
+```yaml 
+spec_version: 2
+description: workflow with "env" scope example
+
+workflow:
+  scope: env
+  triggers:
+    - type: manual
+ 
+inputs:
+  agent:
+    type: agent
+    default: prod
+
+grains:
+  shell_grain:
+    kind: shell
+    spec:
+      agent:
+        name: '{{.inputs.agent}}'
+      activities:
+        deploy:
+          commands:
+            - 'echo "another thing - {{.bindings.resource_type.random_string.attributes.result}}"'
+            - 'echo "another thing - {{.bindings.resource_type.random_id.attributes.hex}}"'
+            - 'echo "another thing - {{.bindings.resource_type.null_resource.attributes.id}}"'
+```
+```yaml 
+spec_version: 2
+description: workflow with "env_resource" scope example
+
+workflow:
+  scope: env_resource
+  resource-selector: aws_s3_bucket
+  triggers:
+    - type: manual
+ 
+inputs:
+  agent:
+    type: agent
+grains:
+  shell_me:
+    kind: shell
+    spec:
+      agent:
+        name: '{{.inputs.agent}}'
+      activities:
+        deploy:
+          commands:
+            - 'echo "--->> {{.bindings.attributes.arn}}"'
+```
+
+### environment `contract.json`
+
+
+When a workflow is executed with a specific scope, the environment **context** JSON object is provided in a file called `contract.json`. This file is accessible from the Runner and contains information about the environment, such as its ID, name, owner email, inputs and all grains introspection data.
+
 For workflows with scope `env`, the following automatic variables are available:
 - `bindings.environment_id`
 
@@ -82,10 +156,6 @@ For workflows with scope `env_resource`, the following automatic variables are a
 - `bindings.resource_id`
 
 The binding variables will provide the relevant context to access the relevant resource introspection data in the `contract` object available in the workflow.
-
-### environment `contract` Object
-
-When a workflow is executed with a specific scope, the environment **context** JSON object is provided in a file called `contract.json`. This file is accessible from the Runner and contains information about the environment, such as its ID, name, owner email, inputs and all grains introspection data.
 
 Here is an example of a `contract.json` file:
 
