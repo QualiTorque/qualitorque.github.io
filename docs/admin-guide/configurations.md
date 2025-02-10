@@ -28,7 +28,7 @@ This feature allows you to:
 
 3. Confirm that your logo uploads successfully.
 
-:::info 🔒  White Labeling is optionally available for **Enterprise plans only**.::::
+:::info 🔒  White Labeling is optionally available for **Enterprise plans only**.:::
 
 ---
 
@@ -61,9 +61,9 @@ Options include:
 - Torque Audit: Forward logs to Torque, and retain for 18 months..  
   
 **How to set up an Audit Log destination**  
-📖 Learn more about [Torque Audit](https://docs.qtorque.io/governance/audit-log/audit-log-configuration)
+📖 Learn more about [Torque Audit](/governance/audit-log/audit-log-configuration)
   
-:::info 🔒  Audit log integration is  available for **Enterprise plans only** and requires a specific licensing feature.::::
+:::info 🔒  Audit log integration is  available for **Enterprise plans only** and requires a specific licensing feature.:::
 
 ---
 
@@ -123,9 +123,9 @@ Streamline authentication with Single Sign-On (SSO) integration.
 1.  Navigate to **Configuration > SSO Login**.
 2.  To enable SSO, click ‘Send a Request’ to connect with an account manager.
 
-- 📖 [How SSO Configuration Works](https://docs.qtorque.io/admin-guide/sso)
+- 📖 [How SSO Configuration Works](/admin-guide/sso)
   
-:::info 🔒  SSO Login is optionally available for **Enterprise plans only**.::::
+:::info 🔒  SSO Login is optionally available for **Enterprise plans only**.:::
 
 
 ---
@@ -161,7 +161,7 @@ Control the visibility of the Approval Requests page. Approval policies will sti
 1.  Navigate to **Configuration > Approval Requests**.
 2.  Toggle the setting to **show or hide** the Approval Requests page.
 
-:::info Notice that hiding the page does NOT prevent users from applying approval requests for launching, or extending environments.::::
+:::info Notice that hiding the page does NOT prevent users from applying approval requests for launching, or extending environments.:::
 
 
   
