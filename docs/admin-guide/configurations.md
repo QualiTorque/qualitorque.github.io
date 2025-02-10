@@ -28,7 +28,7 @@ This feature allows you to:
 
 3. Confirm that your logo uploads successfully.
 
-:::info 🔒  White Labeling is optionally available for **Enterprise plans only**.:::
+🔒  White Labeling is optionally available for **Enterprise plans only**.
 
 ---
 
@@ -63,7 +63,7 @@ Options include:
 **How to set up an Audit Log destination**  
 📖 Learn more about [Torque Audit](/governance/audit-log/audit-log-configuration)
   
-:::info 🔒  Audit log integration is  available for **Enterprise plans only** and requires a specific licensing feature.:::
+info 🔒  Audit log integration is  available for **Enterprise plans only** and requires a specific licensing feature.
 
 ---
 
@@ -125,7 +125,7 @@ Streamline authentication with Single Sign-On (SSO) integration.
 
 - 📖 [How SSO Configuration Works](/admin-guide/sso)
   
-:::info 🔒  SSO Login is optionally available for **Enterprise plans only**.:::
+info 🔒  SSO Login is optionally available for **Enterprise plans only**.
 
 
 ---
@@ -161,7 +161,9 @@ Control the visibility of the Approval Requests page. Approval policies will sti
 1.  Navigate to **Configuration > Approval Requests**.
 2.  Toggle the setting to **show or hide** the Approval Requests page.
 
-:::info Notice that hiding the page does NOT prevent users from applying approval requests for launching, or extending environments.:::
+:::tip __Important__
+Notice that hiding the page does NOT prevent users from applying approval requests for launching, or extending environments.
+:::
 
 
   
