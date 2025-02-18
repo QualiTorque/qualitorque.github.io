@@ -327,7 +327,7 @@ grains:
         service-account: torque-sa # Optional
  ```   
 
-You can add the ```node-selector``` and/or ```pod-labels``` sections to your grain and specify the node labels you want the target node(s) to have. The `node-selector` and its labels will be applied on the pod specification. Kubernetes only schedules the pod onto nodes that have each of the labels you specify. 
+You can add the `node-selector` and/or `pod-labels` sections to your grain and specify the node labels you want the target node(s) to have. The `node-selector` and its labels will be applied on the pod specification. Kubernetes only schedules the pod onto nodes that have each of the labels you specify. 
 
 For example:
 

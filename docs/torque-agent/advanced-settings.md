@@ -163,3 +163,24 @@ In the above example, the `pod-annotations` section under `kubernetes` defines a
 :::
 
 Using annotations can help you organize and manage your runner pods more effectively. You can leverage annotations for various purposes, such as filtering, grouping, or applying policies to specific sets of pods. Additionally, annotations can be used for integration with external tools or services that rely on an annotation for their operations.
+
+
+### node selector
+
+You can add the `node-selector` sections to your grain and specify the node labels you want the target node(s) to have. The `node-selector` and its labels will be applied on the pod specification. Kubernetes only schedules the pod onto nodes that have each of the labels you specify. 
+
+For example:
+
+```yaml
+grains:
+  nginx:
+    kind: helm
+    spec: 
+      source:
+        ...
+      agent:
+        name:
+        kubernetes:
+          node-selector:
+            - app: torque
+```
