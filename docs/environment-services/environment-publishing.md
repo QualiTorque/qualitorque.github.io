@@ -55,6 +55,82 @@ import pic2 from '/img/env-pub-blueprint.png';
 
 > <img src={pic2} alt="env-pub-blueprint" style={{width: 700}} />
 
+### Blueprint example
+```yaml
+spec_version: 2
+
+description: |
+  'Provisions a web server on EC2 instance using provided inputs, such as operating system, application version, etc. 
+  The instance serves dynamic content reflecting the specified inputs.'
+
+env_references:
+  VPC:
+    labels-selector: 'VPC'
+
+inputs:
+  Region:
+    type: 'string'
+    allowed-values:
+      - 'eu-west-1'
+      - 'eu-central-1'
+      - 'us-east-1'
+    description: 'The name of the AWS Region to use'
+  VM Name:
+    type: 'string'
+    default: 'Webapp'
+    pattern: '^[a-zA-Z0-9._-]{1,256}$'
+    validation-description: 'VM name must have between 1 and 256 alphanumeric characters, hypens, underscores and dashes only.'
+    description: 'The name of the underlying EC2 instance in AWS'
+  Size:
+    type: 'parameter'
+    parameter-name: 'size'
+    description: 'The EC2 instance type'
+  OS:
+    type: 'string'
+    allowed-values:
+      - 'Windows Server 2016'
+      - 'RHEL 7'
+      - 'RHEL 8'
+      - 'RHEL 9'
+      - 'Ubuntu 20.04'
+      - 'Ubuntu 22.04'
+    description: 'The type of operating system and corresponding AMI to use in the EC2 instance'
+  Version:
+    depends-on: 'OS'
+    type: 'input-source'
+    source-name: 's3'
+    overrides:
+      - json_path: '$.{{ .inputs.OS | split: " " | first % }}[*]'
+    description: 'Application Version'
+outputs:
+  Address:
+    value: 'https://{{ .grains.webapp.outputs.instance_public_ip}}'
+    quick: true
+  VPC_ID:
+    value: '{{ .env_references.VPC.outputs.vpc_id }}'
+
+grains:
+  webapp:
+    kind: 'terraform'
+    spec:
+      source:
+        store: 'infra-portal'
+        path: 'assets/terraform/aws/webapp'
+      agent:
+        name: 'demo-prod'
+        service-account: 'app-sa'
+      inputs:
+        - vpc: '{{ .env_references.VPC.outputs.vpc_id }}'
+        - region: '{{ .inputs.Region }}'
+        - size: '{{ .inputs.Size }}'
+        - name: '{{ .inputs.["VM Name"] }}'
+        - os: '{{ .inputs.OS }}'
+        - app_version: '{{ .inputs.Version }}'
+        - env_id: '{{ envId | downcase }}'
+      outputs:
+        - 'instance_public_ip'
+```
+
 ## API Support
 
 A range of APIs is available to support the following operations:
