@@ -71,7 +71,7 @@ This guide walks you through the process of importing an existing environment in
 - The API response will include the `environment-id`. After importing, you will see an import step, followed by an apply step with Torque tags applied to the environment.
 
   ```bash
-  curl -X POST "https://api.torque.quali.com/api/spaces/{space_name}/environments/import_using_blueprint" \
+  curl -X POST "https://portal.qtorque.io/api/spaces/{space_name}/environments/import_using_blueprint" \
   -H "Content-Type: application/json" \
   -d '{
     "source": {
@@ -106,7 +106,7 @@ This guide walks you through the process of importing an existing environment in
 - To avoid unintended deletion, you can release the environment by running the following API command using `curl`:
   
   ```bash
-  curl -X DELETE "https://api.torque.quali.com/api/spaces/{space_name}/environments/{environment_id}/release?force={false/true}"
+  curl -X DELETE "https://portal.qtorque.io/api/spaces/{space_name}/environments/{environment_id}/release?force={false/true}"
   ```
 - Use the `release` API to ensure resources are not deleted during the termination process.
 
