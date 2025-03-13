@@ -23,22 +23,22 @@ NOTE: This guide will focus on AWS workloads as an example, but it's possible to
 
 This guide walks you through the process of importing an existing environment into Torque, starting from resource curation to final import using the API. Follow these steps to successfully onboard an environment into Torque.
 
-### Step 1: Curate and codify a Resource
+#### Step 1: Curate and codify a Resource
 - Start by curating the resource you want to manage in Torque. After curating, you'll obtain the Terraform files and the corresponding `tfstate` file.
 
-### Step 2: Edit the Providers File
+#### Step 2: Edit the Providers File
 - Open the `providers` file within the Terraform files and remove the following sensitive credentials:
   - Access Key
   - Secret Key
   - Token
 
-### Step 3: Upload Terraform Files to Git
+#### Step 3: Upload Terraform Files to Git
 - Upload all the Terraform files, excluding the `tfstate` file, to your Git repository. For this example, place them under the folder `terraform/curate-example`.
 
 > ![import flow](/img/exported-tf.png)
 
 
-### Step 4: Create a Matching Blueprint
+#### Step 4: Create a Matching Blueprint
 - Create a corresponding Torque blueprint for the environment, named `curate-example.yaml`. Here's an example blueprint:
 
   ```yaml
@@ -59,14 +59,14 @@ This guide walks you through the process of importing an existing environment in
   ```
 - **Note**: There is no need to specify the Terraform backend in the blueprint.
 
-### Step 5: Create an S3 Bucket and upload the tfstate File
+#### Step 5: Create an S3 Bucket and upload the tfstate File
 - Create a new S3 bucket to store the `tfstate` file, which will act as the Terraform backend for state management.
 - Upload the `tfstate` file you received during the curation process to the S3 bucket created.
 
 > ![state in s3](/img/tfstate-aws.png)
 
 
-### Step 6: Use the Import API
+#### Step 6: Use the Import API
 - To import the environment using the Torque API, make the following POST request using `curl`.
 - The API response will include the `environment-id`. After importing, you will see an import step, followed by an apply step with Torque tags applied to the environment.
 
@@ -109,6 +109,41 @@ This guide walks you through the process of importing an existing environment in
   curl -X DELETE "https://portal.qtorque.io/api/spaces/{space_name}/environments/{environment_id}/release?force={false/true}"
   ```
 - Use the `release` API to ensure resources are not deleted during the termination process.
+
+### Importing Terraform State from Another AWS Account
+To import Terraform states from another account that cannot be accessed directly by the IAM role associated with the agent, follow these steps:
+
+#### 1. Set Up IAM Role in Target Account
+- Ensure the IAM role in the target account has a trust relationship that allows the role used in the automation account to assume the target account role.
+
+#### 2. Configure Import Payload
+- Add the following to the import payload:
+ ```bash
+  curl -X POST "https://portal.qtorque.io/api/spaces/{space_name}/environments/import_using_blueprint" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "grains": [
+      {
+        "kind": "terraform",
+        "name": "s3",
+        "agent": {
+          "name": "agent-name"
+        },
+        "backend": {
+          "type": "s3",
+          "bucket": "my-state-bucket",
+          "region": "eu-west-1",
+          "key": "terraform/terraform.tfstate",
+          "role-arn": "<arn-of-target-account-role>" # set up the target role-arn that has access to the bucket and key configured above
+        }
+      }
+    ]
+  }'
+  ```
+
+#### Important Notes
+1. Terraform version 1.5.7 is recommended. You can set it in the blueprint or in the import request
+2. You might need to use another role in the blueprint as well, using the provider-overrides feature
 
 ---
 
