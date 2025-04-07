@@ -45,10 +45,32 @@ Learn more [here](https://kubernetes.io/docs/concepts/storage/storage-classes/)
 
 **Total storage size (PVC size in MB)** - The total size of PVC storage that will be allocated to Torque runners. 
 
+
 ### resource consumption
 
-**Resource consumption** - The level of resources consumption (Memory + CPU) that will be requested by the Runners. The values are `Low`, `Medium`, `High`. The actual eventual values of the resources are calculated according to this field. Higher values ensure better performance of the POD, but be careful not to set it too high as it may be impossible to schedule it given the cluster's resources.
-The value may be set for low for dev&test use cases, and high for production environments.
+**Resource Consumption** determines the amount of CPU and memory requested by Runners. This directly affects the performance of the execution Pods and their ability to be scheduled within your cluster's available capacity.
+
+As of version [insert version/date], the available consumption levels have expanded to give you finer control over performance and scheduling tradeoffs:
+
+| Level         | CPU (cores) | Memory (MB) |
+|---------------|-------------|-------------|
+| 0 - Minimal   | 0.107       | 210         |
+| 1 - Very Low  | 0.142       | 273         |
+| 2 - Low       | 0.205       | 399         |
+| 3 - Moderate  | 0.324       | 420         |
+| 4 - High      | 0.512       | 462         |
+| 5 - Very High | 0.806       | 504         |
+| 6 - Intense   | 1.272       | 546         |
+| 7 - Maximal   | 2.005       | 630         |
+
+> **Important:** The previous `High` level is now equivalent to the new **`Low` (Level 2)**. Review your existing configurations accordingly.
+
+- **CPU consumption increases exponentially**, while **memory grows linearly** across the levels.
+- Higher levels offer better runtime performance but increase the risk of scheduling failure if cluster resources are insufficient.
+- Use lower levels (*Minimal*, *Very Low*) for development and testing. Use higher levels (*Intense*, *Maximal*) for production-grade workloads with higher performance needs.
+
+In the API, these levels are represented by `0` through `7`.
+
 
 ### storage class
 
