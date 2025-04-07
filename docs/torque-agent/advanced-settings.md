@@ -50,7 +50,7 @@ Learn more [here](https://kubernetes.io/docs/concepts/storage/storage-classes/)
 
 **Resource Consumption** determines the amount of CPU and memory requested by Runners. This directly affects the performance of the execution Pods and their ability to be scheduled within your cluster's available capacity.
 
-As of version [insert version/date], the available consumption levels have expanded to give you finer control over performance and scheduling tradeoffs:
+There are 8 available consumption levels for better control over performance and scheduling tradeoffs:
 
 | Level         | CPU (cores) | Memory (MB) |
 |---------------|-------------|-------------|
@@ -62,8 +62,6 @@ As of version [insert version/date], the available consumption levels have expan
 | 5 - Very High | 0.806       | 504         |
 | 6 - Intense   | 1.272       | 546         |
 | 7 - Maximal   | 2.005       | 630         |
-
-> **Important:** The previous `High` level is now equivalent to the new **`Low` (Level 2)**. Review your existing configurations accordingly.
 
 - **CPU consumption increases exponentially**, while **memory grows linearly** across the levels.
 - Higher levels offer better runtime performance but increase the risk of scheduling failure if cluster resources are insufficient.
