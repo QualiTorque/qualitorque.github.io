@@ -671,3 +671,29 @@ The layout yaml must reside inside a folder named "layouts".
 The **layout** element is where the blueprint references the layout that will be applied to environments created from it. To learn more, visit [layouts](blueprint-designer-guide/layouts/layouts.md)
 
 The **exclude-from-layout** element is optional, use it in case you need to apply the layout only to part of the grains but not all of them.
+
+## labels 
+
+The labels block in your blueprint YAML structure allows you to attach metadata to environments created from the blueprint. Each label is a key-value pair. 
+
+Labels can be static, like `key: value`, or dynamic, using input variables like `version: '{{ .inputs.version }}'`. In the dynamic case, the value of the label is determined by the value provided for the version input when the blueprint is used to create an environment. This enables customization of environments based on user-defined inputs.
+
+```yaml
+spec_version: 2
+description: ...
+
+labels:
+  - key: value
+  - version: '{{ .inputs.version }}'
+
+inputs:
+  version:
+    type: string
+
+grains: ...
+```
+
+:::note
+1. The labels are applied to the environment, not the blueprint itself, and won't appear as part of the catalog item's metadata. 
+2. The environment labels will be merged with any blueprint labels already defined.
+:::
