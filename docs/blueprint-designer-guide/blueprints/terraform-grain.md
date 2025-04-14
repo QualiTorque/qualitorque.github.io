@@ -500,3 +500,30 @@ grains:
         - CUSTOM_TOKEN: '{{ .params.token }}'
 
 ```
+
+## target-resource
+
+The `target-resource` block allows you to specify specific Terraform resources or modules to target during the deployment or destruction process. 
+
+This is particularly useful when you want to apply changes or destroy only a subset of resources without affecting the entire Terraform configuration.
+
+To use resource targeting, add a `target-resource` block to the Terraform grain spec:
+
+```yaml
+grains:
+  s3:
+    kind: terraform
+    spec:
+      target-resource: 
+        - module.s3_bucket
+        - {{ .inputs.tf_resource }}
+      source:
+        store: assets-repo
+        path: terraform/s3
+      agent:
+        name: '{{ .inputs.agent }}'
+```
+
+Each item in the `target-resource` list represents a specific resource or module to target. You can use static values or dynamic inputs (e.g., `{{ .inputs.tf_resource }}`) to define the resources.
+
+For more details on resource targeting, see the [Terraform documentation](https://developer.hashicorp.com/terraform/tutorials/state/resource-targeting).
