@@ -56,15 +56,24 @@ The `labels-selector` field can be used to "attach" workflows to Blueprints or r
 
 In case `labels-selector` field is not defined, the workflow will be available to all of the Blueprints and running Environments.
 
+The `labels-selector` supports two types of conditions:
+1. **`and` condition**: Use the `and` operator between labels to specify that all labels must match.
+2. **`or` condition**: Use a comma `,` between labels to specify that any of the labels can match.
+
+:::note
+You can only choose one type of condition (`and` or `,`) and cannot mix them in the same `labels-selector`.
+:::
+
 ```yaml 
 spec_version: 2
 description: This Resource Workflow will ...
 
 workflow:
   scope: env
-  # note: more than one label can be specified in CSV format.
-  # any blueprint or environment with K8s label, will have this workflow available
-  labels-selector: K8s
+  # example of 'and' condition: all labels must match
+  labels-selector: label1:value1 and label2
+  # example of 'or' condition: any label can match
+  # labels-selector: label1:value1, label2
 
 grains: ...
 ```
