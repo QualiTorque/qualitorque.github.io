@@ -1,6 +1,6 @@
 ---
-sidebar_position: 12
-title: Configuring Cost for Kubernetes
+sidebar_position: 14
+title: Configuring Cost for K8s
 ---
 
 
