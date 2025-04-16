@@ -52,21 +52,21 @@ By specifying the appropriate scope for your workflows, you can ensure that they
 
 ### labels-selector
 
-The `labels-selector` field can be used to "attach" workflows to Blueprints or running Environments that have matching labels.
+The `labels-selector` field can be used to "attach" workflows to `Blueprints` or running `Environments` that have matching labels.
 
-In case `labels-selector` field is not defined, the workflow will be available to all of the Blueprints and running Environments.
+In case `labels-selector` field is not defined, the workflow will be available to all of the `Blueprints` and running `Environments`.
 
 The `labels-selector` supports two types of conditions:
 1. **`and` condition**: Use the `and` operator between labels to specify that all labels must match.
 2. **`or` condition**: Use a comma `,` between labels to specify that any of the labels can match.
 
-:::note
+:::info
 You can only choose one type of condition (`and` or `,`) and cannot mix them in the same `labels-selector`.
 :::
 
 ```yaml 
 spec_version: 2
-description: This Resource Workflow will ...
+description: This Workflow will ...
 
 workflow:
   scope: env
