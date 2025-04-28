@@ -459,3 +459,78 @@ The pre-Ansible run scripts are executed within the same environment as the Ansi
 - Make sure to include any required dependencies or libraries for the scripts within the script repository or the Ansible repository.
 
 By using pre-Ansible run scripts, you can enhance the flexibility and functionality of your Ansible playbooks within the Torque ecosystem.
+
+### on-destroy
+
+The `on-destroy` section allows you to define a cleanup or teardown process that will be executed when the grain is destroyed. This is particularly useful for ensuring that resources created during the grain's lifecycle are properly cleaned up, avoiding resource leaks or unintended costs.
+
+The `on-destroy` section mirrors the structure of the main Ansible grain configuration, allowing you to specify a separate playbook, inputs, inventory file, and other configurations for the teardown process.
+
+#### Motivation
+
+- **Resource Cleanup**: Ensure that resources created during the grain's execution are properly removed.
+- **Cost Management**: Avoid incurring unnecessary costs by cleaning up unused resources.
+- **Consistency**: Maintain a clean and predictable environment by defining explicit teardown steps.
+
+#### Usage Example
+
+Below is an example of a grain with an `on-destroy` section:
+
+```yaml
+
+inputs:
+  vm-name:
+    type: string
+  agent:
+    type: agent
+
+grains:
+  vm:
+    kind: ansible
+    spec:
+      source:
+        store: ansible-repo
+        path: vcenter/vm_deploy.yaml
+      agent:
+        name: '{{ .inputs.agent }}'
+      env-vars:
+        - CUSTOM_TOKEN: '{{ .params.token }}'
+      inputs:
+        - name: '{{ .inputs.vm-name }}'
+      command-arguments: "--tags deploy"
+      on-destroy:
+        source:
+          store: ansible-repo
+          path: vcenter/vm_destroy.yaml
+        inputs:
+          - name: '{{ .inputs.vm-name }}'
+        command-arguments: "--tags destroy"
+        inventory-file:
+          localhost:
+            hosts:
+              127.0.0.1:
+                ansible_connection: local
+        scripts:
+          pre-ansible-run:
+            source:
+              store: scripts
+              path: scripts/run.sh
+```
+
+#### Explanation of the Example
+
+- **`source`**: Specifies the playbook to be executed during the destroy phase. In this case, it uses the same playbook as the main grain but with different tags.
+- **`inputs`**: Inputs specific to the destroy phase, such as variables required for cleanup.
+- **`command-arguments`**: Additional arguments passed to the `ansible-playbook` command. Here, the `--tags destroy` argument ensures only the tasks tagged with `destroy` are executed.
+- **`inventory-file`**: Defines the inventory file for the destroy phase, which can differ from the main execution phase.
+- **`scripts`**: Allows running pre-destroy scripts, such as setting up the environment or preparing for teardown.
+
+#### Notes
+
+- The `on-destroy` section is optional but highly recommended for grains that create external resources.
+- Ensure that the playbook and inputs used in the `on-destroy` section are designed to handle the cleanup process effectively.
+- If the `on-destroy` process fails, it may leave resources in an inconsistent state. Proper error handling and validation are crucial.
+
+By using the `on-destroy` section, you can ensure that your Ansible grains are not only effective during deployment as a configuration management, but also responsible during teardown, maintaining a clean and efficient environment.
+
+
