@@ -153,15 +153,21 @@ For __environment__ policies, the input is the following json object:
     "blueprint_avg_hourly_cost": null,
     "space_name": "my_space",
     "user_email": "me.l@mycorp.com",
+    "groups": ["group1", "group2"],
+    "roles": {
+        "account_roles": ["role1", "role2"],
+        "space_roles": ["role3", "role4"],
+    },
+    "is_git_environment": false,
     "entity_name": "my-env", //environment name
     "action_identifier": {
         "entity_type": "Environment",
         "entity_id": null,
         "action_type": "Launch" // options: "Launch", "Extend"
-    }
-    "owner_active_environments_in_space": 1// # of the current owner's active environments in space 
-    "owner_active_environments_in_account": 1  //  # of the current owner's active environments in the account 
-    "active_environments_in_space": 1 // total # of active environments in the space 
+    },
+    "owner_active_environments_in_space": 1, // # of the current owner's active environments in space 
+    "owner_active_environments_in_account": 1,  //  # of the current owner's active environments in the account 
+    "active_environments_in_space": 1, // total # of active environments in the space 
     "active_environments_in_account": 2 // total # of active environments in the account 
 }
 ```
@@ -198,15 +204,21 @@ For __consumption__ policies, the input is similar to the object in __environmen
     "blueprint_avg_hourly_cost": null,
     "space_name": "my_space",
     "user_email": "me.l@mycorp.com",
+    "groups": ["group1", "group2"],
+    "roles": {
+        "account_roles": ["role1", "role2"],
+        "space_roles": ["role3", "role4"],
+    },
+    "is_git_environment": false,
     "entity_name": "my-env", //environment name
     "action_identifier": {
         "entity_type": "Environment",
         "entity_id": null,
         "action_type": "Launch" // options: "Launch", "Extend"
-    }
-    "owner_active_environments_in_space": 1// # of the current owner's active environments in space 
-    "owner_active_environments_in_account": 1  //  # of the current owner's active environments in the account 
-    "active_environments_in_space": 1 // total # of active environments in the space 
+    },
+    "owner_active_environments_in_space": 1, // # of the current owner's active environments in space 
+    "owner_active_environments_in_account": 1,  //  # of the current owner's active environments in the account 
+    "active_environments_in_space": 1, // total # of active environments in the space 
     "active_environments_in_account": 2 // total # of active environments in the account 
 }
 ```
