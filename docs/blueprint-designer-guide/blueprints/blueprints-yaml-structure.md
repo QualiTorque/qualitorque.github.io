@@ -1,18 +1,20 @@
 ---
-sidebar_position: 6
+sidebar_position: 4
 title: Blueprint YAML Structure
 ---
 
-The Torque's blueprint YAML is the main blueprint definition file. It contains general information about the environment as well as the grains that make up the environment's applications and services. The blueprint YAML is published to end-users in Torque's blueprint catalog. 
+The Torque's blueprint YAML is the main blueprint definition file. It contains general information about the environment as well as the grains that make up the environment's applications and services. The blueprint YAML is published to end-users in Torque's blueprint catalog.
 
-## spec_version
+## The Blueprint spec
+
+### `spec_version`
 The spec_version determines the blueprint YAML type. Currently, Torque supports spec_version:2 as the default and recommended version. With time, new preview releases and official feature releases will bring more and more features and users will be able to use other spec versions.
 
 ```yaml
 spec_version: 2
 ```
 
-## description
+### `description`
 The blueprint’s description is an optional but recommended field. Blueprint description will be presented in the Torque's UI and API so users consuming environment will have more information about the blueprints to batter match their business need to the available set of blueprints published in the account catalog.
 
 
@@ -22,7 +24,7 @@ description: Performance testing deployment based on RDS, EKS and Lambda
 
 ```
 
-## instructions
+### `instructions`
 
 Instructions are the recommended way for the blueprint developer to communicate with the end user and explain how to use this blueprint. The instructions can be simple text, or a complete MarkDown file, hosted in your git repository. 
 
@@ -48,7 +50,7 @@ instructions:
 :::
 
 
-## inputs
+### `inputs`
 Blueprint designers can publish blueprint inputs to their end-users to add flexibility while launching a new environment from the blueprints, without altering the blueprint code itself. Input data can be later used in the blueprint to control orchestration, pass information to automation processes, and more.
 
 The input definition is composed out of the following fields: 
@@ -128,7 +130,7 @@ inputs:
 We then configure a parameter with name: aws-allowed-regions and value "us-east-1,us-east2" .
 The end user will be presented with a drop down of these 2 values as the allowed values options.
 
-## outputs
+### `outputs`
 Outputs exposes information about your newly deployed environment and make it available for the environment's end-user or automation processes. Outputs will usually be available at the end of the environment's initialization and accessible throughout the environment lifecycle.
 
 Outputs are a dictionary composed by the output name and the output value.
@@ -173,7 +175,7 @@ grains:
 ```
 
 
-## grains
+### `grains`
 Grains are the basic building blocks of a blueprint utilizing infrastructure as code (IaC) assets or automation processes to orchestrate the desired environment. In many organization, the blueprint designers will have a predefined set of grains they can use in blueprints provided by the IT/Ops/DevOps or platform team. 
 
 The basic grain template is composed out of the grain name, kind, inputs and output. specific grains might support other features that are technology specific.
@@ -211,7 +213,7 @@ The following grains are available:
 * [Blueprint](/blueprint-designer-guide/blueprints/blueprint-grain)
 * [CloudShell](/blueprint-designer-guide/blueprints/cloudshell-grain)
 
-## source
+### `source`
 
 Sources are repositories storing IaC, CM or other configuration technology that will be utilized by Torque to launch and operate an environment. Torque supports multiple ways to define grain sources. 
 Sources can be defined in the following ways:
@@ -278,7 +280,7 @@ grains:
 * If "commit" is provided, Torque __will not__ track changes.
 :::
 
-## agent
+### `agent`
 
 The ```agent``` defines the agent that will deploy the grain. While different grains behave differently, it's important to choose the right agent for a grain to make sure authentication, networking and configuration is all properly configured. Different grains in the same blueprint can use different agents to allow maximum flexibility during the orchestration processes.
 
@@ -355,6 +357,88 @@ grains:
             - app: torque
 ```
 
+### `depends-on`
+The need to deploy one IaC component before the other is common and usually required when 3rd party components, managed services and other teams need to provide the infrastructure. Using dependencies in the blueprint YAML Torque will evaluate and optimize the deployment process to make sure dependencies are respected and components with no dependencies will be deployed in parallel to maximize efficiency and reduce overall uptime.
+
+In the example below, 3 grain in the blueprint will be deployed in the following order: rds and redis will be deployed in parallel - and my_app will be deployed next, only in case of a successful deployment.
+
+```yaml 
+grains:
+  rds:
+    # launch an AWS RDS instance using Terraform
+    kind: terraform
+
+grains:
+  redis:
+    # launch an AWS ElastiCache using CloudFormation
+    kind: cloudformation
+
+  my_app_demo:
+    # launcing K8s based microservices application using Helm
+    depends-on: rds, redis
+    kind: helm
+ ```   
+
+
+:::info
+The ability to use outputs from specific grain usually requires the grain deployment to finish successfully. designing a blueprint with output usually requires dependencies between the grains.
+:::
+
+
+
+### `labels`
+
+The labels block in your blueprint YAML structure allows you to attach metadata to environments created from the blueprint. Each label is a key-value pair. 
+
+Labels can be static, like `key: value`, or dynamic, using input variables like `version: '{{ .inputs.version }}'`. In the dynamic case, the value of the label is determined by the value provided for the version input when the blueprint is used to create an environment. This enables customization of environments based on user-defined inputs.
+
+:::note
+1. The labels are applied to the environment, not the blueprint itself, and won't appear as part of the catalog item's metadata. 
+2. The environment labels will be merged with any blueprint labels already defined.
+:::
+
+
+```yaml
+spec_version: 2
+description: ...
+
+labels:
+  - key: value
+  - version: '{{ .inputs.version }}'
+
+inputs:
+  version:
+    type: string
+
+grains: ...
+```
+
+
+### `layout`
+
+Layout is a separate yaml that will be referenced from the blueprint yaml like so:
+
+:::note
+The layout yaml must reside inside a folder named "layouts".
+:::
+
+```yaml
+spec_version: 2
+description: ...
+layout:
+  source:
+    store: <connected repo>
+    path: <path to layout file>
+  exclude-from-layout:  # optional
+    - grain_name_1
+    - grain_name_2
+```
+
+The **layout** element is where the blueprint references the layout that will be applied to environments created from it. To learn more, visit [layouts](blueprint-designer-guide/layouts/layouts.md)
+
+The **exclude-from-layout** element is optional, use it in case you need to apply the layout only to part of the grains but not all of them.
+
+
 ## Grains inputs & outputs
 Inputs and outputs are used both in the blueprint level and in the grains level. Grains can use inputs and outputs to pass data between IaC components, validate information and eventually lead to reducing the amount of IaC components that needs to be maintained by the organization.
 
@@ -379,34 +463,6 @@ grains:
       inputs:
         - db.connectionString: '{{ .grains.rds.outputs.connection_string }}'
  ```    
-
-## Grains dependencies
-The need to deploy one IaC component before the other is common and usually required when 3rd party components, managed services and other teams need to provide the infrastructure. Using dependencies in the blueprint YAML Torque will evaluate and optimize the deployment process to make sure dependencies are respected and components with no dependencies will be deployed in parallel to maximize efficiency and reduce overall uptime.
-
-In the example below, 3 grain in the blueprint will be deployed in the following order: rds and redis will be deployed in parallel - and my_app will be deployed next, only in case of a successful deployment.
-
-```yaml 
-grains:
-  rds:
-    # launch an AWS RDS instance using Terraform
-    kind: terraform
-
-grains:
-  redis:
-    # launch an AWS ElastiCache using CloudFormation
-    kind: cloudformation
-
-  my_app_demo:
-    # launcing K8s based microservices application using Helm
-    kind: helm
-    depends-on: rds, redis
- ```   
-
-
-:::info
-The ability to use outputs from specific grain usually requires the grain deployment to finish successfully. designing a blueprint with output usually requires dependencies between the grains.
-:::
-
 
 ## Torque Templating Engine
 Templating engines are a great way to enrich the YAML format to allow extensibility points and text manipulations. Torque utilizes a GO-Lang style engine called [Shopify Liquid](https://shopify.github.io/liquid/) to allow dynamic injection of parameters and inputs as well as provider attribute values via reference of other attributes within the same YAML. 
@@ -433,7 +489,7 @@ In the below example the [downcase](https://shopify.github.io/liquid/filters/dow
 
 For details and examples of how to use the parameters from the parameter store inside blueprints, check [this article](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#parameters).
 
-## Dynamic Attributes
+### Dynamic Attributes
 Blueprint designers might need extra details about the account, space or environment during the environment's orchestration. Torque provides dynamic attributes which are pre-defined parameters blueprints designers can use. The currently supported dynamic attributes are:
 
 - `envId`
@@ -457,7 +513,7 @@ The dynamic attributes calculation is case insensitive so you can use either "en
 :::
 
 
-## parameters
+### Parameters
 Torque's [Parameters](/admin-guide/params) store allows admins to set pre-defined account/space-level parameters. Blueprint designers can use the parameters in the blueprint YAML, instead of inputs if they don't want the environment end-user to provide the value, but also don't want to hard-code it in the blueprint.
 
 The syntax is: ```{{ .params.param-value }}```
@@ -480,6 +536,10 @@ grains:
 
 ## Environment Variables
 In many cases, passing information through environment variables is required for IaC modules to properly execute with the right data in mind. The environment variables provided under a specific grain will be accessible only during the grain lifecycle of the specific grain and can be used as a specific string or to be derived from a blueprint input or other grain output. 
+
+:::note
+The env-vars field is relevant only to concrete IaC grains (e.g., terraform, helm, ansible, shell, etc.) and does not apply to grains of kind 'blueprint'.
+:::
 
 ```yaml 
   s3_bucket:
@@ -514,7 +574,7 @@ grains:
 The auto-retry element is optional . If not present, it defaults to "true". Can be "true" or "false".
 
 
-## workspace-directories
+## Workspace directories
 
 :::note
 The `workspace-directories` is supported for all grain types.
@@ -653,55 +713,3 @@ POST {{host}}/api/spaces/{{space}}/settings/credentialstore
 In this example, we're creating an Artifactory credential named `my-artifactory` with the server URL and a token for authentication. Currently, Torque supports Artifactory token authentication.
 
 Once the Artifactory credential is configured, you can reference it in your blueprint's `workspace-directories` section using the `store` parameter, as shown in the usage example above.
-
-
-## layout 
-
-Layout is a separate yaml that will be referenced from the blueprint yaml like so:
-
-```yaml
-spec_version: 2
-description: ...
-layout:
-  source:
-    store: <connected repo>
-    path: <path to layout file>
-  exclude-from-layout:  # optional
-    - grain_name_1
-    - grain_name_2
-```
-
-:::note
-The layout yaml must reside inside a folder named "layouts".
-:::
-
-
-The **layout** element is where the blueprint references the layout that will be applied to environments created from it. To learn more, visit [layouts](blueprint-designer-guide/layouts/layouts.md)
-
-The **exclude-from-layout** element is optional, use it in case you need to apply the layout only to part of the grains but not all of them.
-
-## labels 
-
-The labels block in your blueprint YAML structure allows you to attach metadata to environments created from the blueprint. Each label is a key-value pair. 
-
-Labels can be static, like `key: value`, or dynamic, using input variables like `version: '{{ .inputs.version }}'`. In the dynamic case, the value of the label is determined by the value provided for the version input when the blueprint is used to create an environment. This enables customization of environments based on user-defined inputs.
-
-```yaml
-spec_version: 2
-description: ...
-
-labels:
-  - key: value
-  - version: '{{ .inputs.version }}'
-
-inputs:
-  version:
-    type: string
-
-grains: ...
-```
-
-:::note
-1. The labels are applied to the environment, not the blueprint itself, and won't appear as part of the catalog item's metadata. 
-2. The environment labels will be merged with any blueprint labels already defined.
-:::

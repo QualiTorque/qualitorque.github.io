@@ -1,11 +1,11 @@
 ---
-sidebar_position: 24
+sidebar_position: 5
 title: The Ansible Grain
 ---
 
 The Ansible grain is Torque’s native support for orchestrating the execution of Ansible playbooks as part of a Torque blueprint. The referenced playbook can rely on vars or inventory-hosts that are dynamically provided by Torque, and then utilize them to perform configuration management, updates, a health check or any other flow that is executable from Ansible. 
 
-### Tools and technologies
+## Tools and technologies
 
 The following tools and technologies are installed out of the box on our agents in the Kubernetes pods and can be used when designing ansible playbook execution:
 
@@ -16,7 +16,7 @@ The following tools and technologies are installed out of the box on our agents 
 * ansible
 * openssh-client
 
-### discovery
+## Ansible discovery
 
 Auto-discovery of Ansible playbooks requires parsing the file content to differentiate playbooks from other YAML files. The validation process checks if a `yaml` file contains the `tasks` property, which is a key indicator of an Ansible playbook.
 
@@ -45,11 +45,12 @@ variable3:
   test3: '{{ name }}'
 ```
 
-Here's an example of an auto-generated blueprint based on the discovered playbook and variables file:
+Below is an example of an auto-generated blueprint based on a discovered playbook and its variables file. This demonstrates how Torque can help you quickly scaffold a working Ansible blueprint:
 
 ```yaml
 spec_version: 2
 description: Auto-generated Ansible Blueprint
+
 inputs:
   agent:
     type: agent
@@ -82,26 +83,64 @@ grains:
         - variable1: '{{ .inputs.variable1 }}'
         - variable2: '{{ .inputs.variable2 }}'
         - variable3: '{{ .inputs.variable3 }}'
-      # The outputs section should be reviewed and corrected based on the playbook content
+      # The outputs section below is a placeholder. Review and update based on your playbook's actual outputs.
       outputs:
         - result
 ```
 
 :::tip__Note__
-Please note that the `outputs` section in the auto-generated blueprint is a placeholder and should be reviewed and corrected by the user based on the actual outputs of the playbook. Since determining the outputs requires analyzing the playbook content, there is no automated way to set them during the auto-discovery process.
+The `outputs` section in the auto-generated blueprint is a placeholder. You should review and update it to match the actual outputs produced by your playbook. Since outputs depend on the playbook's content, they cannot be determined automatically during discovery.
 :::
 
 :::tip__Note__
-The blueprint YAML should be validated and adjusted by the user before attempting to run it, particularly for the `outputs` section, to ensure accurate and expected behavior.
+Always validate and adjust the generated blueprint YAML before running it, especially the `outputs` section, to ensure it behaves as expected.
 :::
 
-### source
+## Installing Ansible Requirements
+
+Torque is designed to streamline the installation of your module’s dependencies. It accomplishes this by automatically detecting and installing the requirements specified in a ``requirements.yaml`` or ``requirements.yml`` file. This file should be located in the root directory of your module.
+
+For instance, if your module’s main file is located at ``ansible/my-module/main.yaml``, the corresponding requirements file should be placed in the same directory, i.e., ``ansible/my-module/``.
+
+By adhering to this structure, you can ensure that Torque correctly identifies and installs all necessary requirements for your module.
+
+## Usage example
+
+```yaml
+spec_version: 2
+description: Ansible playbook example with pre-ansible-run scripts
+
+inputs:
+  agent:
+    type: agent
+
+grains:
+  ansible_playbook:
+    kind: ansible
+    spec:
+      source:
+        store: ansible-repo
+        path: ansible/playbook.yml
+      agent:
+        name: '{{ .inputs.agent }}'
+      command-arguments: "--vault-password-file ~/.vault_pass.txt"
+      scripts:
+        pre-ansible-run:
+          source:
+            store: my-script-repo
+            path: scripts/create_vault_file.sh
+          arguments: '{{ .params.vault_pass }}'
+```
+
+## The Grain spec
+
+### `source`
 The source section of an Ansible grain provides Torque with the information on where the Ansible playbook is stored and should be retrieved from. This could be either a direct source URL to an Ansible playbook YAML file, or it can be a reference from a Torque-connected git repository. 
 
 __Example - direct:__
 
 ```yaml 
-My_Ansible_Grain:
+ansible-grain:
   kind: ansible
   spec:
     source:
@@ -111,7 +150,7 @@ My_Ansible_Grain:
 __Example - repository:__
 
 ```yaml 
-My_Ansible_Grain:
+ansible-grain:
   kind: ansible
   spec:
     source:
@@ -119,10 +158,10 @@ My_Ansible_Grain:
       path: assets/ansible/install_apache2_webgame_ubuntu.yaml
 ```
 
-### agent
+### `agent`
 Please see [the grain agent](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#host) for more details.
 
-### inputs
+### `inputs`
 Inputs which are provided to the ansible grain will be used in the ansible command line as "extra-vars".
 The syntax is similar to any grain inputs.
 
@@ -189,7 +228,7 @@ The playbook will be executed with the extra vars in the following way:
 ansible-playbook myplaybook.yaml --extra-vars "@/var/run/ansible/inputs/inputs.json"
 ```
 
-### inventory-file
+### `inventory-file`
 
 Inventory file is a special grain section unique to the ansible grain, that allows you to provide in a YAML structured format, the content of the Ansible inventory file that will be generated for the Ansible playbook to use. For a deep understanding of the format of this file, please see the Ansible official documentation at https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html#inventory-basics-formats-hosts-and-groups.
 The general standard structure for such a file is as follows:
@@ -265,7 +304,7 @@ __Example:__ Below is an example of a grains section of a blueprint, containing 
             person_name: Doe
 ```
 
-### outputs
+### `outputs`
 
 Ansible does not support outputs from playbooks natively so Torque adds this support on top of the ansible capabilities.
 Why would you need outputs from your ansible grain?
@@ -318,15 +357,7 @@ grains:
 If you wish to install the module locally to test it, please run ```ansible-galaxy collection install torque.collections```
 The module resides in the marketplace : https://galaxy.ansible.com/torque/collections
 
-### Installing Ansible Requirements
-
-Torque is designed to streamline the installation of your module’s dependencies. It accomplishes this by automatically detecting and installing the requirements specified in a ``requirements.yaml`` or ``requirements.yml`` file. This file should be located in the root directory of your module.
-
-For instance, if your module’s main file is located at ``ansible/my-module/main.yaml``, the corresponding requirements file should be placed in the same directory, i.e., ``ansible/my-module/``.
-
-By adhering to this structure, you can ensure that Torque correctly identifies and installs all necessary requirements for your module.
-
-### command-arguments
+### `command-arguments`
 
 The `command-arguments` field allows you to pass additional arguments to the `ansible-playbook` command when executing the Ansible playbook. This gives you flexibility to customize the Ansible run as needed.
 
@@ -411,7 +442,7 @@ In this blueprint, when executing the `print_hello` Ansible grain, the `ansible-
 The `command-arguments` value can include any valid arguments that could be passed to `ansible-playbook`. This allows customizing things like tags to run/skip, handling behavior, displaying version info, and more.
 
 
-### pre-ansible-run scripts
+### `scripts`
 
 Torque allows you to run scripts before executing the Ansible playbook. This can be useful for various purposes, such as setting up the environment or performing prerequisite tasks.
 
@@ -460,7 +491,7 @@ The pre-Ansible run scripts are executed within the same environment as the Ansi
 
 By using pre-Ansible run scripts, you can enhance the flexibility and functionality of your Ansible playbooks within the Torque ecosystem.
 
-### on-destroy
+### `on-destroy`
 
 The `on-destroy` section allows you to define a cleanup or teardown process that will be executed when the grain is destroyed. This is particularly useful for ensuring that resources created during the grain's lifecycle are properly cleaned up, avoiding resource leaks or unintended costs.
 

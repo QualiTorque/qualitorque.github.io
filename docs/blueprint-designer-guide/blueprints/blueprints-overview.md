@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 1
 title: Blueprint YAML Overview
 ---
 
@@ -13,11 +13,12 @@ Common example will be a platform team or a DevOps team building Dev, Test and s
 
 In this section:
 * [Torque's Blueprint YAML](/blueprint-designer-guide/blueprints/blueprints-yaml-structure)
-* [The Terraform Grain](/blueprint-designer-guide/blueprints/terraform-grain)
-* [The HELM Grain](/blueprint-designer-guide/blueprints/helm-grain)
+* [The Ansible Grain](/blueprint-designer-guide/blueprints/ansible-grain)
+* [The ArgoCD Grain](/blueprint-designer-guide/blueprints/argocd-grain)
+* [The Blueprint Grain](/blueprint-designer-guide/blueprints/blueprint-grain)
 * [The CloudFormation Grain​](/blueprint-designer-guide/blueprints/cloudformation-grain)
+* [The CloudShell Grain](/blueprint-designer-guide/blueprints/cloudshell-grain)
+* [The Helm Grain](/blueprint-designer-guide/blueprints/helm-grain)
 * [The Kubernetes Grain​](/blueprint-designer-guide/blueprints/kubernetes-grain)
 * [The Shell Grain](/blueprint-designer-guide/blueprints/shell-grain)
-* [The Ansible Grain](/blueprint-designer-guide/blueprints/ansible-grain)
-* [The CloudShell Grain](/blueprint-designer-guide/blueprints/cloudshell-grain)
-* [The Blueprint Grain](/blueprint-designer-guide/blueprints/blueprint-grain)
+* [The Terraform Grain](/blueprint-designer-guide/blueprints/terraform-grain)

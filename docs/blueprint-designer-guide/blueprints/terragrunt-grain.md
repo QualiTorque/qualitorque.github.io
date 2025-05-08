@@ -1,5 +1,5 @@
 ---
-sidebar_position: 36
+sidebar_position: 15
 title: The Terragrunt Grain
 ---
 
