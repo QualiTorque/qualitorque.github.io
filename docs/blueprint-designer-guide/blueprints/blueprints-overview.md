@@ -16,6 +16,7 @@ In this section:
 * [The Ansible Grain](/blueprint-designer-guide/blueprints/ansible-grain)
 * [The ArgoCD Grain](/blueprint-designer-guide/blueprints/argocd-grain)
 * [The Blueprint Grain](/blueprint-designer-guide/blueprints/blueprint-grain)
+* [The CDK Grain](/blueprint-designer-guide/blueprints/cdk-grain)
 * [The CloudFormation Grain​](/blueprint-designer-guide/blueprints/cloudformation-grain)
 * [The CloudShell Grain](/blueprint-designer-guide/blueprints/cloudshell-grain)
 * [The Helm Grain](/blueprint-designer-guide/blueprints/helm-grain)
