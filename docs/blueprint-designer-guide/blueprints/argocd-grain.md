@@ -84,7 +84,7 @@ grains:
       application-namespace: argocd
 ```
 
-## The Grain spec
+## Grain Spec Reference
 
 Below are the main fields available in the ArgoCD grain `spec` section:
 

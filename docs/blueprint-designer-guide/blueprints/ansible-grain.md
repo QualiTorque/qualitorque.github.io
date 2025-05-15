@@ -132,7 +132,7 @@ grains:
           arguments: '{{ .params.vault_pass }}'
 ```
 
-## The Grain spec
+## Grain Spec Reference
 
 ### `source`
 The source section of an Ansible grain provides Torque with the information on where the Ansible playbook is stored and should be retrieved from. This could be either a direct source URL to an Ansible playbook YAML file, or it can be a reference from a Torque-connected git repository. 

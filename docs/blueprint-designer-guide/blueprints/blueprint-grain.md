@@ -72,7 +72,7 @@ grains:
 
 ```
 
-## The Grain spec
+## Grain Spec Reference
 
 ### `source`
 The source section of a blueprint grain must contain the ```store``` and ```path``` attributes. 
