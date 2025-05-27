@@ -249,6 +249,7 @@ vCenter
 sa
 serviceaccount
 GCP
+gcp
 awk
 io
 kubectl
@@ -507,3 +508,15 @@ chatbot
 MSA
 GPT
 OpenAI
+GCP
+Dataset
+dataset
+ArgoCD
+ARGOCD
+CDK
+TypeScript
+toolchain
+CRD
+tradeoffs
+roadmap
+roadmap
