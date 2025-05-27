@@ -142,6 +142,7 @@ Torque ‘Weekly Digest’ emails are being sent to Torque administrators and wi
 -   Cloud Cost
 -   Top used IaC modules
 -   Top contributors to the operation
+
 ![Weekly Digest Example](/img/mockup_weekly_digest.png)
   
 **How to Enable Email Reports**
@@ -164,6 +165,63 @@ Control the visibility of the Approval Requests page. Approval policies will sti
 :::tip __Important__
 Notice that hiding the page does NOT prevent users from applying approval requests for launching, or extending environments.
 :::
+
+---
+
+### 8.	Quick Launch
+
+Enable your team to Quick Launch — this configuration skips the summary step and launches environments instantly.
+
+When enabled by the account admin:
+-> The 'Review Summary' step is removed.
+-> You’ll see a single ‘Launch’ button for a quicker start.
+
+**How to Enable Quick Launch**
+1.	Navigate to **Configuration > Quick Launch**.
+2.	Toggle the setting **ON to show only the ‘Launch’** button, no ‘Review Summary’ option.
+3.	Toggle the setting **OFF to show only the ‘Review Summary’**. Users will be able to launch only after reviewing the summary.
+
+![Quick Launch_May2025](https://github.com/user-attachments/assets/f778a556-21f7-4115-9a8d-4cde91357b33)
+
+---
+
+### 9.	Experimental Features
+
+Experimental Features give account administrators early access to upcoming capabilities in Torque that are still in development. These features are in a **beta** or **testing phase** and may not yet be fully supported or stable.
+
+This settings gives **Torque administrators early visibility and hands-on access** to major upcoming features and UI changes—allowing them to explore, prepare, and influence what’s coming before it rolls out to all users.
+ 
+
+**What You Need to Know**
+- 🔬 **Experimental features are optional** and intended for **evaluation and feedback purposes only**.
+- 🧪 These features may contain bugs or incomplete functionality. Use with caution in production environments.
+- 👤 **Only the admin who enables an experiment** will see the changes. No other users in the account will be affected.
+- 📆 Each experiment includes a defined **trial period** with a description of what’s new.
+- 📩 Admins can provide feedback via:
+  -> A **survey form** linked within the experiment.
+  -> A **support ticket** submitted through the Torque support system.
+
+  
+**How to Use Experimental Features**
+1.	Navigate to **Configuration > Experimental Features**.
+2.	Review the list of available experiments.
+3.	Click the toggle next to an experiment to **enable or disable** the feature **for yourself only**.
+4.	Try out the new feature and explore the changes.
+5.	Submit feedback via the linked survey or by opening a support ticket.
+ 
+ 
+**After the Experiment Period**
+
+Once the experiment ends:
+-	The feature will be **evaluated based on admin feedback**.
+-	If approved, it will be officially released and made **available to all users** in the account.
+-	You’ll receive updates in the product and via release notes.
+ 
+
+🛠 **Note**: Enabling experimental features is a great way to influence Torque’s roadmap and help improve future releases.
+
+info 🔒  Experimental Features are optionally available for **Enterprise plans only**.
+
 
 
   
