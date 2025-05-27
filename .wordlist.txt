@@ -507,3 +507,15 @@ chatbot
 MSA
 GPT
 OpenAI
+GCP
+Dataset
+dataset
+ArgoCD
+ARGOCD
+CDK
+TypeScript
+toolchain
+CRD
+tradeoffs
+roadmap
+roadmap
