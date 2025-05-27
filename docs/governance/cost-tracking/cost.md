@@ -19,7 +19,7 @@ With the cost dashboard, you can understand your business activities cost:
 ## Supported cloud providers
 * [AWS](/governance/cost-tracking/configuring-cost-aws)
 * [Azure](/governance/cost-tracking/configuring-cost-azure)
-* [GPC](/governance/cost-tracking/configuring-cost-gcp)
+* [GCP](/governance/cost-tracking/configuring-cost-gcp)
 * [Kubernetes](/governance/cost-tracking/configuring-cost-k8s)
 
 
