@@ -249,6 +249,7 @@ vCenter
 sa
 serviceaccount
 GCP
+gcp
 awk
 io
 kubectl
