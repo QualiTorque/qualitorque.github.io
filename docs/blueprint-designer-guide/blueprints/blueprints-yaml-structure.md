@@ -145,6 +145,8 @@ The `file` input type allows users to upload files from the launch form. These f
 
 ```yaml
 spec_version: 2
+description: "Blueprint with file input type"
+
 inputs:
   agent:
     type: 'agent'
