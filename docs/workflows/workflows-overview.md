@@ -457,6 +457,11 @@ Torque provides some out-of-the-box workflows for you to use.
 All the built-in workflows are `Ansible` based and available here: https://github.com/QualiTorque/torque-actions
 :::
 
+:::info
+- In ***built-in*** workflows (with *env_resource* scope), only one grain is allowed to be specified.
+- One action will be ran per one introspection resource.
+:::
+
 In order to use the built-in workflows, a `built-in` field is required and under source.path you need to point to the relevant action. E.g.:
 ```yaml
       built-in: true
@@ -533,12 +538,6 @@ grains:
       agent:
         name: '{{ .inputs.agent }}'
 ``` 
-
-:::info
-- In ***built-in*** workflows (with *env_resource* scope), only one grain is allowed to be specified.
-- One action will be ran per one introspection resource.
-:::
-
 
 ## Explore Use-cases
 
