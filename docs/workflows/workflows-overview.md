@@ -534,9 +534,9 @@ grains:
         name: '{{ .inputs.agent }}'
 ``` 
 
-:::note
-- Only one grain with *built-in* action may be present in workflow blueprint
-- One action will be ran per one introspection resource. 
+:::info
+- In ***built-in*** workflows (with *env_resource* scope), only one grain is allowed to be specified.
+- One action will be ran per one introspection resource.
 :::
 
 
