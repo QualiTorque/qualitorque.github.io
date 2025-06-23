@@ -61,6 +61,7 @@ The input definition is composed out of the following fields:
   - ```agent``` allows the environment end-user to select the agent that will deploy the grain(s) from a dropdown list. By default, all agents are listed in the dropdown list, but you can add ```allowed-values``` to only display a subset of the agents. For details, see [agent](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#agent).
   - ```parameter``` will take the input's allowed values from the parameter-store, from a parameter with the name ```parameter-name```. The parameter can be defined either in the account level or in the space level. If the parameter's value is built as a comma separated list, Torque will convert them to a set of values and present it to the end-user as a drop down list of the values. See an example below. For more info about the parameter store, click [here](admin-guide/params.md).
   - ```credentials``` allows the environment end-user to select the credentials that will be used to deploy the grain(s) from a dropdown list. By default, all credentials in the account are listed in the dropdown list, but you can add ```allowed-values``` to only display a subset of the credentials. 
+  - ```file``` allows the environment end-user to upload one or more files from the launch form. The uploaded files are made available to the blueprint designer using the [`workspace-directories`](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#workspace-directories) section and the **env-storage** store - [See details below](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#file-input-type).
 - ```style``` (Optional): Defines how the input is presented to the user. For example:
   - ```radio``` displays the allowed values as radio buttons. This is useful for binary or mutually exclusive choices. The input `type` must be ```string``` when using this style.
 - ```sensitive```: ```true``` masks the value behind asterisks in the UI and API. (Default is ```false```) 
@@ -129,6 +130,54 @@ inputs:
 
 We then configure a parameter with name: aws-allowed-regions and value "us-east-1,us-east2" .
 The end user will be presented with a drop down of these 2 values as the allowed values options.
+
+#### File Input Type
+
+The `file` input type allows users to upload files from the launch form. These files are made available to the blueprint designer using the [`workspace-directories`](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#workspace-directories) section and the `env-storage` store. This is useful for scenarios where the environment requires user-provided files (such as configuration, data, or scripts) at launch time.
+
+**File input fields:**
+- `type: file` (required)
+- `max-size-MB`: Maximum allowed file size in megabytes (required)
+- `max-files`: Maximum number of files that can be uploaded (required)
+- `allowed-formats`: List of allowed file extensions (required)
+
+**Example:**
+
+```yaml
+spec_version: 2
+inputs:
+  agent:
+    type: 'agent'
+  txt-files:
+    type: 'file'
+    max-size-MB: 1
+    max-files: 2
+    allowed-formats:
+      - 'txt'
+
+grains:
+  print-txt-file:
+    kind: 'shell'
+    spec:
+      agent:
+        name: '{{.inputs.agent}}'
+      workspace-directories:
+        - source:
+            name: 'SOURCE_DIR'
+            store: 'env-storage/{{.inputs.txt-files}}'
+      activities:
+        deploy:
+          commands:
+            - 'echo $SOURCE_DIR/*'
+            - 'echo print file content'
+            - 'first_file=$(ls $SOURCE_DIR/*.txt | head -n 1) ; cat $first_file'
+```
+
+**How it works:**
+- The user uploads up to 2 `.txt` files (each up to 1MB) when launching the environment.
+- The files are made available in the environment as a workspace directory using the `env-storage` store and the input name.
+- The grain can access the uploaded files using the specified directory name (e.g., `$SOURCE_DIR`).
+
 
 ### `outputs`
 Outputs exposes information about your newly deployed environment and make it available for the environment's end-user or automation processes. Outputs will usually be available at the end of the environment's initialization and accessible throughout the environment lifecycle.

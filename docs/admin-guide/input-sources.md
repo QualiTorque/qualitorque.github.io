@@ -189,6 +189,7 @@ To use an input source in a blueprint:
 inputs:
   bucket:
     type: string
+
   object:
     type: input-source
     source-name: bucket-objects-source
@@ -196,6 +197,22 @@ inputs:
     - bucket
     overrides:
     - bucket_name: '{{ .inputs.bucket }}'
+```
+
+**Example YAML snippet** (HTTP Server):
+
+```yaml
+inputs:
+  region:
+    type: string
+
+  resource:
+    type: input-source
+    source-name: http-server-resource-list
+    depends-on:
+    - region
+    overrides:
+    - query: 'region={{ .inputs.region }}'
 ```
 
 ---
