@@ -451,10 +451,6 @@ grains:
       auto-approve: false
 ```
 
-:::info
-Initial provisioning will always be automatically approved. Setting auto-approve to false will only affect subsequent updates. 
-:::
-
 ## environment variables
 
 The environment variables declared in the terraform grain will be available during the grain deployment as well as the grain destroy phase.
