@@ -193,8 +193,7 @@ inputs:
   object:
     type: input-source
     source-name: bucket-objects-source
-    depends-on:
-    - bucket
+    depends-on: bucket
     overrides:
     - bucket_name: '{{ .inputs.bucket }}'
 ```
@@ -209,8 +208,7 @@ inputs:
   resource:
     type: input-source
     source-name: http-server-resource-list
-    depends-on:
-    - region
+    depends-on: region
     overrides:
     - query: 'region={{ .inputs.region }}'
 ```
