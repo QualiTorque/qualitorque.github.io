@@ -515,6 +515,178 @@ grains:
         - db.connectionString: '{{ .grains.rds.outputs.connection_string }}'
  ```    
 
+
+### Complex inputs
+
+In some cases, you may want to pass complex objects (such as nested dictionaries or JSON structures) as inputs to nested blueprints or grains. This is useful for passing Helm values, environment variables, or other structured data between blueprints and grains.
+
+Below are two examples demonstrating how to pass complex inputs:
+
+#### Example 1: Helm complex inputs
+
+Root Blueprint:
+
+```yaml
+spec_version: 2
+inputs:
+  agent:
+    type: agent    
+  namespace:
+    type: string
+  tag:
+    type: string
+    default: stable
+
+grains:
+  mongodb:
+    kind: blueprint
+    spec: 
+      outputs:
+        - MONGO_URI
+
+  application:
+    kind: blueprint
+    spec:
+      source:
+        path: blueprints/application.yaml
+        store: blueprints-repo
+      inputs:
+        - agent: '{{.inputs.agent}}'
+        - target_namespace: '{{.inputs.namespace}}'
+        # Option 1
+        - helm_values:
+            mongodb.uri: '{{ .grains.mongodb.outputs.MONGO_URI }}'
+            deployment.namespace: '{{.inputs.namespace}}'
+            image.tag: '{{.inputs.tag}}'
+        # Option 2
+        # - helm_values: '{{.inputs.helm_values}}'
+```
+
+Nested (application) Blueprint:
+
+```yaml
+spec_version: 2
+
+inputs:
+  agent:
+    type: agent    
+  helm_version:
+    default: '1.0'
+  script_path:
+    default: get-dns
+  target_namespace:
+    type: string
+  helm_values:
+    type: string
+    default: '{ "deployment.namespace": "dev-namespace", "image.tag": "latest", "replicaCount": 2 }'
+
+outputs:
+  helm_output:
+    value: '{{ .grains.helm-grain.scripts.post-helm-install.outputs.dns }}'
+
+grains:
+  helm-grain:
+    kind: helm
+    spec:
+      source:
+        path: helm/deployment
+        store: application-repo
+      agent:
+        name: '{{ .inputs.agent }}'
+      commands:
+        - dep up helm/deployment     
+      target-namespace: '{{ .inputs.target_namespace }}'
+      command-arguments: '  --version {{ .inputs.helm_version }}  --debug  '
+      inputs:
+        - _: '{{ .inputs.helm_values }}' # Flatten the helm values
+      scripts:
+        post-helm-install:
+          source:
+            store: application-repo
+            path: scripts/{{ .inputs.script_path }}.sh
+          arguments: '{{ .inputs.helm_version }}'
+          outputs:
+            - dns
+```
+
+Default values.yaml:
+
+```yaml
+mongodb:
+  uri: mongodb://mongo:27017
+replicaCount: 1
+image:
+  repository: mongodb
+  tag: stable
+deployment:
+  namespace: default
+service:
+  port: 80
+```
+
+#### Example 2: Shell complex inputs passing
+
+Root Blueprint:
+
+```yaml
+spec_version: 2
+
+inputs:
+  agent:
+    type: agent    
+  tag:
+    type: string
+    default: stable
+  env_var1:
+    type: string
+    default: some-env-var1
+  env_var2:
+    type: string
+    default: some-env-var2
+
+grains:
+  health-check:
+    kind: blueprint
+    spec:
+      source:
+        path: blueprints/health-check.yaml
+        store: blueprints-repo
+      inputs:
+        - agent: '{{.inputs.agent}}'
+        - shell_env_vars:
+            ENV_VAR1: '{{.inputs.env_var1}}'
+            ENV_VAR2: '{{.inputs.env_var2}}'
+```
+
+Nested (inner) Blueprint:
+
+```yaml
+spec_version: 2
+
+inputs:
+  agent:
+    type: agent
+  shell_env_vars:
+    type: string
+
+grains:
+  script:
+    kind: shell    
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      env-vars:
+        - _: '{{ .inputs.shell_env_vars }}' # Flatten the env vars
+      activities:
+        deploy:
+          commands:
+            - echo printing env vars
+            - env
+```
+
+These patterns allow you to pass structured data between blueprints and grains, enabling more flexible and reusable blueprint designs.
+
+
 ## Torque Templating Engine
 Templating engines are a great way to enrich the YAML format to allow extensibility points and text manipulations. Torque utilizes a GO-Lang style engine called [Shopify Liquid](https://shopify.github.io/liquid/) to allow dynamic injection of parameters and inputs as well as provider attribute values via reference of other attributes within the same YAML. 
 Example:
