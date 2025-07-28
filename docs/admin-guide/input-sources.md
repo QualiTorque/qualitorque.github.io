@@ -213,6 +213,8 @@ inputs:
     - query: 'region={{ .inputs.region }}'
 ```
 
+More usage examples can be found [here](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#inputs).
+
 ---
 
 ## Examples & Deployment
