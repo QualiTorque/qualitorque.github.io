@@ -64,6 +64,23 @@ The input definition is composed out of the following fields:
   - ```file``` allows the environment end-user to upload one or more files from the launch form. The uploaded files are made available to the blueprint designer using the [`workspace-directories`](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#workspace-directories) section and the **env-storage** store - [See details below](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#file-input-type).
 - ```style``` (Optional): Defines how the input is presented to the user. For example:
   - ```radio``` displays the allowed values as radio buttons. This is useful for binary or mutually exclusive choices. The input `type` must be ```string``` when using this style.
+  - ```multi-select``` displays the allowed values as a multi-select dropdown, allowing the user to select multiple values. The input `type` must be ```string``` and the value should be a JSON array of strings. This is useful for cases where multiple selections are needed, such as a list of IPs or tags.
+
+    **Example:**
+
+    ```yaml
+    inputs:
+      IPs:
+        type: 'string'
+        default: '["192.168.1.1","192.168.1.2"]'
+        style: 'multi-select'
+        description: 'IPs to connect'
+        allowed-values:
+          - '192.168.1.1'
+          - '192.168.1.2'
+          - '192.168.1.3'
+          - '192.168.1.4'
+    ```
 - ```sensitive```: ```true``` masks the value behind asterisks in the UI and API. (Default is ```false```) 
 - ```default``` - (Optional) Value to be used in the Torque UI and will be used in case no other value provided for the input. If a default value is not defined, the environment end-user will need to provide one when launching the environment.
 - ```allowed-values``` converts the input into a dropdown list, allowing the environment end-user to select the appropriate value. If a ```default``` is specified, it must be included in the allowed values list. 
