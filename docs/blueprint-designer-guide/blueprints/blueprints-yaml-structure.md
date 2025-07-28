@@ -63,23 +63,45 @@ The input definition is composed out of the following fields:
   - ```credentials``` allows the environment end-user to select the credentials that will be used to deploy the grain(s) from a dropdown list. By default, all credentials in the account are listed in the dropdown list, but you can add ```allowed-values``` to only display a subset of the credentials. 
   - ```file``` allows the environment end-user to upload one or more files from the launch form. The uploaded files are made available to the blueprint designer using the [`workspace-directories`](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#workspace-directories) section and the **env-storage** store - [See details below](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#file-input-type).
 - ```style``` (Optional): Defines how the input is presented to the user. For example:
-  - ```radio``` displays the allowed values as radio buttons. This is useful for binary or mutually exclusive choices. The input `type` must be ```string``` when using this style.
-  - ```multi-select``` displays the allowed values as a multi-select dropdown, allowing the user to select multiple values. The input `type` must be ```string``` and the value should be a JSON array of strings. This is useful for cases where multiple selections are needed, such as a list of IPs or tags.
+  - ```radio``` displays the allowed values as radio buttons. This is useful for binary or mutually exclusive choices. The input `type` must be `string` when using this style.
+  - ```multi-select``` displays the allowed values as a multi-select dropdown, allowing the user to select multiple values. The input `type` can be ```string```, `parameter` or `input-source`. The captured value is a JSON array of strings. This is useful for cases where multiple selections are needed, such as a list of IPs, Compute types or tags.
 
     **Example:**
 
     ```yaml
+    spec_version: 2
+    description: |
+      Blueprint with multi-select input type
+      All three examples allow users to select multiple GPU types, but differ in how the options are provided:
+      - static list
+      - dynamic source
+      - parameter store
+      
+      The captured value is always a JSON array of strings.
+
     inputs:
-      IPs:
-        type: 'string'
-        default: '["192.168.1.1","192.168.1.2"]'
+      gpu-types:
         style: 'multi-select'
-        description: 'IPs to connect'
+        type: 'string'
+        description: 'GPU types'
+        default: '["A100","L40"]'
         allowed-values:
-          - '192.168.1.1'
-          - '192.168.1.2'
-          - '192.168.1.3'
-          - '192.168.1.4'
+          - 'H100'
+          - 'H200'
+          - 'A100'
+          - 'L40'
+
+      gpu-types-dynamic:
+        style: 'multi-select'
+        type: 'input-source'
+        source-name: 'available-gpu-types'
+        description: 'GPU types'
+
+      gpu-types-paramerter-store:
+        style: 'multi-select'
+        type: 'parameter'
+        parameter-name: 'gpu-types-list'
+        description: 'GPU types'
     ```
 - ```sensitive```: ```true``` masks the value behind asterisks in the UI and API. (Default is ```false```) 
 - ```default``` - (Optional) Value to be used in the Torque UI and will be used in case no other value provided for the input. If a default value is not defined, the environment end-user will need to provide one when launching the environment.
@@ -88,28 +110,30 @@ The input definition is composed out of the following fields:
 - ```pattern``` is an optional regular expression pattern that the input value must match. If provided, Torque will validate the user input against this pattern during environment launch and prevent launching if the input does not conform to the specified pattern.
 - ```validation-description``` is an optional user-friendly message or description that will be shown to the user if the provided input value does not match the specified `pattern`. This helps provide better guidance to the user on the expected input format or constraints.
 
-```yaml
-inputs:
-  app_version:
-    type: string
-    allowed-values: [0.9.7, 0.9.8, 0.9.9]
-    default: "0.9.9"
-    description: "The version of the application to be deployed on the EKS cluster"
-  agent:
-    type: agent
-    allowed-values: [NY, Tokyo, London]
-    description: "Select your site's agent."
-  email_address:
-    type: string
-    description: "Enter a valid email address"
-    pattern: '^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$'
-    validation-description: "The provided value is not a valid email address. Please enter an email in the format 'name@example.com'."
-  debug-mode:
-    type: string
-    style: radio
-    allowed-values: [true, false]
-    description: "Enable or disable debug mode for the application"
-```
+    **Example:**
+
+    ```yaml
+    inputs:
+      app_version:
+        type: string
+        allowed-values: [0.9.7, 0.9.8, 0.9.9]
+        default: "0.9.9"
+        description: "The version of the application to be deployed on the EKS cluster"
+      agent:
+        type: agent
+        allowed-values: [NY, Tokyo, London]
+        description: "Select your site's agent."
+      email_address:
+        type: string
+        description: "Enter a valid email address"
+        pattern: '^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$'
+        validation-description: "The provided value is not a valid email address. Please enter an email in the format 'name@example.com'."
+      debug-mode:
+        type: string
+        style: radio
+        allowed-values: [true, false]
+        description: "Enable or disable debug mode for the application"
+    ```
 
 The inputs section in the Torque blueprint YAML also supports spaces to make inputs more user friendly. Configuring an input with a friendly name can be done in the following way:
 
