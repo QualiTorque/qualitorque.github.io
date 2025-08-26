@@ -3,13 +3,13 @@ sidebar_position: 1
 title: Torque Workflows
 ---
 
-## Workflow
+Torque Workflows are a powerful way to automate and orchestrate complex processes within your infrastructure. They allow you to define a series of actions and steps that are executed in a specific order, providing automation capabilities for various operational tasks. Workflows can be triggered by events, scheduled to run at specific times, or executed manually.
 
-Workflows are a powerful way to automate and orchestrate complex processes. They allow you to define a series of actions and steps that are executed in a specific order. Workflows can be triggered by events or scheduled to run at specific times.
+## Workflow Discovery
 
-Workflow discovery is done in the same way of Blueprints. The yaml needs to be under the `blueprints/` directory in the repository.
+Workflow discovery is done in the same way as Blueprints. The YAML files need to be under the `blueprints/` directory in the repository. Torque automatically scans for workflow files and makes them available based on their scope and configuration.
 
-The Workflow YAML standard is similar to the Blueprint standard. The only addition to the Workflow specification is the the `workflow` block.
+The Workflow YAML standard is similar to the Blueprint standard. The only addition to the Workflow specification is the `workflow` block, which defines the workflow-specific configuration.
 
 ```yaml
 spec_version: 2
@@ -22,7 +22,37 @@ workflow:
 grains: ...
 ```
 
-### scope
+## Usage Example
+
+```yaml
+spec_version: 2
+description: Workflow with shell grains for resource management
+
+workflow:
+  scope: env_resource
+  resource-types: aws_instance
+  triggers:
+    - type: manual
+
+inputs:
+  agent:
+    type: agent
+
+grains:
+  resource_check:
+    kind: shell
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      activities:
+        deploy:
+          commands:
+            - 'echo "Checking resource: {{ .bindings.resource_id }}"'
+```
+
+## Workflow Spec Reference
+
+### `scope`
 
 The `scope` field in a Torque workflow determines where the workflow is available. There are two possible values for the `scope` field:
 
@@ -30,7 +60,7 @@ The `scope` field in a Torque workflow determines where the workflow is availabl
 2. `env`: Workflows with this scope are available at the environment level. This means that they can be triggered and executed for the entire environment. These workflows can be used to automate and orchestrate processes that involve multiple resources within the environment.
 3. `env_resource`: Workflows with this scope will be available at the resource level (e.g. for a VM or DB). The type of resource for which the workflow will be available is defined by the `resource-types` field. Only resources that match the specified resource types will have access to these workflows. This allows for more granular control and customization of workflows based on specific resource types.
 
-### resource-types
+### `resource-types`
 
 When scoping a the workflow to an `env_resource`, the `resource-types` field allow to attach that workflow to the specified resource types.
 
@@ -50,7 +80,7 @@ grains: ...
 
 By specifying the appropriate scope for your workflows, you can ensure that they are available and applicable to the desired level of your infrastructure. Whether you need to automate processes at the environment level or target specific resources, Torque workflows provide the flexibility to meet your automation needs.
 
-### labels-selector
+### `labels-selector`
 
 The `labels-selector` field can be used to "attach" workflows to `Blueprints` or running `Environments` that have matching labels.
 
@@ -78,7 +108,96 @@ workflow:
 grains: ...
 ```
 
-### bindings
+### `triggers`
+
+Workflows can be triggered by various types of events or schedules:
+1. `cron`: Schedules based on cron expressions.
+   - `overridable`: Optional field to allow end-users to override the cron
+2. `manual`: Manually triggered workflows, optionally restricted to specific user groups.
+   -  `groups`: Optional field to allow only users in the specified groups to run the workflow
+3. `event`: Environment events can be events such as drift detected, updates detected, approval requests, and more. The events include:
+   - `Drift Detected`
+   - `Updates Detected`
+   - `Approval Request Approved`
+   - `Approval Request Denied`
+   - `Approval Request Cancelled`
+   - `Environment Ended`
+   - `Environment Launched`
+   - `Environment Active With Error`
+   - `Environment Ending Failed`
+   - `Environment Force Ended`
+   - `Environment Extended`
+   - `Collaborator Added`
+   - `Environment Idle`
+
+```yaml
+spec_version: 2
+description: ...
+
+workflow:
+  scope: env
+
+  triggers:
+    - type: event
+      event:
+        - 'Approval Request Approved'
+        - 'Approval Request Cancelled'
+
+    - type: cron 
+      cron: '0 22 * * *' # every day at 22:00
+      overridable: true # Allow end-users to override the cron
+
+    - type: manual 
+      groups: # Optional, allow only users in the "Admin" group to run the workflow
+        - 'Admins'
+   
+inputs: ...
+outputs: ...
+grains: ...
+```
+
+### `timeout`
+
+The `timeout` field allows you to specify the maximum duration (in minutes) that a workflow is allowed to run before it is automatically terminated. This helps prevent workflows from running indefinitely and consuming resources.
+
+The timeout value can be specified as either a string or an integer, and supports Liquid templating for dynamic values (for example, from inputs or parameters).
+
+:::info
+The minimum timeout value is 5 minutes. This ensures that the workflow environment has sufficient time to initialize and start deployment properly.
+:::
+
+**Example - static timeout:**
+
+```yaml
+spec_version: 2
+description: Workflow with timeout
+
+workflow:
+  scope: env 
+  timeout: '7'  # 7 minutes timeout as string
+
+grains: ...
+```
+
+**Example - dynamic timeout using input:**
+
+```yaml
+spec_version: 2
+description: Workflow with dynamic timeout
+
+inputs:
+  workflow_timeout:
+    type: string
+    default: '15'
+
+workflow:
+  scope: env
+  timeout: '{{ .inputs.workflow_timeout }}'  # Dynamic timeout from input
+
+grains: ...
+```
+
+### `bindings`
 
 In a workflow, you can define bindings to access environment and resource information. Bindings are automatic variables that provide context to the workflow. The available bindings depend on the scope of the workflow.
 
@@ -90,14 +209,14 @@ For `env` scoped workflow, the env `introspection` can be access like so:
 * `{{ bindings.resource_type.<the resource type>.attributes.<the attribute>}}`
 
 :::info
-If more then 1 resource type like this exist in this env then we take the first one)
+If more than 1 resource type like this exists in this environment, then we take the first one.
 :::
 
 For `env_resource` scoped workflow, the env `introspection` can be access like so:
 * `{{ bindings.attributes.<the attribute>}}`
 
 
-**Bindings example**
+### Bindings example
 
 ```yaml 
 spec_version: 2
@@ -151,7 +270,7 @@ grains:
             - 'echo "--->> {{.bindings.attributes.arn}}"'
 ```
 
-### environment `contract.json`
+### Environment `contract.json`
 
 
 When a workflow is executed with a specific scope, the environment **context** JSON object is provided in a file called `contract.json`. This file is accessible from the Runner and contains information about the environment, such as its ID, name, owner email, inputs and all grains introspection data.
@@ -315,59 +434,9 @@ Here is an example of a `contract.json` file:
 }
 ```
 
-### triggers
+### YAML Example
 
-Workflows can be triggered by various types of events or schedules:
-1. `cron`: Schedules based on cron expressions.
-   - `overridable`: Optional field to allow end-users to override the cron
-2. `manual`: Manually triggered workflows, optionally restricted to specific user groups.
-   -  `groups`: Optional field to allow only users in the specified groups to run the workflow
-3. `event`: Environment events can be events such as drift detected, updates detected, approval requests, and more. The events include:
-   - `Drift Detected`
-   - `Updates Detected`
-   - `Approval Request Approved`
-   - `Approval Request Denied`
-   - `Approval Request Cancelled`
-   - `Environment Ended`
-   - `Environment Launched`
-   - `Environment Active With Error`
-   - `Environment Ending Failed`
-   - `Environment Force Ended`
-   - `Environment Extended`
-   - `Collaborator Added`
-   - `Environment Idle`
-
-```yaml
-spec_version: 2
-description: ...
-
-workflow:
-  scope: env
-
-  triggers:
-    - type: event
-      event:
-        - 'Approval Request Approved'
-        - 'Approval Request Cancelled'
-
-    - type: cron 
-      cron: '0 22 * * *' # every day at 22:00
-      overridable: true # Allow end-users to override the cron
-
-    - type: manual 
-      groups: # Optional, allow only users in the "Admin" group to run the workflow
-        - 'Admins'
-   
-inputs: ...
-outputs: ...
-grains: ...
-```
-
-### YAML 
-
-Simple example running shell script in a Workflow
-
-```yaml
+Below is a complete example of a workflow running shell scripts:```yaml
 spec_version: 2
 description: Workflow with shell grains
 
@@ -423,7 +492,7 @@ grains:
               command:  'echo "{{ .grains.helper.activities.deploy.commands.print.outputs.state_tr }}"'
 ```
 
-**Shell script:**
+**Shell script example:**
 
 ```shell
 resource_id=$1
@@ -447,29 +516,32 @@ echo $state_tr
 export $state_tr
 ```
 
-## Torque `built-in` Workflows
+## Torque Built-in Workflows
 
-### `built-in` workflows
+### Built-in workflows
 
 Torque provides some out-of-the-box workflows for you to use.
 
 :::note
-All the built-in workflows are `Ansible` based and available here: https://github.com/QualiTorque/torque-actions
+All the built-in workflows are Ansible-based and available here: https://github.com/QualiTorque/torque-actions
 :::
 
 :::info
-- In ***built-in*** workflows (with *env_resource* scope), only one grain is allowed to be specified.
-- One action will be ran per one introspection resource.
+- In built-in workflows (with env_resource scope), only one grain is allowed to be specified.
+- One action will be run per one introspection resource.
 :::
 
-In order to use the built-in workflows, a `built-in` field is required and under source.path you need to point to the relevant action. E.g.:
+In order to use the built-in workflows, a `built-in` field is required and under source.path you need to point to the relevant action. For example:
+
 ```yaml
-      built-in: true
-      source:
-        path: https://github.com/QualiTorque/torque-actions.git//resource/<action>.yaml
+built-in: true
+source:
+  path: https://github.com/QualiTorque/torque-actions.git//resource/<action>.yaml
 ```
 
-**The list of the available actions:**
+#### Available Actions
+
+**The available built-in actions:**
 - `aws-power-on-ec2-tf`: This workflow is used to power on an EC2 instance in AWS that was provisioned using Terraform.
 - `aws-power-off-ec2-tf`: This workflow is used to power off an EC2 instance in AWS that was provisioned using Terraform.
 - `aws-restart-ec2-tf`: This workflow is used to restart an EC2 instance in AWS that was provisioned using Terraform.
@@ -511,7 +583,7 @@ In order to use the built-in workflows, a `built-in` field is required and under
 - `aws-pause-eks-tf`: This workflow is used to pause an EKS cluster in AWS that was provisioned using Terraform.
 - `aws-resume-eks-tf`: This workflow is used to resume an EKS cluster in AWS that was provisioned using Terraform.
 
-**Example of `built-in` workflow:**
+**Example of built-in workflow:**
 
 ```yaml
 spec_version: 2
