@@ -47,7 +47,7 @@ grains:
       activities:
         deploy:
           commands:
-            - 'echo "Checking resource: {{ .bindings.resource_id }}"'
+            - 'echo "Checking resource: {{ .bindings.attributes.arn }}"'
 ```
 
 ## Workflow Spec Reference
