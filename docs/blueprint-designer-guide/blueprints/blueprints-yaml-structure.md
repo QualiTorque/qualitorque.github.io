@@ -531,6 +531,48 @@ The **layout** element is where the blueprint references the layout that will be
 
 The **exclude-from-layout** element is optional, use it in case you need to apply the layout only to part of the grains but not all of them.
 
+### `metadata`
+
+The metadata section allows you to define additional information about the blueprint that affects how it's presented and behaves in the Torque catalog. This section contains optional fields that enhance the blueprint's appearance and functionality.
+
+```yaml
+spec_version: 2
+description: ...
+
+metadata:
+  self-service: true
+  display-name: "My Custom Blueprint"
+  icon: "database"
+
+grains: ...
+```
+
+#### `self-service`
+
+Controls whether the blueprint is available for self-service deployment by end users. When set to `true`, users can deploy environments from this blueprint directly. When set to `false`, the blueprint may require additional approval or administrative intervention.
+
+```yaml
+metadata:
+  self-service: true  # Default: false
+```
+
+#### `display-name`
+
+Specifies a user-friendly display name for the blueprint that will be shown in the Torque UI catalog. This allows you to provide a more descriptive name than the filename or internal identifier.
+
+```yaml
+metadata:
+  display-name: "Production Web Application Stack"
+```
+
+#### `icon`
+
+Defines the icon that will be displayed for the blueprint in the Torque catalog. This helps users quickly identify and distinguish between different blueprints.
+
+```yaml
+metadata:
+  icon: "database"
+```
 
 ## Grains inputs & outputs
 Inputs and outputs are used both in the blueprint level and in the grains level. Grains can use inputs and outputs to pass data between IaC components, validate information and eventually lead to reducing the amount of IaC components that needs to be maintained by the organization.
