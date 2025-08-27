@@ -3,17 +3,17 @@ sidebar_position: 1
 title: The Environment YAML
 ---
 
-If you know how to write Torque blueprints, you can write Environment as Code (EaC) YAML files. 
-The structure of an EaC YAML file is similar to a blueprint, with the addition of an 'environment' section that defines the properties of the specific environment instance.
+Environment as Code (EaC) allows you to define and manage Torque environments using YAML files. If you know how to write Torque blueprints, you can write EaC YAML files. The structure of an EaC YAML file is similar to a blueprint, with the addition of an 'environment' section that defines the properties of the specific environment instance.
 
-
-:::tip__Note__
-Environments are written in YAML files that reside in a __/environments__ folder within a source control repository onboarded to Torque (the folder name is case-sensitive and must be "environments"). Environments kept in the  __/environments__  folder must be of type ".yaml" and not ".yml" to be used in Torque.
-:::
+## Environment Discovery
 
 Environment YAML files must be placed under the 'environments' directory in the repository. Torque periodically scans this directory for environment YAML files and stores them internally.
 
-For the Blueprint example above, the directory structure is:
+:::note
+Environments are written in YAML files that reside in an __/environments__ folder within a source control repository onboarded to Torque (the folder name is case-sensitive and must be "environments"). Environments kept in the __/environments__ folder must be of type ".yaml" and not ".yml" to be used in Torque.
+:::
+
+The directory structure should be as follows:
 
 ```bash
 environments/
@@ -32,12 +32,11 @@ Possible applicable changes:
 - Environment inputs
 - Grain inputs
 
-:::tip__info__
+:::info
 All sources must contain a commit hash or tag.
 :::
-   
 
-### complete example
+## Usage Example
 
 Here's an example of a Torque environment YAML file:
 
@@ -127,8 +126,9 @@ The `grains` section contains the list of grains that make up the environment, s
 
 By following this structure, users can define and manage their environments as code, allowing for version control, collaboration, and automated deployments using Torque's Environment as Code (EaC) functionality.
 
-### environment
-Torque environment section contains all of the specific data related to the environment instance.
+## Environment section
+
+The environment section contains all of the specific data related to the environment instance. This is the main configuration block that defines how the environment should be created and managed.
 
 ```yaml
 environment:
@@ -149,4 +149,138 @@ environment:
   tags:
     key1: value1
     key2: value2
+```
+
+## Environment Spec Reference
+
+### `environment_name`
+
+The unique name identifier for the environment. This field is required and must be unique within the space.
+
+```yaml
+environment:
+  environment_name: my-production-env
+```
+
+### `description`
+
+An optional description providing additional context about the environment's purpose or contents.
+
+```yaml
+environment:
+  description: "Production environment for web application"
+```
+
+### `owner_email`
+
+The email address of the environment owner. This field is required and must be a valid email address of a user in the Torque system.
+
+```yaml
+environment:
+  owner_email: admin@company.com
+```
+
+:::info
+Updating the owner email does not update the owner of active environments. Owner changes only apply to new environment deployments.
+:::
+
+### `state`
+
+The desired state of the environment. Possible values are:
+- `active`: The environment should be running and available
+- `inactive`: The environment should be stopped/terminated
+
+```yaml
+environment:
+  state: active
+```
+
+### `collaborators`
+
+Defines users and groups that have collaborative access to the environment. Collaborators can view and potentially modify the environment based on their permissions.
+
+```yaml
+environment:
+  collaborators: 
+    collaborators_emails:
+      - user1@company.com
+      - user2@company.com
+    collaborators_groups:
+      - Developers
+      - QA-Team
+```
+
+**Sub-fields:**
+- `collaborators_emails`: List of email addresses for individual users
+- `collaborators_groups`: List of group names that should have collaborative access
+
+### `spaces`
+
+Specifies which Torque spaces this environment belongs to. Environments can be associated with multiple spaces for organization and access control purposes.
+
+```yaml
+environment:
+  spaces:
+    - development
+    - testing
+    - staging
+```
+
+### `tags`
+
+Key-value pairs for categorizing and organizing environments. Tags can be used for filtering, reporting, and applying policies.
+
+```yaml
+environment:
+  tags:
+    project: web-app
+    team: backend
+    cost-center: engineering
+    environment-type: production
+```
+
+### `labels`
+
+Similar to tags but used specifically for workflow attachment and selection. Labels help determine which workflows are available for this environment.
+
+```yaml
+environment:
+  labels:
+    application: web-service
+    tier: production
+    region: us-east-1
+```
+
+### `duration`
+
+Specifies the maximum lifetime of the environment. The environment will be automatically terminated after this duration expires.
+
+```yaml
+environment:
+  duration: PT4H  # ISO 8601 duration format (4 hours)
+```
+
+**Supported formats:**
+- ISO 8601 duration format (e.g., `PT1H30M` for 1 hour 30 minutes)
+- Hours format (e.g., `4h` for 4 hours)
+- Minutes format (e.g., `120m` for 120 minutes)
+
+### `auto_approve`
+
+Controls whether the environment deployment should proceed automatically without requiring manual approval, even if approval policies are configured.
+
+```yaml
+environment:
+  auto_approve: true  # Default: false
+```
+
+### `blueprint_commit`
+
+Specifies a specific commit hash or tag for the blueprint source, allowing for precise version control of the environment definition.
+
+```yaml
+environment:
+  blueprint_commit: "abc123def456"  # Commit hash
+  # OR
+  blueprint_commit: "v2.1.0"       # Tag
 ```
