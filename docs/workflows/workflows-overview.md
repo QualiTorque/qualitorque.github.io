@@ -293,7 +293,6 @@ Here is an example of a `contract.json` file:
   "name": "EC2",
   "owner_email": "dev@quali.com",
   "last_used": "2023-10-07T11:57:18.6865654Z",
-  "space_name": "Dev Space",
   "inputs": [
     {
       "name": "instance_name",
