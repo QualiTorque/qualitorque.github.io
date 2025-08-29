@@ -24,11 +24,14 @@ The following tools and technologies are installed out of the box on our agents 
 
 The Shell grain is an asset-agnostic grain that allows you to run bash/python3 commands as part of your environment’s launch and/or teardown. It’s useful if you need to prepare or clean up your environment’s cloud infrastructure as part of the deployment. For example, you could use this grain to run "datree" validations on a Kubernetes grain’s asset, or perhaps back up/clone a DB before environment deployment.
 
-## Usage Example
+## Usage Examples
 
 
 ** Simple Example **
 ```yaml
+spec_version: 2
+description: Run a simple shell grain
+
 grains:
   validate:
     kind: shell
@@ -110,6 +113,7 @@ Unlike other grains, in the shell grain, inputs are used inside the `commands` s
 
 ```yaml
 spec_version: 2
+description: Clone a git repo using shell grain
 
 inputs:
   repoUrl:
