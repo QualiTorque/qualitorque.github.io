@@ -349,7 +349,7 @@ grains:
       kind: ansible
       spec:
        ...
-       outputs:
+        outputs:
           - output1
           - output2  
 ```
