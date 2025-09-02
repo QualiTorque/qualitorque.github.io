@@ -284,3 +284,115 @@ environment:
   # OR
   blueprint_commit: "v2.1.0"       # Tag
 ```
+
+## EaC Management APIs
+
+Torque provides REST APIs for managing Environment as Code (EaC) files and their associated environments. These APIs allow you to control the lifecycle and behavior of EaC-managed environments.
+
+### Enable/Disable EaC Record
+
+Control whether the reconcile loop processes a specific EaC file. When disabled, the reconcile loop will skip the EaC file and will not launch or modify environments based on its contents.
+
+**Endpoint:**
+```
+PUT /api/spaces/{space_name}/eac/enable
+```
+
+**Request Body:**
+```json
+{
+  "eac_path": "environments/production.yaml",
+  "enable": true
+}
+```
+
+**Parameters:**
+- `eac_path` (string, required): The full path identifier of the EaC file in the Git repository
+- `enable` (boolean, required): Set to `true` to enable processing, `false` to disable
+
+**Behavior:**
+- **Enabled (default)**: New EaC files are enabled by default. The reconcile loop will process the file and apply any changes
+- **Disabled**: The reconcile loop will skip this EaC file and will not attempt to launch or modify environments based on its contents
+
+**Example:**
+```bash
+curl -X PUT "https://portal.qtorque.io/api/spaces/my-space/eac/enable" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer <token>" \
+  -d '{
+    "eac_path": "environments/staging.yaml",
+    "enable": false
+  }'
+```
+
+### Detach EaC Environment
+
+Detach an EaC-managed environment so that it will no longer be subject to changes that occur in the EaC file. The environment becomes a regular environment that is managed independently.
+
+**Endpoint:**
+```
+PUT /api/spaces/{space_name}/environments/{eac_env_id}/eac/detach
+```
+
+**Parameters:**
+- `space_name` (string, required): The name of the space containing the environment
+- `eac_env_id` (string, required): The ID of the EaC-managed environment to detach
+
+**What happens when detaching:**
+1. The associated EaC file is automatically disabled
+2. The environment ID is removed from the EaC record in the database
+3. The EaC path reference is removed from the environment state
+4. The environment continues to run but is no longer managed by the EaC file
+
+**Example:**
+```bash
+curl -X PUT "https://portal.qtorque.io/api/spaces/my-space/environments/env-123/eac/detach" \
+  -H "Authorization: Bearer <token>"
+```
+
+### Terminate EaC Environment
+
+Terminate an EaC-managed environment, which automatically detaches it first and then terminates the environment.
+
+**Endpoint:**
+```
+DELETE /api/spaces/{space_name}/environments/{eac_env_id}/eac
+```
+
+**Parameters:**
+- `space_name` (string, required): The name of the space containing the environment
+- `eac_env_id` (string, required): The ID of the EaC-managed environment to terminate
+
+**Query Parameters:**
+- `interrupt` (boolean, optional): Set to `true` to force termination, `false` for graceful termination (same as normal environment termination)
+
+**What happens when terminating:**
+1. The environment is first detached (same process as the detach API)
+2. The environment is then terminated following the normal termination process
+
+**Example:**
+```bash
+# Graceful termination
+curl -X DELETE "https://portal.qtorque.io/api/spaces/my-space/environments/env-123/eac" \
+  -H "Authorization: Bearer <token>"
+
+# Force termination
+curl -X DELETE "https://portal.qtorque.io/api/spaces/my-space/environments/env-123/eac?interrupt=true" \
+  -H "Authorization: Bearer <token>"
+```
+
+### Use Cases
+
+**Development Workflow:**
+1. **Disable EaC during maintenance**: Temporarily disable an EaC file while making significant changes to prevent unwanted deployments
+2. **Detach for customization**: Detach an environment when you need to make manual changes that shouldn't be overwritten by the EaC file
+3. **Clean termination**: Use the terminate API to properly clean up EaC environments and their associations
+
+**Production Management:**
+- Disable EaC files for environments that require manual oversight
+- Detach environments before performing manual maintenance or testing
+- Use terminate for clean decommissioning of EaC-managed environments
+
+:::warning
+Once an environment is detached from its EaC file, it cannot be re-attached. The environment becomes a standard Torque environment and must be managed manually or through regular APIs.
+:::
