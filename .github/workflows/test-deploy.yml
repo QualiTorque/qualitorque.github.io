@@ -10,12 +10,12 @@ jobs:
     name: Test deployment
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: rojopolis/spellcheck-github-actions@0.33.1
+      - uses: actions/checkout@v4
+      - uses: rojopolis/spellcheck-github-actions@0.38.0
         name: Spellcheck
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: 16.x
+          node-version: 20
           cache: npm
 
       - name: Install dependencies
