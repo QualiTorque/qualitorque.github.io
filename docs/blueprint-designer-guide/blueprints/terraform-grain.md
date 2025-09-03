@@ -418,7 +418,7 @@ $TORQUE_TF_EXECUTABLE -chdir=$TORQUE_TF_MODULE_PATH state rm $1
 Or
 
 ```bash 
-$TORQUE_TF_EXECUTABLE -chdir=$TORQUE_TF_MODULE_PATH state rm <hardcoded_resource>
+$TORQUE_TF_EXECUTABLE -chdir=$TORQUE_TF_MODULE_PATH state rm <hard_coded_resource>
 ```
 
 Here is another example which shows how to use the plan output in a post-tf-plan script:

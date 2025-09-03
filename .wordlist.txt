@@ -519,4 +519,11 @@ toolchain
 CRD
 tradeoffs
 roadmap
-roadmap
+FQDN
+Shopify
+IPs
+terragrunt
+py
+js
+txt
+Terraform's

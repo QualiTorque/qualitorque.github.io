@@ -224,7 +224,7 @@ More usage examples can be found [here](/blueprint-designer-guide/blueprints/blu
 This example demonstrates how to list S3 buckets and RDS instances per account in AWS using a simple Flask server.
 
 **Notes:**
-1. The example is built for demo purposes with some hardcoded values and is meant to be deployed in playground environments.
+1. The example is built for demo purposes with some hard-coded values and is meant to be deployed in playground environments.
 2. A service account with the proper AWS role is pre-created for assuming roles in other accounts, passed in the `role_arn` query parameter to the server.
 
 **Deployment Details:**
