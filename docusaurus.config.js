@@ -1,13 +1,12 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Torque',
-  tagline: 'Dinosaurs are cool',
+  tagline: 'Torque Online Help',
   url: 'https://docs.qtorque.io/',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -17,6 +16,10 @@ const config = {
   projectName: 'torque-docs', // Usually your repo name.
   deploymentBranch: 'gh-pages',
   trailingSlash: false,
+  future: {
+    v4: true,
+    experimental_faster: true,
+  },
   scripts: [
     // One Trust Cookie policy
     {
@@ -34,8 +37,6 @@ const config = {
     }
   ],
   plugins: [
-    // ...
-    require.resolve("@cmfcmf/docusaurus-search-local"),
     require.resolve("docusaurus-plugin-sass")
   ],
   presets: [
@@ -60,6 +61,32 @@ const config = {
             require.resolve('./src/css/topbar.scss'),
           ],
         },
+        sitemap: {
+          lastmod: 'date',
+          priority: 0.5,
+          ignorePatterns: ['/tags/**', '/2023.3/**'],
+          filename: 'sitemap.xml',
+          createSitemapItems: async (params) => {
+            const {defaultCreateSitemapItems, ...rest} = params;
+            const items = await defaultCreateSitemapItems(rest);
+            return items.filter((item) => !item.url.includes('/page/'));
+          },
+        },
+      }),
+    ],
+  ],
+
+  themes: [
+    [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      ({
+        hashed: true,
+        indexBlog: false,
+        highlightSearchTermsOnTargetPage: true,
+        searchResultLimits: 8,
+        searchResultContextMaxLength: 80,
+        explicitSearchResultPath: true,
+        docsRouteBasePath: '/',
       }),
     ],
   ],
@@ -125,8 +152,9 @@ const config = {
         ]
       },
       prism: {
-        theme: require('prism-react-renderer/themes/dracula'),
-        darkTheme: darkCodeTheme,
+        theme: prismThemes.github,
+        darkTheme: prismThemes.dracula,
+        additionalLanguages: ['bash', 'powershell'],
       },
     }),
 };
