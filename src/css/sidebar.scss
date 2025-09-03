@@ -3,7 +3,9 @@ aside {
   min-height: calc(100vh - 163px);
 
   > div {
-    padding-top: 0 !important;
+    > div {
+      padding-top: 0 !important;
+    }
   }
 }
 

@@ -1,4 +1,4 @@
-@import "footer";
+@use "./footer";
 
 [data-theme=dark] {
     /* sidebar */
@@ -36,15 +36,15 @@
         }
 
         .col:first-child {
-            @include beforeImg("../../static/img/company-icon-dm.svg");
+            @include footer.beforeImg("../../static/img/company-icon-dm.svg");
         }
     
         .col:nth-child(2) {
-            @include beforeImg("../../static/img/community-icon-dm.svg");
+            @include footer.beforeImg("../../static/img/community-icon-dm.svg");
         }
     
         .col:nth-child(3) {
-            @include beforeImg("../../static/img/more-icon-dm.svg");
+            @include footer.beforeImg("../../static/img/more-icon-dm.svg");
         }
     }
     /* footer */
