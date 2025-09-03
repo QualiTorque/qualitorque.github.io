@@ -30,7 +30,7 @@ Torque currently supports only simple types as blueprint inputs for Helm (string
 
 - **commands**: A list of Helm commands to run before installing the chart.
 No need to specify the Helm command itself.
-e.g, for the command "helm plugin install [options] <path|url>... [flags] " type "plugin install [options] <path|url>... [flags]".
+e.g, for the command "helm plugin install [options] `<path|url>`... [flags] " type "plugin install [options] `<path|url>`... [flags]".
        
 ```jsx title="For example:"
 inputs:

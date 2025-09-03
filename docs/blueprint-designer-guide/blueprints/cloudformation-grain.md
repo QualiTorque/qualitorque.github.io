@@ -70,7 +70,7 @@ Region is a required key in the cloudformation grain. It defines where the stack
 Please see [the grain source](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#source) for more details.
 
 ### agent
-```agent``` is now **required** for CloudFormation Grain. Please see [the agent](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#Agent) for more details.
+```agent``` is now **required** for CloudFormation Grain. Please see [the agent](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#agent) for more details.
 
 ### authentication
 To enable Torque to connect to the AWS account and deploy the CloudFormation template, you have two options:

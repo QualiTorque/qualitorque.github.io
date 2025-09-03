@@ -104,7 +104,7 @@ The basic process is as follows:
 8. Create a file called aks_workload_id_service_account.yaml with the below content:
 
   :::tip
-  Replace the {property name} with the corresponding values. For service account name, choose a new name. Take a note of the namespace that you select for Torque Environments (it will be in use in the next part - Torque configuration)
+  Replace the \{property name\} with the corresponding values. For service account name, choose a new name. Take a note of the namespace that you select for Torque Environments (it will be in use in the next part - Torque configuration)
   :::
  
   ```jsx title=
@@ -164,7 +164,7 @@ There are 2 ways to accomplish this:
 
 2. You may override the default credentials defined for the AKS agent, or define the credentials if no credentials were configured as the default.
   a. In the Terraform grain, specify the service-account name under spec > agent:
-    ```jsx title=
+  ```jsx title=
   spec:
     source:
       ...
@@ -172,14 +172,16 @@ There are 2 ways to accomplish this:
     agent:
       name: {aks_torque_agent_name}
       service account: {new_service_account_name} # this is the k8s service account created above    
-  ```
-  b. Under ```env-vars```, add the following (will override the default definition of the AKS agent):
+    ```
+
+  b. Under `env-vars`, add the following (will override the default definition of the AKS agent):
     ```jsx title=
   ARM_SUBSCRIPTION_ID: <Subscription_ID>
   ARM_TENANT_ID: <Tenant_ID>
   ARM_CLIENT_ID: <Client_ID>
+    ```
 
-## Video: Connecting a new agent and using it in a blueprint
+### __Video: Connecting a new agent and using it in a blueprint__
 <video controls width="75%">
   <source src="/img/connect azure agent.mp4"/>
 </video>

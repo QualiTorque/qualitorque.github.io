@@ -159,7 +159,7 @@ ansible-grain:
 ```
 
 ### `agent`
-Please see [the grain agent](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#host) for more details.
+Please see [the grain agent](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#agent) for more details.
 
 ### `inputs`
 Inputs which are provided to the ansible grain will be used in the ansible command line as "extra-vars".

@@ -3,7 +3,7 @@ sidebar_position: 3
 title: Terminology
 ---
 
-Before you start on your Torque journey, please take a moment to familiarize yourself with Torque's key concepts and infrastructure components. This article lists the main concepts you will come across in Torque, while the [**Architecture**](/overview/architecture) article that follows provides a diagram of the Torque architecture and its main components.
+Before you start on your Torque journey, please take a moment to familiarize yourself with Torque's key concepts and infrastructure components. This article lists the main concepts you will come across in Torque, while the [**Architecture**](/overview/Architecture) article that follows provides a diagram of the Torque architecture and its main components.
 
 * [**Blueprint**](/blueprint-designer-guide/blueprints/blueprints-overview) - An offline plan (template) for an environment that defines the applications, cloud infrastructure, networking and policies that make up the environment. Blueprints are defined in source-controlled YAML files and contain *grains*. Each grain represents a specific workload (for example, a Terraform module or a Helm chart). The blueprint defines the orchestration between the grains (order, dependency, etc.), and deploys a whole environment, from infrastructure to application. You can have Torque discover (or create) blueprints out of your Terraform, Helm, or other supported IaC assets, or write more complex ones that deploy several assets. For details, see [Blueprint Quickstart Guide](/blueprint-designer-guide/blueprint-quickstart-guide).
 
@@ -11,7 +11,7 @@ Before you start on your Torque journey, please take a moment to familiarize you
 
     * [**Environment**](/getting-started/Getting%20starting%20with%20terraform) - An environment is a live instance of a blueprint. It contains the cloud infrastructure and application(s) that were deployed from the blueprint. The environment has a defined duration that can be manually extended or ended, as well as links to its applications, automation commands to run on the different cloud resources.
 
-    * **Repository** - A git-based folder containing the IaC assets, container files and multi-asset blueprints that make up the Torque self-service catalog, and are consumed by your end-users. For details, see [Architecture](/overview/architecture).
+    * **Repository** - A git-based folder containing the IaC assets, container files and multi-asset blueprints that make up the Torque self-service catalog, and are consumed by your end-users. For details, see [Architecture](/overview/Architecture).
 
 * **Policies** - Torque policies allow setting an additional layer of governance on top of blueprints and the environments they deploy. These include:
     * [Blueprint consumption policies](/blueprint-designer-guide/blueprint-consumption-policies) allow blueprint designers to set maximum duration guardrails (for high-cost environments perhaps).
@@ -21,4 +21,4 @@ Before you start on your Torque journey, please take a moment to familiarize you
 
 * [**Tag**](/governance/tags) - A key-value pairing that is set by Torque to all of the resources and infrastructure entities provisioned by an environment (example: Owner = John.D@somecompany.com) There are 2 types of tags: System tags and custom tags. System tags are tags that are defined by Torque (for example, environment id, space name, etc) while the users define the custom tags according to their needs.
 
-* [**Agent**](/torque-agent/Torque-Agent-Intro) - A Torque automation agent that runs as a pod inside your designated Kubernetes cluster. This agent communicates with the Torque backend and is permitted to perform certain actions on your Kubernetes cluster. For more details, see [Architecture](/overview/architecture).
+* [**Agent**](/torque-agent/Torque-Agent-Intro) - A Torque automation agent that runs as a pod inside your designated Kubernetes cluster. This agent communicates with the Torque backend and is permitted to perform certain actions on your Kubernetes cluster. For more details, see [Architecture](/overview/Architecture).
