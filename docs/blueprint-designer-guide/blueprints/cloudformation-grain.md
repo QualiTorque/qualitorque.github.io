@@ -20,34 +20,33 @@ To grant Torque the necessary permissions to successfully provision resources, y
 
 ```json
 {
-	"Version": "2012-10-17",
-	"Statement": [
-		{
-			"Sid": "BasicBucketOperations",
-			"Effect": "Allow",
-			"Action": [
-				"s3:PutObject",
-				"s3:GetObject",
-				"s3:DeleteObject"
-			],
-			"Resource": [
-				"arn:aws:s3:::<your-bucket>/*"
-			]
-		},
-		{
-			"Sid": "BasicCfnOperations",
-			"Effect": "Allow",
-			"Action": [
-				"cloudformation:CreateStack",
-				"cloudformation:DeleteStack",
-				"cloudformation:UpdateStack",
-				"cloudformation:DescribeStacks",
-				"cloudformation:DescribeStackEvents"
-			],
-			"Resource": "*"
-		}
+  "Version": "2012-10-17",
+  "Statement": [
     {
-	]
+      "Sid": "BasicBucketOperations",
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject",
+        "s3:GetObject",
+        "s3:DeleteObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::<your-bucket>/*"
+      ]
+    },
+    {
+      "Sid": "BasicCfnOperations",
+      "Effect": "Allow",
+      "Action": [
+        "cloudformation:CreateStack",
+        "cloudformation:DeleteStack",
+        "cloudformation:UpdateStack",
+        "cloudformation:DescribeStacks",
+        "cloudformation:DescribeStackEvents"
+      ],
+      "Resource": "*"
+    }
+  ]
 }
 ```
 

@@ -36,7 +36,6 @@ instructions:
   source:
     store: <The name of the repository which contains the instructions as it was onboarded to Torque>
     path : <instructions/something.md> # path inside the repository where the instructions md file is located. Must be in a folder called "instructions".
-
 ```
 
 :::info

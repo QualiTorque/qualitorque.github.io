@@ -1,5 +1,5 @@
 ---
-bar_position: 12
+sidebar_position: 16
 title: The Shell Grain
 ---
 
