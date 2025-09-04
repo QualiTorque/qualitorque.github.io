@@ -25,7 +25,9 @@ hide_table_of_contents: true
 
 **Torque** ingests these by connecting to and scanning your git source control repositories, and turns them into blueprints, which can be used as single-asset blueprints, or added as building blocks in multi-asset blueprints. These blueprints can then be published as a self-service catalog for your cloud environment, enabling end-users to browse and consume without having the administrative access to the underlying cloud(s), or deployed and tested via a CI/CD process or through your organization's ticketing system, while having strict policy guardrails. For details, see [Architecture](/overview/Architecture).
 
-> ![Locale Dropdown](/img/torque-high-level-architecture.png)
+import pic1 from '/img/torque-high-level-architecture.png';
+
+<img src={pic1} alt="torque-high-level-architecture" style={{width: 900}} />
 
 
 ## Torque documentation quick navigation:
