@@ -65,6 +65,10 @@ The input definition is composed out of the following fields:
   - ```input-source``` allows the environment end-user to select from a list of values provided by a dynamic source. The source is defined in the [`input-sources`](/admin-guide/input-sources) section.
 - ```style``` (Optional): Defines how the input is presented to the user. For example:
   - ```radio``` displays the allowed values as radio buttons. This is useful for binary or mutually exclusive choices. The input `type` must be `string` when using this style.
+  - ```duration``` displays a duration input selector (such as environment duration selector). The duration time is in ISO 8601 format: `"P{days}DT{hours}H{minutes}M{seconds}S"`. For example:
+    - `P0DT2H3M4S` translates to 0 days, 2 hours, 3 minutes, and 4 seconds
+    - `P1DT8H` translates to 1 day and 8 hours
+    - `PT30M` translates to 30 minutes
   - ```multi-select``` displays the allowed values as a multi-select dropdown, allowing the user to select multiple values. The input `type` can be ```string```, `parameter` or `input-source`. The captured value is a JSON array of strings. This is useful for cases where multiple selections are needed, such as a list of IPs, Compute types or tags.
 
     **Example:**
@@ -134,6 +138,11 @@ The input definition is composed out of the following fields:
         style: radio
         allowed-values: [true, false]
         description: "Enable or disable debug mode for the application"
+      environment-duration:
+        type: string
+        style: duration
+        default: "P1DT8H"
+        description: "How long should this environment run"
     ```
 
 The inputs section in the Torque blueprint YAML also supports spaces to make inputs more user friendly. Configuring an input with a friendly name can be done in the following way:

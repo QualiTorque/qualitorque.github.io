@@ -611,6 +611,46 @@ grains:
         name: '{{ .inputs.agent }}'
 ``` 
 
+## Environment References Support
+
+Workflows support `env_references` similar to blueprints, allowing workflows to reference and consume published environments. For more information about environment publishing and references, see [Environment Publishing](/environment-services/environment-publishing).
+
+:::info Supported scenarios
+- **Manual workflows**: Workflows with `env_references` can be launched manually, and users can specify the environment reference values during execution
+- **Automatic workflows on launch**: Environments with automatic workflows (cron/event triggers) that have `env_references` defined can be launched successfully with the reference values specified at environment launch time
+- **Post-launch automatic workflows**: Automatic workflows with `env_references` that are attached to an active environment after its launch (e.g., when enabled in a space) will not be able to run because there is no mechanism to specify `env_references` values after the environment is already active
+:::
+
+**Example workflow with environment references:**
+```yaml
+spec_version: 2
+description: Workflow that references a shared VPC environment
+
+env_references:
+  shared_vpc:
+    labels-selector: 'vpc-shared'
+
+workflow:
+  scope: env
+  triggers:
+    - type: manual
+
+inputs:
+  agent:
+    type: agent
+
+grains:
+  network_check:
+    kind: shell
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      activities:
+        deploy:
+          commands:
+            - 'echo "Using VPC: {{ .env_references.shared_vpc.outputs.vpc_id }}"'
+```
+
 ## Explore Use-cases
 
 To explore the different use-cases [click here](workflows-use-cases)
