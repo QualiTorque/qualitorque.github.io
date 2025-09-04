@@ -15,7 +15,7 @@ Common example will be a platform team or a DevOps team building Dev, Test and s
 
 ## Grain Categories
 
-Torque provides different types of grains organized by their primary use cases:
+Torque provides different types of grains per use case:
 
 - **Core Blueprint Structure**: Blueprint YAML first
 - **Configuration Management**: Ansible
