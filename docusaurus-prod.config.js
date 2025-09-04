@@ -60,7 +60,7 @@ const config = {
         sitemap: {
           lastmod: 'date',
           priority: 0.5,
-          ignorePatterns: ['/tags/**', '/2023.3/**'],
+          ignorePatterns: ['/tags/**'],
           filename: 'sitemap.xml',
           createSitemapItems: async (params) => {
             const {defaultCreateSitemapItems, ...rest} = params;
