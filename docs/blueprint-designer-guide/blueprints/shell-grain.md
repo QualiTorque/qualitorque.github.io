@@ -26,8 +26,8 @@ The Shell grain is an asset-agnostic grain that allows you to run bash/python3 c
 
 ## Usage Examples
 
+### Simple
 
-** Simple Example **
 ```yaml
 spec_version: 2
 description: Run a simple shell grain
@@ -44,7 +44,7 @@ grains:
             - 'echo "Hello World"'
 ```
 
-** Example with inputs and outputs **
+### Inputs and outputs
 
 ```yaml
 spec_version: 2
