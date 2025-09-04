@@ -53,12 +53,8 @@ const config = {
         theme: {
           customCss: [
             require.resolve('./src/css/custom.css'),
-            require.resolve('./src/css/sidebar.scss'),
-            require.resolve('./src/css/pagination-nav.scss'),
-            require.resolve('./src/css/breadcrumbs.scss'),
             require.resolve('./src/css/footer.scss'),
-            require.resolve('./src/css/dark-mode.scss'),
-            require.resolve('./src/css/topbar.scss'),
+            require.resolve('./src/css/dark-mode.scss'),            
           ],
         },
         sitemap: {
@@ -95,6 +91,11 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
+        logo: {
+          alt: 'Torque',
+          src: '/img/logo.png',
+          srcDark: '/img/logo-dm.png',
+        },
         items: [
           {
             href: 'https://github.com/QualiTorque/torque-docs/discussions/categories/announcements',
