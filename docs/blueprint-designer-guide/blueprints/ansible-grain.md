@@ -88,11 +88,11 @@ grains:
         - result
 ```
 
-:::tip__Note__
+:::tip __Note__
 The `outputs` section in the auto-generated blueprint is a placeholder. You should review and update it to match the actual outputs produced by your playbook. Since outputs depend on the playbook's content, they cannot be determined automatically during discovery.
 :::
 
-:::tip__Note__
+:::tip __Note__
 Always validate and adjust the generated blueprint YAML before running it, especially the `outputs` section, to ensure it behaves as expected.
 :::
 

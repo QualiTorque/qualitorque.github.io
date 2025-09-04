@@ -5,7 +5,7 @@ title: Blueprint YAML Overview
 
 Torque blueprints are reusable components designed to model a required environment from the infrastructure to the application. **Blueprint designers** utilize Torque's VSCode plugin or the Torque's self-service UI to build a YAML based imperative blueprints that aimed to fulfill business requirements in a self-service manner for their end-users. 
 
-:::tip__Note__
+:::tip __Note__
 Blueprints are written in YAML files that reside in a __/blueprints__ folder within a Github, Gitlab or BitBucket repository (the folder name is case-sensitive and must be "blueprints"). The __/blueprints__ folder must be defined as the blueprint repository in the space's __Settings > Repositories__ page. Blueprints file type must be ".yaml" and not ".yml". 
 
 For enhanced asset discovery and organization, see [Torque Assets Markers](/blueprint-designer-guide/torque-assets-markers).

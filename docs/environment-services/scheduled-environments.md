@@ -97,7 +97,7 @@ resources:
       quantity: '{{ .inputs.gpus }}'
 ```
 
-:::tip__TIP__
+:::tip __TIP__
 Here are some common "Resource Types" for scheduling:
 
 **Hardware Resources:**

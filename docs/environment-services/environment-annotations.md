@@ -71,7 +71,7 @@ set_annotations = [{"key": "power", "value": "on"}] {
 
 }
 ```
-:::tip__Note__
+:::tip __Note__
 Currently the only supported annotations are "power:on", "power:off" and "power:torque.remove". We will add more annotations and open it for custom annotations soon.
 "torque.remove" is a general annotation value which may be used with any key. It signals to Torque to remove the annotation completely from the environment. A good example of when to use it is when the environment is ended.
 :::
