@@ -3,6 +3,7 @@ sidebar_position: 1
 slug: /
 custom_edit_url: null
 title: Welcome to Quali Torque Documentation!
+sidebar_label: Welcome!
 hide_table_of_contents: true
 
 ---
