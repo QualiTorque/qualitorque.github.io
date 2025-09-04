@@ -7,4 +7,6 @@ This extension facilitates the blueprint yaml development process by providing d
 
 For example: Auto-completion suggestions for inputs, parameters and variables:
 
-> ![Locale Dropdown](/img/vscode-1.gif)
+import pic1 from '/img/vscode-1.gif';
+
+<img src={pic1} alt="git-secret-manager" style={{width: 500}} />
