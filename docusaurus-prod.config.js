@@ -93,8 +93,8 @@ const config = {
       navbar: {
         logo: {
           alt: 'Torque',
-          src: '/img/logo.svg',
-          srcDark: '/img/logo-dm.svg',
+          src: '/img/logo.png',
+          srcDark: '/img/logo-dm.png',
         },
         items: [
           {
