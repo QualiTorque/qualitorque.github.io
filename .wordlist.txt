@@ -528,3 +528,6 @@ py
 js
 txt
 Terraform's
+TPUs
+FPGAs
+VPN
