@@ -293,6 +293,7 @@ PaaS
 microservice
 Crossplane
 RBAC
+rbac
 onboarding
 prem
 Quicklinks
@@ -519,4 +520,14 @@ toolchain
 CRD
 tradeoffs
 roadmap
-roadmap
+FQDN
+Shopify
+IPs
+terragrunt
+py
+js
+txt
+Terraform's
+TPUs
+FPGAs
+VPN

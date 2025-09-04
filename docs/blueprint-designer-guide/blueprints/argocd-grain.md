@@ -89,7 +89,7 @@ grains:
 Below are the main fields available in the ArgoCD grain `spec` section:
 
 ### `agent`
-Please see [the grain agent](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#host) for more details.
+Please see [the grain agent](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#agent) for more details.
 
 ### `deployment-engine`
 

@@ -78,7 +78,7 @@ The `path` must match the exact name of the CloudShell Blueprint in your CloudSh
 
 The agent executing the CloudShell grain must have direct network connectivity to the self-hosted CloudShell instance. This includes access to CloudShell Portal API and the CloudShell orchestration services.
 
-Please see [the grain agent](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#host) for more details.
+Please see [the grain agent](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#agent) for more details.
 
 ### `inputs`
 

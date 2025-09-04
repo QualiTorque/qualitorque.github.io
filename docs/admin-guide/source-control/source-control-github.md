@@ -15,7 +15,7 @@ In this article:
 
 ## Ensure your account is added to the GitHub organization you're connecting
 
-1. Go to [https://github.com/orgs/{YOUR_ORG}/people](https://github.com/orgs/{YOUR_ORG}/people).
+1. Go to [https://github.com/orgs/\{YOUR_ORG\}/people](https://github.com/orgs/\{YOUR_ORG\}/people).
 2. Make sure your user is listed in the organization. If not, make sure the user is added as a member with global read access.
 
 ## Ensure your organization has granted access to Torque

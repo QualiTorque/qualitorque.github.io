@@ -20,22 +20,22 @@ const config = {
     v4: true,
     experimental_faster: true,
   },
-  // scripts: [
-  //   // One Trust Cookie policy
-  //   {
-  //     src: 'https://cdn.cookielaw.org/consent/31859194-4ed7-4958-bfc5-08046e0f6ab7/OtAutoBlock.js',
-  //     type: "text/javascript",
-  //   },
-  //   {
-  //     src: 'https://cdn.cookielaw.org/scripttemplates/otSDKStub.js',
-  //     charset: 'UTF-8',
-  //     type: "text/javascript",
-  //     "data-domain-script": "31859194-4ed7-4958-bfc5-08046e0f6ab7"
-  //   },
-  //   {  src: 'http://docs.qtorque.io/one-trust.js',
-  //     type: "text/javascript"
-  //   }
-  // ],
+  scripts: [
+    // One Trust Cookie policy
+    {
+      src: 'https://cdn.cookielaw.org/consent/31859194-4ed7-4958-bfc5-08046e0f6ab7/OtAutoBlock.js',
+      type: "text/javascript",
+    },
+    {
+      src: 'https://cdn.cookielaw.org/scripttemplates/otSDKStub.js',
+      charset: 'UTF-8',
+      type: "text/javascript",
+      "data-domain-script": "31859194-4ed7-4958-bfc5-08046e0f6ab7"
+    },
+    {  src: 'http://docs.qtorque.io/one-trust.js',
+      type: "text/javascript"
+    }
+  ],
   plugins: [
     require.resolve("docusaurus-plugin-sass")
   ],
@@ -93,8 +93,8 @@ const config = {
       navbar: {
         logo: {
           alt: 'Torque',
-          src: '/img/logo.png',
-          srcDark: '/img/logo-dm.png',
+          src: '/img/logo.svg',
+          srcDark: '/img/logo-dm.svg',
         },
         items: [
           {

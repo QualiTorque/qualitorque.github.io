@@ -30,7 +30,7 @@ Torque currently supports only simple types as blueprint inputs for Helm (string
 
 - **commands**: A list of Helm commands to run before installing the chart.
 No need to specify the Helm command itself.
-e.g, for the command "helm plugin install [options] <path|url>... [flags] " type "plugin install [options] <path|url>... [flags]".
+e.g, for the command "helm plugin install [options] `<path|url>`... [flags] " type "plugin install [options] `<path|url>`... [flags]".
        
 ```jsx title="For example:"
 inputs:
@@ -52,7 +52,7 @@ If you have dependencies, add the command `dep up`.
 
 In this section, we'll learn how to edit our auto-generated blueprints in Torque. While Torque conveniently auto-generated blueprints out of your assets, these blueprints may be missing some minor details, like the cluster namespace and execution agent to use, Terraform version, Helm commands to run, etc.
 
-:::tip__Note__
+:::tip __Note__
 Torque only saves the latest version. So if you need versioning, you're welcome to add the modified blueprint to your __/blueprints__ repository.
 :::
 

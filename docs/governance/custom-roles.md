@@ -21,7 +21,7 @@ When defining a new custom role, you will need to provide the following details:
 
 
 import pic1 from '/img/custom-rbac-create-new.png';
-import pic2 from '/img/custom-rbac-premissions.png';
+import pic2 from '/img/custom-rbac-permissions.png';
 import pic3 from '/img/custom-rbac-compare-roles.png';
 
 > <img src={pic1} alt="custom-rbac" style={{width: 700}} />
