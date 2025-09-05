@@ -13,7 +13,7 @@ Tags added by Torque are business context that will be attached to any of the de
 
 > ![Torque tags](/img/env-tags.png)
 
-Tags are key-value pairing that are set by Torque to all of the resources and infrastructure entities provisioned by an environment (example: Owner = John.D@somecompany.com) There are 2 types of tags: System tags and custom tags. System tags are tags that are defined by Torque (for example, environment id, space name, etc) while the users define the custom tags according to their needs.
+Tags are key-value pairing that are set by Torque to all of the resources and infrastructure entities provisioned by an environment (example: `Owner=John.D@somecompany.com`) There are 2 types of tags: System tags and custom tags. System tags are tags that are defined by Torque (for example, environment id, space name, etc) while the users define the custom tags according to their needs.
 
 For every launch of the blueprint, Torque will track the the overall cost information based on the tagging and the cloud provider cost. This is using the __actual cost__ you are paying the cloud provider and not an estimation. After several launches, the hourly cost will be presented both in the catalog on the blueprint and when an environment is running, the estimation will be presented in the environment page. Cost information can be used for policies and approval flows as well as it's captured and passed to Torque OPA integration.
 

@@ -22,7 +22,7 @@ The following fields are required:
 
 To obtain a token for your ArgoCD server, use the `argocd` CLI:
 
-```sh
+```bash
 argocd login <ARGOCD_SERVER> --username <USERNAME> --password <PASSWORD>
 argocd account generate-token
 ```
@@ -103,6 +103,7 @@ deployment-engine: '{{ .inputs.agro-server }}'
 
 The mode in which the ArgoCD grain operates.  
 - `data` (read-only): The grain will only read and track the application state, without making changes.  
+
 **Example:**  
 ```yaml
 mode: data
@@ -120,6 +121,7 @@ application: '{{ .inputs.argo-application }}'
 
 The namespace in which the ArgoCD application resource exists.  
 > **Note:** This is the namespace of the ArgoCD Application CRD, not the target namespace of the deployed workloads.  
+
 **Example:**  
 ```yaml
 application-namespace: argocd

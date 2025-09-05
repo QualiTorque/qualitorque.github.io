@@ -15,11 +15,11 @@ If Torque doesn't have access, you will be prompted to grant the proper authoriz
 
 2. Authorize the organization.
 
-> ![Locale Dropdown](/img/azure-repo-grant.png)
+    > ![Locale Dropdown](/img/azure-repo-grant.png)
 
 3.	Go to Azure Applications (see above) and make sure the Torque application has been authorized.
 
-> ![Locale Dropdown](/img/azure-grant-2.png)
+    > ![Locale Dropdown](/img/azure-grant-2.png)
  
 At this point, the Torque app was given the necessary permissions to the organization.
 4.	Return to Torque and continue setting up the connection.
@@ -29,7 +29,7 @@ In some cases, repository access might be restricted or limited due to several s
 
 1. Make sure your Azure DevOps instance is open for accepting external communication - make sure no security/networking rule is applied between Torque and Azure DevOps.
 2. In the Azure DevOps security organization settings - make sure that "Third-party application access via OAuth" is enabled
-> ![Troubleshooting](/img/ado_access.png)
+    > ![Troubleshooting](/img/ado_access.png)
 
 3. In the Azure DevOps security organization settings - make sure that "IP conditional access" is turned off.
-> ![Troubleshooting](/img/ado_access2.png)
+    > ![Troubleshooting](/img/ado_access2.png)

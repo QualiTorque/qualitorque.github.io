@@ -54,21 +54,21 @@ The Quali-hosted agent needs your __AWS credentials__ to provision the environme
 
 1. Add the following inputs under the input section of the blueprint:
 
-```yaml
-inputs:
-  AWS_ACCESS_KEY:
-    type: string
-  AWS_SECRET_KEY:
-    type: string
-```
+    ```yaml
+    inputs:
+      AWS_ACCESS_KEY:
+        type: string
+      AWS_SECRET_KEY:
+        type: string
+    ```
 
 2. Add the following environment variables under the env-var section of the blueprint. For more information about generating AWS credentials, see the [AWS documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html)
 
-```yaml
-      env-vars: 
-        - AWS_ACCESS_KEY: '{{ .inputs.AWS_ACCESS_KEY }}'
-        - AWS_SECRET_KEY: '{{ .inputs.AWS_SECRET_KEY }}'
-```
+    ```yaml
+    env-vars: 
+      - AWS_ACCESS_KEY: '{{ .inputs.AWS_ACCESS_KEY }}'
+      - AWS_SECRET_KEY: '{{ .inputs.AWS_SECRET_KEY }}'
+    ```
 
 
 ### Azure authentication 
@@ -76,25 +76,25 @@ The Quali-hosted agent needs your __Azure credentials__ to provision the environ
 
 
 1. Add the following inputs under the input section of the blueprint:
-```yaml
-inputs:
-  ARM_CLIENT_ID:
-    type: string
-  ARM_CLIENT_SECRET:
-    type: string
-  ARM_SUBSCRIPTION_ID:
-    type: string
-  ARM_TENANT_ID:
-    type: string
-```
+    ```yaml
+    inputs:
+      ARM_CLIENT_ID:
+        type: string
+      ARM_CLIENT_SECRET:
+        type: string
+      ARM_SUBSCRIPTION_ID:
+        type: string
+      ARM_TENANT_ID:
+        type: string
+    ```
 2. Add the following environment variables under the env-var section of the blueprint. For more information about generating Azure credentials, see the [Azure documentation](https://learn.microsoft.com/en-us/azure/developer/terraform/authenticate-to-azure)
-```yaml
-      env-vars: 
-        - ARM_CLIENT_ID: '{{ .inputs.ARM_CLIENT_ID }}'
-        - ARM_CLIENT_SECRET: '{{ .inputs.ARM_CLIENT_SECRET }}'
-        - ARM_SUBSCRIPTION_ID: '{{ .inputs.ARM_SUBSCRIPTION_ID }}'
-        - ARM_TENANT_ID: '{{ .inputs.ARM_TENANT_ID }}'        
-```
+    ```yaml
+    env-vars: 
+      - ARM_CLIENT_ID: '{{ .inputs.ARM_CLIENT_ID }}'
+      - ARM_CLIENT_SECRET: '{{ .inputs.ARM_CLIENT_SECRET }}'
+      - ARM_SUBSCRIPTION_ID: '{{ .inputs.ARM_SUBSCRIPTION_ID }}'
+      - ARM_TENANT_ID: '{{ .inputs.ARM_TENANT_ID }}'        
+    ```
 
 ## Step #4: Launch an Environment
 

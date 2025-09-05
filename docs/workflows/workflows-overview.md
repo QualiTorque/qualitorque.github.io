@@ -436,7 +436,8 @@ Here is an example of a `contract.json` file:
 
 ### YAML Example
 
-Below is a complete example of a workflow running shell scripts:```yaml
+Below is a complete example of a workflow running shell scripts:
+```yaml
 spec_version: 2
 description: Workflow with shell grains
 
@@ -494,7 +495,7 @@ grains:
 
 **Shell script example:**
 
-```shell
+```bash
 resource_id=$1
 grain_path=$2
 contract_path=$CONTRACT_FILE_PATH

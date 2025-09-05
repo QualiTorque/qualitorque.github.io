@@ -56,8 +56,10 @@ Integrating AWS Secrets Manager into Torque allows users to manage repository cr
 import pic1 from '/img/git-secret-manager.png';
 
 > <img src={pic1} alt="git-secret-manager" style={{width: 400}} />
+  
+    
 
-4. **Fill Out Credential Details**:
+1. **Fill Out Credential Details**:
    - Provide the **Role ARN** and **External ID** of the role created in Step 2.
    - The following fields are mandatory:
      - **Role ARN**: The Amazon Resource Name (ARN) of the IAM role created in Step 2.

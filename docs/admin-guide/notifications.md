@@ -40,7 +40,7 @@ __To configure Torque notifications:__
 2. Click __Settings > Notifications__.
 3. Click __+ Add Notification__.
 4. Select the suitable communication tool (Slack, Teams, or generic webhook).
-  > ![Locale Dropdown](/img/notifications.png)
+    > ![Locale Dropdown](/img/notifications.png)
 5. Provide a __Name__ for the notification.
 6. Enter the webhook address, as explained in the desired tool’s official documentation.
    * For Slack, see https://api.slack.com/messaging/webhooks.

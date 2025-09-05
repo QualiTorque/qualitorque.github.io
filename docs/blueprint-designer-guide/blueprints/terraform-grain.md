@@ -257,52 +257,52 @@ __Properties__:
 #### s3
 
 ```yaml
-      backend:
-        type: "s3"
-        bucket: "my-bucket-name"
-        region: "us-east-1"
-        key-prefix: folder1/folder2"
+  backend:
+    type: "s3"
+    bucket: "my-bucket-name"
+    region: "us-east-1"
+    key-prefix: folder1/folder2"
 ``` 
 
 #### azurerm
 
 ```yaml
-      backend:
-        type: "azurerm"
-        resource-group-name: "my_rg"
-        storage-account-name: "terraform123abc"
-        container-name: "terraform-state"
-        key-prefix: folder1/folder2"
+  backend:
+    type: "azurerm"
+    resource-group-name: "my_rg"
+    storage-account-name: "terraform123abc"
+    container-name: "terraform-state"
+    key-prefix: folder1/folder2"
 ```
 
 #### gcs
 
 ```yaml
-      backend:
-        type: "gcs"
-        bucket: "my-bucket-name"
-        key-prefix: "folder1/folder2"
+  backend:
+    type: "gcs"
+    bucket: "my-bucket-name"
+    key-prefix: "folder1/folder2"
 ```
 
 #### http
 
 ```yaml
-      backend:
-        type: "http"
-        base-address: "http://myrest.api.com/foo"
+  backend:
+    type: "http"
+    base-address: "http://myrest.api.com/foo"
 ```
 
 #### remote
 
 ```yaml
-      backend:
-        type: 'remote'
-        hostname: 'app.terraform.io'
-        token: '{{ params.my_token }}'
-        organization: 'my_org'
-        workspaces:
-          - name: 'my_workspace' # IMPORTANT: only one (name or prefix) is needed in each workspace element
-            prefix: 'my_prefix'
+  backend:
+    type: 'remote'
+    hostname: 'app.terraform.io'
+    token: '{{ params.my_token }}'
+    organization: 'my_org'
+    workspaces:
+      - name: 'my_workspace' # IMPORTANT: only one (name or prefix) is needed in each workspace element
+        prefix: 'my_prefix'
 ```
 
 `remote` token options:
@@ -526,7 +526,6 @@ $TORQUE_TF_EXECUTABLE -chdir=$TORQUE_TF_MODULE_PATH state rm <hard_coded_resourc
 Here is another example which shows how to use the plan output in a post-tf-plan script:
 
 ```bash 
-
 ## validate-no-new-resources.sh
 
 if grep -q 'Plan: [1-9][0-9]* to add, 0 to change, 0 to destroy' "$TORQUE_TF_PLAN_JSON_PATH"; then
@@ -536,7 +535,6 @@ else
   echo "Success: No new resources added."
   exit 0
 fi
-
 ```
 
 ### `auto-approve`

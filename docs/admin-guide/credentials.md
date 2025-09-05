@@ -9,17 +9,18 @@ __To add a credential:__
 
 1. Go to __Administration > Credentials__.
 2. Click __Add Credentials__.
-  > ![Locale Dropdown](/img/credentials.png)
-1. Give the credential a name and optionally a description.
-2. Select the cloud provider (AWS / Azure).
-3. Select the credential type and enter the authentication details. 
-    * For AWS, role assumption and access key credentials are supported. Make sure you have a Role Arn that allows Torque access. For details, see the [Get Role ARN and external ID](#get-role-arn-and-external-id) section below. 
-    > ![Locale Dropdown](/img/aws-provider-details.png)
-    * For Azure, only Service Principle Client ID and Secret are supported.
-    > ![Locale Dropdown](/img/azure-provider-details.png)
-4. Click __Apply__.
-5. Reference the credential in the grain's ```authentication``` section.
-  > ![Locale Dropdown](/img/credential-reference.png)
+    > ![Locale Dropdown](/img/credentials.png)
+   1. Give the credential a name and optionally a description.
+   2. Select the cloud provider (AWS / Azure).
+   3. Select the credential type and enter the authentication details. 
+       * For AWS, role assumption and access key credentials are supported. Make sure you have a Role Arn that allows Torque access. For details, see the [Get Role ARN and external ID](#get-role-arn-and-external-id) section below. 
+         > ![Locale Dropdown](/img/aws-provider-details.png)
+       * For Azure, only Service Principle Client ID and Secret are supported.
+         > ![Locale Dropdown](/img/azure-provider-details.png)
+   4. Click __Apply__.
+
+Once created, you can reference the credentials in the grain's ```authentication``` section.
+> ![Locale Dropdown](/img/credential-reference.png)
 
 
 

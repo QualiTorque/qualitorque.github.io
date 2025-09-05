@@ -5,7 +5,7 @@ title: Users, Groups, Roles and Permissions
 
 Now that you understand how Torque works, it's time to understand how groups, roles and permissions work, and invite other members of your team to your Torque account and spaces. 
 
-In this article:
+**In this article:**
 
 - [Groups in Torque](#groups-in-torque)
 - [Roles in Torque](#roles-in-torque)

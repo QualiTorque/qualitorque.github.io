@@ -10,7 +10,7 @@ title: Install an Agent on your Kubernetes Cluster
 - Command-line with [kubectl installed](https://kubernetes.io/docs/tasks/tools/#kubectl) connected to your cluster.
   To connect to the cluster use: 
   
-  ```jsx title=
+  ```bash
   kubectl config use-context <your-cluster>
   ```
 
@@ -25,10 +25,10 @@ title: Install an Agent on your Kubernetes Cluster
     Let's say that you would like to deploy your environments into a namespace called "my-ns". 
     Use the below commands (change to your real namespace name) to create the appropriate service-account:
 
-    ```jsx title=
+    ```bash
     kubectl create serviceaccount my-ns-edit-sa --namespace=my-ns
     ```
-    ```jsx title=
+    ```bash
     kubectl create rolebinding my-sa-edit-rb --clusterrole=edit --serviceaccount=my-ns:my-ns-edit-sa --namespace=my-ns
     ```
 
@@ -66,18 +66,18 @@ Replace the "agent-namespace" with your agent's namespace. You can find it in:
 _Administration --> Agents --> Identify your agent --> Click on the 3 dots menu --> Edit Agent --> Advanced K8s settings:_
 
 1. Make sure the agent pod is running and healthy. You can run the following command on your cluster: 
-     ```jsx title=
+     ```bash
      kubectl get pods -n <agent-namespace> -l app=torque-agent
      ```
 2. Make sure outbound http connection to Torque is open:  
-     ```jsx title=
+     ```bash
      kubectl exec -it $(kubectl get pods -n <agent-namespace> | grep torque-agent | awk '/'$2'/ {print $1;exit}') -n <agent-namespace> -- /bin/sh -c "curl -v http://portal.qtorque.io/hub/agent";
      ```
      and also 
-     ```jsx title=
+     ```bash
      kubectl exec -it $(kubectl get pods -n <agent-namespace> | grep torque-agent | awk '/'$2'/ {print $1;exit}') -n <agent-namespace> -- /bin/sh -c "nmap -p 5671 acrobatic-lime-gerbil.rmq3.cloudamqp.com";
      ```
 3. Check the agent pod logs. You can run the following command:
-     ```jsx title=
+     ```bash
      kubectl logs $(kubectl get pods -n <agent-namespace> | grep torque-agent | awk '/'$2'/ {print $1;exit}') -n <agent-namespace>
      ```

@@ -17,7 +17,7 @@ You can use Torque policies for cost and consumption control. Examples include:
 - Limiting the total cost of environments
 - And more.
 
-In this article:
+**In this article:**
 - [Why use policies?](#why-use-policies)
 - [Example Use Cases](#example-use-cases)
 - [How policies work](#how-policies-work)
@@ -78,27 +78,26 @@ There may come a time when you will need to go beyond the common use case and wr
 2. __terraform_plan__ policies need at least one __deny__ rule to be valid.
 For example, a __terraform_plan__ policy can look like this:
 
-```jsx
-package torque.terraform_plan
+    ```jsx
+    package torque.terraform_plan
 
-deny[reason] {
-    all := resources["aws_iam"]
-    count(all) > 0
-    reason:= "Deployment contains IAM changes"
-}
-```
+    deny[reason] {
+        all := resources["aws_iam"]
+        count(all) > 0
+        reason:= "Deployment contains IAM changes"
+    }
+    ```
 
 3. __environment__  and __consumption__ policies need to return at least one __result__ object with a __decision__ element in it. The decision value can be one of "Denied", "Manual" or "Approved". In addition to the __decision__ element, you can optionally add a __reason__ element that explains the reason for the decision.
 For example, an __environment__ policy can look like this:
 
-```jsx
-package torque.environment
+    ```jsx
+    package torque.environment
 
-result = { "decision": "Denied", "reason": "Environment duration exceeds 5 hours" } if {
-   input.duration_minutes > 300
-
-} 
-```
+    result = { "decision": "Denied", "reason": "Environment duration exceeds 5 hours" } if {
+        input.duration_minutes > 300
+    } 
+    ```
  
 
 #### __Inputs__
@@ -169,7 +168,7 @@ For __environment__ policies, the input is the following json object:
 }
 ```
 
-Usage example:
+**Usage example:**
 
 ```jsx title="A policy that denies environments with a requested duration over 3 hours:"
 result = { "decision": "Denied", "reason": "Requested environment duration exceeds 180 minutes" } if {
@@ -237,7 +236,7 @@ In this case, the policy expects a data object with one key: ```max_duration_min
 
 In Torque, it would look like this:
 
-![Locale Dropdown](/img/policy_data.png)
+> ![Locale Dropdown](/img/policy_data.png)
 
 So you can enter whichever value you want as the maximum duration to be enforced on environments.
 

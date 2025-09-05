@@ -24,9 +24,9 @@ __Using the torque orb in your config file__
 * In your repository, edit the __*.circleci/config.yml*__ file and add torque to the orbs list. Example:
 
    ```yaml
-orbs:
-   torque: quali/torque@1.1.0
-
+   orbs:
+      torque: quali/torque@1.1.0
+   ```
 
 It is recommended to use the [latest release version](https://circleci.com/developer/orbs/orb/quali/torque).
 

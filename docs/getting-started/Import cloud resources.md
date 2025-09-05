@@ -118,28 +118,28 @@ To import Terraform states from another account that cannot be accessed directly
 
 #### 2. Configure Import Payload
 - Add the following to the import payload:
- ```bash
-  curl -X POST "https://portal.qtorque.io/api/spaces/{space_name}/environments/import_using_blueprint" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "grains": [
-      {
-        "kind": "terraform",
-        "name": "s3",
-        "agent": {
-          "name": "agent-name"
-        },
-        "backend": {
-          "type": "s3",
-          "bucket": "my-state-bucket",
-          "region": "eu-west-1",
-          "key": "terraform/terraform.tfstate",
-          "role-arn": "<arn-of-target-account-role>" # set up the target role-arn that has access to the bucket and key configured above
+  ```bash
+    curl -X POST "https://portal.qtorque.io/api/spaces/{space_name}/environments/import_using_blueprint" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "grains": [
+        {
+          "kind": "terraform",
+          "name": "s3",
+          "agent": {
+            "name": "agent-name"
+          },
+          "backend": {
+            "type": "s3",
+            "bucket": "my-state-bucket",
+            "region": "eu-west-1",
+            "key": "terraform/terraform.tfstate",
+            "role-arn": "<arn-of-target-account-role>" # set up the target role-arn that has access to the bucket and key configured above
+          }
         }
-      }
-    ]
-  }'
-  ```
+      ]
+    }'
+    ```
 
 #### Important Notes
 1. Terraform version 1.5.7 is recommended. You can set it in the blueprint or in the import request

@@ -11,16 +11,17 @@ There are two ways to use torque-cli:
 
 * Install torque-cli as a .NET tool. In this case you need to have dotnet (version 7.0 or higher) installed. To install dotnet, follow the link: https://dotnet.microsoft.com/en-us/download
 
-  ```yaml
-dotnet tool install -g torque-cli
+  ```bash
+  dotnet tool install -g torque-cli
+  ```
 * Run torque-cli as a docker container:
-  ```yaml
-docker run -it qtorque/torque-cli:latest
-
-To mount your local torque config file:
-  ```yaml
-docker run -it qtorque/torque-cli:latest -v ~/.torque:/root/.torque/ # 
-```
+  ```bash
+  docker run -it qtorque/torque-cli:latest
+  ```
+  To mount your local torque config file:
+  ```bash
+  docker run -it qtorque/torque-cli:latest -v ~/.torque:/root/.torque/ # 
+  ```
 
 ### Configuration
 
@@ -93,7 +94,7 @@ To see the help files, run:
 
 It will give you detailed output with usage:
 
-```shell
+```bash
 $ torque -h
 USAGE:
 torque [OPTIONS] <COMMAND>
@@ -119,7 +120,7 @@ space          Create, delete spaces, connect repo to space
 
 You can get additional help information for a particular command by including  the ```--help``` flag after the command name, like:
 
-```shell
+```bash
 $ torque env -h
 DESCRIPTION:
 Start, End, View Torque environments.

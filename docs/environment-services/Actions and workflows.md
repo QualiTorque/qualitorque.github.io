@@ -1,13 +1,9 @@
 ---
 sidebar_position: 3
-title: Actions and workflows
+title: Actions and Workflows
 ---
 
-## Resource  and Workflows
-
-### Overview
-
-#### **Actions** 
+### **Actions** 
 
 Stopping cloud resources when they are not in use is a prudent practice that offers several benefits. First and foremost, it helps to optimize costs by preventing unnecessary expenditure on computing resources. Cloud services are typically billed on a pay-as-you-go model, so keeping instances running when they are idle contributes to higher expenses. Additionally, stopping unused resources promotes environmental sustainability by reducing overall energy consumption and the carbon footprint associated with data centers. From a security standpoint, inactive resources can be potential targets for unauthorized access or attacks, and shutting them down mitigates these risks. Moreover, resource termination enhances overall system performance by freeing up valuable computing resources for other critical tasks. In essence, the proactive management of cloud resources aligns with efficiency, cost-effectiveness, and environmental responsibility in the dynamic landscape of cloud computing.
 
@@ -29,7 +25,7 @@ Torque provides a built-in set of __actions__ you can run on specific cloud reso
 
 Please see the below table for additional details.
 
-| Resource   Type | Action Name | Cloud | Grain technology | Resource type | Description | Limitations |
+| Resource Type | Action Name | Cloud | Grain technology | Resource type | Description | Limitations |
 |---|---|---|---|---|---|---|
 | Virtual Machines | Power On VM | AWS | Terraform | aws_instance | Start an EC2 instance |   |
 |  |  |  | CloudFormation | AWS::EC2::Instance |  |  |
@@ -61,7 +57,7 @@ Please see the below table for additional details.
 If you need verbose output from the actions in order to debug them, you can add a parameter like so:
 SYSTEM_ACTIONS_VERBOSE_MODE=true (or false) in the account level.
 
-#### **Workflows**
+### **Workflows**
 
 __Workflows__ take actions another step forward. They are scheduled automations that run on all resources from the same type in the environment. 
 Examples of workflows include:

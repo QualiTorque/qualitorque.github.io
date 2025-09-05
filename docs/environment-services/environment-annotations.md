@@ -31,44 +31,45 @@ Since environment annotations are __dynamic__ attributes of the environments, To
 
 1. In your git repository, create a rego file with __torque.annotation__ package name.
 2. The __input__ to the rego evaluation is the __introspection__ data from the environment. i.e a list of all the environment resources and their attributes, as a json object. The object will vary depending on the exact environment resources, but its overall structure will be as follows:
-  ```jsx title=introspection.json
-  {
-  "introspection_resources": [
+    ```jsx title=introspection.json
     {
-      "attributes": {
-        "att1": "att1",
-        "att2":  "{\"key\": \"value\"}"
-        ...
-      }
-    },
-    {
-      "attributes": {
-        ...
-      }
-    },
-    {
-      // more resources
+      "introspection_resources": [
+        {
+          "attributes": {
+            "att1": "att1",
+            "att2":  "{\"key\": \"value\"}"
+            ...
+          }
+        },
+        {
+          "attributes": {
+            ...
+          }
+        },
+        {
+          // more resources
+        }
+      ]
     }
-  ]
-  }
-  ```
+    ```
 3. Using the introspection input, create your rule for the annotation and return an object named "set_annotations" with the following structure:
-  ```jsx
+    ```jsx
     "set_annotations" = ["key" : "key1", "value" : "value1"]
-  ```
+    ```
 
 Let's take a look at a full example of how this rego file would look. In this evaluation file, we are evaluating the power state of virtual machines inside the environment. If there is even one virtual machine which is running, we will annotate the environment with "Power:On" annotation. If all of the virtual machines are stopped, the annotation will be "Power:Off".
 
 ```jsx title=power_state.rego
-package torque.annotations  // Use this as the first line to signal to Torque this file is for evaluating environment annotations.
+package torque.annotations  // Use this as the first line to signal to Torque that this file is for evaluating environment annotations.
 
 default set_annotations = [{"key": "power", "value": "off"}] // Unless we will find at least one running VM, we will return this default annotation of "Power:Off". 
 
 set_annotations = [{"key": "power", "value": "on"}] { 
 
-  resources_with_power_state_running = {r | r = input.introspection_resources[_]; r.attributes.power_state == "running"} // In this case, every virtual machine has an attribute named "power_state" which can be either "running" or "stopped". We are iterating all power_state attribute values which equal to "running".
-  count(resources_with_power_state_running) > 0 // If there is at least 1, we return "Power:On".
+  resources_with_power_state_running = {r | r = input.introspection_resources[_]; r.attributes.power_state == "running"} 
+  // In this case, every virtual machine has an attribute named "power_state" which can be either "running" or "stopped". We are iterating through all the power_state attribute values which are equal to "running".
 
+  count(resources_with_power_state_running) > 0 // If there is at least 1, we return "Power:On".
 }
 ```
 :::tip __Note__
@@ -76,7 +77,7 @@ Currently the only supported annotations are "power:on", "power:off" and "power:
 "torque.remove" is a general annotation value which may be used with any key. It signals to Torque to remove the annotation completely from the environment. A good example of when to use it is when the environment is ended.
 :::
 
-**Step 2: Import the rego file into Torque **
+**Step 2: Import the rego file into Torque**
 
 1. If the git repository where the relevant rego file resides was not yet connected to Torque, perform the following :
    1. Go to __Administration > Policy Repositories__ and click __Add a Repository__.

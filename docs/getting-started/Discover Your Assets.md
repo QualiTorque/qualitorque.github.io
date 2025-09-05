@@ -17,8 +17,9 @@ Click an auto-generated blueprint to view the resulting yaml file. You can custo
 **To connect your repository:**
 1. Go to your space, and select __Repositories__ from the left pane. 
 2. Click **Add a Repository** and follow the instructions.
+    
+    To connect an Azure DevOps repo, use this format: `https://dev.azure.com/{organization}/{project}/_git/{repositoryName}`.
 
-  To connect an Azure DevOps repo, use this format: "https://dev.azure.com/{organization}/{project}/_git/{repositoryName}".
 3. Now that your repository is connected, click __Discover Assets__ to have Torque auto-generate blueprints out of the suitable assets.
   > ![Locale Dropdown](/img/discover-assets-2.png)
 4. Next, go to the __Blueprints__ page and publish the new blueprints.

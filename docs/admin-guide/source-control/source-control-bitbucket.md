@@ -13,11 +13,12 @@ If Torque doesn't have access, you will be prompted to grant the proper authoriz
 1.	In Torque, go to the space's Settings > Repositories area and connect the repository.
 2.	Authorize the organization Quali Torque
 
-> ![Locale Dropdown](/img/bitbucket-repo-grant.png)
+    > ![Locale Dropdown](/img/bitbucket-repo-grant.png)
 
 3.	Go to Azure Applications (see above) and make sure the Torque application has been authorized.
 
-> ![Locale Dropdown](/img/bitbucket-repo-grant-2.png)
+    > ![Locale Dropdown](/img/bitbucket-repo-grant-2.png)
  
 At this point, the Torque app was given the necessary permissions to the organization.
+
 4.	Return to Torque and continue setting up the connection.

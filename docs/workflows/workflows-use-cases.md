@@ -52,7 +52,7 @@ grains:
 
 **Shell script:**
 
-```shell
+```bash
 resource_id=$1
 grain_path=$2
 contract_path=$CONTRACT_FILE_PATH

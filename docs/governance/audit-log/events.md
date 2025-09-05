@@ -119,16 +119,16 @@ These events are captured by Audit Log. All events are of type "string".
 ## Repository
 
 |Event                   |Description|Scopes                             |Data (parameters)                                 |
-|------------------------|-----------------------------------|--------------------------------------------|
+|------------------------|-----------------------------------|--------------------------------------------|--|
 |Assets Discovered|Assets were discovered from a space's repository.|Account/Space|Name|
-|Connected|A repository was connected to a space.|Account/Space|- Name- Type- Branch- Url|
+|Connected|A repository was connected to a space.|Account/Space|- Name<br />- Type<br />- Branch<br />- Url|
 |Disconnected|A repository was disconnected from a space.|Account/Space|Name|
 
 
 ## Space
 
 |Event                   |Description|Scopes                             |Data (parameters)                                 |
-|------------------------|-----------------------------------|--------------------------------------------|
+|------------------------|-----------------------------------|--------------------------------------------|--|
 |Create|New space was created in Torque.|Account/Space||
 |Modify|Space's settings were modified (name, icon, banner color).|Account/Space|- oldProperties (name, color, icon)<br />- newProperties (name, color, icon)|
 |Delete|Space was deleted from Torque.|Account/Space||
@@ -137,7 +137,7 @@ These events are captured by Audit Log. All events are of type "string".
 ## Tag
 
 |Event                   |Description|Scopes                             |Data (parameters)                                 |
-|------------------------|-----------------------------------|--------------------------------------------|
+|------------------------|-----------------------------------|--------------------------------------------|--|
 |Created|New tag created in the __Tags__ administration page.|Account|- Name<br />- Scope<br />- possibleValues<br />- description|
 |Deleted|Tag was deleted.|Account|- Name|
 |Modified|Tag was modified.|Account|-Name<br />- Scope<br />- oldProperties<br />- newProperties|
@@ -146,7 +146,7 @@ These events are captured by Audit Log. All events are of type "string".
 ## User
 
 |Event                   |Description|Scopes                             |Data (parameters)                                 |
-|------------------------|-----------------------------------|--------------------------------------------|
+|------------------------|-----------------------------------|--------------------------------------------|--|
 |Invited|User was invited to join Torque (Torque invitation email).|Account|- User Email|
 |Invitation Cancelled|Torque invitation was cancelled by an admin.|Account|- User Email<br />- User Role<br />- Space|
 |Sign up|New user signed up to Torque.|Account|- User Email|
@@ -160,10 +160,10 @@ These events are captured by Audit Log. All events are of type "string".
 ## Workflows
 
 |Event                   |Description|Scopes                             |Data (parameters)                                 |
-|------------------------|-----------------------------------|--------------------------------------------|
+|------------------------|-----------------------------------|--------------------------------------------|--|
 |Created| Created a new workflow.|Account |- Name|
 |Deleted| Deleted a workflow from Torque.|Account |- Name|
 |Disabled| Disabled a workflow.|Account |- Name|
 |Enabled| Enabled a workflow.|Account |- Name|
 |Ended|Workflow's execution ended at the completion of all its actions. |Account/Environment |- Name<br />- Actor (User/Schedule)<br />-If the actor is User, user details (email) is displayed|
-|Invoked|Workflow was triggered, either by the workflow's defined schedule or manually by the environment end-user. |Account/Environment |- Name<br />- Actor (User/Schedule)<br />-If the actor is User, user details (email) is displayed|
+|Invoked|Workflow was triggered, either by the workflow's defined schedule or manually by the environment end-user. |Account/Environment |- Name<br />- Actor (User/Schedule)<br />- If the actor is User, user details (email) is displayed|

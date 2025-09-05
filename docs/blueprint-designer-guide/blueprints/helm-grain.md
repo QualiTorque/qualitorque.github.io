@@ -108,9 +108,9 @@ It's also possible to use `parameters` for the service-account name. Note that w
 __Example:__
 
 ```yaml
-    agent:
-      name: '{{.inputs.agent}}'
-      service-account: '{{ .params.service_account }}'
+agent:
+  name: '{{.inputs.agent}}'
+  service-account: '{{ .params.service_account }}'
 ```
 :::
 
@@ -122,9 +122,9 @@ Setting `use-storage: false` will run the Helm runner container without storage 
 __Example:__
 
 ```yaml
-    agent:
-      name: '{{.inputs.agent}}'
-      use-storage: false
+agent:
+  name: '{{.inputs.agent}}'
+  use-storage: false
 ```
 
 ### `inputs`
@@ -302,7 +302,7 @@ grains:
 
 **get-url.sh**
 
-```shell
+```bash
 echo "Getting url service address"
 
 export RELEASE_NAME=$1

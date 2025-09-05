@@ -8,7 +8,8 @@ With just a few simple steps, your organization’s employees can log into Torqu
 SSO integration provides enhanced security and significant cost-savings as you no longer need to manage your user accounts in Torque and your employees don’t need to remember another set of credentials. Quick, easy and hassle-free.
 
 This is done by integrating your organization's identity provider with Torque's identity management system. Torque uses Okta for identity management and supports integration with all identity providers (IdPs).
-In this article:
+
+**In this article:**
 * [How this works](/admin-guide/sso#how-this-works)
 * [Integrating your IdP with Torque](/admin-guide/sso#integrating-your-idp-with-torque)
 * [Associating a user to multiple spaces](/admin-guide/sso#associating-a-user-to-multiple-spaces)
@@ -46,7 +47,7 @@ In this article:
 
    Once SSO integration is set up, the application’s users will be able to use your SSO-enabled account to log in to Torque, as explained in Login to Torque.
 
-NOTE: When the user first logs in via SSO, Torque sets up the user's profile, including contact details, space associations and space/account role settings. However, it is possible to update the user's profile on subsequent SSO logins as well. For details, contact Torque Support.
+> NOTE: When the user first logs in via SSO, Torque sets up the user's profile, including contact details, space associations and space/account role settings. However, it is possible to update the user's profile on subsequent SSO logins as well. For details, contact Torque Support.
 
 ## Associating a user to multiple spaces
 You can also add a user to multiple spaces, each with a different role. To do so, provide comma-separated values of the space names and corresponding space roles. For example, you could add a user as Space Member to the Trial space and Space Developer to the DevOps space.

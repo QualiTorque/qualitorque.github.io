@@ -14,6 +14,6 @@ As the blueprint designer, you can define the blueprint's default and max durati
     * __Ephemeral or Always on__: Choose whether to provide an ephemeral option when launching the Blueprint or an always on option. When choosing an ephemeral option you are requested to provide the below additional information.
     * __Default Duration__: Set the default duration that is used when launching a new environment.
     * __Default Extend Duration__: Set the default duration when end-users extend the environment.
-4. Click __Apply__.
+3. Click __Apply__.
 
 > ![Locale Dropdown](/img/bp-policies.png)

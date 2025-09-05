@@ -78,14 +78,14 @@ In the API, these levels are represented by `0` through `7`.
 
 **Environment variables** - key-values pairs of environment variables to set on the runner pod. This can be useful for configuring global configuration such as HTTP_PROXY. It will affect all runners in the cluster.
 
-![agent-advanced-settings](/img/k8s-advanced-settings-env-vars.png)
+> ![agent-advanced-settings](/img/k8s-advanced-settings-env-vars.png)
 
 
 ### secret mount
 
 **Secret mount** - key-values pairs of Secret name to mount path to set on the runner pod. This can be useful for a mounting a certificate, located in a Kubernetes secret, to a directory in the container. It will affect all runners in the cluster.
 
-![agent-advanced-settings](/img/k8s-advanced-settings-secrets.png)
+> ![agent-advanced-settings](/img/k8s-advanced-settings-secrets.png)
 
 ### pod labels
 
