@@ -88,7 +88,7 @@ To delete a repository blueprint, delete the blueprint file from the repository'
 ## Example multi-grain blueprint 1: Helm Application with MySQL and S3 Deployed by Terraform
 This blueprint is available in the __Sample__ space [here](https://portal.qtorque.io/Sample/blueprints/[Sample]Helm%20Application%20with%20MySql%20and%20S3%20Deployed%20by%20Terraform), which deploys 2 Terraform modules and a Helm chart:
 
-```jsx title=
+```yaml title=
 spec_version: 2
 description: Robotshop microservices application deployed on K8S with Helm and RDS deployed with TF
 
@@ -152,7 +152,7 @@ grains:
 
 ## Example multi-grain blueprint 2: Web-game on S3 (using CloudFormation and Terraform)
 
-```jsx title=
+```yaml title=
 spec_version: 2
 description: "S3 Bucket creation with Input and Output parameters"
 

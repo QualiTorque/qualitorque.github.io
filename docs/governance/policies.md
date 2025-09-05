@@ -79,7 +79,6 @@ There may come a time when you will need to go beyond the common use case and wr
 For example, a __terraform_plan__ policy can look like this:
 
 ```jsx
-
 package torque.terraform_plan
 
 deny[reason] {
@@ -87,14 +86,12 @@ deny[reason] {
     count(all) > 0
     reason:= "Deployment contains IAM changes"
 }
-
 ```
 
 3. __environment__  and __consumption__ policies need to return at least one __result__ object with a __decision__ element in it. The decision value can be one of "Denied", "Manual" or "Approved". In addition to the __decision__ element, you can optionally add a __reason__ element that explains the reason for the decision.
 For example, an __environment__ policy can look like this:
 
 ```jsx
-
 package torque.environment
 
 result = { "decision": "Denied", "reason": "Environment duration exceeds 5 hours" } if {
@@ -110,7 +107,7 @@ Based on the policy type (__environment__ , __consumption__ or __terraform_plan_
 For terraform_plan policies, the input is the terraform plan output. 
 For __environment__ policies, the input is the following json object:
 
-   ```jsx 
+```jsx 
 {
     "blueprint": {
         "name": "my-bp-name",
@@ -182,7 +179,7 @@ result = { "decision": "Denied", "reason": "Requested environment duration excee
 
 For __consumption__ policies, the input is similar to the object in __environment__ policies, except the __consumption__ policies are triggered before the user completes the launch dialog, which means the blueprint input values and workflow details are not available yet. Therefore, the relevant sections are omitted from the input json object:
 
-   ```jsx 
+```jsx 
 {
     "blueprint": {
         "name": "my-bp-name",

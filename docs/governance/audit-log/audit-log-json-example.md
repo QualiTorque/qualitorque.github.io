@@ -6,32 +6,33 @@ title: Audit Log Event Examples
 ## Environment Termination Started
 ```jsx title=
 inputs:
-    {
-  "_index": "quali",
-  "_type": "_doc",
-  "_id": "E_TV54QBoWVq8-70aD22",
-  "_score": 1,
-  "_source": {
-    "name": "EnvironmentTerminationStarted",
-    "event_type": "environment",
-    "event_status": "success",
-    "scope": {
-      "environment": "u9FQhalUq6yh",
-      "space": "shai",
-      "account": "trial-e1a4eb56d"
-    },
-    "actor": {
-      "actor_type": "user",
-      "details": {
-        "user_email": shai.p@quali.com
-      }
-    },
-    "timestamp": "2022-12-06T14:27:08.6804874Z",
-    "traceId": "bc208caa38fd248f89dfcd87a7b5f8f1",
-    "data": {
-      "isForced": "False"
-    },
-    "errors": []
+  {
+    "_index": "quali",
+    "_type": "_doc",
+    "_id": "E_TV54QBoWVq8-70aD22",
+    "_score": 1,
+    "_source": {
+      "name": "EnvironmentTerminationStarted",
+      "event_type": "environment",
+      "event_status": "success",
+      "scope": {
+        "environment": "u9FQhalUq6yh",
+        "space": "shai",
+        "account": "trial-e1a4eb56d"
+      },
+      "actor": {
+        "actor_type": "user",
+        "details": {
+          "user_email": shai.p@quali.com
+        }
+      },
+      "timestamp": "2022-12-06T14:27:08.6804874Z",
+      "traceId": "bc208caa38fd248f89dfcd87a7b5f8f1",
+      "data": {
+        "isForced": "False"
+      },
+      "errors": []
+    }
   }
 ```
 
@@ -65,6 +66,7 @@ inputs:
     },
     "errors": []
   }
+}
 ```
 
 ## Send User Invitation
@@ -98,4 +100,5 @@ inputs:
     },
     "errors": []
   }
+}
 ```

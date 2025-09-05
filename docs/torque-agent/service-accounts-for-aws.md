@@ -23,41 +23,41 @@ For brevity, the term "__cluster account__" refers to the account hosting the EK
 
 __To associate the cluster to the account__:
 1.	In AWS CLI, find the cluster’s OIDC provider by running:
-  ```jsx title=
-  aws eks describe-cluster --name my-cluster --query "cluster.identity.oidc.issuer" --output text
-  ```
-  Where __my-cluster__ is the name of the cluster.
+    ```bash
+    aws eks describe-cluster --name my-cluster --query "cluster.identity.oidc.issuer" --output text
+    ```
+    Where __my-cluster__ is the name of the cluster.
 
-  The output looks something like this:
-  ```jsx title=
-  https://oidc.eks.region-code.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE
-  ```
-  Where __EXAMPLED539D4633E53DE1B71EXAMPLE__ is the cluster's OIDC provider
+    The output looks something like this:
+    ```jsx
+    https://oidc.eks.region-code.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE
+    ```
+    Where __EXAMPLED539D4633E53DE1B71EXAMPLE__ is the cluster's OIDC provider
 :::info
 Make sure to perform steps 2 and 3 on every target account in which the cluster will perform actions.   
 :::
 2.	Check if the OIDC provider from the cluster's account exists in the target accounts:
-  ```jsx title=
-  aws iam list-open-id-connect-providers | grep my-cluster-oidc-provider
-  ```
-  The IAM OIDC provider is displayed:
-  ```
-  "Arn": "arn:aws:iam::111122223333:oidc-provider/oidc.eks.region-code.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE"
-  ```
-3.	If the IAM OIDC provider is nonexistent, do the following to create it:
-  
-  a.	Install __eksctl__ on your computer.
-  
-  b.	Run the following to create the IAM OIDC provider and associate it to your cluster:
-  ```jsx title=
-  eksctl utils associate-iam-oidc-provider --cluster my-cluster --approve
-  ```
-
-  c.	In AWS CLI, run the following to get the Arn for IAM OIDC provider you created:
-    ```jsx title=
+    ```bash
     aws iam list-open-id-connect-providers | grep my-cluster-oidc-provider
     ```
-    You will need this for step 3 in the following procedure.
+    The IAM OIDC provider is displayed:
+    ```jsx
+    "Arn": "arn:aws:iam::111122223333:oidc-provider/oidc.eks.region-code.amazonaws.com/id/EXAMPLED539D4633E53DE1B71EXAMPLE"
+    ```
+3.	If the IAM OIDC provider is nonexistent, do the following to create it:
+  
+    a.	Install __eksctl__ on your computer.
+    
+    b.	Run the following to create the IAM OIDC provider and associate it to your cluster:      
+        ```bash
+        eksctl utils associate-iam-oidc-provider --cluster my-cluster --approve
+        ```
+
+    c.	In AWS CLI, run the following to get the Arn for IAM OIDC provider you created:
+        ```bash
+        aws iam list-open-id-connect-providers | grep my-cluster-oidc-provider
+        ```
+        You will need this for step 3 in the following procedure.
 
 ## Create an IAM role for the service account with the required policy
 As we explained before, the service account delegates permissions to the container to perform the Terraform actions. The permissions are defined as a policy in an IAM role that is associated to the service account.
@@ -83,18 +83,19 @@ Create the service account in the cluster's namespace you plan on using as the e
 __To create the service account__:
 
 1. Save the following as an __SA.yaml__ file. 
-  ```jsx title=
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-    annotations:
-      eks.amazonaws.com/role-arn: <enter your role arn here>
-    name: <service account name>
-    namespace: <environment namespace name>  
+    ```yaml
+    apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+        annotations:
+          eks.amazonaws.com/role-arn: <enter your role arn here>
+        name: <service account name>
+        namespace: <environment namespace name>
+    ```
 2. From AWS CLI, run the following command:
-  ```jsx title=
-  kubectl apply -f SA.yaml
-  ```
+    ```bash
+    kubectl apply -f SA.yaml
+    ```
 You're done. All that's left to do is specify the service account name in the blueprint YAML. For details, see [Agent](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#agent).
 
 ## For additional details, see these AWS docs:

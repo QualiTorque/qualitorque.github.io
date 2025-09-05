@@ -49,7 +49,7 @@ title: Install an Agent on your Kubernetes Cluster
 3. Click __Next__. 
 4. Click __Generate__ and copy the command that is displayed
 5. Paste the command in your command-line window to deploy the agent to your cluster. For example:     
-     ```jsx title=
+    ```jsx title=
     kubectl apply -f https://portal.qtorque.io/api/settings/executionhosts/deployment/k***roi/deployment.yaml
     ```
 5. A __Connected!__ status is displayed in Torque, indicating that the agent was successfully installed and can communicate with Torque. 

@@ -7,8 +7,7 @@ Gaining agility and velocity in development and testing teams, usually requires 
 
 In the following example, a cloud native application, based on microservices requires dedicated AWS PaaS services to be launched to mimic a production deployment. The PaaS services are managed and orchestrated by the IT team, who adopted Terraform, while the application itself is orchestrated using Helm - the preferred Kubernetes orchestration tool by the DevOps team.
 
-```jsx
-
+```yaml
 grains:
   MySQL_RDS_DB:
     kind: terraform

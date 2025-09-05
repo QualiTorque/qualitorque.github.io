@@ -12,8 +12,7 @@ The following environment was orchestrated form a blueprint with multiple grains
 Note that in some cases, it might take time for Kubernetes deployment in the cloud to be fully exposed to external communication. In this case, we've added a "health-check" grain that will wait for the externally ingress to be fully reachable and additional validation to make sure the application is up and running.
 
 Here is an example of how we execute [Datree.io](https://www.datree.io/) in the above environment using the Shell grain:
-```jsx
-
+```yaml
 grains:
   validate-datree:
     kind: shell
@@ -30,6 +29,5 @@ grains:
             - "curl https://get.datree.io | /bin/bash"
             - "datree config set token <personal token>"
             - "datree test ./kubernetes-manifests.yaml -o simple --ignore-missing-schemas"
-
 ```
 
