@@ -1110,7 +1110,6 @@ vm-grain:
       inputs:
         - name: '{{.inputs.vm_name}}'
       workspace-directories:
-// highlight-start
         - source:
             name: file1            
             store: artifactory/my-artifactory-store # working with Artifactory
@@ -1119,7 +1118,6 @@ vm-grain:
             name: file2
             store: artifactory/my-artifactory
             path: artifactory/tf/workspaces/jfrog-ws1/state.latest.json 
-// highlight-end
         - source: 
             name: dir1
             store: my-repo # working with repositories
