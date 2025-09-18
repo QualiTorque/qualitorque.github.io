@@ -103,6 +103,52 @@ grains:
 
 Please see [the grain source](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#source) for more details.
 
+#### Working with Artifactory
+
+Terraform grains support using artifact zip files published in Artifactory as a source store. This allows you to work with zipped Terraform configurations (similar to git repositories) rather than individual modules.
+
+:::note
+When using Artifactory as a source store, the artifact must be a zip/tar file containing the Terraform module files.
+
+**Benefits:**
+- Deploy and destroy operations work normally
+- Path supports liquid templating for dynamic artifact selection
+
+**Limitations:**
+- Asset changes are not supported
+- Asset discovery is not supported
+:::
+
+**Configuration:**
+
+```yaml
+spec_version: 2
+
+inputs:
+  agent:
+    type: agent
+  artifact:
+    default: quali-tf-generic-local/simple-tf-module-v1.tar
+
+grains:
+  simple-tf:
+    kind: terraform    
+    spec:
+      source:
+        store: artifactory/jfrog-quali # points to credentials
+        path: '{{ .inputs.artifact }}'
+        resource-type: file
+        path-in-archive: path/to/terraform/module # points to terraform module dir inside the archive. empty means root
+      agent:
+        name: '{{ .inputs.agent }}'
+```
+
+**Properties:**
+- **`store`**: Reference to Artifactory credentials (format: `artifactory/<credential-name>`)
+- **`path`**: Path to the artifact in Artifactory (supports liquid templating)
+- **`resource-type`**: Must be set to `file` for Artifactory artifacts
+- **`path-in-archive`**: Optional path to the Terraform module directory inside the archive. If empty, uses the root of the archive
+
 ### `agent`
 
 Please see [the grain agent](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#agent) for more details.
