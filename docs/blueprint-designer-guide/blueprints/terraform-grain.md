@@ -623,3 +623,51 @@ grains:
 Each item in the `target-resource` list represents a specific resource or module to target. You can use static values or dynamic inputs (e.g., `{{ .inputs.tf_resource }}`) to define the resources.
 
 For more details on resource targeting, see the [Terraform documentation](https://developer.hashicorp.com/terraform/tutorials/state/resource-targeting).
+
+
+### `mode`
+
+The `mode` field controls how Terraform resources are managed during environment termination and grain deletion. There are two supported modes:
+
+- **`managed`** (default): Standard behavior where resources are destroyed using `terraform destroy` when the environment is terminated or grain is deleted/edited
+- **`no-termination`**: Resources are "released" rather than destroyed. The Terraform state is removed but the actual cloud resources remain intact
+
+This is particularly useful for production environments where you want to preserve critical infrastructure (databases, storage, networks) even when the Torque environment is terminated.
+
+```yaml
+spec_version: 2
+inputs:
+  mode:
+    type: string
+    default: managed
+    allowed-values:
+      - managed
+      - no-termination
+
+grains:
+  rds:
+    kind: terraform    
+    spec:
+      mode: '{{ .inputs.mode }}'
+      source:
+        store: terraform-repo
+        path: terraform/aws/rds
+      agent:        
+        name: '{{ .inputs.agent }}'
+      inputs:
+        - instance_class: db.t3.micro
+        - allocated_storage: 20
+      outputs:
+        - database_endpoint
+```
+
+**When to use `no-termination` mode:**
+
+- Production databases that should persist beyond environment lifecycles
+- Shared infrastructure components (VPCs, subnets, security groups)
+- Storage resources containing important data
+- Any resources that are expensive to recreate or contain state that must be preserved
+
+:::warning
+When using `no-termination` mode, you are responsible for manually cleaning up the cloud resources when they are no longer needed, as Torque will not destroy them automatically.
+:::
