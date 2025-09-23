@@ -50,31 +50,7 @@ This combination enables both reactive management and proactive automation, ensu
 
 ## Actions
 
-Torque provides a built-in set of **actions** you can run on specific cloud resources in the environment to stop them and gain the aforementioned benefits. The built-in actions currently available out of the box by Torque are:
-
-### Supported Actions by Resource Type
-
-**Virtual Machines:**
-- **Power On** - Start instances
-- **Power Off** - Stop instances  
-- **Restart** - Reboot instances
-- **Connect** - Create RDP/SSH connections directly from Torque UI
-
-**Database Servers:**
-- **Stop** - Temporarily stop database instances
-- **Start** - Start stopped database instances
-- **Delete** - Remove database instances
-
-**Kubernetes Clusters:**
-- **Pause** - Scale down to minimum resources
-- **Resume** - Scale back to original capacity
-
-### Debugging Actions
-
-For verbose output to debug actions, add this parameter at the account level:
-```
-SYSTEM_ACTIONS_VERBOSE_MODE=true
-```
+Torque provides a built-in set of **actions** you can run on specific cloud resources in the environment to optimize resource usage and achieve cost savings, security improvements, and performance benefits.
 
 ## Workflows
 
@@ -126,7 +102,37 @@ import pic3 from '/img/action-and-workflows-3.png';
 
 :::
 
-## Detailed Action Support Matrix
+## Built-in Actions
+
+Learn how to create scheduled automations with [built-in actions](/workflows/workflows-overview#built-in-workflows).
+
+### Supported Actions by Resource Type
+
+Torque provides the following built-in actions that you can run on specific cloud resources:
+
+**Virtual Machines:**
+- **Power On** - Start instances
+- **Power Off** - Stop instances  
+- **Restart** - Reboot instances
+- **Connect** - Create RDP/SSH connections directly from Torque UI
+
+**Database Servers:**
+- **Stop** - Temporarily stop database instances
+- **Start** - Start stopped database instances
+- **Delete** - Remove database instances
+
+**Kubernetes Clusters:**
+- **Pause** - Scale down to minimum resources
+- **Resume** - Scale back to original capacity
+
+### Debugging Actions
+
+For verbose output to debug actions, add this parameter at the account level:
+```
+SYSTEM_ACTIONS_VERBOSE_MODE=true
+```
+
+### Detailed Action Support Matrix
 
 For technical implementation details, refer to the comprehensive action support matrix below:
 
