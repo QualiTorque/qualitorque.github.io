@@ -99,12 +99,10 @@ There is no hard limit for the level of concurrency while using the platform, as
 #### How can platform engineering teams extend Torque with custom solutions?
 Torque is designed to be highly flexible and extensible. It allows platform engineering teams to create **Blueprints** and **Workflows**, which are reusable modules (Building Blocks) that can encapsulate best practices and "golden paths". These Blueprints can be shared and versioned, allowing teams to evolve their infrastructure over time.
 
-Learn more about [blueprint design](/blueprint-designer-guide/blueprint-quickstart-guide), [workflows](/workflows/intro), and [blueprint publishing](/blueprint-designer-guide/blueprint-publishing).
+Learn more about [blueprint design](/blueprint-designer-guide/blueprint-quickstart-guide) and [workflows](/workflows/workflows-overview).
 
 #### Does Torque offer API-first integration capabilities?
 Yes! Torque offers a robust API-first approach, allowing for seamless integration with other tools and systems. This is critical for machine-to-machine interaction and building future integration layers.
-
-Explore our [REST API documentation](/rest-api/rest-api) and [API token management](/rest-api/torque_api_tokens).
 
 ---
 
