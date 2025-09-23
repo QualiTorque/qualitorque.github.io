@@ -36,6 +36,25 @@ There are 3 types of tags in Torque - [System tags](#system-tags), [built-in tag
   
   The __activity_type__ tag comes built-in when launching an environment as a drop-down input. The end-user who is launching the environment sets the tag's value, which defines the purpose of the environment. The end-user can choose from a list of pre-defined values such as dev, test, demo... etc. while the account admin can also edit this list and add more business activities to this tag.
 
+### Torque System Tags Reference
+
+The following table describes the system tags automatically applied to all environment resources:
+
+| Tag Name | Scope | Description | Example Value |
+|----------|-------|-------------|---------------|
+| `torque-account-id` | Environment | Unique identifier for the Torque account | `ec8b2204-55ff-45ea-abfc-5be5509caeab` |
+| `torque-env-case-ignored-id` | Environment | Environment identifier (case-insensitive) | `kc3dyud8kb8rccukgjbo` |
+| `torque-environment-id` | Environment | Unique identifier for the environment instance | `Rr0LgPNF2j2C` |
+| `torque-owner-email` | Environment | Email address of the user who created the environment | `user@quali.com` |
+| `torque-blueprint-name` | Environment | Name of the blueprint used to create the environment | `/VC-Win2012-TemplateVM` |
+| `torque-space-name` | Environment | Name of the Torque space containing the environment | `O3-Live` |
+| `torque-sandbox-name` | Environment | Custom name given to the environment instance | `Win2012 Template VM` |
+
+:::info
+**Automatic Tagging**
+All these tags are automatically applied by Torque to every cloud resource created within an environment. This ensures consistent tracking and cost allocation across your entire infrastructure.
+:::
+
   **To customize the activity_type tag:**
 
     1. Open **Administration** and click **Tags**.
