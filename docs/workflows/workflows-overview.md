@@ -459,16 +459,16 @@ inputs:
 
 outputs:
   resource_state:
-    value: '\{\{ .grains.helper.activities.deploy.commands.print.outputs.state_tr \}\}'  
+    value: '{{ .grains.helper.activities.deploy.commands.print.outputs.state_tr }}'  
   input1:
-    value: '\{\{ .inputs.input1 \}\}'  
+    value: '{{ .inputs.input1 }}'  
   
 grains:
   helper:
     kind: shell
     spec:
       agent:
-          name: '\{\{ .inputs.agent \}\}'
+          name: '{{ .inputs.agent }}'
       files:
         - source: scripts
           path: scripts/print-resource-2.sh
@@ -476,7 +476,7 @@ grains:
         deploy:
           commands:
             - name: print
-              command:  'source print-resource-2.sh \{\{ .bindings.resource_id \}\} \{\{ .bindings.grain_path \}\}'
+              command:  'source print-resource-2.sh {{ .bindings.resource_id }} {{ .bindings.grain_path }}'
               outputs:
                 - state_tr
 
@@ -485,12 +485,12 @@ grains:
     depends-on: helper
     spec:
       agent:
-        name: '\{\{ .inputs.agent \}\}'
+        name: '{{ .inputs.agent }}'
       activities:
         deploy:
           commands:
             - name: print                  
-              command:  'echo "\{\{ .grains.helper.activities.deploy.commands.print.outputs.state_tr \}\}"'
+              command:  'echo "{{ .grains.helper.activities.deploy.commands.print.outputs.state_tr }}"'
 ```
 
 **Shell script example:**
