@@ -11,4 +11,6 @@ When the agent receives a message about a new task (launch an environment) it wi
 
 The following diagram depicts the connectivity between the agent and Torque SAAS:
 
- > ![Locale Dropdown](/img/agent_connectivity.png)
+import pic1 from '/img/agent_connectivity.png';
+
+<img src={pic1} style={{width: 900}} />

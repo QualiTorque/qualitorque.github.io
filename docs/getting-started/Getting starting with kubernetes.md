@@ -23,8 +23,6 @@ __Spaces__ are logically separate area that contains an association to one or mo
 
 2. Set the space name, image and color. 
    Space name, image and color can always be changes in the "Administration" are under the "Spaces" tab
-> ![Create Space](/img/getting-space.png)
-
 
 ## Step #2: Connect a repository
 Now, that you have a new space configured, we will associate a repository to the space and generate blueprints using the automation-assets that will be discovered by Torque in that repository. We recommend using your-own repository hosted in one of the supported Git Providers. For using on-prem/hosted versions of one of the supported (Version Control System) providers, see [Repository Setup](/admin-guide/source-control/source-control-github).
@@ -35,29 +33,30 @@ Now, that you have a new space configured, we will associate a repository to the
 3. To __generate a blueprint__ from one of the discovered assets, check the blueprint in the list and click on "Generate Blueprints"
 4. Click on "Connect an Agent"
 
-> ![Onboard Repository](/img/getting-repository-ongoarding.gif)
+
+import pic1 from '/img/getting-repository-ongoarding.gif';
+
+<img src={pic1} style={{width: 700}} />
 
 ## Step #3: Install an Agent
 In this step, we will configure a Torque agent that will execute, manage and monitor the Kubernetes workload we discovered and plan to deploy.
 
-:::info
-For Kubernetes workloads, Torque requires a self-hosted agent to be installed in the target cluster where the workload will be deployed or use Torque capability to orchestrate on __remote clusters__. The __Quali Hosted Agent__ presented in the [Getting started with Terraform](/getting-started/Getting starting with terraform.md) article, is suitable only for Terraform workloads.
-:::
-
 1. In the "Connect an agent" dialog, select the __"Install new self hosted agent"__ and click "Next". Now, you are required to choose one of the supported cloud providers managed Kubernetes service or a self-managed Kubernetes cluster. Choose one of the options, In this example, we will use AWS EKS.
-
 2. Provide a new for the agent, and click "Next"
 3. Click on "Generate", this will generate a CLI command based on ```kubectl``` that you can now execute on the Kubernetes cluster. Here is an example output of the command. 
 
-> Note that the command creates a new namespaces, and deploys the Torque agent in it. It might take up to 2 minutes for the Agent to get up and running, so want for the Torque self-service indication to make sure the agent is connected.
-> ![Agent Connected](/img/k8s-agent-connected.png)
+
+import pic2 from '/img/k8s-agent-connected.png';
+
+<img src={pic2} style={{width: 700}} />
+
 
 :::info
-In case the agent is not connected to Torque after 2 minutes, we recommend checking the pod statuses using the following command looking for the Torque agent pods and further debug ```kubectl get pod --all-namespaces```. In some cases, Kubernetes clusters are pre-configured with proxies, private registries and limited outbound connectivity - in those cases, contact Quali Support and we will make sure to assist you with the installation.
-:::
+The command creates a new namespaces, and deploys the Torque agent in it. It might take up to 2 minutes for the Agent to get up and running, so want for the Torque self-service indication to make sure the agent is connected.
 
-4. Now, it's associate our newly connected agent with our space. Click the "Associate to space".
-5. The space is already selected for you, but, you still need to set the default namespace and service-account that will be used by Torque to deploy workloads into the cluster. It's always possible to change the default values in the "Administration" section under the "Agents" section.
+1. Now, it's associate our newly connected agent with our space. Click the "Associate to space".
+2. The space is already selected for you, but, you still need to set the default namespace and service-account that will be used by Torque to deploy workloads into the cluster. It's always possible to change the default values in the "Administration" section under the "Agents" section.
+:::
 
 ## Step #4: Launch an Environment
 

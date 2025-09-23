@@ -18,29 +18,26 @@ These generated blueprints are stored in Torque's backend, and you can customize
 
 1. In your space, go to __Settings > Repositories__ and discover your assets.
 
-> ![Locale Dropdown](/img/discover-assets.png)
+
+import pic1 from '/img/discover-assets.png';
+
+<img src={pic1} style={{width: 900}} />
 
 2. Select one or more assets you want Torque to discover and click __Generate Blueprints__.
 
-> ![Locale Dropdown](/img/select-assets.png)
-  
-  Torque creates a blueprint YAML for each selected asset, and lists the blueprints in your space’s __Blueprints__ page. 
-  
-> ![Locale Dropdown](/img/new-assets.png)
+import pic2 from '/img/select-assets.png';
 
+<img src={pic2} style={{width: 700}} />
+ 
+Torque creates a blueprint YAML for each selected asset, and lists the blueprints in your space’s __Blueprints__ page. 
+  
 3. You can click the blueprint to open it in the embedded VSCode editor. In this editor you can view the blueprint's contents, modify it, preview changes after modification, save the changes, and launch an environment from the blueprint.
-
-
 
 4. (Optional) You can set the blueprint's max duration policy, default duration, attach labels and colors to visually group blueprints according to shared  characteristics, or set the blueprint's tag values.
 
-> ![Locale Dropdown](/img/blueprint-options.png)
-
 5. __Publish__ the blueprints to your space's catalog and you’re good to go.
 
-> ![Locale Dropdown](/img/publish-blueprint.png)
-  
-  You and your space’s users can now launch environments from these blueprints via the **Catalog**. 
+You and your space’s users can now launch environments from these blueprints via the **Catalog**. 
 
 ## Option B: Create a multi-asset blueprint in your source control repository
 So far, we’ve learned how to create single-asset blueprints via auto-generation. But what if you want to create an application-stack environment? This is easily done by having multiple grains in a single blueprint or nesting an existing blueprint within a master blueprint as a grain. To create such a blueprint, you will need an IDE environment that has access to a clone of your repository, in which you can create the new blueprint's YAML file and edit it, and then commit it into your repository and push the changes to the remote repository from which Torque will automatically synchronize the new blueprint.
@@ -59,9 +56,10 @@ __To create a multi-asset blueprint:__
 1. Generate a single-asset blueprint for the first grain in your blueprint, as explained in [Let Torque auto-generate blueprints from your assets](#option-a-let-torque-generate-blueprints-from-your-assets).
 2. Download the blueprint as a file from Torque.
   > ![Locale Dropdown](/img/download_blueprint-yaml.png)
-2. Save the file in the "/blueprints" folder in your cloned repository (create it if it doesn't exist) and rename it to the name of the new blueprint.
-3. Modify the grain type and spec to reflect the new component of your environment. For example:
-  ```"yaml
+3. Save the file in the "/blueprints" folder in your cloned repository (create it if it doesn't exist) and rename it to the name of the new blueprint.
+4. Modify the grain type and spec to reflect the new component of your environment. For example:
+  
+```yaml
 grains:
   database:
     kind: terraform
@@ -69,21 +67,20 @@ grains:
       source:
         store: infra 
         path: terraform/rds
-  ```
-4. For each additional grain, do one of the following:
+```
+
+5. For each additional grain, do one of the following:
    * Copy an example of that grain from a generated blueprint.
    * Use the sample structure for that grain type in the corresponding page in [The Blueprint YAML](/blueprint-designer-guide/blueprints/blueprints-overview).
-5. If grains depend on each other, add a ```depends-on``` section to the grain (in the top level, next to ```kind:``` and ```spec:```) and provide the names of the dependent grains in a comma-separated list. 
-6. Once a grain depends on another grain, the output values from that grain can be used as values for any of the grain's inputs or attributes using the syntax ```{{ .grains.grain_name.outputs.output_name}}```, see the examples below. 
-7. Customize the ```inputs``` and ```outputs``` sections of the blueprint to contain only the relevant inputs that the entire environment needs, and to reflect the outputs from the grains that you would like to make available to the environment's end-user.
+6. If grains depend on each other, add a ```depends-on``` section to the grain (in the top level, next to ```kind:``` and ```spec:```) and provide the names of the dependent grains in a comma-separated list. 
+7. Once a grain depends on another grain, the output values from that grain can be used as values for any of the grain's inputs or attributes using the syntax ```{{ .grains.grain_name.outputs.output_name}}```, see the examples below. 
+8. Customize the ```inputs``` and ```outputs``` sections of the blueprint to contain only the relevant inputs that the entire environment needs, and to reflect the outputs from the grains that you would like to make available to the environment's end-user.
 
 ## Removing a blueprint
 As mentioned above, there are two types of blueprints, auto-generated blueprints (stored in Torque) and source-controlled blueprints (stored in your repository). 
 
-To delete an auto-generated blueprint, in the **Blueprints** page, click the blueprint's more options button and select **Remove**.
-> ![Locale Dropdown](/img/remove-blueprint.png)
-
-To delete a repository blueprint, delete the blueprint file from the repository's branch that the Torque space is connected to.
+* To delete a stored-in-torque Blueprint, in the **Blueprints** tab, click on the Blueprint and then click the __Delete__ button on the top right corner.
+* To delete a "repository" Blueprint, simply delete the blueprint file from the repository's branch that the Torque space is connected to.
 
 ## Example multi-grain blueprint 1: Helm Application with MySQL and S3 Deployed by Terraform
 This blueprint is available in the __Sample__ space [here](https://portal.qtorque.io/Sample/blueprints/[Sample]Helm%20Application%20with%20MySql%20and%20S3%20Deployed%20by%20Terraform), which deploys 2 Terraform modules and a Helm chart:
@@ -152,13 +149,11 @@ grains:
 
 ## Example multi-grain blueprint 2: Web-game on S3 (using CloudFormation and Terraform)
 
-```yaml title=
+```yaml
 spec_version: 2
 description: "S3 Bucket creation with Input and Output parameters"
 
 inputs:
-   # The access_control property is case-sensitive and must be one of the following values: 
-   # Private, PublicRead, PublicReadWrite, AuthenticatedRead, LogDeliveryWrite, BucketOwnerRead, BucketOwnerFullControl, or AwsExecRead
    Access Control:
       type: string
       description: >
@@ -174,7 +169,6 @@ inputs:
       default: "us-west-1"
       allowed-values: ["us-west-1", "us-west-2", "eu-west-1"]
     
-
 outputs:
    S3 Bucket ARN:
         value: '{{ .grains.my-S3-Bucket.outputs.Arn }}'
@@ -190,7 +184,8 @@ grains:
     kind: cloudformation
     spec: 
       source:
-        path: https://.../AWSS3Bucket.yaml
+        store: assets
+        path: assets/cfn/s3/AWSS3Bucket.yaml
       region: '{{ .inputs.["AWS Region"] }}'
       agent:
         name: demo-prod
@@ -201,14 +196,10 @@ grains:
       outputs:
          - Arn
          - DomainName
-      template-storage:
-         bucket-name: my-bucket
-         region: us-east-1
-         key-prefix: temp-cfn
   
   S3-Upload-Webapp-File:
     kind: terraform
-    depends-on: my-S3-Bucket
+    depends-on: CFN-S3-Bucket
     spec:
       source:
         store: assets
@@ -221,7 +212,4 @@ grains:
       - region: '{{ .inputs.["AWS Region"] }}'
       outputs:
       - website_link
-    # The terraform version that will be used to deploy the module
-    tf-version: 1.2.3
-
 ```
