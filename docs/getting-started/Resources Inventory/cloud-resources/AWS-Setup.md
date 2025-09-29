@@ -23,7 +23,7 @@ The Resource Explorer indexing process, once turned on, can take up to 72 hours 
 
 7. Create an `IAM User`
    - Create an `IAM User` under the IAM Service
-   - Give a `Permission Policy` to that user. Minimum policy is `AWSResourceExplorerReadOnlyAccess`. Ideal policy is `ReadOnlyAccess` explained under [Minimal Permissions Required](/getting-started/Resources%20Inventory/AWS-Setup#minimal-permissions-required)
+   - Give a `Permission Policy` to that user. Minimum policy is `AWSResourceExplorerReadOnlyAccess`. Ideal policy is `ReadOnlyAccess` explained under [Minimal Permissions Required](./aws-setup#minimal-permissions-required)
    - Create `Access Keys` under `Security credentials` and take note of the `Access and Secret Keys` values
 
 :::info
