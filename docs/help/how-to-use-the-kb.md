@@ -5,7 +5,7 @@ title: How to Use the Torque documentations
 
 The Torque documentations is our one-stop-shop for all your Torque education needs. Here you will learn everything you need to know about Torque and how to use it.
 
-Before you start, please familiarize yourself with the [Main Concepts](/overview/The%20Torque%20Terminology) of Torque.
+Before you start, please familiarize yourself with the [Main Concepts](/overview/torque-terminology) of Torque.
 
 ### We value your feedback
 We take our documentation very seriously, and your feedback is always welcome. So, if you find any errors, gaps or areas we could improve, please send us feedback in the __Discussions__ section of the Torque documentations repo.

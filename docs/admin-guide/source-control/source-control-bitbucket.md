@@ -3,7 +3,7 @@ sidebar_position: 4
 title: BitBucket Source Control
 ---
 
-Torque supports connecting asset/blueprint repositories on BitBucket out of the box. However, to connect a repository, you must have access to the repository and grant Torque permission to the repository's organization, as explained below. For details about connecting a repository, see [Discover Your Assets](/getting-started/Discover%20Your%20Assets). You should be able to sign in with an account on any one of these online services and immediately get going with connecting asset repositories and launching environments.
+Torque supports connecting asset/blueprint repositories on BitBucket out of the box. However, to connect a repository, you must have access to the repository and grant Torque permission to the repository's organization, as explained below. For details about connecting a repository, see [Discover Your Assets](/getting-started/asset-discovery). You should be able to sign in with an account on any one of these online services and immediately get going with connecting asset repositories and launching environments.
 
 **This article refers to the SAAS version of BitBucket. If you're using self-hosted BitBucket, check [here](/admin-guide/source-control/Self%20Hosted%20Repositories/overview)**.
 

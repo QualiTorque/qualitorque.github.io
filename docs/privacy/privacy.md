@@ -17,7 +17,7 @@ When you use our services, you trust us with your personal information. At Quali
     * [SSO](/admin-guide/sso) status (enabled or not) (optional) 
     * Git repositories ([GitHub](/admin-guide/source-control/source-control-github), [GitLab](/admin-guide/source-control/source-control-gitlab), [self-managed](/admin-guide/source-control/Self%20Hosted%20Repositories/overview))
         * User authentication/credentials 
-        * [IaC](/overview/supported-platforms#infrastructure-as-code-frameworks) asset files. For example: Terraform, Helm, Kubernetes manifests. For more details, see [Discover Your Assets](/getting-started/Discover%20Your%20Assets)
+        * [IaC](/overview/supported-platforms#infrastructure-as-code-frameworks) asset files. For example: Terraform, Helm, Kubernetes manifests. For more details, see [Discover Your Assets](/getting-started/asset-discovery)
     * [Agents](/torque-agent/Install-and-connect-self-hosted-agent) 
     * Role that allows cost information gathering - [AWS](/governance/cost-tracking/configuring-cost-aws), [Azure](/governance/cost-tracking/configuring-cost-azure), [Kubernetes](/governance/cost-tracking/configuring-cost-k8s) (optional)
     * Cloud authentication data for Terraform deployments on [EKS](/torque-agent/service-accounts-for-aws), [AKS](/torque-agent/service-accounts-for-azure), or [GKE](/torque-agent/service-accounts-for-gcp)

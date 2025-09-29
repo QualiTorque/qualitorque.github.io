@@ -64,4 +64,4 @@ curl -L 'https://portal.qtorque.io/api/spaces/<SPACE_NAME>/repositories/clouds
   * [Optional] Replace __&lt;CLOUDSHELL_DOMAIN&gt;__ with the domain name to use for this repository. If omitted, the default Domain name provided in step #1 will be used. 
     __Note__: The user provided in step #1 must have correct access to the provided Domain.
 
-3. Discover suitable assets. For details, see [Discover Your Assets](/getting-started/Discover%20Your%20Assets). 
+3. Discover suitable assets. For details, see [Discover Your Assets](/getting-started/asset-discovery). 

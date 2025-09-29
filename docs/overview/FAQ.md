@@ -21,13 +21,13 @@ While you can manage deployments directly, Torque provides significant advantage
 **Additional Capabilities:**
 * **Cost Management**: Automatic cleanup of cloud resources when environments are no longer needed, plus comprehensive cost tracking with detailed analytics and forecasting. Torque attaches tags to every cloud resource for powerful monitoring and cost optimization. Learn more about [cost tracking](/governance/cost-tracking/configuring-cost-aws) and [cloud efficiency reports](/reports/cloud-efficiency).
 
-* **Day 2 Automation with Context**: Unlike simple CI/CD pipelines, Torque understands the full context of your environments and automates ongoing operations like scaling, updates, and maintenance with full awareness of your infrastructure state. Explore [actions and workflows](/environment-services/Actions%20and%20workflows) and [drift detection](/environment-services/drift-and-update).
+* **Day 2 Automation with Context**: Unlike simple CI/CD pipelines, Torque understands the full context of your environments and automates ongoing operations like scaling, updates, and maintenance with full awareness of your infrastructure state. Explore [actions and workflows](/environment-services/actions-and-workflows) and [drift detection](/environment-services/drift-and-update).
 
-* **Discovery and Curation**: Native capability to scan existing cloud environments and generate Infrastructure as Code representations of current resources, allowing you to bring brownfield infrastructure under management and standardize your deployments. Get started with [discovering your assets](/getting-started/Discover%20Your%20Assets) and [importing cloud resources](/getting-started/Import%20cloud%20resources).
+* **Discovery and Curation**: Native capability to scan existing cloud environments and generate Infrastructure as Code representations of current resources, allowing you to bring brownfield infrastructure under management and standardize your deployments. Get started with [discovering your assets](/getting-started/asset-discovery) and [importing cloud resources](/getting-started/import-cloud-resources).
 
 * **Usage Visibility**: Comprehensive visibility into resource usage, costs, and environment health with detailed analytics and reporting that help optimize your infrastructure spend and performance. View [reports overview](/reports/reports-overview) and [activity and adoption reports](/reports/activity-and-adoption).
 
-* **Lower Error Rate → Higher Adoption**: By providing standardized, tested deployment patterns and automated validation, Torque significantly reduces deployment errors, leading to higher developer confidence and faster adoption of infrastructure automation practices. See our [blueprint quickstart guide](/blueprint-designer-guide/blueprint-quickstart-guide) and [getting started guides](/getting-started/Getting%20starting%20with%20terraform).
+* **Lower Error Rate → Higher Adoption**: By providing standardized, tested deployment patterns and automated validation, Torque significantly reduces deployment errors, leading to higher developer confidence and faster adoption of infrastructure automation practices. See our [blueprint quickstart guide](/blueprint-designer-guide/blueprint-quickstart-guide) and [getting started guides](/getting-started/getting-started-with-terraform).
 
 ---
 
@@ -115,14 +115,14 @@ Currently, the generated code is in Terraform format. While there is no native s
 
 Torque also supports native Kubernetes resources through its Helm and Kubernetes grains/runners.
 
-Get started with [discovering your assets](/getting-started/Discover%20Your%20Assets) and [importing cloud resources](/getting-started/Import%20cloud%20resources).
+Get started with [discovering your assets](/getting-started/asset-discovery) and [importing cloud resources](/getting-started/import-cloud-resources).
 
 #### How does Torque handle continuous reconciliation and drift detection?
 Torque periodically checks the state of the resources against the desired state defined in the Terraform code. Continuous reconciliation is handled through Torque's **Drift Detection** feature and is executed using Torque's runners. This allows the platform to automatically detect and correct configuration drift in live environments.
 
-Learn more about [drift detection and updates](/environment-services/drift-and-update) and [Day 2 operations](/environment-services/Actions%20and%20workflows).
+Learn more about [drift detection and updates](/environment-services/drift-and-update) and [Day 2 operations](/environment-services/actions-and-workflows).
 
 #### Does Torque support Kubernetes Resources?
 Yes. Torque supports Kubernetes resources through its Helm and Kubernetes grains/runners. The platform can act as a control plane for Kubernetes resources, allowing users to manage and provision these resources through the Torque interface. This enables integration with Custom Resources and supports Kubernetes-native platform engineering experiences.
 
-See our [Kubernetes getting started guide](/getting-started/Getting%20starting%20with%20kubernetes) and [Kubernetes as a Service example](/example-blueprints/Kubernetes%20as%20a%20Service).
+See our [Kubernetes getting started guide](/getting-started/getting-started-with-kubernetes) and [Kubernetes as a Service example](/example-blueprints/k8s-as-a-service).

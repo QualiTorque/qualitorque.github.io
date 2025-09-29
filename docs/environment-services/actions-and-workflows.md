@@ -166,7 +166,7 @@ For technical implementation details, refer to the comprehensive action support 
 ## Related Documentation
 
 - [Environment Publishing](/environment-services/environment-publishing) - Learn about publishing and managing environments
-- [Remote Access](/environment-services/Remote%20access) - Set up direct access to environment resources
+- [Remote Access](/environment-services/remote-access) - Set up direct access to environment resources
 - [Cost Management](/environment-services/Cost) - Optimize your cloud spending
 - [Drift Detection](/environment-services/drift-and-update) - Handle configuration drift
 - [Scheduled Environments](/environment-services/scheduled-environments) - Automate environment lifecycle

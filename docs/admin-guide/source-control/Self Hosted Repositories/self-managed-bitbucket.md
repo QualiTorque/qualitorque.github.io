@@ -19,7 +19,7 @@ Torque supports connecting to self-managed BitBucket repositories, allowing you 
 2. Choose the `BitBucket` git provider.
 3. Check the "Self Managed Repository" checkbox and provide the necessary repository details.
 4. Once connected, you can discover the assets in the connected repository.
-   - For more information on asset discovery, refer to [Discover Your Assets](/getting-started/Discover%20Your%20Assets). 
+   - For more information on asset discovery, refer to [Discover Your Assets](/getting-started/asset-discovery). 
 
 > ![Add a repository](/img/bitbucket-connect.png)
 
