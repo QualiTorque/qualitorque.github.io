@@ -1,13 +1,13 @@
 ---
 sidebar_position: 1
-title: Resources Inventory
+title: Cloud Resources
 ---
 
 ## Introduction
 
-Welcome to Torque Resources Inventory, an advanced solution designed to facilitate comprehensive visibility and governance over your cloud infrastructure. Torque Resources Inventory connects to your cloud accounts with read-only permissions, allowing for in-depth discovery, categorization, and curation of cloud resources. Users can filter their resources based on type, location, or Infrastructure as Code (IaC) status, providing fine-grained control over their cloud estate.
+Welcome to Torque Cloud Resources, an advanced solution designed to facilitate comprehensive visibility and governance over your cloud infrastructure. Torque Cloud Resources connects to your cloud accounts with read-only permissions, allowing for in-depth discovery, categorization, and curation of cloud resources. Users can filter their resources based on type, location, or Infrastructure as Code (IaC) status, providing fine-grained control over their cloud estate.
 
-Torque Resources Inventory classifies resources by their IaC status as follows:
+Torque Cloud Resources classifies resources by their IaC status as follows:
 
 - **Unmanaged**: Resources that have been created manually and are not governed by IaC.
 - **Codified**: Resources that are integrated with and managed by your existing IaC practices.
@@ -15,11 +15,13 @@ Torque Resources Inventory classifies resources by their IaC status as follows:
 
 Torque Resources Inventory allows users to curate selected resources into a cart, transforming them into Terraform configuration files and state files. These artifacts are readily available for download, enabling seamless integration into Infrastructure as Code workflows.
 
-> ![resource-inventory](/img/resource-inventory.png)
+import pic1 from '/img/resource-inventory.png';
+
+<img src={pic1} style={{width: 1000}} />
 
 ## Key Features
 
-Torque Resources Inventory offers a suite of features to help you manage your cloud infrastructure effectively:
+Torque Cloud Resources offers a suite of features to help you manage your cloud infrastructure effectively:
 
 - **Cloud Resource Discovery**: Automatically discovers and inventories all resources within your Azure subscription, providing a holistic view of your cloud environment.
 - **Resource Filtering**: Offers advanced filtering capabilities, allowing resources to be categorized by type, geographical region, and IaC status for efficient management.
@@ -31,8 +33,8 @@ Torque Resources Inventory offers a suite of features to help you manage your cl
 To begin using Torque Resources Inventory, you must connect your cloud account. Currently, AWS and Azure clouds are supported.
 
 ### Supported cloud providers
-* [AWS](/getting-started/Resources%20Inventory/AWS-Setup)
-* [Azure](/getting-started/Resources%20Inventory/Azure-Setup)
+* [AWS](./AWS-Setup)
+* [Azure](./Azure-Setup)
 
 ## Cloud Resources Inventory
 

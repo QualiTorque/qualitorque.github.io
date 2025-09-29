@@ -6,25 +6,25 @@ title: AWS Setup
 ### Prerequisites
 
 - An `AWS Account`.
-- Steps to enable `AWS Resource Explorer`
-    - Navigate to `AWS Resource Explorer` Service
-      1. Click the `Turn on Resource Explorer` button on the right of the screen, go to step 3 if already enabled
-      2. Follow the steps and select an `Aggregator index Region`, take note of the region
-      3. Go to the `Views` tab under `Explore Resources` on the left side
-      4. Create a new view or use the existing `all-resources` view
-      5. Get the ARN of the view, it should look like the ARN below for the "all-resources" view
+- Enable `AWS Resource Explorer`
 
-         `arn:aws:resource-explorer-2:"your-region":"your-account":view/all-resources/"some-guid"`
+Steps to Enable `AWS Resource Explorer` Service:
+1. Navigate to the `AWS Management Console`
+2. Click the `Turn on Resource Explorer` button on the right of the screen, go to step 3 if already enabled
+3. Follow the steps and select an `Aggregator index Region`, take note of the region
+4. Go to the `Views` tab under `Explore Resources` on the left side
+5. Create a new view or use the existing `all-resources` view
+6. Get the ARN of the view, it should look like the ARN below for the "all-resources" view `arn:aws:resource-explorer-2:"your-region":"your-account":view/all-resources/"some-guid"`
 
 :::info
 The Resource Explorer indexing process, once turned on, can take up to 72 hours to complete. If a resource does not show up in Resource Explorer, it will not show up in Cloud Curate.
 :::
 
 
-- Create an `IAM User`
-    - Create an `IAM User` under the IAM Service
-    - Give a `Permission Policy` to that user. Minimum policy is `AWSResourceExplorerReadOnlyAccess`. Ideal policy is `ReadOnlyAccess` explained under [Minimal Permissions Required](/getting-started/Resources%20Inventory/AWS-Setup#minimal-permissions-required)
-    - Create `Access Keys` under `Security credentials` and take note of the `Access and Secret Keys` values
+7. Create an `IAM User`
+   - Create an `IAM User` under the IAM Service
+   - Give a `Permission Policy` to that user. Minimum policy is `AWSResourceExplorerReadOnlyAccess`. Ideal policy is `ReadOnlyAccess` explained under [Minimal Permissions Required](/getting-started/Resources%20Inventory/AWS-Setup#minimal-permissions-required)
+   - Create `Access Keys` under `Security credentials` and take note of the `Access and Secret Keys` values
 
 :::info
 Currently the only authentication method supported is IAM Users with an Access and Secret Keys, additional authentications are coming in the near future

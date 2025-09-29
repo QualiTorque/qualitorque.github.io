@@ -22,12 +22,15 @@ To enable scheduling for a blueprint, administrators must configure the "Allow S
 
 **Location:** Blueprint Policy → Consumption Settings → Allow Scheduling
 
-![img](/img/bp-policy-allow-scheduling.png)
+import pic1 from '/img/bp-policy-allow-scheduling.png';
+
+<img src={pic1} style={{width: 700}} />
 
 When this flag is enabled, users will see scheduling options when launching environments from that blueprint. When disabled, environments can only be launched immediately.
 
-![img](/img/scheduled-env-launch-form.png)
+import pic2 from '/img/scheduled-env-launch-form.png';
 
+<img src={pic2} style={{width: 700}} />
 
 ## Use Cases
 
