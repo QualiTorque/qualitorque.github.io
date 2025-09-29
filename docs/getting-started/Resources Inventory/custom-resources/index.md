@@ -88,6 +88,5 @@ The system automatically selects and reserves available resources that match the
 
 ## Next Steps
 
-- [Setup Custom Resources](./setup) - Learn how to configure resource types and instances
-- [Examples](./examples) - See complete blueprint examples
-- [Use Cases](./use-cases) - Discover practical applications for your infrastructure needs
+- [Setup Custom Resources](./setup.md) - Learn how to configure resource types and instances
+- [Use Cases](./use-cases.md) - Discover practical applications for your infrastructure needs
