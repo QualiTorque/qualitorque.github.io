@@ -37,8 +37,8 @@ Torque Cloud Resources offers a suite of features to help you manage your cloud 
 To begin using Torque Resources Inventory, you must connect your cloud account. Currently, AWS and Azure clouds are supported.
 
 ### Supported cloud providers
-* [AWS](/getting-started/Resources%20Inventory/cloud-resources/aws-setup)
-* [Azure](/getting-started/Resources%20Inventory/cloud-resources/azure-setup)
+* [AWS](./aws-setup)
+* [Azure](./azure-setup)
 
 ---
 
