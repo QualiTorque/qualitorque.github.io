@@ -37,5 +37,3 @@ Navigate to the `Account Center`.
 4. Provide the necessary details, including `Subscription ID`, `Tenant ID`, `Application ID`, and the `Application Secret` with read-only permissions.
 5. Click Connect.
 6. Once connected, Torque Resources Inventory will begin scanning and discovering your cloud resources.
-
-### [Continue Setup](/getting-started/Resources%20Inventory/Resources-Inventory)

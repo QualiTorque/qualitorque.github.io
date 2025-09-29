@@ -48,5 +48,3 @@ Navigate to the `Account Center`.
 4. Provide the necessary details, including `Account Number`, `Access Key`, `Secret Key`, and the `View Arn`. `Cloud Account Name` can be anything as its your identifier.
 5. Click Save.
 6. Once connected, Torque Resources Inventory will begin scanning and discovering your cloud resources.
-
-### [Continue Setup](/getting-started/Resources%20Inventory/Resources-Inventory)
