@@ -75,6 +75,68 @@ See our guide on [policies](/governance/policies) and [blueprint configuration](
 
 ## Scaling and Performance
 
+#### What scale can Torque support in production environments?
+
+Torque's elastic architecture has been proven to handle enterprise-scale workloads across multiple dimensions in production:
+
+**User Scale:**
+- **Multi-tenant SaaS**: Supports hundreds of thousands of users across the platform
+- **Enterprise Organizations**: Large customers managing thousands of developers and infrastructure teams
+- **Concurrent Operations**: Real-world deployments handling 7,000+ concurrent environments weekly
+
+**Infrastructure Scale:**
+- **Resource Management**: Platform manages 100+ million cloud resources in production
+- **Environment Volume**: 10+ million environments created and managed
+- **Multi-Cloud Footprint**: Spans AWS, Azure, GCP, and hybrid cloud deployments at massive scale
+
+**Performance in Production:**
+- **Concurrent Environments**: Enterprise customers routinely run 7,000 concurrent environments per week
+- **Resource Density**: Each environment averages 2-5 compute resources, demonstrating efficient resource orchestration
+- **Horizontal Scaling**: Linear scaling based on Kubernetes cluster capacity with no architectural bottlenecks
+
+**Technical Scalability:**
+- **No Concurrency Limits**: Unlike traditional tools, there are no hard limits on concurrent operations within licensing boundaries
+- **Self-Hosted Runners**: Zero additional costs for increased concurrency due to customer-controlled runner infrastructure
+- **Stateless Design**: Enables unlimited horizontal scaling of execution capacity
+
+**Enterprise-Grade Operations:**
+- **Multi-Tenant Isolation**: Secure space-based segregation supporting large organizational structures
+- **API-First Integration**: Handles machine-to-machine operations at enterprise scale
+- **Governance at Scale**: Policy enforcement and compliance across thousands of environments and users
+
+The platform's proven track record demonstrates it can support organizations of any size, from small teams to Fortune 500 enterprises managing complex, multi-cloud environments with millions of resources and thousands of concurrent operations.
+
+#### How does Torque efficiently handle external service integrations at scale?
+
+Torque's architecture is designed to minimize stress on external services while maintaining high performance through intelligent resource management:
+
+**Git Repository Management:**
+- **Intelligent Caching**: Local repository caching reduces Git server load and improves blueprint retrieval performance
+- **Incremental Updates**: Only fetches changes since last sync, minimizing bandwidth and repository server impact
+- **Connection Pooling**: Reuses Git connections across multiple operations to reduce authentication overhead
+
+**Cloud API Optimization:**
+- **API Rate Limiting**: Built-in rate limiting and backoff strategies prevent overwhelming cloud provider APIs
+- **Batch Operations**: Groups multiple API calls where possible to reduce total request volume
+- **Regional Distribution**: Leverages regional endpoints to minimize latency and distribute load
+- **Intelligent Retry Logic**: Exponential backoff with jitter prevents API thundering herd scenarios
+- **Resource State Caching**: Maintains local state cache to reduce unnecessary API polling
+
+**Database Efficiency:**
+- **Connection Management**: Sophisticated connection pooling prevents database connection exhaustion
+- **Query Optimization**: Efficient queries and indexing strategies minimize database load
+- **Read Replicas**: Distributes read operations across multiple database replicas for high availability
+- **Bulk Operations**: Batch database operations where possible to improve throughput
+- **Asynchronous Processing**: Non-blocking database operations prevent performance bottlenecks
+
+**Cost-Effective Resource Management:**
+- **Elastic Scaling**: Resources scale based on demand, preventing over-provisioning during low usage periods
+- **Resource Sharing**: Multiple operations share infrastructure resources efficiently
+- **Cleanup Automation**: Automatic cleanup of temporary resources prevents cost accumulation
+- **Monitoring and Alerts**: Proactive monitoring ensures optimal resource utilization and cost management
+
+This approach ensures that even at enterprise scale with thousands of concurrent operations, Torque maintains excellent performance while being a good citizen to external services and keeping operational costs predictable and manageable.
+
 #### How does Torque handle scaling and concurrency beyond limits of traditional tools like Terraform Cloud?
 Torque is highly elastic and scalable through the use of **runners**. Runners are pods (when running on Kubernetes) that handle the execution and life-cycle of Terraform runs. The scalability depends on several factors such as:
 
