@@ -118,15 +118,10 @@ grains:
           pod-labels:
             - app: quali-torque
             - app.kubernetes.io/managed-by: Helm
-            - app_cmdb_id: A1755468
-            - app_family: cloud_product_mgmt
+            - app_cmdb_id: A1234567
             - app_pod_name: quali-torque
-            - app_version: 2.0.7113607701
-            - assignment_group: DL_IAD_Development_Operations
-            - container_name: quali-torque
-            - platform_short_name: cloud_product_mgmt
-            - support_escalation_group: DL_IAD_Development_Operations
-            - version: 2.0.7113607701
+            - app_version: 2.0.11
+            - platform_short_name: cloud
 ```
 
 In the above example, the `pod-labels` section under `kubernetes` defines a list of key-value pairs that will be applied as labels to the runner pods.
