@@ -1277,3 +1277,7 @@ customization:
 The `visible` property uses Liquid templating syntax to create dynamic conditions. Common patterns include:
 - `{% if inputs.field_name == "value" %} true {% else %} false {% endif %}` - Show input when another field equals a specific value
 - `{% if inputs.field_name != "value" %} true {% else %} false {% endif %}` - Show input when another field doesn't equal a specific value
+
+**Useful Liquid Templating Resources:**
+- [Liquid Templating Introduction](https://shopify.github.io/liquid/basics/introduction/) - Learn the basics and syntax of Liquid templating
+- [Liquid Playground](https://liquidjs.com/playground.html) - Interactive playground to test and experiment with Liquid expressions
