@@ -39,6 +39,23 @@ The S3 input source supports listing objects within S3 buckets, such as `s3-obje
 
 The Azure input source supports listing blobs within Azure Blob Storage containers, with types `azure-blob` and `azure-blob-contents`.
 
+**Prerequisites:**
+
+Before setting up Azure Blob Storage as an input source, ensure you have the following:
+
+1. **An Azure subscription**
+
+2. **Steps to create and register an application in Azure Active Directory (AD):**
+   - Navigate to "App Registrations" in Azure AD and click **New Registration**. Follow the prompts (you only need to provide the name of the application). Note the **Tenant ID** and **Application ID** as these are required later.
+   - Go to **Certificates & Secrets** and create a new client secret. Note the **Secret Value** for use in the application configuration.
+
+3. **Assign the Reader role to the application:**
+   - Navigate to **Subscriptions** and select the appropriate subscription.
+   - Under **Access Control (IAM)**, click **Role assignments** and select **Add role assignment**.
+   - In the **Roles** tab, search for the **Storage Blob Data Reader** role, and click **Next**.
+   - On the **Members** tab, select **User, group, or service principal** and search for the registered application.
+   - Click **Select**, then **Review and Assign** to complete the setup.
+
 **Configuration Fields:**
 
 | Field                  | Description                                                                 | Allow Overrides |
@@ -127,6 +144,8 @@ Modifying or deleting an Input Source may cause blueprints that use the Input So
    - regex_filter (optional)  
 
 #### Azure Blob Storage Input Source
+
+
 
 1. **Input Source Details:**  
    - Source Name  
