@@ -265,12 +265,12 @@ Liquid templating is supported in the `attributes` values, allowing blueprint in
 ### `backend`
 
 When launching the environment, Torque creates a tfstate file for each Terraform grain in the blueprint. By default, the state is saved locally on the PVC of the grain runner (volume for Docker agents). However, Torque allows you to optionally choose to save the terraform state in a backend of your choice. Torque supports the following backends:
-* __[S3](https://developer.hashicorp.com/terraform/language/settings/backends/s3)__
-* __[gcs](https://developer.hashicorp.com/terraform/language/settings/backends/gcs)__
-* __[azurerm](https://developer.hashicorp.com/terraform/language/settings/backends/azurerm)__
-* __[http](https://developer.hashicorp.com/terraform/language/settings/backends/http)__
-* __[remote](https://developer.hashicorp.com/terraform/language/backend/remote)__
-* __[cloud](https://developer.hashicorp.com/terraform/cli/cloud/settings#the-cloud-block)__
+* [S3](https://developer.hashicorp.com/terraform/language/settings/backends/s3)
+* [GCS](https://developer.hashicorp.com/terraform/language/settings/backends/gcs)
+* [Azure RM](https://developer.hashicorp.com/terraform/language/settings/backends/azurerm)
+* [HTTP](https://developer.hashicorp.com/terraform/language/settings/backends/http)
+* [Remote](https://developer.hashicorp.com/terraform/language/backend/remote)
+* [Cloud](https://developer.hashicorp.com/terraform/cli/cloud/settings#the-cloud-block)
 
 __Prerequisites:__
 * The backend must already exist. Torque will not create the backend if it doesn't exist.
@@ -293,44 +293,15 @@ grains:
         key-prefix: "folder1/folder2"
 ``` 
 
-__Properties by Backend Type__:
+#### Properties by Backend Type
 
-**Common Properties:**
+**Common Properties**
 * __type__: `s3`, `azurerm`, `gcs`, `http`, `remote`, `cloud` (mandatory for all backends)
 
-**S3 Backend:**
-* __bucket__: Mandatory - S3 bucket name for storing state
-* __region__: Mandatory - AWS region where the bucket is located
-* __key-prefix__: Optional - Path prefix for the tfstate file (1024 ascii chars limit)
-
-**Azure RM Backend:**
-* __resource-group-name__: Mandatory - Azure resource group name
-* __storage-account-name__: Mandatory - Azure storage account name
-* __container-name__: Mandatory - Azure blob container name
-* __key-prefix__: Optional - Path prefix for the tfstate file (1024 ascii chars limit)
-
-**GCS Backend:**
-* __bucket__: Mandatory - GCS bucket name for storing state
-* __key-prefix__: Optional - Path prefix for the tfstate file (1024 ascii chars limit)
-
-**HTTP Backend:**
-* __base-address__: Mandatory - Base URL for the HTTP backend
-
-**Remote Backend:**
-* __hostname__: Optional - Terraform Enterprise hostname (defaults to app.terraform.io)
-* __organization__: Mandatory - Terraform Enterprise organization name
-* __workspaces__: Mandatory - Workspace configuration (name or prefix)
-* __token__: Optional - Authentication token (can be provided via environment variable)
-
-**Cloud Backend:**
-* __hostname__: Optional - Terraform Cloud hostname (defaults to app.terraform.io)
-* __organization__: Mandatory - Terraform Cloud organization name
-* __workspaces__: Mandatory - Workspace configuration (name or prefix)
-* __token__: Optional - Authentication token (can be provided via environment variable)
-
-**Example configurations for each backend type**
-
 #### s3
+* __`bucket`__: Mandatory - S3 bucket name for storing state
+* __`region`__: Mandatory - AWS region where the bucket is located
+* __`key-prefix`__: Optional - Path prefix for the tfstate file (1024 ascii chars limit)
 
 ```yaml
   backend:
@@ -341,6 +312,10 @@ __Properties by Backend Type__:
 ``` 
 
 #### azurerm
+* __`resource-group-name`__: Mandatory - Azure resource group name
+* __`storage-account-name`__: Mandatory - Azure storage account name
+* __`container-name`__: Mandatory - Azure blob container name
+* __`key-prefix`__: Optional - Path prefix for the tfstate file (1024 ascii chars limit)
 
 ```yaml
   backend:
@@ -352,6 +327,8 @@ __Properties by Backend Type__:
 ```
 
 #### gcs
+* __`bucket`__: Mandatory - GCS bucket name for storing state
+* __`key-prefix`__: Optional - Path prefix for the tfstate file (1024 ascii chars limit)
 
 ```yaml
   backend:
@@ -360,7 +337,9 @@ __Properties by Backend Type__:
     key-prefix: "folder1/folder2"
 ```
 
+
 #### http
+* __`base-address`__: Mandatory - Base URL for the HTTP backend
 
 ```yaml
   backend:
@@ -369,6 +348,10 @@ __Properties by Backend Type__:
 ```
 
 #### remote
+* __`hostname`__: Optional - Terraform Enterprise hostname (defaults to app.terraform.io)
+* __`organization`__: Mandatory - Terraform Enterprise organization name
+* __`workspaces`__: Mandatory - Workspace configuration (name or prefix)
+* __`token`__: Optional - Authentication token (can be provided via environment variable)
 
 ```yaml
   backend:
@@ -387,7 +370,12 @@ __Properties by Backend Type__:
 * `TF_TOKEN` `env_var`, followed by the hostname (with replace of '.' in '_') is an alternative way to provide a token.
   * For example for the host 'app.terraform.io', the env-var name should be `TF_TOKEN_app_terraform_io`
 
+
 #### cloud
+* __`hostname`__: Optional - Terraform Cloud hostname (defaults to app.terraform.io)
+* __`organization`__: Mandatory - Terraform Cloud organization name
+* __`workspaces`__: Mandatory - Workspace configuration (name or prefix)
+* __`token`__: Optional - Authentication token (can be provided via environment variable)
 
 The `cloud` backend configuration allows you to use [Terraform Cloud](https://developer.hashicorp.com/terraform/cli/cloud/settings#the-cloud-block) for remote state management. This is particularly useful when migrating from Terraform Cloud to Torque or when you need to manage state using a third-party service.
 
