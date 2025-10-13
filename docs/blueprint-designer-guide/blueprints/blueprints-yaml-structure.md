@@ -70,6 +70,10 @@ The input definition is composed out of the following fields:
     - `PT30M` translates to 30 minutes
   - ```multi-select``` displays the allowed values as a multi-select dropdown, allowing the user to select multiple values. The input `type` can be ```string```, `parameter` or `input-source`. The captured value is a JSON array of strings. This is useful for cases where multiple selections are needed, such as a list of IPs, Compute types or tags.
 
+:::tip
+For advanced input visibility control and organization, see the [customization](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#customization) section which allows you to create conditional inputs and group them into categories.
+:::
+
     **Example:**
 
     ```yaml
@@ -1027,7 +1031,7 @@ The `workspace-directories` is supported for all grain types.
 
 The `workspace-directories` section allows you to specify a list of source repositories that will be checked out and made available in the workspace during the deployment process. These repositories can contain files that are required, such as configuration files, scripts, or any other supporting files.
 
-### Configuring Workspace Directories
+#### Configuring Workspace Directories
 
 Within the `workspace-directories` section, you can specify one or more sources. Each source is defined as follows:
 
@@ -1049,7 +1053,7 @@ grains:
 - `name`: The name that will be used to access the checked-out files in the workspace. This name will be available as an environment variable during the execution of commands.
 - `tag`: The tag of the repository to be checked out. (can be replaced with `branch: <branch name>` or `commit: <commit sha>`)
 
-### Accessing Workspace Directories
+#### Accessing Workspace Directories
 
 Taking Helm for example, during the execution of commands specified in the `commands` section, you can access the checked-out files from the workspace-directories using the environment variables that correspond to the `name` specified for each source.
 
@@ -1072,7 +1076,7 @@ In the above example, the `cp` command copies files from the `src/main/config` d
 
 In this case, the entire repository will be checked out, and the `name` specified (`ROOT_DIR`) can be used to access the root directory in the workspace.
 
-### Working with Artifactory as Binary Repository
+#### Working with Artifactory as Binary Repository
 
 Artifactory is a popular binary repository manager that can store and manage various types of artifacts, including Docker images, Helm charts, and other binary files. In Torque, you can use Artifactory as a source for binary files that are required during the deployment process. This can be particularly useful for scenarios such as:
 
@@ -1156,3 +1160,120 @@ POST {{host}}/api/spaces/{{space}}/settings/credentialstore
 In this example, we're creating an Artifactory credential named `my-artifactory` with the server URL and a token for authentication. Currently, Torque supports Artifactory token authentication.
 
 Once the Artifactory credential is configured, you can reference it in your blueprint's `workspace-directories` section using the `store` parameter, as shown in the usage example above.
+
+## Customization
+
+The customization section allows you to control the user interface and presentation aspects of your blueprint, including the visual layout of grains and the behavior of the launch form. This section provides two main customization capabilities: grains-map visualization and launch-form input control.
+
+:::note Preview Feature
+This feature is currently in preview. To get access to customization capabilities, please contact Torque support.
+:::
+
+```yaml
+spec_version: 2
+description: ...
+
+customization:
+  grains-map:
+    initial-map-view: custom
+    nodes:
+      grain-name:
+        type: grain
+        position:
+          x: 100
+          y: 200
+        style:
+          hidden: false
+  launch-form:
+    inputs:
+      - name: 'input-name'
+        visible: '{% if inputs.condition == "value" %} true {% else %} false {% endif %}'
+
+grains: ...
+```
+
+### `grains-map`
+
+Controls the visual layout and presentation of grains in the blueprint designer's canvas view. This allows you to customize the positioning of grains, add visual elements like sticky notes and groups, and control the overall map appearance.
+
+```yaml
+customization:
+  grains-map:
+    initial-map-view: custom  # Sets the default view mode for the grains map
+    nodes:
+      hugging-face-model:
+        type: grain           # Specifies this is a grain node
+        position:
+          x: -5              # X-coordinate position on the canvas
+          y: -14             # Y-coordinate position on the canvas
+        style:
+          hidden: false      # Controls whether the grain is visible on the canvas
+      inference-cluster:
+        type: grain
+        position:
+          x: 740
+          y: 120
+        style:
+          hidden: false
+```
+
+**Properties:**
+- **`initial-map-view`**: Sets the default view mode when opening the blueprint designer (e.g., `custom`, `auto`)
+- **`nodes`**: Dictionary of node configurations, where each key is the grain name
+  - **`type`**: Node type (currently supports `grain`)
+  - **`position`**: Coordinates for positioning the node on the canvas
+    - **`x`**: Horizontal position
+    - **`y`**: Vertical position  
+  - **`style`**: Visual styling options
+    - **`hidden`**: Boolean to control node visibility
+
+### `launch-form`
+
+Controls the visibility and organization of input fields in the environment launch form. This enables conditional display of inputs and grouping of related inputs into categories for better user experience.
+
+#### Input-based Configuration
+
+Organize inputs with conditional visibility based on other input values:
+
+```yaml
+customization:
+  launch-form:
+    inputs:
+      - name: 'infra_type'                    # Input name (always visible)
+      - name: 'database_config'
+        visible: '{% if inputs.infra_type == "1" %} true {% else %} false {% endif %}'  # Conditional visibility
+      - name: 'storage_config'
+        visible: '{% if inputs.infra_type == "2" %} true {% else %} false {% endif %}'
+```
+
+#### Category-based Configuration
+
+Group related inputs into logical sections with conditional visibility:
+
+```yaml
+customization:
+  launch-form:
+    categories:
+      - name: 'Infrastructure Selection'      # Category display name
+        inputs:
+          - name: 'infra_type'               # Input within this category
+      - name: 'Database Configuration'       # Another category
+        inputs:
+          - name: 'db_instance_type'
+            visible: '{% if inputs.infra_type == "1" %} true {% else %} false {% endif %}'
+          - name: 'db_storage_size'
+            visible: '{% if inputs.infra_type == "1" %} true {% else %} false {% endif %}'
+```
+
+**Properties:**
+- **`inputs`**: Array of input configurations for flat organization
+- **`categories`**: Array of category objects for grouped organization
+  - **`name`**: Display name for the category section
+  - **`inputs`**: Array of inputs within this category
+- **Input Properties:**
+  - **`name`**: The input field name (must match an input defined in the blueprint's inputs section)
+  - **`visible`**: Optional Liquid template expression that evaluates to `true` or `false` to control input visibility based on other input values
+
+The `visible` property uses Liquid templating syntax to create dynamic conditions. Common patterns include:
+- `{% if inputs.field_name == "value" %} true {% else %} false {% endif %}` - Show input when another field equals a specific value
+- `{% if inputs.field_name != "value" %} true {% else %} false {% endif %}` - Show input when another field doesn't equal a specific value
