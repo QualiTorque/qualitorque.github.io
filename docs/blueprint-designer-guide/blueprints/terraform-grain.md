@@ -264,7 +264,13 @@ Liquid templating is supported in the `attributes` values, allowing blueprint in
 
 ### `backend`
 
-When launching the environment, Torque creates a tfstate file for each Terraform grain in the blueprint. By default, the state is saved locally on the PVC of the grain runner (volume for Docker agents). However, Torque allows you to optionally choose to save the terraform state in a backend of your choice. Torque supports the following backends: __[S3](https://developer.hashicorp.com/terraform/language/settings/backends/s3)__, __[gcs](https://developer.hashicorp.com/terraform/language/settings/backends/gcs)__, __[azurerm](https://developer.hashicorp.com/terraform/language/settings/backends/azurerm)__, __[http](https://developer.hashicorp.com/terraform/language/settings/backends/http)__, and __[remote](https://developer.hashicorp.com/terraform/language/backend/remote)__.
+When launching the environment, Torque creates a tfstate file for each Terraform grain in the blueprint. By default, the state is saved locally on the PVC of the grain runner (volume for Docker agents). However, Torque allows you to optionally choose to save the terraform state in a backend of your choice. Torque supports the following backends:
+* __[S3](https://developer.hashicorp.com/terraform/language/settings/backends/s3)__
+* __[gcs](https://developer.hashicorp.com/terraform/language/settings/backends/gcs)__
+* __[azurerm](https://developer.hashicorp.com/terraform/language/settings/backends/azurerm)__
+* __[http](https://developer.hashicorp.com/terraform/language/settings/backends/http)__
+* __[remote](https://developer.hashicorp.com/terraform/language/backend/remote)__
+* __[cloud](https://developer.hashicorp.com/terraform/cli/cloud/settings#the-cloud-block)__
 
 __Prerequisites:__
 * The backend must already exist. Torque will not create the backend if it doesn't exist.
@@ -287,18 +293,42 @@ grains:
         key-prefix: "folder1/folder2"
 ``` 
 
-__Properties__:
-* __type__: `s3`, `azurerm`, `gcs`, `http`, `remote`
-* __bucket__: Mandatory for `s3` and `gcs`
-* __region__: Mandatory for `s3`
-* __resource-group-name__ : Mandatory for `azurerm`
-* __storage-account-name__: Mandatory for `azurerm`
-* __container-name__: Mandatory for `azurerm`
-* __base-address__: Mandatory for `http`
-* __organization__: Mandatory for `remote`
-* __workspaces__: Mandatory for `remote`
-* __key-prefix__: Optional. tfstate file path in the backend storage. Relevant for `s3`, `azurerm`, `gcs`. 
-   * s3, Azure Blobs & GCS have a key name limit of 1024 ascii chars
+__Properties by Backend Type__:
+
+**Common Properties:**
+* __type__: `s3`, `azurerm`, `gcs`, `http`, `remote`, `cloud` (mandatory for all backends)
+
+**S3 Backend:**
+* __bucket__: Mandatory - S3 bucket name for storing state
+* __region__: Mandatory - AWS region where the bucket is located
+* __key-prefix__: Optional - Path prefix for the tfstate file (1024 ascii chars limit)
+
+**Azure RM Backend:**
+* __resource-group-name__: Mandatory - Azure resource group name
+* __storage-account-name__: Mandatory - Azure storage account name
+* __container-name__: Mandatory - Azure blob container name
+* __key-prefix__: Optional - Path prefix for the tfstate file (1024 ascii chars limit)
+
+**GCS Backend:**
+* __bucket__: Mandatory - GCS bucket name for storing state
+* __key-prefix__: Optional - Path prefix for the tfstate file (1024 ascii chars limit)
+
+**HTTP Backend:**
+* __base-address__: Mandatory - Base URL for the HTTP backend
+
+**Remote Backend:**
+* __hostname__: Optional - Terraform Enterprise hostname (defaults to app.terraform.io)
+* __organization__: Mandatory - Terraform Enterprise organization name
+* __workspaces__: Mandatory - Workspace configuration (name or prefix)
+* __token__: Optional - Authentication token (can be provided via environment variable)
+
+**Cloud Backend:**
+* __hostname__: Optional - Terraform Cloud hostname (defaults to app.terraform.io)
+* __organization__: Mandatory - Terraform Cloud organization name
+* __workspaces__: Mandatory - Workspace configuration (name or prefix)
+* __token__: Optional - Authentication token (can be provided via environment variable)
+
+**Example configurations for each backend type**
 
 #### s3
 
@@ -356,6 +386,36 @@ __Properties__:
 * Using the `token` field in the `remote` backend definition is best practice.
 * `TF_TOKEN` `env_var`, followed by the hostname (with replace of '.' in '_') is an alternative way to provide a token.
   * For example for the host 'app.terraform.io', the env-var name should be `TF_TOKEN_app_terraform_io`
+
+#### cloud
+
+The `cloud` backend configuration allows you to use [Terraform Cloud](https://developer.hashicorp.com/terraform/cli/cloud/settings#the-cloud-block) for remote state management. This is particularly useful when migrating from Terraform Cloud to Torque or when you need to manage state using a third-party service.
+
+```yaml
+  backend:
+    type: 'cloud'
+    hostname: 'app.terraform.io'  # Optional, defaults to app.terraform.io
+    organization: 'my_organization'
+    token: '{{ .params.token }}'  # Optional
+    workspaces:
+      - name: 'my_workspace'      # IMPORTANT: only one (name or prefix) is needed
+        prefix: 'my_prefix'
+```
+
+**Cloud block behavior:**
+* If your Terraform configuration doesn't include a cloud block, adding it to the blueprint will automatically configure it
+* If both your Terraform configuration and blueprint specify cloud settings, the blueprint configuration will override the Terraform configuration
+* This enables seamless migration from Terraform Cloud to Torque while preserving existing state management
+
+**Use cases:**
+1. **Migrating from Terraform Cloud to Torque**: Maintain existing state management while transitioning to Torque orchestration
+2. **Managing state using a 3rd party**: Leverage external state management services for compliance or organizational requirements
+
+`cloud` token options:
+
+* Using the `token` field in the `cloud` backend definition is recommended for explicit configuration.
+* `TF_TOKEN` environment variable, followed by the hostname (with '.' replaced by '_') can be used as an alternative.
+  * For example, for the host 'app.terraform.io', the env-var name should be `TF_TOKEN_app_terraform_io`
 
 :::note
 
