@@ -1,9 +1,11 @@
 ---
 sidebar_position: 3
-title: Terraform EKS/AWS Authentication
+title: Agents on AWS
 ---
 
-If you're using an EKS cluster as your agent, and you want to run Terraform that deploys resources on AWS, you can use a service account to do the authentication and permissions between the pod and the AWS account where the resources will be created. This is done by connecting a service account, which contains these permissions, to the container. The permissions are defined in an IAM role that needs to be associated to the service account.
+If you're using a Torque K8s agent that runs on an EKS cluster, and you want to deploy AWS resources using Infrastructure as Code (IaC) tools such as Terraform, CloudFormation, CDK, OpenTofu, Ansible, or others, you need to configure `authentication` and `permissions` between the Runner pod and the AWS account where the resources will be created. This is done by a service account, which contains these permissions, to the container. The permissions are defined in an IAM role that needs to be associated to the service account.
+
+This authentication setup is required for any IaC tool that provisions AWS resources. While we'll use Terraform as the primary example throughout this guide, the same authentication mechanism applies to all AWS IaC tools.
 
 The basic process is as follows:
 - [Prerequisites](#prerequisites)
@@ -60,11 +62,11 @@ Make sure to perform steps 2 and 3 on every target account in which the cluster 
         You will need this for step 3 in the following procedure.
 
 ## Create an IAM role for the service account with the required policy
-As we explained before, the service account delegates permissions to the container to perform the Terraform actions. The permissions are defined as a policy in an IAM role that is associated to the service account.
+As we explained before, the service account delegates permissions to the container to perform IaC operations (Terraform, CloudFormation, CDK, OpenTofu, Ansible, etc.). The permissions are defined as a policy in an IAM role that is associated to the service account.
 Perform these steps on every target account that will be used by your cluster.
 
 __Prerequisites__
-*	IAM policy with the desired permissions
+*	IAM policy with the desired permissions for your IaC tool(s). The specific permissions will depend on the AWS resources you plan to provision (EC2, S3, RDS, Lambda, etc.).
 
 __To create the IAM role for the service account__:
 1.	In your AWS Console, go to __IAM > Role__.
@@ -96,11 +98,11 @@ __To create the service account__:
     ```bash
     kubectl apply -f SA.yaml
     ```
-You're done. All that's left to do is specify the service account name in the blueprint YAML. For details, see [Agent](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#agent).
+You're done. All that's left to do is specify the service account name in the blueprint YAML. This authentication method works seamlessly with all AWS IaC tools including Terraform, CloudFormation, CDK, OpenTofu, Ansible, and others. For details on configuring the service account in your blueprint, see [Agent](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#agent).
 
 ## For additional details, see these AWS docs:
 
 1. Create an IAM OIDC provider for your cluster ([Instructions](https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html)).
-2. Create the IAM role to be used by the service account. ([Instructions](https://docs.aws.amazon.com/eks/latest/userguide/create-service-account-iam-policy-and-role.html)).
-3. Associate the IAM role to a service account on your cluster ([Instructions​](https://docs.aws.amazon.com/eks/latest/userguide/specify-service-account-role.html)).  
-If the Terraform resources are to be created in a different AWS account than the one hosting the EKS cluster which is our agent, you'll need to perform steps (1) and (2) on the target account. See [AWS' Technical overview](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts-technical-overview.html).
+2. Create the IAM role to be used by the service account. ([Instructions](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create-console.html)).
+3. Associate the IAM role to a service account on your cluster ([Instructions​](https://docs.aws.amazon.com/eks/latest/userguide/associate-service-account-role.html)).  
+If the AWS resources are to be created in a different AWS account than the one hosting the EKS cluster (your agent), you'll need to perform steps (1) and (2) on the target account. See [AWS' Technical overview](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts-technical-overview.html).
