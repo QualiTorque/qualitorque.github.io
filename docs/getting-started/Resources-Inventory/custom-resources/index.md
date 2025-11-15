@@ -52,12 +52,12 @@ inputs:
 
 resources:
   gpu:
-  selector:
-    type: gpu
-    quantity: '{{ .inputs.gpu_quantity }}'
-    attributes:
-      - gpu_type: '{{ .inputs.gpu_type }}'
-      - serial_number: ''  # empty string is supported, null is not
+    selector:
+      type: gpu
+      quantity: '{{ .inputs.gpu_quantity }}'
+      attributes:
+        - gpu_type: '{{ .inputs.gpu_type }}'
+        - serial_number: ''  # empty string is supported, null is not
 
 grains:
   deploy:
