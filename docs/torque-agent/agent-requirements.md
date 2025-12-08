@@ -174,6 +174,23 @@ Agent capacity depends on:
 - Additional replicas: Linear scaling for concurrent capacity
 - Heavy workloads: Consider dedicated node pools or larger VM instances
 
+## Scaling Table (Quick Reference)
+
+The table below provides recommended starting points for agent deployment sizing based on the number of concurrent environments and average workload complexity. Use these as guidelines and adjust based on observed agent CPU/memory usage and provisioning times.
+
+| Concurrent Environments | Tier | Agent Replicas | Node Pool / VM Size Recommendation | Notes |
+|-------------------------|------|----------------|------------------------------------|-------|
+| 1 - 10 | Light | 1 - 2 | 1 node, 2 vCPU / 4GB RAM | Light workloads; single replica acceptable for non-critical use.
+| 11 - 100 | Medium | 2 - 4 | 2-3 nodes, each 2-4 vCPU / 4-8GB RAM | Medium concurrency; HA recommended and anti-affinity.
+| 101 - 200 | Increased parallelism | 4 - 8 | 3-5 nodes, each 4 vCPU / 8GB RAM | Higher parallelism; consider dedicated node pools and tuned resource limits.
+| 200+ | High concurrency + Large | 8+ | 4+ nodes, each 8+ vCPU / 16+GB RAM; autoscaling recommended | Very high concurrency; perform load testing and monitor closely.
+
+Notes:
+- "Concurrent Environments" refers to environments actively provisioning or heavily operating at the same time.
+- Agent replica counts assume default agent resource requests/limits (100m CPU / 200Mi memory). Increase per-agent resources for heavy or long-running workloads.
+- For Kubernetes, use PodDisruptionBudgets, anti-affinity, and multiple replicas across failure domains to ensure availability.
+- Monitor agent pod CPU/memory and adjust cluster autoscaler and node sizes accordingly.
+
 ## Getting Started
 
 Once you've prepared your infrastructure, proceed with agent installation:
