@@ -386,8 +386,7 @@ The `cloud` backend configuration allows you to use [Terraform Cloud](https://de
     organization: 'my_organization'
     token: '{{ .params.token }}'  # Optional
     workspaces:
-      - name: 'my_workspace'      # IMPORTANT: only one (name or prefix) is needed
-        prefix: 'my_prefix'
+      - name: '{{ .inputs.workspace }}'      # Will generate a workspace with exact name if not exists
 ```
 
 **Cloud block behavior:**
