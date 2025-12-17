@@ -3,20 +3,20 @@ sidebar_position: 8
 title: The CloudFormation Grain
 ---
 
-The CloudFormation grain represents Torque's native support for AWS CloudFormation templates. Torque enables designers to utilize CloudFormation features for orchestrating both self-developed and community-driven CloudFormation modules in a consistent manner, making them accessible as reusable building blocks.
+The CloudFormation grain represents <ProductName />'s native support for AWS CloudFormation templates. <ProductName /> enables designers to utilize CloudFormation features for orchestrating both self-developed and community-driven CloudFormation modules in a consistent manner, making them accessible as reusable building blocks.
 
 ## Prerequisites
 
-Before utilizing CloudFormation with Torque, ensure that you have the following prerequisites in place:
+Before utilizing CloudFormation with <ProductName />, ensure that you have the following prerequisites in place:
 
 1. **S3 bucket**: An S3 bucket designated for the temporary storage of large templates (required for templates exceeding 50K bytes)
 2. **AWS policy**: Proper AWS permissions for CloudFormation operations
 
-For templates exceeding 50K bytes in size, Torque requires a "template-storage" location to upload templates from a Git repository, enabling the creation of CloudFormation stacks. Templates are fetched from Git and stored in this bucket, from where they can be launched.
+For templates exceeding 50K bytes in size, <ProductName /> requires a "template-storage" location to upload templates from a Git repository, enabling the creation of CloudFormation stacks. Templates are fetched from Git and stored in this bucket, from where they can be launched.
 
 ### Required AWS Policy
 
-To grant Torque the necessary permissions to successfully provision resources, your credentials must include at least the following policy:
+To grant <ProductName /> the necessary permissions to successfully provision resources, your credentials must include at least the following policy:
 
 ```json
 {
@@ -122,12 +122,12 @@ The `agent` is now **required** for CloudFormation Grain. Please see [the grain 
 
 ### `authentication`
 
-To enable Torque to connect to the AWS account and deploy the CloudFormation template, you have two options:
+To enable <ProductName /> to connect to the AWS account and deploy the CloudFormation template, you have two options:
 
-1. **Torque credentials**: Authenticate with AWS access key and secret key OR AWS role ARN to be assumed by Torque
+1. **<ProductName /> credentials**: Authenticate with AWS access key and secret key OR AWS role ARN to be assumed by <ProductName />
 2. **Service account**: Authenticate with a service account that will be attached to the runner which provisions the infrastructure
 
-__Example - Option 1 (Torque credentials):__
+__Example - Option 1 (<ProductName /> credentials):__
 
 ```yaml
 grains:
@@ -159,7 +159,7 @@ grains:
 ```
 
 :::info
-The service account needs to be annotated by an AWS role ARN to be assumed by Torque. If not provided, Torque will try to use the default service account of the agent.
+The service account needs to be annotated by an AWS role ARN to be assumed by <ProductName />. If not provided, <ProductName /> will try to use the default service account of the agent.
 :::
 
 ### `template-storage`
@@ -211,7 +211,7 @@ grains:
 
 ### `tags`
 
-Whenever a CloudFormation grain is launched, all resources created during the deployment process are automatically tagged with Torque's system tags, built-in tags and custom tags.
+Whenever a CloudFormation grain is launched, all resources created during the deployment process are automatically tagged with <ProductName />'s system tags, built-in tags and custom tags.
 
 ### `outputs`
 
@@ -237,7 +237,7 @@ grains:
 
 ### `stack-name-prefix`
 
-You can prefix all stacks created by Torque with a customized prefix to adhere to your organization standards or conventions.
+You can prefix all stacks created by <ProductName /> with a customized prefix to adhere to your organization standards or conventions.
 
 __Example:__
 
@@ -259,10 +259,10 @@ You can also define a system parameter at the account or space level with the na
 
 ## Drift Detection and Reconciliation
 
-Resolving drift in AWS CloudFormation involves acknowledging the updated configuration as the intended state and adjusting the stack template accordingly. In Torque, drift resolution or reconciliation entails undoing changes made to cloud resources and restoring them to the original template.
+Resolving drift in AWS CloudFormation involves acknowledging the updated configuration as the intended state and adjusting the stack template accordingly. In <ProductName />, drift resolution or reconciliation entails undoing changes made to cloud resources and restoring them to the original template.
 
 :::warning
-Due to AWS limitations, if the drift includes deleted resources, Torque will not be able to restore these via reconciliation. It is advised to reconcile the stack manually via the AWS console or CLI.
+Due to AWS limitations, if the drift includes deleted resources, <ProductName /> will not be able to restore these via reconciliation. It is advised to reconcile the stack manually via the AWS console or CLI.
 :::
 
 

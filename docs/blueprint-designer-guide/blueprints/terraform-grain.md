@@ -3,7 +3,7 @@ sidebar_position: 14
 title: The Terraform Grain
 ---
 
-The Terraform grain is Torque's native support for HashiCorp Terraform modules. Torque allows designers to use Terraform-specific features to easily orchestrate self-developer and community Terraform modules in a standard way and share them with others as building blocks.
+The Terraform grain is <ProductName />'s native support for HashiCorp Terraform modules. <ProductName /> allows designers to use Terraform-specific features to easily orchestrate self-developer and community Terraform modules in a standard way and share them with others as building blocks.
 
 Note that to deploy Terraform modules, you will need to authenticate Terraform on the Kubernetes cluster. For details, see [Terraform EKS Authentication](/torque-agent/service-accounts-for-aws), [Terraform AKS Authentication](/torque-agent/service-accounts-for-azure), or [Terraform GKE Authentication](/torque-agent/service-accounts-for-gcp).
 
@@ -177,7 +177,7 @@ When `use-storage: false` is specified, ensure you have a remote backend configu
 
 ### `authentication`
 
-To authenticate with AWS and deploy the terraform module, Torque will try to use the default service account configured for the selected agent. You can also supply different credentials in the grain's `authentication` section. This is done by referencing a [credential](/admin-guide/credentials) that contains these authentication details. There are two ways to specify the credential, literally by name or using an input:
+To authenticate with AWS and deploy the terraform module, <ProductName /> will try to use the default service account configured for the selected agent. You can also supply different credentials in the grain's `authentication` section. This is done by referencing a [credential](/admin-guide/credentials) that contains these authentication details. There are two ways to specify the credential, literally by name or using an input:
 
 ```yaml
 grains:
@@ -264,7 +264,7 @@ Liquid templating is supported in the `attributes` values, allowing blueprint in
 
 ### `backend`
 
-When launching the environment, Torque creates a tfstate file for each Terraform grain in the blueprint. By default, the state is saved locally on the PVC of the grain runner (volume for Docker agents). However, Torque allows you to optionally choose to save the terraform state in a backend of your choice. Torque supports the following backends:
+When launching the environment, <ProductName /> creates a tfstate file for each Terraform grain in the blueprint. By default, the state is saved locally on the PVC of the grain runner (volume for Docker agents). However, <ProductName /> allows you to optionally choose to save the terraform state in a backend of your choice. <ProductName /> supports the following backends:
 * [S3](https://developer.hashicorp.com/terraform/language/settings/backends/s3)
 * [GCS](https://developer.hashicorp.com/terraform/language/settings/backends/gcs)
 * [Azure RM](https://developer.hashicorp.com/terraform/language/settings/backends/azurerm)
@@ -273,10 +273,10 @@ When launching the environment, Torque creates a tfstate file for each Terraform
 * [Cloud](https://developer.hashicorp.com/terraform/cli/cloud/settings#the-cloud-block)
 
 __Prerequisites:__
-* The backend must already exist. Torque will not create the backend if it doesn't exist.
+* The backend must already exist. <ProductName /> will not create the backend if it doesn't exist.
 * RoleARN in the `service-account` or `authentication` block, must have access permissions to the backend specified.
 
-Based on the `backend` block in the blueprint definition, Torque will create an override file that contains the backend configurations.
+Based on the `backend` block in the blueprint definition, <ProductName /> will create an override file that contains the backend configurations.
 
 __Example__:
 
@@ -377,7 +377,7 @@ grains:
 * __`workspaces`__: Mandatory - Workspace configuration (name or prefix)
 * __`token`__: Optional - Authentication token (can be provided via environment variable)
 
-The `cloud` backend configuration allows you to use [Terraform Cloud](https://developer.hashicorp.com/terraform/cli/cloud/settings#the-cloud-block) for remote state management. This is particularly useful when migrating from Terraform Cloud to Torque or when you need to manage state using a third-party service.
+The `cloud` backend configuration allows you to use [Terraform Cloud](https://developer.hashicorp.com/terraform/cli/cloud/settings#the-cloud-block) for remote state management. This is particularly useful when migrating from Terraform Cloud to <ProductName /> or when you need to manage state using a third-party service.
 
 ```yaml
   backend:
@@ -392,10 +392,10 @@ The `cloud` backend configuration allows you to use [Terraform Cloud](https://de
 **Cloud block behavior:**
 * If your Terraform configuration doesn't include a cloud block, adding it to the blueprint will automatically configure it
 * If both your Terraform configuration and blueprint specify cloud settings, the blueprint configuration will override the Terraform configuration
-* This enables seamless migration from Terraform Cloud to Torque while preserving existing state management
+* This enables seamless migration from Terraform Cloud to <ProductName /> while preserving existing state management
 
 **Use cases:**
-1. **Migrating from Terraform Cloud to Torque**: Maintain existing state management while transitioning to Torque orchestration
+1. **Migrating from Terraform Cloud to <ProductName />**: Maintain existing state management while transitioning to <ProductName /> orchestration
 2. **Managing state using a 3rd party**: Leverage external state management services for compliance or organizational requirements
 
 `cloud` token options:
@@ -406,7 +406,7 @@ The `cloud` backend configuration allows you to use [Terraform Cloud](https://de
 
 :::note
 
-Torque uses a "1 to many" model, meaning that one blueprint definition is used to launch many standalone environments. When using a backend for Terraform grains, it is important to ensure that each live instance of the grain has its own unique tfstate file, so Torque will auto-generate the tfstate file name. 
+<ProductName /> uses a "1 to many" model, meaning that one blueprint definition is used to launch many standalone environments. When using a backend for Terraform grains, it is important to ensure that each live instance of the grain has its own unique tfstate file, so <ProductName /> will auto-generate the tfstate file name. 
 
 For s3, gcs, azurerm backends, the tfstate file location will be: 
 
@@ -427,11 +427,11 @@ For s3, gcs, azurerm backends, the tfstate file location will be:
 
 __Cleaning up the tfstate file when the Terraform grain is destroyed:__
 
-When destroying a Terraform environment, Terraform does not delete the tfstate file but rather leaves behind an empty file. To clean up the leftovers, set a file retention policy on the remote storage to ensure the removal of files that have not been recently accessed. Since Torque runs drift detection on a 1-hour schedule, the tfstate file will be considered as “accessed” by the remote storage when running drift detection. And when the Torque environment ends, the tfstate file will not be “accessed” anymore by Torque.
+When destroying a Terraform environment, Terraform does not delete the tfstate file but rather leaves behind an empty file. To clean up the leftovers, set a file retention policy on the remote storage to ensure the removal of files that have not been recently accessed. Since <ProductName /> runs drift detection on a 1-hour schedule, the tfstate file will be considered as “accessed” by the remote storage when running drift detection. And when the <ProductName /> environment ends, the tfstate file will not be “accessed” anymore by <ProductName />.
 :::
 
 ### `version` 
-Torque provides the flexibility to choose a specific Terraform version with which the Terraform module will be deployed (minimum supported version is 0.14, last version supported is 1.5.5). Otherwise, you can use the [custom-grain option](/blueprint-designer-guide/blueprints/custom-grain).
+<ProductName /> provides the flexibility to choose a specific Terraform version with which the Terraform module will be deployed (minimum supported version is 0.14, last version supported is 1.5.5). Otherwise, you can use the [custom-grain option](/blueprint-designer-guide/blueprints/custom-grain).
 
 ```yaml
 grains:
@@ -446,7 +446,7 @@ grains:
 ```
 
 ### `inputs`
-Similar to blueprint inputs, the Terraform grain input allows you to reuse the same Terraform module in different ways. Inputs provided to the Terraform grain are used when launching the Terraform module. Terraform grain inputs should be listed in the order defined in the module's variables.tf file. We recommend using Torque's auto-discovery capability to quickly model your Terraform modules within Torque including all defined inputs.
+Similar to blueprint inputs, the Terraform grain input allows you to reuse the same Terraform module in different ways. Inputs provided to the Terraform grain are used when launching the Terraform module. Terraform grain inputs should be listed in the order defined in the module's variables.tf file. We recommend using <ProductName />'s auto-discovery capability to quickly model your Terraform modules within <ProductName /> including all defined inputs.
 
 Every value that goes to the Terraform grain's input is interpreted as a json token. So you can pass any valid value by json: number, list, dictionary, boolean, string , etc.
 For details, check out this Terraform Docs section [Variable Definitions (.tfvars) Files](https://www.terraform.io/language/values/variables#variable-definitions-tfvars-files)
@@ -484,7 +484,7 @@ Note that invalid tokens will be parsed as strings. Keep in mind that json strin
 
 ### `tfvars files`
 
-In Terraform, a tfvars file (short for "Terraform variables file") is a plain text file that contains a set of key-value pairs representing values for Terraform variables. Torque supports referencing tfvars files as inputs to the terraform grain, with the following syntax:
+In Terraform, a tfvars file (short for "Terraform variables file") is a plain text file that contains a set of key-value pairs representing values for Terraform variables. <ProductName /> supports referencing tfvars files as inputs to the terraform grain, with the following syntax:
 
 ```yaml
 grains:
@@ -512,7 +512,7 @@ grains:
 
 
 ### `tags`  
-Whenever a Terraform grain is launched, all resources created during the deployment process will be automatically tagged with Torque's system tags, built-in tags and custom tags. For details, see [Tags](/governance/tags). 
+Whenever a Terraform grain is launched, all resources created during the deployment process will be automatically tagged with <ProductName />'s system tags, built-in tags and custom tags. For details, see [Tags](/governance/tags). 
 Sometimes, you need to disable tagging for all or specific resources.
 To disable *all* resources in a specific grain use the following syntax:
 
@@ -539,7 +539,7 @@ grains:
 
 
 ### `outputs` 
-Output are values generated by Terraform during the deployment process. Outputs should be defined in the outputs.tf file located in the Terraform module folder. We recommend using Torque's auto-discovery capability to quickly model your Terraform modules within Torque including it's defined outputs.
+Output are values generated by Terraform during the deployment process. Outputs should be defined in the outputs.tf file located in the Terraform module folder. We recommend using <ProductName />'s auto-discovery capability to quickly model your Terraform modules within <ProductName /> including it's defined outputs.
 
 
 ```yaml 
@@ -557,7 +557,7 @@ grains:
 ```
 
 ### `scripts`
-Torque provides the ability to execute custom code before the executing the Terraform module init and before the Terraform destroy process. Scripts allows to run CLI commands to make sure authentication and requirements are set prior to the Terraform execution at the environment's initialization and destroy process.
+<ProductName /> provides the ability to execute custom code before the executing the Terraform module init and before the Terraform destroy process. Scripts allows to run CLI commands to make sure authentication and requirements are set prior to the Terraform execution at the environment's initialization and destroy process.
 
 The available script hooks are:
 - pre-tf-init: The script will run before the command ```terraform init```
@@ -598,7 +598,7 @@ grains:
 Note that scripts should be stored next to your IaC code to be used under the scripts section.
 :::
 
-When writing the scripts, you can take advantage of the following out of the box environment variables provided by Torque:
+When writing the scripts, you can take advantage of the following out of the box environment variables provided by <ProductName />:
 
 - **TORQUE_TF_EXECUTABLE** - the terraform executable file name
 - **TORQUE_TF_MODULE_PATH** - the path to the terraform executable.
@@ -631,7 +631,7 @@ fi
 ```
 
 ### `auto-approve`
-The "auto-approve" flag in Terraform is used to automatically approve and apply changes without requiring manual confirmation. It is helpful in automation workflows or scripts where user interaction is not feasible, allowing for unattended execution of Terraform commands without the need for explicit approval during the apply phase. By default, Torque will apply the terraform module with auto-approval.
+The "auto-approve" flag in Terraform is used to automatically approve and apply changes without requiring manual confirmation. It is helpful in automation workflows or scripts where user interaction is not feasible, allowing for unattended execution of Terraform commands without the need for explicit approval during the apply phase. By default, <ProductName /> will apply the terraform module with auto-approval.
 However, you might specifically want to ensure that critical or potentially destructive changes are reviewed and approved by a user before being applied. This adds an extra layer of safety, especially in scenarios where unintended consequences could result from applying infrastructure changes. It provides an opportunity to carefully inspect the proposed changes before confirming their execution.
 To do that, you can set the auto-approve flag in the terraform grain spec to false (default will be true):
 
@@ -725,7 +725,7 @@ The `mode` field controls how Terraform resources are managed during environment
 - **`managed`** (default): Standard behavior where resources are destroyed using `terraform destroy` when the environment is terminated or grain is deleted/edited
 - **`no-termination`**: Resources are "released" rather than destroyed. The Terraform state is removed but the actual cloud resources remain intact
 
-This is particularly useful for production environments where you want to preserve critical infrastructure (databases, storage, networks) even when the Torque environment is terminated.
+This is particularly useful for production environments where you want to preserve critical infrastructure (databases, storage, networks) even when the <ProductName /> environment is terminated.
 
 ```yaml
 spec_version: 2
@@ -762,5 +762,5 @@ grains:
 - Any resources that are expensive to recreate or contain state that must be preserved
 
 :::warning
-When using `no-termination` mode, you are responsible for manually cleaning up the cloud resources when they are no longer needed, as Torque will not destroy them automatically.
+When using `no-termination` mode, you are responsible for manually cleaning up the cloud resources when they are no longer needed, as <ProductName /> will not destroy them automatically.
 :::

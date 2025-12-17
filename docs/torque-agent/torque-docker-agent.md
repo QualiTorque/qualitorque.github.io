@@ -53,7 +53,7 @@ Follow these steps to get your VM all set up.
     sudo apt-get install wget unzip
     ```
  
-### Install Torque agent
+### Install <ProductName /> agent
 To install the agent, log in with as a system administrator
 1. Go-to https://portal.qtorque.io/admin/agents
 2. Click on `New Agent`, select the `vCenter` logo, then choose `Docker`. Choose a name for the agent and click on `Next`.
@@ -68,6 +68,6 @@ To install the agent, log in with as a system administrator
     ```
 6. Install the agent by cd into `deployment` folder and execute `./deploy_torque_agent.sh`
 7. Fill the agent name and press `Enter`
-8. This will initiate the installation process. After roughly a minute you'll be able to see in Torque's portal the 'Connection Status' changes to 'Connected!'
+8. This will initiate the installation process. After roughly a minute you'll be able to see in <ProductName />'s portal the 'Connection Status' changes to 'Connected!'
 9. Click on `Associate to Space`, choose the desired spaces and you're done!
  

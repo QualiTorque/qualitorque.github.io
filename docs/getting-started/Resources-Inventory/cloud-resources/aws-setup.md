@@ -33,7 +33,7 @@ Currently the only authentication method supported is IAM Users with an Access a
 ---
 ### Minimal Permissions Required
 
-Torque Resources Inventory requires read-only access to inventory and manage cloud resources. The following permissions are required:
+<ProductName /> Resources Inventory requires read-only access to inventory and manage cloud resources. The following permissions are required:
 
 - `AWSResourceExplorerReadOnlyAccess` assigned to the IAM User. This only gives you the ability to see resources in Cloud Curate.
 - For the ability to convert resources in Terraform or manage environments, `ReadOnlyAccess` is recommended so all resource types can be used.
@@ -47,4 +47,4 @@ Navigate to the `Account Center`.
 3. Select `AWS` as the cloud provider.
 4. Provide the necessary details, including `Account Number`, `Access Key`, `Secret Key`, and the `View Arn`. `Cloud Account Name` can be anything as its your identifier.
 5. Click Save.
-6. Once connected, Torque Resources Inventory will begin scanning and discovering your cloud resources.
+6. Once connected, <ProductName /> Resources Inventory will begin scanning and discovering your cloud resources.

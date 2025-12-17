@@ -3,7 +3,7 @@ sidebar_position: 3
 title: Kubernetes Compliance
 ---
 
-Securing and ensuring compliance for deployments across various business processes can present challenges, particularly when organizations doesn't use a centralized approach for self-service, CI/CD, and other deployment methods. Implementing a Torque blueprint that includes deployment validations offers a recommended approach to orchestrate, track changes, and maintain consistency, thus establishing a best practice for secure deployments.
+Securing and ensuring compliance for deployments across various business processes can present challenges, particularly when organizations doesn't use a centralized approach for self-service, CI/CD, and other deployment methods. Implementing a <ProductName /> blueprint that includes deployment validations offers a recommended approach to orchestrate, track changes, and maintain consistency, thus establishing a best practice for secure deployments.
 
 The following environment was orchestrated form a blueprint with multiple grains. The initial deployment process downloads the latest deployment files and validate them through a set of open-source tools - [Datree.io](https://www.datree.io/) and [Kubescape](https://github.com/kubescape/kubescape). Once only the validation is done and the score meets the criteria, the application deployment will take place.
 

@@ -5,11 +5,11 @@ title: Agent Requirements
 
 # Agent Requirements
 
-The Torque agent is a lightweight, Docker-based execution component that handles environment provisioning and lifecycle management. This page outlines the infrastructure requirements and specifications needed to run the Torque agent.
+The <ProductName /> agent is a lightweight, Docker-based execution component that handles environment provisioning and lifecycle management. This page outlines the infrastructure requirements and specifications needed to run the <ProductName /> agent.
 
 ## Overview
 
-The Torque agent can be deployed on two types of infrastructure:
+The <ProductName /> agent can be deployed on two types of infrastructure:
 - **Docker Host** - A standalone virtual machine or server running Docker
 - **Kubernetes Cluster** - A managed or self-hosted Kubernetes cluster
 
@@ -45,9 +45,9 @@ For running the agent on a Docker host, you'll need:
 - **Docker Version**: 20.10 or later
 
 **Network Requirements:**
-- Outbound HTTPS (port 443) access to Torque SaaS
+- Outbound HTTPS (port 443) access to <ProductName /> SaaS
 - Internet connectivity for pulling Docker images
-- See [Torque Outbound Ports](/torque-agent/torque-outbound-ports.md) for detailed network requirements
+- See [<ProductName /> Outbound Ports](/torque-agent/torque-outbound-ports.md) for detailed network requirements
 
 **Example VM Configuration:**
 ```yaml
@@ -77,9 +77,9 @@ For running the agent on Kubernetes, you'll need:
 - Rancher
 
 **Network Requirements:**
-- Outbound HTTPS (port 443) access to Torque SaaS
+- Outbound HTTPS (port 443) access to <ProductName /> SaaS
 - Internet connectivity for pulling container images
-- See [Torque Outbound Ports](/torque-agent/torque-outbound-ports.md) for detailed network requirements
+- See [<ProductName /> Outbound Ports](/torque-agent/torque-outbound-ports.md) for detailed network requirements
 
 ## Kubernetes Agent Manifest
 
@@ -195,12 +195,12 @@ Notes:
 
 Once you've prepared your infrastructure, proceed with agent installation:
 
-- **Docker Host**: See [Torque Docker Agent](/torque-agent/torque-docker-agent.md)
+- **Docker Host**: See [<ProductName /> Docker Agent](/torque-agent/torque-docker-agent.md)
 - **Kubernetes Cluster**: See [Install and Connect Self-Hosted Agent](/torque-agent/Install-and-connect-self-hosted-agent.md)
 
 ## Additional Resources
 
-- [What is the Torque Agent?](/torque-agent/Torque-Agent-Intro.md)
+- [What is the <ProductName /> Agent?](/torque-agent/<ProductName />-Agent-Intro.md)
 - [Advanced Agent Settings](/torque-agent/advanced-settings.md)
 - [Network Requirements](/torque-agent/torque-outbound-ports.md)
 - [Azure VMSS Deployment](/torque-agent/torque-agent-on-azure-vmss.md)

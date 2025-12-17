@@ -6,7 +6,7 @@ title: Input Sources
 # Input Sources
 
 ## Overview
-The **Input Sources** feature is a significant enhancement for Torque users, providing a more dynamic and flexible way to retrieve and manage input values from external data sources. Whether you're dealing with multiple S3 buckets or preparing for future integrations with other external sources, this feature streamlines your workflow and ensures your configurations are always up-to-date.  
+The **Input Sources** feature is a significant enhancement for <ProductName /> users, providing a more dynamic and flexible way to retrieve and manage input values from external data sources. Whether you're dealing with multiple S3 buckets or preparing for future integrations with other external sources, this feature streamlines your workflow and ensures your configurations are always up-to-date.  
 During the launch environment process, this feature simplifies the handling of multiple data sources by using a single configuration template, and allowing real-time listing of S3 bucket objects.
 
 ## Key Benefits
@@ -110,7 +110,7 @@ Below is an example SVG diagram illustrating the architecture for using an HTTP 
 
 ### Creating an Input Source
 
-Torque role: Account admin
+<ProductName /> role: Account admin
 
 :::tip __Important__
 Modifying or deleting an Input Source may cause blueprints that use the Input Source to fail.
@@ -118,7 +118,7 @@ Modifying or deleting an Input Source may cause blueprints that use the Input So
 
 #### General Steps
 
-1. **Navigate to Input Sources:** Access the Input Sources section in your Torque Account Settings.  
+1. **Navigate to Input Sources:** Access the Input Sources section in your <ProductName /> Account Settings.  
 2. **Add New Source:** Click on the "Connect a new Input Source" button.  
 3. **Select preferred provider:** Choose between AWS S3 bucket, Azure Blob Storage, or HTTP Server.
 
@@ -193,7 +193,7 @@ Modifying or deleting an Input Source may cause blueprints that use the Input So
 
 ### Using an Input Source in Blueprints
 
-Torque role: Space Developer
+<ProductName /> role: Space Developer
 
 To use an input source in a blueprint:
 

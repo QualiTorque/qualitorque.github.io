@@ -7,7 +7,7 @@ Use GitHub Actions to automate environment lifecycle management. We currently pr
 * [torque-start-sb-action](https://github.com/QualiTorque/torque-start-sb-action#readme): Starts an environment
 * [torque-end-sb-action](https://github.com/QualiTorque/torque-end-sb-action#readme): Ends an environment
 
-To integrate Torque with the GitHub Actions, make sure to complete the next few steps.
+To integrate <ProductName /> with the GitHub Actions, make sure to complete the next few steps.
 
 ## 1. Install
 
@@ -23,7 +23,7 @@ __Install the plugin:__
 2. Click the __Generate New Token__ button in the plugin's instructions pane.
 
 ## 3. Verify and launch
-__Use Torque's tasks in your Jenkins pipeline__
+__Use <ProductName />'s tasks in your Jenkins pipeline__
 
 Read more and view the usage examples for each one of the actions:
 * [torque-start-sb-action](https://github.com/QualiTorque/torque-start-sb-action#readme)

@@ -29,6 +29,6 @@ grains:
     ...
 ```
 
-In the example above, Torque __normalized__ the various automation frameworks so they all share the same interface and can be used as __"building-blocks"__ and pass information between them. Note how the connection string that was generated for the RDS database is passed into the microservice application so software components will be able to use the database.
+In the example above, <ProductName /> __normalized__ the various automation frameworks so they all share the same interface and can be used as __"building-blocks"__ and pass information between them. Note how the connection string that was generated for the RDS database is passed into the microservice application so software components will be able to use the database.
 
 > ![Multigrain Environment](/img/multi-robo.png)

@@ -5,7 +5,7 @@ title: The Terragrunt Grain
 
 # The Terragrunt Grain
 
-The Terragrunt grain is Torque's native support for [Terragrunt](https://terragrunt.gruntwork.io/) modules. Terragrunt is a thin wrapper for Terraform that provides extra tools for working with multiple Terraform modules and keeping your configurations DRY. Torque allows designers to use Terragrunt-specific features to easily orchestrate self-developed and community Terragrunt modules in a standard way and share them as building blocks.
+The Terragrunt grain is <ProductName />'s native support for [Terragrunt](https://terragrunt.gruntwork.io/) modules. Terragrunt is a thin wrapper for Terraform that provides extra tools for working with multiple Terraform modules and keeping your configurations DRY. <ProductName /> allows designers to use Terragrunt-specific features to easily orchestrate self-developed and community Terragrunt modules in a standard way and share them as building blocks.
 
 ## Tools and technologies
 The following tools and technologies are installed out of the box on our agents in the Kubernetes pods and can be used when writing Terragrunt grain scripts (pre/post, etc.):
@@ -80,7 +80,7 @@ env-vars:
 ```
 
 ### `scripts`
-Torque provides the ability to execute custom scripts before or after Terragrunt commands. The available script hooks are:
+<ProductName /> provides the ability to execute custom scripts before or after Terragrunt commands. The available script hooks are:
 - pre-tf-init: Runs before `terragrunt init`
 - post-tf-plan: Runs after `terragrunt plan`
 - pre-tf-destroy: Runs before `terragrunt destroy`
@@ -100,7 +100,7 @@ Scripts should be stored next to your IaC code to be used under the scripts sect
 :::
 
 ### `auto-approve`
-The `auto-approve` flag is used to automatically approve and apply changes without requiring manual confirmation. By default, Torque will apply the Terragrunt module with auto-approval. To require manual approval, set `auto-approve: false`.
+The `auto-approve` flag is used to automatically approve and apply changes without requiring manual confirmation. By default, <ProductName /> will apply the Terragrunt module with auto-approval. To require manual approval, set `auto-approve: false`.
 
 ```yaml
 auto-approve: false
@@ -108,7 +108,7 @@ auto-approve: false
 
 ## Usage Example
 
-Below is a complete example of a Torque blueprint using a Terragrunt grain:
+Below is a complete example of a <ProductName /> blueprint using a Terragrunt grain:
 
 ```yaml
 spec_version: 2

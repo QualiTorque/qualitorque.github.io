@@ -3,11 +3,11 @@ sidebar_position: 36
 title: Issue Trackers
 ---
 
-With __Issue Trackers__ integrations, you can configure Torque to send environment lifecycle events to your bug tracking solution.
+With __Issue Trackers__ integrations, you can configure <ProductName /> to send environment lifecycle events to your bug tracking solution.
 
 ## Jira
 
-This integration enables sending the environment events to specific issues in Jira. As part of the integration with Jira, you specify the Jira projects that can receive the events, and Torque will only send the events to a matching issue within those projects. 
+This integration enables sending the environment events to specific issues in Jira. As part of the integration with Jira, you specify the Jira projects that can receive the events, and <ProductName /> will only send the events to a matching issue within those projects. 
 
 The events are displayed in the __Comments__ section of the issues and look something like this:
 

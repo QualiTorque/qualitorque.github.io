@@ -2,15 +2,15 @@
 sidebar_position: 3
 title: Install our Agent
 ---
-__<ProductName /> Control plane__ offers centralized orchestration and management for Kubernetes orchestration tools such as Kubernetes manifest, Helm and Crossplane. In this guide, we will go over some of Torque basic features allowing quick onboarding of Kubernetes automation assets into the platform, standardization of Kubernetes orchestration using blueprints and securing deployment process using tagging, policies and RBAC.
+__<ProductName /> Control plane__ offers centralized orchestration and management for Kubernetes orchestration tools such as Kubernetes manifest, Helm and Crossplane. In this guide, we will go over some of <ProductName /> basic features allowing quick onboarding of Kubernetes automation assets into the platform, standardization of Kubernetes orchestration using blueprints and securing deployment process using tagging, policies and RBAC.
 
 In this quick-start guide, we will cover the following topics:
-1. Create a new Torque Space
+1. Create a new <ProductName /> Space
 2. Onboard a GitHub repository and discover the automation assets in it
 3. Generate your first blueprint and modify it to include deployment credentials
 4. Launch a blueprint and get access to the deployed resource in the newly created environment
 
-> NOTE: This guide will focus on Kubernetes manifest and Helm orchestration, [click here](/overview/supported-platforms.md) for more information about Torque supported platform.
+> NOTE: This guide will focus on Kubernetes manifest and Helm orchestration, [click here](/overview/supported-platforms.md) for more information about <ProductName /> supported platform.
 
 ## Step #1: Create a space
 :::info
@@ -25,11 +25,11 @@ __Spaces__ are logically separate area that contains an association to one or mo
    Space name, image and color can always be changes in the "Administration" are under the "Spaces" tab
 
 ## Step #2: Connect a repository
-Now, that you have a new space configured, we will associate a repository to the space and generate blueprints using the automation-assets that will be discovered by Torque in that repository. We recommend using your-own repository hosted in one of the supported Git Providers. For using on-prem/hosted versions of one of the supported (Version Control System) providers, see [Repository Setup](/admin-guide/source-control/source-control-github).
+Now, that you have a new space configured, we will associate a repository to the space and generate blueprints using the automation-assets that will be discovered by <ProductName /> in that repository. We recommend using your-own repository hosted in one of the supported Git Providers. For using on-prem/hosted versions of one of the supported (Version Control System) providers, see [Repository Setup](/admin-guide/source-control/source-control-github).
 
-1. In the __repository onboarding__ wizard, choose your VCS provider, provide the repository URL and click "Connect". Torque will open a new windows where you will be requested to authenticate to the VSC provider. VCS providers work differently, but usually, a token will be generated for your user and Torque will use that for any communication with that VCS. 
+1. In the __repository onboarding__ wizard, choose your VCS provider, provide the repository URL and click "Connect". <ProductName /> will open a new windows where you will be requested to authenticate to the VSC provider. VCS providers work differently, but usually, a token will be generated for your user and <ProductName /> will use that for any communication with that VCS. 
 
-2. Click "Discover Assets" to initiate the __Torque asset discovery process__ that will go over the repository and highlight the automation assets Torque discovered.
+2. Click "Discover Assets" to initiate the __Torque asset discovery process__ that will go over the repository and highlight the automation assets <ProductName /> discovered.
 3. To __generate a blueprint__ from one of the discovered assets, check the blueprint in the list and click on "Generate Blueprints"
 4. Click on "Connect an Agent"
 
@@ -39,7 +39,7 @@ import pic1 from '/img/getting-repository-ongoarding.gif';
 <img src={pic1} style={{width: 700}} />
 
 ## Step #3: Install an Agent
-In this step, we will configure a Torque agent that will execute, manage and monitor the Kubernetes workload we discovered and plan to deploy.
+In this step, we will configure a <ProductName /> agent that will execute, manage and monitor the Kubernetes workload we discovered and plan to deploy.
 
 1. In the "Connect an agent" dialog, select the __"Install new self hosted agent"__ and click "Next". Now, you are required to choose one of the supported cloud providers managed Kubernetes service or a self-managed Kubernetes cluster. Choose one of the options, In this example, we will use AWS EKS.
 2. Provide a new for the agent, and click "Next"
@@ -52,10 +52,10 @@ import pic2 from '/img/k8s-agent-connected.png';
 
 
 :::info
-The command creates a new namespaces, and deploys the Torque agent in it. It might take up to 2 minutes for the Agent to get up and running, so want for the Torque self-service indication to make sure the agent is connected.
+The command creates a new namespaces, and deploys the <ProductName /> agent in it. It might take up to 2 minutes for the Agent to get up and running, so want for the <ProductName /> self-service indication to make sure the agent is connected.
 
 1. Now, it's associate our newly connected agent with our space. Click the "Associate to space".
-2. The space is already selected for you, but, you still need to set the default namespace and service-account that will be used by Torque to deploy workloads into the cluster. It's always possible to change the default values in the "Administration" section under the "Agents" section.
+2. The space is already selected for you, but, you still need to set the default namespace and service-account that will be used by <ProductName /> to deploy workloads into the cluster. It's always possible to change the default values in the "Administration" section under the "Agents" section.
 :::
 
 ## Step #4: Launch an Environment

@@ -20,7 +20,7 @@ title: Azure Setup
 
 ### Minimal Permissions Required
 
-Torque Resources Inventory requires read-only access to inventory and manage cloud resources. The following permissions are required:
+<ProductName /> Resources Inventory requires read-only access to inventory and manage cloud resources. The following permissions are required:
 
 - Reader role assigned to the Azure subscription.
 - The ability to list resources, read metadata, and access resource details for all resources within the subscription.
@@ -36,4 +36,4 @@ Navigate to the `Account Center`.
 3. Select Azure as the cloud provider.
 4. Provide the necessary details, including `Subscription ID`, `Tenant ID`, `Application ID`, and the `Application Secret` with read-only permissions.
 5. Click Connect.
-6. Once connected, Torque Resources Inventory will begin scanning and discovering your cloud resources.
+6. Once connected, <ProductName /> Resources Inventory will begin scanning and discovering your cloud resources.

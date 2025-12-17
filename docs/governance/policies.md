@@ -3,15 +3,15 @@ sidebar_position: 12
 title: Policies
 ---
 
-Torque role: Account admin
+<ProductName /> role: Account admin
 
 ## Why use policies?
 Using policies for the consumption of environments offers a multitude of benefits that empower organizations to optimize their cloud usage. Firstly, policies allow for effective cost control by setting limits on resource consumption, ensuring that cloud spending remains within budgetary constraints. Moreover, these policies enable the efficient management of resources by capping the number of concurrent resources per user, preventing resource sprawl, and ensuring fair allocation. Additionally, policies can restrict the duration of an environments uptime, enhancing security and minimizing the risk of unused resources running indefinitely. In sum, the implementation of policies for environment consumption not only fosters financial prudence but also enhances resource governance and security, making it an invaluable asset in the realm of cloud management.
 
-Torque policies are triggered as part of the environment deployment pipeline for specific environment lifecycle events (launch, extend environment for example) or during the deployment of environments (e.g. when evaluating a Terraform module included in the environment). Torque policies are powered by OPA (Open Policy Agent). For a step-by-step tutorial, see [Video: Torque policies (end-to-end)](#video-torque-policies-end-to-end-tutorial).
+<ProductName /> policies are triggered as part of the environment deployment pipeline for specific environment lifecycle events (launch, extend environment for example) or during the deployment of environments (e.g. when evaluating a Terraform module included in the environment). <ProductName /> policies are powered by OPA (Open Policy Agent). For a step-by-step tutorial, see [Video: <ProductName /> policies (end-to-end)](#video-torque-policies-end-to-end-tutorial).
 
 ## Example Use Cases
-You can use Torque policies for cost and consumption control. Examples include:
+You can use <ProductName /> policies for cost and consumption control. Examples include:
 - Limiting the maximal duration of environments
 - Limiting the concurrent number of environments per user
 - Limiting the total cost of environments
@@ -22,10 +22,10 @@ You can use Torque policies for cost and consumption control. Examples include:
 - [Example Use Cases](#example-use-cases)
 - [How policies work](#how-policies-work)
 - [Policy labels](#policy-labels)
-- [Torque built-in policies](#torque-built-in-policies)
+- [<ProductName /> built-in policies](#torque-built-in-policies)
 - [Custom policies](#custom-policies)
   - [Developing your own policies](#developing-your-own-policies)
-    - [__Developing Torque policies__](#developing-torque-policies)
+    - [__Developing <ProductName /> policies__](#developing-torque-policies)
     - [__Inputs__](#inputs)
     - [__data__](#data)
     - [__Rego restricted functions__](#rego-restricted-functions)
@@ -33,13 +33,13 @@ You can use Torque policies for cost and consumption control. Examples include:
 - [How to set up a policy](#how-to-set-up-a-policy)
 - [Duplicate a policy](#duplicate-a-policy)
 - [Updating policies](#updating-policies)
-- [Video: Torque policies (end-to-end tutorial)](#video-torque-policies-end-to-end-tutorial)
+- [Video: <ProductName /> policies (end-to-end tutorial)](#video-torque-policies-end-to-end-tutorial)
 
 
 ## How policies work
-Policies are based on two basic elements: trigger and context. Trigger determines when the policy is activated, and context is the data the policy needs to get ("input" in OPA terms). The context is provided automatically by Torque. Users can also define user data ("data" in OPA terms) in the Torque policy. The context (or input) is the actual environment data the end user is trying to deploy, and the user data sets values to the limitations imposed by the admin who set up the policy.
+Policies are based on two basic elements: trigger and context. Trigger determines when the policy is activated, and context is the data the policy needs to get ("input" in OPA terms). The context is provided automatically by <ProductName />. Users can also define user data ("data" in OPA terms) in the <ProductName /> policy. The context (or input) is the actual environment data the end user is trying to deploy, and the user data sets values to the limitations imposed by the admin who set up the policy.
 
-Torque supports 3 types of triggers, which are defined by the package being used in the policy's .rego file:
+<ProductName /> supports 3 types of triggers, which are defined by the package being used in the policy's .rego file:
 -	Consumption policies (triggered on catalog launch). To define a consumption policy, the ".rego" file must use the package name __torque.consumption__
 -	Environment lifecycle policies (triggered on launch after completing the launch dialog, or extend). To define an environment lifecycle policy, the ".rego" file must use the package name __torque.environment__
 -	Terraform evaluation policies (triggered on terraform plan for terraform grains). To define a terraform plan evaluation policy, the ".rego" file must use the package name __torque.terraform_plan__
@@ -49,10 +49,10 @@ Policies are applied on the space or account level, as explained in [How to set 
 :::
 
 ## Policy labels
-There are 5 labels that will be automatically applied to policies in Torque, in the __Policies__ administration page:
+There are 5 labels that will be automatically applied to policies in <ProductName />, in the __Policies__ administration page:
 
-* __Built-in__ label is assigned to policies that come out of the box with Torque. For details about the policies, see [https://github.com/QualiTorque/opa](https://github.com/QualiTorque/opa)
-* __Terraform__ label is assigned to policies that evaluate the Terraform plan on the environment's Terraform grain. These policies are triggered when Torque deploys the Terraform grain's plan during the environment's initialization
+* __Built-in__ label is assigned to policies that come out of the box with <ProductName />. For details about the policies, see [https://github.com/QualiTorque/opa](https://github.com/QualiTorque/opa)
+* __Terraform__ label is assigned to policies that evaluate the Terraform plan on the environment's Terraform grain. These policies are triggered when <ProductName /> deploys the Terraform grain's plan during the environment's initialization
 * __Environment__ label is assigned to policies that are triggered when the environment is launched (upon completing the launch wizard) or extended 
 * __Consumption__ label is assigned to policies that are triggered when the catalog item is clicked 
 * __Approval__ label is assigned to policies that could require approval to launch the environment
@@ -60,21 +60,21 @@ There are 5 labels that will be automatically applied to policies in Torque, in 
 
 > ![Locale Dropdown](/img/policy-labels.png)
 
-## Torque built-in policies 
-Torque provides many built-in policies, both for environment lifecycle and Terraform plan evaluation, which represent some of the more common use cases when deploying environments. Some examples include:
+## <ProductName /> built-in policies 
+<ProductName /> provides many built-in policies, both for environment lifecycle and Terraform plan evaluation, which represent some of the more common use cases when deploying environments. Some examples include:
 * Allow only specific AWS instance types to be used
 * Allow deploying only to specific Azure locations
 * Allow only environments with an expected cost of < 10$
 
 ## Custom policies
 
-There may come a time when you will need to go beyond the common use case and write your own policies and rules. This is possible using custom policies. Custom policies are .rego files that reside in your git repository. When you add the policy repository to Torque, Torque automatically discovers the repository and identifies its .rego files as policies, allowing you to choose which policies to import into Torque. Same as with built-in policies, you select where to apply the policy (on the entire account or specific teams) and configure the relevant data. 
+There may come a time when you will need to go beyond the common use case and write your own policies and rules. This is possible using custom policies. Custom policies are .rego files that reside in your git repository. When you add the policy repository to <ProductName />, <ProductName /> automatically discovers the repository and identifies its .rego files as policies, allowing you to choose which policies to import into <ProductName />. Same as with built-in policies, you select where to apply the policy (on the entire account or specific teams) and configure the relevant data. 
 
 ### Developing your own policies
 
-#### __Developing Torque policies__
+#### __Developing <ProductName /> policies__
 
-1. __Package__: For Torque to recognize and be able to execute your policy, you need to use the torque packages. The packages that are currently available are torque.consumption, torque.environment and torque.terraform_plan. So your first line of the rego file which is the package name should be one of these packages.
+1. __Package__: For <ProductName /> to recognize and be able to execute your policy, you need to use the torque packages. The packages that are currently available are torque.consumption, torque.environment and torque.terraform_plan. So your first line of the rego file which is the package name should be one of these packages.
 2. __terraform_plan__ policies need at least one __deny__ rule to be valid.
 For example, a __terraform_plan__ policy can look like this:
 
@@ -102,7 +102,7 @@ For example, an __environment__ policy can look like this:
 
 #### __Inputs__
 
-Based on the policy type (__environment__ , __consumption__ or __terraform_plan__) Torque will provide *input* to OPA once the policy is injected.
+Based on the policy type (__environment__ , __consumption__ or __terraform_plan__) <ProductName /> will provide *input* to OPA once the policy is injected.
 For terraform_plan policies, the input is the terraform plan output. 
 For __environment__ policies, the input is the following json object:
 
@@ -222,7 +222,7 @@ For __consumption__ policies, the input is similar to the object in __environmen
 
 #### __data__
 
-The *data* object is the user-defined inputs that will also be passed to OPA for evaluation. The data object structure is defined by the policy writer, and the values are provided through the Torque UI.
+The *data* object is the user-defined inputs that will also be passed to OPA for evaluation. The data object structure is defined by the policy writer, and the values are provided through the <ProductName /> UI.
 
 For example, the policy can look like this:
 
@@ -234,7 +234,7 @@ result = { "decision": "Denied", "reason": "Environment duration exceeds the con
 
 In this case, the policy expects a data object with one key: ```max_duration_minutes```.
 
-In Torque, it would look like this:
+In <ProductName />, it would look like this:
 
 > ![Locale Dropdown](/img/policy_data.png)
 
@@ -242,7 +242,7 @@ So you can enter whichever value you want as the maximum duration to be enforced
 
 #### __Rego restricted functions__
 
-Torque supports all rego built-in functions, except the following list:
+<ProductName /> supports all rego built-in functions, except the following list:
 - "http.send";
 - "opa.runtime";
 - "rego.parse_module"; 
@@ -253,13 +253,13 @@ Torque supports all rego built-in functions, except the following list:
 For more details on how to develop policies, see [OPA documentation](https://www.openpolicyagent.org/docs/latest/) and [OPA playground](https://play.openpolicyagent.org/).
 
 :::tip Notes
-* For example, custom policies, see [Quali Torque built-in OPA policy templates](https://github.com/QualiTorque/opa).
-* Note that Torque points to a specific commit. Therefore, to introduce a new version of a custom policy, develop, test and pass the policy through your regular git flow. Once you are done, update the commit version in Torque by clicking "Update Rego".
+* For example, custom policies, see [Quali <ProductName /> built-in OPA policy templates](https://github.com/QualiTorque/opa).
+* Note that <ProductName /> points to a specific commit. Therefore, to introduce a new version of a custom policy, develop, test and pass the policy through your regular git flow. Once you are done, update the commit version in <ProductName /> by clicking "Update Rego".
 :::
 
 ## Approval policies
 
-Torque allows you to configure your policy with conditions that will trigger manual approval of an environment request by a set of designated approvers via multiple optional channels: email, Microsoft Teams or Slack channels, ServiceNow and more. 
+<ProductName /> allows you to configure your policy with conditions that will trigger manual approval of an environment request by a set of designated approvers via multiple optional channels: email, Microsoft Teams or Slack channels, ServiceNow and more. 
 
 For example, you could have an approval policy that sets the max_duration for environments at 3 hours, so attempting to launch an environment with a duration that is longer than 3 hours will require approval.
 
@@ -277,7 +277,7 @@ Approvers are defined in the __[Approval Channels](/governance/approval-channels
    A green checkmark next to the repository's URL indicates that the repository has been added successfully.
       > ![Locale Dropdown](/img/repository-connection.png)
 4. Click __Discover Policies__.
-5. Select the policies you want to import into Torque and click __Generate Policies__.
+5. Select the policies you want to import into <ProductName /> and click __Generate Policies__.
    > ![Locale Dropdown](/img/policy-import.png)
 
     The policies are displayed in the __Policies__ page.
@@ -301,7 +301,7 @@ You can also duplicate any built-in or custom policy to create a similar version
 
 ## Updating policies
 
-Torque's custom policies are version controlled in git. Next to each policy, you can see the specific commit which is currently being used for that policy across the account:
+<ProductName />'s custom policies are version controlled in git. Next to each policy, you can see the specific commit which is currently being used for that policy across the account:
 > ![Locale Dropdown](/img/policy_commit.png)
 
 From time to time, there will be a need to modify the policy's code (rego file). However, we must update the policy without any disruption to the users. This means that the data object format and the rego file must match. 
@@ -309,10 +309,10 @@ From time to time, there will be a need to modify the policy's code (rego file).
 Clicking on the policy there is an option to update the rego:
 > ![Locale Dropdown](/img/update-rego.png)
 
-If there is no change in the data object format, the update is completed and applied across the account. However, if there is a change in the data object, we cannot complete the update until the user will complete the change of the data object, otherwise the policy will start failing and will cause a disruption for the account users. Therefore, when Torque detects a change in the format of the data object, it will load the new data object structure and wait for the user to modify it.
+If there is no change in the data object format, the update is completed and applied across the account. However, if there is a change in the data object, we cannot complete the update until the user will complete the change of the data object, otherwise the policy will start failing and will cause a disruption for the account users. Therefore, when <ProductName /> detects a change in the format of the data object, it will load the new data object structure and wait for the user to modify it.
 Once done, the user needs to invoke the "update-rego" again and at this point it will complete successfully as the rego code and the data format match.
 
-## Video: Torque policies (end-to-end tutorial)
+## Video: <ProductName /> policies (end-to-end tutorial)
 
 <video controls width="75%">
   <source src="/img/policies-full.mp4"/>

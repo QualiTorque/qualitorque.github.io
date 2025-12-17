@@ -9,7 +9,7 @@ The cost report provides detailed insights into how each business application co
 
 Within this report, users can get a comprehensive understanding of:
 - Current and historical cloud spend
-- [Realized savings (achieved by Torque)](/reports/cloud-efficiency#the-realized-savings-report)
+- [Realized savings (achieved by <ProductName />)](/reports/cloud-efficiency#the-realized-savings-report)
 - [Potential savings](#the-potential-savings-report) and and strategies to achieve them
 
 This report empowers users to answer key questions such as:
@@ -30,9 +30,9 @@ We can now [cross-filter](/reports/using-reports#cross-filtering) by this space 
 
 ## The Realized Savings Report
 
-The Realized Savings Report provides a comprehensive overview of the cost savings achieved through the use of Torque. By employing Torque's Workflows after the deployment of environments, users can efficiently (manually or automatically) start and stop cloud resources within an environment when they are not in use. When resources are stopped, users avoid incurring costs, resulting in tangible savings on cloud expenses.
+The Realized Savings Report provides a comprehensive overview of the cost savings achieved through the use of <ProductName />. By employing <ProductName />'s Workflows after the deployment of environments, users can efficiently (manually or automatically) start and stop cloud resources within an environment when they are not in use. When resources are stopped, users avoid incurring costs, resulting in tangible savings on cloud expenses.
 
-Torque actively monitors the status of resources in each environment, distinguishing between running and stopped states. The occurrences where resources are stopped, facilitated by Torque actions, contribute to the realized savings. The report offers a macroscopic view of overall savings, allowing users to comprehend the impact of their actions and workflows.
+<ProductName /> actively monitors the status of resources in each environment, distinguishing between running and stopped states. The occurrences where resources are stopped, facilitated by <ProductName /> actions, contribute to the realized savings. The report offers a macroscopic view of overall savings, allowing users to comprehend the impact of their actions and workflows.
 
 > ![Locale Dropdown](/img/reports-realized-1.png)
 
@@ -58,7 +58,7 @@ If we look at the first resource - its type is "Standard_B4ms". Querying Azure, 
 0.05*80 = 4$
 ```
 
-To make the calculation more realistic, Torque then reduces 20% of the cost:
+To make the calculation more realistic, <ProductName /> then reduces 20% of the cost:
 
 ``` 
 4*0.8 = 3.2$
@@ -68,7 +68,7 @@ Hence the savings for this resource is 3.20$ for the analyzed period of time.
 
 ## The Potential Savings Report
 
-Detecting inactivity of cloud resources is a crucial aspect of optimizing cost and resource utilization within cloud environments. Torque leverages advanced machine learning techniques as part of its monitoring mechanisms to accurately identify periods when cloud resources remain inactive or underutilized.
+Detecting inactivity of cloud resources is a crucial aspect of optimizing cost and resource utilization within cloud environments. <ProductName /> leverages advanced machine learning techniques as part of its monitoring mechanisms to accurately identify periods when cloud resources remain inactive or underutilized.
 
 This intelligent analysis reveals to users the specific timeframes during which they can take actions or create workflows to automatically stop or scale down resources. This proactive approach, guided by machine learning insights, enables users to minimize unnecessary costs associated with idle cloud resources.
 

@@ -9,7 +9,7 @@ In the following example, Terraform is utilized to orchestrate a GKE (Google Clo
 
 > ![GKE Environment](/img/gke-cluster.png)
 
-The following blueprint is build out of two grains dependent on one another. The application will be deployed only once the GKE cluster will be fully up and running including all required networking, storage and compute elements. Part of the GKE orchestration includes saving the kube config file available for the Torque agent, so __the application can be installed without a Torque agent in the newly created cluster__. The Torque agent, will use the kube-config file to authenticate into the GKE cluster and execute the application.
+The following blueprint is build out of two grains dependent on one another. The application will be deployed only once the GKE cluster will be fully up and running including all required networking, storage and compute elements. Part of the GKE orchestration includes saving the kube config file available for the <ProductName /> agent, so __the application can be installed without a <ProductName /> agent in the newly created cluster__. The <ProductName /> agent, will use the kube-config file to authenticate into the GKE cluster and execute the application.
 
 ```yaml
 spec_version: 2

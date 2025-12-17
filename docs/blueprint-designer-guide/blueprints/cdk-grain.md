@@ -3,7 +3,7 @@ sidebar_position: 7
 title: The CDK Grain
 ---
 
-The AWS CDK grain enables you to orchestrate the deployment and management of AWS resources using the [AWS Cloud Development Kit (CDK)](https://aws.amazon.com/cdk/) as part of a Torque blueprint. This grain allows you to define, provision, and manage AWS infrastructure using familiar programming languages and the CDK toolchain.
+The AWS CDK grain enables you to orchestrate the deployment and management of AWS resources using the [AWS Cloud Development Kit (CDK)](https://aws.amazon.com/cdk/) as part of a <ProductName /> blueprint. This grain allows you to define, provision, and manage AWS infrastructure using familiar programming languages and the CDK toolchain.
 
 :::info
 Currently, the CDK grain supports only the Python SDK.
@@ -118,7 +118,7 @@ Specifies the agent on which to run the CDK deployment. You can also specify a `
 
 ### `env-vars`
 
-A list of environment variables to set for the CDK process. Supports static values and Torque templating.
+A list of environment variables to set for the CDK process. Supports static values and <ProductName /> templating.
 
 ### `workspace-directories`
 
@@ -146,10 +146,10 @@ Defines dependencies on other grains, ensuring this grain runs after the specifi
 - The AWS CDK grain expects a valid CDK app (e.g., Python, TypeScript, etc.) in the specified path.
 - Ensure that your agent has the necessary AWS credentials and permissions to deploy the resources defined in your CDK app.
 - Use environment variables to pass configuration and secrets securely.
-- You can use Torque's templating engine to inject dynamic values from blueprint inputs or parameters.
+- You can use <ProductName />'s templating engine to inject dynamic values from blueprint inputs or parameters.
 
 ## See Also
 
 - [AWS CDK Documentation](https://docs.aws.amazon.com/cdk/latest/guide/home.html)
-- [Torque Templating Engine](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#torque-templating-engine)
+- [<ProductName /> Templating Engine](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#torque-templating-engine)
 - [Blueprint YAML Structure](/blueprint-designer-guide/blueprints/blueprints-yaml-structure)

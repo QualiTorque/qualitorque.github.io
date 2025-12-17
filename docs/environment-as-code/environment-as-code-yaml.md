@@ -3,14 +3,14 @@ sidebar_position: 1
 title: The Environment YAML
 ---
 
-Environment as Code (EaC) allows you to define and manage Torque environments using YAML files. If you know how to write Torque blueprints, you can write EaC YAML files. The structure of an EaC YAML file is similar to a blueprint, with the addition of an 'environment' section that defines the properties of the specific environment instance.
+Environment as Code (EaC) allows you to define and manage <ProductName /> environments using YAML files. If you know how to write <ProductName /> blueprints, you can write EaC YAML files. The structure of an EaC YAML file is similar to a blueprint, with the addition of an 'environment' section that defines the properties of the specific environment instance.
 
 ## Environment Discovery
 
-Environment YAML files must be placed under the 'environments' directory in the repository. Torque periodically scans this directory for environment YAML files and stores them internally.
+Environment YAML files must be placed under the 'environments' directory in the repository. <ProductName /> periodically scans this directory for environment YAML files and stores them internally.
 
 :::note
-Environments are written in YAML files that reside in an __/environments__ folder within a source control repository onboarded to Torque (the folder name is case-sensitive and must be "environments"). Environments kept in the __/environments__ folder must be of type ".yaml" and not ".yml" to be used in Torque.
+Environments are written in YAML files that reside in an __/environments__ folder within a source control repository onboarded to <ProductName /> (the folder name is case-sensitive and must be "environments"). Environments kept in the __/environments__ folder must be of type ".yaml" and not ".yml" to be used in <ProductName />.
 :::
 
 The directory structure should be as follows:
@@ -22,7 +22,7 @@ environments/
     devbox.yaml
 ```
 
-When a new environment YAML file is detected or an existing one is modified, Torque performs validations on the file. If the file is valid, a snapshot is saved, which will be used to create or reconcile the environment. If the file is invalid, it will not affect the existing snapshot or the environment.
+When a new environment YAML file is detected or an existing one is modified, <ProductName /> performs validations on the file. If the file is valid, a snapshot is saved, which will be used to create or reconcile the environment. If the file is invalid, it will not affect the existing snapshot or the environment.
 
 If a user modifies the environment YAML file, the changes will be applied to the corresponding environment.
 
@@ -38,7 +38,7 @@ All sources must contain a commit hash or tag.
 
 ## Usage Example
 
-Here's an example of a Torque environment YAML file:
+Here's an example of a <ProductName /> environment YAML file:
 
 ```yaml
 spec_version: 2
@@ -124,7 +124,7 @@ In this example, the `environment` section defines the environment name, descrip
 
 The `grains` section contains the list of grains that make up the environment, similar to a blueprint. Each grain specifies its kind (e.g., `terraform`, `blueprint`, etc.), version, and other configuration details specific to that grain type.
 
-By following this structure, users can define and manage their environments as code, allowing for version control, collaboration, and automated deployments using Torque's Environment as Code (EaC) functionality.
+By following this structure, users can define and manage their environments as code, allowing for version control, collaboration, and automated deployments using <ProductName />'s Environment as Code (EaC) functionality.
 
 ## Environment section
 
@@ -173,7 +173,7 @@ environment:
 
 ### `owner_email`
 
-The email address of the environment owner. This field is required and must be a valid email address of a user in the Torque system.
+The email address of the environment owner. This field is required and must be a valid email address of a user in the <ProductName /> system.
 
 ```yaml
 environment:
@@ -216,7 +216,7 @@ environment:
 
 ### `spaces`
 
-Specifies which Torque spaces this environment belongs to. Environments can be associated with multiple spaces for organization and access control purposes.
+Specifies which <ProductName /> spaces this environment belongs to. Environments can be associated with multiple spaces for organization and access control purposes.
 
 ```yaml
 environment:
@@ -287,7 +287,7 @@ environment:
 
 ## EaC Management APIs
 
-Torque provides REST APIs for managing Environment as Code (EaC) files and their associated environments. These APIs allow you to control the lifecycle and behavior of EaC-managed environments.
+<ProductName /> provides REST APIs for managing Environment as Code (EaC) files and their associated environments. These APIs allow you to control the lifecycle and behavior of EaC-managed environments.
 
 ### Enable/Disable EaC Record
 
@@ -394,5 +394,5 @@ curl -X DELETE "https://portal.qtorque.io/api/spaces/my-space/environments/env-1
 - Use terminate for clean decommissioning of EaC-managed environments
 
 :::warning
-Once an environment is detached from its EaC file, it cannot be re-attached. The environment becomes a standard Torque environment and must be managed manually or through regular APIs.
+Once an environment is detached from its EaC file, it cannot be re-attached. The environment becomes a standard <ProductName /> environment and must be managed manually or through regular APIs.
 :::

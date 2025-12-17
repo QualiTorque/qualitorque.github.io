@@ -3,24 +3,24 @@ sidebar_position: 9
 title: The CloudShell Grain
 ---
 
-The CloudShell grain allows you to integrate Torque with Quali CloudShell. CloudShell blueprints are treated as assets in Torque, extending Torque's capabilities to manage physical resources alongside cloud and container environments.
+The CloudShell grain allows you to integrate <ProductName /> with Quali CloudShell. CloudShell blueprints are treated as assets in <ProductName />, extending <ProductName />'s capabilities to manage physical resources alongside cloud and container environments.
 
 ## Prerequisites
 
 Before using the CloudShell grain, ensure you have:
 
 - A healthy CloudShell instance with proper connectivity
-- Configured integration between Torque and CloudShell
+- Configured integration between <ProductName /> and CloudShell
 - An agent with direct connectivity to the self-hosted CloudShell instance
 
 For detailed setup instructions, see [Self-Managed Quali CloudShell](/admin-guide/source-control/source-managed-cloudshell).
 
 ## Environment lifecycle management
 
-When launching an environment in Torque with the CloudShell grain, Torque will start a sandbox in CloudShell with the same duration. The lifecycle is fully synchronized:
+When launching an environment in <ProductName /> with the CloudShell grain, <ProductName /> will start a sandbox in CloudShell with the same duration. The lifecycle is fully synchronized:
 
-- **Extension**: If the Torque environment is extended, the CloudShell sandbox will be extended accordingly
-- **Termination**: When the Torque environment ends, the CloudShell sandbox will be terminated as well
+- **Extension**: If the <ProductName /> environment is extended, the CloudShell sandbox will be extended accordingly
+- **Termination**: When the <ProductName /> environment ends, the CloudShell sandbox will be terminated as well
 
 ## Usage example
 
@@ -85,7 +85,7 @@ Please see [the grain agent](/blueprint-designer-guide/blueprints/blueprints-yam
 Similar to blueprint inputs, the CloudShell grain `inputs` allow you to reuse the same CloudShell Blueprint in different configurations. Inputs provided to the CloudShell grain are used when launching the CloudShell Blueprint.
 
 :::tip
-We recommend using Torque's auto-discovery capability to quickly model your CloudShell Blueprint within Torque, including all defined inputs and their types.
+We recommend using <ProductName />'s auto-discovery capability to quickly model your CloudShell Blueprint within <ProductName />, including all defined inputs and their types.
 :::
 
 **Example:**

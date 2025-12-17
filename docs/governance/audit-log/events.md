@@ -16,8 +16,8 @@ These events are captured by Audit Log. All events are of type "string".
 
 |Event                   |Description|Scopes                             |Data (parameters)                                 |
 |------------------------|---------------------------|-----------------------------------|--------------------------------------------|
-|Add approval channel    | New approval channel was added to Torque's __Approval Channels__ administration page.. |  |- Name<br />- Type|
-|Delete approval channel | Approval channel was deleted from Torque's __Approval Channels__ administration page.   | |- Name<br />- Type|
+|Add approval channel    | New approval channel was added to <ProductName />'s __Approval Channels__ administration page.. |  |- Name<br />- Type|
+|Delete approval channel | Approval channel was deleted from <ProductName />'s __Approval Channels__ administration page.   | |- Name<br />- Type|
 |Policy auto approved    | Policy was approved automatically by OPA. |  Account/Space  |- Name<br />- Type|
 |Update approval channel | Approval channel's settings were updated, like description or approvers list. |                   |- Approval type (auto/manual)<br />- Approval status (approved/denied)<br />- Entity type<br />- Entity name<br />- Action (Launch/Extend)<br />- Policy path + name<br />- Approver Email (if approval type is manual)<br />- Notes (if exist)|
 
@@ -70,7 +70,7 @@ These events are captured by Audit Log. All events are of type "string".
 |Termination Completed|Environment's termination completed.|Account/Space/Environment||
 |Force Terminate|Environment was force terminated immediately.|Account/Space/Environment||
 |Owner changed|Environment's owner was changed.|Account/Space/Environment|- New owner|
-|Updates Detected|Torque detected a change in the asset files in the repository.|Account/Space/Environment|- Grain|
+|Updates Detected|<ProductName /> detected a change in the asset files in the repository.|Account/Space/Environment|- Grain|
 |Update Started|Environment's update was initiated by the user to update the environment with the latest changes to the asset files.|Account/Space/Environment|- Grain|
 |Update Complete|Environment was updated.|Account/Space/Environment|- Grain|
 |Update Dismissed|User dismissed updates to the asset files, choosing to leave their environment as is.|Account/Space/Environment|- Grain|
@@ -82,7 +82,7 @@ These events are captured by Audit Log. All events are of type "string".
 |Added to Space|Added an agent to a space.|Account/Space|- Host name<br />- Cloud<br />- Type (Docker, K8s), Space|
 |Created|Created a new agent.|Account|- Host name<br />- Cloud<br />- Type (Docker, K8s)|
 |Connected|Agent was successfully connected to the cluster.|Account|- host_name<br />- Type (Docker, K8s)|
-|Deleted|Agent was deleted from Torque.|Account|- Host name<br />- Cloud<br />- Type (Docker, K8s)|
+|Deleted|Agent was deleted from <ProductName />.|Account|- Host name<br />- Cloud<br />- Type (Docker, K8s)|
 |Removed From Space|Agent was removed from a space.|Account/Space|- Host name<br />- Cloud<br />- Type (Docker, K8s), Space|
 |Renamed| Agent's name was changed.|Account|-old_host_name<br />- new_host_name<br />- type|
 
@@ -91,7 +91,7 @@ These events are captured by Audit Log. All events are of type "string".
 |Event                   |Description|Scopes                             |Data (parameters)                                 |
 |------------------------|---------------------|-----------------------------------|--------------------------------------------|
 |Added|New notification target was created.|Account, Space|- Name<br />- Target| 
-|Deleted|Notification target was deleted from Torque.|Account/Space|- Old Name<br />- New Name<br />- Old Target type<br />- New Target type|
+|Deleted|Notification target was deleted from <ProductName />.|Account/Space|- Old Name<br />- New Name<br />- Old Target type<br />- New Target type|
 |Enabled Toggled|Notifications were enabled for a notification target.|Account/Space|- Name<br />- Old enabled <br />- New enabled|
 |Modified|Notification target was modified (name, enabled notifications, etc.|Account/Space|- Name|
 
@@ -107,13 +107,13 @@ These events are captured by Audit Log. All events are of type "string".
 
 |Event                   |Description|Scopes                             |Data (parameters)                                 |
 |------------------------|-------------------------|-----------------------------------|--------------------------------------------|
-|Deleted|Policy was deleted from Torque.|Account|- Name<br />- approvalChannel<br />- overridable<br />- manualInitiation|
+|Deleted|Policy was deleted from <ProductName />.|Account|- Name<br />- approvalChannel<br />- overridable<br />- manualInitiation|
 |Disabled| Policy was disabled.         |Account|- policyName<br />- enabledValue|
 |Duplicated | A copy of an existing policy was created. |Account|- policyName<br />- existingPolicyName<br />- isCustom<br />- spaceNames|
 |Enabled | Policy was enabled.          |Account|- policyName<br />- enabledValue|
 |Imported|  Policy was imported from a connected policy repository.         |Account|- policyName|
 |Modified|  Policy's settings were modified.         |Account|- policyName|
-|Synchronized| The version of a custom policy in Torque was synced with the policy version in the repository.|Account|- policyName|
+|Synchronized| The version of a custom policy in <ProductName /> was synced with the policy version in the repository.|Account|- policyName|
 
 
 ## Repository
@@ -129,9 +129,9 @@ These events are captured by Audit Log. All events are of type "string".
 
 |Event                   |Description|Scopes                             |Data (parameters)                                 |
 |------------------------|-----------------------------------|--------------------------------------------|--|
-|Create|New space was created in Torque.|Account/Space||
+|Create|New space was created in <ProductName />.|Account/Space||
 |Modify|Space's settings were modified (name, icon, banner color).|Account/Space|- oldProperties (name, color, icon)<br />- newProperties (name, color, icon)|
-|Delete|Space was deleted from Torque.|Account/Space||
+|Delete|Space was deleted from <ProductName />.|Account/Space||
 
 
 ## Tag
@@ -147,12 +147,12 @@ These events are captured by Audit Log. All events are of type "string".
 
 |Event                   |Description|Scopes                             |Data (parameters)                                 |
 |------------------------|-----------------------------------|--------------------------------------------|--|
-|Invited|User was invited to join Torque (Torque invitation email).|Account|- User Email|
-|Invitation Cancelled|Torque invitation was cancelled by an admin.|Account|- User Email<br />- User Role<br />- Space|
-|Sign up|New user signed up to Torque.|Account|- User Email|
+|Invited|User was invited to join <ProductName /> (<ProductName /> invitation email).|Account|- User Email|
+|Invitation Cancelled|<ProductName /> invitation was cancelled by an admin.|Account|- User Email<br />- User Role<br />- Space|
+|Sign up|New user signed up to <ProductName />.|Account|- User Email|
 |User Account Role Updated|User's account role was changed (or attached - for new users).|Account|- User Email<br />- oldRole<br />- newRole|
-|Deleted|User was deleted from Torque.|Account|- User Email|
-|Login|User logged into Torque.|Account|- User Email|
+|Deleted|User was deleted from <ProductName />.|Account|- User Email|
+|Login|User logged into <ProductName />.|Account|- User Email|
 |Reset Password|User's password was reset.|Account|- User Email|
 |User Added to Space|User was added to a space.|Account/Space|- User Email<br />- reason<br />- space name<br />- given space role|
 |User Space Role Updated|User's space role was changed (space admin/dev/member).|Account|- User Email<br />- oldRole<br />- newRole|
@@ -162,7 +162,7 @@ These events are captured by Audit Log. All events are of type "string".
 |Event                   |Description|Scopes                             |Data (parameters)                                 |
 |------------------------|-----------------------------------|--------------------------------------------|--|
 |Created| Created a new workflow.|Account |- Name|
-|Deleted| Deleted a workflow from Torque.|Account |- Name|
+|Deleted| Deleted a workflow from <ProductName />.|Account |- Name|
 |Disabled| Disabled a workflow.|Account |- Name|
 |Enabled| Enabled a workflow.|Account |- Name|
 |Ended|Workflow's execution ended at the completion of all its actions. |Account/Environment |- Name<br />- Actor (User/Schedule)<br />-If the actor is User, user details (email) is displayed|

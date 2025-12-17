@@ -58,5 +58,5 @@ To clear the cross filter, click on the cross filter sign.
 ## The Environments Table ##
 
 At the end of each report you can find the environments table.
-The environments are the main entity in Torque, and this table can be used to drill into the details of interesting data. From the environments table you can directly access each environment to investigate it.
+The environments are the main entity in <ProductName />, and this table can be used to drill into the details of interesting data. From the environments table you can directly access each environment to investigate it.
 

@@ -3,11 +3,11 @@ sidebar_position: 1
 title: GitHub Source Control
 ---
 
-Torque supports connecting asset/blueprint repositories on GitHub out of the box. However, to connect a repository, you must have access to the repository and grant Torque permission to the repository's organization, as explained below. For details about connecting a repository, see [Discover Your Assets](/getting-started/asset-discovery). You should be able to sign in with an account on any one of these online services and immediately get going with connecting asset repositories and launching environments.
+<ProductName /> supports connecting asset/blueprint repositories on GitHub out of the box. However, to connect a repository, you must have access to the repository and grant <ProductName /> permission to the repository's organization, as explained below. For details about connecting a repository, see [Discover Your Assets](/getting-started/asset-discovery). You should be able to sign in with an account on any one of these online services and immediately get going with connecting asset repositories and launching environments.
 
 **In this article:**
 - [Ensure your account is added to the GitHub organization you're connecting](#ensure-your-account-is-added-to-the-github-organization-youre-connecting)
-- [Ensure your organization has granted access to Torque](#ensure-your-organization-has-granted-access-to-torque)
+- [Ensure your organization has granted access to <ProductName />](#ensure-your-organization-has-granted-access-to-torque)
 - [Token expiration and revocation](#token-expiration-and-revocation)
 
 **This article refers to the SAAS version of GitHub (github.com). If you're using self hosted GitHub Enterprise, check [here](/admin-guide/source-control/Self%20Hosted%20Repositories/overview)**.
@@ -18,26 +18,26 @@ Torque supports connecting asset/blueprint repositories on GitHub out of the box
 1. Go to [https://github.com/orgs/\{YOUR_ORG\}/people](https://github.com/orgs/\{YOUR_ORG\}/people).
 2. Make sure your user is listed in the organization. If not, make sure the user is added as a member with global read access.
 
-## Ensure your organization has granted access to Torque
+## Ensure your organization has granted access to <ProductName />
 
-When connecting a repository, Torque installs an OAuth app called __Torque Control Plane__ on the organization. This app provides Torque with the necessary permissions to the organization's repositories. If Torque doesn't have access, you will be prompted to grant the proper authorizations when connecting the asset repository. The approved applications are listed in the [GitHub Applications](https://github.com/settings/applications) page. 
+When connecting a repository, <ProductName /> installs an OAuth app called __Torque Control Plane__ on the organization. This app provides <ProductName /> with the necessary permissions to the organization's repositories. If <ProductName /> doesn't have access, you will be prompted to grant the proper authorizations when connecting the asset repository. The approved applications are listed in the [GitHub Applications](https://github.com/settings/applications) page. 
 
   1. Go to [GitHub Applications](https://github.com/settings/applications).
   2. Revoke any existing access to the __Quali Torque__ app.
       > ![Locale Dropdown](/img/revoke-access.png)
-  3. In Torque, go to the space's __Settings > Repositories__ area and connect the repository.
+  3. In <ProductName />, go to the space's __Settings > Repositories__ area and connect the repository.
   4. Authorize the organization. 
       > ![Locale Dropdown](/img/torque-access.png)
   
-  At this point, the Torque app is installed in the organization without permissions.
+  At this point, the <ProductName /> app is installed in the organization without permissions.
 
   5. Enter your account's password and confirm the action. 
      * If you're not an administrator in the organization, ask the administrator to grant access to the app in the [GitHub Applications](https://github.com/settings/applications) page. 
      * If you already authorized the __Torque Control Plane__ app without also granting access to an organization with repositories you want to connect, click the app's name in the GitHub Applications page, and in the __Organization access__ section, click the organization's __Request__ button.
      > ![Locale Dropdown](/img/request-org-access.png)
   
-  The Torque app is granted the necessary permissions and the repository is connected.
-  6. Return to Torque and continue setting up the connection.
+  The <ProductName /> app is granted the necessary permissions and the repository is connected.
+  6. Return to <ProductName /> and continue setting up the connection.
 
 ## Token expiration and revocation
 

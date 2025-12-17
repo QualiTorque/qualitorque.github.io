@@ -4,7 +4,7 @@ title: Supported Platforms
 ---
 
 ## Cloud and Infrastructure Providers
-Torque supports installation of an agent over the following platforms:
+<ProductName /> supports installation of an agent over the following platforms:
 
 * Microsoft Azure via [Azure Kubernetes Service](https://azure.microsoft.com/en-us/products/kubernetes-service) (AKS) 
 * Amazon Web Services (AWS) via [Elastic Kubernetes Service](https://aws.amazon.com/eks/) (EKS)
@@ -14,9 +14,9 @@ Torque supports installation of an agent over the following platforms:
 * Docker-based agent on VMWare vCenter
 
 ## Infrastructure as Code Frameworks
-Torque provides native support for IaC assets residing in a git repository. When connecting an IaC asset repository to Torque, Torque maps your repository's assets, prompts you to select the ones you would like to use in Torque, and auto-creates working blueprints out of the selected assets. Additionally, Torque allows you to insert custom Linux-script based automation as a component of a blueprint.
+<ProductName /> provides native support for IaC assets residing in a git repository. When connecting an IaC asset repository to <ProductName />, <ProductName /> maps your repository's assets, prompts you to select the ones you would like to use in <ProductName />, and auto-creates working blueprints out of the selected assets. Additionally, <ProductName /> allows you to insert custom Linux-script based automation as a component of a blueprint.
 
-Torque supports the following IaC frameworks:
+<ProductName /> supports the following IaC frameworks:
 * [Terraform](/blueprint-designer-guide/blueprints/terraform-grain.md)
 * [Kubernetes](/blueprint-designer-guide/blueprints/kubernetes-grain.md)
     * [Helm](/blueprint-designer-guide/blueprints/helm-grain.md)
@@ -48,7 +48,7 @@ For more details, see [Blueprint YAML](/blueprint-designer-guide/blueprints/blue
 \* Cloudformation drift reconciliation is in beta 
 
 ## CI/CD Tooling
-Torque enables you to integrate with various leading CI/CD tools such as Bamboo, Jenkins and TeamCity, to facilitate your application development activities.
+<ProductName /> enables you to integrate with various leading CI/CD tools such as Bamboo, Jenkins and TeamCity, to facilitate your application development activities.
 
 * [Azure DevOps](/eco-system/ci-cd-tooling/azure-devops.md)
 * [CircleCI](/eco-system/ci-cd-tooling/circle-ci.md)

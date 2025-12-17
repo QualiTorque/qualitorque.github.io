@@ -2,15 +2,15 @@
 sidebar_position: 2
 title: Provision Terraform
 ---
-__Torque Control Plane__ offers centralized orchestration and management for Terraform and other IaC tools. In this guide, we will go over some of Torque basic features allowing quick onboarding of Terraform modules into the platform, standardization of Terraform automation using blueprints and securing deployment process using tagging, policies and RBAC.
+__Torque Control Plane__ offers centralized orchestration and management for Terraform and other IaC tools. In this guide, we will go over some of <ProductName /> basic features allowing quick onboarding of Terraform modules into the platform, standardization of Terraform automation using blueprints and securing deployment process using tagging, policies and RBAC.
 
 In this quick-start guide, we will cover the following topics:
-1. Create a new Torque Space
+1. Create a new <ProductName /> Space
 2. Onboard a GitHub repository and discover the automation assets in it
 3. Generate your first blueprint and modify it to include deployment credentials
 4. Launch a blueprint and get access to the deployed resource in the newly created environment
 
-> NOTE: This guide will focus on AWS and Azure Terraform workloads, [click here](/overview/supported-platforms.md) for more information about Torque supported platform.
+> NOTE: This guide will focus on AWS and Azure Terraform workloads, [click here](/overview/supported-platforms.md) for more information about <ProductName /> supported platform.
 
 ## Step #1: Create a space
 :::info
@@ -27,12 +27,12 @@ __Spaces__ are logically separate area that contains an association to one or mo
 
 
 ## Step #2: Connect a repository
-Now, that you have a new space configured, we will associate a repository to the space and generate blueprints using the automation-assets that will be discovered by Torque in that repository. We recommend using your-own repository hosted in one of the supported Git Providers. For using on-prem/hosted versions of one of the supported (Version Control System)) providers, see [Repository Setup](/admin-guide/source-control/source-control-github).
+Now, that you have a new space configured, we will associate a repository to the space and generate blueprints using the automation-assets that will be discovered by <ProductName /> in that repository. We recommend using your-own repository hosted in one of the supported Git Providers. For using on-prem/hosted versions of one of the supported (Version Control System)) providers, see [Repository Setup](/admin-guide/source-control/source-control-github).
 
-1. In the __repository onboarding__ wizard, choose your VCS provider, provide the repository URL and click "Connect". Torque will open a new windows where you will be requested to authenticate to the VSC provider. VCS providers work differently, but usually, a token will be generated for your user and Torque will use that for any communication with that VCS. 
+1. In the __repository onboarding__ wizard, choose your VCS provider, provide the repository URL and click "Connect". <ProductName /> will open a new windows where you will be requested to authenticate to the VSC provider. VCS providers work differently, but usually, a token will be generated for your user and <ProductName /> will use that for any communication with that VCS. 
 > Note: you can always use [this](https://github.com/QualiTorque/Sample-Terraform) example repository with some pre-existing automation assets.
 
-2. Click "Discover Assets" to initiate the __Torque asset discovery process__ that will go over the repository and highlight the automation assets Torque discovered.
+2. Click "Discover Assets" to initiate the __Torque asset discovery process__ that will go over the repository and highlight the automation assets <ProductName /> discovered.
 3. To __generate a blueprint__ from one of the discovered assets, check the blueprint in the list and click on "Generate Blueprints"
 4. Click on "Connect an Agent"
 
@@ -50,7 +50,7 @@ __Quali Hosted Agent__ is a free pre-configured agent hosted by Quali allowing y
 3. In the following step, we will modify the blueprint using the __YAML editor__ adding authentication information for AWS or Azure so our Terraform module will be executed on them. This section is AWS or Azure specific, so make sure to follow the section matching your cloud provider.
 
 ### AWS authentication 
-The Quali-hosted agent needs your __AWS credentials__ to provision the environment on your AWS account. We will edit the blueprint to add the AWS credentials as environment variables, and expose them as inputs so it will be easier to provide them upon launch of a new environment. Editing the blueprint in the blueprint editor provides syntax highlighting, auto-correcting and live validation of the YAML and data provided. Make sure to click on "Save Changes" when updating the YAML to make sure the blueprint is saved in Torque.
+The Quali-hosted agent needs your __AWS credentials__ to provision the environment on your AWS account. We will edit the blueprint to add the AWS credentials as environment variables, and expose them as inputs so it will be easier to provide them upon launch of a new environment. Editing the blueprint in the blueprint editor provides syntax highlighting, auto-correcting and live validation of the YAML and data provided. Make sure to click on "Save Changes" when updating the YAML to make sure the blueprint is saved in <ProductName />.
 
 1. Add the following inputs under the input section of the blueprint:
 
@@ -72,7 +72,7 @@ The Quali-hosted agent needs your __AWS credentials__ to provision the environme
 
 
 ### Azure authentication 
-The Quali-hosted agent needs your __Azure credentials__ to provision the environment on your Azure account. We will edit the blueprint to add the Azure credentials as environment variables, and expose them as inputs so it will be easier to provide them upon launch of a new environment. Editing the blueprint in the blueprint editor provides syntax highlighting, auto-correcting and live validation of the YAML and data provided. Make sure to click on "Save Changes" when updating the YAML to make sure the blueprint is saved in Torque.
+The Quali-hosted agent needs your __Azure credentials__ to provision the environment on your Azure account. We will edit the blueprint to add the Azure credentials as environment variables, and expose them as inputs so it will be easier to provide them upon launch of a new environment. Editing the blueprint in the blueprint editor provides syntax highlighting, auto-correcting and live validation of the YAML and data provided. Make sure to click on "Save Changes" when updating the YAML to make sure the blueprint is saved in <ProductName />.
 
 
 1. Add the following inputs under the input section of the blueprint:

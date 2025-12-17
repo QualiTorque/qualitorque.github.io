@@ -5,7 +5,7 @@ title: The Blueprint Grain
 
 ## Reusable building-blocks
 
-The Blueprint grain is Torque’s built-in support for allowing a Torque blueprint to be used as a grain in another Torque blueprint. This process is called "nesting" and such a blueprint will then be referred to as a "nested blueprint" within the context of the blueprint in which it is used as a grain. The blueprint containing the blueprint grain is called the “nesting blueprint”. 
+The Blueprint grain is <ProductName />’s built-in support for allowing a <ProductName /> blueprint to be used as a grain in another <ProductName /> blueprint. This process is called "nesting" and such a blueprint will then be referred to as a "nested blueprint" within the context of the blueprint in which it is used as a grain. The blueprint containing the blueprint grain is called the “nesting blueprint”. 
 
 Nesting a blueprint allows you to carry over (in a single grain) all of the nested blueprint’s grains, internal dependencies, and orchestration relationships, while only needing to provide the inputs for the nested blueprint, and specify the outputs expected to be received from it. These outputs can then be referred to by other grains in the blueprint.
 
@@ -93,7 +93,7 @@ grains:
 Please see [the grain source](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#source) for more details.
 
 ### `agent`
-The blueprint grain does not require an agent as Torque uses the agent defined in the referenced blueprint. However, you can specify the agent as an input of ```type: agent``` on the blueprint level, and reference it from the grain, both as an input and in the host section.
+The blueprint grain does not require an agent as <ProductName /> uses the agent defined in the referenced blueprint. However, you can specify the agent as an input of ```type: agent``` on the blueprint level, and reference it from the grain, both as an input and in the host section.
 
 ### `inputs`
 Blueprint grain inputs are the names of the inputs of the nested blueprint, and the values being provided for each one when the blueprint is launched as a nested blueprint. These names must exactly match the input names in the ```inputs``` section of the nested blueprint’s blueprint YAML.

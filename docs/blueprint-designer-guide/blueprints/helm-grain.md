@@ -3,7 +3,7 @@ sidebar_position: 10
 title: The Helm Grain
 ---
 
-The Helm grain is Torque's native support for Helm v3 charts. Torque allows designers to use Helm specific features to easily orchestrate self-developer and community charts in a standard way and share them with others as building blocks.
+The Helm grain is <ProductName />'s native support for Helm v3 charts. <ProductName /> allows designers to use Helm specific features to easily orchestrate self-developer and community charts in a standard way and share them with others as building blocks.
 
 ## Tools and technologies
 
@@ -68,11 +68,11 @@ grains:
 
 ### `target-namespace`
 
-Torque will install the helm release in the namespace referred to in `target-namespace`.
+<ProductName /> will install the helm release in the namespace referred to in `target-namespace`.
 
 :::info
 - The target namespace must exist in the cluster prior to the deployment
-- It must not be equal to the namespaces used by Torque for agent deployments
+- It must not be equal to the namespaces used by <ProductName /> for agent deployments
 - Make sure the service account has enough permissions to create/read/delete everything in the helm chart and also create/read/delete secrets and volumes
 - To automatically create the namespace if it doesn't exist, see [Creating Namespace Automatically](#use-case-creating-namespace-automatically)
 :::
@@ -94,7 +94,7 @@ helloHelm:
 
 ### `source`
 
-The `source` section of a Helm grain provides Torque with the information on where the Helm chart is stored and should be retrieved from. This could be either a direct source URL to a Helm chart, or it can be a reference from a Torque-connected git repository.
+The `source` section of a Helm grain provides <ProductName /> with the information on where the Helm chart is stored and should be retrieved from. This could be either a direct source URL to a Helm chart, or it can be a reference from a <ProductName />-connected git repository.
 
 Please see [the grain source](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#source) for more details.
 
@@ -129,7 +129,7 @@ agent:
 
 ### `inputs`
 
-Similar to blueprint inputs and Terraform inputs, the Helm grain `inputs` allow you to reuse the same Helm chart in different ways using different values overrides. Inputs provided to the Helm grain are used when launching the Helm chart. We recommend using Torque's auto-discovery capability to quickly model your Helm chart within Torque including all defined inputs.
+Similar to blueprint inputs and Terraform inputs, the Helm grain `inputs` allow you to reuse the same Helm chart in different ways using different values overrides. Inputs provided to the Helm grain are used when launching the Helm chart. We recommend using <ProductName />'s auto-discovery capability to quickly model your Helm chart within <ProductName /> including all defined inputs.
 
 __Example:__
 
@@ -169,7 +169,7 @@ In Helm, the `values.yaml` file is a critical component that allows you to confi
 
 The `values.yaml` file contains the default configuration values for the templates used in the Helm chart. These values can be overridden at the time of deployment or during an upgrade by providing a different set of values.
 
-Torque supports referencing `values.yaml` files as inputs to the Helm grain, with the following syntax:
+<ProductName /> supports referencing `values.yaml` files as inputs to the Helm grain, with the following syntax:
 
 ```yaml
 grains:
@@ -219,7 +219,7 @@ outputs:
 
 ### `scripts`
 
-Torque provides the ability to execute custom code after Torque executes the Helm chart. This is useful for generating and using outputs, as explained in [helm outputs](#outputs).
+<ProductName /> provides the ability to execute custom code after <ProductName /> executes the Helm chart. This is useful for generating and using outputs, as explained in [helm outputs](#outputs).
 
 __Example - grain with a post-install script and outputs:__
 

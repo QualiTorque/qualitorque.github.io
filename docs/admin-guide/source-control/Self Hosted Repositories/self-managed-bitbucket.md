@@ -3,11 +3,11 @@ sidebar_position: 3
 title: Self-Managed BitBucket
 ---
 
-Torque supports connecting to self-managed BitBucket repositories, allowing you to discover and manage assets stored in your on-premises BitBucket instance.
+<ProductName /> supports connecting to self-managed BitBucket repositories, allowing you to discover and manage assets stored in your on-premises BitBucket instance.
 
 ## Prerequisites
 
-1. **Agent Installation**: You must have the Torque Agent installed with access to your self-managed BitBucket instance.
+1. **Agent Installation**: You must have the <ProductName /> Agent installed with access to your self-managed BitBucket instance.
 2. **BitBucket Access Token**: You will need a BitBucket Personal Access Token with the following permission scopes:
    1.  `api`
    2.  `read.api`
@@ -23,4 +23,4 @@ Torque supports connecting to self-managed BitBucket repositories, allowing you 
 
 > ![Add a repository](/img/bitbucket-connect.png)
 
-With a self-managed BitBucket repository configured in Torque, you can seamlessly manage and version control your assets stored in your on-premises BitBucket instance.
+With a self-managed BitBucket repository configured in <ProductName />, you can seamlessly manage and version control your assets stored in your on-premises BitBucket instance.

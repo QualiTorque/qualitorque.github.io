@@ -6,13 +6,13 @@ title: AWS Secrets Manager for Git Integration
 # Using AWS Secrets Manager for Git Repository Access
 
 ## Overview
-This guide explains how to use AWS Secrets Manager to manage and retrieve credentials for accessing a Git repository within the Torque platform. By using Secrets Manager, you can securely store and retrieve access tokens, which are then utilized by Torque's asset discovery (agent) and provisioning (runner) components, simplifying repository credential management while adhering to organizational security policies.
+This guide explains how to use AWS Secrets Manager to manage and retrieve credentials for accessing a Git repository within the <ProductName /> platform. By using Secrets Manager, you can securely store and retrieve access tokens, which are then utilized by <ProductName />'s asset discovery (agent) and provisioning (runner) components, simplifying repository credential management while adhering to organizational security policies.
 
 ## Scope
-This guide supports the use of third-party secret management services, specifically AWS Secrets Manager, to retrieve repository tokens for use in the Torque platform. This provides a flexible and secure way to manage repository credentials during asset discovery and provisioning processes.
+This guide supports the use of third-party secret management services, specifically AWS Secrets Manager, to retrieve repository tokens for use in the <ProductName /> platform. This provides a flexible and secure way to manage repository credentials during asset discovery and provisioning processes.
 
 ## Motivation
-Integrating AWS Secrets Manager into Torque allows users to manage repository credentials in a more secure manner, facilitating seamless integration with Torque's asset discovery and provisioning capabilities. It enhances adaptability to customer policies on secrets storage and management, thus streamlining secure repository access within Torque.
+Integrating AWS Secrets Manager into <ProductName /> allows users to manage repository credentials in a more secure manner, facilitating seamless integration with <ProductName />'s asset discovery and provisioning capabilities. It enhances adaptability to customer policies on secrets storage and management, thus streamlining secure repository access within <ProductName />.
 
 ## Steps to Configure AWS Secrets Manager for Repository Access
 
@@ -37,7 +37,7 @@ Integrating AWS Secrets Manager into Torque allows users to manage repository cr
          ]
      }
      ```
-2. **Add Trust Relationship**: Add a trust relationship policy to allow the Torque cluster to assume this role.
+2. **Add Trust Relationship**: Add a trust relationship policy to allow the <ProductName /> cluster to assume this role.
    ```json
    {
        "Effect": "Allow",
@@ -48,9 +48,9 @@ Integrating AWS Secrets Manager into Torque allows users to manage repository cr
    }
    ```
 
-### Step 3: Configure Git Credentials in Torque
-1. **Install the Agent**: Ensure that the Torque agent is installed.
-2. **Navigate to Torque Credentials**: In the Torque portal, navigate to the **Account Admin** -> **Credentials** page.
+### Step 3: Configure Git Credentials in <ProductName />
+1. **Install the Agent**: Ensure that the <ProductName /> agent is installed.
+2. **Navigate to <ProductName /> Credentials**: In the <ProductName /> portal, navigate to the **Account Admin** -> **Credentials** page.
 3. **Add New Git Credential**: Click on **Add New Credential** and select the credential type as **Gitlab**. In the dropdown list, choose the **Secret Manager** option.
 
 import pic1 from '/img/git-secret-manager.png';
@@ -67,7 +67,7 @@ import pic1 from '/img/git-secret-manager.png';
      - **Secret Path**: Represents the hierarchy of fields inside the secret's value.
    - **External ID** is optional but can be provided if required by your security policies.
 
-   The secret will be used by Torque's asset discovery (agent) or provisioning (runner) components to interact securely with the Git repository.
+   The secret will be used by <ProductName />'s asset discovery (agent) or provisioning (runner) components to interact securely with the Git repository.
 
 ## Troubleshooting
 1. **Verify Secret Retrieval**: You can manually verify that the secret can be retrieved using the AWS CLI or SDK to ensure proper configuration.
@@ -96,5 +96,5 @@ import pic1 from '/img/git-secret-manager.png';
 - **Audit and Monitoring**: Enable AWS CloudTrail to monitor access to your secrets and ensure compliance with your organization’s security policies.
 
 ## Summary
-By utilizing AWS Secrets Manager, you can securely store and manage Git repository credentials for use within the Torque platform, improving the security and compliance of your asset discovery and provisioning workflows. Follow the above steps to integrate Secrets Manager seamlessly with your Git operations in Torque.
+By utilizing AWS Secrets Manager, you can securely store and manage Git repository credentials for use within the <ProductName /> platform, improving the security and compliance of your asset discovery and provisioning workflows. Follow the above steps to integrate Secrets Manager seamlessly with your Git operations in <ProductName />.
 

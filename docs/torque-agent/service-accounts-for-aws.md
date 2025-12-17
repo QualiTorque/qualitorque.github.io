@@ -3,7 +3,7 @@ sidebar_position: 3
 title: Agents on AWS
 ---
 
-If you're using a Torque K8s agent that runs on an EKS cluster, and you want to deploy AWS resources using Infrastructure as Code (IaC) tools such as Terraform, CloudFormation, CDK, OpenTofu, Ansible, or others, you need to configure `authentication` and `permissions` between the Runner pod and the AWS account where the resources will be created. This is done by a service account, which contains these permissions, to the container. The permissions are defined in an IAM role that needs to be associated to the service account.
+If you're using a <ProductName /> K8s agent that runs on an EKS cluster, and you want to deploy AWS resources using Infrastructure as Code (IaC) tools such as Terraform, CloudFormation, CDK, OpenTofu, Ansible, or others, you need to configure `authentication` and `permissions` between the Runner pod and the AWS account where the resources will be created. This is done by a service account, which contains these permissions, to the container. The permissions are defined in an IAM role that needs to be associated to the service account.
 
 This authentication setup is required for any IaC tool that provisions AWS resources. While we'll use Terraform as the primary example throughout this guide, the same authentication mechanism applies to all AWS IaC tools.
 

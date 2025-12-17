@@ -7,7 +7,7 @@ title: Configuring Cost for AWS
 
 1. Ensure your IAM user that has full access to billing data (including adding cost allocation tags). For details, see this official AWS help page: [IAM tutorial: Delegate access to the billing console](https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_billing.html?icmpid=docs_iam_console#tutorial-billing-step1).
 2. Configure cost allocation tags in your AWS account. See the next section [AWS Cost setup](#aws-cost-setup).
-3. Create a role to be used by Torque to gather the cost information and obtain the following information :
+3. Create a role to be used by <ProductName /> to gather the cost information and obtain the following information :
      * __External Id__
      * __Role ARN__
    
@@ -15,8 +15,8 @@ title: Configuring Cost for AWS
 
 #### __AWS Cost setup:__
 
-To configure Torque’s Cost Allocation Tags:
-   1. Launch a sandbox via Torque OR add tags called __torque-account-id__ and __torque-environment-id__ to any resource in your AWS account.
+To configure <ProductName />’s Cost Allocation Tags:
+   1. Launch a sandbox via <ProductName /> OR add tags called __torque-account-id__ and __torque-environment-id__ to any resource in your AWS account.
    2. Login to your AWS management console and in the top toolbar, select __Services__.
    3. Search for __Billing__ and select it from the result list.
    4. Select __Cost Allocation Tags__.
@@ -34,7 +34,7 @@ To configure Torque’s Cost Allocation Tags:
 
 3. In the navigation pane of the IAM console, select __Roles__, and then click __Create Role__.
    1. From __Select trusted entity__, choose __AWS Account__.
-   2. Under An AWS account ID, select __An AWS account__ and enter 349148204654. (This is the Torque AWS account # where we will query the cost from).
+   2. Under An AWS account ID, select __An AWS account__ and enter 349148204654. (This is the <ProductName /> AWS account # where we will query the cost from).
    3. Select __Require external ID__.
    4. Enter an __External ID__ of your choosing. The External Id will be used to validate the Consumer of the ARN Role. __Keep note of the external ID as you will need it later in the configuration step__. 
    5. In __Next:Permissions__, select the policy you have just created in step 1 for cost exploration permission.
@@ -67,7 +67,7 @@ To configure Torque’s Cost Allocation Tags:
 
 ## Troubleshooting
 
-What can be done if you don't see cost in Torque's cost dashboard?
+What can be done if you don't see cost in <ProductName />'s cost dashboard?
 
 1. Cost collection happens only once a day and takes time. Make sure at least *48 hours passed* since you configured cost and you have environments running during that time frame.
 2. Choose one of the environments that should have cost associated with them in your AWS cloud, and do the following:
@@ -75,7 +75,7 @@ What can be done if you don't see cost in Torque's cost dashboard?
    > ![Locale Dropdown](/img/environment-id.png)
    2. In your AWS console, navigate to the billing service (e.g. https://us-east-1.console.aws.amazon.com/billing/home?region=us-east-1#/) and on the left panel select __Cost Expolorer > Daily Spend View__.
    3. On the __Filters__ panel on the right, select __Tag__ and search for __torque-environment-id__.
-   4. Click on the __>__ sign and select the environment id that you found via the Torque URL.
+   4. Click on the __>__ sign and select the environment id that you found via the <ProductName /> URL.
    5. If the environment id doesn't have cost associated with it, it means that the cost allocation tags are not configured correctly. Review [AWS Cost setup](#aws-cost-setup) again.
    6. If you see costs associated with this tag, test your credentials: navigate to __Administration > Cloud Accounts > Cost Collection Target > Choose your cloud > In the three dot menu click on validate__.
 

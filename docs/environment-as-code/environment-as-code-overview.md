@@ -3,9 +3,9 @@ sidebar_position: 1
 title: Overview
 ---
 
-## Torque **Environment as Code**
-Torque **Environment as code** provides a declarative way to define complex cloud environments, based on IaC assets (Terraform, Helm, CloudFormation, etc.) and governed by centralized policies. While 'as-code' practices were well adopted for infrastructure, configurations and policies, it is extremely difficult to combine them into a single source that fits the business requirements, can be generated using an automation process, audited and manually approved if required. <br />
-Using **Environment as code** you can ensure a standard workflow is being applied so changes to the environment (development, staging, production etc) are being tracked, tested and applied frequently per organizational policies and practices. With Torque blueprints as building blocks, one can launch and manage a Torque environment with maximum flexibility, access, and control while taking advantage of the predefined guardrails in place to prevent unwanted activity from occurring.
+## <ProductName /> **Environment as Code**
+<ProductName /> **Environment as code** provides a declarative way to define complex cloud environments, based on IaC assets (Terraform, Helm, CloudFormation, etc.) and governed by centralized policies. While 'as-code' practices were well adopted for infrastructure, configurations and policies, it is extremely difficult to combine them into a single source that fits the business requirements, can be generated using an automation process, audited and manually approved if required. <br />
+Using **Environment as code** you can ensure a standard workflow is being applied so changes to the environment (development, staging, production etc) are being tracked, tested and applied frequently per organizational policies and practices. With <ProductName /> blueprints as building blocks, one can launch and manage a <ProductName /> environment with maximum flexibility, access, and control while taking advantage of the predefined guardrails in place to prevent unwanted activity from occurring.
 
 
 ![Environment as Code overview](/img/eac-overview.png)
@@ -23,7 +23,7 @@ The GitOps approach extends the use of Git to an application's configuration, in
 
 Implementing GitOps implies that changes to applications and infrastructure are automatically synchronized with the live environment promoting source control management platforms as the single source of truth.
 
-Torque **Environment as code** provides an additional layer of control based on multi-tech, multi-cloud automation assets built for Git based operations (GitOps). With Torque you can launch, update, change and terminate complex application environments based on your existing Git flow.
+<ProductName /> **Environment as code** provides an additional layer of control based on multi-tech, multi-cloud automation assets built for Git based operations (GitOps). With <ProductName /> you can launch, update, change and terminate complex application environments based on your existing Git flow.
 
-## Implementing Environment as Code with Torque
-Implementing Environment as Code using Torque involves discovering your infrastructure-as-code assets as blueprints and combining them using the Torque environment YAML together with metadata that will be kept and evaluated upon launch, updates and termination of the environment. Every Torque environment, regardless if operated in a GitOps manner or not, is managed using an environment YAML behind the scenes. Browsing to the environment YAML in the Torque self-service portal on any running environment can give a glimpse of how the YAML looks like for the specific environment launch.
+## Implementing Environment as Code with <ProductName />
+Implementing Environment as Code using <ProductName /> involves discovering your infrastructure-as-code assets as blueprints and combining them using the <ProductName /> environment YAML together with metadata that will be kept and evaluated upon launch, updates and termination of the environment. Every <ProductName /> environment, regardless if operated in a GitOps manner or not, is managed using an environment YAML behind the scenes. Browsing to the environment YAML in the <ProductName /> self-service portal on any running environment can give a glimpse of how the YAML looks like for the specific environment launch.

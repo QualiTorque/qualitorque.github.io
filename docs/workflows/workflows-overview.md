@@ -7,7 +7,7 @@ title: What are Workflows
 
 ## Workflow Discovery
 
-Workflow discovery is done in the same way as Blueprints. The YAML files need to be under the `blueprints/` directory in the repository. Torque automatically scans for workflow files and makes them available based on their scope and configuration.
+Workflow discovery is done in the same way as Blueprints. The YAML files need to be under the `blueprints/` directory in the repository. <ProductName /> automatically scans for workflow files and makes them available based on their scope and configuration.
 
 The Workflow YAML standard is similar to the Blueprint standard. The only addition to the Workflow specification is the `workflow` block, which defines the workflow-specific configuration.
 
@@ -54,7 +54,7 @@ grains:
 
 ### `scope`
 
-The `scope` field in a Torque workflow determines where the workflow is available. There are two possible values for the `scope` field:
+The `scope` field in a <ProductName /> workflow determines where the workflow is available. There are two possible values for the `scope` field:
 
 1. `space`: Workflows with this scope are available at the space level, and can be triggered and executed without any dependencies.
 2. `env`: Workflows with this scope are available at the environment level. This means that they can be triggered and executed for the entire environment. These workflows can be used to automate and orchestrate processes that involve multiple resources within the environment.
@@ -78,7 +78,7 @@ workflow:
 grains: ...
 ```
 
-By specifying the appropriate scope for your workflows, you can ensure that they are available and applicable to the desired level of your infrastructure. Whether you need to automate processes at the environment level or target specific resources, Torque workflows provide the flexibility to meet your automation needs.
+By specifying the appropriate scope for your workflows, you can ensure that they are available and applicable to the desired level of your infrastructure. Whether you need to automate processes at the environment level or target specific resources, <ProductName /> workflows provide the flexibility to meet your automation needs.
 
 ### `labels-selector`
 
@@ -517,11 +517,11 @@ echo $state_tr
 export $state_tr
 ```
 
-## Torque Built-in Workflows
+## <ProductName /> Built-in Workflows
 
 ### Built-in workflows
 
-Torque provides some out-of-the-box workflows for you to use.
+<ProductName /> provides some out-of-the-box workflows for you to use.
 
 :::note
 All the built-in workflows are Ansible-based and available here: https://github.com/QualiTorque/torque-actions

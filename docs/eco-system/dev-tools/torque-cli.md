@@ -26,10 +26,10 @@ There are two ways to use torque-cli:
 
 ### Configuration
 
-To allow the torque-cli to authenticate with Torque, you must provide several parameters:
-* *Space*: The Torque space to use
-* *Repository*: (Optional) Represents the name of the git repository containing the bleprints and IaC files that will be used when calling Torque
-* *Token*: The easiest way to generate a token is via the Torque UI. 
+To allow the torque-cli to authenticate with <ProductName />, you must provide several parameters:
+* *Space*: The <ProductName /> space to use
+* *Repository*: (Optional) Represents the name of the git repository containing the bleprints and IaC files that will be used when calling <ProductName />
+* *Token*: The easiest way to generate a token is via the <ProductName /> UI. 
    1. In your space, go to **Settings > Integrations**.
    2. Click **Connect** under any of the CI tools.
    3. Click **New Token** to get an API token.
@@ -46,7 +46,7 @@ Example output:
 
 ```bash
 $ torque config list
-                     Torque user profiles
+                     <ProductName /> user profiles
 
   Active │ Profile Name │  Space   │ Repository │   Token
  ────────┼──────────────┼──────────┼────────────┼────────────
@@ -73,7 +73,7 @@ export TORQUE_REPO_NAME = my_repo
 
 ### Additional environment variables
 
-It is possible to switch the client to a different Torque instance setting custom API endpoint:
+It is possible to switch the client to a different <ProductName /> instance setting custom API endpoint:
 
 ```bash
 export TORQUE_URL = "https://demo.qtorque.io"
@@ -81,9 +81,9 @@ export TORQUE_URL = "https://demo.qtorque.io"
 
 ## Basic Usage
 
-Torque CLI r
+<ProductName /> CLI r
 
-There are some basic actions Torque CLI currently allows you to perform:
+There are some basic actions <ProductName /> CLI currently allows you to perform:
 
 - Validate a blueprint (using the ```torque bp validate``` command)
 - Get a list of blueprints (via ```torque bp list```)
@@ -113,7 +113,7 @@ OPTIONS:
 
 COMMANDS:
 blueprint      Get, List, Validate blueprints
-environment    Start, End, View Torque environments
+environment    Start, End, View <ProductName /> environments
 config         List, Add and Modify user profiles
 agent          List, associate agents
 space          Create, delete spaces, connect repo to space
@@ -124,7 +124,7 @@ You can get additional help information for a particular command by including  t
 ```bash
 $ torque env -h
 DESCRIPTION:
-Start, End, View Torque environments.
+Start, End, View <ProductName /> environments.
 
 USAGE:
     torque environment [OPTIONS] <COMMAND>
@@ -142,7 +142,7 @@ OPTIONS:
 COMMANDS:
     start <BLUEPRINT-NAME>     Start Environment
     get <ENVIRONMENT-ID>       Get Environment Details
-    end <ENVIRONMENT-ID>       End Torque Environment
-    list                       List Torque Environment
-    extend <ENVIRONMENT-ID>    Extend Torque Environment
+    end <ENVIRONMENT-ID>       End <ProductName /> Environment
+    list                       List <ProductName /> Environment
+    extend <ENVIRONMENT-ID>    Extend <ProductName /> Environment
 ```

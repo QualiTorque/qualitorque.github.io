@@ -7,30 +7,30 @@ title: Assets Markers
 
 ## Overview
 
-Torque Markers is a feature designed to enhance the discovery and management of Torque-related assets, including Blueprints, Environments, Instructions, Workflows, and Layouts. This capability improves asset scanning efficiency and provides better organization for repositories with multiple Torque assets.
+<ProductName /> Markers is a feature designed to enhance the discovery and management of <ProductName />-related assets, including Blueprints, Environments, Instructions, Workflows, and Layouts. This capability improves asset scanning efficiency and provides better organization for repositories with multiple <ProductName /> assets.
 
 ## How It Works
 
-Torque Markers use special marker files to indicate directories containing Torque assets. These marker files help Torque focus its scanning efforts on relevant directories, optimizing the asset discovery process.
+<ProductName /> Markers use special marker files to indicate directories containing <ProductName /> assets. These marker files help <ProductName /> focus its scanning efforts on relevant directories, optimizing the asset discovery process.
 
 ### Marker File Implementation
 
-- Marker files have specific extensions to indicate different Torque asset types:
+- Marker files have specific extensions to indicate different <ProductName /> asset types:
   - `.environments`
   - `.blueprints`
   - `.workflows`
   - `.layouts`
   - `.instructions`
 - Marker files should have no filename, only the extension (e.g., `.blueprints`)
-- Place marker files in the Git directories that Torque will scan for changes and assets
+- Place marker files in the Git directories that <ProductName /> will scan for changes and assets
 
 :::note
-For `.instructions` Torque will recursively scan for `image` and `.md` files.
+For `.instructions` <ProductName /> will recursively scan for `image` and `.md` files.
 :::
 
 :::info
 1. `Multiple Marker` files can not coexist in the same directory
-2. Torque will still scan the default directory naming convention at root. (e.g., `blueprints/`, `environmnets/`, etc.)
+2. <ProductName /> will still scan the default directory naming convention at root. (e.g., `blueprints/`, `environmnets/`, etc.)
 :::
 
 
@@ -73,7 +73,7 @@ app/
 
 ## Optimized Scanning Process
 
-- Torque scans only directories containing Torque marker files for associated assets
+- <ProductName /> scans only directories containing <ProductName /> marker files for associated assets
 - This approach reduces scanning time and resource usage
 - Eliminates the need to parse all files in the repository, improving performance
 
@@ -81,35 +81,35 @@ app/
 
 - Improved repository organization and asset management
 - Reduced scanning time and resource usage
-- Clear indication of Torque-related asset locations
-- Flexibility in structuring repositories with multiple Torque assets
+- Clear indication of <ProductName />-related asset locations
+- Flexibility in structuring repositories with multiple <ProductName /> assets
 - Enhanced support for GitOps workflows
 
 ## Implementation Considerations
 
-- The Torque scanning algorithm has been updated to recognize and utilize marker files
-- Documentation and guidelines are available for users on how to implement and use Torque markers
-- Backward compatibility with existing Torque implementations is ensured
+- The <ProductName /> scanning algorithm has been updated to recognize and utilize marker files
+- Documentation and guidelines are available for users on how to implement and use <ProductName /> markers
+- Backward compatibility with existing <ProductName /> implementations is ensured
 
 ## Getting Started
 
-To start using Torque Markers in your repository:
+To start using <ProductName /> Markers in your repository:
 
-1. Identify the directories containing Torque assets (Blueprints, Environments, etc.)
+1. Identify the directories containing <ProductName /> assets (Blueprints, Environments, etc.)
 2. Add the appropriate marker file to each directory (e.g., `.blueprints`, `.environments`)
 3. Ensure your asset files are properly named and located within the marked directories
 4. Commit and push your changes to the repository
-5. Torque will automatically detect and use the new marker system on the next scan
+5. <ProductName /> will automatically detect and use the new marker system on the next scan
 
 ## Best Practices
 
 - Use marker files consistently across your repositories
 - Organize your assets logically within your repository structure
-- Avoid placing unrelated files in directories with Torque markers
+- Avoid placing unrelated files in directories with <ProductName /> markers
 - Regularly review and update your marker placement as your repository evolves
 
 ## Conclusion
 
-Torque Markers provide an efficient and flexible way to manage Torque assets within your Git repositories. By adopting this feature, you can improve your asset organization, reduce scanning times, and enhance your overall GitOps workflow.
+<ProductName /> Markers provide an efficient and flexible way to manage <ProductName /> assets within your Git repositories. By adopting this feature, you can improve your asset organization, reduce scanning times, and enhance your overall GitOps workflow.
 
-For more information or assistance, please refer to the Torque documentation or contact our support team.
+For more information or assistance, please refer to the <ProductName /> documentation or contact our support team.

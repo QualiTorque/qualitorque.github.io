@@ -3,19 +3,19 @@ sidebar_position: 4
 title: Blueprint YAML Structure
 ---
 
-The Torque's blueprint YAML is the main blueprint definition file. It contains general information about the environment as well as the grains that make up the environment's applications and services. The blueprint YAML is published to end-users in Torque's blueprint catalog.
+The <ProductName />'s blueprint YAML is the main blueprint definition file. It contains general information about the environment as well as the grains that make up the environment's applications and services. The blueprint YAML is published to end-users in <ProductName />'s blueprint catalog.
 
 ## The Blueprint spec
 
 ### `spec_version`
-The spec_version determines the blueprint YAML type. Currently, Torque supports spec_version:2 as the default and recommended version. With time, new preview releases and official feature releases will bring more and more features and users will be able to use other spec versions.
+The spec_version determines the blueprint YAML type. Currently, <ProductName /> supports spec_version:2 as the default and recommended version. With time, new preview releases and official feature releases will bring more and more features and users will be able to use other spec versions.
 
 ```yaml
 spec_version: 2
 ```
 
 ### `description`
-The blueprint’s description is an optional but recommended field. Blueprint description will be presented in the Torque's UI and API so users consuming environment will have more information about the blueprints to batter match their business need to the available set of blueprints published in the account catalog.
+The blueprint’s description is an optional but recommended field. Blueprint description will be presented in the <ProductName />'s UI and API so users consuming environment will have more information about the blueprints to batter match their business need to the available set of blueprints published in the account catalog.
 
 
 ```yaml
@@ -34,18 +34,18 @@ description: Performance testing deployment based on RDS, EKS and Lambda
 instructions:
   text: "This is what you need to know ... " # text option
   source:
-    store: <The name of the repository which contains the instructions as it was onboarded to Torque>
+    store: <The name of the repository which contains the instructions as it was onboarded to <ProductName />>
     path : <instructions/something.md> # path inside the repository where the instructions md file is located. Must be in a folder called "instructions".
 ```
 
 :::info
 - Blueprint instructions can be located in the same repository as the blueprints or a different repository
-- Torque will use only markdown files located in the “/instructions” folder under the root of the onboarded repository
-- Torque will support external resources embed in the markdown under the following rules:
+- <ProductName /> will use only markdown files located in the “/instructions” folder under the root of the onboarded repository
+- <ProductName /> will support external resources embed in the markdown under the following rules:
   - Any link to external and publicly exposed resource
   - Relative path to images, svg and gif files located within the /instructions folder
   - Images, svg and gif files smaller than 1MB.
-- Torque will not support relative .md references -Torque will not allow to load/redirect to another markdown mentioned in the markdown provided as the blueprint instructions.
+- <ProductName /> will not support relative .md references -<ProductName /> will not allow to load/redirect to another markdown mentioned in the markdown provided as the blueprint instructions.
 :::
 
 
@@ -54,11 +54,11 @@ Blueprint designers can publish blueprint inputs to their end-users to add flexi
 
 The input definition is composed out of the following fields: 
 - The input name
-- ```description``` is presented to all users in the Torque UI and API's (Optional)
+- ```description``` is presented to all users in the <ProductName /> UI and API's (Optional)
 - ```type``` of the input. Options are:
   - ```string```
   - ```agent``` allows the environment end-user to select the agent that will deploy the grain(s) from a dropdown list. By default, all agents are listed in the dropdown list, but you can add ```allowed-values``` to only display a subset of the agents. For details, see [agent](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#agent).
-  - ```parameter``` will take the input's allowed values from the parameter-store, from a parameter with the name ```parameter-name```. The parameter can be defined either in the account level or in the space level. If the parameter's value is built as a comma separated list, Torque will convert them to a set of values and present it to the end-user as a drop down list of the values. See an example below. For more info about the parameter store, click [here](admin-guide/params.md).
+  - ```parameter``` will take the input's allowed values from the parameter-store, from a parameter with the name ```parameter-name```. The parameter can be defined either in the account level or in the space level. If the parameter's value is built as a comma separated list, <ProductName /> will convert them to a set of values and present it to the end-user as a drop down list of the values. See an example below. For more info about the parameter store, click [here](admin-guide/params.md).
   - ```credentials``` allows the environment end-user to select the credentials that will be used to deploy the grain(s) from a dropdown list. By default, all credentials in the account are listed in the dropdown list, but you can add ```allowed-values``` to only display a subset of the credentials. 
   - ```file``` allows the environment end-user to upload one or more files from the launch form. The uploaded files are made available to the blueprint designer using the [`workspace-directories`](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#workspace-directories) section and the **env-storage** store - [See details below](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#file-input-type).
   - ```input-source``` allows the environment end-user to select from a list of values provided by a dynamic source. The source is defined in the [`input-sources`](/admin-guide/input-sources) section.
@@ -112,10 +112,10 @@ For advanced input visibility control and organization, see the [customization](
         description: 'GPU types'
     ```
 - ```sensitive```: ```true``` masks the value behind asterisks in the UI and API. (Default is ```false```) 
-- ```default``` - (Optional) Value to be used in the Torque UI and will be used in case no other value provided for the input. If a default value is not defined, the environment end-user will need to provide one when launching the environment.
+- ```default``` - (Optional) Value to be used in the <ProductName /> UI and will be used in case no other value provided for the input. If a default value is not defined, the environment end-user will need to provide one when launching the environment.
 - ```allowed-values``` converts the input into a dropdown list, allowing the environment end-user to select the appropriate value. If a ```default``` is specified, it must be included in the allowed values list. 
 - ```quick``` is an optional boolean value. Setting it to "true" or omitting it will cause the input to be presented to the end user in the "quick links" section of the environment. Setting it to "false" means it will not appear in that section.
-- ```pattern``` is an optional regular expression pattern that the input value must match. If provided, Torque will validate the user input against this pattern during environment launch and prevent launching if the input does not conform to the specified pattern.
+- ```pattern``` is an optional regular expression pattern that the input value must match. If provided, <ProductName /> will validate the user input against this pattern during environment launch and prevent launching if the input does not conform to the specified pattern.
 - ```validation-description``` is an optional user-friendly message or description that will be shown to the user if the provided input value does not match the specified `pattern`. This helps provide better guidance to the user on the expected input format or constraints.
 
     **Example:**
@@ -148,7 +148,7 @@ For advanced input visibility control and organization, see the [customization](
         description: "How long should this environment run"
     ```
 
-The inputs section in the Torque blueprint YAML also supports spaces to make inputs more user friendly. Configuring an input with a friendly name can be done in the following way:
+The inputs section in the <ProductName /> blueprint YAML also supports spaces to make inputs more user friendly. Configuring an input with a friendly name can be done in the following way:
 
 ```yaml
 inputs:
@@ -253,10 +253,10 @@ outputs:
 The ```quick: true``` attribute is optional and defaults to false. Setting it to `true` will cause the specific output to be presented in the __Quick Access__ section of the environment for ease of use.
 
 :::info
-The example above includes some of the Torque's YAML templating engine capabilities allowing the blueprint designer more flexibility and leads to less code that will require maintenance. More examples for templating will be described [Torque Templating engine](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#torque-templating-engine).
+The example above includes some of the <ProductName />'s YAML templating engine capabilities allowing the blueprint designer more flexibility and leads to less code that will require maintenance. More examples for templating will be described [<ProductName /> Templating engine](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#torque-templating-engine).
 :::
 
-The outputs section in the Torque blueprint YAML also supports spaces to make outputs more user friendly in the following way:
+The outputs section in the <ProductName /> blueprint YAML also supports spaces to make outputs more user friendly in the following way:
 
 ```yaml
 outputs:
@@ -320,7 +320,7 @@ The following grains are available:
 
 ### `source`
 
-Sources are repositories storing IaC, CM or other configuration technology that will be utilized by Torque to launch and operate an environment. Torque supports multiple ways to define grain sources. 
+Sources are repositories storing IaC, CM or other configuration technology that will be utilized by <ProductName /> to launch and operate an environment. <ProductName /> supports multiple ways to define grain sources. 
 Sources can be defined in the following ways:
 
 __1. Direct link to a source control folder__:
@@ -340,7 +340,7 @@ grains:
 
 __2. Location based on a repository (blueprints or assets) onboarded to Torque__: 
 
-The name of the repository should be provided under the 'store' field, while the IaC code folder location should be specified under the path field. In the below example, nginx helm chart resides in the 'nginx' folder within a repository onboarded to Torque with the name 'web_servers'.
+The name of the repository should be provided under the 'store' field, while the IaC code folder location should be specified under the path field. In the below example, nginx helm chart resides in the 'nginx' folder within a repository onboarded to <ProductName /> with the name 'web_servers'.
 
 ```yaml 
 grains:
@@ -380,9 +380,9 @@ grains:
 
 :::tip note
 * You can specify only one of the parameters (```branch``` or ```commit``` or ```tag```).
-* If "tag" is provided, Torque will track the repo for newer tags. In other words, if a newer tag is found, then an "update" will be detected.
-* If "branch" is provided, Torque will track the head of the branch. In other words, when new commits arrive, an "update" will be detected.
-* If "commit" is provided, Torque __will not__ track changes.
+* If "tag" is provided, <ProductName /> will track the repo for newer tags. In other words, if a newer tag is found, then an "update" will be detected.
+* If "branch" is provided, <ProductName /> will track the head of the branch. In other words, when new commits arrive, an "update" will be detected.
+* If "commit" is provided, <ProductName /> __will not__ track changes.
 :::
 
 ### `agent`
@@ -422,10 +422,10 @@ The agent's configuration must include:
 
 
 Optionally, the agent configuration may include:
-* **storage-size** - Set the size of storage allocated to this grain. The size is in MB. The size must be smaller than the overall storage size which was defined in the [agent settings](torque-agent/advanced-settings.md). If not defined, Torque will use the default size. This is an advanced configuration option, it is recommended to consult with Torque's support team before making a change.
-* **runner-namespace** - The namespace where the runner pod will be provisioned. If not defined, the runners will be provisioned in the default namespace defined in the agent level. This is an advanced configuration option, it is recommended to consult with Torque's support team before making a change.
+* **storage-size** - Set the size of storage allocated to this grain. The size is in MB. The size must be smaller than the overall storage size which was defined in the [agent settings](torque-agent/advanced-settings.md). If not defined, <ProductName /> will use the default size. This is an advanced configuration option, it is recommended to consult with <ProductName />'s support team before making a change.
+* **runner-namespace** - The namespace where the runner pod will be provisioned. If not defined, the runners will be provisioned in the default namespace defined in the agent level. This is an advanced configuration option, it is recommended to consult with <ProductName />'s support team before making a change.
 * **service-account** - The service-account name configured within the kubernetes cluster that will be used to execute the grain. A kubernetes 
-service account provides an identity for processes that run in a pod. If not specified, Torque will use the default service account defined for the agent. The service account must be defined in the runner namespace.
+service account provides an identity for processes that run in a pod. If not specified, <ProductName /> will use the default service account defined for the agent. The service account must be defined in the runner namespace.
 * **isolated** - A boolean value (`true` or `false`) indicating whether the grain should run in isolation on a runner. If not defined, the default is determined internally based on the configuration (e.g., if agent's storage class supports `ReadWriteMany`, the default is `false`).
 
 ```yaml 
@@ -463,7 +463,7 @@ grains:
 ```
 
 ### `depends-on`
-The need to deploy one IaC component before the other is common and usually required when 3rd party components, managed services and other teams need to provide the infrastructure. Using dependencies in the blueprint YAML Torque will evaluate and optimize the deployment process to make sure dependencies are respected and components with no dependencies will be deployed in parallel to maximize efficiency and reduce overall uptime.
+The need to deploy one IaC component before the other is common and usually required when 3rd party components, managed services and other teams need to provide the infrastructure. Using dependencies in the blueprint YAML <ProductName /> will evaluate and optimize the deployment process to make sure dependencies are respected and components with no dependencies will be deployed in parallel to maximize efficiency and reduce overall uptime.
 
 In the example below, 3 grain in the blueprint will be deployed in the following order: rds and redis will be deployed in parallel - and my_app will be deployed next, only in case of a successful deployment.
 
@@ -545,7 +545,7 @@ The **exclude-from-layout** element is optional, use it in case you need to appl
 
 ### `metadata`
 
-The metadata section allows you to define additional information about the blueprint that affects how it's presented and behaves in the Torque catalog. This section contains optional fields that enhance the blueprint's appearance and functionality.
+The metadata section allows you to define additional information about the blueprint that affects how it's presented and behaves in the <ProductName /> catalog. This section contains optional fields that enhance the blueprint's appearance and functionality.
 
 ```yaml
 spec_version: 2
@@ -570,7 +570,7 @@ metadata:
 
 #### `display-name`
 
-Specifies a user-friendly display name for the blueprint that will be shown in the Torque UI catalog. This allows you to provide a more descriptive name than the filename or internal identifier.
+Specifies a user-friendly display name for the blueprint that will be shown in the <ProductName /> UI catalog. This allows you to provide a more descriptive name than the filename or internal identifier.
 
 ```yaml
 metadata:
@@ -579,7 +579,7 @@ metadata:
 
 #### `icon`
 
-Defines the icon that will be displayed for the blueprint in the Torque catalog. This helps users quickly identify and distinguish between different blueprints.
+Defines the icon that will be displayed for the blueprint in the <ProductName /> catalog. This helps users quickly identify and distinguish between different blueprints.
 
 ```yaml
 metadata:
@@ -913,8 +913,8 @@ grains:
 This dynamic output capability enables more sophisticated blueprint architectures where data can flow seamlessly between different layers and technologies while maintaining flexibility in how outputs are consumed and transformed.
 
 
-## Torque Templating Engine
-Templating engines are a great way to enrich the YAML format to allow extensibility points and text manipulations. Torque utilizes a GO-Lang style engine called [Shopify Liquid](https://shopify.github.io/liquid/) to allow dynamic injection of parameters and inputs as well as provider attribute values via reference of other attributes within the same YAML. 
+## <ProductName /> Templating Engine
+Templating engines are a great way to enrich the YAML format to allow extensibility points and text manipulations. <ProductName /> utilizes a GO-Lang style engine called [Shopify Liquid](https://shopify.github.io/liquid/) to allow dynamic injection of parameters and inputs as well as provider attribute values via reference of other attributes within the same YAML. 
 Example:
 * Insert Blueprint input from the user as a value for a Grain input. 
 * Insert Parameter Store information as a value for a Grain attribute or input. 
@@ -939,7 +939,7 @@ In the below example the [downcase](https://shopify.github.io/liquid/filters/dow
 For details and examples of how to use the parameters from the parameter store inside blueprints, check [this article](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#parameters).
 
 ### Dynamic Attributes
-Blueprint designers might need extra details about the account, space or environment during the environment's orchestration. Torque provides dynamic attributes which are pre-defined parameters blueprints designers can use. The currently supported dynamic attributes are:
+Blueprint designers might need extra details about the account, space or environment during the environment's orchestration. <ProductName /> provides dynamic attributes which are pre-defined parameters blueprints designers can use. The currently supported dynamic attributes are:
 
 - `envId`
 - `blueprintName`
@@ -963,7 +963,7 @@ The dynamic attributes calculation is case insensitive so you can use either "en
 
 
 ### Parameters
-Torque's [Parameters](/admin-guide/params) store allows admins to set pre-defined account/space-level parameters. Blueprint designers can use the parameters in the blueprint YAML, instead of inputs if they don't want the environment end-user to provide the value, but also don't want to hard-code it in the blueprint.
+<ProductName />'s [Parameters](/admin-guide/params) store allows admins to set pre-defined account/space-level parameters. Blueprint designers can use the parameters in the blueprint YAML, instead of inputs if they don't want the environment end-user to provide the value, but also don't want to hard-code it in the blueprint.
 
 The syntax is: ```{{ .params.param-value }}```
 
@@ -1002,7 +1002,7 @@ The env-vars field is relevant only to concrete IaC grains (e.g., terraform, hel
 ```
 
 ## Disabling Auto-Retry
-In some situations, Torque will automatically retry to deploy failed grains. This behavior is usually very beneficial but it might not be suitable in all cases.
+In some situations, <ProductName /> will automatically retry to deploy failed grains. This behavior is usually very beneficial but it might not be suitable in all cases.
 In case you wish to exclude a specific grain from the auto-retry, include the following in the blueprint:
 
 :::note
@@ -1078,7 +1078,7 @@ In this case, the entire repository will be checked out, and the `name` specifie
 
 #### Working with Artifactory as Binary Repository
 
-Artifactory is a popular binary repository manager that can store and manage various types of artifacts, including Docker images, Helm charts, and other binary files. In Torque, you can use Artifactory as a source for binary files that are required during the deployment process. This can be particularly useful for scenarios such as:
+Artifactory is a popular binary repository manager that can store and manage various types of artifacts, including Docker images, Helm charts, and other binary files. In <ProductName />, you can use Artifactory as a source for binary files that are required during the deployment process. This can be particularly useful for scenarios such as:
 
 - Storing and managing Helm charts or other application configuration files
 - Storing and managing Terraform state files or other infrastructure-related artifacts
@@ -1086,7 +1086,7 @@ Artifactory is a popular binary repository manager that can store and manage var
 
 **Motivation and Scope**
 
-Using Artifactory as a binary repository in Torque provides several benefits:
+Using Artifactory as a binary repository in <ProductName /> provides several benefits:
 
 1. **Centralized Artifact Management**: Artifactory acts as a centralized repository for all your binary artifacts, making it easier to manage and distribute them across multiple environments.
 
@@ -1100,7 +1100,7 @@ Using Artifactory as a binary repository in Torque provides several benefits:
 
 **Usage Example**
 
-To use Artifactory as a binary repository in Torque, you need to configure it as a workspace directory within your blueprint. Here's an example:
+To use Artifactory as a binary repository in <ProductName />, you need to configure it as a workspace directory within your blueprint. Here's an example:
 
 ```yaml title="Artifactory - Blueprint usage example"
 vm-grain:
@@ -1132,15 +1132,15 @@ In this example, we have two workspace directories (`file1` and `file2`) that ar
 
 **Setup**
 
-To use Artifactory with Torque, you need to configure an Artifactory credential in the Credentials Store. 
+To use Artifactory with <ProductName />, you need to configure an Artifactory credential in the Credentials Store. 
 
-In Torque portal, navigate to the `Account Settings` and to the Credentials page. Click on the `Add Credentials` button and choose `JFrog Artifactory`.
+In <ProductName /> portal, navigate to the `Account Settings` and to the Credentials page. Click on the `Add Credentials` button and choose `JFrog Artifactory`.
 
 Provide a `Name` and a `Description`, select the allowed `Spaces` that can use that Artifactory server, fill in the `Server URL` and the `Token` and hit the `Apply` button.
 
 ![artifactory](/img/artifactory.png)
 
-You are also able to create an Artifactory credential using the Torque REST API as well. Here is an example on setting up Artifactory credentials on a space level:
+You are also able to create an Artifactory credential using the <ProductName /> REST API as well. Here is an example on setting up Artifactory credentials on a space level:
 
 ```curl title="API call to setup Artifactory credentials on a space level"
 POST {{host}}/api/spaces/{{space}}/settings/credentialstore
@@ -1157,7 +1157,7 @@ POST {{host}}/api/spaces/{{space}}/settings/credentialstore
 }
 ```
 
-In this example, we're creating an Artifactory credential named `my-artifactory` with the server URL and a token for authentication. Currently, Torque supports Artifactory token authentication.
+In this example, we're creating an Artifactory credential named `my-artifactory` with the server URL and a token for authentication. Currently, <ProductName /> supports Artifactory token authentication.
 
 Once the Artifactory credential is configured, you can reference it in your blueprint's `workspace-directories` section using the `store` parameter, as shown in the usage example above.
 
@@ -1166,7 +1166,7 @@ Once the Artifactory credential is configured, you can reference it in your blue
 The customization section allows you to control the user interface and presentation aspects of your blueprint, including the visual layout of grains and the behavior of the launch form. This section provides two main customization capabilities: grains-map visualization and launch-form input control.
 
 :::note Preview Feature
-This feature is currently in preview. To get access to customization capabilities, please contact Torque support.
+This feature is currently in preview. To get access to customization capabilities, please contact <ProductName /> support.
 :::
 
 ```yaml

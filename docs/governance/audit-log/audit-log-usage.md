@@ -3,11 +3,11 @@ sidebar_position: 5
 title: Audit Log Event Structure and Contents
 ---
 
-Torque audit data is presented in json format. It includes events and with the following information:
+<ProductName /> audit data is presented in json format. It includes events and with the following information:
   * Timestamp (UTC)
   * Event Type
   * Event Name
-  * Actor (User/Automation/Torque)
+  * Actor (User/Automation/<ProductName />)
   * Scope (Account/Space/Environment)
   * Result (Success/Failure)
   * Error (in case of failure)
