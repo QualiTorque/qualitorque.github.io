@@ -1,9 +1,9 @@
 ---
 sidebar_position: 2
-title: Using Torque Reports
+title: Using The Reports
 ---
 
-This article describes the general utilities and options for using any report in Torque.
+This article describes the general utilities and options for using any report in <ProductName />.
 
 ## Top Filter ##
 

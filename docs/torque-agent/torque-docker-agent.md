@@ -1,10 +1,10 @@
 ---
 sidebar_position: 6
-title: Torque Docker Agent
+title: A Docker Agent
 ---
 
-## How to install Torque Agent on a VM
-Torque agent can be hosted in various ways, one of them on a VM/EC2 with a docker host installed.
+## How to install <ProductName /> Agent on a VM
+<ProductName /> agent can be hosted in various ways, one of them on a VM/EC2 with a docker host installed.
  
 ### Requirements
 * VM (this guide will walk you through how to configure torque agent on ubuntu, but you can use any environment as long as it supports docker)

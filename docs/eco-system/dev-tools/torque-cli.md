@@ -1,9 +1,10 @@
 ---
 sidebar_position: 23
-title: Torque CLI
 ---
 
-This tool streamlines the YAML development process by validating changes in real-time and allowing the execution of test environments directly from the development branch, without needing to first merge the changes to production. 
+# CLI
+
+The <ProductName /> CLI tool streamlines the YAML development process by validating changes in real-time and allowing the execution of test environments directly from the development branch, without needing to first merge the changes to production. 
 
 ### Installation
 

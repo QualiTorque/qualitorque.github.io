@@ -1,8 +1,8 @@
 ---
 sidebar_position: 3
-title: Install Torque Agent
+title: Install our Agent
 ---
-__Torque Control plane__ offers centralized orchestration and management for Kubernetes orchestration tools such as Kubernetes manifest, Helm and Crossplane. In this guide, we will go over some of Torque basic features allowing quick onboarding of Kubernetes automation assets into the platform, standardization of Kubernetes orchestration using blueprints and securing deployment process using tagging, policies and RBAC.
+__<ProductName /> Control plane__ offers centralized orchestration and management for Kubernetes orchestration tools such as Kubernetes manifest, Helm and Crossplane. In this guide, we will go over some of Torque basic features allowing quick onboarding of Kubernetes automation assets into the platform, standardization of Kubernetes orchestration using blueprints and securing deployment process using tagging, policies and RBAC.
 
 In this quick-start guide, we will cover the following topics:
 1. Create a new Torque Space

@@ -1,9 +1,9 @@
 ---
 sidebar_position: 18
-title: Torque Assets Markers
+title: Assets Markers
 ---
 
-# Torque Markers for Asset Discovery
+# <ProductName /> Markers for Asset Discovery
 
 ## Overview
 

@@ -1,9 +1,9 @@
 ---
 sidebar_position: 1
-title: Torque Workflows
+title: What are Workflows
 ---
 
-Torque Workflows are a powerful way to automate and orchestrate complex processes within your infrastructure. They allow you to define a series of actions and steps that are executed in a specific order, providing automation capabilities for various operational tasks. Workflows can be triggered by events, scheduled to run at specific times, or executed manually.
+<ProductName /> Workflows are a powerful way to automate and orchestrate complex processes within your infrastructure. They allow you to define a series of actions and steps that are executed in a specific order, providing automation capabilities for various operational tasks. Workflows can be triggered by events, scheduled to run at specific times, or executed manually.
 
 ## Workflow Discovery
 

@@ -1,13 +1,13 @@
 ---
 sidebar_position: 3
-title: Torque API Tokens
+title: API Tokens
 ---
 
-For programmatic access to Torque and to use the different integrations Torque has to offer, you will need to get a __Torque API Token__.
+For programmatic access to <ProductName /> and to use the different integrations <ProductName /> has to offer, you will need to get a __<ProductName /> API Token__.
 
 To get a new API Token:
 
-1. On your Torque UI, navigate to one of your spaces.
+1. On your <ProductName /> UI, navigate to one of your spaces.
 2. On the left panel, under settings, click on "Community".
 3. Choose one of the CI/CI integrations, and click on "Connect".
 4. A right panel will open, click on "Configure" and then "Generate New Token".
