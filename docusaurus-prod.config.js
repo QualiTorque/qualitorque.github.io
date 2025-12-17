@@ -15,6 +15,9 @@ const config = {
   organizationName: 'QualiTorque', // Usually your GitHub org/user name.
   projectName: 'torque-docs', // Usually your repo name.
   deploymentBranch: 'gh-pages',
+  customFields: {
+    productName: 'Torque',
+  },
   trailingSlash: false,
   future: {
     v4: true,
