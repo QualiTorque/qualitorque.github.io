@@ -8,7 +8,7 @@ While infrastructure orchestration using Infrastructure as Code (IaC) framework 
 
 > ![Introspection](/img/env-resources.png)
 
-Based on the introspection data, Torque generate __Resource layout__ that is usually used by the environment consumer that is not an expert in IaC of automation frameworks. The layout will highlight the interesting entities out of the large amount of resources that deployed in the environment.
+Based on the introspection data, Torque generates a __Resource layout__, which is usually used by an environment consumer (who may not be an expert in IaC of automation frameworks). The layout will highlight the interesting entities out of the large amount of resources that deployed in the environment.
 
 In the following example, we deployed a single Terraform file that deployed a 3 tier wordpress application. The deployment process ended and 28 cloud resources created. 
 
