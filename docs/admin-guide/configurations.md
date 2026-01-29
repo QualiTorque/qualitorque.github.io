@@ -79,7 +79,7 @@ These settings include 2 features:
 **How to enable <ProductName /> Copilot**
 
 1.  Navigate to **Configuration > Copilot Settings**.
-2.  Toggle on the ‘Torque Copilot’ toggle to show the AI chatbot button at the top header, next to the rest of the utilities.
+2.  Toggle on the ‘<ProductName /> Copilot’ toggle to show the AI chatbot button at the top header, next to the rest of the utilities.
 3.  Toggle off to hide the AI chatbot and to prevent access from all users.
 
 **2. Cloud Copilot** – Your internal AI assistance to create and customize Blueprints, auto-generate descriptions, and resolve live environment errors.  
@@ -100,7 +100,7 @@ With this feature you can:
 
 1.  Navigate to **Configuration > Copilot Settings**.
 2.  Under the ‘Cloud Copilot’ section > click on the **‘AI Provider’ button** to select where to host your AI Data while using Copilot:  
-    - Host in **Torque’s Open AI  
+    - Host in **<ProductName />’s Open AI  
     **There’s no further configuration, just click ‘Connect’  
     - Host in your own **Azure OpenAI service  
     **You’ll have to provide: API key, Endpoint URL, GPT-4o deployment name, and GPT-4o mini deployment name.  
@@ -221,7 +221,7 @@ Once the experiment ends:
 -	You’ll receive updates in the product and via release notes.
  
 
-🛠 **Note**: Enabling experimental features is a great way to influence Torque’s roadmap and help improve future releases.
+🛠 **Note**: Enabling experimental features is a great way to influence <ProductName />’s roadmap and help improve future releases.
 
 info 🔒  Experimental Features are optionally available for **Enterprise plans only**.
 
