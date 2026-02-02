@@ -27,7 +27,7 @@ There are two ways to use torque-cli:
 
 To allow the torque-cli to authenticate with Torque, you must provide several parameters:
 * *Space*: The Torque space to use
-* *Repository*: (Optional) Represents the name of the git repository containing the bleprints and IaC files that will be used when calling Torque
+* *Repository*: (Optional) Represents the name of the git repository containing the blueprints and IaC files that will be used when calling Torque
 * *Token*: The easiest way to generate a token is via the Torque UI. 
    1. In your space, go to **Settings > Integrations**.
    2. Click **Connect** under any of the CI tools.
