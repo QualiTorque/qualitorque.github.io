@@ -3,7 +3,7 @@ sidebar_position: 3
 title: The Activity Report
 ---
 
-The activity report furnishes comprehensive details regarding the usage and adoption of your Torque account.
+The activity report furnishes comprehensive details regarding the usage and adoption of your <ProductName /> account.
 
 Here are examples of insights obtainable from this report:
 

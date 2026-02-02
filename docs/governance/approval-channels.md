@@ -3,11 +3,11 @@ sidebar_position: 10
 title: Approval Channels
 ---
 
-Torque role: Account admin
+<ProductName /> role: Account admin
 
 While organizations typically want to enable their users to launch environments quickly and easily, in certain situations it may be necessary to put guardrails in place to ensure compliance with security policies or budget constraints. Defining an approval flow can provide an effective way to balance the need for agility and control.
 
-Torque's Approval channels define the users who can approve environment launch requests. An approval channel is basically a list of users. Currently, Torque supports 3  approval channels - Teams, Emails, and ServiceNow.
+<ProductName />'s Approval channels define the users who can approve environment launch requests. An approval channel is basically a list of users. Currently, <ProductName /> supports 3  approval channels - Teams, Emails, and ServiceNow.
 
 __To create an approval channel:__
 1. Go to __Administration > Approval Channels__.

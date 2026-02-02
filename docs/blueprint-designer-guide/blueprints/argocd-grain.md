@@ -3,20 +3,20 @@ sidebar_position: 6
 title: The ArgoCD Grain
 ---
 
-ArgoCD is a popular GitOps continuous delivery tool for Kubernetes. Integrating ArgoCD as a grain in Torque enables a **single pane of glass** for life-cycle management of your Kubernetes applications. With the ArgoCD grain, you can automate deployment, monitor application health, and manage the full application lifecycle directly from your Torque blueprints, alongside other grains such as Helm, Terraform, and Ansible.
+ArgoCD is a popular GitOps continuous delivery tool for Kubernetes. Integrating ArgoCD as a grain in <ProductName /> enables a **single pane of glass** for life-cycle management of your Kubernetes applications. With the ArgoCD grain, you can automate deployment, monitor application health, and manage the full application lifecycle directly from your <ProductName /> blueprints, alongside other grains such as Helm, Terraform, and Ansible.
 
 ## Configuring a Deployment Engine
 
-Before using the ArgoCD grain, you must configure a Deployment Engine in Torque. This engine represents your ArgoCD server and is used to connect and manage applications.
+Before using the ArgoCD grain, you must configure a Deployment Engine in <ProductName />. This engine represents your ArgoCD server and is used to connect and manage applications.
 
 The following fields are required:
 
-- **Engine Name**: A unique name for your ArgoCD engine in Torque.
+- **Engine Name**: A unique name for your ArgoCD engine in <ProductName />.
 - **Engine Description**: (Optional) A description for easy identification.
 - **Server URL**: The URL of your ArgoCD server (e.g., `https://argocd.example.com`).
 - **Token**: The authentication token for accessing the ArgoCD API.
-- **Discovery Agent**: The Torque agent responsible for ongoing monitoring of tracked applications.
-- **Polling Interval (seconds)**: How often Torque polls ArgoCD for application status and health.
+- **Discovery Agent**: The <ProductName /> agent responsible for ongoing monitoring of tracked applications.
+- **Polling Interval (seconds)**: How often <ProductName /> polls ArgoCD for application status and health.
 
 ### Obtaining the ArgoCD Token
 
@@ -28,7 +28,7 @@ argocd account generate-token
 ```
 
 - Replace `<ARGOCD_SERVER>`, `<USERNAME>`, and `<PASSWORD>` with your actual server and credentials.
-- The output token can be used in the Torque Deployment Engine configuration.
+- The output token can be used in the <ProductName /> Deployment Engine configuration.
 
 ## Use Cases
 
@@ -52,7 +52,7 @@ argo-app (ArgoCD grain)
    -> monitoring (Helm/ArgoCD grain)
 ```
 
-This approach allows you to build complex, multi-step environments where ArgoCD manages the core application, and Torque blueprints extend and enhance the deployment with additional resources and integrations.
+This approach allows you to build complex, multi-step environments where ArgoCD manages the core application, and <ProductName /> blueprints extend and enhance the deployment with additional resources and integrations.
 
 
 ## Usage example
@@ -93,7 +93,7 @@ Please see [the grain agent](/blueprint-designer-guide/blueprints/blueprints-yam
 
 ### `deployment-engine`
 
-The name of the configured Deployment Engine in Torque. This field links the grain to a specific ArgoCD server configuration (see [Configuring a Deployment Engine](#configuring-a-deployment-engine)).  
+The name of the configured Deployment Engine in <ProductName />. This field links the grain to a specific ArgoCD server configuration (see [Configuring a Deployment Engine](#configuring-a-deployment-engine)).  
 **Example:**  
 ```yaml
 deployment-engine: '{{ .inputs.agro-server }}'

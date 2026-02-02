@@ -3,7 +3,7 @@ sidebar_position: 6
 title: Credentials
 ---
 
-The Torque __Credentials__ store is a built-in capability for Torque to securely store your Public Cloud authentication details in order for CloudFormation and Terraform type grains to securely access them. Credentials are similar in usage to [Parameters](/admin-guide/params), but unlike parameters which are single-value, credentials are specialized objects that contain multiple values with different structure depending on the credential type. Torque Credentials are supported for AWS (role based and access key based) and Azure (secret based) authentication.
+The <ProductName /> __Credentials__ store is a built-in capability for <ProductName /> to securely store your Public Cloud authentication details in order for CloudFormation and Terraform type grains to securely access them. Credentials are similar in usage to [Parameters](/admin-guide/params), but unlike parameters which are single-value, credentials are specialized objects that contain multiple values with different structure depending on the credential type.<ProductName /> Credentials are supported for AWS (role based and access key based) and Azure (secret based) authentication.
 
 __To add a credential:__
 
@@ -13,7 +13,7 @@ __To add a credential:__
    1. Give the credential a name and optionally a description.
    2. Select the cloud provider (AWS / Azure).
    3. Select the credential type and enter the authentication details. 
-       * For AWS, role assumption and access key credentials are supported. Make sure you have a Role Arn that allows Torque access. For details, see the [Get Role ARN and external ID](#get-role-arn-and-external-id) section below. 
+       * For AWS, role assumption and access key credentials are supported. Make sure you have a Role Arn that allows <ProductName /> access. For details, see the [Get Role ARN and external ID](#get-role-arn-and-external-id) section below. 
          > ![Locale Dropdown](/img/aws-provider-details.png)
        * For Azure, only Service Principle Client ID and Secret are supported.
          > ![Locale Dropdown](/img/azure-provider-details.png)
@@ -34,7 +34,7 @@ Once created, you can reference the credentials in the grain's ```authentication
 
 3. In the navigation pane of the IAM console, select __Roles__, and then click __Create Role__.
    1. From __Select trusted entity__, choose __AWS Account__.
-   2. Under An AWS account ID, select __An AWS account__ and enter 349148204654. (This is the Torque AWS account from which we will query the cost).
+   2. Under An AWS account ID, select __An AWS account__ and enter 349148204654. (This is the <ProductName /> AWS account from which we will query the cost).
    3. Select __Require external ID__.
    4. Enter an __External ID__ of your choosing. The External Id will be used to validate the Consumer of the ARN Role. __Keep note of the external ID as you will need it later in the configuration step__. 
    5. In __Next:Permissions__, select the policy you have just created in step 1 for cost exploration permission.

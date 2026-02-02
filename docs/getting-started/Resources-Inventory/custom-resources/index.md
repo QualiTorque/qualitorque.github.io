@@ -7,7 +7,7 @@ title: Custom Resources
 
 ## Introduction
 
-Torque Custom Resources enables you to reserve and manage custom resource types for your environments based on blueprint requirements. This feature allows you to define logical, physical, or any custom resource type with specific attributes, create concrete resource instances, and reserve them for environments when needed.
+<ProductName /> Custom Resources enables you to reserve and manage custom resource types for your environments based on blueprint requirements. This feature allows you to define logical, physical, or any custom resource type with specific attributes, create concrete resource instances, and reserve them for environments when needed.
 
 With Custom Resources, administrators can:
 
@@ -28,7 +28,7 @@ With Custom Resources, administrators can:
 
 1. **Admin Setup**: Administrators define custom resource types and create concrete resource instances
 2. **Blueprint Definition**: Blueprint authors specify resource requirements in the blueprint YAML
-3. **Environment Launch**: When launching an environment, Torque automatically reserves the required resources
+3. **Environment Launch**: When launching an environment, <ProductName /> automatically reserves the required resources
 4. **Resource Access**: Reserved resource data becomes available to blueprint grains for use in deployment activities
 
 ## Resource Requirements in Blueprints

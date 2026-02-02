@@ -3,7 +3,7 @@ sidebar_position: 7
 title: Changing advanced K8s settings
 ---
 
-While Torque offers a best practice configuration settings for deploying environments from your cluster, there may arise certain situations where overriding Torque's default settings becomes necessary based on your specific requirements. You can modify certain settings of the Torque runners (i.e. it will NOT affect your workloads, only the Torque workloads).
+While <ProductName /> offers a best practice configuration settings for deploying environments from your cluster, there may arise certain situations where overriding <ProductName />'s default settings becomes necessary based on your specific requirements. You can modify certain settings of the <ProductName /> runners (i.e. it will NOT affect your workloads, only the <ProductName /> workloads).
 
 Modifying these settings should be performed by the cluster administrator or subject to their approval, ensuring alignment with other existing cluster configurations you may have in place.
 
@@ -13,7 +13,7 @@ On the left 3-dot menu, click on "Edit Agent" --> Then open the "Advanced Kubern
 ![agent-advanced-settings](/img/k8s-advanced-settings2.png)
 
 In this panel, you can edit the agent name, and tenant-id for AKS agents. 
-In addition, you can retrieve the namespace where the Torque agent is running (but not change it).
+In addition, you can retrieve the namespace where the <ProductName /> agent is running (but not change it).
 
 ## Advanced Settings
 
@@ -23,8 +23,8 @@ Changes to the configuration only takes effect on new environments. Existing env
 
 ### storage class
 
-**Storage Class** is a K8s resource which allows you to request to create persistent volumes with certain properties. The storage class describes the properties then Torque 
-will request for the runner to create storage according to these properties. By default it is set to "Cluster's default" which means the Torque runners will request the storage properties according to what is defined as the default storage class in the cluster. If you change it to other value, Torque runners will request the storage class based on the new value.
+**Storage Class** is a K8s resource which allows you to request to create persistent volumes with certain properties. The storage class describes the properties then <ProductName /> 
+will request for the runner to create storage according to these properties. By default it is set to "Cluster's default" which means the <ProductName /> runners will request the storage properties according to what is defined as the default storage class in the cluster. If you change it to other value, <ProductName /> runners will request the storage class based on the new value.
 
 :::tip
 For reclaimPolicy (delete|retain) - we recommend using "delete" (extra care should be taken if the policy is set to "retain").
@@ -34,16 +34,16 @@ Learn more [here](https://kubernetes.io/docs/concepts/storage/storage-classes/)
 
 ### startup timeout
 
-**Runners pod startup timeout (seconds)** - The time Torque will wait for a runner pod to be provisioned. If you cluster is slow in creating pods/nodes in autoscaling, you may need to increase it. Be careful of setting too large timeouts, because if there is an inherent problem in the POD the error will suffice later. 
+**Runners pod startup timeout (seconds)** - The time <ProductName /> will wait for a runner pod to be provisioned. If you cluster is slow in creating pods/nodes in autoscaling, you may need to increase it. Be careful of setting too large timeouts, because if there is an inherent problem in the POD the error will suffice later. 
 
 ### idle timeout
 
-**Runner pod idle timeout (seconds)** - The time Torque will wait before terminating and idle Runner. Any non-negative value is accepted. As runners are allocated from a shared pool, setting the timeout to higher values will optimize the current operation which already "owns" the runner, but will decrease the average pool size so the next operations may need to wait longer before they get a runner. Higher values can also be used for debugging purposes, as it allows more time to connect to the runner, look at its logs and debug issues.
+**Runner pod idle timeout (seconds)** - The time <ProductName /> will wait before terminating and idle Runner. Any non-negative value is accepted. As runners are allocated from a shared pool, setting the timeout to higher values will optimize the current operation which already "owns" the runner, but will decrease the average pool size so the next operations may need to wait longer before they get a runner. Higher values can also be used for debugging purposes, as it allows more time to connect to the runner, look at its logs and debug issues.
 
 
 ### storage size
 
-**Total storage size (PVC size in MB)** - The total size of PVC storage that will be allocated to Torque runners. 
+**Total storage size (PVC size in MB)** - The total size of PVC storage that will be allocated to <ProductName /> runners. 
 
 
 ### resource consumption
@@ -72,7 +72,7 @@ In the API, these levels are represented by `0` through `7`.
 
 ### storage class
 
-**Storage class supports ReadWriteMany** - Check this checkbox if the storage class supports ReadWriteMany capability. Only storage classes which support this capability can share resources. If it is false there will not be sharing and each operation will spawn a new runner pod. Torque cannot query the cluster to understand if it does or does not have this capability so we rely on your information. If you check this checkbox, you must also set the storage_class_name and not leave it empty. Even if the default storage class supports ReadWriteMany, please state the name explicitly.  
+**Storage class supports ReadWriteMany** - Check this checkbox if the storage class supports ReadWriteMany capability. Only storage classes which support this capability can share resources. If it is false there will not be sharing and each operation will spawn a new runner pod. <ProductName /> cannot query the cluster to understand if it does or does not have this capability so we rely on your information. If you check this checkbox, you must also set the storage_class_name and not leave it empty. Even if the default storage class supports ReadWriteMany, please state the name explicitly.  
 
 ### environment variables
 
@@ -89,7 +89,7 @@ In the API, these levels are represented by `0` through `7`.
 
 ### pod labels
 
-Similar to Environment Variables and Secret Mounts, Torque allows you to specify labels that will be applied to the runner pods. These labels can be useful for various purposes, such as identifying and grouping pods, applying network policies, or integrating with external tools that rely on labels.
+Similar to Environment Variables and Secret Mounts, <ProductName /> allows you to specify labels that will be applied to the runner pods. These labels can be useful for various purposes, such as identifying and grouping pods, applying network policies, or integrating with external tools that rely on labels.
 
 To configure runner pod labels, navigate to **Administration** > **Agents**, and select the desired agent. In the agent's details panel, click on the three-dot menu and select "Edit Agent." Then, open the "Advanced Kubernetes Settings" dropdown.
 
@@ -137,7 +137,7 @@ Using labels can help you organize and manage your runner pods more effectively.
 
 ### pod annotations
 
-Similar to Environment Variables, Secret Mounts and pod labels, Torque allows you to specify annotations that will be applied to the runner pods. These annotations can be useful for various purposes, such as identifying and grouping pods, applying network policies, or integrating with external tools that rely on annotations.
+Similar to Environment Variables, Secret Mounts and pod labels, <ProductName /> allows you to specify annotations that will be applied to the runner pods. These annotations can be useful for various purposes, such as identifying and grouping pods, applying network policies, or integrating with external tools that rely on annotations.
 
 To configure runner pod annotations, navigate to **Administration** > **Agents**, and select the desired agent. In the agent's details panel, click on the three-dot menu and select "Edit Agent." Then, open the "Advanced Kubernetes Settings" dropdown.
 

@@ -5,11 +5,11 @@ title: Setup
 
 # Custom Resources Setup
 
-This guide walks you through setting up Custom Resources in Torque, from defining resource types to creating resource instances that can be reserved by blueprints.
+This guide walks you through setting up Custom Resources in <ProductName />, from defining resource types to creating resource instances that can be reserved by blueprints.
 
 ## Prerequisites
 
-- Administrator access to Torque
+- Administrator access to <ProductName />
 - Understanding of your infrastructure resource requirements
 - Basic knowledge of YAML syntax for blueprint integration
 
@@ -19,7 +19,7 @@ Before creating resource instances, you need to define the resource types that w
 
 ### Creating a Resource Type
 
-1. Navigate to the **Admin** section in Torque
+1. Navigate to the **Admin** section in <ProductName />
 2. Go to **Custom Resources** > **Resource Types**
 3. Click **Create Resource Type**
 4. Fill in the resource type details:

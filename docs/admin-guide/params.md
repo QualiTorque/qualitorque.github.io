@@ -3,13 +3,13 @@ sidebar_position: 2
 title: Parameters
 ---
 
-The Torque parameter store is a repository of key-value pairs, which can be used and reused in blueprint YAMLs across all spaces in Torque. Two types of parameters are supported: 
-* Account-level parameters are defined by the Torque account admin and can be used across all spaces. As such, these parameters are typically used to store data that applies to multiple spaces.
+The <ProductName /> parameter store is a repository of key-value pairs, which can be used and reused in blueprint YAMLs across all spaces in <ProductName />. Two types of parameters are supported: 
+* Account-level parameters are defined by the <ProductName /> account admin and can be used across all spaces. As such, these parameters are typically used to store data that applies to multiple spaces.
 * Space-level parameters are defined by space admins and apply to specific spaces. 
 
 ## Creating Account-level parameters
 
-Torque role: Account admin
+<ProductName /> role: Account admin
 
 :::tip __Important__
 Modifying or deleting a parameter may cause blueprints that use the parameter to fail.
@@ -31,7 +31,7 @@ __To add an account-level parameter:__
 
 ## Creating space-level parameters
 
-Torque role: Space admin
+<ProductName /> role: Space admin
 
 __To add a space-level parameter:__
 

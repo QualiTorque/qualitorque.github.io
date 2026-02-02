@@ -11,10 +11,10 @@ The Configuration page consolidates key system settings and administrative confi
 
 ### 1. White Labeling
 
-Customize the Torque interface with your organization's branding by uploading a custom logo. This ensures a **consistent and professional** look throughout the platform.
+Customize the <ProductName /> interface with your organization's branding by uploading a custom logo. This ensures a **consistent and professional** look throughout the platform.
 
 This feature allows you to:  
-- Replace the default Torque logo across the system.  
+- Replace the default <ProductName /> logo across the system.  
 - Upload three logo types: Favicon, Wide Logo, and Square Logo.  
   
 **How to upload your logo**
@@ -55,13 +55,13 @@ This feature allows you to create and manage announcement banners to notify user
 
 ### 3. Audit Logs
 
-Torque’s **Audit Logs** provide comprehensive tracking of key platform activities, helping you monitor user behavior, investigate security risks, and maintain compliance.  
+<ProductName />’s **Audit Logs** provide comprehensive tracking of key platform activities, helping you monitor user behavior, investigate security risks, and maintain compliance.  
 Options include:  
 - ElasticSearch: With built-in **Elastic Stack integration**, you can forward audit data for real-time analysis and reporting.  
-- Torque Audit: Forward logs to Torque, and retain for 18 months..  
+- <ProductName /> Audit: Forward logs to <ProductName />, and retain for 18 months..  
   
 **How to set up an Audit Log destination**  
-📖 Learn more about [Torque Audit](/governance/audit-log/audit-log-configuration)
+📖 Learn more about [<ProductName /> Audit](/governance/audit-log/audit-log-configuration)
   
 info 🔒  Audit log integration is  available for **Enterprise plans only** and requires a specific licensing feature.
 
@@ -69,29 +69,30 @@ info 🔒  Audit log integration is  available for **Enterprise plans only** and
 
 ### 4. Copilot Settings
 
-Enable Torque’s AI-powered assistant to provide recommendations and enhance workflow automation, within your account.  
+Enable <ProductName />’s AI-powered assistant to provide recommendations and enhance workflow automation, within your account.  
   
 These settings include 2 features:  
-**1. Torque Copilot** – Easily navigate Torque with our AI chatbot, always accessible and leveraging the official documentation for swift exploration.  
+**1. <ProductName /> Copilot** – Easily navigate <ProductName /> with our AI chatbot, always accessible and leveraging the official documentation for swift exploration.  
 (This feature is based on a 3rd party tool called DocsBot)  
 ![DocsBot](/img/docsbot.png)
 
-**How to enable Torque Copilot**
+**How to enable <ProductName /> Copilot**
 
 1.  Navigate to **Configuration > Copilot Settings**.
-2.  Toggle on the ‘Torque Copilot’ toggle to show the AI chatbot button at the top header, next to the rest of the utilities.
+2.  Toggle on the ‘<ProductName /> Copilot’ toggle to show the AI chatbot button at the top header, next to the rest of the utilities.
 3.  Toggle off to hide the AI chatbot and to prevent access from all users.
 
 **2. Cloud Copilot** – Your internal AI assistance to create and customize Blueprints, auto-generate descriptions, and resolve live environment errors.  
-This AI assistant tool is subject to the [Torque MSA](https://www.quali.com/legal-torque-master-subscription-agreement/) and requires user consent.  
+This AI assistant tool is subject to the [<ProductName /> MSA](https://www.quali.com/legal-torque-master-subscription-agreement/) and requires user consent.  
   
 With this feature you can:  
 - **Auto-generate descriptions** for blueprints, to effortlessly expand the details on every blueprint in the account.  
 - **(Blueprint) Cloud Copilot** - Create and customize blueprints from your Building Blocks Library, using simple language prompts and the power of AI.
-![Cloud Copilot](/img/cloud_copilot_panel.png)
+  ![Cloud Copilot](/img/cloud_copilot_panel.png)
 
-- **AI Insights** - Get AI assistant when you need it. Resolve issues in live environments, by clicking the “Get AI Insights” button, on every error log in your environment. 
-![AI Insights](/img/ai_insights.png)
+- **AI Insights** - Get AI assistant when you need it. Resolve issues in live environments, by clicking the “Get AI Insights” button, on every error log in your environment.
+
+  ![AI Insights](/img/ai_insights.png)
 
 
 
@@ -99,7 +100,7 @@ With this feature you can:
 
 1.  Navigate to **Configuration > Copilot Settings**.
 2.  Under the ‘Cloud Copilot’ section > click on the **‘AI Provider’ button** to select where to host your AI Data while using Copilot:  
-    - Host in **Torque’s Open AI  
+    - Host in **<ProductName />’s Open AI  
     **There’s no further configuration, just click ‘Connect’  
     - Host in your own **Azure OpenAI service  
     **You’ll have to provide: API key, Endpoint URL, GPT-4o deployment name, and GPT-4o mini deployment name.  
@@ -133,15 +134,17 @@ info 🔒  SSO Login is optionally available for **Enterprise plans only**.
 
 ### 6. Email Reports  
 Subscribe to the ‘Weekly Digest’, a summary email providing key account activity insights.  
-Torque's weekly digest reports condense the most important information from a week's worth of data collected in Torque, making it easier for Torque administrators to quickly understand the most critical developments.  
-Torque ‘Weekly Digest’ emails are being sent to Torque administrators and will highlight:
+<ProductName />'s weekly digest reports condense the most important information from a week's worth of data collected in <ProductName />, making it easier for administrators to quickly understand the most critical developments.  
+The <ProductName /> ‘Weekly Digest’ emails are being sent to administrators and will highlight:
 
 -   Cloud usage
--   Torque users activity
+-   Users activity
 -   Environments usage
 -   Cloud Cost
 -   Top used IaC modules
 -   Top contributors to the operation
+
+Example:
 
 ![Weekly Digest Example](/img/mockup_weekly_digest.png)
   
@@ -187,9 +190,9 @@ When enabled by the account admin:
 
 ### 9.	Experimental Features
 
-Experimental Features give account administrators early access to upcoming capabilities in Torque that are still in development. These features are in a **beta** or **testing phase** and may not yet be fully supported or stable.
+Experimental Features give account administrators early access to upcoming capabilities in <ProductName /> that are still in development. These features are in a **beta** or **testing phase** and may not yet be fully supported or stable.
 
-This settings gives **Torque administrators early visibility and hands-on access** to major upcoming features and UI changes—allowing them to explore, prepare, and influence what’s coming before it rolls out to all users.
+This settings gives **<ProductName /> administrators early visibility and hands-on access** to major upcoming features and UI changes—allowing them to explore, prepare, and influence what’s coming before it rolls out to all users.
  
 
 **What You Need to Know**
@@ -199,7 +202,7 @@ This settings gives **Torque administrators early visibility and hands-on access
 - 📆 Each experiment includes a defined **trial period** with a description of what’s new.
 - 📩 Admins can provide feedback via:
   -> A **survey form** linked within the experiment.
-  -> A **support ticket** submitted through the Torque support system.
+  -> A **support ticket** submitted through the <ProductName /> support system.
 
   
 **How to Use Experimental Features**
@@ -218,7 +221,7 @@ Once the experiment ends:
 -	You’ll receive updates in the product and via release notes.
  
 
-🛠 **Note**: Enabling experimental features is a great way to influence Torque’s roadmap and help improve future releases.
+🛠 **Note**: Enabling experimental features is a great way to influence <ProductName />’s roadmap and help improve future releases.
 
 info 🔒  Experimental Features are optionally available for **Enterprise plans only**.
 

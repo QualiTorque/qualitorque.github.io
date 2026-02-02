@@ -9,7 +9,7 @@ title: Audit Log Configuration
 ## Configuration
 1. Navigate to __Configuration > Audit Log__, and click __Add Audit Target__.
 2. Select one of the options:
-   - __Torque Audit__: Forward logs to Torque, and retain for 18 months.
+   - __Torque Audit__: Forward logs to <ProductName />, and retain for 18 months.
    - __ElasticSearch__: With built-in Elastic Stack integration, you can forward audit data for real-time analysis and reporting.
 3. When selecting ElasticSearch, please fill in the details: 
    > ![Locale Dropdown](/img/audit_logs_wizard.png)
@@ -23,4 +23,4 @@ title: Audit Log Configuration
 6. Go to __Management >  Stack Management > Index Patterns__ and create a "quali" index pattern.
 > ![Locale Dropdown](/img/quali-index-pattern.png)
   
-  Congratulations! Audit Log is configured and collecting Torque events.
+  Congratulations! Audit Log is configured and collecting <ProductName /> events.

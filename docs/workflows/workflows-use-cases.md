@@ -518,7 +518,7 @@ grains:
 
 ---
 
-## Torque Built-in Workflows
+## <ProductName /> Built-in Workflows
 
 :::info
 Usage example can be found [here](workflows-overview#torque-built-in-workflows)

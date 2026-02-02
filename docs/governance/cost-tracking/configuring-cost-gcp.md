@@ -11,7 +11,7 @@ title: Configuring Cost for GCP
    * `BigQuery Data Viewer`
    * `BigQuery Job User`
    * `Billing Account Viewer`
-4. Download the service account key in JSON format. This will be used in Torque.
+4. Download the service account key in JSON format. This will be used in <ProductName />.
 
 ## Configuration Steps
 
@@ -46,9 +46,9 @@ title: Configuring Cost for GCP
    3. Select **JSON** and click **Create**.
    4. Save the JSON file securely.
 
-### Step 3: Configure Torque
+### Step 3: Configure <ProductName />
 
-1. Go to **Administration > Cloud Accounts > Cost Collection Target** in Torque.
+1. Go to **Administration > Cloud Accounts > Cost Collection Target** in <ProductName />.
 2. Click **Add Cost Collection Target**.
 3. Select **GCP**.
 4. Specify the following details:
@@ -72,12 +72,12 @@ import pic1 from '/img/gcp-cost-target.png';
 
 ## Troubleshooting
 
-What can be done if you don't see cost in Torque's cost dashboard?
+What can be done if you don't see cost in <ProductName />'s cost dashboard?
 
 1. Ensure that cost data is being exported to the BigQuery table. Check the table in the GCP Console to verify data is present.
 2. Validate the service account permissions:
    * Ensure the service account has access to the BigQuery dataset and table.
    * Verify the service account has the `Billing Account Viewer` role.
-3. Test your credentials in Torque:
+3. Test your credentials in <ProductName />:
    * Navigate to **Administration > Cloud Accounts > Cost Collection Target > Choose your cloud > In the three-dot menu, click on Validate**.
 4. If issues persist, review the configuration steps above and correct any errors.

@@ -1,6 +1,6 @@
 ---
 title: Custom Roles
-description: How to define and use custom roles in Torque for advanced governance and access control.
+description: How to define and use custom roles in <ProductName /> for advanced governance and access control.
 sidebar_position: 4
 ---
 

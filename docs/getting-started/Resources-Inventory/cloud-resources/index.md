@@ -5,15 +5,15 @@ title: Cloud Resources
 
 ## Introduction
 
-Welcome to Torque Cloud Resources, an advanced solution designed to facilitate comprehensive visibility and governance over your cloud infrastructure. Torque Cloud Resources connects to your cloud accounts with read-only permissions, allowing for in-depth discovery, categorization, and curation of cloud resources. Users can filter their resources based on type, location, or Infrastructure as Code (IaC) status, providing fine-grained control over their cloud estate.
+Welcome to <ProductName /> Cloud Resources, an advanced solution designed to facilitate comprehensive visibility and governance over your cloud infrastructure. <ProductName /> Cloud Resources connects to your cloud accounts with read-only permissions, allowing for in-depth discovery, categorization, and curation of cloud resources. Users can filter their resources based on type, location, or Infrastructure as Code (IaC) status, providing fine-grained control over their cloud estate.
 
-Torque Cloud Resources classifies resources by their IaC status as follows:
+<ProductName /> Cloud Resources classifies resources by their IaC status as follows:
 
 - **Unmanaged**: Resources that have been created manually and are not governed by IaC.
 - **Codified**: Resources that are integrated with and managed by your existing IaC practices.
 - **Managed**: Resources that are managed under Quali's governance framework.
 
-Torque Resources Inventory allows users to curate selected resources into a cart, transforming them into Terraform configuration files and state files. These artifacts are readily available for download, enabling seamless integration into Infrastructure as Code workflows.
+<ProductName /> Resources Inventory allows users to curate selected resources into a cart, transforming them into Terraform configuration files and state files. These artifacts are readily available for download, enabling seamless integration into Infrastructure as Code workflows.
 
 import pic1 from '/img/resource-inventory.png';
 
@@ -23,7 +23,7 @@ import pic1 from '/img/resource-inventory.png';
 
 ## Key Features
 
-Torque Cloud Resources offers a suite of features to help you manage your cloud infrastructure effectively:
+<ProductName /> Cloud Resources offers a suite of features to help you manage your cloud infrastructure effectively:
 
 - **Cloud Resource Discovery**: Automatically discovers and inventories all resources within your Azure subscription, providing a holistic view of your cloud environment.
 - **Resource Filtering**: Offers advanced filtering capabilities, allowing resources to be categorized by type, geographical region, and IaC status for efficient management.
@@ -34,7 +34,7 @@ Torque Cloud Resources offers a suite of features to help you manage your cloud 
 
 ## Adding a Cloud Account
 
-To begin using Torque Resources Inventory, you must connect your cloud account. Currently, AWS and Azure clouds are supported.
+To begin using <ProductName /> Resources Inventory, you must connect your cloud account. Currently, AWS and Azure clouds are supported.
 
 ### Supported cloud providers
 * [AWS](./cloud-resources/aws-setup)
@@ -44,13 +44,13 @@ To begin using Torque Resources Inventory, you must connect your cloud account. 
 
 ## Cloud Resources Inventory
 
-Upon connecting your account, Torque Resources Inventory will automatically perform a full scan and inventory all resources in your subscription. The Cloud Resources Inventory page presents a comprehensive view of your resources, which can be filtered by:
+Upon connecting your account, <ProductName /> Resources Inventory will automatically perform a full scan and inventory all resources in your subscription. The Cloud Resources Inventory page presents a comprehensive view of your resources, which can be filtered by:
 
 - **Resource Type**: Categories such as virtual machines, databases, and networking components.
 - **Location**: Filter resources by their geographical deployment region.
 - **IaC Status**: Indicate whether resources are unmanaged, codified, or managed.
 
-Torque Resources Inventory provides insights into which resources are under IaC management and highlights unmanaged resources that may need to be incorporated into governance frameworks.
+<ProductName /> Resources Inventory provides insights into which resources are under IaC management and highlights unmanaged resources that may need to be incorporated into governance frameworks.
 
 import pic2 from '/img/iac-status.png';
 
@@ -79,7 +79,7 @@ Curate your cloud resources with ease and transform them into Terraform configur
    - **Individual Add Method**: Click the plus icon next to each resource to add it individually to the cart.
 4. Review the items in your cart to ensure all desired resources are included.
 5. Click Curate. A summary dialog will appear, allowing you to confirm your selection. Click Approve & Curate to proceed.
-6. Torque Resources Inventory will generate a Terraform configuration and state file for the curated resources. The curation process may take a few minutes.
+6. <ProductName /> Resources Inventory will generate a Terraform configuration and state file for the curated resources. The curation process may take a few minutes.
 7. Once completed, the generated artifacts will be available for download.
 
 ### Downloading the Artifacts
@@ -93,7 +93,7 @@ The Cart feature allows you to select and curate multiple resources before gener
 
 ### Using the Downloaded IaC Artifacts
 
-The Terraform configuration and state files generated by Torque Resources Inventory can be used to manage your cloud resources through Infrastructure as Code. Possible actions include:
+The Terraform configuration and state files generated by <ProductName /> Resources Inventory can be used to manage your cloud resources through Infrastructure as Code. Possible actions include:
 
 - **Integration with Existing IaC Projects**: Incorporate the generated Terraform files into existing IaC projects to maintain consistency in infrastructure management.
 - **Manage Resources via Terraform**: Utilize the generated files to manage manually provisioned resources, simplifying their incorporation into existing IaC frameworks.
@@ -102,9 +102,9 @@ The Terraform configuration and state files generated by Torque Resources Invent
 
 ---
 
-## Best Practices for Using Torque Resources Inventory
+## Best Practices for Using <ProductName /> Resources Inventory
 
-To maximize the benefits of Torque Resources Inventory, consider the following best practices:
+To maximize the benefits of <ProductName /> Resources Inventory, consider the following best practices:
 
 - **Tag Resources Consistently**: Ensure that all cloud resources are tagged appropriately for easier filtering and curation.
 - **Frequent Scans**: Regularly scan your cloud accounts to maintain up-to-date visibility of resources and changes.
@@ -117,11 +117,11 @@ To maximize the benefits of Torque Resources Inventory, consider the following b
 
 ### What Cloud Providers Are Supported?
 
-Currently, Torque Resources Inventory supports only Azure and AWS clouds. Support for other cloud providers, such as Google Cloud, is planned for future releases.
+Currently, <ProductName /> Resources Inventory supports only Azure and AWS clouds. Support for other cloud providers, such as Google Cloud, is planned for future releases.
 
-### What Permissions Are Required for Torque Resources Inventory?
+### What Permissions Are Required for <ProductName /> Resources Inventory?
 
-Torque Resources Inventory requires read-only permissions to your Azure subscription, specifically the Reader role, to perform resource discovery and inventory.
+<ProductName /> Resources Inventory requires read-only permissions to your Azure subscription, specifically the Reader role, to perform resource discovery and inventory.
 
 ### Can I Edit the Generated Terraform Files?
 
@@ -137,25 +137,25 @@ It is recommended to scan your cloud account at least weekly to ensure that your
 
 ### Unable to Connect to Azure Account
 
-If you are experiencing issues while connecting your Azure account to Torque Resources Inventory, verify the following:
+If you are experiencing issues while connecting your Azure account to <ProductName /> Resources Inventory, verify the following:
 
 - The provided credentials have read-only permissions.
 - The subscription ID is accurate.
-- There are no network or firewall settings preventing Torque Resources Inventory from accessing Azure.
+- There are no network or firewall settings preventing <ProductName /> Resources Inventory from accessing Azure.
 
 ### Terraform Generation Failed
 
 If Terraform generation fails:
 
 - Verify that all selected resources have the necessary metadata available.
-- Ensure there are no permission issues preventing Torque Resources Inventory from accessing resource details.
-- Contact Torque Resources Inventory support if the issue persists.
+- Ensure there are no permission issues preventing <ProductName /> Resources Inventory from accessing resource details.
+- Contact <ProductName /> Resources Inventory support if the issue persists.
 
 ---
 
 ## Support
 
-For further assistance, please contact the Torque Resources Inventory support team at [support@quali.com](mailto:support@quali.com) or visit our [support page](https://support.quali.com).
+For further assistance, please contact the <ProductName /> Resources Inventory support team at [support@quali.com](mailto:support@quali.com) or visit our [support page](https://support.quali.com).
 
 ## Glossary
 
@@ -163,4 +163,4 @@ For further assistance, please contact the Torque Resources Inventory support te
 - **Terraform**: An open-source IaC tool that allows users to define and provision infrastructure using a declarative configuration language.
 - **Reader Role**: A built-in Azure role that provides read-only access to cloud resources.
 
-Torque Resources Inventory provides an effective mechanism to address cloud sprawl, enabling you to transition unmanaged resources into managed, codified infrastructure seamlessly integrated into your IaC strategy.
+<ProductName /> Resources Inventory provides an effective mechanism to address cloud sprawl, enabling you to transition unmanaged resources into managed, codified infrastructure seamlessly integrated into your IaC strategy.

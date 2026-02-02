@@ -3,14 +3,14 @@ sidebar_position: 15
 title: Spinnaker Plugin
 ---
 
-The [Spinnaker plugin](https://github.com/QualiTorque/torque-spinnaker-plugin) lets developers trigger application environments on-demand directly from their Spinnaker pipelines. Spinnaker users can easily integrate the Torque environments-as-a-service platform into their projects by utilizing the Torque plugin’s pre-defined commands.
+The [Spinnaker plugin](https://github.com/QualiTorque/torque-spinnaker-plugin) lets developers trigger application environments on-demand directly from their Spinnaker pipelines. Spinnaker users can easily integrate the <ProductName /> environments-as-a-service platform into their projects by utilizing the <ProductName /> plugin’s pre-defined commands.
 
-To integrate Torque with the Spinnaker plugin, make sure to complete the next few steps.
+To integrate <ProductName /> with the Spinnaker plugin, make sure to complete the next few steps.
 
 ## 1. Install
 
 __Prerequisites:__
-* This plugin integrates Torque into your Pipelines in Spinnaker 1.23.0 and above.
+* This plugin integrates <ProductName /> into your Pipelines in Spinnaker 1.23.0 and above.
 
 __Install the plugin:__
 * Read how to add the Halyard file that will be used to load the orca file, and how to add the profile file to load the Deck frontend [here](https://github.com/QualiTorque/torque-spinnaker-plugin#plugin-deployment-guide-for-spinnaker).
@@ -19,7 +19,7 @@ __Install the plugin:__
 
 1. When adding the Halyard file, you’ll need to provide the following parameters:
     * __torqueUrl__ - Use https://portal.qtorque.io
-    * __account__ - The Torque account name (optional)
+    * __account__ - The <ProductName /> account name (optional)
     * __torqueToken__ - Use the token with the value generated below:
 2. Click the __Generate New Token__ button in the plugin's instructions pane.
 

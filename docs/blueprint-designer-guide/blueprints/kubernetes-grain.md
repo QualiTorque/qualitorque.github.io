@@ -3,7 +3,7 @@ sidebar_position: 11
 title: The Kubernetes Grain​
 ---
 
-The Kubernetes grain allows you to deploy native Kubernetes manifests and manifest catalogs from your repositories as part of a Torque blueprint. The grain leverages Kubernetes' declarative approach to manage containerized applications and services within your Torque environments.
+The Kubernetes grain allows you to deploy native Kubernetes manifests and manifest catalogs from your repositories as part of a <ProductName /> blueprint. The grain leverages Kubernetes' declarative approach to manage containerized applications and services within your <ProductName /> environments.
 
 ## Tools and technologies
 
@@ -18,7 +18,7 @@ The following tools and technologies are installed out of the box on our agents 
 
 :::warning Important
 * The target namespace must exist in the cluster prior to deployment
-* The namespace must not be equal to the namespaces used by Torque for agent deployments
+* The namespace must not be equal to the namespaces used by <ProductName /> for agent deployments
 * Ensure the service account has sufficient permissions to create/read/delete everything in the manifest, including secrets and volumes
 * Currently, it is not possible to launch multiple concurrent environments from the same blueprint on the same namespace because the manifest resources are static and their names are not unique
 :::
@@ -116,13 +116,13 @@ grains:
 
 :::info
 * Launching concurrent environments with a Kubernetes grain is not supported for the same namespace
-* Ensure the Torque agent has permissions to use the target namespace
-* The namespace must not be equal to namespaces used by Torque for agent deployments
+* Ensure the <ProductName /> agent has permissions to use the target namespace
+* The namespace must not be equal to namespaces used by <ProductName /> for agent deployments
 :::
 
 ### `tags`
 
-Whenever a Kubernetes grain is launched, all resources created during the deployment process are automatically tagged with Torque's system tags, built-in tags, and custom tags. You can disable auto-tagging for specific grains if needed.
+Whenever a Kubernetes grain is launched, all resources created during the deployment process are automatically tagged with <ProductName />'s system tags, built-in tags, and custom tags. You can disable auto-tagging for specific grains if needed.
 
 **Example - disable auto-tagging:**
 
@@ -141,7 +141,7 @@ grains:
 
 ### `scripts`
 
-Kubernetes does not natively support outputs from manifest deployments. Using Torque scripts, you can extract information from deployed resources and provide it as grain outputs. Scripts are executed after the grain's installation and must export environment variables that correspond to declared outputs.
+Kubernetes does not natively support outputs from manifest deployments. Using <ProductName /> scripts, you can extract information from deployed resources and provide it as grain outputs. Scripts are executed after the grain's installation and must export environment variables that correspond to declared outputs.
 
 **Usage example:**
 

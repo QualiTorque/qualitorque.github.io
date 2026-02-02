@@ -3,7 +3,7 @@ sidebar_position: 3
 title: Privacy
 ---
 
-When you use our services, you trust us with your personal information. At Quali, we take your privacy very seriously. In this article, we describe our privacy policy, the information we collect, how we use it and what rights you have in relation to it. This includes personal information you voluntarily share with us when registering with Torque, cloud account and authentication details, git repository data, and more.
+When you use our services, you trust us with your personal information. At Quali, we take your privacy very seriously. In this article, we describe our privacy policy, the information we collect, how we use it and what rights you have in relation to it. This includes personal information you voluntarily share with us when registering with <ProductName />, cloud account and authentication details, git repository data, and more.
 
 ## Personal information 
 
@@ -29,7 +29,7 @@ When you use our services, you trust us with your personal information. At Quali
     * [Cost](/governance/cost-tracking/cost) information (optional) 
     * [Audit Log events](/governance/audit-log/events)
 
-## What does Torque connect to 
+## What does <ProductName /> connect to 
 
 * [Cloud account](/torque-agent/Install-and-connect-self-hosted-agent)
 * [Git repositories](/torque-agent/Install-and-connect-self-hosted-agent)

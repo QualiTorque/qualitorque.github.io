@@ -3,7 +3,7 @@ sidebar_position: 4
 title: Self-Managed GitHub
 ---
 
-Torque supports connecting to self-managed GitHub repositories, allowing you to discover and manage assets stored in your on-premises GitHub instance.
+<ProductName /> supports connecting to self-managed GitHub repositories, allowing you to discover and manage assets stored in your on-premises GitHub instance.
 ## Prerequisites
 
 * GitHub personal access token with read access for repositories in the server
