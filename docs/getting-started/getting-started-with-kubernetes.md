@@ -34,7 +34,7 @@ Now, that you have a new space configured, we will associate a repository to the
 4. Click on "Connect an Agent"
 
 
-import pic1 from '/img/getting-repository-ongoarding.gif';
+import pic1 from '/img/getting-repository-onboarding.gif';
 
 <img src={pic1} style={{width: 700}} />
 
