@@ -32,6 +32,10 @@ The Shell grain is an asset-agnostic grain that allows you to run bash/python3 c
 spec_version: 2
 description: Run a simple shell grain
 
+inputs:
+  agent:
+    type: agent
+
 grains:
   validate:
     kind: shell
