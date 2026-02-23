@@ -36,7 +36,7 @@ Now, that you have a new space configured, we will associate a repository to the
 3. To __generate a blueprint__ from one of the discovered assets, check the blueprint in the list and click on "Generate Blueprints"
 4. Click on "Connect an Agent"
 
-> ![Onboard Repository](/img/getting-repository-ongoarding.gif)
+> ![Onboard Repository](/img/getting-repository-onboarding.gif)
 
 ## Step #3: Set Quali Agent
 In this step, we will configure our newly created blueprint (Created in step #2) to use "Quali Hosted Agent"

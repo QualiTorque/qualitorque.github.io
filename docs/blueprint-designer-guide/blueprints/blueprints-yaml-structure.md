@@ -554,7 +554,6 @@ description: ...
 metadata:
   self-service: true
   display-name: "My Custom Blueprint"
-  icon: "database"
 
 grains: ...
 ```
@@ -575,15 +574,6 @@ Specifies a user-friendly display name for the blueprint that will be shown in t
 ```yaml
 metadata:
   display-name: "Production Web Application Stack"
-```
-
-#### `icon`
-
-Defines the icon that will be displayed for the blueprint in the Torque catalog. This helps users quickly identify and distinguish between different blueprints.
-
-```yaml
-metadata:
-  icon: "database"
 ```
 
 ## Grains inputs & outputs
