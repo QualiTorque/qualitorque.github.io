@@ -204,16 +204,14 @@ grains:
     spec:
       source: ..
       provider-overrides:
-        - name: aws # in case no provider block is defined in the tf configuration
+        - name: aws # Full provider override, including source and version
           source: hashicorp/aws
           version: ~>5.0.0 
           attributes:
             region: us-east-1
             assume_role: # the mounted service-account should have permissions to assume role
               role_arn: "arn:aws:iam::{{ .inputs.target-account }}:role/role-name"
-        - name: aws
-          source: hashicorp/aws
-          version: ~>5.0.0 # Optional 
+        - name: aws # Only attributes overrides; source and version will be inherited from the Terraform configuration
           attributes:
             alias: ue2
             region: us-east-2
@@ -227,9 +225,11 @@ grains:
 The `provider-overrides` block is a list where each item has:
 
 - `name`: A unique name for the provider
-- `source`: The source location for the provider (e.g. `hashicorp/aws`)
+- `source` (optional): The source location for the provider (e.g. `hashicorp/aws`)
 - `version` (optional): The version constraint for the provider
 - `attributes`: Key/value attributes to set on the provider block
+
+If `source` and `version` are omitted, Torque will only generate the provider override block and will inherit the provider configuration from the Terraform module's existing `required_providers` definition.
 
 This will generate the following Terraform code:
 
@@ -258,6 +258,36 @@ provider {
 ```
 
 The `attributes` map allows setting any attributes on the generated provider blocks. Note that there is no schema validation on these attributes.
+
+For example, to override only the provider block without generating a `required_providers` block:
+
+```yaml
+grains:
+  database:
+    kind: terraform
+    spec:
+      provider-overrides:
+        - name: aws
+          # If no required_providers properties such as source or version
+          # are specified, the provider will be inherited from the configuration.
+          attributes:
+            region: '{{ .inputs.AWSRegion }}' # Liquid templating allows referencing blueprint inputs
+            assume_role:
+              role_arn: ..
+```
+
+This will generate only the provider block:
+
+```hcl
+provider {
+ "aws": [{
+    region = "us-east-1"
+    assume_role {
+      role_arn = ".."
+    }
+  }]
+}
+```
 
 Liquid templating is supported in the `attributes` values, allowing blueprint inputs to be referenced like `{{ .inputs.target-account }}`.
 
