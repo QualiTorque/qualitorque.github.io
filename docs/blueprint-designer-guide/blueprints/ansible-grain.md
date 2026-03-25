@@ -57,18 +57,6 @@ inputs:
   variable1:
     type: string
     default: test
-  variable2:
-    type: list
-    default: 
-      - value1
-      - value2
-      - value3
-  variable3:
-    type: dict
-    default:
-      test: "value1"
-      test2: "value2"
-      test3: '{{ name }}'
 
 grains:
   ansible_playbook:
@@ -81,8 +69,6 @@ grains:
         name: '{{ .inputs.agent }}'
       inputs:
         - variable1: '{{ .inputs.variable1 }}'
-        - variable2: '{{ .inputs.variable2 }}'
-        - variable3: '{{ .inputs.variable3 }}'
       # The outputs section below is a placeholder. Review and update based on your playbook's actual outputs.
       outputs:
         - result
