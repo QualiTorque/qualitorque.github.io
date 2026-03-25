@@ -31,20 +31,6 @@ base_folder/
   playbook.yaml
 ```
 
-A variables file might have the following structure:
-
-```yaml
-variable1: test
-variable2:
-  - value1
-  - value2
-  - value3
-variable3:
-  test: "value1"
-  test2: "value2"
-  test3: '{{ name }}'
-```
-
 Below is an example of an auto-generated blueprint based on a discovered playbook and its variables file. This demonstrates how Torque can help you quickly scaffold a working Ansible blueprint:
 
 ```yaml
