@@ -554,6 +554,12 @@ description: ...
 metadata:
   self-service: true
   display-name: "My Custom Blueprint"
+  blueprint-labels:
+    - key: Validated
+    - key: Category
+      value: BMaaS
+  icon:
+    path: "graphics/linux.svg"
 
 grains: ...
 ```
@@ -575,6 +581,34 @@ Specifies a user-friendly display name for the blueprint that will be shown in t
 metadata:
   display-name: "Production Web Application Stack"
 ```
+
+#### `blueprint-labels`
+
+Defines labels on the blueprint catalog item itself. Each entry supports either a single value label (key only) or a key/value pair.
+
+A special key named `blocked` can be used to prevent launching a blueprint, even when it is published in the catalog. When `blocked` is used with a `value`, the value is shown on the blueprint as the blocking message.
+
+```yaml
+metadata:
+  blueprint-labels:
+    - key: Validated
+    - key: Category
+      value: BMaaS
+    - key: blocked
+      value: "Coming Soon"
+```
+
+#### `icon`
+
+Defines a custom icon for the blueprint catalog item.
+
+```yaml
+metadata:
+  icon:
+    path: "graphics/linux.svg"
+```
+
+Icons are discovered by default under the `graphics` directory.
 
 ## Grains inputs & outputs
 Inputs and outputs are used both in the blueprint level and in the grains level. Grains can use inputs and outputs to pass data between IaC components, validate information and eventually lead to reducing the amount of IaC components that needs to be maintained by the organization.
