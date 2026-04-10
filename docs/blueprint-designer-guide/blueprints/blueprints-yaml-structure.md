@@ -489,6 +489,67 @@ grains:
 The ability to use outputs from specific grain usually requires the grain deployment to finish successfully. designing a blueprint with output usually requires dependencies between the grains.
 :::
 
+### `condition`
+
+The `condition` block defines preconditions that Torque evaluates before executing the grain. A common use case is adding an approval gate before infrastructure provisioning starts.
+
+#### `approval` condition (grains-approval)
+
+Use `type: approval` to require human approval before the dependent grain execution continues.
+
+```yaml
+spec_version: 2
+description: This is a sample blueprint that demonstrates how to use the grain approval condition in Torque.
+
+inputs:
+  tag:
+    type: string
+
+grains:
+  require_approval:
+    kind: blueprint
+    spec:
+      source: ...
+    condition:
+      - type: approval
+        message: 'This is a message to include in the approval request: {{ .inputs.tag }}'
+        channels:
+          - type: group # torque group
+            groups:
+              - devops-group
+          - type: user # torque user
+            users:
+              - user@quali.com
+
+  infra-provisioning:
+    kind: terraform
+    depends-on: require_approval
+    spec:
+      source: ...
+      agent: ...
+      inputs: ...
+      outputs: ...
+```
+
+**Motivation**
+
+- Protect production-like resources by enforcing a manual review checkpoint.
+- Add governance controls for sensitive operations (costly deployments, privileged access, or compliance boundaries).
+- Keep approval context clear by including dynamic input values in the approval message.
+
+**Usage**
+
+- Define a dedicated gating grain (for example, `require_approval`) with `condition: - type: approval`.
+- Configure one or more approval channels:
+  - `type: group` with `groups`
+  - `type: user` with `users`
+- Use templating in `message` to pass launch context, for example `{{ .inputs.tag }}`.
+- Make downstream grains depend on the approval grain using `depends-on` so provisioning waits for approval.
+
+:::tip
+Use both group and user channels together when you want a team-level gate with an explicit fallback approver.
+:::
+
 
 
 ### `labels`
