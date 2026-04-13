@@ -1363,6 +1363,8 @@ customization:
 #### Complete launch-form example
 
 ```yaml
+spec_version: 2
+
 customization:
   launch-form:
     categories:
@@ -1402,7 +1404,7 @@ customization:
         visible: false
       ownersAndCollaborators:
         visible: false
-spec_version: 2
+
 inputs:
   ID:
     type: string
