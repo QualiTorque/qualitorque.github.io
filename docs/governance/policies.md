@@ -125,7 +125,9 @@ For __environment__ policies, the input is the following json object:
         {
             "name": "input_name",
             "type": "string",
-            "value_v2": "input_value",
+            "value_v2": {
+                "value": "input_value"
+            }
             "sensitive": false, // true|false
             "description": null
         }
