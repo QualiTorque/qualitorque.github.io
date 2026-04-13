@@ -1333,31 +1333,134 @@ customization:
 
 #### Category-based Configuration
 
-Group related inputs into logical sections with conditional visibility:
+Group related inputs into logical `categories` and `sections`, with optional icons and `default_open` behavior:
 
 ```yaml
 customization:
   launch-form:
     categories:
       - name: 'Infrastructure Selection'      # Category display name
+        icon: layer                           # Optional category icon
+        sections:
+          - name: 'Compute'
+            icon: list                        # Optional section icon
+            default_open: true                # Optional, section expanded by default
+            inputs:
+              - name: 'infra_type'
+              - name: 'environment_name'
+                type: env-name                # Built-in environment name input
+          - name: 'Schedule'
+            icon: timer
+            type: duration                    # Built-in duration section
+      - name: 'Owners'
+        icon: email
         inputs:
-          - name: 'infra_type'               # Input within this category
-      - name: 'Database Configuration'       # Another category
+          - name: 'owner_mapping'
+            type: object                      # Render JSON object input
+            header: Name,Email                # Optional CSV headers for object rows
+```
+
+#### Complete launch-form example
+
+```yaml
+customization:
+  launch-form:
+    categories:
+      - name: Request Details
+        icon: layer
+        sections:
+          - name: REQUESTOR INFORMATION
+            icon: list
+            default_open: true
+            inputs:
+              - name: REQUESTOR
+                type: owner
+              - name: ENVIRONMENT NAME
+                type: env-name
+          - name: ENVIRONMENT SCHEDULE
+            default_open: true
+            type: duration
+            icon: timer
+          - name: ENVIRONMENT CONFIGURATION
+            icon: tags
+            default_open: true
+            inputs:
+              - name: ID
+              - name: ENVIRONMENT TYPE
+              - name: SEAT COUNT
+              - name: USE CASE DESCRIPTION
+      - name: COLLABORATORS
+        icon: email
         inputs:
-          - name: 'db_instance_type'
-            visible: '{% if inputs.infra_type == "1" %} true {% else %} false {% endif %}'
-          - name: 'db_storage_size'
-            visible: '{% if inputs.infra_type == "1" %} true {% else %} false {% endif %}'
+          - name: COLLABORATORS
+            type: object
+            header: Name,Email,Address
+    steps:
+      tags:
+        visible: false
+      workflows:
+        visible: false
+      ownersAndCollaborators:
+        visible: false
+spec_version: 2
+inputs:
+  ID:
+    type: string
+    default: ID-12345
+  ENVIRONMENT TYPE:
+    type: string
+    default: Development
+    allowed-values:
+      - Development
+      - Staging
+      - Production
+  SEAT COUNT:
+    type: string
+    default: '10'
+    pattern: ^([1-9][0-9]?|100)$
+    validation-description: The seat count must be a number between 1 and 100
+  USE CASE DESCRIPTION:
+    type: string
+    default: General training use case
+  COLLABORATORS:
+    type: string
+    default: |
+      [
+        {
+            "Name": "Name 1",
+            "Email": "name1@example.com",
+            "Address": "2506 E. 5th St., Austin, TX 78702"
+        },
+        {
+            "Name": "Name 2",
+            "Email": "name2@example.com",
+            "Address": "2512 E. 5th St., Austin, TX 78702"
+        }
+      ]
+
+grains: ...
 ```
 
 **Properties:**
 - **`inputs`**: Array of input configurations for flat organization
 - **`categories`**: Array of category objects for grouped organization
-  - **`name`**: Display name for the category section
-  - **`inputs`**: Array of inputs within this category
+  - **`name`**: Display name for the category
+  - **`icon`**: Optional category icon name
+  - **`inputs`**: Optional array of inputs directly under the category
+  - **`sections`**: Optional array of section objects inside the category
+    - **`name`**: Display name for the section
+    - **`icon`**: Optional section icon name
+    - **`default_open`**: Optional boolean. When `true`, the section is expanded by default.
+    - **`inputs`**: Optional array of inputs under the section
+    - **`type`**: Optional built-in section type (for example `duration`)
 - **Input Properties:**
-  - **`name`**: The input field name (must match an input defined in the blueprint's inputs section)
+  - **`name`**: The input field name (must match an input defined in the blueprint's inputs section unless using a built-in input type)
   - **`visible`**: Optional Liquid template expression that evaluates to `true` or `false` to control input visibility based on other input values
+  - **`type`**: Optional customization input type. Supported values include:
+    - `duration` (duration selector)
+    - `env-name` (environment name selector)
+    - `object` (JSON object display/editor)
+  - **`header`**: Optional comma-separated header names for `object` type display
 
 The `visible` property uses Liquid templating syntax to create dynamic conditions. Common patterns include:
 - `{% if inputs.field_name == "value" %} true {% else %} false {% endif %}` - Show input when another field equals a specific value
