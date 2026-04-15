@@ -232,6 +232,20 @@ inputs:
     - query: 'region={{ .inputs.region }}'
 ```
 
+**Example YAML snippet** (HTTP Server with searchable input):
+
+When `searchable` is set to `true` (HTTP Server sources), the dropdown will wait for the user to type a search term instead of loading all values upfront. Use `{{ value }}` in overrides to pass the search text to the HTTP source, as opposed to the `{{ .inputs.<name> }}` syntax used for referencing other inputs.
+
+```yaml
+inputs:
+  instance:
+    type: input-source
+    source-name: http-server-instance-list
+    searchable: true
+    overrides:
+    - query: 'search={{ value }}'
+```
+
 More usage examples can be found [here](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#inputs).
 
 ---
