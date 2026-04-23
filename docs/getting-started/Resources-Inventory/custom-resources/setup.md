@@ -88,6 +88,33 @@ resources:
         - location: 'us-west-2'
 ```
 
+### Dynamic Resource Type Selection
+
+You can set the resource `selector.type` dynamically instead of hard-coding it.
+
+Resource type resolution supports values from:
+
+- `inputs`
+- `params`
+
+This is useful when the same blueprint should allow different approved resource types per environment, user input, or policy-driven parameter values.
+
+When using dynamic values, make sure the resolved type name exactly matches an existing Custom Resource Type in your space.
+
+Example:
+
+```yaml
+resources:
+  compute:
+    selector:
+      type: '{{ .params.allowed-compute-type }}'
+      quantity: 1
+      attributes:
+        - location: 'us-west-2'
+```
+
+You can use either `params` or `inputs` expressions for `selector.type`, depending on how your blueprint is designed.
+
 ### Resource Access in Grains
 
 Access reserved resource data in your grains:
