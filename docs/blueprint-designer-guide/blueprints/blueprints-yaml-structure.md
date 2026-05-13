@@ -490,66 +490,143 @@ grains:
 The ability to use outputs from specific grain usually requires the grain deployment to finish successfully. designing a blueprint with output usually requires dependencies between the grains.
 :::
 
-### `condition`
+### `when`
 
-The `condition` block defines preconditions that Torque evaluates before executing the grain. A common use case is adding an approval gate before infrastructure provisioning starts.
+Use `when` on a grain to control whether that grain runs or is skipped.
 
-#### `approval` condition (grains-approval)
+#### Skip or run a grain
 
-Use `type: approval` to require human approval before the dependent grain execution continues.
+Use the `when` field on a grain to decide if that grain should run. If `when` evaluates to `false`, Torque skips the grain.
+
+Simple example:
 
 ```yaml
 spec_version: 2
-description: This is a sample blueprint that demonstrates how to use the grain approval condition in Torque.
+description: Simple conditional execution with `when`
 
 inputs:
-  tag:
+  agent:
+    type: agent
+  deploy_app:
     type: string
+    allowed-values: ["yes", "no"]
+    default: "yes"
 
+grains:
+  network:
+    kind: terraform
+    spec:
+      source: ...
+      agent:
+        name: '{{ .inputs.agent }}'
+
+  app:
+    kind: helm
+    when: '{% if .inputs.deploy_app == "yes" %} true {% else %} false {% endif %}'
+    depends-on: network
+    spec:
+      source: ...
+      agent:
+        name: '{{ .inputs.agent }}'
+```
+
+Common pattern: chain behavior based on `is_active`.
+
+```yaml
+grains:
+  step_a:
+    kind: terraform
+    when: '{% if .inputs.run_a == "yes" %} true {% else %} false {% endif %}'
+    spec: ...
+
+  step_b:
+    kind: shell
+    when: '{{ .grains.step_a.is_active }}'
+    depends-on: step_a
+    spec: ...
+```
+
+### `approvals`
+
+Use `approvals` on a grain when you need a human gate before that grain executes.
+
+#### Human gate
+
+Use the `approvals` block directly under a grain (not under `condition`) to require approval before the grain executes.
+
+```yaml
 grains:
   require_approval:
     kind: blueprint
     spec:
       source: ...
-    condition:
-      - type: approval
+    approvals:
+      - name: manager-approval
         message: 'This is a message to include in the approval request: {{ .inputs.tag }}'
         channels:
-          - type: group # torque group
-            groups:
-              - devops-group
-          - type: user # torque user
+          - type: user
             users:
-              - user@quali.com
-
-  infra-provisioning:
-    kind: terraform
-    depends-on: require_approval
-    spec:
-      source: ...
-      agent: ...
-      inputs: ...
-      outputs: ...
+              - name@quali.com
 ```
 
-**Motivation**
+You can define multiple channels per approval (for example `group` and `user`).
 
-- Protect production-like resources by enforcing a manual review checkpoint.
-- Add governance controls for sensitive operations (costly deployments, privileged access, or compliance boundaries).
-- Keep approval context clear by including dynamic input values in the approval message.
+#### Complex flow example (skip branches)
 
-**Usage**
+The following example shows a data/dependency flow where some branches are skipped using `when`, while downstream grains use `is_active` to continue only if upstream grains actually ran:
 
-- Define a dedicated gating grain (for example, `require_approval`) with `condition: - type: approval`.
-- Configure one or more approval channels:
-  - `type: group` with `groups`
-  - `type: user` with `users`
-- Use templating in `message` to pass launch context, for example `{{ .inputs.tag }}`.
-- Make downstream grains depend on the approval grain using `depends-on` so provisioning waits for approval.
+```yaml
+inputs:
+  agent:
+    type: agent
+  should:
+    type: string
+    allowed-values: ["yes", "no"]
 
-:::tip
-Use both group and user channels together when you want a team-level gate with an explicit fallback approver.
-:::
+grains:
+  tf_seed:
+    kind: terraform
+    spec: ...
+
+  tg_bridge:
+    kind: terragrunt
+    when: '{{ .grains.tf_seed.is_active }}'
+    depends-on: tf_seed
+    spec: ...
+
+  skip_tf_noise:
+    kind: terraform
+    when: '{% if .inputs.should == "yes" %} true {% else %} false {% endif %}'
+    depends-on: tf_seed
+    spec: ...
+
+  skip_blueprint_branch:
+    kind: blueprint
+    when: '{{ .grains.skip_tf_noise.is_active }}'
+    depends-on: skip_tf_noise
+    spec: ...
+
+  skip_shell_cleanup:
+    kind: shell
+    when: '{{ .grains.skip_blueprint_branch.is_active }}'
+    depends-on: skip_blueprint_branch
+    spec: ...
+
+  skip_helm_shadow:
+    kind: helm
+    when: '{% if .inputs.should == "yes" %} true {% else %} false {% endif %}'
+    depends-on: tg_bridge
+    approvals:
+      - name: ops-approval
+        message: 'Approve skip branch deployment for {{ .inputs.should }}'
+        channels:
+          - type: group
+            groups:
+              - grain-conditions
+    spec: ...
+```
+
+This pattern keeps the blueprint readable while allowing optional branches and explicit human approvals where needed.
 
 
 
