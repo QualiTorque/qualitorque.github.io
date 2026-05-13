@@ -1,6 +1,6 @@
 ---
 sidebar_position: 16
-title: Blueprint Consumption Policies
+title: Blueprint Policies
 ---
 
 As the blueprint designer, you can define the blueprint's default and max duration configurations or allow it to run indefinitely, to support scenarios that deploy an environment that must be always online or delivers a static cloud resource.

@@ -494,6 +494,11 @@ The ability to use outputs from specific grain usually requires the grain deploy
 
 Use `when` on a grain to control whether that grain runs or is skipped.
 
+:::warning Beta Feature
+Grain `when` is currently in beta.
+Behavior and schema details may change as the feature evolves.
+:::
+
 #### Skip or run a grain
 
 Use the `when` field on a grain to decide if that grain should run. If `when` evaluates to `false`, Torque skips the grain.
@@ -549,6 +554,11 @@ grains:
 ### `approvals`
 
 Use `approvals` on a grain when you need a human gate before that grain executes.
+
+:::warning Beta Feature
+Grain `approvals` is currently in beta.
+Behavior and schema details may change as the feature evolves.
+:::
 
 #### Human gate
 
