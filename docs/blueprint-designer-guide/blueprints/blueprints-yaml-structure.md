@@ -59,7 +59,7 @@ The input definition is composed out of the following fields:
   - ```string```
   - ```agent``` allows the environment end-user to select the agent that will deploy the grain(s) from a dropdown list. By default, all agents are listed in the dropdown list, but you can add ```allowed-values``` to only display a subset of the agents. For details, see [agent](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#agent).
   - ```parameter``` will take the input's allowed values from the parameter-store, from a parameter with the name ```parameter-name```. The parameter can be defined either in the account level or in the space level. If the parameter's value is built as a comma separated list, Torque will convert them to a set of values and present it to the end-user as a drop down list of the values. See an example below. For more info about the parameter store, click [here](admin-guide/params.md).
-  - ```credentials``` allows the environment end-user to select the credentials that will be used to deploy the grain(s) from a dropdown list. By default, all credentials in the account are listed in the dropdown list, but you can add ```allowed-values``` to only display a subset of the credentials. 
+  - ```credentials``` allows the environment end-user to select the credentials that will be used to deploy the grain(s) from a dropdown list. By default, all credentials in the account are listed in the dropdown list, but you can add ```allowed-values``` to only display a subset of the credentials, or use ```allowed-credential-providers``` to filter by credential provider type.
   - ```file``` allows the environment end-user to upload one or more files from the launch form. The uploaded files are made available to the blueprint designer using the [`workspace-directories`](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#workspace-directories) section and the **env-storage** store - [See details below](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#file-input-type).
   - ```input-source``` allows the environment end-user to select from a list of values provided by a dynamic source. The source is defined in the [`input-sources`](/admin-guide/input-sources) section.
 - ```style``` (Optional): Defines how the input is presented to the user. For example:
@@ -118,6 +118,7 @@ For advanced input visibility control and organization, see the [customization](
 - ```searchable``` (Optional, ```input-source``` type with HTTP Server sources): When set to ```true```, the dropdown will wait for the user to type a search term instead of loading all values upfront. The search text can be passed to the source using ```{{ value }}``` in overrides.
 - ```pattern``` is an optional regular expression pattern that the input value must match. If provided, Torque will validate the user input against this pattern during environment launch and prevent launching if the input does not conform to the specified pattern.
 - ```validation-description``` is an optional user-friendly message or description that will be shown to the user if the provided input value does not match the specified `pattern`. This helps provide better guidance to the user on the expected input format or constraints.
+- ```allowed-credential-providers``` (Optional, ```credentials``` type): Filters the credentials dropdown by provider type. Supported providers are: ```artifactory```, ```aws```, ```azure```, ```intersight```, ```nexus_dashboard```, ```nviae```, ```redhat```, and ```vsphere```. [See example below](#credentials-input-type).
 
     **Example:**
 
@@ -185,6 +186,46 @@ inputs:
 
 We then configure a parameter with name: aws-allowed-regions and value "us-east-1,us-east2" .
 The end user will be presented with a drop down of these 2 values as the allowed values options.
+
+#### Credentials Input Type
+
+Use `allowed-credential-providers` with `type: credentials` to limit the credentials dropdown to specific provider types.
+
+:::note
+Credentials selected via `type: credentials` are injected to the grain runner as provider-specific environment variables.
+To make those environment variables available during execution, include the selected credential in the grain `authentication` block.
+:::
+
+**Example:**
+
+```yaml
+spec_version: 2
+description: |
+  Example of allowed-credential-providers usage in a grain.
+
+inputs:
+  agent:
+    type: agent
+
+  NGC API Key:
+    description: NVIDIA NGC API key
+    allowed-credential-providers:
+      - nvaie
+    type: credentials
+
+grains:
+  deploy-stack:
+    kind: shell
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      authentication:
+        - '{{ .inputs.["NGC API Key"]}}'
+      activities:
+        deploy:
+          commands:
+            - echo "$NVAIE_API_KEY"
+```
 
 #### File Input Type
 
