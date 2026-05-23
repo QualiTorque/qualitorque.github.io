@@ -1591,7 +1591,52 @@ grains: ...
     - `duration` (duration selector)
     - `env-name` (environment name selector)
     - `object` (JSON object display/editor)
+    - `date` (date picker)
+    - `datetime` (date and time picker)
   - **`header`**: Optional comma-separated header names for `object` type display
+
+#### Date and datetime customization input type example
+
+```yaml
+spec_version: 2
+description: customization date and datetime input type example
+
+customization:
+  launch-form:
+    sections:
+      - name: Request Section
+        inputs:
+          - name: agent
+          - name: input1
+            type: date
+          - name: input2
+            type: datetime
+inputs:
+  agent:
+    type: agent
+  input1:
+    type: string
+  input2:
+    type: string
+grains:
+  validate:
+    kind: shell
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      activities:
+        deploy:
+          commands:
+            - echo {{ .inputs.input1 }}
+            - echo {{ .inputs.input2 }}
+```
+
+Expected output:
+
+```text
+input1: 2025-03-19T00:00:00
+input2: 2025-05-25T18:30:41
+```
 
 The `visible` property uses Liquid templating syntax to create dynamic conditions. Common patterns include:
 - `{% if inputs.field_name == "value" %} true {% else %} false {% endif %}` - Show input when another field equals a specific value
