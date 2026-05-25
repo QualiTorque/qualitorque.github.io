@@ -1587,6 +1587,7 @@ grains: ...
 - **Input Properties:**
   - **`name`**: The input field name (must match an input defined in the blueprint's inputs section unless using a built-in input type)
   - **`visible`**: Optional Liquid template expression that evaluates to `true` or `false` to control input visibility based on other input values
+  - **`allow-refresh`**: Optional boolean for `input-source` inputs. When set to `true`, presents a refresh button in the launch form so users can manually fetch the latest values from the input source.
   - **`type`**: Optional customization input type. Supported values include:
     - `duration` (duration selector)
     - `env-name` (environment name selector)
@@ -1594,6 +1595,37 @@ grains: ...
     - `date` (date picker)
     - `datetime` (date and time picker)
   - **`header`**: Optional comma-separated header names for `object` type display
+
+#### `allow-refresh` customization input attribute example
+
+Use `allow-refresh: true` under `customization.launch-form` input entries to expose a refresh button in the launch form. This is useful when a manual fetch to an `input-source` input is needed (for example, due to connectivity issues).
+
+```yaml
+spec_version: 2
+description: allow-refresh customization example
+
+customization:
+  launch-form:
+    sections:
+      - name: Object Storage
+        inputs:
+          - name: bucket
+            allow-refresh: true
+          - name: object
+            allow-refresh: true
+
+inputs:
+  bucket:
+    type: input-source
+    source-name: list-buckets
+
+  object:
+    depends-on: bucket
+    type: input-source
+    source-name: list-objects
+    overrides:
+      - bucket_name: '{{ .inputs.bucket }}'
+```
 
 #### Date and datetime customization input type example
 
