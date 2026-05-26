@@ -56,8 +56,7 @@ dev
 newRole
 oldRole
 elasticsearch
-SSL
-TLS
+SSLTLS
 http
 Kibana
 quali
@@ -569,3 +568,4 @@ ClusterRoles
 CentOS
 RHEL
 OpenSearch
+datetime
