@@ -13,8 +13,8 @@ title: Audit Log Configuration
    - **ElasticSearch / OpenSearch**: Uses built-in integrations to forward audit data for real-time analysis, visualization, and reporting
 3. If selecting ElasticSearch or OpenSearch, configure the following parameters: 
    > ![Locale Dropdown](/img/audit_logs_wizard.png)
-   * **Destination URL**: The endpoint URL of your ElasticSearch or OpenSearch cluster
-   * **Username/Password**: Administrative credentials for cluster authentication
+   * **Destination URL**: The endpoint URL of your ElasticSearch or OpenSearch
+   * **Username/Password**: Administrative credentials for authentication
    * **Certificate**: (Optional) Provide the HTTP CA certificate to secure the connection via SSL/TLS
 
 4. Click **Send a test event** to verify connectivity, then click **Save**.
