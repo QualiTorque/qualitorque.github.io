@@ -56,7 +56,8 @@ dev
 newRole
 oldRole
 elasticsearch
-SSLTLS
+SSL
+TLS
 http
 Kibana
 quali
