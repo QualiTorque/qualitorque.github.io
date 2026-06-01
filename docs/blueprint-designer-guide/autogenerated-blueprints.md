@@ -1,6 +1,6 @@
 ---
 sidebar_position: 5
-title: Auto-generated Blueprints
+title: Blueprints Auto-generation
 ---
 
 ## Torque auto-generated blueprints

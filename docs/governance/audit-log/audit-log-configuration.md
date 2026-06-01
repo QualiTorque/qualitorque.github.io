@@ -4,23 +4,23 @@ title: Audit Log Configuration
 ---
 
 ## Prerequisites
-* Working Elastic Stack server with internet access
+* An active, internet-connected Elastic Stack or OpenSearch server
 
 ## Configuration
-1. Navigate to __Configuration > Audit Log__, and click __Add Audit Target__.
-2. Select one of the options:
-   - __Torque Audit__: Forward logs to Torque, and retain for 18 months.
-   - __ElasticSearch__: With built-in Elastic Stack integration, you can forward audit data for real-time analysis and reporting.
-3. When selecting ElasticSearch, please fill in the details: 
-   > ![Locale Dropdown](/img/audit_logs_wizard.png)
-   * __Destination URL__ of the elastic server
-   * __Username/Password__ of the elastic Stack admin
-   * __Certificate__: You can optionally configure SSL connection by specifying the http ca __Certificate__.
+1. Navigate to **Configuration > Audit Log**, and click **Add Audit Target**.
+2. Select one of the following target options:
+   - **Torque Audit**: Forwards logs directly to Torque with a retention period of 18 months
+   - **ElasticSearch / OpenSearch**: Uses built-in integrations to forward audit data for real-time analysis, visualization, and reporting
+3. If selecting ElasticSearch or OpenSearch, configure the following parameters: 
+   > ![Locale Dropdown](/img/audit/audit_logs_wizard.png)
+   * **Destination URL**: The endpoint URL of your ElasticSearch or OpenSearch
+   * **Username/Password**: Administrative credentials for authentication
+   * **Certificate**: (Optional) Provide the HTTP CA certificate to secure the connection via SSL/TLS
 
-4. Click __Send a test event__, and click __Save__.
-5. In Kibana, go to __Management >  Stack Management > Index Management__ and make sure you see the __quali__ index.
-> ![Locale Dropdown](/img/quali-index.png)
-6. Go to __Management >  Stack Management > Index Patterns__ and create a "quali" index pattern.
-> ![Locale Dropdown](/img/quali-index-pattern.png)
+4. Click **Send a test event** to verify connectivity, then click **Save**.
+5. Log in to Kibana or OpenSearch Dashboards, navigate to **Management > Stack Management > Index Management**, and verify that the **quali** index is present.
+> ![Locale Dropdown](/img/audit/quali-index.png)
+6. Proceed to **Index Patterns** (or **Data Views** / **Index Management** depending on your platform version) and create a `quali` index pattern to expose the data.
+> ![Locale Dropdown](/img/audit/quali-index-pattern.png)
   
-  Congratulations! Audit Log is configured and collecting Torque events.
+Audit log configuration is complete, and Torque events are now being successfully ingested.
