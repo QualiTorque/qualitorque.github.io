@@ -798,7 +798,7 @@ metadata:
     path: "graphics/linux.svg"
 ```
 
-Icons are discovered by default under the `graphics` directory.
+Icons are discovered by default under the `graphics` directory. Setting an icon in the metadata does not work for "Stored in Torque" blueprints.
 
 ## Grains inputs & outputs
 Inputs and outputs are used both in the blueprint level and in the grains level. Grains can use inputs and outputs to pass data between IaC components, validate information and eventually lead to reducing the amount of IaC components that needs to be maintained by the organization.
