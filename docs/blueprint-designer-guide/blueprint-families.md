@@ -33,7 +33,8 @@ description: A blueprint family
 
 metadata:
   display-name: My App Environments
-  icon: graphics/myicon.png
+  icon: 
+    path: graphics/myicon.png
   self-service: true
   blueprint-labels:
     - key: 'team'
