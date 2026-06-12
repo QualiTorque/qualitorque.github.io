@@ -82,7 +82,7 @@ Automated notifications for environment lifecycle events through:
 - Email notifications
 - [Microsoft Teams](https://www.microsoft.com/en-us/microsoft-teams/group-chat-software) integration
 - [Slack](https://slack.com) integration
-- [Custom webhooks](/admin-guide/notifications.md) for third-party systems
+- [Custom webhooks](/admin-guide/notifications) for third-party systems
 
 ### Developer Tools
 - **CI/CD Integration**: [Azure DevOps](/eco-system/ci-cd-tooling/azure-devops.md), [CircleCI](/eco-system/ci-cd-tooling/circle-ci.md), [Jenkins](/eco-system/ci-cd-tooling/jenkins.md), [GitHub Actions](/eco-system/ci-cd-tooling/github-actions.md), [Spinnaker](/eco-system/ci-cd-tooling/spinnaker.md), TeamCity, Bamboo CI
