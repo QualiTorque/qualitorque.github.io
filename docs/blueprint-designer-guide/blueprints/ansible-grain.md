@@ -413,6 +413,35 @@ In this blueprint, when executing the `print_hello` Ansible grain, the `ansible-
 
 The `command-arguments` value can include any valid arguments that could be passed to `ansible-playbook`. This allows customizing things like tags to run/skip, handling behavior, displaying version info, and more.
 
+### `env-vars`
+
+The environment variables declared in the Ansible grain are available during playbook execution.
+
+Use this section to pass dynamic values (for example from parameters) or static environment settings required by your playbook or pre-run scripts.
+
+```yaml
+spec_version: 2
+description: Run an Ansible playbook with environment variables
+
+inputs:
+  agent:
+    type: agent
+
+grains:
+  configure-vm:
+    kind: ansible
+    spec:
+      source:
+        store: ansible-repo
+        path: ansible/configure-vm.yaml
+      agent:
+        name: '{{ .inputs.agent }}'
+      env-vars:
+        - ANSIBLE_HOST_KEY_CHECKING: 'False'
+        - CUSTOM_TOKEN: '{{ .params.token }}'
+      command-arguments: "--skip-tags deploy"
+```
+
 
 ### `scripts`
 
