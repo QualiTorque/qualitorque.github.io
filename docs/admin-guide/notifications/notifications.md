@@ -53,3 +53,9 @@ __To configure Torque notifications:__
 9. Click __Send Test Message__ and make sure you receive a Torque notification message in the chat or generic tool.
 10. Click __Select Notifications__ to select the notifications to send.
 11. Click __Apply__.
+
+---
+
+## Webhook Notification Schema
+
+For the Generic Webhook payload envelope, headers, and `EventData` schemas by event type, see [Webhook Notifications Payload Schema](./notifications/webhook-payload-schema).
