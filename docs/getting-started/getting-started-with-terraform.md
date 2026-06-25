@@ -27,7 +27,7 @@ __Spaces__ are logically separate area that contains an association to one or mo
 
 
 ## Step #2: Connect a repository
-Now, that you have a new space configured, we will associate a repository to the space and generate blueprints using the automation-assets that will be discovered by Torque in that repository. We recommend using your-own repository hosted in one of the supported Git Providers. For using on-prem/hosted versions of one of the supported (Version Control System)) providers, see [Repository Setup](/admin-guide/source-control/source-control-github).
+Now, that you have a new space configured, we will associate a repository to the space and generate blueprints using the automation-assets that will be discovered by Torque in that repository. We recommend using your-own repository hosted in one of the supported Git Providers. For using on-prem/hosted versions of one of the supported (Version Control System) providers, see [Repository Setup](/admin-guide/source-control/source-control-github).
 
 1. In the __repository onboarding__ wizard, choose your VCS provider, provide the repository URL and click "Connect". Torque will open a new windows where you will be requested to authenticate to the VSC provider. VCS providers work differently, but usually, a token will be generated for your user and Torque will use that for any communication with that VCS. 
 > Note: you can always use [this](https://github.com/QualiTorque/Sample-Terraform) example repository with some pre-existing automation assets.
