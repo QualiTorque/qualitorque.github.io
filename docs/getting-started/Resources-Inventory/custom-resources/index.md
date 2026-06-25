@@ -82,7 +82,7 @@ Resources are reserved based on selector criteria:
 
 - **Type**: Specify the resource type to match
 - **Quantity**: Define how many resources to reserve (supports liquid expressions)
-- **Attributes**: Filter resources by specific attribute values (coming in phase 2)
+- **Attributes**: Filter resources by specific attribute values
 
 The system automatically selects and reserves available resources that match the specified criteria when an environment is launched.
 
