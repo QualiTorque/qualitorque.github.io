@@ -90,6 +90,8 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
+        title: 'Torque',
+        hideOnScroll: true,
         logo: {
           alt: 'Torque',
           src: '/img/logo.png',
@@ -129,11 +131,7 @@ const config = {
               {
                 label: 'GitHub Community',
                 href: 'https://github.com/QualiTorque/torque-docs/discussions',
-              },
-              {
-                label: 'Twitter',
-                href: 'https://twitter.com/qualisystems',
-              },
+              }
             ],
           },
           {
