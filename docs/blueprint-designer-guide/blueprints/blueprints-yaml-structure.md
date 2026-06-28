@@ -472,7 +472,6 @@ service account provides an identity for processes that run in a pod. If not spe
 
 ```yaml 
 grains:
-  # launch an RDS instance using Terraform
   rds:
     kind: terraform
     spec:
@@ -484,24 +483,41 @@ grains:
         isolated: true # Optional
  ```   
 
-You can add the `node-selector` and/or `pod-labels` sections to your grain and specify the node labels you want the target node(s) to have. The `node-selector` and its labels will be applied on the pod specification. Kubernetes only schedules the pod onto nodes that have each of the labels you specify. 
+#### Kubernetes-specific runner options
 
-For example:
+In addition, Kubernetes-specific runner options can be configured under `agent.kubernetes`:
+* **node-selector** - Constrains scheduling to nodes matching all specified labels.
+* **pod-labels** - Adds labels to the runner pod metadata.
+* **pod-annotations** - Adds annotations to the runner pod metadata.
+* **tolerations** - Allows the runner pod to be scheduled onto tainted nodes.
+
+The following example combines all of these options:
 
 ```yaml
 grains:
-  nginx:
+  test1:
     kind: helm
-    spec: 
-      source:
-        ...
+    spec:
       agent:
-        name:
+        name: '{{ .inputs.agent }}'
         kubernetes:
           node-selector:
             - app: torque
           pod-labels:
             - app: torque
+          pod-annotations:
+            - prometheus.io/scrape: "true"
+            - prometheus.io/port: "9090"
+          tolerations:
+            - key: dedicated # Exact Match (Equal operator)
+              operator: Equal
+              value: databases
+              effect: NoSchedule
+              toleration-seconds: 3600
+            - key: gpu-type # Key-Only Match (Exists operator)
+              operator: Exists
+              effect: NoSchedule
+            - operator: Exists # Tolerate Everything
 ```
 
 ### `depends-on`
