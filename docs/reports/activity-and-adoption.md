@@ -20,7 +20,7 @@ Let's examine a real-life application of the activity report:
 > ![Locale Dropdown](/img/reports-activity-1.png)
 
 Observing the "Environment Status" chart, we note that there are presently five environments (1.9% of the total environments) for which termination failed. Since their cloud resources may still be operational and consuming cloud budget, investigating this matter is advisable.
-If we [cross-filter](/reports/using-reports#cross-filtering) by these environments, we get all the report filtered by environments which failed to terminate properly. 
+If we [cross-filter](/reports/using-reports#cross-filtering) by these environments, the report will show only environments that failed to terminate. 
 
 We can discern the launch dates of these environments: 
 > ![Locale Dropdown](/img/reports-activity-2.png)
