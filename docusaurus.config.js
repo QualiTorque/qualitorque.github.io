@@ -90,7 +90,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'Torque',
+        title: '',
         hideOnScroll: true,
         logo: {
           alt: 'Torque',
