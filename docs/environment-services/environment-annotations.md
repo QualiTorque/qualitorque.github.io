@@ -25,7 +25,7 @@ Environment annotations are a powerful tool for managing and organizing environm
 
 ## __To create an environment annotation:__
 
-Since environment annotations are __dynamic__ attributes of the environments, Torque uses __rego__ files and the policy engine to evaluate the annotation upon any chance in the environment. 
+Since environment annotations are __dynamic__ attributes of the environments, Torque uses __rego__ files and the policy engine to evaluate the annotation upon any change in the environment. 
 
 **Step 1: Create a rego file**
 
