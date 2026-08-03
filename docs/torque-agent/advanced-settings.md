@@ -21,6 +21,24 @@ In addition, you can retrieve the namespace where the Torque agent is running (b
 Changes to the configuration only takes effect on new environments. Existing environments will keep the values configured at the time of the launch.
 :::
 
+### Startup timeout
+
+**Runners pod startup timeout (seconds)** - The time Torque will wait for a runner pod to be provisioned. If your cluster is slow in creating pods/nodes in autoscaling, you may need to increase it. Be careful of setting too large timeouts, because if there is an inherent problem in the POD the error will suffice later. 
+
+### Idle timeout
+
+**Runner pod idle timeout (seconds)** - The time Torque will wait before terminating an idle Runner. Any non-negative value is accepted. As runners are allocated from a shared pool, setting the timeout to higher values will optimize the current operation which already "owns" the runner, but will decrease the average pool size so the next operations may need to wait longer before they get a runner. Higher values can also be used for debugging purposes, as it allows more time to connect to the runner, look at its logs and debug issues.
+
+
+### Use runner storage (PVC)
+
+**Use runner storage (PVC)** - When selected, runners will use PVC for storing state and relevant repository configurations. When not selected, runners will run stateless.
+
+:::info
+Backend recommendation  
+When storage is disabled, configuring a backend is usually recommended. Some grains (for example Helm grains) can still run without it.
+:::
+
 ### Storage class
 
 **Storage Class** is a K8s resource which allows you to request to create persistent volumes with certain properties. The storage class describes the properties then Torque 
@@ -32,18 +50,24 @@ For reclaimPolicy (delete|retain) - we recommend using "delete" (extra care shou
 
 Learn more [here](https://kubernetes.io/docs/concepts/storage/storage-classes/)
 
-### Startup timeout
 
-**Runners pod startup timeout (seconds)** - The time Torque will wait for a runner pod to be provisioned. If your cluster is slow in creating pods/nodes in autoscaling, you may need to increase it. Be careful of setting too large timeouts, because if there is an inherent problem in the POD the error will suffice later. 
+### Storage class supports ReadWriteMany
 
-### Idle timeout
-
-**Runner pod idle timeout (seconds)** - The time Torque will wait before terminating an idle Runner. Any non-negative value is accepted. As runners are allocated from a shared pool, setting the timeout to higher values will optimize the current operation which already "owns" the runner, but will decrease the average pool size so the next operations may need to wait longer before they get a runner. Higher values can also be used for debugging purposes, as it allows more time to connect to the runner, look at its logs and debug issues.
-
+**Storage class supports ReadWriteMany** - Check this checkbox if the storage class supports ReadWriteMany capability. Only storage classes which support this capability can share resources. If it is false there will not be sharing and each operation will spawn a new runner pod. Torque cannot query the cluster to understand if it does or does not have this capability so we rely on your information. If you check this checkbox, you must also set the storage_class_name and not leave it empty. Even if the default storage class supports ReadWriteMany, please state the name explicitly.  
 
 ### Storage size
 
 **Total storage size (PVC size in MB)** - The total size of PVC storage that will be allocated to Torque runners. 
+
+### Terraform backend type
+
+**Terraform backend type** - Configure a global runner-level backend once on the agent. This setting is relevant for Terraform, OpenTofu, and Terragrunt grain kinds.
+
+For backend types and details, see [Terraform backend](/blueprint-designer-guide/blueprints/terraform-grain#backend).
+
+:::info
+If a backend is specified in the blueprint or in the IaC configuration, it overrides the backend configured on the agent.
+:::
 
 
 ### Resource consumption
@@ -68,11 +92,6 @@ There are 8 available consumption levels for better control over performance and
 - Use lower levels (*Minimal*, *Very Low*) for development and testing. Use higher levels (*Intense*, *Maximal*) for production-grade workloads with higher performance needs.
 
 In the API, these levels are represented by `0` through `7`.
-
-
-### Storage class
-
-**Storage class supports ReadWriteMany** - Check this checkbox if the storage class supports ReadWriteMany capability. Only storage classes which support this capability can share resources. If it is false there will not be sharing and each operation will spawn a new runner pod. Torque cannot query the cluster to understand if it does or does not have this capability so we rely on your information. If you check this checkbox, you must also set the storage_class_name and not leave it empty. Even if the default storage class supports ReadWriteMany, please state the name explicitly.  
 
 ### Environment variables
 
