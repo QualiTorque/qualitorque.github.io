@@ -22,7 +22,7 @@ Torque supports connecting asset/blueprint repositories on GitHub out of the box
 
 ## What is a Personal Access Token?
 
-A Personal Access Token (PAT) is a credential you generate on GitHub that Torque uses in place of a password to authenticate and access your repositories. GitHub offers two types of PATs:
+A Personal Access Token (PAT) is a credential you generate on GitHub that Torque uses in place of a password to authenticate and access your repositories. GitHub offers two types of PAT:
 
 - __Classic tokens__ — grant access based on broad, predefined scopes (e.g., `repo`, `read:org`).
 - __Fine-grained tokens__ — grant access to specific repositories with more granular permissions, offering tighter control over what Torque can access.
@@ -49,7 +49,7 @@ Torque connects to GitHub using a Personal Access Token (PAT). Both classic and 
 7. Click __Connect__.
 
 <!-- :::info TODO
-Document the required token scopes/permissions for classic vs. fine-grained PATs once confirmed.
+Document the required token scopes/permissions for classic vs. fine-grained PAT once confirmed.
 ::: -->
 
 <!-- ## Ensure your organization has granted access to Torque
