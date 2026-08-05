@@ -4,7 +4,7 @@ title: Audit Log Event Examples
 ---
 
 ## Environment Termination Started
-```jsx title=
+```jsx
 inputs:
   {
     "_index": "quali",
@@ -38,7 +38,7 @@ inputs:
 
 ## Modify Space
 
-```jsx title=
+```jsx
 {
   "_index": "quali",
   "_type": "_doc",
@@ -71,7 +71,7 @@ inputs:
 
 ## Send User Invitation
 
-```jsx title=
+```jsx
 {
   "_index": "quali",
   "_type": "_doc",
