@@ -25,7 +25,7 @@ For Generic Webhook notifications, the service also sends:
 - `X-Torque-EventType`: Same value as `EventType`
 - `X-Torque-Token`: Included only when a token is configured
 
-## EventData Schemas by EventType
+## `EventData` Schemas by `EventType`
 
 ## 1) Environment Lifecycle/Action Events
 
