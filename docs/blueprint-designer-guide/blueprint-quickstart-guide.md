@@ -85,7 +85,7 @@ As mentioned above, there are two types of blueprints, auto-generated blueprints
 ## Example multi-grain blueprint 1: Helm Application with MySQL and S3 Deployed by Terraform
 This blueprint is available in the __Sample__ space [here](https://portal.qtorque.io/Sample/blueprints/[Sample]Helm%20Application%20with%20MySql%20and%20S3%20Deployed%20by%20Terraform), which deploys 2 Terraform modules and a Helm chart:
 
-```yaml title=
+```yaml
 spec_version: 2
 description: Robotshop microservices application deployed on K8S with Helm and RDS deployed with TF
 

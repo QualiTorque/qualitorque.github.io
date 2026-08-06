@@ -570,3 +570,4 @@ CentOS
 RHEL
 OpenSearch
 datetime
+schemas

@@ -442,7 +442,7 @@ You can specify the code to be run as free text bash/python3 commands or by refe
 
 To run a file, specify the file and its repo in the `files` section and the file name and extension under `commands`. For example, file "post-install-script.sh":
 
-```yaml title=
+```yaml
 grains:
   validate:
     kind: shell
