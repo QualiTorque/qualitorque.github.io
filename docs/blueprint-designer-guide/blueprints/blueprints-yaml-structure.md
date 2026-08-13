@@ -15,7 +15,7 @@ spec_version: 2
 ```
 
 ### `description`
-The blueprint’s description is an optional but recommended field. Blueprint description will be presented in the Torque's UI and API so users consuming environment will have more information about the blueprints to batter match their business need to the available set of blueprints published in the account catalog.
+The blueprint’s description is an optional but recommended field. Blueprint description will be presented in the Torque's UI and API so users consuming environment will have more information about the blueprints to better match their business need to the available set of blueprints published in the account catalog.
 
 
 ```yaml
