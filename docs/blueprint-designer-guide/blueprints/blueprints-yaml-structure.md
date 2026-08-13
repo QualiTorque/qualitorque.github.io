@@ -772,11 +772,21 @@ grains: ...
 
 #### `self-service`
 
-Controls whether the blueprint is available for self-service deployment by end users. When set to `true`, users can deploy environments from this blueprint directly. When set to `false`, the blueprint may require additional approval or administrative intervention.
+Controls whether the blueprint is available for self-service deployment by end users. When set to `true`, the blueprint will be available in the self-service catalog. When set to `false`, the blueprint may will only be available from the "Automation Inventory" page's "Blueprints" tab.
+
 
 ```yaml
 metadata:
   self-service: true  # Default: false
+```
+
+Additionally, a list of spaces where the Blueprint should be published to the self-service catalog can be provided as a YAML list of Space names.
+
+```yaml
+metadata:
+  self-service: 
+    - Space A
+    - Space B 
 ```
 
 #### `display-name`
