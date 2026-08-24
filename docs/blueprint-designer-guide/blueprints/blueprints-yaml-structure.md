@@ -584,7 +584,7 @@ grains:
 
   app:
     kind: helm
-    when: '{% if .inputs.deploy_app == "yes" %} true {% else %} false {% endif %}'
+    when: '{% if .inputs.deploy_app == "yes" %}true{% else %}false{% endif %}'
     depends-on: network
     spec:
       source: ...
@@ -598,7 +598,7 @@ Common pattern: chain behavior based on `is_active`.
 grains:
   step_a:
     kind: terraform
-    when: '{% if .inputs.run_a == "yes" %} true {% else %} false {% endif %}'
+    when: '{% if .inputs.run_a == "yes" %}true{% else %}false{% endif %}'
     spec: ...
 
   step_b:
@@ -663,7 +663,7 @@ grains:
 
   skip_tf_noise:
     kind: terraform
-    when: '{% if .inputs.should == "yes" %} true {% else %} false {% endif %}'
+    when: '{% if .inputs.should == "yes" %}true{% else %}false{% endif %}'
     depends-on: tf_seed
     spec: ...
 
@@ -681,7 +681,7 @@ grains:
 
   skip_helm_shadow:
     kind: helm
-    when: '{% if .inputs.should == "yes" %} true {% else %} false {% endif %}'
+    when: '{% if .inputs.should == "yes" %}true{% else %}false{% endif %}'
     depends-on: tg_bridge
     approvals:
       - name: ops-approval
@@ -1427,7 +1427,7 @@ customization:
   launch-form:
     inputs:
       - name: 'input-name'
-        visible: '{% if inputs.condition == "value" %} true {% else %} false {% endif %}'
+        visible: '{% if inputs.condition == "value" %}true{% else %}false{% endif %}'
 
 grains: ...
 ```
@@ -1481,9 +1481,9 @@ customization:
     inputs:
       - name: 'infra_type'                    # Input name (always visible)
       - name: 'database_config'
-        visible: '{% if inputs.infra_type == "1" %} true {% else %} false {% endif %}'  # Conditional visibility
+        visible: '{% if inputs.infra_type == "1" %}true{% else %}false{% endif %}'  # Conditional visibility
       - name: 'storage_config'
-        visible: '{% if inputs.infra_type == "2" %} true {% else %} false {% endif %}'
+        visible: '{% if inputs.infra_type == "2" %}true{% else %}false{% endif %}'
 ```
 
 #### Category-based Configuration
@@ -1697,8 +1697,8 @@ input2: 2025-05-25T18:30:41
 ```
 
 The `visible` property uses Liquid templating syntax to create dynamic conditions. Common patterns include:
-- `{% if inputs.field_name == "value" %} true {% else %} false {% endif %}` - Show input when another field equals a specific value
-- `{% if inputs.field_name != "value" %} true {% else %} false {% endif %}` - Show input when another field doesn't equal a specific value
+- `{% if inputs.field_name == "value" %}true{% else %}false{% endif %}` - Show input when another field equals a specific value
+- `{% if inputs.field_name != "value" %}true{% else %}false{% endif %}` - Show input when another field doesn't equal a specific value
 
 **Useful Liquid Templating Resources:**
 - [Liquid Templating Introduction](https://shopify.github.io/liquid/basics/introduction/) - Learn the basics and syntax of Liquid templating
