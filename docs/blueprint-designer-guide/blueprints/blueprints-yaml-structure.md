@@ -57,10 +57,10 @@ The input definition is composed out of the following fields:
 - ```description``` is presented to all users in the Torque UI and API's (Optional)
 - ```type``` of the input. Options are:
   - ```string```
-  - ```agent``` allows the environment end-user to select the agent that will deploy the grain(s) from a dropdown list. By default, all agents are listed in the dropdown list, but you can add ```allowed-values``` to only display a subset of the agents. For details, see [agent](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#agent).
+  - ```agent``` allows the environment end-user to select the agent that will deploy the grain(s) from a dropdown list. By default, all agents are listed in the dropdown list, but you can add ```allowed-values``` to only display a subset of the agents. For details, see [agent](#agent).
   - ```parameter``` will take the input's allowed values from the parameter-store, from a parameter with the name ```parameter-name```. The parameter can be defined either in the account level or in the space level. If the parameter's value is built as a comma separated list, Torque will convert them to a set of values and present it to the end-user as a drop down list of the values. See an example below. For more info about the parameter store, click [here](admin-guide/params.md).
   - ```credentials``` allows the environment end-user to select the credentials that will be used to deploy the grain(s) from a dropdown list. By default, all credentials in the account are listed in the dropdown list, but you can add ```allowed-values``` to only display a subset of the credentials, or use ```allowed-credential-providers``` to filter by credential provider type.
-  - ```file``` allows the environment end-user to upload one or more files from the launch form. The uploaded files are made available to the blueprint designer using the [`workspace-directories`](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#workspace-directories) section and the **env-storage** store - [See details below](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#file-input-type).
+  - ```file``` allows the environment end-user to upload one or more files from the launch form. The uploaded files are made available to the blueprint designer using the [`workspace-directories`](#workspace-directories) section and the **env-storage** store - [See details below](#file-input-type).
   - ```input-source``` allows the environment end-user to select from a list of values provided by a dynamic source. The source is defined in the [`input-sources`](/admin-guide/input-sources) section.
 - ```style``` (Optional): Defines how the input is presented to the user. For example:
   - ```radio``` displays the allowed values as radio buttons. This is useful for binary or mutually exclusive choices. The input `type` must be `string` when using this style.
@@ -71,7 +71,7 @@ The input definition is composed out of the following fields:
   - ```multi-select``` displays the allowed values as a multi-select dropdown, allowing the user to select multiple values. The input `type` can be ```string```, `parameter` or `input-source`. The captured value is a JSON array of strings. This is useful for cases where multiple selections are needed, such as a list of IPs, Compute types or tags.
 
 :::tip
-For advanced input visibility control and organization, see the [customization](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#customization) section which allows you to create conditional inputs and group them into categories.
+For advanced input visibility control and organization, see the [customization](#customization) section which allows you to create conditional inputs and group them into categories.
 :::
 
     **Example:**
@@ -229,7 +229,7 @@ grains:
 
 #### File Input Type
 
-The `file` input type allows users to upload files from the launch form. These files are made available to the blueprint designer using the [`workspace-directories`](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#workspace-directories) section and the `env-storage` store. This is useful for scenarios where the environment requires user-provided files (such as configuration, data, or scripts) at launch time.
+The `file` input type allows users to upload files from the launch form. These files are made available to the blueprint designer using the [`workspace-directories`](#workspace-directories) section and the `env-storage` store. This is useful for scenarios where the environment requires user-provided files (such as configuration, data, or scripts) at launch time.
 
 **File input fields:**
 - `type: file` (required)
@@ -295,7 +295,7 @@ outputs:
 The ```quick: true``` attribute is optional and defaults to false. Setting it to `true` will cause the specific output to be presented in the __Quick Access__ section of the environment for ease of use.
 
 :::info
-The example above includes some of the Torque's YAML templating engine capabilities allowing the blueprint designer more flexibility and leads to less code that will require maintenance. More examples for templating will be described [Torque Templating engine](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#torque-templating-engine).
+The example above includes some of the Torque's YAML templating engine capabilities allowing the blueprint designer more flexibility and leads to less code that will require maintenance. More examples for templating will be described [Torque Templating engine](#torque-templating-engine).
 :::
 
 The outputs section in the Torque blueprint YAML also supports spaces to make outputs more user friendly in the following way:
@@ -444,7 +444,7 @@ grains:
         name: my-agent
  ``` 
 
-- Using an input of type "agent", which allows the environment end-user to select the agent to use from a dropdown list. For details, see the [blueprint yaml's inputs](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#inputs) section.
+- Using an input of type "agent", which allows the environment end-user to select the agent to use from a dropdown list. For details, see the [blueprint yaml's inputs](#inputs) section.
 
 ```yaml 
 grains:
@@ -1176,7 +1176,7 @@ In the below example the [downcase](https://shopify.github.io/liquid/filters/dow
         - bucket_name: '{{ .inputs.bucket_name | strip }}-bucket-{{ envid | downcase }}'
 ```
 
-For details and examples of how to use the parameters from the parameter store inside blueprints, check [this article](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#parameters).
+For details and examples of how to use the parameters from the parameter store inside blueprints, check [this article](#parameters).
 
 ### Dynamic Attributes
 Blueprint designers might need extra details about the account, space or environment during the environment's orchestration. Torque provides dynamic attributes which are pre-defined parameters blueprints designers can use. The currently supported dynamic attributes are:
