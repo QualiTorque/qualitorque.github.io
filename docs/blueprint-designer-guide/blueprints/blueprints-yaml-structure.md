@@ -1444,8 +1444,8 @@ customization:
       hugging-face-model:
         type: grain           # Specifies this is a grain node
         position:
-          x: -5              # X-coordinate position on the canvas
-          y: -14             # Y-coordinate position on the canvas
+          x: 0              # X-coordinate position on the canvas
+          y: 0              # Y-coordinate position on the canvas
         style:
           hidden: false      # Controls whether the grain is visible on the canvas
       inference-cluster:
