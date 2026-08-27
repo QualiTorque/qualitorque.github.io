@@ -338,7 +338,7 @@ grains:
     type: "s3"
     bucket: "my-bucket-name"
     region: "us-east-1"
-    key-prefix: folder1/folder2"
+    key-prefix: "folder1/folder2"
 ``` 
 
 #### azurerm
@@ -353,7 +353,7 @@ grains:
     resource-group-name: "my_rg"
     storage-account-name: "terraform123abc"
     container-name: "terraform-state"
-    key-prefix: folder1/folder2"
+    key-prefix: "folder1/folder2"
 ```
 
 #### gcs
