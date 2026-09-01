@@ -7,7 +7,7 @@ Torque Workflows are a powerful way to automate and orchestrate complex processe
 
 ## Workflow Discovery
 
-Workflow discovery is done in the same way as Blueprints. The YAML files need to be under the `blueprints/` directory in the repository. Torque will automatically scan for workflow files and make them available based on their scope and configuration.
+Workflow discovery is done in the same way as Blueprints. The YAML files need to be under the `blueprints/` directory in the repository, unless you specify a different directory with a [file marker](/blueprint-designer-guide/torque-assets-markers). Torque will automatically scan for workflow files and make them available based on their scope and configuration.
 
 The Workflow YAML standard is similar to the Blueprint standard. The only addition to the Workflow specification is the `workflow` block, which defines the workflow-specific configuration.
 
@@ -62,7 +62,7 @@ The `scope` field in a Torque workflow determines where the workflow is availabl
 
 ### `resource-types`
 
-When scoping a workflow to an `env_resource`, the `resource-types` field allow to attach that workflow to the specified resource types.
+When scoping a workflow to an `env_resource`, the `resource-types` field allows that workflow to attach to the specified resource types.
 
 In this example, we scope this workflow only AWS EC2 instances resources:
 
@@ -201,18 +201,18 @@ grains: ...
 
 In a workflow, you can define bindings to access environment and resource information. Bindings are automatic variables that provide context to the workflow. The available bindings depend on the scope of the workflow.
 
-For both `env` and `env_resource` scope workflows, accessing the env ("bound entity") inputs and outputs, will be as follow:
+For both `env` and `env_resource` scoped workflows, accessing the env ("bound entity") inputs and outputs, will be as follows:
 * `{{ .bindings.inputs.<the env input name> }}`
 * `{{ .bindings.outputs.<the env output name> }}`
 
-For `env` scoped workflow, the env `introspection` can be access like so:
+For `env` scoped workflows, environment introspection can be accessed like so:
 * `{{ bindings.resource_type.<the resource type>.attributes.<the attribute>}}`
 
 :::info
 If more than 1 resource type like this exists in this environment, then we take the first one.
 :::
 
-For `env_resource` scoped workflow, the env `introspection` can be access like so:
+For `env_resource` scoped workflow, the env introspection can be access like so:
 * `{{ bindings.attributes.<the attribute>}}`
 
 
@@ -251,7 +251,7 @@ description: workflow with "env_resource" scope example
 
 workflow:
   scope: env_resource
-  resource-selector: aws_s3_bucket
+  resource-types: aws_s3_bucket
   triggers:
     - type: manual
  
