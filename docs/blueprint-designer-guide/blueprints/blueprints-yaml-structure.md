@@ -50,31 +50,82 @@ instructions:
 
 
 ### `inputs`
-Blueprint designers can publish blueprint inputs to their end-users to add flexibility while launching a new environment from the blueprints, without altering the blueprint code itself. Input data can be later used in the blueprint to control orchestration, pass information to automation processes, and more.
+Blueprints support input variables that enable end-users to modify the perameters of an environment at runtime. This adds flexibility by allowing blueprint designers to create a blueprint once and then launch with different parameters on each deployment. Input data can be used in the blueprint to control orchestration, pass information to automation processes, and more. The input definition is composed out of the following fields: 
 
-The input definition is composed out of the following fields: 
-- The input name
-- ```description``` is presented to all users in the Torque UI and API's (Optional)
-- ```type``` of the input. Options are:
-  - ```string```
-  - ```agent``` allows the environment end-user to select the agent that will deploy the grain(s) from a dropdown list. By default, all agents are listed in the dropdown list, but you can add ```allowed-values``` to only display a subset of the agents. For details, see [agent](#agent).
-  - ```parameter``` will take the input's allowed values from the parameter-store, from a parameter with the name ```parameter-name```. The parameter can be defined either in the account level or in the space level. If the parameter's value is built as a comma separated list, Torque will convert them to a set of values and present it to the end-user as a drop down list of the values. See an example below. For more info about the parameter store, click [here](admin-guide/params.md).
-  - ```credentials``` allows the environment end-user to select the credentials that will be used to deploy the grain(s) from a dropdown list. By default, all credentials in the account are listed in the dropdown list, but you can add ```allowed-values``` to only display a subset of the credentials, or use ```allowed-credential-providers``` to filter by credential provider type.
-  - ```file``` allows the environment end-user to upload one or more files from the launch form. The uploaded files are made available to the blueprint designer using the [`workspace-directories`](#workspace-directories) section and the **env-storage** store - [See details below](#file-input-type).
-  - ```input-source``` allows the environment end-user to select from a list of values provided by a dynamic source. The source is defined in the [`input-sources`](/admin-guide/input-sources) section.
-- ```style``` (Optional): Defines how the input is presented to the user. For example:
-  - ```radio``` displays the allowed values as radio buttons. This is useful for binary or mutually exclusive choices. The input `type` must be `string` when using this style.
-  - ```duration``` displays a duration input selector (such as environment duration selector). The duration time is in ISO 8601 format: `"P{days}DT{hours}H{minutes}M{seconds}S"`. For example:
-    - `P0DT2H3M4S` translates to 0 days, 2 hours, 3 minutes, and 4 seconds
-    - `P1DT8H` translates to 1 day and 8 hours
-    - `PT30M` translates to 30 minutes
-  - ```multi-select``` displays the allowed values as a multi-select dropdown, allowing the user to select multiple values. The input `type` can be ```string```, `parameter` or `input-source`. The captured value is a JSON array of strings. This is useful for cases where multiple selections are needed, such as a list of IPs, Compute types or tags.
+**Required fields**
+- `name`: The parent block of all blueprint inputs. This will be used in other sections of the blueprint to reference the inputs value.
+- `type`: The value type of the input. Options are:
+  - `string`: Defined input is a basic string type.
+  - `agent`: Allows the user to select the agent that will deploy the grains in this blueprint.
+    - By default, all agents are listed in the dropdown list, but you can add `allowed-values` to only display a subset of the agents. For details, see [agent](#agent).
+    - Different grains can use different agents in the same blueprint. 
+  - `parameter`: Sets the input value from a parameter in the parameter store. `parameter-name` must be specified to define which parameter to use.
+    - Parameters can be defined either in the account level or in the space level. 
+    - If the parameter's value is built as a comma separated list, Torque will convert them to a set of values and present it to the end-user as a drop down list of the values. [See example below.](#example-parameter-type-input)
+    - For more info about the parameter store, click [here](admin-guide/params.md).
+  - `credentials`: Allows the user to select credentials from the credentials store presented as a dropdown list. 
+    - The selected credentials will be used to deploy grains defined in the blueprint. 
+    - By default, all credentials in the account are listed in the dropdown list, but you can add `allowed-values` to only display a subset.
+    - You can also use `allowed-credential-providers` to filter by credential provider type. See [Credentials Input Type](#credentials-input-type) below for more information.
+  - `file`: Allows the user to upload one or more files from the launch form. 
+    - The uploaded files are made available to the blueprint designer using the [`workspace-directories`](#workspace-directories) section and the **env-storage** store. [See details below](#file-input-type).
+  - `input-source` allows the environment end-user to select from a list of values provided by a dynamic source. 
+    - The source is defined in the [`input-sources`](/admin-guide/input-sources) page.
+
+**Optional fields**
+- `description`: Presented to all users in the Torque UI and API's. Optional but highly recommended.
+- `optional`: Defines whether the input is optional or required for the blueprint to be launched.
+  - If not set, the blueprint launch form will require an input value by default. However, speficying the `pattern` option with match-all regex (.*) will allow the blueprint to launch. 
+  - When set to `true` the blueprint launch button will only activate if the field contains a value, regardless of `pattern` regex. 
+  - When set to `false` the blueprint will launch regardless of the input value.
+- `style`: Defines how the input is presented to the user. For example:
+  - `radio`: Displays the allowed values as radio buttons. 
+    - This is useful for binary or mutually exclusive choices. 
+    - The input `type` must be `string` when using this style.
+  - `duration`: Displays a duration input selector (such as environment duration selector). 
+    - The duration time is in ISO 8601 format: `"P{days}DT{hours}H{minutes}M{seconds}S"`. For example:
+      - `P0DT2H3M4S` translates to 0 days, 2 hours, 3 minutes, and 4 seconds
+      - `P1DT8H` translates to 1 day and 8 hours
+      - `PT30M` translates to 30 minutes
+    - [See Example Below](#example-duration-style-input)
+  - `multi-select`: Displays the allowed values as a multi-select dropdown, allowing the user to select multiple values. 
+    - The input `type` can be `string`, `parameter` or `input-source`. 
+    - The captured value is a JSON array of strings. This is useful for cases where multiple selections are needed, such as a list of IPs, Compute types or tags.
+    - [See Example Below](#example-multi-select-style-input)
+- `sensitive`: `true` masks the value behind asterisks in the UI and API. (Default is `false`) 
+- `default` - (Optional) Value to be used in the Torque UI and will be used in case no other value provided for the input. If a default value is not defined, the environment end-user will need to provide one when launching the environment.
+- `allowed-values` converts the input into a dropdown list, allowing the environment end-user to select the appropriate value. If a `default` is specified, it must be included in the allowed values list. 
+- `quick` is an optional boolean value. Setting it to "true" or omitting it will cause the input to be presented to the end user in the "quick links" section of the environment. Setting it to "false" means it will not appear in that section.
+- `searchable` (Optional, `input-source` type with HTTP Server sources): When set to `true`, the dropdown will wait for the user to type a search term instead of loading all values upfront. The search text can be passed to the source using `{{ value }}` in overrides.
+- `pattern` is an optional regular expression pattern that the input value must match. If provided, Torque will validate the user input against this pattern during environment launch and prevent launching if the input does not conform to the specified pattern.
+- `validation-description` is an optional user-friendly message or description that will be shown to the user if the provided input value does not match the specified `pattern`. This helps provide better guidance to the user on the expected input format or constraints.
+- `allowed-credential-providers` (Optional, `credentials` type): Filters the credentials dropdown by provider type. Supported providers are: `artifactory`, `aws`, `azure`, `intersight`, `nexus_dashboard`, `nviae`, `redhat`, and `vsphere`. [See example below](#credentials-input-type).
 
 :::tip
 For advanced input visibility control and organization, see the [customization](#customization) section which allows you to create conditional inputs and group them into categories.
 :::
 
-    **Example:**
+#### Example: Parameter type input
+
+    ```yaml
+    inputs:
+      gpu-types-paramerter-store:
+        type: 'parameter'
+        parameter-name: 'gpu-types-list'
+        description: 'GPU types'
+    ```
+#### Example: Duration style input
+
+    ```yaml
+    inputs:
+      environment-duration:
+        type: string
+        style: duration
+        default: "P1DT8H"
+        description: "How long should this environment run"
+    ```
+
+#### Example: Multi-select style input
 
     ```yaml
     spec_version: 2
@@ -106,21 +157,11 @@ For advanced input visibility control and organization, see the [customization](
         description: 'GPU types'
 
       gpu-types-paramerter-store:
-        style: 'multi-select'
+        style: multi-select
         type: 'parameter'
         parameter-name: 'gpu-types-list'
         description: 'GPU types'
     ```
-- ```sensitive```: ```true``` masks the value behind asterisks in the UI and API. (Default is ```false```) 
-- ```default``` - (Optional) Value to be used in the Torque UI and will be used in case no other value provided for the input. If a default value is not defined, the environment end-user will need to provide one when launching the environment.
-- ```allowed-values``` converts the input into a dropdown list, allowing the environment end-user to select the appropriate value. If a ```default``` is specified, it must be included in the allowed values list. 
-- ```quick``` is an optional boolean value. Setting it to "true" or omitting it will cause the input to be presented to the end user in the "quick links" section of the environment. Setting it to "false" means it will not appear in that section.
-- ```searchable``` (Optional, ```input-source``` type with HTTP Server sources): When set to ```true```, the dropdown will wait for the user to type a search term instead of loading all values upfront. The search text can be passed to the source using ```{{ value }}``` in overrides.
-- ```pattern``` is an optional regular expression pattern that the input value must match. If provided, Torque will validate the user input against this pattern during environment launch and prevent launching if the input does not conform to the specified pattern.
-- ```validation-description``` is an optional user-friendly message or description that will be shown to the user if the provided input value does not match the specified `pattern`. This helps provide better guidance to the user on the expected input format or constraints.
-- ```allowed-credential-providers``` (Optional, ```credentials``` type): Filters the credentials dropdown by provider type. Supported providers are: ```artifactory```, ```aws```, ```azure```, ```intersight```, ```nexus_dashboard```, ```nviae```, ```redhat```, and ```vsphere```. [See example below](#credentials-input-type).
-
-    **Example:**
 
     ```yaml
     inputs:
@@ -143,11 +184,6 @@ For advanced input visibility control and organization, see the [customization](
         style: radio
         allowed-values: [true, false]
         description: "Enable or disable debug mode for the application"
-      environment-duration:
-        type: string
-        style: duration
-        default: "P1DT8H"
-        description: "How long should this environment run"
     ```
 
 The inputs section in the Torque blueprint YAML also supports spaces to make inputs more user friendly. Configuring an input with a friendly name can be done in the following way:
@@ -429,10 +465,10 @@ grains:
 
 ### `agent`
 
-The ```agent``` defines the agent that will deploy the grain. While different grains behave differently, it's important to choose the right agent for a grain to make sure authentication, networking and configuration is all properly configured. Different grains in the same blueprint can use different agents to allow maximum flexibility during the orchestration processes.
+The `agent` block defines which agent will be used to deploy the blueprint grains. It's important to choose the right agent for a grain to make sure authentication, networking and configuration is all properly configured. Different grains in the same blueprint can use different agents to allow maximum flexibility during the orchestration processes.
 
 You can specify the agent in two ways:
-- Literally. For example:
+- Statically, without an input:
 
 ```yaml 
 grains:
@@ -444,15 +480,21 @@ grains:
         name: my-agent
  ``` 
 
-- Using an input of type "agent", which allows the environment end-user to select the agent to use from a dropdown list. For details, see the [blueprint yaml's inputs](#inputs) section.
+- Or dynamically, using an input of type "agent". For details, see the [blueprint yaml's inputs](#inputs) section.
 
 ```yaml 
+# This allows the environment end-user to select the correct agent from a dropdown list.
+inputs:
+  agent_name:
+    type: agent
+    allowed-values: [NY, Tokyo, London] # Limit the agents to our defined list
+
 grains:
   rds:
     kind: terraform
     spec:
       agent:
-        name: '{{ inputs.agent_name }}'
+        name: '{{ inputs.agent_name }}' # This value references the input: agent_name
  ```  
 
 :::info
