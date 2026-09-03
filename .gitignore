@@ -1,3 +1,6 @@
+# Ignore dictionary.dlc so we can run spellcheck locally
+dictionary.dic
+
 # Dependencies
 /node_modules
 
