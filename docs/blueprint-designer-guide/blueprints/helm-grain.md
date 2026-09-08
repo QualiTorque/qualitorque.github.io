@@ -50,14 +50,14 @@ grains:
       agent:
         name: '{{ .inputs.agent }}'
       inputs:
-        - nameOverride: '{{ envid | downcase }}'
+        - nameOverride: '{{ envId | downcase }}'
         - tracking.auth.password: '{{ .inputs.admin-password }}'
       scripts:
         post-helm-install:
           source:
             store: ml-repo
             path: scripts/get-url.sh
-          arguments: '{{ envid | downcase }} {{ .inputs.target-namespace }}'
+          arguments: '{{ envId | downcase }} {{ .inputs.target-namespace }}'
           outputs:
             - url
       commands:
@@ -286,14 +286,14 @@ grains:
       agent:
         name: '{{ .inputs.agent }}'
       inputs:
-      - nameOverride: '{{ envid | downcase }}'
+      - nameOverride: '{{ envId | downcase }}'
       - tracking.auth.password: '{{ .inputs.admin-password }}'
       scripts:
         post-helm-install:
           source:
             store: ml-repo
             path:  scripts/get-url.sh
-          arguments: '{{ envid | downcase }} {{ .inputs.target-namespace }}'
+          arguments: '{{ envId | downcase }} {{ .inputs.target-namespace }}'
           outputs:
             - url
       commands:
