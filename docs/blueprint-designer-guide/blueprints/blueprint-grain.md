@@ -65,7 +65,7 @@ grains:
       inputs:
         - domain: 'torque-demo.click'
         - redis.storageClassName: gp2
-        - hostname: 'app--{{ sandboxid | downcase }}'
+        - hostname: 'app--{{ envId | downcase }}'
         - version: '{{ .inputs.version }}'
         - connectionString: '{{ .grains.infra.outputs.connection_string }}'
         - objectStore.s3BucketArn: '{{ .grains.infra.outputs.s3_bucket_arn }}'

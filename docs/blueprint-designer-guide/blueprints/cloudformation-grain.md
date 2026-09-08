@@ -90,7 +90,7 @@ grains:
         - '{{ .inputs.aws_credentials }}'
       inputs:
         - AccessControl: '{{ .inputs.access_control }}'
-        - BucketName: '{{ .inputs.bucket_name }}-{{ sandboxid | downcase }}'
+        - BucketName: '{{ .inputs.bucket_name }}-{{ envId | downcase }}'
       outputs:
         - Arn
         - DomainName

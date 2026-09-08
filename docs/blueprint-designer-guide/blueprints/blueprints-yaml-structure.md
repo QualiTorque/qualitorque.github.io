@@ -285,7 +285,7 @@ Outputs are a dictionary composed by the output name and the output value.
 ```yaml
 outputs:
   website-url:
-    value: 'https://application-name-{{ sandboxid | downcase }}.quali.click'
+    value: 'https://application-name-{{ envId | downcase }}.quali.click'
     quick: true # optional. default false
     kind: link
   db-hostname:
@@ -1161,7 +1161,7 @@ Example:
 * Reference an output from a grain as an input or attribute of another grain (mandates "depends-on:" relationship between the grains)
 
 
-In the below example the [downcase](https://shopify.github.io/liquid/filters/downcase/) and [strip](https://shopify.github.io/liquid/filters/strip/) keywords are used with concatenation of the sandbox id to create a new S3 bucket (AWS) using Terraform while making sure the bucket name will be valid and unique.
+In the below example the [downcase](https://shopify.github.io/liquid/filters/downcase/) and [strip](https://shopify.github.io/liquid/filters/strip/) keywords are used with concatenation of the environment id to create a new S3 bucket (AWS) using Terraform while making sure the bucket name will be valid and unique.
 
 ```yaml 
   s3_bucket:
@@ -1173,7 +1173,7 @@ In the below example the [downcase](https://shopify.github.io/liquid/filters/dow
       agent:
         name: '{{ .inputs.agent_name }}'
       inputs:
-        - bucket_name: '{{ .inputs.bucket_name | strip }}-bucket-{{ envid | downcase }}'
+        - bucket_name: '{{ .inputs.bucket_name | strip }}-bucket-{{ envId | downcase }}'
 ```
 
 For details and examples of how to use the parameters from the parameter store inside blueprints, check [this article](#parameters).
