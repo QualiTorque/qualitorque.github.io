@@ -608,6 +608,52 @@ grains:
     spec: ...
 ```
 
+#### Using Liquid filters in a condition
+
+Liquid filters, such as [strip](https://shopify.github.io/liquid/filters/strip/) and [downcase](https://shopify.github.io/liquid/filters/downcase/), can only be used inside output tags (`{{ ... }}`) and in `assign` tags. They are **not** supported inside the condition of an `{% if %}` tag, so the following is invalid:
+
+```yaml
+grains:
+  create_underlay:
+    kind: ansible
+    # Invalid - filters cannot be used inside an {% if %} condition
+    when: '{% if .inputs.network_type | strip | downcase == "vlan" %}true{% else %}false{% endif %}'
+    spec: ...
+```
+
+The expression fails to evaluate, so the grain is not skipped or run as intended.
+
+Instead, apply the filters in an `assign` tag and compare the assigned variable in the `{% if %}`:
+
+```yaml
+grains:
+  create_underlay:
+    kind: ansible
+    when: '{% assign network = .inputs.network_type | strip | downcase %}{% if network == "vlan" %}true{% else %}false{% endif %}'
+    spec: ...
+```
+
+An `assign` tag produces no output of its own, so the `when` value still renders as exactly `true` or `false`.
+
+:::tip
+You can avoid the need for filters altogether by normalizing the value at the input level with `allowed-values`, and then comparing the input directly:
+
+```yaml
+inputs:
+  network_type:
+    type: string
+    allowed-values: ["vlan", "vpc"]
+
+grains:
+  create_underlay:
+    kind: ansible
+    when: '{% if .inputs.network_type == "vlan" %}true{% else %}false{% endif %}'
+    spec: ...
+```
+
+Note that a direct comparison is case-sensitive and does not tolerate leading or trailing spaces, which is why the `assign` pattern above is needed when the value can come from a free-text input or a grain output.
+:::
+
 ### `approvals`
 
 Use `approvals` on a grain when you need a human gate before that grain executes.
@@ -1176,6 +1222,10 @@ In the below example the [downcase](https://shopify.github.io/liquid/filters/dow
         - bucket_name: '{{ .inputs.bucket_name | strip }}-bucket-{{ envId | downcase }}'
 ```
 
+:::note
+Filters are only valid inside output tags (`{{ ... }}`) and in `assign` tags. They cannot be used inside the condition of an `{% if %}` tag - see [Using Liquid filters in a condition](#using-liquid-filters-in-a-condition).
+:::
+
 For details and examples of how to use the parameters from the parameter store inside blueprints, check [this article](#parameters).
 
 ### Dynamic Attributes
@@ -1699,6 +1749,9 @@ input2: 2025-05-25T18:30:41
 The `visible` property uses Liquid templating syntax to create dynamic conditions. Common patterns include:
 - `{% if inputs.field_name == "value" %}true{% else %}false{% endif %}` - Show input when another field equals a specific value
 - `{% if inputs.field_name != "value" %}true{% else %}false{% endif %}` - Show input when another field doesn't equal a specific value
+
+Liquid filters cannot be used inside the condition of an `{% if %}` tag. To filter a value before comparing it, assign it first and compare the assigned variable:
+- `{% assign field = inputs.field_name | strip | downcase %}{% if field == "value" %}true{% else %}false{% endif %}` - Show input when another field equals a specific value, ignoring case and surrounding spaces
 
 **Useful Liquid Templating Resources:**
 - [Liquid Templating Introduction](https://shopify.github.io/liquid/basics/introduction/) - Learn the basics and syntax of Liquid templating

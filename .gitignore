@@ -1,3 +1,6 @@
+# spellchecker reference file
+dictionary.dic
+
 # Dependencies
 /node_modules
 
