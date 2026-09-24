@@ -10,11 +10,14 @@ While organizations typically want to enable their users to launch environments 
 Torque's Approval channels define the users who can approve environment launch requests. An approval channel is basically a list of users. Currently, Torque supports 3  approval channels - Teams, Emails, and ServiceNow.
 
 __To create an approval channel:__
-1. Go to __Administration > Approval Channels__.
-2. Click __Add Channel__.
-3. Give the approval channel a __Name__ and optionally a __Description__.
-4. Select the channel - Teams, Email or Service Now.
-5. For Teams, enter the __Webhook address__.
-6. For Service Now, please see [the following article](/eco-system/itsm-tools/service-now.md) for instructions.
-7. Select the __Approvers__.
-8. Click __Save__.
+1. Make sure to select __Account Center__ in the space selection dropdown.
+2. Go to __Governance > Approval Channels__.
+3. Click __Add Channel__.
+4. Give the approval channel a __Name__ and optionally a __Description__.
+5. Select the channel - Teams, Email or Service Now.
+6. For Teams, enter the __Webhook address__.
+7. For Service Now, please see [the following article](/eco-system/itsm-tools/service-now.md) for instructions.
+8. Select the __Approvers__.
+9. Click __Save__.
+
+> ![Approval Channels](/img/approval_channels.png)
