@@ -21,3 +21,4 @@ dictionary.dic
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.github/copilot-instructions.md
