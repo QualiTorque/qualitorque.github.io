@@ -30,7 +30,7 @@ Torque agent can be installed on a [SUSE Rancher Kubernetes Engine 2 (RKE2)](htt
   - To create resources on your cloud using Terraform, there is no built-in authentication between RKE2 and Torque. Store your cloud credentials in the Torque secret store and use them in your Terraform deployment.
 
 :::tip
-If your RKE2 cluster runs with the CIS hardening profile (`profile: cis`), Pod Security Admission is enforced cluster-wide. Make sure the namespaces used by the agent and by your environments allow the workloads Torque creates in them.
+If your RKE2 cluster runs with the `CIS` hardening profile (`profile: cis`), Pod Security Admission is enforced cluster-wide. Make sure the namespaces used by the agent and by your environments allow the workloads Torque creates in them.
 :::
 
 ## Setup
