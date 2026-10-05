@@ -568,3 +568,5 @@ RHEL
 OpenSearch
 datetime
 schemas
+RKE
+CIS
