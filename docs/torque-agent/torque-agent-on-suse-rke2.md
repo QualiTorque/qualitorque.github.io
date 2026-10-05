@@ -30,7 +30,7 @@ Torque agent can be installed on a [SUSE Rancher Kubernetes Engine 2 (RKE2)](htt
   - To create resources on your cloud using Terraform, there is no built-in authentication between RKE2 and Torque. Store your cloud credentials in the Torque secret store and use them in your Terraform deployment.
 
 :::tip
-If your RKE2 cluster runs with the CIS hardening profile (`profile: cis`), Pod Security Admission is enforced cluster-wide. Make sure the namespaces used by the agent and by your environments allow the workloads Torque creates in them.
+If your RKE2 cluster runs with the `CIS` hardening profile (`profile: cis`), Pod Security Admission is enforced cluster-wide. Make sure the namespaces used by the agent and by your environments allow the workloads Torque creates in them.
 :::
 
 ## Setup
@@ -38,7 +38,8 @@ If your RKE2 cluster runs with the CIS hardening profile (`profile: cis`), Pod S
 1. In Torque's **Administration** page, open the **Cloud Accounts** tab.
 2. Click **Connect a Cloud**.
 3. Under __Where do you want to install the Agent?__, select __RKE2__. The __Kubernetes__ technology is selected for the agent automatically. Give the agent a name.
-   <img src="/img/rke2-connect-agent.png" alt="RKE2 agent connected" width="50%" />
+    
+    <img src="/img/rke2-connect-agent.png" alt="RKE2 agent connected" width="75%" />
 4. Click __Next__.
 5. Click __Generate__. Torque displays two commands.
 6. On the RKE2 node, copy and run the first command. It adds the RKE2 `kubectl` binary to your `PATH` and points `KUBECONFIG` to the RKE2 kubeconfig file:
@@ -53,7 +54,7 @@ If your RKE2 cluster runs with the CIS hardening profile (`profile: cis`), Pod S
     kubectl apply -f https://portal.qtorque.io/api/settings/executionhosts/deployment/k***roi/deployment.yaml
     ```
 8. A __Connected!__ status is displayed in Torque, indicating that the agent was successfully installed and can communicate with Torque.
-    <img src="/img/rke2-install-step.png" alt="RKE2 agent connected" width="50%" />
+    <img src="/img/rke2-install-step.png" alt="RKE2 agent connected" width="75%" />
 9. Click __Associate to Space__ to connect the host to a space, and provide the details you obtained in the prerequisites section.
 
 ## Troubleshooting
