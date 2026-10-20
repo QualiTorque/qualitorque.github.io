@@ -153,6 +153,7 @@ tfvars
 CLI
 init
 Templating
+agentic
 ansible
 Ansible
 openssh

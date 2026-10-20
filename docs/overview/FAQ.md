@@ -163,6 +163,16 @@ Torque is designed to be highly flexible and extensible. It allows platform engi
 
 Learn more about [blueprint design](/blueprint-designer-guide/blueprint-quickstart-guide) and [workflows](/workflows/workflows-overview).
 
+#### How does Torque enable full agentic capabilities with AI integrations?
+Torque offers full agentic capabilities through its integration with Quali Copilot and various AI services including Claude, Codex, and custom harnesses using skills. This enables autonomous operations by running continuously on customer infrastructure and executing deployment tasks without requiring constant user interaction.
+
+The platform supports:
+- **Natural language interactions**: Users can define complex deployment workflows using natural language
+- **AI-powered automation**: Integration with AI models for enhanced orchestration capabilities
+- **Custom skill integrations**: Ability to extend functionality through custom AI harnesses and skills
+
+Learn more about [Torque agents](/torque-agent/Torque-Agent-Intro) and how they support these agentic operations.
+
 #### Does Torque offer API-first integration capabilities?
 Yes! Torque offers a robust API-first approach, allowing for seamless integration with other tools and systems. This is critical for machine-to-machine interaction and building future integration layers.
 
