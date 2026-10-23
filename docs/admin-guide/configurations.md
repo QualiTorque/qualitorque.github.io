@@ -223,5 +223,18 @@ Once the experiment ends:
 info 🔒  Experimental Features are optionally available for **Enterprise plans only**.
 
 
+---
 
-  
+### 10. Resources Inventory
+
+Control which parts of the Resources Inventory are available in the account. On the page, this item appears between **Approval Requests** and **Quick Launch**.
+
+- **Cloud Resources**: discover the resources in your connected providers, codify unmanaged resources into Terraform, and curate selected resources into managed Torque environments.
+- **Custom Resources**: define your own resource types and instances, and let blueprints reserve them when an environment launches.
+
+**How to configure the Resources Inventory**
+
+1. Navigate to **Configuration > Resources Inventory**.
+2. Toggle **Cloud Resources** and **Custom Resources** on or off.
+
+📖 Learn more about the [Inventory in the next UI](/next-ui/inventory) and about [Custom Resources](/getting-started/Resources-Inventory/custom-resources).

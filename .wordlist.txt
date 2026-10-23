@@ -569,3 +569,13 @@ OpenSearch
 datetime
 schemas
 RKE
+Cowork
+MCP
+VSIX
+Iframe
+iframe
+renderer
+auth
+Anthropic
+POSIX
+Curations

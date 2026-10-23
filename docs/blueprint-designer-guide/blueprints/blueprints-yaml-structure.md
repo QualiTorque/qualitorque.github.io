@@ -60,6 +60,7 @@ The input definition is composed out of the following fields:
   - ```agent``` allows the environment end-user to select the agent that will deploy the grain(s) from a dropdown list. By default, all agents are listed in the dropdown list, but you can add ```allowed-values``` to only display a subset of the agents. For details, see [agent](#agent).
   - ```parameter``` will take the input's allowed values from the parameter-store, from a parameter with the name ```parameter-name```. The parameter can be defined either in the account level or in the space level. If the parameter's value is built as a comma separated list, Torque will convert them to a set of values and present it to the end-user as a drop down list of the values. See an example below. For more info about the parameter store, click [here](admin-guide/params.md).
   - ```credentials``` allows the environment end-user to select the credentials that will be used to deploy the grain(s) from a dropdown list. By default, all credentials in the account are listed in the dropdown list, but you can add ```allowed-values``` to only display a subset of the credentials, or use ```allowed-credential-providers``` to filter by credential provider type.
+  - ```target``` allows the environment end-user to select a [Provider](/next-ui/inventory/adding-a-provider) (a connected cloud account, virtualization platform, or Kubernetes cluster from the Inventory) from a dropdown list, combining what would otherwise be a separate ```agent``` input and a credentials input into one. Use ```target-filters``` to narrow the dropdown to specific provider types or labels. For details, see [Target Input Type](#target-input-type).
   - ```file``` allows the environment end-user to upload one or more files from the launch form. The uploaded files are made available to the blueprint designer using the [`workspace-directories`](#workspace-directories) section and the **env-storage** store - [See details below](#file-input-type).
   - ```input-source``` allows the environment end-user to select from a list of values provided by a dynamic source. The source is defined in the [`input-sources`](/admin-guide/input-sources) section.
 - ```style``` (Optional): Defines how the input is presented to the user. For example:
@@ -119,6 +120,7 @@ For advanced input visibility control and organization, see the [customization](
 - ```pattern``` is an optional regular expression pattern that the input value must match. If provided, Torque will validate the user input against this pattern during environment launch and prevent launching if the input does not conform to the specified pattern.
 - ```validation-description``` is an optional user-friendly message or description that will be shown to the user if the provided input value does not match the specified `pattern`. This helps provide better guidance to the user on the expected input format or constraints.
 - ```allowed-credential-providers``` (Optional, ```credentials``` type): Filters the credentials dropdown by provider type. Supported providers are: ```artifactory```, ```aws```, ```azure```, ```intersight```, ```nexus_dashboard```, ```nviae```, ```redhat```, and ```vsphere```. [See example below](#credentials-input-type).
+- ```target-filters``` (Optional, ```target``` type): Filters the target dropdown to Providers matching the given criteria. Supports ```cloud-providers```, a list of provider types (for example ```aws```, ```azure```, ```vcenter```, ```kubernetes```, ```openshift```, ```rke2```), and ```labels```, a list of ```key```/```value``` pairs that the provider's labels must match. [See example below](#target-input-type).
 
     **Example:**
 
@@ -226,6 +228,78 @@ grains:
           commands:
             - echo "$NVAIE_API_KEY"
 ```
+
+#### Target Input Type
+
+The `target` input type allows the environment end-user to select a [Provider](/next-ui/inventory/adding-a-provider) from a dropdown list: a single selection that supplies both the agent and the credentials needed to deploy a grain. This removes the need to publish separate `agent` and `credentials` inputs for the same grain.
+
+Only Providers with a **Deploy** capability appear in the dropdown, since a Deploy capability is what allows the provider to host the grain. Use `target-filters` to narrow the dropdown to one or more provider types (`cloud-providers`) or to providers carrying specific labels (`labels`). See [Provider Capabilities](/next-ui/inventory/provider-capabilities) for details on how Discovery and Deploy capabilities are configured on a Provider.
+
+To use the selected target on a grain, set it under the grain's `target` field instead of `agent`. See [target](#target) below for details, including why only one of `agent` or `target` should be provided on a grain.
+
+:::info
+The target dropdown is shown in the launch form of the next UI at [next.qtorque.io](/next-ui). Providers are managed in **Resources > Inventory**.
+:::
+
+**Example:**
+
+```yaml
+spec_version: 2
+description: |
+  Deploy to a vCenter Provider selected by the end-user.
+  The Target input replaces a separate agent + credentials pair with one dropdown.
+
+inputs:
+  Target:
+    type: target
+    description: >
+      vCenter target. Must have a Deploy capability so it appears in the picker and can host the grain.
+    target-filters:
+      cloud-providers: [vcenter]
+
+grains:
+  vm:
+    kind: terraform
+    spec:
+      source:
+        store: infra
+        path: terraform/vcenter/vm
+      target:
+        name: '{{ .inputs.Target }}'
+```
+
+**Filtering by labels:**
+
+```yaml
+inputs:
+  Target:
+    type: target
+    target-filters:
+      cloud-providers: [aws, azure]
+      labels:
+        - key: env
+          value: production
+```
+
+:::tip
+A `target` input can also drive a dynamic `input-source` dropdown that queries the target's own environment (for example, listing vCenter clusters available on the selected Target). Do this by adding an override that passes the target's name to the input source, which then authenticates using that target's Discovery-capability credential and agent instead of a credential/agent stored on the input source itself. This requires the Provider to also have a **Discovery** capability.
+
+```yaml
+inputs:
+  Target:
+    type: target
+    target-filters:
+      cloud-providers: [vcenter]
+
+  Cluster:
+    type: input-source
+    source-name: generic-vcenter-resources
+    depends-on: Target
+    overrides:
+      - target_name: '{{ .inputs.Target }}'
+      - resource_type: cluster
+```
+:::
 
 #### File Input Type
 
@@ -519,6 +593,38 @@ grains:
               effect: NoSchedule
             - operator: Exists # Tolerate Everything
 ```
+
+### `target`
+
+The `target` field is an alternative to `agent` for grains that support it. Instead of pointing at an agent (and separately supplying credentials via `authentication`), `target` points at a [Provider](/next-ui/inventory/adding-a-provider): a connected cloud account, virtualization platform, or Kubernetes cluster from the Inventory. The Provider's Deploy capability supplies both the agent and the credentials the grain needs, so a grain configured with `target` normally does **not** need an `authentication` block.
+
+```yaml
+inputs:
+  Target:
+    type: target
+    target-filters:
+      cloud-providers: [vcenter]
+
+grains:
+  vm:
+    kind: terraform
+    spec:
+      source:
+        store: infra
+        path: terraform/vcenter/vm
+      target:
+        name: '{{ .inputs.Target }}'
+```
+
+:::warning
+Provide only one of `agent` or `target` on a grain, not both.
+:::
+
+For details on how to publish `target` as a blueprint input (including filtering the dropdown by provider type or label), see the [Target Input Type](#target-input-type) section above.
+
+:::info
+`target` is supported on every grain kind except CloudShell. The CloudFormation grain is a partial exception: it still requires an `authentication` block even when `target` is used.
+:::
 
 ### `depends-on`
 The need to deploy one IaC component before the other is common and usually required when 3rd party components, managed services and other teams need to provide the infrastructure. Using dependencies in the blueprint YAML Torque will evaluate and optimize the deployment process to make sure dependencies are respected and components with no dependencies will be deployed in parallel to maximize efficiency and reduce overall uptime.
