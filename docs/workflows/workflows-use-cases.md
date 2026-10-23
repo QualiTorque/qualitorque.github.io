@@ -437,6 +437,16 @@ grains:
 - Simplifies resource management at scale
 - Ensures consistent tagging across the organization
 
+### 6. Update Instance Security Groups
+
+**Motivation:** Dynamically update security groups for EC2 instances to enhance network security posture.
+
+**Benefits:**
+- Enables adaptive security policies based on environment needs 
+- Reduces manual intervention in security configuration
+- Improves compliance with security best practices
+- Supports automated incident response by quickly modifying access controls
+
 ---
 
 ## Kubernetes related workflows
