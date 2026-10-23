@@ -7,7 +7,7 @@ Torque supports connecting asset/blueprint repositories on BitBucket out of the 
 
 **This article refers to the SAAS version of BitBucket. If you're using self-hosted BitBucket, check [here](/admin-guide/source-control/Self%20Hosted%20Repositories/overview)**.
 
-When connecting a repository, Torque’s OAuth app (QTorque Portal) asks for permissions to access repositories on your organization. 
+When connecting a repository, Torque’s OAuth app (Torque Portal) asks for permissions to access repositories on your organization. 
 If Torque doesn't have access, you will be prompted to grant the proper authorizations when connecting the asset repository. The approved applications are listed in the [Bitbucket Applications](https://bitbucket.org/account/settings/app-authorizations/) page.
 
 1.	In Torque, go to the space's Settings > Repositories area and connect the repository.
