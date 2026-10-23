@@ -10,9 +10,9 @@ Torque supports connecting to self-managed GitHub repositories, allowing you to 
 
 ## Configuration
 
-1. Navigate to `Space -> Design -> Repositories` and click the `Add a Repository` button.
+1. Navigate to `Automation -> Repositories` and click the `Add a Repository` button.
 2. Choose the `Github` git provider.
-3. Check the "Self Managed Repository" checkbox and provide the necessary repository details.
+3. Check the `Self Managed Repository` checkbox and provide the necessary repository details.
 4. Once connected, you can discover the assets in the connected repository.
    - For more information on asset discovery, refer to [Discover Your Assets](/getting-started/asset-discovery). 
 
