@@ -518,6 +518,99 @@ grains:
 
 ---
 
+### 9. Cleanup Test Environments
+
+**Motivation:** Automate the cleanup of test environments after testing to reduce costs and maintain resource availability.
+
+**Benefits:**
+- Reduces operational costs by automatically destroying unused test environments
+- Prevents resource leakage that can lead to unexpected charges
+- Ensures consistent cleanup procedures across all test environments
+- Improves resource availability for subsequent tests
+
+```yaml
+spec_version: 2
+description: Cleanup test environments after testing
+
+workflow:
+  scope: environment
+  labels-selector: test-environment # will be available for all test environments
+
+inputs:
+  force_cleanup:
+    type: boolean
+    default: false
+    description: Force cleanup even if environment is not in a clean state
+
+outputs:
+  cleanup_status:
+    value: '{{ .grains.cleanup.outputs.status }}'
+
+grains:
+  cleanup:
+    kind: shell
+    spec:
+      agent:
+        name: cloud-agent
+      files:
+        - source: scripts
+          path: scripts/cleanup-test-env.sh
+      activities:
+        deploy:
+          commands:
+            - name: cleanup
+              command: 'source cleanup-test-env.sh {{ .bindings.environment_id }} {{ .inputs.force_cleanup }}'
+              outputs:
+                - status
+```
+
+**Shell script:**
+
+```bash
+#!/bin/bash
+
+environment_id=$1
+force_cleanup=$2
+
+# Set default status
+status="success"
+
+echo "Cleaning up test environment: $environment_id"
+echo "Force cleanup: $force_cleanup"
+
+# Check if the environment is a test environment and has appropriate labels
+if [ -z "$environment_id" ]; then
+    echo "Error: No environment ID provided"
+    status="error"
+    exit 1
+fi
+
+# Get environment details
+export ENV_DETAILS=$(torque env get "$environment_id" --format json)
+
+# Extract environment attributes
+env_name=$(echo $ENV_DETAILS | jq -r '.name')
+env_state=$(echo $ENV_DETAILS | jq -r '.state')
+
+# Perform cleanup actions
+echo "Cleaning up resources in environment: $env_name"
+
+# Destroy all resources in the environment (example command)
+# This would typically interact with your infrastructure management system
+if [ "$force_cleanup" = "true" ] || [ "$env_state" = "ready" ]; then
+    echo "Destroying all resources in environment $environment_id"
+    # Example: torque env delete "$environment_id" --force
+else
+    echo "Environment not in ready state, skipping cleanup ($env_state)"
+fi
+
+echo ""
+echo "Cleanup completed for environment: $environment_id"
+echo "Status: $status"
+export status
+```
+
+
 ## Torque Built-in Workflows
 
 :::info
@@ -537,6 +630,8 @@ Usage example can be found [here](workflows-overview#torque-built-in-workflows)
 - Optimizes resource utilization and costs
 - Enables scheduled maintenance windows
 - Facilitates quick recovery from issues through restarts
+
+---
 
 ### 2. Azure VM Power Management
 
