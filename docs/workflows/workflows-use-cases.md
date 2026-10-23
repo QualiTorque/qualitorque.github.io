@@ -437,6 +437,17 @@ grains:
 - Simplifies resource management at scale
 - Ensures consistent tagging across the organization
 
+### 6. Configuration Management
+
+**Motivation:** Automate configuration updates for cloud resources and services to maintain consistency and compliance.
+
+**Benefits:**
+- Reduces manual effort in updating configurations
+- Ensures consistent configurations across environments
+- Improves compliance with security and governance policies
+- Enables version control of configuration changes
+- Facilitates faster deployment and rollback processes
+
 ---
 
 ## Kubernetes related workflows
