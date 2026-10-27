@@ -45,7 +45,7 @@ As such, there are 4 roles in Torque:
 | Permission      | Description |Account admin | Space admin | Space developer   | Space member |
 | ----------- | ----------- | :--------: | :--------: | :--------: | :--------: |
 | Manage account	   |1. Config audit log target.<br />2. Delete the account.<br />3. View account usage and cost.| ![Locale Dropdown](/img/green-dot.png)      |||||
-| [Manage agents](/torque-agent/Install-and-connect-self-hosted-agent)	   |Install new Torque agents (requires K8s cluster or Vcenter access), delete agents, edit agents properties.| ![Locale Dropdown](/img/green-dot.png)      |||||
+| [Manage agents](/agent/Install-and-connect-self-hosted-agent)	   |Install new Torque agents (requires K8s cluster or Vcenter access), delete agents, edit agents properties.| ![Locale Dropdown](/img/green-dot.png)      |||||
 | [Manage cloud accounts for cost collection](/governance/cost-tracking/cost)	   |Add/remove cloud accounts for Torque to collect environment cost from.| ![Locale Dropdown](/img/green-dot.png)      |||||
 | [Manage spaces](/getting-started/getting-started-with-terraform#step-1-create-a-space)	   |1. Create/delete/rename spaces.<br />2. Associate/remove agents to/from spaces.| ![Locale Dropdown](/img/green-dot.png)        |||||
 | [Manage users](#invite-users-to-torque)	   |Invite users to Torque, cancel users invitations, add users to space, change users roles.| ![Locale Dropdown](/img/green-dot.png)        ||||

@@ -21,4 +21,4 @@ Before you start on your Torque journey, please take a moment to familiarize you
 
 * [**Tag**](/governance/tags) - A key-value pairing that is set by Torque to all of the resources and infrastructure entities provisioned by an environment (example: Owner = John.D@somecompany.com) There are 2 types of tags: System tags and custom tags. System tags are tags that are defined by Torque (for example, environment id, space name, etc) while the users define the custom tags according to their needs.
 
-* [**Agent**](/torque-agent/Torque-Agent-Intro) - A Torque automation agent that runs as a pod inside your designated Kubernetes cluster. This agent communicates with the Torque backend and is permitted to perform certain actions on your Kubernetes cluster. For more details, see [Architecture](/overview/Architecture).
+* [**Agent**](/agent/Agent-Intro) - A Torque automation agent that runs as a pod inside your designated Kubernetes cluster. This agent communicates with the Torque backend and is permitted to perform certain actions on your Kubernetes cluster. For more details, see [Architecture](/overview/Architecture).

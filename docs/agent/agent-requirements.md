@@ -47,7 +47,7 @@ For running the agent on a Docker host, you'll need:
 **Network Requirements:**
 - Outbound HTTPS (port 443) access to Torque SaaS
 - Internet connectivity for pulling Docker images
-- See [Torque Outbound Ports](/torque-agent/torque-outbound-ports.md) for detailed network requirements
+- See [Torque Outbound Ports](/agent/outbound-ports.md) for detailed network requirements
 
 **Example VM Configuration:**
 ```yaml
@@ -79,7 +79,7 @@ For running the agent on Kubernetes, you'll need:
 **Network Requirements:**
 - Outbound HTTPS (port 443) access to Torque SaaS
 - Internet connectivity for pulling container images
-- See [Torque Outbound Ports](/torque-agent/torque-outbound-ports.md) for detailed network requirements
+- See [Torque Outbound Ports](/agent/outbound-ports.md) for detailed network requirements
 
 ## Kubernetes Agent Manifest
 
@@ -195,12 +195,12 @@ Notes:
 
 Once you've prepared your infrastructure, proceed with agent installation:
 
-- **Docker Host**: See [Torque Docker Agent](/torque-agent/torque-docker-agent.md)
-- **Kubernetes Cluster**: See [Install and Connect Self-Hosted Agent](/torque-agent/Install-and-connect-self-hosted-agent.md)
+- **Docker Host**: See [Torque Docker Agent](/agent/docker-agent.md)
+- **Kubernetes Cluster**: See [Install and Connect Self-Hosted Agent](/agent/Install-and-connect-self-hosted-agent.md)
 
 ## Additional Resources
 
-- [What is the Torque Agent?](/torque-agent/Torque-Agent-Intro.md)
-- [Advanced Agent Settings](/torque-agent/advanced-settings.md)
-- [Network Requirements](/torque-agent/torque-outbound-ports.md)
-- [Azure VMSS Deployment](/torque-agent/torque-agent-on-azure-vmss.md)
+- [What is the Torque Agent?](/agent/Agent-Intro.md)
+- [Advanced Agent Settings](/agent/advanced-settings.md)
+- [Network Requirements](/agent/outbound-ports.md)
+- [Azure VMSS Deployment](/agent/agent-on-azure-vmss.md)

@@ -30,7 +30,7 @@ In order to configure the ServiceNow integration, you will need to have the Torq
 
    1. You will need a user in Toruqe that will be the approver for the approval channel. Note, currently only one approver can be assigned to each approval channel. The user can be one of your existing users, or a new one which can serve as a service user. This user does not have to be a real user in Torque, it is just a user for the purpose of this integration. This user needs to be a member of the space(s) where you want these approvals to be created. 
    To create a new user you should invite the new user via email. 
-   2. Log in to the Torque UI as the approver user from step 1, and create an API token. See [Generating a new Torque API Token](/rest-api/torque_api_tokens.md) . Take note of the generated Token.
+   2. Log in to the Torque UI as the approver user from step 1, and create an API token. See [Generating a new Torque API Token](/rest-api/api-tokens.md) . Take note of the generated Token.
 
 2. In ServiceNow:
    

@@ -8,7 +8,7 @@ Torque agent can be installed on a [SUSE Rancher Kubernetes Engine 2 (RKE2)](htt
 ## Prerequisites
 
 - A running RKE2 cluster. Please note that Torque __does not support__ cluster nodes on ARM architecture.
-- [Outbound Ports for Kubernetes Cluster Nodes](/torque-agent/torque-outbound-ports) must be open to allow Torque to access and communicate with the cluster.
+- [Outbound Ports for Kubernetes Cluster Nodes](/agent/outbound-ports) must be open to allow Torque to access and communicate with the cluster.
 - Command-line access to the cluster, using one of the following:
   - __Directly on an RKE2 server node__ (recommended) - RKE2 ships its own `kubectl` binary under `/var/lib/rancher/rke2/bin` and writes the admin kubeconfig to `/etc/rancher/rke2/rke2.yaml`. The kubeconfig file is readable by `root` only, so run the commands as root (for example, `sudo -i`).
   - __From a remote machine__ with [kubectl installed](https://kubernetes.io/docs/tasks/tools/#kubectl) - copy `/etc/rancher/rke2/rke2.yaml` from a server node to your machine, replace `127.0.0.1` in the `server` field with the IP address or hostname of the RKE2 server node, and set it as your kubeconfig. For details, see [Cluster Access](https://docs.rke2.io/cluster_access) in the RKE2 documentation.

@@ -37,7 +37,27 @@ const config = {
     }
   ],
   plugins: [
-    require.resolve("docusaurus-plugin-sass")
+    require.resolve("docusaurus-plugin-sass"),
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        // Old URLs kept alive after the folder and page renames (product Help links use them).
+        redirects: [
+          { from: '/torque-agent/Torque-Agent-Intro', to: '/agent/Agent-Intro' },
+          { from: '/torque-agent/Install-and-connect-self-hosted-agent', to: '/agent/Install-and-connect-self-hosted-agent' },
+          { from: '/torque-agent/advanced-settings', to: '/agent/advanced-settings' },
+          { from: '/torque-agent/agent-requirements', to: '/agent/agent-requirements' },
+          { from: '/torque-agent/service-accounts-for-aws', to: '/agent/service-accounts-for-aws' },
+          { from: '/torque-agent/service-accounts-for-azure', to: '/agent/service-accounts-for-azure' },
+          { from: '/torque-agent/service-accounts-for-gcp', to: '/agent/service-accounts-for-gcp' },
+          { from: '/torque-agent/torque-agent-on-azure-vmss', to: '/agent/agent-on-azure-vmss' },
+          { from: '/torque-agent/torque-agent-on-suse-rke2', to: '/agent/agent-on-suse-rke2' },
+          { from: '/torque-agent/torque-docker-agent', to: '/agent/docker-agent' },
+          { from: '/torque-agent/torque-outbound-ports', to: '/agent/outbound-ports' },
+          { from: '/rest-api/torque_api_tokens', to: '/rest-api/api-tokens' },
+        ],
+      },
+    ],
   ],
   presets: [
     [

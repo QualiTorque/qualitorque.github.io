@@ -16,7 +16,7 @@ While you can manage deployments directly, Torque provides significant advantage
 
 * **IaC Orchestration**: Torque provides sophisticated Infrastructure as Code orchestration that goes beyond basic deployment, managing complex dependencies and multi-technology stacks with ease across different cloud providers and tools. Explore our [blueprint designer guide](/blueprint-designer-guide/blueprint-quickstart-guide) and [multi-technology orchestration examples](/example-blueprints/application-orchestration).
 
-* **Governance**: Unified security and policy management that protects your admin credentials within Torque agents, enables team collaboration through spaces, and enforces organizational standards and compliance requirements automatically across all deployments. Read about [policies](/governance/policies), [roles and permissions](/governance/roles-and-permissions), and [Torque agents](/torque-agent/Torque-Agent-Intro).
+* **Governance**: Unified security and policy management that protects your admin credentials within Torque agents, enables team collaboration through spaces, and enforces organizational standards and compliance requirements automatically across all deployments. Read about [policies](/governance/policies), [roles and permissions](/governance/roles-and-permissions), and [Torque agents](/agent/Agent-Intro).
 
 **Additional Capabilities:**
 * **Cost Management**: Automatic cleanup of cloud resources when environments are no longer needed, plus comprehensive cost tracking with detailed analytics and forecasting. Torque attaches tags to every cloud resource for powerful monitoring and cost optimization. Learn more about [cost tracking](/governance/cost-tracking/configuring-cost-aws) and [cloud efficiency reports](/reports/cloud-efficiency).
@@ -55,7 +55,7 @@ It's no secret that working with the cloud requires the use of very powerful adm
 
 The blueprints reference the agents but otherwise cannot access the credentials. Same goes for the end-user and CI/CD tool - the end-users who launch the environments don't have access to the actual Azure keys from the token.
 
-Learn more about [Torque agents](/torque-agent/Torque-Agent-Intro), [service accounts for AWS](/torque-agent/service-accounts-for-aws), [service accounts for Azure](/torque-agent/service-accounts-for-azure), and [advanced security settings](/torque-agent/advanced-settings).
+Learn more about [Torque agents](/agent/Agent-Intro), [service accounts for AWS](/agent/service-accounts-for-aws), [service accounts for Azure](/agent/service-accounts-for-azure), and [advanced security settings](/agent/advanced-settings).
 
 ---
 
