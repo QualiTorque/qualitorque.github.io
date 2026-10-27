@@ -57,7 +57,7 @@ In order to configure the ServiceNow integration, you will need to have the Torq
 
    1. Go to `Flow Designer -> Flows` and select type in the searchbox for “Torque Request”.
    2. Select it and configure approvers under `Ask for Approval` action:
-   > ![Locale Dropdown](/img/service_now_torque_request.png)
+   > ![Locale Dropdown](/img/service_now_request.png)
 
 The approvers don't have to be Torque users.
 

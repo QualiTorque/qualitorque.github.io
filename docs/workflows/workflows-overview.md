@@ -7,7 +7,7 @@ Torque Workflows are a powerful way to automate and orchestrate complex processe
 
 ## Workflow Discovery
 
-Workflow discovery is done in the same way as Blueprints. The YAML files need to be under the `blueprints/` directory in the repository, unless you specify a different directory with a [file marker](/blueprint-designer-guide/torque-assets-markers). Torque will automatically scan for workflow files and make them available based on their scope and configuration.
+Workflow discovery is done in the same way as Blueprints. The YAML files need to be under the `blueprints/` directory in the repository, unless you specify a different directory with a [file marker](/blueprint-designer-guide/assets-markers). Torque will automatically scan for workflow files and make them available based on their scope and configuration.
 
 The Workflow YAML standard is similar to the Blueprint standard. The only addition to the Workflow specification is the `workflow` block, which defines the workflow-specific configuration.
 

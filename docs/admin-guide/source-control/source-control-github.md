@@ -61,7 +61,7 @@ When connecting a repository, Torque installs an OAuth app called __Torque Contr
       > ![Locale Dropdown](/img/revoke-access.png)
   3. In Torque, go to the space's __Settings > Repositories__ area and connect the repository.
   4. Authorize the organization. 
-      > ![Locale Dropdown](/img/torque-access.png)
+      > ![Locale Dropdown](/img/access.png)
   
   At this point, the Torque app is installed in the organization without permissions.
 
