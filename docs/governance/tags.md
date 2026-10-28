@@ -28,7 +28,7 @@ There are 3 types of tags in Torque - [System tags](#system-tags), [built-in tag
   - *sandbox-name* : the name that was given to the environment
   - *blueprint-name* : the template which the environment was built from
   - *space-name* : the name of the space 
-  - *owner-email* : email of the user who deployed the environment 
+  - *owner-email* : email of the user who deployed it 
 
   Torque will automatically tag all cloud resources with these tags as the name and will also populate the tag value.
 
@@ -57,7 +57,7 @@ All these tags are automatically applied by Torque to every cloud resource creat
 
   **To customize the activity_type tag:**
 
-    1. Open **Administration** and click **Tags**.
+    1. Under **Governance** click **Tags**.
     2. Edit the **activity_type** tag.
 
     > ![Locale Dropdown](/img/edit-activity-type.png)
@@ -76,7 +76,7 @@ Torque defines 4 scopes for custom tags: account, space, blueprint, and sandbox.
 - *account* scope: The tag's value is set once during the tag's creation by the account admin. The tag's value will be identical for all resources in all environments. 
 - *space* scope: The tag's default value is set during the tag's creation, but it can be overridden with separate value on each space by the space admin. All resources created by all environments in the same space will have the same tag value.
 - *blueprint* scope: The tag's default value is set during the tag's creation, but it can be overridden with separate value on each blueprint by the blueprint developer. All resources created by environments using this blueprint will have the same tag value.
-- *sandbox* scope : The tag's default value is set during the tag's creation, but it can be overridden with separate value by the end user when they deploy an environment.
+- *sandbox* scope : The tag's default value is set during the tag's creation, but it can be overridden with a separate value by the end user when they start an environment.
 
 :::tip Notes
 
@@ -90,7 +90,7 @@ As the account admin, when you create a custom tag you can limit the allowed val
 
 ### Creating a custom tag
 
-1. Open **Administration** and click **Tags**.
+1. Under **Governance** click **Tags**.
 2. click **+ New Tag** and follow the instructions.
 
 ### Overriding a custom tag's default value

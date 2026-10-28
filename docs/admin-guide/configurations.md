@@ -88,10 +88,11 @@ This AI assistant tool is subject to the [Torque MSA](https://www.quali.com/lega
 With this feature you can:  
 - **Auto-generate descriptions** for blueprints, to effortlessly expand the details on every blueprint in the account.  
 - **(Blueprint) Cloud Copilot** - Create and customize blueprints from your Building Blocks Library, using simple language prompts and the power of AI.
-![Cloud Copilot](/img/cloud_copilot_panel.png)
+  ![Cloud Copilot](/img/cloud_copilot_panel.png)
 
 - **AI Insights** - Get AI assistant when you need it. Resolve issues in live environments, by clicking the “Get AI Insights” button, on every error log in your environment. 
-![AI Insights](/img/ai_insights.png)
+
+  ![AI Insights](/img/ai_insights.png)
 
 
 
@@ -133,15 +134,17 @@ info 🔒  SSO Login is optionally available for **Enterprise plans only**.
 
 ### 6. Email Reports  
 Subscribe to the ‘Weekly Digest’, a summary email providing key account activity insights.  
-Torque's weekly digest reports condense the most important information from a week's worth of data collected in Torque, making it easier for Torque administrators to quickly understand the most critical developments.  
-Torque ‘Weekly Digest’ emails are being sent to Torque administrators and will highlight:
+Torque's weekly digest reports condense the most important information from a week's worth of data collected in Torque, making it easier for administrators to quickly understand the most critical developments.  
+The Torque ‘Weekly Digest’ emails are being sent to administrators and will highlight:
 
 -   Cloud usage
--   Torque users activity
+-   User activity
 -   Environments usage
 -   Cloud Cost
 -   Top used IaC modules
 -   Top contributors to the operation
+
+Example:
 
 ![Weekly Digest Example](/img/mockup_weekly_digest.png)
   

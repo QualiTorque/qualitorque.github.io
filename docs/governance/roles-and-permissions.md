@@ -24,7 +24,7 @@ A user can be a member of multiple groups. Torque will calculate the super-set o
 
 A group can be assigned multiple roles in multiple spaces and a single account level role. 
 
-Group management is performed from the "Account Settings" menu. 
+Group management is performed from the "User Management" page. 
 
 If your Torque account is configured to use SSO for authentication, the assignment of SSO users to groups in Torque can be synchronized automatically from the IdP assignments (currently supported in Okta and Azure active directory).
 
@@ -83,25 +83,23 @@ As such, there are 4 roles in Torque:
 
 Torque role: Account admin
 
-1. Open the **Administration** page.
-2. Select **Users**.
-3. Click the **Invite User** button.
-4. Enter a user's email address and press the **[ENTER]** key. Repeat to add additional users.
-5. Select the space settings to apply to the users. For details about each role's permissions, see the **Roles** tab in the **Administration** page.
-6. Click **Send Invitation**.
+1. Under the **Admin** menu, select the **User Management** option.
+2. Click the **Invite Users** button to invite users using their email addresses.
+3. Enter a user's email address and press the **[ENTER]** key. Repeat to add additional users.
+4. Select the account and space settings to apply to the users. For details about each role's permissions, see the **Roles & Permissions** tab in the **User Management** page.
+5. Click **Send**.
   The users will get a "Welcome to Torque" invitation email, prompting them to login to the space. Once they log in, they will be granted the space role and permissions you specified.
 
 ## Add Existing Users to Your Space
 
 Torque role: Account admin, space admin
 
-1. In the suitable Torque space, select **Settings** from the left menu.
-2. Click the **Users** tab.
-3. Click the **Add Users** button.
-4. Select the Torque user you wish to add to this space. Repeat to add additional users.
-5. Click **Done**.
+1. In a suitable Torque space, under the **Governance** menu, select **Users** from the left menu to open the **Space Users** page.
+2. Click the **Add Users** button.
+3. Select the Torque user you wish to add to this space. Repeat to add additional users.
+4. Click **Add**.
    By default, new users are assigned the **Space Member** role. 
-6. Change the roles as needed.
+5. Change the roles as needed.
 
 ## Adding Users Without Invitation
 

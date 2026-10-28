@@ -38,9 +38,9 @@ Supported events:
 
 __To configure Torque notifications:__
 1. In Torque, access the suitable space.
-2. Click __Settings > Notifications__.
+2. Click __Governance > Notifications__.
 3. Click __+ Add Notification__.
-4. Select the suitable communication tool (Slack, Teams, or generic webhook).
+4. Select the suitable communication tool (Slack, Teams, Mail, or generic webhook).
     > ![Locale Dropdown](/img/notifications.png)
 5. Provide a __Name__ for the notification.
 6. Enter the webhook address, as explained in the desired tool’s official documentation.
@@ -51,8 +51,8 @@ __To configure Torque notifications:__
 7. For generic webhooks, optionally provide a token from the tool to send with the notification, and select the desired event to test.
 8. Test the configuration.
 9. Click __Send Test Message__ and make sure you receive a Torque notification message in the chat or generic tool.
-10. Click __Select Notifications__ to select the notifications to send.
-11. Click __Apply__.
+10. Click the __Events__ tab to select the notifications to send.
+11. Click __Save Changes__.
 
 ---
 
