@@ -182,7 +182,7 @@ Under the 'General' tab, set the checkbox on "Enable SCIM provisioning".
 
 This should cause a new tab to appear on the application named "Provisioning". Navigate to that tab.
 Under the provisioning tab ('Integration' settings), click edit and set the following:
-SCIM connector base URL: https://portal.qtorque.io/api/scim
+SCIM connector base URL: `https://portal.qtorque.io/api/scim`
 Unique identifier field for users: userName
 Supported provisioning actions: set "Push New Users" and "Push Profile Updates" (the other checkboxes should remain unchecked)
 Authentication Mode: HTTP header
@@ -214,7 +214,7 @@ Log in to Azure and navigate to "Enterprise applications", then locate the appli
 On the left-hand side menu, pick "Provisioning" and click "Get started".
 Set "Provisioning Mode" to Automatic.
 Under Admin Credential, set the following.
-Tenant URL: https://portal.qtorque.io/api/scim
+Tenant URL: `https://portal.qtorque.io/api/scim`
 Secret Token: This field should contain the long token generated above. Do not include the word "Bearer" if it appears at the start of the token.
 Click "Test connection", and a message should appear on the top right, confirming a successful connection.
 If the connection is unsuccessful, an error message appears with additional details.

@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Torque Workflows
+title: What are Workflows
 ---
 
 Torque Workflows are a powerful way to automate and orchestrate complex processes within your infrastructure. They allow you to define a series of actions and steps that are executed in a specific order, providing automation capabilities for various operational tasks. Workflows can be triggered by events, scheduled to run at specific times, or executed manually.
@@ -82,9 +82,9 @@ By specifying the appropriate scope for your workflows, you can ensure that they
 
 ### `labels-selector`
 
-The `labels-selector` field can be used to "attach" workflows to `Blueprints` or running `Environments` that have matching labels.
+The `labels-selector` field can be used to "attach" workflows to `Blueprints` or active `Environments` that have matching labels.
 
-In case `labels-selector` field is not defined, the workflow will be available to all of the `Blueprints` and running `Environments`.
+In case `labels-selector` field is not defined, the workflow will be available to all of the `Blueprints` and active `Environments`.
 
 The `labels-selector` supports two types of conditions:
 1. **`and` condition**: Use the `and` operator between labels to specify that all labels must match.
@@ -163,7 +163,7 @@ The `timeout` field allows you to specify the maximum duration (in minutes) that
 The timeout value can be specified as either a string or an integer, and supports Liquid templating for dynamic values (for example, from inputs or parameters).
 
 :::info
-The minimum timeout value is 5 minutes. This ensures that the workflow environment has sufficient time to initialize and start deployment properly.
+The minimum timeout value is 5 minutes. This ensures that the workflow environment has sufficient time to initialize and start properly.
 :::
 
 **Example - static timeout:**
@@ -212,7 +212,7 @@ For `env` scoped workflows, environment introspection can be accessed like so:
 If more than 1 resource type like this exists in this environment, then we take the first one.
 :::
 
-For `env_resource` scoped workflow, the env introspection can be access like so:
+For `env_resource` scoped workflow, the env `introspection` can be accessed like so:
 * `{{ bindings.attributes.<the attribute>}}`
 
 

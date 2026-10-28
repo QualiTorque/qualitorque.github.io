@@ -7,13 +7,16 @@ As the blueprint designer, you can define the blueprint's default and max durati
 
 **To set the blueprint's policy:** 
 
-1. In the **Blueprints** page, click the blueprint's more actions menu and select **Manage Policies**. 
-2. In the dialog box, set the default duration as appropriate:
-    * __Active environment limit__: Set a permitted amount for active Environments that could be launched from this Blueprint.
-    * __Max Duration__: Set the max duration or select **Unlimited** to allow the environment end user to run the environment indefinitely.Note that end-users will still have the option to end or extend the environment at any time, regardless of its runtime policy.
-    * __Ephemeral or Always on__: Choose whether to provide an ephemeral option when launching the Blueprint or an always on option. When choosing an ephemeral option you are requested to provide the below additional information.
-    * __Default Duration__: Set the default duration that is used when launching a new environment.
-    * __Default Extend Duration__: Set the default duration when end-users extend the environment.
-3. Click __Apply__.
+1. In the **Blueprints** tab of the **Automation Inventory**, open the blueprint and select its **Policies** tab (**Manage Blueprint's Policies**).
+2. If the panel shows **Default policies are locked**, the blueprint inherits the space's default policies (set from the **Default Policies** button on the **Blueprints** tab). Click **Unlock Default Policies** to override them for this blueprint.
+3. Under **Consumption Settings**, set:
+    * __Allow Scheduling__: Enable end-users to set up future launch times for this blueprint.
+    * __Active environment limit__: Set a permitted amount for active Environments that could be launched from this Blueprint, or leave **Unlimited**.
+4. Under **Duration Settings**, set:
+    * __Always on__ or __Ephemeral__: Choose whether environments launched from the Blueprint run indefinitely or for a limited duration. When choosing **Ephemeral**, provide the durations below.
+    * __Maximum Duration__: Set the max duration or select **Unlimited** to let the end user decide how long the environment will be active. Note that end-users will still have the option to end or extend the environment at any time, regardless of its runtime policy.
+    * __Default Duration__: Set the initial suggested duration (weeks, days, hours, minutes) that is displayed when launching a new environment.
+    * __Default Extend Duration__: Turn on **Extendable** and set the permitted extension when end-users extend the environment.
+5. Click __Apply__.
 
 > ![Locale Dropdown](/img/bp-policies.png)

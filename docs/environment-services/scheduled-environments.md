@@ -3,7 +3,7 @@ sidebar_position: 18
 title: Scheduled Environments
 ---
 
-Scheduled environments in Torque allow users to plan and automate environment deployments for future time slots. This capability is particularly valuable for organizations that need to coordinate resource usage, plan maintenance windows, or ensure environments are available at specific times for testing, demos, or development activities.
+Scheduled environments in Torque allow users to plan and automate environment launches for future time slots. This capability is particularly valuable for organizations that need to coordinate resource usage, plan maintenance windows, or ensure environments are available at specific times for testing, demos, or development activities.
 
 ## Overview
 
