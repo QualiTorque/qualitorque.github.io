@@ -18,7 +18,7 @@ In addition, you can retrieve the namespace where the Torque agent is running (b
 ## Advanced Settings
 
 :::note
-Changes to the configuration only takes effect on new environments. Existing environments will keep the values configured at the time of the launch.
+Changes to the configuration only take effect on new environments. Existing environments will keep the values configured at the time of the launch.
 :::
 
 ### Use runner storage (PVC)
@@ -61,7 +61,7 @@ If a backend is specified in the blueprint or in the IaC configuration, it overr
 
 ### Startup timeout
 
-**Runners pod startup timeout (seconds)** - The time Torque will wait for a runner pod to be provisioned. If your cluster is slow in creating pods/nodes in autoscaling, you may need to increase it. Be careful of setting too large timeouts, because if there is an inherent problem in the POD the error will suffice later. 
+**Runners pod startup timeout (seconds)** - The time Torque will wait for a runner pod to be provisioned. If your cluster is slow in creating pods/nodes in autoscaling, you may need to increase it. Be careful of setting too large timeouts, because if there is an inherent problem in the POD the error will surface later. 
 
 ### Idle timeout
 

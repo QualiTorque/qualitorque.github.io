@@ -1,20 +1,18 @@
 ---
 sidebar_position: 6
-title: Torque Agent on Azure VMSS
+title: Hosting on Azure VMSS
 ---
 
-Torque agent can be hosted in various ways, one of them is Virtual Machine Scale Sets (VMSS). Azure Virtual Machine Scale Sets let you create and manage a group of load balanced VMs, and the number of VM instances can automatically increase or decrease in response to demand or a defined schedule. Instead of using Torque Kubernetes agent, Azure VMSS will utilize Torque Docker.
+The Torque agent can be hosted in various ways, one of them is Virtual Machine Scale Sets (VMSS). Azure Virtual Machine Scale Sets let you create and manage a group of load balanced VMs, and the number of VM instances can automatically increase or decrease in response to demand or a defined schedule. Instead of using the Torque Kubernetes agent, Azure VMSS will utilize the Torque Docker agent.
 
 #### Torque Agent prerequisites for VMSS
 1. Torque Agent installation ZIP
-    1. Open Toruqe self-service web interface as an admin user
-    2. Navigate to the "Administration" section and open the "Agents" tab
-    3. Add a New Agent in the top right corner
-    4. Select vCenter, then "Docker" and provide a name for the new agent (**copy the name aside** as we'll use it later on in the configuration process)
-    5. Click "skip for now" 
-2. Torque API long token - Toruqe long token allows API access without the need to refresh token once it's expires. It's possible to use the API references or the Torque self-service web interface  to generate such a token.
-
-   > ![Long token generation](/img/vmss-token.gif)
+    1. Open Torque self-service web interface as an admin user
+    2. Navigate to **Resources → Agents**
+    3. Click **New Agent** in the top-right corner
+    4. In the **Setup** step, select **Cloud → Public Cloud**, then the **Docker** tile, and provide a name for the new agent (**copy the name aside** as we'll use it later on in the configuration process)
+    5. On the **Installation Instructions** step, you can move on without downloading anything here — an agent entry is created in Torque and will wait for a valid connection once the VMSS installer script (below) registers it
+2. Torque API long token - Torque long token allows API access without the need to refresh token once it's expires. It's possible to use the API references or the Torque self-service web interface to generate such a token. For details, see [API Tokens](/rest-api/api-tokens).
 
 #### Creating an VMSS in Azure
 1. Navigate to [portal.azure.com](https://portal.azure.com) and search for VMSS.
@@ -29,7 +27,7 @@ Torque agent can be hosted in various ways, one of them is Virtual Machine Scale
 
     > ![](/img/vmss-customdata.png)
 
-5. Make sure to replace the *TOKEN* with the token you generated earlier in Toruqe API or self-service, and the *AGENT* with the name of the torque agent you wish to create. 
+5. Make sure to replace the *TOKEN* with the token you generated earlier in the Torque API or self-service, and the *AGENT* with the name of the agent you wish to create. 
 6. Finish the VMSS creation wizard and wait for the VMS to be created.
 
 #### Validating the installation
@@ -43,10 +41,10 @@ To validate that a new Torque agent was launched following VMSS creation:
 
     > ![](/img/vmss-containers.png)
 
-2. Login into the Torque web-interface and make sure the new agent is marked as "Active" in the Toruqe administration/agents tab.
+2. Login into the Torque web-interface and make sure the new agent is marked as **Connected** in **Resources → Agents**.
 
 #### Troubleshooting
-In case an error occurred or the Torque agent is not presented as Active, make sure to go over the cloud-init logs for more information.
+In case an error occurred or the Torque agent is not presented as Connected, make sure to go over the cloud-init logs for more information.
 ```bash
 sudo cat /var/log/cloud-init-output.log
 ```

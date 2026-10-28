@@ -4,8 +4,7 @@ title: Terraform AKS/Azure Authentication
 ---
 
 
-If you're using an AKS cluster as your agent, and you want to run Terraform that deploys resources on Azure, you can use a Azure Workload Identity (valid for AKS clusters version 1.22+) that allows the cluster to securely authenticate with Azure using K8s service account and an Open ID connect (OIDC) token.
-For a step-by-step tutorial, see [Video: Connecting a new agent and using it in a blueprint](#video-connecting-a-new-agent-and-using-it-in-a-blueprint).
+If you're using an AKS cluster for your agent, and you want to run Terraform that deploys resources on Azure, you can use a Azure Workload Identity (valid for AKS clusters version 1.22+) that allows the cluster to securely authenticate with Azure using K8s service account and an Open ID connect (OIDC) token.
 
 :::tip __IMPORTANT__
 Torque does not support running the Torque Agent on an AKS cluster using [Burst Type VMs](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes-b-series-burstable) as cluster worker nodes.  Please use a different VM type.
@@ -19,7 +18,6 @@ The basic process is as follows:
 - [__Torque Configuration__](#torque-configuration)
   - [__Prerequisites__](#prerequisites-1)
   - [__Configure the AKS authentication in Torque__](#configure-the-aks-authentication-in-torque)
-- [Video: Connecting a new agent and using it in a blueprint](#video-connecting-a-new-agent-and-using-it-in-a-blueprint)
 
 ## __Azure Configuration__
 
@@ -126,7 +124,7 @@ The basic process is as follows:
 10. Establish federated identity credential (Allow the AKS Cluster's OIDC provider access to the Managed Identity via the service account)
 
     ```bash
-    az identity federated-credential create --name {federated_credential_name} --identity-name {managed_identity_name} --resource-group {managed_identity_resource_group} --issuer {AKS_cluster_OIDC_issuer_URL} --subject system:serviceaccount:{Torque_Environments_K8s_namespace}:{service_account_name}
+    az identity federated-credential create --name {federated_credential_name} --identity-name {managed_identity_name} --resource-group {managed_identity_resource_group} --issuer {AKS_cluster_OIDC_issuer_URL} --subject system:serviceaccount:{Torque_Environments_K8s_Namespace}:{service_account_name}
     ```
 
 ## __Torque Configuration__
@@ -143,21 +141,23 @@ Have the following formation ready (from the previous section)
 
 There are 2 ways to accomplish this:
 
-1. (Recommended) When adding a new AKS agent, you can provide the **default tenant Id**, and when attaching it a space you can provide the **default_subscription**.
+1. (Recommended) When adding a new AKS agent, you can provide the **Azure Tenant ID**, and when attaching it to a space you can provide the **Subscription ID** together with the default namespace and service account.
 
-    a. From the **Administration** menu, select **Cloud Accounts** and then **Connect a Cloud**.
-    
-    b. Choose "Azure" then "AKS" and fill the information:
-    > ![Locale Dropdown](/img/AKS-doc-2.png)
+    a. Navigate to **Resources → Agents** and click **New Agent** in the top-right corner to open the **Connect an Agent** wizard.
 
-    c. __Generate__ the "kubectl apply" command and run it in Azure CLI.
-      > ![Locale Dropdown](/img/AKS-doc-2-a.png)
+    b. In the **Setup** step, choose **Cloud**, then **Public Cloud**, then select the **Azure** tile, and click **Next**.
+    > ![Setup step: Azure selected under Public Cloud](/img/AKS-doc-2.png)
 
-    d. Return to Torque and wait for the connection status to change to a green "Connected!".
-    > ![Locale Dropdown](/img/AKS-doc-3.png)
+    c. In the **Generate Agent** step, give the agent a name and, optionally, the **Azure Tenant ID**, then click **Next**.
+      > ![Generate Agent step with the Azure Tenant ID field](/img/AKS-doc-2-a.png)
 
-    d. Click **Associate to Space** and connect the agent to one or more spaces. Select the namespace and the service account you configured in the previous step.
-      > ![Locale Dropdown](/img/AKS-doc-4.png)
+    d. On the **Installation Instructions** step, copy the generated `kubectl apply` command and run it in Azure CLI against your AKS cluster.
+
+    e. Return to Torque and wait for the connection status to change to a green **Connected**.
+    > ![Installation Instructions step with the Connections Status panel](/img/AKS-doc-3.png)
+
+    f. Click **Associate to Space** to connect the agent to a space. (You can also do this later from the agent's 3-dot menu: choose **Manage Spaces** and click **Add**.) In the **Associate the Agent to your Space** dialog, select the **Space**, then the **Default Namespace** and **Default Service Account** you configured in the previous step, enter the **Subscription ID**, and click **Associate**.
+      > ![Associate the agent to a space](/img/AKS-doc-4.png)
 
 
 2. You may override the default credentials defined for the AKS agent, or define the credentials if no credentials were configured as the default.
@@ -180,8 +180,14 @@ There are 2 ways to accomplish this:
           ARM_TENANT_ID: <Tenant_ID>
           ARM_CLIENT_ID: <Client_ID>
           ```
-
+<!--
 ### __Video: Connecting a new agent and using it in a blueprint__
+
+:::note
+This video was recorded against the previous "Connect a Cloud" wizard and needs to be re-recorded against the current Agents UI described above.
+:::
+
 <video controls width="75%">
   <source src="/img/connect azure agent.mp4"/>
 </video>
+-->

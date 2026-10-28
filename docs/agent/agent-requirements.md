@@ -28,7 +28,7 @@ The agent requires minimal compute and memory resources:
 | Storage | 1GB | 5GB |
 
 :::info
-These requirements are for the agent container itself. Additional resources may be needed for workload execution depending on your blueprint complexity and concurrent environment deployments.
+These requirements are for the agent container itself. Additional resources may be needed for workload execution depending on your blueprint complexity and concurrent environments.
 :::
 
 ## Infrastructure Requirements
@@ -165,7 +165,7 @@ For production deployments, consider:
 ### Workload Capacity
 
 Agent capacity depends on:
-- Number of concurrent environment deployments
+- Number of concurrent environments
 - Complexity of blueprints (number of grains, resources)
 - Duration of provisioning operations
 
@@ -179,7 +179,7 @@ Agent capacity depends on:
 The table below provides recommended starting points for agent deployment sizing based on the number of concurrent environments and average workload complexity. Use these as guidelines and adjust based on observed agent CPU/memory usage and provisioning times.
 
 | Concurrent Environments | Tier | Agent Replicas | Node Pool / VM Size Recommendation | Notes |
-|-------------------------|------|----------------|------------------------------------|-------|
+|:------------------------|:-----|:---------------|:-----------------------------------|:------|
 | 1 - 10 | Light | 1 - 2 | 1 node, 2 vCPU / 4GB RAM | Light workloads; single replica acceptable for non-critical use.
 | 11 - 100 | Medium | 2 - 4 | 2-3 nodes, each 2-4 vCPU / 4-8GB RAM | Medium concurrency; HA recommended and anti-affinity.
 | 101 - 200 | Increased parallelism | 4 - 8 | 3-5 nodes, each 4 vCPU / 8GB RAM | Higher parallelism; consider dedicated node pools and tuned resource limits.
@@ -195,12 +195,12 @@ Notes:
 
 Once you've prepared your infrastructure, proceed with agent installation:
 
-- **Docker Host**: See [Torque Docker Agent](/agent/docker-agent.md)
+- **Docker Host**: See [Docker Agent](/agent/docker-agent.md)
 - **Kubernetes Cluster**: See [Install and Connect Self-Hosted Agent](/agent/Install-and-connect-self-hosted-agent.md)
 
 ## Additional Resources
 
-- [What is the Torque Agent?](/agent/Agent-Intro.md)
+- [What is an Agent?](/agent/Agent-Intro.md)
 - [Advanced Agent Settings](/agent/advanced-settings.md)
 - [Network Requirements](/agent/outbound-ports.md)
 - [Azure VMSS Deployment](/agent/agent-on-azure-vmss.md)
