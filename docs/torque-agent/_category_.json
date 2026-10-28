@@ -1,4 +1,8 @@
 {
   "label": "⚙ Self-Hosted Agent",
-  "position": 9
+  "position": 9,
+  "link": {
+    "type": "doc",
+    "id": "torque-agent/localstack-agent"
+  }
 }

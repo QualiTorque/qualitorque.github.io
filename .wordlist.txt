@@ -569,3 +569,4 @@ OpenSearch
 datetime
 schemas
 RKE
+LocalStack
