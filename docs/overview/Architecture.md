@@ -24,9 +24,9 @@ The curation domain focuses on connecting to existing automation and Infrastruct
 The operation domain leverages Quali agents deployed on customer premises (or Quali-managed) to handle resource provisioning, environment state management, and lifecycle orchestration with governed access controls.
 
 **Key Capabilities:**
-- **Torque Execution Agents**: Lightweight, container-based instances deployed on Kubernetes clusters or Docker hosts that communicate with Torque backend to execute deployment tasks
-  - **Agent Deployment Options**: [Amazon EKS](https://aws.amazon.com/eks/), [Azure Kubernetes Service](https://azure.microsoft.com/en-us/products/kubernetes-service), [Google GKE](https://cloud.google.com/kubernetes-engine), [Oracle OKE](https://www.oracle.com/cloud/cloud-native/container-engine-kubernetes/), self-managed Kubernetes, and Docker hosts (on-premises)
-  - **Built-in Quali Agent**: Pre-configured execution agent for [Terraform](/blueprint-designer-guide/blueprints/terraform-grain.md) and [AWS CloudFormation](/blueprint-designer-guide/blueprints/cloudformation-grain.md) deployments without requiring custom agent deployment
+- **Torque Agents**: Lightweight, container-based instances deployed on Kubernetes clusters or Docker hosts that communicate with the Torque backend to execute environment tasks
+  - **Agent Hosting Options**: [Amazon EKS](https://aws.amazon.com/eks/), [Azure Kubernetes Service](https://azure.microsoft.com/en-us/products/kubernetes-service), [Google GKE](https://cloud.google.com/kubernetes-engine), [Oracle OKE](https://www.oracle.com/cloud/cloud-native/container-engine-kubernetes/), self-managed Kubernetes, and Docker hosts (on-premises)
+  - **Built-in Quali Agent**: A pre-configured agent for [Terraform](/blueprint-designer-guide/blueprints/terraform-grain.md) and [AWS CloudFormation](/blueprint-designer-guide/blueprints/cloudformation-grain.md) environments, requiring no custom agent setup
 - **Environment Lifecycle Management**: Complete state management from provisioning through decommissioning
 - **Day-2 Operations**: Ongoing environment management including updates, drift detection, and maintenance workflows
 - **Governed Access**: Role-based access controls and policy enforcement throughout the operational lifecycle

@@ -1,6 +1,6 @@
 ---
 sidebar_position: 7
-title: Changing advanced K8s settings
+title: Changing Advanced K8s Settings
 ---
 
 While Torque offers a best practice configuration settings for deploying environments from your cluster, there may arise certain situations where overriding Torque's default settings becomes necessary based on your specific requirements. You can modify certain settings of the Torque runners (i.e. it will NOT affect your workloads, only the Torque workloads).
