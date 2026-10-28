@@ -33,16 +33,16 @@ Either type works with Torque. For instructions on generating one, see GitHub's 
 
 Torque connects to GitHub using a Personal Access Token (PAT). Both classic and fine-grained tokens are supported.
 
-1. In Torque, go to the space's __Settings > Repositories__ area and click __Add a Repository__.
-   > ![Add a Repository](/img/pat-github-repository.png)
-2. Select __GitHub__ as the repository provider.
+1. In Torque, go to __Automation > Repositories__ and click __Add Repository__.
+   > ![Add Repository](/img/pat-github-repository.png)
+2. In __Select a Repository Provider__, choose __GitHub__ and click __Next__.
    > ![Select a repository provider](/img/pat-github-provider.png)
-3. Fill in the __Repository URL__, __Repository Name__, and optionally a __Branch__.
-4. Under __Credentials__, start typing to create a new credential set, or select an existing one from the list.
+3. On the __Connection__ step, fill in the __Repository URL__, __Repository Name__, and optionally a __Branch__ under __Details__.
+4. Under __Credentials__, click __Create New Credentials__ (or __Select from Credentials Store__ to reuse a saved one).
    > ![Connection details and credentials](/img/pat-github-connection.png)
-5. Give the new credential set a name, then enter your __Personal Access Token__ in the field that appears.
+5. Give the new credentials a __Credentials Name__, then enter your __Personal Access Token__.
    > ![Enter your Personal Access Token](/img/pat-github-token.png)
-   :::info
+   :::info 
    Click the __Auto-Track Environment Files__ option if you want to automatically discover and track Environment Files from this repository.
    :::
 6. Leave __Self Managed Repository__ unchecked — that option is only for self-hosted GitHub Enterprise. See [Self-Managed GitHub](/admin-guide/source-control/Self%20Hosted%20Repositories/self-managed-github) for that flow.
