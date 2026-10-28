@@ -4,7 +4,7 @@ title: Configuring Cost for K8s
 ---
 
 
-Torque collects cost data using cost collection targets, which are managed in the __Administration__ page's __Cloud Accounts__ tab. For AWS and Azure clouds, you must first add a cost collection target, however for K8s, Torque automatically creates a cost collection target when an agent is installed on the cluster. 
+Torque collects cost data using cost collection targets, which are managed in the __Cost Configurations__ page under the __Admin__ section of the left sidebar. For AWS, Azure, and GCP clouds, you must first add a cloud account as a cost collection target, however for K8s, Torque automatically creates a cost collection target when an agent is installed on the cluster. 
 
 Follow the next steps to start collecting cost on your K8s cluster:
 
@@ -13,12 +13,12 @@ Follow the next steps to start collecting cost on your K8s cluster:
       * For deployment instructions, see: https://www.kubecost.com/install.html#show-instructions
       * Make sure the kubecost default namespace is used (Namespace kubecost)
 2. Validate the relevant cost collection target:
-   1. Identify the relevant cost collection target. Its name will be the same name as the agent installed on the cluster. 
-   2. Click the cost collection target's 3 dot menu and select __Validate__ to make sure it works (i.e. cost data can be collected).
+   1. Expand the __Admin__ section at the bottom of the left sidebar and click __Cost Configurations__ (requires the account admin role).
+   2. Identify the relevant cost collection target. Its name will be the same name as the agent installed on the cluster. 
+   3. Click the cost collection target's __⋮__ (3-dot) menu and select __Validate__ to make sure it works (i.e. cost data can be collected).
       * If validation fails, perform the procedure described in [Troubleshooting](#troubleshooting).
 3. Enable the relevant cost collection target:
-   1. Go to __Administration > Cost > Clouds__.
-   2. Click the desired cost collection target's __Enabled__ toggle.
+   1. In the __Cost Configurations__ page, click the desired cost collection target's __Enabled__ toggle.
 
      > ![Locale Dropdown](/img/enable-cost-target.png)
 

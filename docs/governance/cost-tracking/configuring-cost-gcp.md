@@ -48,17 +48,17 @@ title: Configuring Cost for GCP
 
 ### Step 3: Configure Torque
 
-1. Go to **Administration > Cloud Accounts > Cost Collection Target** in Torque.
-2. Click **Add Cost Collection Target**.
-3. Select **GCP**.
-4. Specify the following details:
-   * **Name**: A descriptive name for the cost collection target.
-   * **Service Account Key JSON**: Upload the JSON file downloaded in Step 2.
-   * **Project ID**: The GCP project ID where the BigQuery dataset resides.
-   * **Dataset Name**: The name of the BigQuery dataset (e.g., `cost_data`).
-   * **Detailed Usage Cost Table Name**: The name of the BigQuery table (e.g., `detailed_usage_cost`).
-5. Click **Finish**.
-6. Click the cost collection target's 3-dot menu and select **Validate** to ensure the configuration works.
+1. In Torque, expand the **Admin** section at the bottom of the left sidebar and click **Cost Configurations** (requires the account admin role).
+2. Click **Add Cloud**.
+3. In the **Connect a Cloud** dialog, enter a **Name** for the cloud account and select **GCP**.
+4. Under **Configure & Paste**, specify the following details:
+   * **Project Id**: The GCP project ID where the BigQuery dataset resides.
+   * **Dataset**: The name of the BigQuery dataset (e.g., `cost_data`).
+   * **Table Name**: The name of the BigQuery table with the detailed usage cost data (e.g., `detailed_usage_cost`).
+   * **Location**: The location of the BigQuery dataset.
+   * **Service Account Key Json**: Paste the contents of the JSON key file downloaded in Step 2.
+5. Click **Save**.
+6. Click the cost collection target's **⋮** (3-dot) menu and select **Validate** to ensure the configuration works.
 
 import pic1 from '/img/gcp-cost-target.png';
 
@@ -67,7 +67,7 @@ import pic1 from '/img/gcp-cost-target.png';
 
 ### Step 4: Enable the Cost Collection Target
 
-1. Go to **Administration > Cloud Accounts > Cost Collection Target**.
+1. Expand the **Admin** section at the bottom of the left sidebar and click **Cost Configurations**.
 2. Click the desired cost collection target's **Enabled** toggle.
 
 ## Troubleshooting
@@ -79,5 +79,5 @@ What can be done if you don't see cost in Torque's cost dashboard?
    * Ensure the service account has access to the BigQuery dataset and table.
    * Verify the service account has the `Billing Account Viewer` role.
 3. Test your credentials in Torque:
-   * Navigate to **Administration > Cloud Accounts > Cost Collection Target > Choose your cloud > In the three-dot menu, click on Validate**.
+   * Expand the **Admin** section of the left sidebar, click **Cost Configurations**, open the cloud account's **⋮** (3-dot) menu, and select **Validate**.
 4. If issues persist, review the configuration steps above and correct any errors.

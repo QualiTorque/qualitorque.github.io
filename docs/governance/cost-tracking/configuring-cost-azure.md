@@ -26,20 +26,20 @@ Make sure you have all the following information for the application:
 ## Configuration
 
 1. __Create an Azure cost collection target:__
-   1. Go to __Administration > Cloud Accounts > Cost Collection Target__.
-   2. Click __Add Cost Collection Target__.
-   3. Select __Azure__.
+   1. Expand the __Admin__ section at the bottom of the left sidebar and click __Cost Configurations__ (requires the account admin role).
+   2. Click __Add Cloud__.
+   3. In the __Connect a Cloud__ dialog, enter a __Name__ for the cloud account and select __Azure__.
    4. Specify the cloud account's details (see [Prerequisites](#prerequisites)):
       * __Subscription Id__
       * __Tenant Id__
       * __Application Id__
       * __Application Secret__ 
-   5. Click __Finish__.
-   6. Click the cost collection target's 3 dot menu and select __Validate__ to make sure it works (i.e. cost data can be collected).
+   5. Click __Save__.
+   6. Click the cost collection target's __⋮__ (3-dot) menu and select __Validate__ to make sure it works (i.e. cost data can be collected).
       * If validation fails, it means there is a problem with one or more of the provided parameters. Return to the prerequisites section and correct them as required.
 
 2. __Enable a cost collection target for your Azure account:__
-   1. Go to __Administration > Cloud Accounts > Cost Collection Target__.
+   1. Expand the __Admin__ section at the bottom of the left sidebar and click __Cost Configurations__.
    2. Click the desired cost collection target's __Enabled__ toggle.
 
      > ![Locale Dropdown](/img/enable-cost-target.png)
