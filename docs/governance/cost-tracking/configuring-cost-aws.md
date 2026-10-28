@@ -48,19 +48,19 @@ To configure Torque’s Cost Allocation Tags:
 ## Configuration
 
 1. __Create an AWS cost collection target:__
-   1. Go to __Account Center > Settings > Cost Configurations__.
+   1. Expand the __Admin__ section at the bottom of the left sidebar and click __Cost Configurations__ (requires the account admin role).
    2. Click __Add Cloud__.
-   3. Select __AWS__.
-   4. Specify the cloud account's details (see [Prerequisites](#prerequisites)):
-      * Select the agent that will access the AWS account
+   3. In the __Connect a Cloud__ dialog, enter a __Name__ for the cloud account and select __AWS__.
+   4. Under __Configure & Paste__, specify the cloud account's details (see [Prerequisites](#prerequisites)):
+      * __Select Agents__ - the agent(s) that will access the AWS account
+      * __ARN key__ - the role ARN with permission to query the AWS Cost Explorer API
       * __External Id__ 
-      * __Role ARN__
-   6. Click __Finish__.
-   7. Click the cost collection target's 3 dot menu and select __Validate__ to make sure it works (i.e. cost data can be collected).
+   5. Click __Save__.
+   6. Click the cost collection target's __⋮__ (3-dot) menu and select __Validate__ to make sure it works (i.e. cost data can be collected).
       * If validation fails, it means there is a problem with the Role or external ID. Review them and correct as necessary. 
 
 2. __Enable the cost collection target for your AWS account:__
-   1. Go to __Account Center > Settings > Cost Configurations__.
+   1. Expand the __Admin__ section at the bottom of the left sidebar and click __Cost Configurations__.
    2. Click the desired cost collection target's __Enabled__ toggle.
 
 

@@ -15,7 +15,7 @@ Thank you for your understanding and support.
 
 Environment annotations are labels or metadata that can be added to environments to provide additional information about them. Annotations can be used to define the purpose, status, or configuration of an environment, as well as to track changes or updates.
 
-Annotations in Torque are key-value pairs that can be added to an environment or resource using a specific syntax or format. They can be used to add descriptive information, such as the description of an environment, or to provide dynamic updates, such as the current status of a deployment or the results of a test.
+Annotations in Torque are key-value pairs that can be added to an environment or resource using a specific syntax or format. They can be used to add descriptive information, such as the description of an environment, or to provide dynamic updates, such as the current status of an environment or the results of a test.
 
 Annotations can help teams manage and organize environments in Torque by providing an easy way to track and communicate important information about them. For example, annotations can be used to indicate the power-state status of virtual machines in the environment. 
 
@@ -80,25 +80,26 @@ Currently the only supported annotations are "power:on", "power:off" and "power:
 **Step 2: Import the rego file into Torque**
 
 1. If the git repository where the relevant rego file resides was not yet connected to Torque, perform the following :
-   1. Go to __Administration > Policy Repositories__ and click __Add a Repository__.
-   2. Select the git repository, specify the repository's URL, and give it a name.
+   1. Go to __Governance > Policy Repositories__ and click __Add Repository__.
+   2. In the __Select a Repository Provider__ step, choose your git provider and click __Next__.
+   3. In the __Connection__ step, enter the repository's URL, name, and branch, provide credentials if the repository is private, and click __Connect__. For details, see [repository onboarding](/admin-guide/source-control/source-control-github).
    > ![Locale Dropdown](/img/repository-information.png)
-   3. Click __Connect__. Provide authorization credentials if the repository is private.
 
-    A green checkmark next to the repository's URL indicates that the repository has been added successfully.
+    A green checkmark in the repository's __Status__ column indicates that the repository has been added successfully.
       > ![Locale Dropdown](/img/repository-connection.png)
-2. On the added (or existing) repository where the file resides, Click __Discover Policies__.
-3. Select the policies you want to import into Torque, and click __Generate Policies__.
+2. Go to __Governance > Policies__ and click __Add Policy__.
+3. Under __Select a repository for policies discovery__, click the tile of the repository where the file resides.
+4. In __Repository Folders__, select the rego file you want to import into Torque, and click __Generate Policies__.
    > ![Locale Dropdown](/img/policy-import.png)
 
-    The policies are displayed in the __Policies__ page.
+    The generated policy is displayed in the __Policies__ page.
    > ![Locale Dropdown](/img/new-custom-policies.png)    
-4. Click a generated policy and edit the details.
+5. Click the __⋮__ (3-dot) menu at the end of the policy's row and select __Edit__.
 
    a. Optionally change the __Name__, and provide a __Description__.
 
    b. In __Spaces__, set the scope of the policy - __All spaces__ or specific ones.
    
-5. Click __Save__.
-6. __Enable__ the policy.
+6. Click __Save__.
+7. Turn on the policy's __Enable__ toggle in the __Policies__ list.
    > ![Locale Dropdown](/img/enable-custom-policy.png)    
