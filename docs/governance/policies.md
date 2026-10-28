@@ -6,9 +6,9 @@ title: Policies
 Torque role: Account admin
 
 ## Why use policies?
-Using policies for the consumption of environments offers a multitude of benefits that empower organizations to optimize their cloud usage. Firstly, policies allow for effective cost control by setting limits on resource consumption, ensuring that cloud spending remains within budgetary constraints. Moreover, these policies enable the efficient management of resources by capping the number of concurrent resources per user, preventing resource sprawl, and ensuring fair allocation. Additionally, policies can restrict the duration of an environments uptime, enhancing security and minimizing the risk of unused resources running indefinitely. In sum, the implementation of policies for environment consumption not only fosters financial prudence but also enhances resource governance and security, making it an invaluable asset in the realm of cloud management.
+Using policies for the consumption of environments offers a multitude of benefits that empower organizations to optimize their cloud usage. Firstly, policies allow for effective cost control by setting limits on resource consumption, ensuring that cloud spending remains within budgetary constraints. Moreover, these policies enable the efficient management of resources by capping the number of concurrent resources per user, preventing resource sprawl, and ensuring fair allocation. Additionally, policies can restrict an environment's uptime duration, enhancing security and minimizing the risk of unused resources running indefinitely. In sum, the implementation of policies for environment consumption not only fosters financial prudence but also enhances resource governance and security, making it an invaluable asset in the realm of cloud management.
 
-Torque policies are triggered as part of the environment deployment pipeline for specific environment lifecycle events (launch, extend environment for example) or during the deployment of environments (e.g. when evaluating a Terraform module included in the environment). Torque policies are powered by OPA (Open Policy Agent). For a step-by-step tutorial, see [Video: Torque policies (end-to-end)](#video-torque-policies-end-to-end-tutorial).
+Torque policies are triggered as part of the environment pipeline for specific lifecycle events (launch or extend environment duration for example) or during the provisioning of environments (e.g. when evaluating a Terraform module included in the environment). Torque policies are powered by OPA (Open Policy Agent).
 
 ## Example Use Cases
 You can use Torque policies for cost and consumption control. Examples include:
@@ -33,7 +33,6 @@ You can use Torque policies for cost and consumption control. Examples include:
 - [How to set up a policy](#how-to-set-up-a-policy)
 - [Duplicate a policy](#duplicate-a-policy)
 - [Updating policies](#updating-policies)
-- [Video: Torque policies (end-to-end tutorial)](#video-torque-policies-end-to-end-tutorial)
 
 
 ## How policies work
@@ -275,33 +274,40 @@ Approvers are defined in the __[Approval Channels](/governance/approval-channels
 
 ## How to set up a policy
 
-1. Go to __Administration > Policy Repositories__ and click __Add a Repository__.
-2. Select the git repository, specify the repository's URL, and give it a name.
+Torque discovers `.rego` files in a connected git repository and wraps each one you select in a Torque policy.
+
+1. Go to __Governance > Policies__ and click __Add Policy__.
+2. Under __Select a repository for policies discovery__, click the tile of a connected policy repository.
+
+   To connect a new repository, click __New Repository__ (or, in advance, go to __Governance > Policy Repositories__ and click __Add Repository__). In the __Select a Repository Provider__ step, choose your git provider and click __Next__; in the __Connection__ step, enter the repository's URL, name, and branch, provide credentials if the repository is private, and click __Connect__. The steps match the [repository onboarding](/admin-guide/source-control/source-control-github) flow. In __Governance > Policy Repositories__, a green checkmark in the __Status__ column indicates that the repository was connected successfully.
    > ![Locale Dropdown](/img/repository-information.png)
-3. Click __Connect__. Provide authorization credentials if the repository is private.
-
-   A green checkmark next to the repository's URL indicates that the repository has been added successfully.
-      > ![Locale Dropdown](/img/repository-connection.png)
-4. Click __Discover Policies__.
-5. Select the policies you want to import into Torque and click __Generate Policies__.
+3. In __Repository Folders__, select the `.rego` files you want to import. Use the search box or the __Folders__ filter to find them.
    > ![Locale Dropdown](/img/policy-import.png)
+4. Click __Generate Policies__.
 
-    The policies are displayed in the __Policies__ page.
-   > ![Locale Dropdown](/img/new-custom-policies.png)    
-6. Click a generated policy and edit the details.
+   The generated policies are displayed in the __Policies__ page.
+   > ![Locale Dropdown](/img/new-custom-policies.png)
+
+   :::tip
+   You can also start the discovery from __Governance > Policy Repositories__: click the __⋮__ (3-dot) menu at the end of the repository's row and select __Discover Policies__.
+   > ![Locale Dropdown](/img/discover-policies-menu.png)
+   :::
+5. In the __Policies__ list, click the __⋮__ (3-dot) menu at the end of the policy's row and select __Edit__ to edit its details.
 
    a. Optionally change the __Name__, and provide a __Description__.
 
    b. In __Spaces__, set the scope of the policy - __All spaces__ or specific ones.
 
    c. In __Data__, set the policy's limitations.
-7. Click __Save__.
-8. __Enable__ the policy.
-   > ![Locale Dropdown](/img/enable-custom-policy.png)    
+
+   d. For approval policies, select the __Approval channel__.
+6. Click __Save__.
+7. Turn on the policy's __Enable__ toggle in the __Policies__ list.
+   > ![Locale Dropdown](/img/enable-custom-policy.png)
 
 ## Duplicate a policy
 
-You can also duplicate any built-in or custom policy to create a similar version with different user data. For example, You could have a policy that allows the use of cloud region "us-east-1" for the US team, and another one for the EU team that allows region "eu-west-1".
+You can also duplicate any built-in or custom policy to create a similar version with different user data. For example, You could have a policy that allows the use of cloud region "us-east-1" for the US team, and another one for the EU team that allows region "eu-west-1". To duplicate a policy, click the __⋮__ (3-dot) menu at the end of the policy's row and select __Duplicate__.
 > ![Locale Dropdown](/img/duplicate-policy.png)
 
 
@@ -318,8 +324,14 @@ Clicking on the policy there is an option to update the rego:
 If there is no change in the data object format, the update is completed and applied across the account. However, if there is a change in the data object, we cannot complete the update until the user will complete the change of the data object, otherwise the policy will start failing and will cause a disruption for the account users. Therefore, when Torque detects a change in the format of the data object, it will load the new data object structure and wait for the user to modify it.
 Once done, the user needs to invoke the "update-rego" again and at this point it will complete successfully as the rego code and the data format match.
 
+<!--
 ## Video: Torque policies (end-to-end tutorial)
+
+:::note
+This video was recorded against the previous UI and needs to be re-recorded against the current Governance > Policies pages described above.
+:::
 
 <video controls width="75%">
   <source src="/img/policies-full.mp4"/>
 </video>
+-->

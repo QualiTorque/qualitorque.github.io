@@ -84,16 +84,16 @@ The HTTP Server input source is a powerful feature that allows you to connect to
 
 #### Example Architecture Diagram
 
-Below is an example SVG diagram illustrating the architecture for using an HTTP Server as an input source:
+Below is an example diagram illustrating the architecture for using an HTTP Server as an input source:
 
-![HTTP Server Input Source Architecture](/img/http-input-source.svg)
+![HTTP Server Input Source Architecture](/img/http-input-source.png)
 
 
 **Configuration Fields:**
 
 | Field                | Description                                                                 | Allow Overrides |
 |----------------------|-----------------------------------------------------------------------------|-----------------|
-| Agent                | Agent to proxy all calls through                                            | No              |
+| Agent    | Agent to proxy all calls through                               | No              |
 | Authority            | URL of your HTTP server (protocol & hostname)                               | No              |
 | Path                 | (Optional) API path of your HTTP server                                     | No              |
 | Query                | (Optional) Query string for your HTTP server                                | No              |
@@ -118,76 +118,81 @@ Modifying or deleting an Input Source may cause blueprints that use the Input So
 
 #### General Steps
 
-1. **Navigate to Input Sources:** Access the Input Sources section in your Torque Account Settings.  
-2. **Add New Source:** Click on the "Connect a new Input Source" button.  
-3. **Select preferred provider:** Choose between AWS S3 bucket, Azure Blob Storage, or HTTP Server.
+1. **Navigate to Input Sources:** Select **All Spaces** in the space selection dropdown, go to **Automation > Credentials**, and open the **Input Sources** tab of the **Integrations** page.  
+2. **Add New Source:** Click **Add Input Source** to open the three-step wizard (**Select a New Input Source**, **Details**, **Setup**).  
+3. **Select preferred provider:** Choose **S3 Bucket**, **Azure Blob**, or **HTTP Server** and click **Next**.  
+4. **Details:** Enter a **Source Name**, optionally a **Description**, and set **Shared Spaces** - keep **Share with all spaces** on, or turn it off and choose the spaces whose blueprints may use this source. Click **Next**.  
+5. **Setup:** Fill in the provider-specific fields described below, use **Preview Results** to check the values the source returns, and click **Done**.
 
 #### S3 Input Source
 
-1. **Input Source Details:**  
-   - Source Name  
-   - Description (Optional)  
-   - Shared Spaces  
+In the **Setup** step of the wizard (or the **Setup** tab when editing an existing source), fill in:
 
-2. **S3 Input Source Setup:**  
-   - Credentials  
-   - Bucket Name  
-   - Source Type  
+1. **Input Source Setup:**  
+   - **Credentials** - select the saved AWS credentials that can read the bucket  
+   - **bucket_name** - the bucket where you keep your source files  
+   - **S3 Bucket Source Type** - `S3 Object` (list the objects in the bucket) or `S3 Object Content` (read values from inside one object)  
 
-3. **Source Type Parameters:**  
-   - object_key (for `s3-object-content`)  
-   - json_path  
-   - display_json_path (optional)  
+2. **Source Type Parameters:**  
+   - **object_key** (`S3 Object Content` only)  
+   - **File Format** - `JSON`  
+   - **json_path** (`S3 Object Content` only)  
+   - **display_json_path** (optional, `S3 Object Content` only)  
 
-4. **Advanced Filters:**  
-   - path_prefix (optional, `s3-object` only)  
-   - regex_filter (optional)  
+3. **Advanced S3 Bucket Filters:**  
+   - **path_prefix** (optional, `S3 Object` only)  
+   - **regex_filter** (optional)  
+
+4. **Preview and finish:** Click **Preview Results** in the **Live Results** panel to verify that your setup retrieves the correct values, then click **Done** (or **Save** when editing).
 
 #### Azure Blob Storage Input Source
 
+1. **Input Source Setup:**  
+   - **Credentials** - select the saved Azure credentials that can read the storage account  
+   - **storage_account_name**  
+   - **container_name**  
+   - **Azure Blob Source Type** - `Azure Blob` (list the blobs in the container) or `Azure Blob Content` (read values from inside one blob)  
 
+2. **Source Type Parameters:**  
+   - **blob_name** (`Azure Blob Content` only)  
+   - **File Format** - `JSON`  
+   - **json_path** (`Azure Blob Content` only)  
+   - **display_json_path** (optional, `Azure Blob Content` only)  
 
-1. **Input Source Details:**  
-   - Source Name  
-   - Description (Optional)  
-   - Shared Spaces  
+3. **Advanced Azure Blob Filters:**  
+   - **path_prefix** (optional, `Azure Blob` only)  
+   - **regex_filter** (optional)  
 
-2. **Azure Blob Storage Input Source Setup:**  
-   - Credentials  
-   - Storage Account Name  
-   - Container Name  
-   - Source Type  
-
-3. **Source Type Parameters:**  
-   - blob_name (for `azure-blob-content`)  
-   - json_path  
-   - display_json_path (optional)  
-
-4. **Advanced Filters:**  
-   - path_prefix (optional, `azure-blob` only)  
-   - regex_filter (optional)  
+4. **Preview and finish:** Click **Preview Results** in the **Live Results** panel to verify that your setup retrieves the correct values, then click **Done** (or **Save** when editing).
 
 #### HTTP Server Input Source
 
-1. **Input Source Details:**  
-   - Source Name  
-   - Description (Optional)  
-   - Shared Spaces  
+1. **Input Source Setup:**  
+   - **Agent** - the account agent that proxies the calls to your HTTP server  
 
-2. **HTTP Server Input Source Setup:**  
-   - Agent  
-   - Authority  
-   - Path (optional)  
-   - Query (optional)  
-   - Headers Dictionary (optional)  
-   - Skip SSL Verification  
-   - Timeout  
-   - json_path  
-   - display_json_path (optional)  
-   - regex_filter (optional)  
+2. **HTTP Server URL Setup:**  
+   - **Authority** - the protocol and hostname of your HTTP server, for example `http://example.com/`  
+   - **Path** (optional) - the API path, for example `/api/path`  
+   - **Query** (optional) - the exact query string, for example `name=value&name2=value2`  
+   - **Headers Dictionary** (optional) - click **Add Header** to add **Header Name** / **Header Value** pairs  
 
-3. **Preview and Save:** Click the "Preview Results" button to verify that your setup retrieves the correct data.  
-   When you're satisfied, click Save & Apply to finalize your new Input Source creation.
+3. **Advanced Settings:**  
+   - **Skip SSL Verification**  
+   - **Timeout** (seconds)  
+
+4. **Response parsing:**  
+   - **File Format** - `JSON`  
+   - **json_path**  
+   - **display_json_path** (optional)  
+
+5. **Advanced HTTP Server Filters:**  
+   - **regex_filter** (optional)  
+
+6. **Preview and finish:** Click **Preview Results** in the **Live Results** panel to verify that your setup retrieves the correct values, then click **Done** (or **Save** when editing).
+
+:::tip Allow Overrides
+Most Setup fields (for example **bucket_name**, **object_key**, **Path**, **Query**, **json_path**, **display_json_path**, and **regex_filter**) have an **Allow Overrides** checkbox. Check it so that blueprints using this source may override that value; the overridable fields are listed in the **Overrides** column of the Input Sources table. See [Using an Input Source in Blueprints](#using-an-input-source-in-blueprints).
+:::
 
 ---
 
