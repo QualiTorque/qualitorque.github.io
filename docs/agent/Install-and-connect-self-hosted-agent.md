@@ -5,7 +5,7 @@ title: Install an Agent on your Kubernetes Cluster
 
 ## Prerequisites
 
-- Kuberentes cluster - can be any cluster, including on your on-premise network. Please note that Torque __does not support__ cluster nodes on ARM architecture.
+- Kubernetes cluster - can be any cluster, including on your on-premise network. Please note that Torque __does not support__ cluster nodes on ARM architecture.
 - [Outbound Ports for Kubernetes Cluster Nodes](/agent/outbound-ports) must be open to allow Torque to access and communicate with the cluster.
 - Command-line with [kubectl installed](https://kubernetes.io/docs/tasks/tools/#kubectl) connected to your cluster.
   To connect to the cluster use: 
@@ -42,19 +42,20 @@ title: Install an Agent on your Kubernetes Cluster
 
 ## Setup
 
-1. In Torque's **Administration** page, open the **Cloud Accounts** tab.
-2. Click **Connect a Cloud**.
-3. Select the cloud provider and the type of Kubernetes to use, and give the agent a name. 
-   > ![Locale Dropdown](/img/add-k8s-wizard.png)
-3. Click __Next__. 
-4. Click __Generate__ and copy the command that is displayed
-5. Paste the command in your command-line window to deploy the agent to your cluster. For example:     
+1. Navigate to **Resources → Agents**.
+2. Click **New Agent** in the top-right corner to open the **Connect an Agent** wizard.
+3. In the **Setup** step, choose **Cloud**, then **Public Cloud**, and select the tile for your Kubernetes provider — **Azure**, **AWS**, **GCP**, **Oracle**, or the generic **Kubernetes** tile for a self-managed or other cluster.
+   > ![Setup step: choose a cloud provider or Kubernetes](/img/add-k8s-wizard.png)
+4. Click __Next__.
+5. In the **Generate Agent** step, fill in the **Agent Name**. You can also set the agent's **Location** and, for Azure, the optional **Azure Tenant ID**. Then click __Next__.
+6. On the **Installation Instructions** step, copy the generated command.
+7. Paste the command in a command-line window connected to your cluster to deploy the agent. For example:     
     ```jsx
     kubectl apply -f https://portal.qtorque.io/api/settings/executionhosts/deployment/k***roi/deployment.yaml
     ```
-5. A __Connected!__ status is displayed in Torque, indicating that the agent was successfully installed and can communicate with Torque. 
-    > ![Locale Dropdown](/img/agent-connected-status.png)
-6. Click __Associate to Space__ to connect the host to a space, and provide the details you obtained in the prerequisites section.
+8. A __Connected__ status is displayed in Torque, indicating that the agent was successfully installed and can communicate with Torque. 
+    > ![Installation Instructions step with the Connections Status panel](/img/agent-connected-status.png)
+9. Click __Associate to Space__ to connect the agent to a space, and provide the details you obtained in the prerequisites section.
 
 
 ## Troubleshooting
@@ -63,7 +64,7 @@ If the agent fails to connect with Torque, you can try the following to identify
 
 Replace the "agent-namespace" with your agent's namespace. You can find it in: 
 
-_Administration --> Agents --> Identify your agent --> Click on the 3 dots menu --> Edit Agent --> Advanced K8s settings:_
+_Resources → Agents → Identify your agent → Click on the 3-dot menu → Edit Agent → Advanced Kubernetes Settings:_
 
 1. Make sure the agent pod is running and healthy. You can run the following command on your cluster: 
      ```bash
@@ -71,7 +72,7 @@ _Administration --> Agents --> Identify your agent --> Click on the 3 dots menu 
      ```
 2. Make sure outbound http connection to Torque is open:  
      ```bash
-     kubectl exec -it $(kubectl get pods -n <agent-namespace> | grep torque-agent | awk '/'$2'/ {print $1;exit}') -n <agent-namespace> -- /bin/sh -c "curl -v http://portal.qtorque.io/hub/agent";
+     kubectl exec -it $(kubectl get pods -n <agent-namespace> | grep torque-agent | awk '/'$2'/ {print $1;exit}') -n <agent-namespace> -- /bin/sh -c "curl -v https://portal.qtorque.io/hub/agent";
      ```
      and also 
      ```bash

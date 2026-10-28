@@ -7,12 +7,12 @@ While Torque offers a best practice configuration settings for deploying environ
 
 Modifying these settings should be performed by the cluster administrator or subject to their approval, ensuring alignment with other existing cluster configurations you may have in place.
 
-To modify these advanced settings, navigate to Administration --> Agents and select the agent which resides on the relevant cluster. 
-On the left 3-dot menu, click on "Edit Agent" --> Then open the "Advanced Kubernetes Settings" dropdown.
+To modify these advanced settings, navigate to `Resources --> Agents` and select the agent which resides on the relevant cluster. 
+On the right 3-dot menu, click on "Edit Agent" --> Then open the "Advanced Kubernetes Settings" dropdown.
 
 ![agent-advanced-settings](/img/k8s-advanced-settings2.png)
 
-In this panel, you can edit the agent name, and tenant-id for AKS agents. 
+In this panel, you can edit the agent name, description, and location, as well as the tenant-id for AKS agents. 
 In addition, you can retrieve the namespace where the Torque agent is running (but not change it).
 
 ## Advanced Settings
@@ -20,15 +20,6 @@ In addition, you can retrieve the namespace where the Torque agent is running (b
 :::note
 Changes to the configuration only takes effect on new environments. Existing environments will keep the values configured at the time of the launch.
 :::
-
-### Startup timeout
-
-**Runners pod startup timeout (seconds)** - The time Torque will wait for a runner pod to be provisioned. If your cluster is slow in creating pods/nodes in autoscaling, you may need to increase it. Be careful of setting too large timeouts, because if there is an inherent problem in the POD the error will suffice later. 
-
-### Idle timeout
-
-**Runner pod idle timeout (seconds)** - The time Torque will wait before terminating an idle Runner. Any non-negative value is accepted. As runners are allocated from a shared pool, setting the timeout to higher values will optimize the current operation which already "owns" the runner, but will decrease the average pool size so the next operations may need to wait longer before they get a runner. Higher values can also be used for debugging purposes, as it allows more time to connect to the runner, look at its logs and debug issues.
-
 
 ### Use runner storage (PVC)
 
@@ -41,8 +32,7 @@ When storage is disabled, configuring a backend is usually recommended. Some gra
 
 ### Storage class
 
-**Storage Class** is a K8s resource which allows you to request to create persistent volumes with certain properties. The storage class describes the properties then Torque 
-will request for the runner to create storage according to these properties. By default it is set to "Cluster's default" which means the Torque runners will request the storage properties according to what is defined as the default storage class in the cluster. If you change it to other value, Torque runners will request the storage class based on the new value.
+**Storage Class** is a K8s resource which allows you to request to create persistent volumes with certain properties. The storage class describes the properties that Torque will request when the runner creates its storage. By default it is set to "Cluster's default" which means the Torque runners will request the storage properties according to what is defined as the default storage class in the cluster. If you change it to other values, Torque runners will request the storage class based on the new values.
 
 :::tip
 For reclaimPolicy (delete|retain) - we recommend using "delete" (extra care should be taken if the policy is set to "retain").
@@ -53,7 +43,7 @@ Learn more [here](https://kubernetes.io/docs/concepts/storage/storage-classes/)
 
 ### Storage class supports ReadWriteMany
 
-**Storage class supports ReadWriteMany** - Check this checkbox if the storage class supports ReadWriteMany capability. Only storage classes which support this capability can share resources. If it is false there will not be sharing and each operation will spawn a new runner pod. Torque cannot query the cluster to understand if it does or does not have this capability so we rely on your information. If you check this checkbox, you must also set the storage_class_name and not leave it empty. Even if the default storage class supports ReadWriteMany, please state the name explicitly.  
+**Storage class supports ReadWriteMany** - Check this checkbox if the storage class supports ReadWriteMany capability. Only storage classes which support this capability can share resources. If it is unchecked, there will not be sharing and each operation will spawn a new runner pod. Torque cannot query the cluster to understand if it does or does not have this capability so we rely on your information. If you check this checkbox, you must also set the storage_class_name and not leave it empty. Even if the default storage class supports ReadWriteMany, please state the name explicitly.  
 
 ### Storage size
 
@@ -69,15 +59,23 @@ For backend types and details, see [Terraform backend](/blueprint-designer-guide
 If a backend is specified in the blueprint or in the IaC configuration, it overrides the backend configured on the agent.
 :::
 
+### Startup timeout
+
+**Runners pod startup timeout (seconds)** - The time Torque will wait for a runner pod to be provisioned. If your cluster is slow in creating pods/nodes in autoscaling, you may need to increase it. Be careful of setting too large timeouts, because if there is an inherent problem in the POD the error will suffice later. 
+
+### Idle timeout
+
+**Runner pod idle timeout (seconds)** - The time Torque will wait before terminating an idle Runner. Any non-negative value is accepted. As runners are allocated from a shared pool, setting the timeout to higher values will optimize the current operation which already "owns" the runner, but will decrease the average pool size so the next operations may need to wait longer before they get a runner. Higher values can also be used for debugging purposes, as it allows more time to connect to the runner, look at its logs and debug issues.
+
 
 ### Resource consumption
 
-**Resource Consumption** determines the amount of CPU and memory requested by Runners. This directly affects the performance of the execution Pods and their ability to be scheduled within your cluster's available capacity.
+**Resource Consumption** determines the amount of CPU and memory requested by the Runners. This directly affects the performance of the execution Pods and their ability to be scheduled within your cluster's available capacity.
 
 There are 8 available consumption levels for better control over performance and scheduling tradeoffs:
 
 | Level         | CPU (cores) | Memory (MB) |
-|---------------|-------------|-------------|
+|:--------------|:------------|:------------|
 | 0 - Minimal   | 0.107       | 210         |
 | 1 - Very Low  | 0.142       | 273         |
 | 2 - Low       | 0.205       | 399         |
@@ -95,20 +93,14 @@ In the API, these levels are represented by `0` through `7`.
 
 ### Environment variables
 
-**Environment variables** - key-values pairs of environment variables to set on the runner pod. This can be useful for configuring global configuration such as HTTP_PROXY. It will affect all runners in the cluster.
+**Environment variables** - key-values pairs of environment variables to set on the runner pod. This can be useful for setting global configuration such as HTTP_PROXY. It will affect all runners in the cluster.
 
 > ![agent-advanced-settings](/img/k8s-advanced-settings-env-vars.png)
 
 
-### Secret mount
-
-**Secret mount** - key-values pairs of Secret name to mount path to set on the runner pod. This can be useful for mounting a certificate located in a Kubernetes secret to a directory in the container. It will affect all runners in the cluster.
-
-> ![agent-advanced-settings](/img/k8s-advanced-settings-secrets.png)
-
 ### Pod labels
 
-Similar to Environment Variables and Secret Mounts, Torque allows you to specify labels that will be applied to the runner pods. These labels can be useful for various purposes, such as identifying and grouping pods, applying network policies, or integrating with external tools that rely on labels.
+Similar to *Environment Variables* and *Secret Mounts*, Torque allows you to specify labels that will be applied to the runner pods. These labels can be useful for various purposes, such as identifying and grouping pods, applying network policies, or integrating with external tools that rely on labels.
 
 You can define runners pod labels on a grain level as well.
 
@@ -151,7 +143,7 @@ Using labels can help you organize and manage your runner pods more effectively.
 
 ### Pod annotations
 
-Similar to Similar to *Environment Variables*, *Secret Mounts* and *Pod Labels*, Torque allows you to specify annotations that will be applied to the runner pods. These annotations can be useful for various purposes, such as identifying and grouping pods, applying network policies, or integrating with external tools that rely on annotations.
+Similar to *Environment Variables*, *Secret Mounts* and *Pod Labels*, Torque allows you to specify annotations that will be applied to the runner pods. These annotations can be useful for various purposes, such as identifying and grouping pods, applying network policies, or integrating with external tools that rely on annotations.
 
 You can define runners pod annotations on a grain level as well.
 
@@ -189,9 +181,16 @@ In the above example, the `pod-annotations` section under `kubernetes` defines a
 Using annotations can help you organize and manage your runner pods more effectively. You can leverage annotations for various purposes, such as filtering, grouping, or applying policies to specific sets of pods. Additionally, annotations can be used for integration with external tools or services that rely on an annotation for their operations.
 
 
+### Secret mount
+
+**Secret mount** - key-values pairs of Secret name to mount path to set on the runner pod. This can be useful for mounting a certificate located in a Kubernetes secret to a directory in the container. It will affect all runners in the cluster.
+
+> ![agent-advanced-settings](/img/k8s-advanced-settings-secrets.png)
+
+
 ### Node selector
 
-You can add the `node-selector` sections to your grain and specify the node labels you want the target node(s) to have. The `node-selector` and its labels will be applied on the pod specification. Kubernetes only schedules the pod onto nodes that have each of the labels you specify. 
+You can add the `node-selector` sections to your grain and specify the node labels you want the target node(s) to have. The `node-selector` and its labels will be applied on the pod specification. Kubernetes only schedules the pod onto nodes that have each of the labels you specify. 
 
 For example:
 
