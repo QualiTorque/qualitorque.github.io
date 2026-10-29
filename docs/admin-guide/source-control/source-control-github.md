@@ -3,76 +3,32 @@ sidebar_position: 1
 title: GitHub Source Control
 ---
 
-Torque supports connecting asset/blueprint repositories on GitHub out of the box. However, to connect a repository, you must have access to the repository and grant Torque permission to the repository using a PAT (Personal Access Token), as explained below. For details about adding your assets to Torque, see [Discover Your Assets](/getting-started/asset-discovery). You should be able to sign in with an account on any one of these online services and immediately get going by connecting asset repositories and launching environments.
+Torque supports connecting asset, blueprint, and policy repositories hosted on GitHub. Repositories are connected per space from the **Add Repository** wizard, and the credentials you provide are saved in the Torque [Credentials](/admin-guide/credentials) store so you can reuse them when you connect more repositories from the same provider.
 
-**In this article:**
-- [Ensure your account is added to the GitHub organization you're connecting](#ensure-your-account-is-added-to-the-github-organization-youre-connecting)
-- [What is a Personal Access Token?](#what-is-a-personal-access-token)
-- [Connect a repository using a Personal Access Token](#connect-a-repository-using-a-personal-access-token)
-- [Token expiration and revocation](#token-expiration-and-revocation)
-<!-- - [Ensure your organization has granted access to Torque](#ensure-your-organization-has-granted-access-to-torque) -->
+**This article refers to the SAAS version of GitHub. If you're using self-hosted GitHub Enterprise, select **Self Managed Repository** in the wizard and check [here](/admin-guide/source-control/Self%20Hosted%20Repositories/overview).**
 
-**This article refers to the SAAS version of GitHub (github.com). If you're using self hosted GitHub Enterprise, check [here](/admin-guide/source-control/Self%20Hosted%20Repositories/overview)**.
+## Prerequisites
 
+* Read access to the GitHub repository you want to connect.
+* A GitHub [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) with read access to the repository's contents.
 
-## Ensure your account is added to the GitHub organization you're connecting
+## Connect a GitHub repository
 
-1. Go to [https://github.com/orgs/\{YOUR_ORG\}/people](https://github.com/orgs/\{YOUR_ORG\}/people).
-2. Make sure your user is listed in the organization. If not, make sure the user is added as a member with global read access.
+1. Select the space in the space selection dropdown, go to **Automation > Repositories**, and click **Add Repository**.
+2. In the **Select a Repository Provider** step, select **GitHub** and click **Next**.
+3. In the **Connection** step, fill in the **Details**:
+   * **Repository URL** - the HTTPS URL of the repository, for example `https://github.com/{org}/{repo}`.
+   * **Repository Name** - the name the repository will have in Torque.
+   * **Branch** (optional) - the branch to use. If you leave it empty, Torque uses the repository's default branch.
+   * **Auto-Track Environment Files** (optional) - automatically discover and track environment files from this repository.
+   * **Self Managed Repository** - select this if your git server is hosted by you and not on the SAAS. For details, see [Self Hosted Repositories](/admin-guide/source-control/Self%20Hosted%20Repositories/overview).
+4. Under **Credentials**, provide the access details:
+   * If the credentials you need already exist in the Credentials store, choose **Select from Credentials Store** and pick them.
+   * Otherwise, choose **Create New Credentials** (when the option is shown) and enter a **Credentials Name** and the **Personal Access Token** that grants Torque read access to the repository.
+5. Click **Connect**.
 
-## What is a Personal Access Token?
+   Torque connects to the repository, saves the credentials in the Credentials store, and discovers the repository's assets. The confirmation screen lists the number of assets discovered and lets you open them in the **IaC Assets** page.
 
-A Personal Access Token (PAT) is a credential you generate on GitHub that Torque uses in place of a password to authenticate and access your repositories. GitHub offers two types of PAT:
-
-- __Classic tokens__ — grant access based on broad, predefined scopes (e.g., `repo`, `read:org`).
-- __Fine-grained tokens__ — grant access to specific repositories with more granular permissions, offering tighter control over what Torque can access.
-
-Either type works with Torque. For instructions on generating one, see GitHub's [Managing your personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) documentation.
-
-## Connect a repository using a Personal Access Token
-
-Torque connects to GitHub using a Personal Access Token (PAT). Both classic and fine-grained tokens are supported.
-
-1. In Torque, go to __Automation > Repositories__ and click __Add Repository__.
-   > ![Add Repository](/img/pat-github-repository.png)
-2. In __Select a Repository Provider__, choose __GitHub__ and click __Next__.
-   > ![Select a repository provider](/img/pat-github-provider.png)
-3. On the __Connection__ step, fill in the __Repository URL__, __Repository Name__, and optionally a __Branch__ under __Details__.
-4. Under __Credentials__, click __Create New Credentials__ (or __Select from Credentials Store__ to reuse a saved one).
-   > ![Connection details and credentials](/img/pat-github-connection.png)
-5. Give the new credentials a __Credentials Name__, then enter your __Personal Access Token__.
-   > ![Enter your Personal Access Token](/img/pat-github-token.png)
-   :::info 
-   Click the __Auto-Track Environment Files__ option if you want to automatically discover and track Environment Files from this repository.
-   :::
-6. Leave __Self Managed Repository__ unchecked — that option is only for self-hosted GitHub Enterprise. See [Self-Managed GitHub](/admin-guide/source-control/Self%20Hosted%20Repositories/self-managed-github) for that flow.
-7. Click __Connect__.
-
-<!-- :::info TODO
-Document the required token scopes/permissions for classic vs. fine-grained PAT once confirmed.
-::: -->
-
-<!-- ## Ensure your organization has granted access to Torque
-
-When connecting a repository, Torque installs an OAuth app called __Torque Control Plane__ on the organization. This app provides Torque with the necessary permissions to the organization's repositories. If Torque doesn't have access, you will be prompted to grant the proper authorizations when connecting the asset repository. The approved applications are listed in the [GitHub Applications](https://github.com/settings/applications) page. 
-
-  1. Go to [GitHub Applications](https://github.com/settings/applications).
-  2. Revoke any existing access to the __Quali Torque__ app.
-      > ![Locale Dropdown](/img/revoke-access.png)
-  3. In Torque, go to the space's __Settings > Repositories__ area and connect the repository.
-  4. Authorize the organization. 
-      > ![Locale Dropdown](/img/access.png)
-  
-  At this point, the Torque app is installed in the organization without permissions.
-
-  5. Enter your account's password and confirm the action. 
-     * If you're not an administrator in the organization, ask the administrator to grant access to the app in the [GitHub Applications](https://github.com/settings/applications) page. 
-     * If you already authorized the __Torque Control Plane__ app without also granting access to an organization with repositories you want to connect, click the app's name in the GitHub Applications page, and in the __Organization access__ section, click the organization's __Request__ button.
-     > ![Locale Dropdown](/img/request-org-access.png)
-  
-  The Torque app is granted the necessary permissions and the repository is connected.
-  6. Return to Torque and continue setting up the connection. -->
-
-## Token expiration and revocation
-
-GitHub imposes a limit on the number of tokens an application can create for the same user, and will revoke the oldest one once this limit is passed. For details, see [GitHub token expiration and revocation policy](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/token-expiration-and-revocation#token-revoked-due-to-excess-of-tokens-for-an-oauth-app-with-the-same-scope).
+:::tip
+Once connected, the repository appears in **Automation > Repositories** with its default branch, assets, and last sync time. Use the repository's **⋮** (3-dot) menu to view its details, sync from git, or disconnect it.
+:::

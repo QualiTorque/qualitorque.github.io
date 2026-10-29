@@ -573,3 +573,5 @@ KVM
 Nutanix
 Redhat
 datacenter
+NVAIE
+RedHat

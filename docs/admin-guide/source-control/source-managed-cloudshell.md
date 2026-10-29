@@ -3,65 +3,33 @@ sidebar_position: 10
 title: Self-Managed Quali CloudShell
 ---
 
-Torque supports connecting Quali CloudShell as an asset repository. CloudShell blueprints are treated as assets in Torque and can be referenced using the 'CloudShell' grain type.
+Torque supports connecting asset, blueprint, and policy repositories hosted on Quali CloudShell. Repositories are connected per space from the **Add Repository** wizard, and the credentials you provide are saved in the Torque [Credentials](/admin-guide/credentials) store so you can reuse them when you connect more repositories from the same provider.
+
 
 ## Prerequisites
 
-1. CloudShell user with at least "External Extended" permissions in the CloudShell Domains that you want to use.
-2. A self-hosted Torque agent that can reach the Sandbox Api of your CloudShell instance.
-3. CloudShell version 2021.2 and higher.
+Torque supports connecting Quali CloudShell as an asset repository. CloudShell blueprints are treated as assets in Torque and can be referenced using the `CloudShell` grain type.
 
-## Configuration
+1. A CloudShell user with at least **External Extended** permissions in the CloudShell domains that you want to use.
+2. A self-hosted Torque agent that can reach the Sandbox API of your CloudShell instance.
+3. CloudShell version 2021.2 or higher.
 
-1. Register CloudShell as a Repository Provider via Torque REST API. If the API call is successful it will return a GUID representing the ID of the new repository provider. Save this ID for the next step.
-  
-```jsx
-curl -L 'https://portal.qtorque.io/api/settings/repository_providers' \
--H 'Authorization: Bearer <TOKEN>' \
--H 'Content-Type: application/json' \
--d '{
-    "name": "<PROVIDER_NAME>",
-    "type": "CloudShell",
-    "details": {        
-        "base_url": "<CLOUDSHELL_SERVER_URL>:<SANDBOX_API_PORT>",
-        "username": "<CLOUDSHELL_USER>",
-        "password": "<CLOUDSHELL_PASSWORD>",
-        "domain": "<CLOUDSHELL_DOMAIN>",
-        "token_ttl": 300
-    },
-    "repos": []
-}'
-```
+## Connect a Quali CloudShell repository
 
-  * Replace __&lt;TOKEN&gt;__ with a valid Torque token with Torque Admin permissions
-  * Replace __&lt;PROVIDER_NAME&gt;__ with a display name for the CloudShell instance. Example: "CloudShell_Dev"
-  * Replace __&lt;CLOUDSHELL_SERVER_URL&gt;__ with the IP or DNS of your CloudShell instance. The CloudShell instance needs to be reachable from at least one of your self-hosted Torque agents. Torque will automatically select an agent for communicating with CloudShell
-  * Replace __&lt;SANDBOX_API_PORT&gt;__ with the port of the CloudShell Sandbox API. The default port is 82
-  * Replace __&lt;CLOUDSHELL_USER&gt;__ and __&lt;CLOUDSHELL_PASSWORD&gt;__ with a valid CloudShell username and password
-  * Replace __&lt;CLOUDSHELL_DOMAIN&gt;__ with the CloudShell Domain that will be used as the default Domain. If needed you can later set a different Domain per each space
-  * [Optional] You can also set a value for the "token_ttl", this property defines the expiration in seconds of the token received from the CloudShell Sandbox API . Default: 300 sec
-  
-2. Connect the repository as an asset repository to a space.
+1. Select the space in the space selection dropdown, go to **Automation > Repositories**, and click **Add Repository**.
+2. In the **Select a Repository Provider** step, select **CloudShell** and click **Next**.
+3. In the **Connection** step, fill in the **Details**:
+   * **Repository URL** - the URL of your CloudShell instance.
+   * **Repository Name** - the name the repository will have in Torque.
+   * **Branch** (optional) - the branch to use. If you leave it empty, Torque uses the repository's default branch.
+   * **Auto-Track Environment Files** (optional) - automatically discover and track environment files from this repository.
+4. Under **Credentials**, provide the access details:
+   * If the credentials you need already exist in the Credentials store, choose **Select from Credentials Store** and pick them.
+   * Otherwise, choose **Create New Credentials** (when the option is shown) and enter a **Credentials Name**, the CloudShell **Server Address**, optionally a **Token TTL**, and the **User Name** and **Password** of the CloudShell user from the prerequisites.
+5. Click **Connect**.
 
-```jsx
-curl -L 'https://portal.qtorque.io/api/spaces/<SPACE_NAME>/repositories/cloudshell' \
--H 'Authorization: Bearer <TOKEN>' \
--H 'Content-Type: application/json' \
--d '{
-    "provider_id": "<PROVIDER_ID>", 
-    "repository_url": "<CLOUDSHELL_SERVER_URL>:<SANDBOX_API_PORT>",
-    "repository_name": "<REPOSITORY_NAME>",
-    "branch": "<CLOUDSHELL_DOMAIN>"
-}'
-```
+   Torque connects to the repository, saves the credentials in the Credentials store, and discovers the repository's assets. The confirmation screen lists the number of assets discovered and lets you open them in the **IaC Assets** page.
 
-  * Replace __&lt;SPACE_NAME&gt;__ with the relevant Torque space 
-  * Replace __&lt;TOKEN&gt;__ with a valid Torque token with Torque Admin permissions
-  * Replace __&lt;PROVIDER_ID&gt;__ with the GUID received from the API in step #1 
-  * Replace __&lt;CLOUDSHELL_SERVER_URL&gt;__ with the IP or DNS of your CloudShell instance.
-  * Replace __&lt;SANDBOX_API_PORT>&gt;__ with the port of the CloudShell Sandbox API. The default port is 82
-  * Replace __&lt;REPOSITORY_NAME&gt;__ with the name you would like to assign to this repository. This name will be used in Torque Blueprints to reference this repo
-  * [Optional] Replace __&lt;CLOUDSHELL_DOMAIN&gt;__ with the domain name to use for this repository. If omitted, the default Domain name provided in step #1 will be used. 
-    __Note__: The user provided in step #1 must have correct access to the provided Domain.
-
-3. Discover suitable assets. For details, see [Discover Your Assets](/getting-started/asset-discovery). 
+:::tip
+Once connected, the repository appears in **Automation > Repositories** with its default branch, assets, and last sync time. Use the repository's **⋮** (3-dot) menu to view its details, sync from git, or disconnect it.
+:::
