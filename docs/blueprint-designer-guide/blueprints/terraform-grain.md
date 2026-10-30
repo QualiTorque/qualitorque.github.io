@@ -175,7 +175,25 @@ grains:
 When `use-storage: false` is specified, ensure you have a remote backend configured to store the Terraform state, as local state will not be persisted between runs.
 :::
 
+### `target`
+
+As an alternative to `agent`, you can set `target` to a Provider from the Resources Inventory, which supplies both the agent and credentials in one selection, removing the need for a separate `authentication` block. Provide only one of `agent` or `target`. Please see [the grain target](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#target) for more details.
+
+```yaml
+grains:
+  rds:
+    kind: terraform
+    spec:
+      source: ..
+      target:
+        name: '{{ .inputs.Target }}'
+```
+
 ### `authentication`
+
+:::tip
+Not needed when the grain uses `target` instead of `agent` — the target's Deploy credential is used automatically.
+:::
 
 To authenticate with AWS and deploy the terraform module, Torque will try to use the default service account configured for the selected agent. You can also supply different credentials in the grain's `authentication` section. This is done by referencing a [credential](/admin-guide/credentials) that contains these authentication details. There are two ways to specify the credential, literally by name or using an input:
 

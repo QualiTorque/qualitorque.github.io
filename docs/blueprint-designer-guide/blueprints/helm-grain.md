@@ -127,6 +127,20 @@ agent:
   use-storage: false
 ```
 
+### `target`
+
+As an alternative to `agent`, you can set `target` to a Provider from the Resources Inventory, which supplies both the agent and credentials in one selection. Provide only one of `agent` or `target`. Please see [the grain target](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#target) for more details.
+
+```yaml
+grains:
+  nginx:
+    kind: helm
+    spec:
+      source: ..
+      target:
+        name: '{{ .inputs.Target }}'
+```
+
 ### `inputs`
 
 Similar to blueprint inputs and Terraform inputs, the Helm grain `inputs` allow you to reuse the same Helm chart in different ways using different values overrides. Inputs provided to the Helm grain are used when launching the Helm chart. We recommend using Torque's auto-discovery capability to quickly model your Helm chart within Torque including all defined inputs.

@@ -116,6 +116,22 @@ Defines where the CDK app is located. Supports:
 
 Specifies the agent on which to run the CDK deployment. You can also specify a `service-account` for AWS credentials.
 
+### `target`
+
+As an alternative to `agent`, you can set `target` to a Provider from the Resources Inventory, which supplies both the agent and AWS credentials in one selection. Provide only one of `agent` or `target`. Please see [the grain target](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#target) for more details.
+
+```yaml
+grains:
+  common:
+    kind: aws-cdk
+    spec:
+      source:
+        store: 'cdk-repo'
+        path: 'cdk/python/dev/s3'
+      target:
+        name: '{{ .inputs.Target }}'
+```
+
 ### `env-vars`
 
 A list of environment variables to set for the CDK process. Supports static values and Torque templating.

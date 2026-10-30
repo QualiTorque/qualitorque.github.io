@@ -227,6 +227,61 @@ grains:
             - echo "$NVAIE_API_KEY"
 ```
 
+#### Target Input Type
+
+The `target` input type allows the environment end-user to select a [Provider](/getting-started/Resources-Inventory/adding-a-provider) from a dropdown list — a single selection that supplies both the agent and the credentials needed to deploy a grain. This removes the need to publish separate `agent` and `credentials` inputs for the same grain.
+
+Only Providers with a **Deploy** capability appear in the dropdown, since a Deploy capability is what allows the provider to host the grain. Use `target-filters.cloud-providers` to narrow the dropdown to one or more provider types. See [Provider Capabilities](/getting-started/Resources-Inventory/provider-capabilities) for details on how Discovery and Deploy capabilities are configured on a Provider.
+
+To use the selected target on a grain, set it under the grain's `target` field instead of `agent`. See [target](#target) below for details, including why only one of `agent` or `target` should be provided on a grain.
+
+**Example:**
+
+```yaml
+spec_version: 2
+description: |
+  Deploy to a vCenter Provider selected by the end-user.
+  The Target input replaces a separate agent + credentials pair with one dropdown.
+
+inputs:
+  Target:
+    type: target
+    description: >
+      vCenter target. Must have a Deploy capability so it appears in the picker and can host the grain.
+    target-filters:
+      cloud-providers: [vcenter]
+
+grains:
+  vm:
+    kind: terraform
+    spec:
+      source:
+        store: infra
+        path: terraform/vcenter/vm
+      target:
+        name: '{{ .inputs.Target }}'
+```
+
+:::tip
+A `target` input can also drive a dynamic `input-source` dropdown that queries the target's own environment (for example, listing vCenter clusters available on the selected Target). Do this by adding an override that passes the target's name to the input source, which then authenticates using that target's Discovery-capability credential and agent instead of a credential/agent stored on the input source itself. This requires the Provider to also have a **Discovery** capability.
+
+```yaml
+inputs:
+  Target:
+    type: target
+    target-filters:
+      cloud-providers: [vcenter]
+
+  Cluster:
+    type: input-source
+    source-name: generic-vcenter-resources
+    depends-on: Target
+    overrides:
+      - target_name: '{{ .inputs.Target }}'
+      - resource_type: cluster
+```
+:::
+
 #### File Input Type
 
 The `file` input type allows users to upload files from the launch form. These files are made available to the blueprint designer using the [`workspace-directories`](#workspace-directories) section and the `env-storage` store. This is useful for scenarios where the environment requires user-provided files (such as configuration, data, or scripts) at launch time.
@@ -519,6 +574,38 @@ grains:
               effect: NoSchedule
             - operator: Exists # Tolerate Everything
 ```
+
+### `target`
+
+The `target` field is an alternative to `agent` for grains that support it. Instead of pointing at an agent (and separately supplying credentials via `authentication`), `target` points at a [Provider](/getting-started/Resources-Inventory/adding-a-provider) — a connected cloud account, virtualization platform, or infrastructure controller from the Resources Inventory. The Provider's Deploy capability supplies both the agent and the credentials the grain needs, so a grain configured with `target` normally does **not** need an `authentication` block.
+
+```yaml
+inputs:
+  Target:
+    type: target
+    target-filters:
+      cloud-providers: [vcenter]
+
+grains:
+  vm:
+    kind: terraform
+    spec:
+      source:
+        store: infra
+        path: terraform/vcenter/vm
+      target:
+        name: '{{ .inputs.Target }}'
+```
+
+:::warning
+Provide only one of `agent` or `target` on a grain — not both.
+:::
+
+For details on how to publish `target` as a blueprint input (including filtering the dropdown by provider type), see the [Target Input Type](#target-input-type) section above.
+
+:::info
+`target` is supported on every grain kind except CloudShell. The [CloudFormation grain](/blueprint-designer-guide/blueprints/cloudformation-grain#target) is a partial exception: it still requires an `authentication` block even when `target` is used, though it doesn't require a separately created credential — see that grain's docs for the naming convention that lets `authentication` reference the target's own Deploy credential.
+:::
 
 ### `depends-on`
 The need to deploy one IaC component before the other is common and usually required when 3rd party components, managed services and other teams need to provide the infrastructure. Using dependencies in the blueprint YAML Torque will evaluate and optimize the deployment process to make sure dependencies are respected and components with no dependencies will be deployed in parallel to maximize efficiency and reduce overall uptime.

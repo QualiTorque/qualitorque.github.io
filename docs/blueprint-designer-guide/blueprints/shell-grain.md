@@ -107,6 +107,19 @@ export output_script_2=$cmd2_output
 
 Please see [the grain agent](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#agent) for more details.
 
+### `target`
+
+As an alternative to `agent`, you can set `target` to a Provider from the Resources Inventory, which supplies both the agent and credentials in one selection. Provide only one of `agent` or `target`. Please see [the grain target](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#target) for more details.
+
+```yaml
+grains:
+  validate:
+    kind: shell
+    spec:
+      target:
+        name: '{{ .inputs.Target }}'
+```
+
 ### `inputs`
 
 Inputs provided to the shell grain are used when launching the shell commands. 

@@ -46,6 +46,14 @@ agent:
   name: '{{ .inputs.agent }}'
 ```
 
+### `target`
+As an alternative to `agent`, you can set `target` to a Provider from the Resources Inventory, which supplies both the agent and credentials in one selection. Provide only one of `agent` or `target`. Please see [the grain target](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#target) for more details.
+
+```yaml
+target:
+  name: '{{ .inputs.Target }}'
+```
+
 ### `inputs`
 The `inputs` block is a list of input values to pass to the Terragrunt module. You can reference blueprint inputs or use static values. Inputs are passed as variables to the underlying Terraform modules managed by Terragrunt.
 

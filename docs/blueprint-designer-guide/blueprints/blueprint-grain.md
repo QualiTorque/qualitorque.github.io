@@ -93,7 +93,7 @@ grains:
 Please see [the grain source](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#source) for more details.
 
 ### `agent`
-The blueprint grain does not require an agent as Torque uses the agent defined in the referenced blueprint. However, you can specify the agent as an input of ```type: agent``` on the blueprint level, and reference it from the grain, both as an input and in the host section.
+The blueprint grain does not require an agent as Torque uses the agent defined in the referenced blueprint. However, you can specify the agent as an input of ```type: agent``` on the blueprint level, and reference it from the grain, both as an input and in the host section. The same applies to a [```type: target```](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#target-input-type) input, if the nested blueprint's grains use `target` instead of `agent`.
 
 ### `inputs`
 Blueprint grain inputs are the names of the inputs of the nested blueprint, and the values being provided for each one when the blueprint is launched as a nested blueprint. These names must exactly match the input names in the ```inputs``` section of the nested blueprint’s blueprint YAML.

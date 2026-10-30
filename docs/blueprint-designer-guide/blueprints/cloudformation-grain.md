@@ -118,7 +118,30 @@ Please see [the grain source](/blueprint-designer-guide/blueprints/blueprints-ya
 
 ### `agent`
 
-The `agent` is now **required** for CloudFormation Grain. Please see [the grain agent](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#agent) for more details.
+The `agent` is now **required** for CloudFormation Grain, unless `target` is used instead. Please see [the grain agent](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#agent) for more details.
+
+### `target`
+
+As an alternative to `agent`, you can set `target` to a Provider from the Resources Inventory. Provide only one of `agent` or `target`. Please see [the grain target](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#target) for more details.
+
+:::info
+Unlike other grains, CloudFormation still requires an `authentication` block even when `target` is used — see below for how to reference the target's own credential without creating a separate credential item.
+:::
+
+```yaml
+grains:
+  s3-bucket:
+    kind: cloudformation
+    spec:
+      source:
+        store: cfn-templates
+        path: storage/s3-bucket.yaml
+      target:
+        name: '{{ .inputs.Target }}'
+      region: us-east-1
+      authentication:
+        - '{{ .inputs.Target }}-deploy'
+```
 
 ### `authentication`
 
@@ -126,6 +149,10 @@ To enable Torque to connect to the AWS account and deploy the CloudFormation tem
 
 1. **Torque credentials**: Authenticate with AWS access key and secret key OR AWS role ARN to be assumed by Torque
 2. **Service account**: Authenticate with a service account that will be attached to the runner which provisions the infrastructure
+
+:::tip
+When the grain uses `target` instead of `agent`, you don't need to create a separate credential for `authentication`. Reference the target's own Deploy credential by name, using the pattern `<provider-name>-deploy` (for example, if the selected Provider is named `my-provider`, use `my-provider-deploy`).
+:::
 
 __Example - Option 1 (Torque credentials):__
 

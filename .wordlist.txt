@@ -576,3 +576,7 @@ datacenter
 NVAIE
 RedHat
 JFrog
+browsable
+datastores
+donut
+misconfigured

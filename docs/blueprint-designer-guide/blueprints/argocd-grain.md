@@ -91,6 +91,18 @@ Below are the main fields available in the ArgoCD grain `spec` section:
 ### `agent`
 Please see [the grain agent](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#agent) for more details.
 
+### `target`
+As an alternative to `agent`, you can set `target` to a Provider from the Resources Inventory, which supplies both the agent and credentials in one selection. Provide only one of `agent` or `target`. Please see [the grain target](/blueprint-designer-guide/blueprints/blueprints-yaml-structure#target) for more details.
+
+```yaml
+grains:
+  argo-app:
+    kind: argocd
+    spec:
+      target:
+        name: '{{ .inputs.Target }}'
+```
+
 ### `deployment-engine`
 
 The name of the configured Deployment Engine in Torque. This field links the grain to a specific ArgoCD server configuration (see [Configuring a Deployment Engine](#configuring-a-deployment-engine)).  
