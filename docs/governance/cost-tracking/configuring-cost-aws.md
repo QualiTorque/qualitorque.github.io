@@ -76,6 +76,6 @@ What can be done if you don't see cost in Torque's cost dashboard?
    3. On the __Filters__ panel on the right, select __Tag__ and search for __torque-environment-id__.
    4. Click on the __>__ sign and select the environment id that you found via the Torque URL.
    5. If the environment id doesn't have cost associated with it, it means that the cost allocation tags are not configured correctly. Review [AWS Cost setup](#aws-cost-setup) again.
-   6. If you see costs associated with this tag, test your credentials: navigate to __Administration > Cloud Accounts > Cost Collection Target > Choose your cloud > In the three dot menu click on validate__.
+   6. If you see costs associated with this tag, test your credentials: expand the __Admin__ section of the left sidebar, click __Cost Configurations__, open the cloud account's __⋮__ (3-dot) menu, and select __Validate__.
 
 

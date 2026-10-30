@@ -31,7 +31,7 @@ This is done by integrating your organization's identity provider with Torque's 
    1. Include the users that will access Torque.
    2. For each user, specify the following:
       * __space_name__: Torque Space in which the user will operate.
-      * __space_role__: User's role in that space, as defined in __Administration > Roles > Space Roles__. To add a user to multiple spaces, see Associating a user to multiple spaces section below.
+      * __space_role__: User's role in that space, as defined in the __Roles & Permissions__ tab of __Admin > User Management__. To add a user to multiple spaces, see Associating a user to multiple spaces section below.
       * (Optional) __timezone__ : The user's timezone in IANA format (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
 3. Save the application.
 4. Copy the relevant details from the application. These may change depending on your IdP - see this Okta help article for details. For example, these are the details for SAML 2.0:
@@ -65,7 +65,7 @@ __Points to consider:__
 
 Each group in Torque has an ‘IdP identifier’ field. For SSO users to be assigned to the group automatically, the field must contain the same identifier (usually a GUID) as the group in the IdP (the groups don’t have to have the exact same name)
 
-In Torque, this can be set by editing a group in the ‘Groups’ page under account settings.
+In Torque, this can be set by editing a group in the __Groups__ tab of __Admin > User Management__.
 
 > ![Locale Dropdown](/img/groups-1.png)
 

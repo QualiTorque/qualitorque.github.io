@@ -95,6 +95,6 @@ As the account admin, when you create a custom tag you can limit the allowed val
 
 ### Overriding a custom tag's default value
 
-1. Space Scope: Go to the space settings page --> Tags and select the tag value which you wish to override.
-2. Blueprint Scope: Go to the blueprints page, and click on the ... menu for the blueprint you which to override the tag. Click on Manage Tags.
+1. Space Scope: In the space, go to **Governance > Tags** and set the tag value which you wish to override.
+2. Blueprint Scope: In **Automation > Automation Inventory**, open the **Blueprints** tab, open the blueprint whose tag you wish to override, and set the value in its **Tags** tab.
 3. Sandbox Scope: When you launch an environment, you will see in the tags section the Sandbox scope tags and you will be able to override it.
