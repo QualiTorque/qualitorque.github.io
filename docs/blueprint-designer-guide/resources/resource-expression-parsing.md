@@ -5,11 +5,11 @@ title: Resource Expression Parsing
 
 # Resource Expression Parsing
 
-Torque introduces a powerful new capability for resource filtering through expression parsing, allowing users to create more flexible and sophisticated queries using logical operators (AND, OR) and additional value operators. This enhancement significantly expands the possibilities for selecting and matching resources based on complex criteria.
+Torque introduces a powerful new capability for resource filtering through expression parsing, allowing users to create more flexible and sophisticated queries using logical operators (AND, OR). This enhancement significantly expands the possibilities for selecting and matching resources based on complex criteria.
 
 ## Overview
 
-The new expression parsing feature enables users to define advanced selection criteria for resources in blueprints using a combination of logical operators and value comparison methods. The implementation supports both AND and OR operations, as well as additional operators like `contains` to provide more granular filtering capabilities.
+The expression parsing feature enables users to define advanced selection criteria for resources in blueprints using a combination of logical operators. The implementation supports both AND and OR operations to provide more granular filtering capabilities.
 
 ## Key Features
 
@@ -25,24 +25,6 @@ OR operations allow selecting resources that match any of several alternative cr
 - Use `any-of` blocks to define alternatives
 - Each alternative within an `any-of` block can have its own set of attributes
 - Resources matching any single alternative will be selected
-
-### Value Comparison Operators
-
-#### Contains Operator
-The `contains` operator enables partial string matching on resource attributes:
-```yaml
-attributes:
-  - region:
-      contains: us-east
-```
-
-#### IN Operator
-The `in` operator allows matching against a list of predefined values:
-```yaml
-attributes:
-  - environment:
-      in: [production, staging]
-```
 
 ## Usage Examples
 
@@ -73,22 +55,6 @@ resources:
           provider-name: lab_vcenter
           attributes:
             - pool: builds
-```
-
-### Using Contains Operator
-```yaml
-resources:
-  database:
-    selector:
-      any-of:
-        - type: aws_rds_instance
-          attributes:
-            - region:
-                contains: us-west
-        - type: azure_sql_database
-          attributes:
-            - location:
-                contains: east
 ```
 
 ## Integration with Existing Features
