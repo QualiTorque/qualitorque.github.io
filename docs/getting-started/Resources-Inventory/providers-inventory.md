@@ -29,6 +29,7 @@ Each row represents one provider. The columns are:
 | **Type** | The provider type with its icon (AWS, Azure, vCenter, Kubernetes, etc.). |
 | **Capabilities** | Icons indicating Discovery and Deploy. A green icon means the capability is healthy; a red icon means it is unavailable or unhealthy. |
 | **Labels** | Optional key/value labels applied to the provider for organization and filtering. |
+| **Environment spaces** | The spaces the provider is shared with (e.g., "All spaces"). Shown when you view the inventory at the **All Spaces** level. |
 | **Actions (⋮)** | Row-level menu with **View Resources**, **Edit**, and **Delete**. |
 
 <!-- ![Provider list rows showing Type, Capabilities icons, and Labels](./images/provider-list.png) -->
