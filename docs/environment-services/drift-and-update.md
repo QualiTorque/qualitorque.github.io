@@ -13,7 +13,7 @@ In the realm of infrastructure automation, Torque streamlines the setup and prov
 
     The Updates feature in Quali Torque significantly accelerates the development and testing phase by offering a streamlined process for implementing and validating IaC changes. DevOps engineers can leverage this feature to seamlessly redeploy specific IaC components with new code, sourced directly from git commits. This capability eliminates the need to restart the entire environment from scratch, saving valuable time and effort.
 
-    By using Updates, DevOps engineers can make the necessary code adjustments, such as bug fixes or feature enhancements, and redeploy the affected components. This allows them to continue the environment deployment from the point of failure or modification, without wasting time on unnecessary repetitions. Engineers can focus on the specific issue at hand, analyze logs, and determine if there are problems with the IaC code.
+    By using Updates, DevOps engineers can make the necessary code adjustments, such as bug fixes or feature enhancements, and redeploy the affected components. This allows them to continue the environment from the point of failure or modification, without wasting time on unnecessary repetitions. Engineers can focus on the specific issue at hand, analyze logs, and determine if there are problems with the IaC code.
 
 2. Efficient Customization and Adaptation:
    
@@ -66,7 +66,7 @@ If at any point in time a new change is committed, you will be alerted again.
 
 
 ### Auto-Retry failed deployments
-In some situations, environment deployment may fail with transient errors - ones that if you just retried, will deploy successfully. 
+In some situations, an environment may fail with transient errors - ones that if you just retried, will deploy successfully. 
 Torque comes with out-of-the-box knowledge of such errors, and will automatically retry to deploy failed grains in case the failure matches one of the transient error signatures.
 This capability currently applies only to terraform grains. 
 If you encounter such a failure which Torque did not recognize as transient, yet you believe should be auto-retried, please send us an email to torque-feedback@quali.com, or leave a post in our [community](https://github.com/orgs/QualiTorque/discussions).

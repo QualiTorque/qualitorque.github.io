@@ -37,6 +37,6 @@ To delve deeper, we can view the environments directly in the environments table
 
 > ![Locale Dropdown](/img/reports-activity-4.png)
 
-Clicking on the link will redirect us to the environment itself, facilitating analysis and decision-making regarding the next steps.
+Clicking on the link will redirect us to the environment page itself, facilitating analysis and decision-making regarding the next steps.
 
 

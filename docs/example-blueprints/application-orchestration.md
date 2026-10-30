@@ -3,7 +3,7 @@ sidebar_position: 1
 title: Application Orchestration
 ---
 
-Gaining agility and velocity in development and testing teams, usually requires adopting concepts like shift-left testing, where production-like environments are required to be in the disposed of all steps in the software development lifecycle. Production-like environment usually compose multiple automation process together to include both infrastructure, application and testing tools all together and enable them to the environment consumers.
+Gaining agility and velocity in development and testing teams, usually requires adopting concepts like shift-left testing, where production-like environments are required to be in the disposed of all steps in the software development lifecycle. Production-like environments usually compose multiple automation process together to include both infrastructure, application and testing tools all together and enable them to the environment consumers.
 
 In the following example, a cloud native application, based on microservices requires dedicated AWS PaaS services to be launched to mimic a production deployment. The PaaS services are managed and orchestrated by the IT team, who adopted Terraform, while the application itself is orchestrated using Helm - the preferred Kubernetes orchestration tool by the DevOps team.
 

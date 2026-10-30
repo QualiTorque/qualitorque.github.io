@@ -11,7 +11,7 @@ Blueprints are written in YAML files that reside in a __/blueprints__ folder wit
 For enhanced asset discovery and organization, see [Torque Assets Markers](/blueprint-designer-guide/assets-markers).
 :::
 
-Common example will be a platform team or a DevOps team building Dev, Test and staging environments for their development, QA and product teams. With Torque, the DevOps team can focus on design, best practices, and security for environment, while their end users are being self-served from the torque UI, API or eco-system integrations based on governance and policies without having the 'keys-to-the-cloud'.
+Common example will be a platform team or a DevOps team building Dev, Test and staging environments for their development, QA and product teams. With Torque, the DevOps team can focus on design, best practices, and security for the environment, while their end users are being self-served from the Torque UI, API or eco-system integrations based on governance and policies without having the 'keys-to-the-cloud'.
 
 ## Grain Categories
 

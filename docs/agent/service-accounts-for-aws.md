@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-title: Agents on AWS
+title: Hosting on AWS
 ---
 
 If you're using a Torque K8s agent that runs on an EKS cluster, and you want to deploy AWS resources using Infrastructure as Code (IaC) tools such as Terraform, CloudFormation, CDK, OpenTofu, Ansible, or others, you need to configure `authentication` and `permissions` between the Runner pod and the AWS account where the resources will be created. This is done by a service account, which contains these permissions, to the container. The permissions are defined in an IAM role that needs to be associated to the service account.

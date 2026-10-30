@@ -181,7 +181,7 @@ environment:
 ```
 
 :::info
-Updating the owner email does not update the owner of active environments. Owner changes only apply to new environment deployments.
+Updating the owner email does not update the owner of active environments. Owner changes only apply to new environments.
 :::
 
 ### `state`
@@ -267,7 +267,7 @@ environment:
 
 ### `auto_approve`
 
-Controls whether the environment deployment should proceed automatically without requiring manual approval, even if approval policies are configured.
+Controls whether the environment should proceed automatically without requiring manual approval, even if approval policies are configured.
 
 ```yaml
 environment:
