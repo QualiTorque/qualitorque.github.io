@@ -1422,11 +1422,11 @@ In this example, we have two workspace directories (`file1` and `file2`) that ar
 
 **Setup**
 
-To use Artifactory with Torque, you need to configure an Artifactory credential in the Credentials Store. 
+To use Artifactory with Torque, you need an Artifactory credential in the Torque [Credentials](/admin-guide/credentials) store.
 
-In Torque portal, navigate to the `Account Settings` and to the Credentials page. Click on the `Add Credentials` button and choose `JFrog Artifactory`.
+Artifactory credentials are listed in **Automation > Credentials** with the JFrog provider icon. Open a credential to view or edit its **Credentials Name**, **Description**, and **Spaces**, and its **Provider details**: the Artifactory **Server URL**, the access **Token**, an optional **Helm Registry Sub-URL**, and the **Username**.
 
-Provide a `Name` and a `Description`, select the allowed `Spaces` that can use that Artifactory server, fill in the `Server URL` and the `Token` and hit the `Apply` button.
+<!-- REVIEW (2026-10-29): the Add Credential wizard in next and Stack Automation does not currently offer the Artifactory (Cloud Providers) credential type, so there is no UI path to create a new Artifactory credential. Confirm with Yaniv how customers create one (API? support?) and document that here. -->
 
 ![artifactory](/img/artifactory.png)
 
