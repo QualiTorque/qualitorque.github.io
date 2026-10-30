@@ -1542,6 +1542,8 @@ Once the Artifactory credential is configured, you can reference it in your blue
 
 The customization section allows you to control the user interface and presentation aspects of your blueprint, including the visual layout of grains and the behavior of the launch form. This section provides two main customization capabilities: grains-map visualization and launch-form input control.
 
+For environment dashboard card layouts under `customization.layout`, see [Dynamic Cards (Environment Layout)](/blueprint-designer-guide/dynamic-cards-environment-layout).
+
 :::note Preview Feature
 This feature is currently in preview. To get access to customization capabilities, please contact Torque support.
 :::

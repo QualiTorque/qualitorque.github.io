@@ -41,5 +41,5 @@ The **API Keys** page lists the keys in the account:
 ### Use the key
 
 - **REST API**: send the key as a bearer token in the `Authorization` header, for example `Authorization: Bearer <YOUR_TORQUE_TOKEN>`. See [REST API](/rest-api).
-- **AI integrations**: paste the key into the **AI Integrations** panel. The panel keeps the key in your browser only and fills it into the setup steps for each tool.
+- **AI integrations**: paste the key into the **AI Integrations** panel. The panel keeps the key in your browser only and fills it into the setup steps for each tool. See [AI Integrations](/ai-integrations).
 - **Other integrations**: provide the key wherever an integration asks for a Torque API token.
