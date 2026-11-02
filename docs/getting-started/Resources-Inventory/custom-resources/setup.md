@@ -19,23 +19,14 @@ Before creating resource instances, you need to define the resource types that w
 
 ### Creating a Resource Type
 
-1. Navigate to the **Admin** section in Torque
-2. Go to **Custom Resources** > **Resource Types**
-3. Click **Create Resource Type**
-4. Fill in the resource type details:
+1. Go to **Resources → Inventory** and open the **Custom Resources** tab.
+2. Click **Actions** and select **Create a New Resource Type**.
+3. In the **Create Custom Resource Type** dialog, fill in the **Resource Type Details**:
+   - **Type Name**: A unique name for the resource type (e.g., "Ignite_Pod", "Test_Server", "Database_Instance").
+   - **Attribute Definitions**: Click **Add Attribute** for each attribute that resources of this type will have, and give it an **Attribute Name** (e.g., "cpu_cores", "memory_gb", "location") and an **Attribute Description**.
+4. Click **Create**.
 
-**Basic Information:**
-- **Name**: Unique identifier for the resource type (e.g., "Ignite_Pod", "Test_Server", "Database_Instance")
-- **Description**: Brief description of what this resource type represents
-- **Category**: Logical grouping (e.g., "Compute", "Storage", "Network")
-
-**Attributes:**
-Define the attributes that resources of this type will have:
-
-- **Attribute Name**: The key identifier (e.g., "cpu_cores", "memory_gb", "location")
-- **Attribute Type**: Data type (string, number, boolean)
-- **Required**: Whether this attribute must be specified for all resource instances
-- **Description**: What this attribute represents
+To review or change the types later, click **Actions → View All Resource Types**. The drawer lists every custom resource type in the account, and each row's menu lets you **Edit** or **Remove** a type. Removing a type deletes all custom resources that use it.
 
 ### Example Resource Type Configuration
 import pic1 from '/img/custom-resource-1.png';
@@ -48,18 +39,17 @@ After defining resource types, create concrete instances that can be reserved by
 
 ### Adding Resource Instances
 
-1. Go to **Custom Resources** > **Resource Inventory**
-2. Click **Add Resource**
-3. Select the **Resource Type** from the dropdown
-4. Fill in the resource details:
+1. In the **Custom Resources** tab, click **Create New Resource**.
+2. In the **Create a New Resource** dialog, fill in the **Resource Settings**:
+   - **Resource Name**: A unique, human-readable name for this specific resource.
+   - **Resource Type**: Select one of the resource types you defined.
+   - **Location** (optional): Where the resource resides.
+   - **Description** (optional).
+   - **Attributes**: Provide an **Attribute Value** for each attribute defined by the selected type.
+   - **Tags**: Click **Add Tag** to add **Tag Key** / **Tag Value** pairs.
+3. Click **Create Resource**.
 
-**Basic Information:**
-- **Resource ID**: Unique identifier for this specific resource
-- **Name**: Human-readable name
-- **Status**: Available, Reserved, Maintenance, etc.
-
-**Attribute Values:**
-Provide values for all required attributes defined in the resource type.
+The resource appears in the Custom Resources table with its **Type**, **Location**, **Reservation Status** (**Available** or **Reserved**), and **Reserved By**. Use the row menu to **Edit** or **Remove** a resource, and tick **Excluded** to keep a resource from being reserved by environments.
 
 ### Example Resource Instance
 

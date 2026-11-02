@@ -612,3 +612,5 @@ Iframe
 iframe
 renderer
 ESX
+Curations
+Codifications

@@ -29,11 +29,11 @@ Torque Resources Inventory requires read-only access to inventory and manage clo
 
 ### Adding Your Azure Account
 
-Navigate to the `Account Center`.
+Azure subscriptions are connected as Providers with the Discovery capability:
 
-1. Under the `Curate` tab, go to `Resources Inventory` in the sidebar.
-2. Click on `Connect a New Cloud Account`.
-3. Select Azure as the cloud provider.
-4. Provide the necessary details, including `Subscription ID`, `Tenant ID`, `Application ID`, and the `Application Secret` with read-only permissions.
-5. Click Connect.
-6. Once connected, Torque Resources Inventory will begin scanning and discovering your cloud resources.
+1. Go to **Resources → Inventory**, open the **Providers** tab, and click **Add Provider**.
+2. In **Provider Details**, select the **Azure** tile, enter a **Provider Alias Name**, choose the **Connected Space(s)**, optionally add **Labels**, and click **Next**.
+3. In **All Capabilities**, enable **Discovery** and, under **Integration and Permissions**, provide the `Subscription ID`, `Tenant ID`, `Application ID`, and `Application Secret` of the application you registered with read-only permissions. Select the agent that will run the discovery.
+4. Save the provider. Once the Discovery capability shows as healthy, Torque begins scanning and discovering your cloud resources.
+
+For the wizard details, see [Adding a Provider](/getting-started/Resources-Inventory/adding-a-provider).
