@@ -7,7 +7,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 const config = {
   title: 'Torque',
   tagline: 'Torque Online Help',
-  url: 'https://docs.qtorque.io/',
+  url: 'https://next-docs.qtorque.io/',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
