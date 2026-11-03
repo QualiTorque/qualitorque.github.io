@@ -96,7 +96,7 @@ In the provided example, several areas for improvement are observable. A few exa
    
 To optimize these scenarios:
 
-1. Assess whether VM1 is necessary in every environment. If it's only required in certain environments with the same blueprint, consider creating a blueprint without this resource. Launch environments not needing VM1 from the new blueprint, eliminating the cost of VM1 in those instances.
+1. Assess whether VM1 is necessary in every environment. If it's only required in certain environments with the same blueprint, consider creating a blueprint without this resource. Launch the environment with VM1 removed from the new blueprint, eliminating the cost of VM1 in those instances.
 2. Initialize VM2 to be turned off, manually activating it only when necessary, and promptly turning it off afterward.
 3. Investigate the idle time of VM3. Does it align with off-hours or weekends? Configure a workflow to automatically power off VM3 during non-operational periods.
 
