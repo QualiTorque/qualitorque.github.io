@@ -3,7 +3,8 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - master
+      - torque-next
+  workflow_dispatch:
 
 jobs:
   deploy:
