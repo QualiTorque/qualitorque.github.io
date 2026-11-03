@@ -38,7 +38,7 @@ Now that you have a new space configured, we will connect a repository to the sp
 
 
 
-import pic1 from '/img/getting-repository-onboarding.gif';
+import pic1 from '/img/getting-repository-onboarding-flow.png';
 
 <img src={pic1} style={{width: 700}} />
 

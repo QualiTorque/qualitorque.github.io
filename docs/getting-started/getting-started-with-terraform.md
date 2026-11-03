@@ -40,7 +40,7 @@ Now that you have a new space configured, we will connect a repository to the sp
 
 5. Click **Explore in IaC Assets Page** (or go to **Automation > Automation Inventory** and open the **IaC Assets** tab). Each discovered asset is listed with its **Type**, **Self-Service** and **Building Block** toggles, **Status**, **IaC Local Path**, and **Repository Name**. Toggle **Self-Service** for the asset you want to launch. Torque wraps the asset in a blueprint behind the scenes and adds it to the Self-Service catalog. For details, see [Blueprint Design](/blueprint-designer-guide/blueprint-quickstart-guide).
 
-> ![Onboard Repository](/img/getting-repository-onboarding.gif)
+> ![Onboard Repository](/img/getting-repository-onboarding-flow.png)
 
 ## Step #3: Choose an agent and add cloud credentials
 Terraform runs on a Torque **agent**. A new space has no agent yet: its **Resources → Agents** page shows **Connect an Agent** ("To eventually launch environments, an Agent is required"). Either:
