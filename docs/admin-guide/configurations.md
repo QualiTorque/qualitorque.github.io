@@ -90,7 +90,7 @@ With this feature you can:
 - **(Blueprint) Cloud Copilot** - Create and customize blueprints from your Building Blocks Library, using simple language prompts and the power of AI.
   ![Cloud Copilot](/img/cloud_copilot_panel.png)
 
-- **AI Insights** - Get AI assistant when you need it. Resolve issues in live environments, by clicking the “Get AI Insights” button, on every error log in your environment. 
+- **AI Insights** - Get AI assistant when you need it. Resolve issues in live environments, by clicking the “Get AI Insights” button, on every error log in your environment.
 
   ![AI Insights](/img/ai_insights.png)
 
