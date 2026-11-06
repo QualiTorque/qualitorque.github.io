@@ -19,7 +19,7 @@ This feature allows you to:
   
 **How to upload your logo**
 
-1.  Navigate to **Configuration > White Labeling**.
+1.  In **Admin > Configurations**, select **White Labeling**.
 2.  Upload all three recommended logo types:
 
 -   **Favicon** – Appears in the browser tab.
@@ -44,7 +44,7 @@ This feature allows you to create and manage announcement banners to notify user
 
 **How to set up an Announcement**
 
-1.  Navigate to **Configuration > Announcements**.
+1.  In **Admin > Configurations**, select **Announcements**.
 2.  Use the ‘Preview Mode’ toggle to see how your banner will eventually look like.
 3.  Enter your message and customize the **banner color**.
 4.  Choose specific **spaces** to display the announcement or apply it system-wide.
@@ -78,7 +78,7 @@ These settings include 2 features:
 
 **How to enable Torque Copilot**
 
-1.  Navigate to **Configuration > Copilot Settings**.
+1.  In **Admin > Configurations**, select **Copilot Settings**.
 2.  Toggle on the ‘Torque Copilot’ toggle to show the AI chatbot button at the top header, next to the rest of the utilities.
 3.  Toggle off to hide the AI chatbot and to prevent access from all users.
 
@@ -90,7 +90,7 @@ With this feature you can:
 - **(Blueprint) Cloud Copilot** - Create and customize blueprints from your Building Blocks Library, using simple language prompts and the power of AI.
   ![Cloud Copilot](/img/cloud_copilot_panel.png)
 
-- **AI Insights** - Get AI assistant when you need it. Resolve issues in live environments, by clicking the “Get AI Insights” button, on every error log in your environment. 
+- **AI Insights** - Get AI assistant when you need it. Resolve issues in live environments, by clicking the “Get AI Insights” button, on every error log in your environment.
 
   ![AI Insights](/img/ai_insights.png)
 
@@ -98,7 +98,7 @@ With this feature you can:
 
 **How to Enable Cloud Copilot**
 
-1.  Navigate to **Configuration > Copilot Settings**.
+1.  In **Admin > Configurations**, select **Copilot Settings**.
 2.  Under the ‘Cloud Copilot’ section > click on the **‘AI Provider’ button** to select where to host your AI Data while using Copilot:  
     - Host in **Torque’s Open AI  
     **There’s no further configuration, just click ‘Connect’  
@@ -121,7 +121,7 @@ Streamline authentication with Single Sign-On (SSO) integration.
   
 **How to Enable SSO Login**
 
-1.  Navigate to **Configuration > SSO Login**.
+1.  In **Admin > Configurations**, select **SSO Login**.
 2.  To enable SSO, click ‘Send a Request’ to connect with an account manager.
 
 - 📖 [How SSO Configuration Works](/admin-guide/sso)
@@ -150,7 +150,7 @@ Example:
   
 **How to Enable Email Reports**
 
-1.  Navigate to **Configuration > Email Reports**.
+1.  In **Admin > Configurations**, select **Email Reports**.
 2.  Toggle on the ‘Email Report’ toggle to subscribe to the ‘Weekly Digest’ email report
 3.  Toggle off to unsubscribe  
 
@@ -162,7 +162,7 @@ Control the visibility of the Approval Requests page. Approval policies will sti
   
 **How to Enable Approval Requests**
 
-1.  Navigate to **Configuration > Approval Requests**.
+1.  In **Admin > Configurations**, select **Approval Requests**.
 2.  Toggle the setting to **show or hide** the Approval Requests page.
 
 :::tip __Important__
@@ -171,7 +171,25 @@ Notice that hiding the page does NOT prevent users from applying approval reques
 
 ---
 
-### 8.	Quick Launch
+### 8. Resources Inventory
+
+Choose which parts of the Resources Inventory are available in the account:
+
+- **Cloud Resources**: discover the resources in your cloud accounts, codify unmanaged resources, and curate selected resources into managed Torque environments.
+- **Custom Resources**: define and upload your own resource types and instances, so that blueprints can declare resource requirements and reserve resources while an environment runs.
+
+If both are turned off, **Resources > Inventory** shows nothing and points you back to this page.
+
+**How to configure the Resources Inventory**
+
+1.  In **Admin > Configurations**, select **Resources Inventory**.
+2.  Turn **Cloud Resources** and **Custom Resources** on or off.
+
+📖 Learn more about the [Resources Inventory](/getting-started/Resources-Inventory) and [Custom Resources](/getting-started/Resources-Inventory/custom-resources).
+
+---
+
+### 9. Quick Launch
 
 Enable your team to Quick Launch — this configuration skips the summary step and launches environments instantly.
 
@@ -180,7 +198,7 @@ When enabled by the account admin:
 -> You’ll see a single ‘Launch’ button for a quicker start.
 
 **How to Enable Quick Launch**
-1.	Navigate to **Configuration > Quick Launch**.
+1.	In **Admin > Configurations**, select **Quick Launch**.
 2.	Toggle the setting **ON to show only the ‘Launch’** button, no ‘Review Summary’ option.
 3.	Toggle the setting **OFF to show only the ‘Review Summary’**. Users will be able to launch only after reviewing the summary.
 
@@ -188,7 +206,7 @@ When enabled by the account admin:
 
 ---
 
-### 9.	Experimental Features
+### 10. Experimental Features
 
 Experimental Features give account administrators early access to upcoming capabilities in Torque that are still in development. These features are in a **beta** or **testing phase** and may not yet be fully supported or stable.
 
@@ -206,8 +224,8 @@ This settings gives **Torque administrators early visibility and hands-on access
 
   
 **How to Use Experimental Features**
-1.	Navigate to **Configuration > Experimental Features**.
-2.	Review the list of available experiments.
+1.	In **Admin > Configurations**, select **Experimental Features**.
+2.	Review the list of available features.
 3.	Click the toggle next to an experiment to **enable or disable** the feature **for yourself only**.
 4.	Try out the new feature and explore the changes.
 5.	Submit feedback via the linked survey or by opening a support ticket.

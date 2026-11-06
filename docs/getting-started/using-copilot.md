@@ -11,13 +11,17 @@ Torque Copilot is the built-in AI assistant for Torque. It is accessible from th
 
 Copilot can answer questions about your inventory and environments, author and edit blueprints, operate your environments, and answer general product and documentation questions. It understands the context of your inventory resources, blueprints, environments, repositories, and policies—so requests can be expressed the way you would describe them to a colleague.
 
+Whether you see the **Copilot** icon depends on your role. The AI engine that powers Copilot is chosen in **Admin > Configurations > Copilot Settings**. See [Copilot Settings](/admin-guide/configurations#4-copilot-settings).
+
+<!-- REVIEW (2026-11-06): the panel header, Open in New Tab, chat rename/delete, the composer modes, approvals, and the inline launch and monitoring cards are taken from the frontend bundle; no chat was started to verify them. Confirm with Yaniv. -->
+
 ## Opening Copilot
 
-Click the **Copilot** icon in the top bar to open the Copilot panel. The panel opens on the right side of the console and remains available while you continue to work.
+Click the **Copilot** icon in the top bar to open the Copilot panel. The panel opens on the right side of the console and remains available while you continue to work. Its header shows the **Operating space** Copilot works in. Click **Open in New Tab** to use Copilot as a full page, the **AI Chat Workspace**, with a chat history pane that you can resize.
 
 The panel is organized into two areas:
 
-- **Chat History** — a searchable list of your previous conversations, grouped by recency (**Today**, **Recent**, **Last 30 days**). Select any conversation to reopen it with its full context, or use the search box to find a past chat.
+- **Chat History** — a searchable list of your previous conversations, grouped by recency (**Today**, **Recent**, **Last 30 days**, **Older**). Select any conversation to reopen it with its full context, or use the search box to find a past chat. You can **Rename** a chat or delete it; deleting a chat is permanent.
 - **Composer** — the input area at the bottom of the panel where you type your request and configure how Copilot should handle it.
 
 ![Copilot chat history panel](/img/copilot-chat-history.png)
@@ -26,18 +30,30 @@ The panel is organized into two areas:
 
 Each conversation in Copilot maintains its own context. Starting a new chat gives you a clean context that is not influenced by earlier, unrelated conversations, which produces more accurate and focused results.
 
-To start a new conversation, click **+ New Chat** (or the **+** button next to the search box in the Chat History view). You can then type your request in the composer and configure the options described below before sending it.
+To start a new conversation, click **New Chat**. The first time you open Copilot, the panel shows **No previous chats found** and a **Start New Chat** button. You can then type your request in the composer and configure the options described below before sending it.
 
 ### Configuring the composer
 
 Before sending a request, you can enrich the chat with additional data and control how Copilot processes it. The composer exposes the following options:
 
-- **Connect a repository** — attach a Git repository to the chat. This is required for any operation that results in a repository pull request (PR), such as creating or editing a blueprint. Copilot commits its changes to a branch in the connected repository and opens a PR for your review.
-- **Define the entity** — scope the chat to the entity you want to work on (for example, a specific blueprint, environment, or resource). Setting the entity focuses Copilot on the relevant object and reduces ambiguity.
-- **Default Approvals** — choose whether actions require your explicit approval before they are executed. When set to **No**, Copilot pauses and asks for confirmation before performing an action; when set to **Yes**, approved action types are carried out automatically.
-- **Engine and thinking level** — select the underlying model version (for example, **GPT-5.4**) and the reasoning effort—**Low**, **Medium**, or **High**. Higher thinking levels apply more reasoning to complex requests at the cost of a slightly longer response time; lower levels return faster answers for simple requests.
+- **Connect a repository** — attach a Git repository to the chat. This is required for any operation that results in a repository pull request (PR), such as creating or editing a blueprint. Copilot commits its changes to a branch in the connected repository and opens a PR for your review. Use **Disconnect repository** to detach it.
+- **Focus mode** — **Auto** (all skills; Copilot picks what fits), **Docs** (answer questions from the documentation), **Blueprints** (author and edit blueprints), or **Deployments** (launch, monitor, and fix environments).
+- **Approval mode** — **Default Approvals** (the default) makes Copilot ask for your approval before it performs an action; **Autopilot** lets it carry out actions without asking first.
+- **Model** and **Reasoning effort** — select the underlying model (for example, **GPT-5.4**, the most capable, or **GPT-5 Mini**, which is faster and lower cost) and the reasoning effort—**Low**, **Medium**, or **High**. Higher levels apply more reasoning to complex requests at the cost of a slightly longer response time; lower levels return faster answers for simple requests.
 
-You can also choose a focus mode for the chat—**Auto** (Copilot selects the appropriate skills automatically), **Docs** (answer questions from the documentation), **Blueprints** (author and edit blueprints), or **Environments** (launch, monitor, and fix environments).
+While Copilot is generating a response, click **Stop** to stop it.
+
+## Approving actions
+
+When Copilot wants to perform an action that needs your consent, its message shows **Approval Required** with **Approve** and **Deny** buttons. Expand the message to see the tool that will run, its arguments, and its result, or click **Open full diff** to review a proposed file change before you approve it.
+
+## Launching and monitoring environments from the chat
+
+When you ask Copilot to launch an environment, the launch form appears in the chat with the **General**, **Inputs**, **Tags**, **Owners**, and **Workflows** tabs, and states the space the environment will be launched in. Click **Launch** to launch it, or **Cancel**. A launch that needs approval shows **Awaiting approval**.
+
+While the environment deploys, Copilot shows its progress grain by grain. Use **Open environment** to go to the environment page, **Continue** to keep working in the chat, or **Stop / run in background**. **Stop watching** ends the monitoring only; the environment keeps running in the background.
+
+When a step of an environment fails, **Get AI Insights** on the environment page opens Copilot with a prompt that asks it to explain the failure and suggest a fix.
 
 ## What you can ask Copilot
 

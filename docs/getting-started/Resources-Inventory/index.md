@@ -16,6 +16,13 @@ Providers are typed on creation (for example AWS, Azure, vCenter, Kubernetes, Op
 
 The inventory surface aggregates health and distribution metrics across all providers so operators can quickly assess coverage, spot unhealthy connections, and understand which capabilities are active across the estate.
 
+The **Resources → Inventory** page has two tabs:
+
+| Tab | Content |
+|-----|---------|
+| **Providers** | Health and capability metrics, the provider list, **Recent Collections**, and **Add Provider**. See [Providers Inventory](/getting-started/Resources-Inventory/providers-inventory). |
+| **Custom Resources** | Resource types and instances that you define and that blueprints can reserve. See [Custom Resources](/getting-started/Resources-Inventory/custom-resources). |
+
 <!-- ![Resources > Inventory — full inventory page with metrics cards and provider list](./images/inventory-overview.png) -->
 
 ---
@@ -30,3 +37,17 @@ The inventory surface aggregates health and distribution metrics across all prov
 | **Resource** | An individual item discovered under a provider (e.g., a VM, a Kubernetes workload, or a cloud object). |
 | **Spaces** | The space(s) a provider is shared with; controls which blueprints can use the provider's content. |
 | **Capability Health** | A rolled-up indicator of how many providers have a working Discovery or Deploy capability. |
+| **Credential set** | The cloud credentials a capability uses. A provider can use one set for both capabilities or a separate set for each. See [Credential sets](/getting-started/Resources-Inventory/provider-capabilities#credential-sets). |
+| **Collection** | A set of discovered resources that you codify into Terraform or curate into a live environment. See [Codifying and Curating Resources](/getting-started/Resources-Inventory/cloud-resources#codifying-and-curating-resources). |
+| **Custom resource** | An instance of a resource type that you define, which blueprints can reserve at launch. See [Custom Resources](/getting-started/Resources-Inventory/custom-resources). |
+
+---
+
+## Enabling the inventory
+
+The inventory is controlled per account in **Admin > Configurations > Resources Inventory**, which has two toggles:
+
+- **Cloud Resources** enables provider discovery, so that you can codify unmanaged resources and curate selected resources into managed Torque environments.
+- **Custom Resources** enables the **Custom Resources** tab, with resource types and instances that blueprints can reserve.
+
+If both are turned off, the Inventory page asks you to enable the inventory from the Configurations page. See [Resources Inventory](/admin-guide/configurations#8-resources-inventory).
