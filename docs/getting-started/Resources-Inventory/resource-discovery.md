@@ -7,7 +7,7 @@ description: Drilling into a provider to browse discovered resources, usage metr
 
 # Resource Discovery (Provider Drill-Down)
 
-For providers that support Discovery, clicking the provider name opens its resource view: **Inventory → &lt;Provider Name&gt;**. This page lists every resource discovered under the provider, with metrics and filtering.
+For providers that support Discovery, clicking the provider row (or **View Resources** in its row menu) opens its resource view: **Inventory → &lt;Provider Name&gt;**. This page lists every resource discovered under the provider, with metrics and filtering.
 
 ## Usage metrics
 
@@ -22,24 +22,28 @@ Some metric panels may be marked **Coming Soon** while the capability is being r
 
 <!-- ![Provider drill-down — Usage vs. Capacity and Usage vs. Quota metric cards](./images/resource-metrics.png) -->
 
+<!-- REVIEW (2026-11-06): the Usage vs. Capacity / Usage vs. Quota cards did not appear on the drill-down of the Sample-Azure provider. Confirm with Yaniv which provider types show them. -->
+
 ## Resource list
 
-The resource grid lists discovered items with the following columns:
+The resource grid lists discovered items. The columns depend on the provider type; for cloud providers they are:
 
 | Column | Description |
 |--------|-------------|
 | **Resource Name** | The discovered resource's name. Click to open its details (where available). |
-| **Type** | The resource category (e.g., VM, cluster, cloud object). |
-| **Model** | The hardware or instance model (e.g., `t3.large`). |
+| **Type** | The resource type in the provider (e.g., `Microsoft.Compute/virtualMachines`). |
+| **IaC Status** | **Managed** (managed by Torque), **Codified** (managed by your own IaC), or **Unmanaged** (created manually). |
 | **Location** | Where the resource resides (e.g., a data center or region). |
 | **Last Modified** | Timestamp of the most recent change detected for the resource. |
 
-<!-- ![Provider drill-down — discovered resource list (Resource Name, Type, Model, Location, Last Modified)](./images/resource-list.png) -->
+Other provider types can show columns such as **Model**, **Version**, **Namespace**, or **Compute**.
+
+<!-- ![Provider drill-down — discovered resource list (Resource Name, Type, IaC Status, Location, Last Modified)](./images/resource-list.png) -->
 
 ## Searching, filtering, and selecting
 
 - **Search by keyword** — find resources by name.
-- **Filters** — narrow by type, model, location, or other attributes.
-- **Selection** — use the row checkboxes to select one or more resources for bulk actions.
+- **Filters** — narrow by **Type**, **Location**, **Tags**, or **Attributes**, and reset with **Clear Filters**.
+- **Selection** — use the row checkboxes to add resources to the current **Collection**, then click **Collection** to codify or curate them. See [Codifying and Curating Resources](./cloud-resources#codifying-and-curating-resources).
 - **Sorting** — sort columns such as Last Modified to surface recent changes.
 - **Pagination** — page through large result sets with the bottom-right controls.
