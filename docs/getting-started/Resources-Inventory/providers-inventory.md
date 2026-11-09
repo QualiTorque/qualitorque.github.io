@@ -71,7 +71,7 @@ Hover over the Discovery icon for details:
 Click **Discovery Details** in the Discovery tooltip to open the provider's details panel. The panel has three tabs:
 
 - **Details**: the provider type, **Provider Alias Name**, **Connected Space(s)** (with **Share with all spaces**), and **Labels**.
-- **Deploy** and **Discovery**: the **Capability Status** of that capability, when it was **Last Synced**, any error, and the **Provider Integration** credentials, which you can change with **Edit Credentials**. A tab of a capability the provider does not have offers **Add Deploy Capability** or **Add Discovery Capability**; a configured capability can be removed with **Remove Deploy Capability** or **Remove Discovery Capability**. See [Provider Capabilities](./provider-capabilities).
+- **Deploy** and **Discovery**: the **Capability Status** of that capability (and, on the **Discovery** tab, when it was **Last Synced**), any error, the **Provider Integration** credentials, which you can change with **Edit Credentials**, and, for providers that run through an agent, the **Selected Agent**. A tab of a capability the provider does not have offers **Add Deploy Capability** or **Add Discovery Capability**; a configured capability can be removed with **Remove Deploy Capability** or **Remove Discovery Capability**. See [Provider Capabilities](./provider-capabilities).
 
 Click **Apply changes** to save your edits, or **Discard** to close the panel without saving.
 

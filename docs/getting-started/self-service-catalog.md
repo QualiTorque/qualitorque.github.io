@@ -19,13 +19,13 @@ When **All Spaces** is selected in the space selector, the catalog shows the ite
 | **Filters** panel | On the left. Starts with the **Quick Filters** section, which holds the **Favorites** toggle, followed by one section per label with its values and the number of matching items. Click the **Hide filters** icon in the panel header to hide the panel. |
 | **Search** | Filters the cards by name. |
 | Quick filters | Next to the search box. One button per quick-filter label, with the number of matching items. Click a quick filter to apply it. |
-| **Group by** | Groups the cards by the key of a `key:value` label, for example `Technology`. Items without that label appear under **Other Blueprints**. Clear the selection to remove the grouping. |
+| **Group by** | Groups the cards by the key of a `key:value` label, for example `Technology`. When the items carry a `Category` label, the catalog is grouped by **Category** by default. Items without the selected label appear under **Other Blueprints**. Clear the selection to remove the grouping. |
 | Sort | **Alphabetically**, **Last update time**, or **Favorites**. |
 | Cards | One card per published blueprint, blueprint family, or workflow. |
 
 ## Filtering
 
-Select one or more label values in the **Filters** panel to narrow the catalog. Each selected value appears as a chip under the search box; click the chip's **x** to remove it. Sections can be collapsed, and long sections offer **Show More** and **Show Less**.
+Select one or more label values in the **Filters** panel to narrow the catalog. You can also click a label on a card to filter by it. Each selected value appears as a chip under the search box; click the chip's **x** to remove it. Sections can be collapsed, and long sections offer **Show More** and **Show Less**.
 
 ### Quick filters
 
@@ -37,7 +37,7 @@ Hover over a card and click its star to mark the item as a favorite. Turn on the
 
 ### Validated and Experimental
 
-If items in the catalog carry a `Validated` or `Experimental` label, matching **Validated** and **Experimental** toggles appear in the **Quick Filters** section, so that you can show only validated items or only experimental ones.
+If items in the catalog carry a `Validated` or `Experimental` label, matching **Validated** and **Experimental** toggles appear in the **Quick Filters** section, so that you can show only validated items or only experimental ones. When the catalog has validated items, the **Validated** toggle is on by default, so you see only validated items until you turn it off. Torque remembers your choice for each space.
 
 ## Cards
 
