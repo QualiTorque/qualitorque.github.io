@@ -15,65 +15,6 @@ Simple Workflow example to extract Azure VM power state
 - This information can be useful for various purposes, such as monitoring, troubleshooting, or automation tasks. By extracting the power state, you can determine whether a VM is running, stopped, or in any other power state, and use this information to make informed decisions or trigger further actions based on the VM's power state. 
 - This workflow provides a convenient way to extract the power state of Azure VM resources and make it available as an output for further processing or integration with other systems.
 
-```yaml
-spec_version: 2
-description: Workflow with extract Azure VM power state
-
-workflow:
-  scope: env_resource
-  labels-selector: azurerm_linux_virtual_machine # will be available for all azure VM resources type
-  
-inputs:
-  agent:
-    type: agent
-    default: azure-agent
-
-outputs:
-  resource_state:
-    value: '{{ .grains.power-state.activities.deploy.commands.print.outputs.state }}'  
-  
-grains:
-  power-state:
-    kind: shell
-    spec:
-      agent:
-          name: '{{ .inputs.agent }}'
-      files:
-        - source: scripts
-          path: scripts/print-resource-2.sh
-      activities:
-        deploy:
-          commands:
-            - name: print
-              command:  'source print-resource-2.sh {{ .bindings.resource_id }} {{ .bindings.grain_path }}'
-              outputs:
-                - state
-```
-
-**Shell script:**
-
-```bash
-resource_id=$1
-grain_path=$2
-contract_path=$CONTRACT_FILE_PATH
-
-# will print the attribute "power_state" of the resource
-state_str=$(jq --arg ResourceId "$resource_id" --arg GrainPath "$grain_path" '.resources[] | select(.identifier == $ResourceId and .grain_path == $GrainPath) | .attributes | .power_state' $contract_path)
-
-export state=`echo -n $state_tr | tr -d '"'`
-
-echo ""
-echo "extracted values:"
-echo "------------------"
-echo "state: $state"
-echo "------------------"
-echo ""
-
-cat $CONTRACT_FILE_PATH
-echo $state_tr
-export $state_tr
-```
-
 ### 2. Attach an EBS volume to an EC2 instance
 
 Workflow that attach an EBS volume to an EC2 instance using Ansible grain
@@ -86,128 +27,6 @@ Running the "Attach volume to EC2" workflow enables you to enhance the storage c
 4. **High Availability**: By attaching multiple EBS volumes to your EC2 instances, you can distribute your data across different volumes. This improves fault tolerance and ensures that your applications remain available even if one volume fails.
 5. **Performance Optimization**: EBS volumes offer different performance characteristics based on their volume types. By attaching volumes with the appropriate performance characteristics, you can optimize the storage performance of your EC2 instances and improve the overall responsiveness of your applications.
 
-```yaml
-spec_version: 2
-description: Attach an EBS volume to an EC2 instance using Ansible grain
-
-workflow:
-  scope: env_resource
-  labels-selector: aws_instance # will be available for all aws ec2 resources type
-
-inputs:
-  ebs_volume_size:
-    type: string
-    default: 1
-  device_name:
-    type: string
-    default: /dev/sdf
-  volume_type:
-    type: string
-    default: gp3
-
-outputs:
-  volume_id:
-    value: '{{ .grains.attach_volume.outputs.volume_id }}'
-    quick: true
-  volume_name:
-    value: '{{ .grains.attach_volume.outputs.volume_name }}'
-    quick: true
-  volume_operation_data:
-    value: '{{ .grains.attach_volume.outputs.volume_operation_data }}'
-    quick: true
-
-grains:
-  helper:
-    kind: shell
-    spec:
-      agent:
-        name: cloud-agent
-      files:
-        - source: blueprints
-          path: blueprints/workflows/scripts/attach-detach-helper.sh
-      activities:
-        deploy:
-          commands:
-            - name: get-outputs
-              command:  'source attach-detach-helper.sh {{ .bindings.resource_id }} {{ .bindings.grain_path }}'
-              outputs:
-                - id
-                - region
-                - availability_zone
-
-  attach_volume:
-    depends-on: helper
-    kind: ansible
-    spec:
-      source:
-        store: ansible
-        path: attach_volume/attach_volume.yml
-      agent:
-        name: cloud-agent
-      inputs:
-      - ec2_instance_id: '{{ .grains.helper.activities.deploy.commands.get-outputs.outputs.id }}'
-      - aws_region: '{{ .grains.helper.activities.deploy.commands.get-outputs.outputs.region }}'
-      - availability_zone: '{{ .grains.helper.activities.deploy.commands.get-outputs.outputs.availability_zone }}'
-      - ebs_volume_size: '{{ .inputs.ebs_volume_size }}'
-      - device_name: '{{ .inputs.device_name }}'
-      - volume_type: '{{ .inputs.volume_type }}'
-      - env_id: '{{ envId }}'
-      - volume_name: 'ebs-volume-{{ envId }}'
-      env-vars: []
-      outputs:
-      - volume_operation_data
-      - volume_name
-      - volume_id
-
-      inventory-file:
-        localhost:
-          hosts:
-            127.0.0.1:
-              ansible_connection: local
-```
-
-**Ansible playbook:**
-
-```yaml
----
-- hosts: localhost
-  connection: local
-  gather_facts: false
-
-  tasks:
-    - name: Install boto3 python package
-      pip:
-        name: boto3
-        
-    # Create new volume using SSD storage
-    - name: Create and attach new EBS volume
-      amazon.aws.ec2_vol:
-        instance: "{{ ec2_instance_id | replace('\n', '') }}"
-        region: "{{ aws_region | replace('\n', '') }}"
-        zone: "{{ availability_zone | replace('\n', '') }}"
-        volume_size: "{{ ebs_volume_size | replace('\n', '') }}"
-        device_name: "{{ device_name | replace('\n', '') }}"
-        volume_type: "{{ volume_type | replace('\n', '') }}"
-        delete_on_termination: true # The volume will be deleted upon instance termination.
-      register: attached_volume
-
-    - name: Ensure tags are present on a resource
-      amazon.aws.ec2_tag:
-        region: "{{ aws_region | replace('\n', '') }}"
-        resource: "{{ attached_volume.volume_id }}"
-        state: present
-        tags:
-          Name: "{{ volume_name | replace('\n', '') }}"
-          env: prod
-    
-    - name: Export outputs
-      torque.collections.export_torque_outputs:
-        outputs:
-          volume_name: "{{ volume_name | replace('\n', '') }}"
-          volume_id: "{{ attached_volume.volume_id }}"
-          volume_operation_data: "{{ attached_volume }}"
-```
-
 ### 3. Detach an EBS volume from an EC2 instance
 
 Workflow that detach an EBS volume from an EC2 instance using Ansible grain
@@ -218,77 +37,6 @@ Running the "Detach an EBS volume from an EC2 instance" workflow helps you optim
 2. **Resource Management**: Detaching EBS volumes allows you to efficiently manage your storage resources. By detaching volumes that are not actively being used, you can free up storage capacity and allocate it to other instances or applications that require it. This helps to ensure that your resources are utilized effectively and avoids unnecessary resource wastage.
 3. **Data Security**: Detaching EBS volumes from EC2 instances can enhance data security. By detaching volumes before terminating or decommissioning instances, you can ensure that sensitive data stored on those volumes is not accessible to unauthorized users. This helps to protect your data and maintain compliance with security and privacy regulations.
 4. **Maintenance and Troubleshooting**: Detaching EBS volumes can be useful for maintenance and troubleshooting purposes. By detaching volumes, you can perform maintenance tasks such as resizing, snapshotting, or modifying volume attributes without impacting the running instances. It also allows you to troubleshoot issues related to specific volumes without affecting the overall availability of your EC2 instances.
-
-```yaml
-spec_version: 2
-description: Detach an EBS volume from an EC2 instance
-
-workflow:
-  scope: env_resource
-  labels-selector: aws_instance
-
-inputs:
-  volume_id:
-    type: string
-
-grains:
-  helper:
-    kind: shell
-    spec:
-      agent:
-        name: cloud-agent
-      files:
-        - source: blueprints
-          path: blueprints/workflows/scripts/attach-detach-helper.sh
-      activities:
-        deploy:
-          commands:
-            - name: get-outputs
-              command:  'source attach-detach-helper.sh {{ .bindings.resource_id }} {{ .bindings.grain_path }}'
-              outputs:
-                - id
-                - region
-                - availability_zone
-
-  detach_volume:
-    depends-on: helper
-    kind: ansible
-    spec:
-      source:
-        store: ansible
-        path: detach_volume/detach_volume.yml
-      agent:
-        name: cloud-agent
-      inputs:
-      - aws_region: '{{ .grains.helper.activities.deploy.commands.get-outputs.outputs.region }}'
-      - volume_id: '{{ .inputs.volume_id }}'
-      env-vars: []
-      inventory-file:
-        localhost:
-          hosts:
-            127.0.0.1:
-              ansible_connection: local
-
-```
-
-**Ansible playbook:**
-```yaml
----
-- hosts: localhost
-  connection: local
-  gather_facts: false
-
-  tasks:
-    - name: Install boto3 python package
-      pip:
-        name: boto3
-    # Detach a volume
-    - name: Detach a volume
-      amazon.aws.ec2_vol:
-        region: "{{ aws_region | replace('\n', '') }}"
-        id: "{{ volume_id | replace('\n', '') }}"
-        instance: None
-```
 
 ---
 
@@ -518,6 +266,17 @@ grains:
 
 ---
 
+### 9. Cleanup Test Environments
+
+**Motivation:** Automate the cleanup of test environments after testing to reduce costs and maintain resource availability.
+
+**Benefits:**
+- Reduces operational costs by automatically destroying unused test environments
+- Prevents resource leakage that can lead to unexpected charges
+- Ensures consistent cleanup procedures across all test environments
+- Improves resource availability for subsequent tests
+
+
 ## Torque Built-in Workflows
 
 :::info
@@ -537,6 +296,8 @@ Usage example can be found [here](workflows-overview#torque-built-in-workflows)
 - Optimizes resource utilization and costs
 - Enables scheduled maintenance windows
 - Facilitates quick recovery from issues through restarts
+
+---
 
 ### 2. Azure VM Power Management
 
