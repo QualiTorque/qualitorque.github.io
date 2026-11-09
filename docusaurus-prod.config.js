@@ -16,6 +16,12 @@ const config = {
   projectName: 'torque-docs', // Usually your repo name.
   deploymentBranch: 'gh-pages',
   trailingSlash: false,
+  stylesheets: [
+    {
+      href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap',
+      type: 'text/css',
+    },
+  ],
   future: {
     v4: true,
     experimental_faster: true,
@@ -112,6 +118,10 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      colorMode: {
+        defaultMode: 'dark',
+        respectPrefersColorScheme: false,
+      },
       navbar: {
         title: '',
         hideOnScroll: true,
@@ -122,13 +132,15 @@ const config = {
         },
         items: [
           {
+            label: 'Announcements',
             href: 'https://github.com/QualiTorque/torque-docs/discussions/categories/announcements',
-            className: 'header-announcments-link',
+            className: 'header-link',
             position: 'right',
           },
           {
+            label: 'GitHub',
             href: 'https://github.com/QualiTorque/torque-docs',
-            className: 'header-github-link',
+            className: 'header-link',
             position: 'right',
           },
         ],

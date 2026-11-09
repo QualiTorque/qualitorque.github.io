@@ -1,28 +1,79 @@
-@use "./footer";
-
 [data-theme=dark] {
-    /* footer */
+    .navbar {
+        background: #1b1b1b;
+        border-bottom-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .theme-doc-sidebar-container {
+        background: #1f1f1f;
+        border-right-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .theme-doc-sidebar-menu .menu__link,
+    .theme-doc-sidebar-menu .menu__caret {
+        color: #a1a1aa;
+    }
+
+    .theme-doc-sidebar-menu .menu__link:hover,
+    .theme-doc-sidebar-menu .menu__list-item-collapsible:hover {
+        background: rgba(0, 188, 235, 0.1);
+        color: #e4e4e7;
+    }
+
+    .theme-doc-sidebar-menu .menu__link--active,
+    .theme-doc-sidebar-menu .menu__list-item-collapsible--active {
+        background: rgba(255, 255, 255, 0.1);
+        color: #e4e4e7;
+    }
+
+    .theme-doc-sidebar-menu .menu__list-item--expanded > .menu__list-item-collapsible,
+    .theme-doc-sidebar-menu .menu__list-item-collapsible--expanded {
+        background: transparent;
+        box-shadow: none;
+    }
+
+    .theme-doc-sidebar-menu .menu__list-item-collapsible--active {
+        box-shadow: none;
+    }
+
+    .theme-doc-sidebar-menu > .menu__list > .menu__list-item > .menu__list {
+        background: transparent;
+        border-left-color: transparent;
+    }
+
+    .theme-doc-sidebar-menu .menu__list .menu__list {
+        border-left-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .theme-doc-sidebar-menu .menu__list .menu__list .menu__link--active,
+    .theme-doc-sidebar-menu .menu__list .menu__list .menu__list-item-collapsible--active {
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: none;
+        color: #e4e4e7;
+    }
+
+    .theme-doc-markdown,
+    .theme-doc-toc-mobile,
+    .pagination-nav,
+    .table-of-contents {
+        color: #e4e4e7;
+    }
+
+    .theme-doc-markdown code,
+    .theme-doc-toc-mobile code {
+        background: rgba(255, 255, 255, 0.08);
+    }
+
     .footer {
-        background: #15212E;
+        background: #1b1b1b;
+        border-top-color: rgba(255, 255, 255, 0.12);
 
         &__title {
-            color: #9C9CA6;
+            color: #a1a1aa;
         }
 
-        &__item a{
-            color: #fff;
-        }
-
-        .col:first-child {
-            @include footer.beforeImg("../../static/img/company-icon-dm.svg");
-        }
-    
-        .col:nth-child(2) {
-            @include footer.beforeImg("../../static/img/community-icon-dm.svg");
-        }
-    
-        .col:nth-child(3) {
-            @include footer.beforeImg("../../static/img/more-icon-dm.svg");
+        &__item a {
+            color: #e4e4e7;
         }
     }
 }

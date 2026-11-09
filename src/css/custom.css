@@ -3,43 +3,69 @@
  * bundles Infima by default. Infima is a CSS framework designed to
  * work well for content-centric websites.
  */
- body {
-   overflow: overlay !important;
- }
-/* You can override the default Infima variables here. */
- :root {
-  --ifm-color-primary: #009bda;
-  --ifm-color-primary-dark: #008bc4;
-  --ifm-color-primary-darker: #0084b9;
-  --ifm-color-primary-darkest: #006c99;
-  --ifm-color-primary-light: #00aaf0;
-  --ifm-color-primary-lighter: #00b2fb;
-  --ifm-color-primary-lightest: #1cbeff;
-  --ifm-code-font-size: 95%;
-  --ifm-font-weight-semibold: 0;
-  --ifm-h1-font-size: 20px;
-  --ifm-h2-font-size: 16px;
-  --ifm-h3-font-size: 15px;
-  --ifm-font-weight-bold: 600;
-  --ifm-heading-font-weight: 500;
-  --sidebar-width: 300px;
+body {
+  overflow: overlay !important;
+  font-family: "Inter", "CiscoSans", sans-serif;
+  background: var(--site-surface-subtle);
+  color: var(--site-text);
 }
 
-
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #049fd9;
+  --ifm-color-primary-dark: #038fc3;
+  --ifm-color-primary-darker: #0387b8;
+  --ifm-color-primary-darkest: #026f97;
+  --ifm-color-primary-light: #05afef;
+  --ifm-color-primary-lighter: #10b5f1;
+  --ifm-color-primary-lightest: #3ec5f4;
+  --ifm-code-font-size: 95%;
+  --ifm-font-family-base: "Inter", "CiscoSans", sans-serif;
+  --ifm-font-family-monospace: "Fira Code", "Consolas", "Courier New", monospace;
+  --ifm-heading-font-family: "Inter", "CiscoSans", sans-serif;
+  --ifm-font-weight-semibold: 600;
+  --ifm-font-weight-bold: 700;
+  --ifm-heading-font-weight: 700;
+  --ifm-navbar-height: 4.5rem;
+  --ifm-global-radius: 0.5rem;
+  --ifm-alert-border-radius: 0.5rem;
+  --ifm-code-border-radius: 0.25rem;
+  --ifm-card-border-radius: 0.5rem;
+  --ifm-line-height-base: 1.7;
+  --ifm-h1-font-size: clamp(2rem, 3vw, 2.75rem);
+  --ifm-h2-font-size: 1.75rem;
+  --ifm-h3-font-size: 1.25rem;
+  --ifm-breadcrumb-separator: none;
+  --doc-sidebar-width: 320px !important;
+  --site-surface: #ffffff;
+  --site-surface-subtle: #f7f7f8;
+  --site-surface-emphasis: #ebebed;
+  --site-border: #d4d4d8;
+  --site-text: #18181b;
+  --site-text-muted: #71717a;
+  --site-shadow: 0 18px 40px rgba(0, 0, 0, 0.06);
+}
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #009bda;
-  --ifm-color-primary-dark: #008bc4;
-  --ifm-color-primary-darker: #0084b9;
-  --ifm-color-primary-darkest: #006c99;
-  --ifm-color-primary-light: #00aaf0;
-  --ifm-color-primary-lighter: #00b2fb;
-  --ifm-color-primary-lightest: #1cbeff;
+  --ifm-color-primary: #00bceb;
+  --ifm-color-primary-dark: #00a9d4;
+  --ifm-color-primary-darker: #009fc8;
+  --ifm-color-primary-darkest: #0083a5;
+  --ifm-color-primary-light: #0ccff7;
+  --ifm-color-primary-lighter: #1ed3f8;
+  --ifm-color-primary-lightest: #52ddf9;
+  --site-surface: #1b1b1b;
+  --site-surface-subtle: #141414;
+  --site-surface-emphasis: #2a2a2a;
+  --site-border: rgba(255, 255, 255, 0.12);
+  --site-text: #e4e4e7;
+  --site-text-muted: #a1a1aa;
+  --site-shadow: 0 18px 40px rgba(0, 0, 0, 0.32);
 }
 
 .menu__link {
-  font-size: 15px;
+  font-size: 0.9375rem;
 }
 
 .docusaurus-highlight-code-line {
@@ -50,91 +76,391 @@
 }
 
 .navbar--fixed-top {
-  left: 280px;
+  left: 0;
 }
 
 .aa-Autocomplete {
-  width: 150px;
+  width: min(100%, 19rem);
 }
 
 [data-theme='dark'] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-.header-github-link:hover {
-  opacity: 0.6;
+.navbar {
+  background: rgba(255, 255, 255);
+  border-bottom: 1px solid var(--site-border);
+  box-shadow: 0 1px 0 rgba(15, 23, 42, 0.03);
 }
 
-.header-github-link::before {
-  content: '';
-  width: 24px;
-  height: 24px;
-  display: flex;
-  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E")
-    no-repeat;
+.navbar__brand {
+  gap: 0.875rem;
+  font-weight: 700;
 }
 
-[data-theme='dark'] .header-github-link::before {
-  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='white' d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E")
-    no-repeat;
+.navbar__logo img {
+  height: 2rem;
+  width: auto;
 }
 
-.header-announcments-link:hover {
-  opacity: 0.6;
+.navbar__link {
+  font-weight: 600;
+  color: var(--site-text);
 }
 
-.header-announcments-link::before {
-  content: '';
-  width: 24px;
-  height: 24px;
-  display: flex;
-  background: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='iso-8859-1'%3F%3E%3C!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0) --%3E%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 239.563 239.563' style='enable-background:new 0 0 239.563 239.563;' xml:space='preserve'%3E%3Cg%3E%3Cg%3E%3Cg%3E%3Cpath d='M146.962,36.978h-1.953L85.568,69.611H42.605C19.113,69.611,0,88.723,0,112.216c0,21.012,15.301,38.474,35.334,41.943 L21.56,202.585h47.523l13.584-47.756h2.901l59.443,32.628h1.953c12.585,0,22.826-10.239,22.826-22.826V59.803 C169.787,47.219,159.546,36.978,146.962,36.978z M57.592,187.366H41.71l8.352-29.364h15.882L57.592,187.366z M109.459,150.581 l-19.988-10.972H42.605c-15.103,0-27.388-12.29-27.388-27.393c0-15.103,12.285-27.388,27.388-27.388h46.866l19.988-10.974 V150.581z M154.57,164.631c0,3.637-2.567,6.683-5.978,7.431l-23.916-13.127V65.502l23.916-13.13 c3.414,0.748,5.978,3.797,5.978,7.434V164.631z'/%3E%3Cpath d='M198.989,79.377L188.106,90.26c5.623,7.789,8.976,17.32,8.976,27.637c0,10.32-3.353,19.851-8.976,27.637l10.883,10.883 c8.326-10.629,13.31-24,13.31-38.52C212.299,103.377,207.315,90.007,198.989,79.377z'/%3E%3Cpath d='M218.358,60.009l-10.794,10.794c10.482,12.856,16.782,29.252,16.782,47.094c0,17.845-6.3,34.238-16.782,47.094 l10.794,10.794c13.216-15.648,21.205-35.849,21.205-57.888S231.574,75.657,218.358,60.009z'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3C/svg%3E%0A")
-    no-repeat;
+.header-link {
+  border: 1px solid transparent;
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.9rem;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
 }
 
-[data-theme='dark'] .header-announcments-link::before {
-  background: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='iso-8859-1'%3F%3E%3C!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0) --%3E%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 239.563 239.563' style='enable-background:new 0 0 239.563 239.563;' xml:space='preserve'%3E%3Cg%3E%3Cg%3E%3Cg%3E%3Cpath d='M146.962,36.978h-1.953L85.568,69.611H42.605C19.113,69.611,0,88.723,0,112.216c0,21.012,15.301,38.474,35.334,41.943 L21.56,202.585h47.523l13.584-47.756h2.901l59.443,32.628h1.953c12.585,0,22.826-10.239,22.826-22.826V59.803 C169.787,47.219,159.546,36.978,146.962,36.978z M57.592,187.366H41.71l8.352-29.364h15.882L57.592,187.366z M109.459,150.581 l-19.988-10.972H42.605c-15.103,0-27.388-12.29-27.388-27.393c0-15.103,12.285-27.388,27.388-27.388h46.866l19.988-10.974 V150.581z M154.57,164.631c0,3.637-2.567,6.683-5.978,7.431l-23.916-13.127V65.502l23.916-13.13 c3.414,0.748,5.978,3.797,5.978,7.434V164.631z' fill='white'/%3E%3Cpath fill='white' d='M198.989,79.377L188.106,90.26c5.623,7.789,8.976,17.32,8.976,27.637c0,10.32-3.353,19.851-8.976,27.637l10.883,10.883 c8.326-10.629,13.31-24,13.31-38.52C212.299,103.377,207.315,90.007,198.989,79.377z'/%3E%3Cpath fill='white' d='M218.358,60.009l-10.794,10.794c10.482,12.856,16.782,29.252,16.782,47.094c0,17.845-6.3,34.238-16.782,47.094 l10.794,10.794c13.216-15.648,21.205-35.849,21.205-57.888S231.574,75.657,218.358,60.009z'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3C/svg%3E%0A")
-    no-repeat;
+.header-link:hover,
+.header-link:focus-visible {
+  background: var(--site-surface-emphasis);
+  border-color: var(--site-border);
+  color: var(--ifm-color-primary-darkest);
 }
 
 .main-wrapper main > div {
-  max-width: calc(100vw - var(--sidebar-width));
-  padding: 24px 27px;
+  max-width: none;
+  padding: 2rem;
 }
 
 @media only screen and (max-width: 600px) {
   .main-wrapper main > div {
     max-width: 100%;
+    padding: 1.25rem;
   }
 }
 
-.theme-doc-markdown h1:first-child {
-  font-size: 28px;
+.theme-doc-page {
+  background: transparent;
+}
+
+.theme-doc-sidebar-container {
+  background: linear-gradient(180deg, #f9f9fa 0%, #f2f2f4 100%);
+  border-right: 1px solid var(--site-border);
+}
+
+.theme-doc-sidebar-menu {
+  padding: 1rem 0.875rem 2rem;
+}
+
+.theme-doc-sidebar-menu > .menu__list > .menu__list-item {
+  margin-bottom: 0.35rem;
+}
+
+.theme-doc-sidebar-menu .menu__list-item {
+  position: relative;
+}
+
+.theme-doc-sidebar-menu > .menu__list > .menu__list-item > .menu__list-item-collapsible,
+.theme-doc-sidebar-menu > .menu__list > .menu__list-item > .menu__link {
+  border-radius: 0.5rem;
+  color: var(--site-text-muted);
+  display: flex;
+  align-items: center;
+  font-size: 0.96rem;
+  font-weight: 600;
+  line-height: 1.35;
+  margin-bottom: 0;
+  min-height: 3rem;
+  padding: 0.9rem 1rem;
+  position: relative;
+  transition: background-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
+}
+
+.theme-doc-sidebar-menu > .menu__list > .menu__list-item > .menu__list-item-collapsible:hover,
+.theme-doc-sidebar-menu > .menu__list > .menu__list-item > .menu__link:hover {
+  background: rgba(4, 159, 217, 0.06);
+  color: var(--site-text);
+}
+
+.theme-doc-sidebar-menu > .menu__list > .menu__list-item > .menu__list-item-collapsible .menu__link--active,
+.theme-doc-sidebar-menu > .menu__list > .menu__list-item > .menu__link--active,
+.theme-doc-sidebar-menu > .menu__list > .menu__list-item > .menu__list-item-collapsible--active {
+  background: rgba(4, 159, 217, 0.12);
+  color: #026f97;
+}
+
+.theme-doc-sidebar-menu .menu__list-item--expanded > .menu__list-item-collapsible,
+.theme-doc-sidebar-menu .menu__list-item-collapsible--expanded {
+  background: transparent;
+  box-shadow: none;
+}
+
+.theme-doc-sidebar-menu .menu__list-item-collapsible--active {
+  box-shadow: none;
+}
+
+.theme-doc-sidebar-menu .menu__list {
+  gap: 0.1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.theme-doc-sidebar-menu > .menu__list > .menu__list-item > .menu__list {
+  background: transparent;
+  border-left: none;
+  border-radius: 0;
+  margin: 0.1rem 0 0.35rem;
+  padding: 0 0 0 1.35rem;
+}
+
+.theme-doc-sidebar-menu .menu__list .menu__list {
+  border-left: 1px solid rgba(90, 107, 125, 0.18);
+  margin: 0.1rem 0 0.35rem 0.5rem;
+  padding-left: 1rem;
+}
+
+.theme-doc-sidebar-menu .menu__list .menu__list .menu__link,
+.theme-doc-sidebar-menu .menu__list .menu__list .menu__list-item-collapsible {
+  border-radius: 0.375rem;
+  color: var(--site-text-muted);
+  font-size: 0.92rem;
+  font-weight: 500;
+  min-height: 2.6rem;
+  margin-bottom: 0.05rem;
+  margin-left: 0.6rem;
+  padding: 0.6rem 0.85rem 0.6rem 1rem;
+}
+
+.theme-doc-sidebar-menu .theme-doc-sidebar-item-link-level-2 > .menu__link,
+.theme-doc-sidebar-menu .theme-doc-sidebar-item-category-level-2 > .menu__list-item-collapsible {
+  margin-left: 1rem;
+  padding-left: 1.15rem;
+}
+
+.theme-doc-sidebar-menu .theme-doc-sidebar-item-category-level-2 > .menu__list {
+  margin-left: 1rem;
+}
+
+/* Nested category rows: the collapsible row already carries the indent (and, deeper down, the row padding),
+   so the link inside it shouldn't add its own. */
+.theme-doc-sidebar-menu .menu__list .menu__list-item-collapsible > .menu__link.menu__link--sublist {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.theme-doc-sidebar-menu .menu__list .menu__list .menu__list-item-collapsible > .menu__link.menu__link--sublist {
+  margin: 0;
+  min-height: 0;
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+.theme-doc-sidebar-menu .menu__list .menu__list .menu__list-item-collapsible > .menu__caret {
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+.theme-doc-sidebar-menu .menu__list .menu__list .menu__link--active,
+.theme-doc-sidebar-menu .menu__list .menu__list .menu__list-item-collapsible--active {
+  background: rgba(4, 159, 217, 0.12);
+  box-shadow: none;
+  color: var(--site-text);
   font-weight: 600;
 }
 
+.theme-doc-sidebar-menu .menu__list .menu__list .menu__list {
+  margin-left: 0.75rem;
+  padding-left: 0.7rem;
+}
+
+.theme-doc-markdown {
+  background: var(--site-surface);
+  border: 1px solid var(--site-border);
+  border-radius: 0.5rem;
+  box-shadow: var(--site-shadow);
+  padding: clamp(1.5rem, 2vw, 2.5rem);
+}
+
+.theme-doc-markdown h1:first-child {
+  font-size: var(--ifm-h1-font-size);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.75rem;
+}
+
 .theme-doc-markdown > h2 {
-  font-size: 22px;
+  font-size: var(--ifm-h2-font-size);
+  margin-top: 2.75rem;
 }
 
 .theme-doc-markdown > h3 {
-  font-size: 21px;
+  font-size: var(--ifm-h3-font-size);
+  margin-top: 2rem;
 }
 
-.theme-doc-markdown p, .theme-doc-markdown ol, .theme-doc-markdown ul {
-  font-size: 14px;
+.theme-doc-markdown p,
+.theme-doc-markdown ol,
+.theme-doc-markdown ul,
+.theme-doc-markdown table {
+  font-size: 1rem;
+}
+
+.theme-doc-markdown a {
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+.theme-doc-markdown table {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--site-border);
+  border-radius: 0.5rem;
+}
+
+.theme-doc-markdown table th,
+.theme-doc-markdown table td {
+  border: 0;
+  border-bottom: 1px solid var(--site-border);
+  padding: 0.85rem 1rem;
+}
+
+.theme-doc-markdown table tr:last-child td {
+  border-bottom: 0;
+}
+
+.theme-doc-markdown table th {
+  background: var(--site-surface-subtle);
+}
+
+.breadcrumbs {
+  margin-bottom: 1rem;
+}
+
+.breadcrumbs__item {
+  align-items: center;
+  color: var(--site-text-muted);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.breadcrumbs__item:not(:last-child)::after {
+  content: "/";
+  color: var(--site-text-muted);
+  margin: 0 0.6rem;
+}
+
+.breadcrumbs__link,
+.breadcrumbs__item--active .breadcrumbs__link {
+  color: inherit;
+}
+
+.pagination-nav {
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.pagination-nav__link {
+  background: var(--site-surface);
+  border: 1px solid var(--site-border);
+  border-radius: 0.5rem;
+  box-shadow: var(--site-shadow);
+  padding: 1rem 1.15rem;
+}
+
+.pagination-nav__sublabel {
+  color: var(--site-text-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 ul.table-of-contents {
-  font-size: 12px;
+  font-size: 0.8125rem;
+}
+
+.table-of-contents {
+  border-left: 1px solid var(--site-border);
+  padding-left: 1rem;
+}
+
+.table-of-contents__left-border {
+  border-left: 1px solid var(--site-border) !important;
+  padding-left: 0.85rem;
+}
+
+.table-of-contents ul {
+  margin: 0;
+  padding-left: 0.9rem;
+}
+
+.table-of-contents li {
+  list-style: none;
+  margin: 0.2rem 0;
+  position: relative;
+}
+
+.table-of-contents__link {
+  border-radius: 0.375rem;
+  color: var(--site-text-muted);
+  display: block;
+  font-size: 0.875rem;
+  line-height: 1.35;
+  padding: 0.4rem 0.7rem;
+  transition: background-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
+}
+
+.table-of-contents__link:hover {
+  background: var(--site-surface-emphasis);
+  color: var(--site-text);
+  text-decoration: none;
+}
+
+.table-of-contents__link--active {
+  background: transparent;
+  box-shadow: inset 2px 0 0 var(--ifm-color-primary);
+  color: var(--ifm-color-primary-darkest);
+  font-weight: 600;
+}
+
+.theme-doc-toc-mobile > button {
+  align-items: center;
+  background: var(--site-surface);
+  border: 1px solid var(--site-border);
+  border-radius: 0.5rem;
+  color: var(--site-text);
+  display: flex;
+  font-weight: 600;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.theme-doc-toc-mobile .table-of-contents {
+  border-top: 1px solid var(--site-border);
+  margin-top: 0.5rem;
+  padding-top: 0.45rem;
 }
 
 footer.theme-doc-footer {
-  font-size: 14px;
+  font-size: 0.9375rem;
 }
 
 footer.theme-doc-footer svg {
-  transform: scale(0.6);
-  vertical-align: text-bottom;
-  margin-right: 2px;
+  display: none;
+}
+
+@media only screen and (max-width: 996px) {
+  .theme-doc-markdown {
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+  }
+
+  .theme-doc-sidebar-container {
+    width: auto !important;
+  }
+
+  .header-link {
+    border-radius: 0.375rem;
+    padding: 0.6rem 0.75rem;
+  }
 }
