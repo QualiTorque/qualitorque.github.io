@@ -9,6 +9,9 @@ on:
 jobs:
   deploy:
     name: Deploy to GitHub Pages
+    # torque-next is served from the qualitorque-next.github.io fork (docs-next.qtorque.io).
+    # Deploying it from this repo would replace the production site (docs.qtorque.io).
+    if: github.repository == 'QualiTorque/qualitorque-next.github.io'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
