@@ -23,7 +23,7 @@ The **Resources → Inventory** page has two tabs:
 | **Providers** | Health and capability metrics, the provider list, **Recent Collections**, and **Add Provider**. See [Providers Inventory](/getting-started/Resources-Inventory/providers-inventory). |
 | **Custom Resources** | Resource types and instances that you define and that blueprints can reserve. See [Custom Resources](/getting-started/Resources-Inventory/custom-resources). |
 
-<!-- ![Resources > Inventory — full inventory page with metrics cards and provider list](./images/inventory-overview.png) -->
+![Resources > Inventory — full inventory page with metrics cards and provider list](/img/inventory-overview.png)
 
 ---
 

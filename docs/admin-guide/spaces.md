@@ -19,9 +19,7 @@ The space selector sits in the top bar, next to the Torque logo. It shows the cu
 
 The current space is listed first and the other spaces alphabetically, unless you change the order in [Admin > Spaces](#admin--spaces).
 
-<!-- SCREENSHOT: portal.qtorque.io/<space> with the space selector open — the Select Space list with the search box, Create a new Space, All Spaces, and the space list -->
-
-<!-- REVIEW (2026-11-06): the space selector did not open under browser automation (the trigger reports aria-expanded=true but no list is rendered), so the Select Space header, the Search a space box, the All Spaces item, and the list order are taken from the frontend bundle. Recheck by hand. -->
+![The space selector open, with the search box, Create a new Space, All Spaces, and the space list](/img/space-selector.png)
 
 :::note
 Some pages work only inside a space. In the **All Spaces** view, **Automation Inventory** and **Notifications** are disabled in the sidebar, and each shows a tooltip that asks you to select a space.
@@ -59,7 +57,7 @@ Torque switches to the new space and opens the **Connect a repository** dialog. 
 | **⋮** | **Edit Space** and **Remove**. |
 | Drag handle | Drag a row to change the order of the spaces in the space selector. The order is saved in your browser. |
 
-<!-- SCREENSHOT: portal.qtorque.io/admin/spaces — the Spaces table with the Create Space button and one row menu open -->
+![Admin > Spaces with a row menu open](/img/admin-spaces.png)
 
 ### Editing a space
 

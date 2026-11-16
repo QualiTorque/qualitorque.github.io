@@ -5,7 +5,7 @@ title: API Tokens
 
 For programmatic access to Torque, such as the REST API, CI/CD and ITSM integrations, and the AI integrations, you need a **Torque API key** (also called an API token). API keys are generated and managed on the **API Keys** page.
 
-<!-- SCREENSHOT: https://portal.qtorque.io/admin/api-keys — the API Keys page with the key list and the Generate and API Docs buttons -->
+![Admin > API Keys](/img/api-keys-page.png)
 
 ### Generate an API key
 

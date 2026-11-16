@@ -30,7 +30,7 @@ The table lists each resource's **Name**, **Type**, **Reservation Status** (**Av
 
 Select a resource's **Exclude** checkbox to keep it from being reserved by environments, for example during maintenance. Torque asks for a reason, which appears as a tooltip in the table. Clear the checkbox to make the resource available again.
 
-<!-- SCREENSHOT: portal.qtorque.io/admin/resources_inventory (Custom Resources tab) — the Reservation Status, Types, and Location cards above the resource table -->
+![The Custom Resources tab with its metric cards and resource table](/img/custom-resources-tab.png)
 
 ## Define Resource Types
 

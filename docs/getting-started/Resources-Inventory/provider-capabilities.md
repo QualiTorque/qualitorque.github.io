@@ -30,7 +30,7 @@ Blueprints reference a Deploy provider through the [`target`](/blueprint-designe
 
 Each enabled capability is health-checked. The **Capabilities Health** card rolls these checks up into percentages so operators can see, for example, that Discovery is healthy on 52% of providers while Deploy is healthy on 86%. Unhealthy capabilities appear as red icons in the provider row, making it easy to locate connections that need attention.
 
-<!-- ![Capabilities Health card with Discovery and Deploy progress bars](./images/capabilities-health.png) -->
+![Capabilities Health card with Discovery and Deploy progress bars](/img/capabilities-health.png)
 
 ## Adding or removing a capability
 

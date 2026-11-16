@@ -10,7 +10,7 @@ The **Self-Service** page is the catalog of blueprints and workflows that have b
 
 When **All Spaces** is selected in the space selector, the catalog shows the items that are published across all the spaces of the account.
 
-<!-- SCREENSHOT: portal.qtorque.io/<space> — the Self-Service Catalog with the Filters panel on the left, quick filters next to the search box, the Group by and sort controls, and a mix of blueprint and workflow cards -->
+![The Self-Service Catalog with the Filters panel, quick filters, and Group by](/img/catalog-overview.png)
 
 ## Page layout
 
@@ -53,7 +53,7 @@ Each card shows the item's icon, display name, labels, and description. Hover ov
 
 <!-- REVIEW (2026-11-06): the Clone behavior (copy stored in Torque, opened in the blueprint designer, "Choose a space" when the user has several spaces) and the "Choose a blueprint to launch" dialog with its Cheapest / Fastest / Most popular tags are taken from the frontend bundle; neither was clicked live (Clone and Launch create things). Confirm with Yaniv. -->
 
-<!-- SCREENSHOT: portal.qtorque.io/<space> — a blueprint card on hover with the star, Clone, and Launch, next to a workflow card with Execute -->
+![A blueprint card on hover with the star, Clone, and Launch](/img/catalog-cards.png)
 
 ### Details panel
 
@@ -66,7 +66,7 @@ For a blueprint family, the panel shows a **Multiple Blueprints** ribbon, and th
 
 The panel footer holds the favorite star and the **Clone** and **Launch** buttons.
 
-<!-- SCREENSHOT: portal.qtorque.io/<space>/catalog/<blueprint> — the details panel on the Details tab, scrolled to Activity and Policies -->
+![The details panel of a blueprint on the Details tab](/img/catalog-details-panel.png)
 
 ### When Launch is unavailable
 

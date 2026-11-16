@@ -8,7 +8,7 @@ description: The top bar, the sidebar, and the Support drawer of Torque, and whe
 
 Torque has two navigation areas: the **top bar**, with the space selector and account-wide tools, and the **sidebar**, with the pages of the selected space or of the whole account.
 
-<!-- SCREENSHOT: portal.qtorque.io/<space> — the sidebar with all groups expanded next to the top bar, with callouts for the space selector, Copilot, AI Integrations, Support, and the user menu -->
+![The Torque UI with the sidebar expanded and the top bar](/img/ui-overview.png)
 
 ## Top bar
 
@@ -40,7 +40,7 @@ The items you see depend on whether a space or **All Spaces** is selected, and o
 | **Reports** | Opens the account-level [Reports](/reports/reports-overview) page and switches the selector to **All Spaces**. | The **Activity**, **Cost**, **Realized Savings**, **Opportunity Savings**, and **Inventory Utilization** tabs. |
 | **Admin** | At the bottom of the sidebar: [Spaces](/admin-guide/spaces), **User Management**, [Configurations](/admin-guide/configurations), [Cost Configurations](/governance/cost-tracking/cost), **Account and Billing**, and [API Keys](/rest-api/api-tokens). Opening an Admin page switches the selector to **All Spaces**. | Same. |
 
-<!-- SCREENSHOT: portal.qtorque.io/admin/spaces — the sidebar in the All Spaces view with the Governance and Admin groups expanded, to contrast with the in-space sidebar -->
+![The sidebar in the All Spaces view with Governance and Admin expanded](/img/sidebar-all-spaces.png)
 
 :::tip
 Page URLs follow the selection: the pages of a space start with `/<space-name>/`, and account-level pages start with `/admin/`. You can bookmark either.
@@ -55,7 +55,7 @@ The **Support** icon in the top bar opens the **Support** drawer:
 - **Contact Us**: **Ask a question**, **Ready to share your feedback?**, and **Report a bug or an issue** open the **Contact Us** form on its **Question**, **Feedback**, or **Bug** tab. Each tab asks for a **Subject**, a description, and a **Severity level**, and lets you attach images. Click **Submit** to send the form, or **Cancel** to close it.
 - **REST API**: **Explore REST API** opens the REST API reference. See [REST API](/rest-api).
 
-<!-- SCREENSHOT: portal.qtorque.io/<space> with the Support drawer open — the Ask Copilot, Documentation, Contact Us, and REST API sections -->
+![The Support drawer](/img/support-drawer.png)
 
 ## Where pages moved
 

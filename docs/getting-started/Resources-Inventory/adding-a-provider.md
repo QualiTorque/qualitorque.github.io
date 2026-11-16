@@ -23,21 +23,21 @@ Select the **provider type** and supply core identity and sharing settings.
 
 Click **Next**. The button stays disabled until the required fields are filled.
 
-<!-- ![Add Provider — Step 1 Provider Details (type selector, alias, connected spaces, labels, credential options)](./images/add-provider-step1.png) -->
+![Add Provider — Step 1 Provider Details (type selector, alias, connected spaces, labels, credential options)](/img/add-provider-step1.png)
 
 ## Step 2 — All Capabilities
 
 Configure the capabilities the chosen provider type supports. With **Multiple Credentials Set**, this step is split into a **Deploy Capability** step and a **Discovery Capability** step.
 
-- **Integration and Permissions** — select the cloud credentials the capability uses. The credentials must have the permissions the capability needs: read access for Discovery, and permission to create resources for Deploy.
+- **Integration and Permissions** — provide credentials that have the permissions the capability needs: read access for Discovery, and permission to create resources for Deploy. The fields depend on the provider type. For AWS, choose the **Permissions** type (**Role ARN** or **Basic**) and enter the **Account Number**, **Role ARN**, optional **External ID**, and **View ARN** (the ARN of your AWS Resource Explorer view, used for discovery).
 - **Agent** — select the agent that runs discovery scans and deployments for this provider. See [What is an Agent?](/agent/Agent-Intro)
 - **Kubernetes, OpenShift, and RKE2** providers also ask for a **Service Account Name** and a **Namespace**. Under **Advanced - Runner Management**, you can set the **Default Runners Namespace** and **Default Runners Service Account**. Runners are the containers Torque creates in your cluster to run provisioning jobs; a dedicated namespace keeps automation isolated from your workloads, and the service account determines the permissions the runners have in the cluster.
 
-Click **Skip for now** to skip a capability step; on the last step, **Skip and Done** finishes the wizard without it. You can add a skipped capability later from the provider's details panel. Click **Cancel** to leave the wizard without saving.
+Click **Done** to add the provider; the button stays disabled until the required fields are filled. With **Multiple Credentials Set**, a capability step can offer **Skip for now** (or **Skip and Done** on the last step) so that you add that capability later from the provider's details panel. Click **Back** to return to step 1, or **Cancel** to leave the wizard without saving.
 
-<!-- REVIEW (2026-11-06): Step 2 was not opened live (it needs a typed alias name); its fields and the Skip for now / Skip and Done buttons are taken from the frontend bundle. Confirm with Yaniv, or walk it by hand. -->
+<!-- REVIEW (2026-11-12): the AWS step (single credential set) is verified from the add-provider-step2.png capture: Permissions Role ARN / Basic, Account Number, Role ARN, External ID, View ARN, Agent, and Cancel / Back / Done. The Kubernetes, OpenShift, and RKE2 fields and the Skip for now / Skip and Done buttons are still taken from the frontend bundle. -->
 
-<!-- ![Add Provider — Step 2 All Capabilities (Discovery and Deploy configuration)](./images/add-provider-step2.png) -->
+![Add Provider — Step 2 All Capabilities (Discovery and Deploy configuration)](/img/add-provider-step2.png)
 
 ## After adding a provider
 

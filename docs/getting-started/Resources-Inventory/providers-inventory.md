@@ -28,7 +28,7 @@ Three metric cards sit above the provider list and update as providers are added
 - **Inventory Types** — a breakdown of providers by type (for example AWS, Azure, vCenter, and Others) with per-type counts and percentages.
 - **Capabilities Health** — progress bars summarizing the health of the Discovery and Deploy capabilities across all providers (e.g., Discovery 52%, Deploy 86%).
 
-<!-- ![Inventory metrics cards — Providers Health, Inventory Types, Capabilities Health](./images/inventory-metrics.png) -->
+![Inventory metrics cards — Providers Health, Inventory Types, Capabilities Health](/img/inventory-metrics.png)
 
 ## Provider list
 
@@ -45,7 +45,7 @@ Each row represents one provider. The columns are:
 
 Use the page controls at the bottom right to navigate large inventories.
 
-<!-- ![Provider list rows showing Type, Capabilities icons, and Labels](./images/provider-list.png) -->
+![Provider list rows showing Type, Capabilities icons, and Labels](/img/provider-list.png)
 
 :::caution
 **Delete** removes the provider from all connected spaces and cannot be undone. Deleting a Custom provider also permanently deletes its custom resources and releases any of them that are reserved.
@@ -75,4 +75,4 @@ Click **Discovery Details** in the Discovery tooltip to open the provider's deta
 
 Click **Apply changes** to save your edits, or **Discard** to close the panel without saving.
 
-<!-- SCREENSHOT: portal.qtorque.io/admin/resources_inventory with the provider details panel open on the Discovery tab (Capability Status, Last Synced, Provider Integration, Edit Credentials) -->
+![The provider details panel on the Discovery tab](/img/provider-details-panel.png)

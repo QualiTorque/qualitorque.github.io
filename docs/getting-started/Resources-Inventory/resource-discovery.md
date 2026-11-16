@@ -38,7 +38,7 @@ The resource grid lists discovered items. The columns depend on the provider typ
 
 Other provider types can show columns such as **Model**, **Version**, **Namespace**, or **Compute**.
 
-<!-- ![Provider drill-down — discovered resource list (Resource Name, Type, IaC Status, Location, Last Modified)](./images/resource-list.png) -->
+![Provider drill-down — discovered resource list (Resource Name, Type, IaC Status, Location, Last Modified)](/img/resource-list.png)
 
 ## Searching, filtering, and selecting
 

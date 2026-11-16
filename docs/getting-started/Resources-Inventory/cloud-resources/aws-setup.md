@@ -44,7 +44,7 @@ AWS accounts are connected as Providers with the Discovery capability:
 
 1. Go to **Resources → Inventory**, open the **Providers** tab, and click **Add Provider**.
 2. In **Provider Details**, select the **AWS** tile, enter a **Provider Alias Name**, choose the **Connected Space(s)**, optionally add **Labels**, and click **Next**.
-3. In **All Capabilities**, enable **Discovery** and, under **Integration and Permissions**, provide the read-only credentials you prepared: the `Account Number`, `Access Key`, `Secret Key`, and the `View Arn` of your Resource Explorer view. Select the agent that will run the discovery.
+3. In **All Capabilities**, enable **Discovery** and, under **Integration and Permissions**, provide the read-only credentials you prepared: the `Account Number`, `Access Key`, `Secret Key`, and the `View ARN` of your Resource Explorer view. Select the agent that will run the discovery.
 4. Save the provider. Once the Discovery capability shows as healthy, Torque begins scanning and discovering your cloud resources.
 
 For the wizard details, see [Adding a Provider](/getting-started/Resources-Inventory/adding-a-provider).
