@@ -8,22 +8,27 @@ Whether you're a DevOps lead, Infrastructure lead, or a FinOps manager, monitori
 > ![Locale Dropdown](/img/reports-intro-2.png)
 
 
+To open the reports, select **Reports** in the sidebar. The Reports page opens at the account level and has five tabs: **Activity**, **Cost**, **Realized Savings**, **Opportunity Savings**, and **Inventory Utilization**. For the filters and chart options they share, see [Using the Reports](/reports/using-reports).
+
 ## Torque Reports Types ## 
 
-1. **Activity and Adoption Reports**:
+1. **Activity and Adoption Reports** (**Activity** tab):
 Gain a comprehensive understanding of how your environments are utilized with Activity reports. Track user engagement, identify active users, assess the adoption rates of different blueprints, and get immediate insights about environment statuses. This data is invaluable for optimizing resource allocation and ensuring that your cloud resources align with your organizational goals.
 
 2. **Cloud Efficiency Reports**:
 Torque takes cloud management a step further with Cloud Efficiency Reports, offering insights into cost optimization and savings opportunities. These reports are categorized into three subtypes:
 
-   - **Cloud Cost Reports**:
+   - **Cloud Cost Reports** (**Cost** tab):
    Understand the financial implications of your cloud usage. Monitor costs associated with each environment, blueprint, space and cloud account. Torque provides detailed breakdowns to help you allocate resources judiciously and minimize unnecessary expenses.
 
-   - **Realized Savings Reports**:
+   - **Realized Savings Reports** (**Realized Savings** tab):
    Discover the tangible benefits of using Torque. Realized Savings reports showcase the dollars saved by leveraging Torque's efficient resource management. This transparency highlights the platform's direct impact on your bottom line.
 
-   - **Saving Opportunities Reports**:
+   - **Saving Opportunities Reports** (**Opportunity Savings** tab):
    Torque goes beyond savings by proactively identifying opportunities for further optimization. These reports guide users on how to fine-tune their cloud usage, recommending adjustments that can lead to additional cost savings.
+
+3. **Inventory Utilization Reports** (**Inventory Utilization** tab):
+Track the resources in your [Resources Inventory](/getting-started/Resources-Inventory) and how they are reserved over time. The tab shows **Inventory Resources**, **Inventory Resources by Type**, **Inventory Utilization | Reservations**, and the **Inventory Utilization | Reservation Table**. Its filters are **Time range**, **Time grain**, and **Resource type**.
 
 ## What kind of questions can be answered by Torque reports? ##
 

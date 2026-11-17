@@ -69,51 +69,32 @@ info 🔒  Audit log integration is  available for **Enterprise plans only** and
 
 ### 4. Copilot Settings
 
-Enable Torque’s AI-powered assistant to provide recommendations and enhance workflow automation, within your account.  
-  
-These settings include 2 features:  
-**1. Torque Copilot** – Easily navigate Torque with our AI chatbot, always accessible and leveraging the official documentation for swift exploration.  
-(This feature is based on a 3rd party tool called DocsBot)  
-![DocsBot](/img/docsbot.png)
+Turn on Torque's AI features and choose the AI engine that powers them. In **Admin > Configurations**, select **Copilot Settings**. The panel has two features.
 
-**How to enable Torque Copilot**
+**Torque Copilot (DocsBot)** – An AI chatbot that answers questions from the official Torque documentation. Use its toggle to turn it on or off for all users.
 
-1.  In **Admin > Configurations**, select **Copilot Settings**.
-2.  Toggle on the ‘Torque Copilot’ toggle to show the AI chatbot button at the top header, next to the rest of the utilities.
-3.  Toggle off to hide the AI chatbot and to prevent access from all users.
+**Cloud Copilot** – AI assistance to create and customize blueprints, auto-generate descriptions, and resolve live environment errors, for example with **Get AI Insights** on a failed environment step. Cloud Copilot is subject to the [Torque MSA](https://www.quali.com/legal-torque-master-subscription-agreement/) and requires user consent. It must be enabled for your account; if it isn't, click **Send a Request** and Quali will contact you.
 
-**2. Cloud Copilot** – Your internal AI assistance to create and customize Blueprints, auto-generate descriptions, and resolve live environment errors.  
-This AI assistant tool is subject to the [Torque MSA](https://www.quali.com/legal-torque-master-subscription-agreement/) and requires user consent.  
-  
-With this feature you can:  
-- **Auto-generate descriptions** for blueprints, to effortlessly expand the details on every blueprint in the account.  
-- **(Blueprint) Cloud Copilot** - Create and customize blueprints from your Building Blocks Library, using simple language prompts and the power of AI.
-  ![Cloud Copilot](/img/cloud_copilot_panel.png)
+Cloud Copilot sends its AI data to the engine listed under **AI Provider**:
 
-- **AI Insights** - Get AI assistant when you need it. Resolve issues in live environments, by clicking the “Get AI Insights” button, on every error log in your environment.
+- **Torque AI**, hosted by Torque's OpenAI. No configuration is needed; when it is in use, the panel shows **Activated and applied**.
+- **Your own AI model**. Click **Connect AI**, select **Connect Model**, and fill in the connection:
+  - **Connection Name** – a unique name. It can't be changed after saving.
+  - **Endpoint URL** – the full URL of the model's endpoint.
+  - **Key** (optional) – create a new key or search for a stored one, then paste the **Key value**.
+  - **Use your own agent** – reach the model through one of your agents instead of the Torque network, then select the **Agent**.
+  - **Available Models** (optional) and **Embedding Model** – Copilot needs an embedding model to search the documentation.
+  - **Set as Active Connection** – Copilot uses this connection's chat and embedding models.
 
-  ![AI Insights](/img/ai_insights.png)
+  Click **Test Connection** to check the connection, then **Save**.
 
+To switch engines later, open the ⋮ menu of a connection and select **Set as active**, or edit the connection.
 
+![Admin > Configurations > Copilot Settings with the Torque Copilot (DocsBot) toggle, Cloud Copilot, and the AI Provider list](/img/copilot-settings.png)
 
-**How to Enable Cloud Copilot**
-
-1.  In **Admin > Configurations**, select **Copilot Settings**.
-2.  Under the ‘Cloud Copilot’ section > click on the **‘AI Provider’ button** to select where to host your AI Data while using Copilot:  
-    - Host in **Torque’s Open AI  
-    **There’s no further configuration, just click ‘Connect’  
-    - Host in your own **Azure OpenAI service  
-    **You’ll have to provide: API key, Endpoint URL, GPT-4o deployment name, and GPT-4o mini deployment name.  
-    - Host in your own **OpenAI  
-    **You’ll have to provide only the API key.
-3.  To apply this settings, it requires a specific licensing feature - please contact us to enable Cloud Copilot for the account.
-4.  Once your request was applied, and your selected provider was connected successfully, you’ll be able to enjoy the Cloud Copilot capabilities.
-5.  You can toggle off to hide all the Cloud Copilot capabilities and prevent access from all users.  
-
+<!-- REVIEW (2026-11-16): verified live in Admin > Configurations > Copilot Settings and the Connect AI dialog (closed with Cancel); the connection fields, Key value, Agent, models, and Set as active come from the frontend bundle. The classic page offered Torque's OpenAI, Azure OpenAI (GPT-4o deployment names), and OpenAI; the UI now has Torque AI or a generic model connection. Open questions for Yaniv: what the Torque Copilot (DocsBot) toggle controls now that the top-bar Copilot is the Torque AI assistant, and whether the classic Cloud Copilot panel in the blueprint designer still exists. The classic images docsbot.png, cloud_copilot_panel.png, and ai_insights.png were removed from this section. -->
 
 ---
-
-
 
 ### 5. SSO Login
 
