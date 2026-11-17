@@ -44,6 +44,7 @@ const config = {
   // ],
   plugins: [
     require.resolve("docusaurus-plugin-sass"),
+    'docusaurus-plugin-image-zoom',
     [
       '@docusaurus/plugin-client-redirects',
       {
@@ -121,6 +122,14 @@ const config = {
       colorMode: {
         defaultMode: 'dark',
         respectPrefersColorScheme: false,
+      },
+      zoom: {
+        // Click a screenshot to view it larger (docusaurus-plugin-image-zoom). Images in tables, such as the green dots on the roles page, are left out.
+        selector: '.markdown img:not(table img)',
+        background: {
+          light: 'rgb(255, 255, 255)',
+          dark: 'rgb(30, 30, 30)',
+        },
       },
       navbar: {
         title: '',
